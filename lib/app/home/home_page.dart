@@ -16,6 +16,29 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            TextField(
+              style: const TextStyle(fontSize: 22, height: 1.5),
+              textInputAction: TextInputAction.go,
+              keyboardType: TextInputType.phone,
+              onSubmitted: _onSubmitted,
+              decoration: const InputDecoration(
+                labelText: 'Phone number',
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+                border: OutlineInputBorder(),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
+  }
+
+  void _onSubmitted(String phoneNumber) {
+    // TODO launch whatsapp chat
   }
 }
