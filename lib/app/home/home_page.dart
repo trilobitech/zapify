@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -38,7 +39,11 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  void _onSubmitted(String phoneNumber) {
-    // TODO launch whatsapp chat
+  Future _onSubmitted(String phoneNumber) async {
+    final Uri url = Uri.parse('https://wa.me/$phoneNumber');
+    if (!await canLaunchUrl(url) ||
+        !await launchUrl(url, mode: LaunchMode.externalApplication)) {
+      throw 'Could not launch $url';
+    }
   }
 }
