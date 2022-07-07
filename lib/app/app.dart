@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         ),
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: const MyHomePage(title: 'Zapfy'),
+      home: MyHomePage(title: 'Zapfy'),
     );
   }
 }
