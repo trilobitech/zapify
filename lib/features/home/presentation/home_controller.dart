@@ -4,30 +4,51 @@ import 'package:rxdart/rxdart.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:zapfy/core/logger.dart';
 import 'package:zapfy/features/home/domain/entity/chat_app.dart';
-import 'package:zapfy/features/home/domain/entity/region.dart';
+import 'package:zapfy/features/home/domain/usecase/get_region_by_code.dart';
+import 'package:zapfy/features/shared/domain/entity/region.dart';
 import 'package:zapfy/features/home/domain/usecase/get_chat_apps.dart';
+import 'package:zapfy/features/home/domain/usecase/get_default_region.dart';
 import 'package:zapfy/features/home/domain/usecase/save_phone_number_history.dart';
 import 'package:zapfy/features/home/presentation/home_state.dart';
 
 class HomeController with _PhoneFieldController, _ChatAppsController {
   HomeController({
     required PhoneNumberUtil plugin,
+    required this.getDefaultRegion,
+    required this.getRegionByCode,
     required this.getChatApps,
     required this.savePhoneNumberHistory,
-  }) : _plugin = plugin;
+  }) : _plugin = plugin {
+    init();
+  }
 
   @override
   final PhoneNumberUtil _plugin;
+
+  final GetDefaultRegionUseCase getDefaultRegion;
+
+  @override
+  final GetRegionByCode getRegionByCode;
 
   @override
   final GetChatAppsUseCase getChatApps;
 
   @override
   final SavePhoneNumberHistoryUseCase savePhoneNumberHistory;
+
+  init() async {
+    try {
+      final region = await getDefaultRegion();
+      onRegionSelected(region);
+    } catch (error, stackTrace) {
+      logError(error, stackTrace);
+    }
+  }
 }
 
 mixin _PhoneFieldController {
   PhoneNumberUtil get _plugin;
+  GetRegionByCode get getRegionByCode;
 
   TextEditingController _textEditingController = TextEditingController();
   Region _region = Region.br();
@@ -48,11 +69,36 @@ mixin _PhoneFieldController {
       );
 
   onRegionSelected(Region region) {
+    _updateTextField(region, _textEditingController.value);
+  }
+
+  onPhoneNumberSelected(String phoneNumberString) async {
+    final phoneNumber = await _plugin.parse(phoneNumberString);
+    final region = await getRegionByCode(phoneNumber.countryCode);
+    final formatted =
+        await _plugin.format(phoneNumber.nationalNumber, region.code);
+
+    _updateTextField(
+      region,
+      TextEditingValue(
+        text: formatted,
+        selection: TextSelection.fromPosition(
+          TextPosition(offset: formatted.length),
+        ),
+      ),
+    );
+  }
+
+  clearPhoneField() {
+    _textEditingController.clear();
+  }
+
+  _updateTextField(Region region, TextEditingValue value) {
     _region = region;
     _textEditingController = PhoneNumberEditingController.fromValue(
       _plugin,
-      _textEditingController.value,
-      regionCode: region.code,
+      value,
+      regionCode: _region.code,
     );
 
     _phoneFieldState.add(
@@ -61,18 +107,6 @@ mixin _PhoneFieldController {
         controller: _textEditingController,
       ),
     );
-  }
-
-  onPhoneNumberChanged(String phoneNumberString) async {
-    final phoneNumber = await _plugin.parse(phoneNumberString);
-    _textEditingController.text = phoneNumber.nationalNumber;
-    _textEditingController.selection = TextSelection.fromPosition(
-      TextPosition(offset: _textEditingController.text.length),
-    );
-  }
-
-  clearPhoneField() {
-    _textEditingController.clear();
   }
 }
 

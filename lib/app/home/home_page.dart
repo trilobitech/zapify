@@ -5,9 +5,9 @@ import 'package:zapfy/app/home/chatapp_launcher/whatsapp_launcher.dart';
 import 'package:zapfy/app/home/widgets/app_launcher_widget.dart';
 import 'package:zapfy/app/home/widgets/call_log_tab_page.dart';
 import 'package:zapfy/app/home/widgets/recents_tab_page.dart';
-import 'package:zapfy/app/home/widgets/region_picker.dart';
+import 'package:zapfy/features/region/presentation/region_picker.dart';
 import 'package:zapfy/app/home/widgets/tabs.dart';
-import 'package:zapfy/features/home/domain/entity/region.dart';
+import 'package:zapfy/features/shared/domain/entity/region.dart';
 import 'package:zapfy/features/home/presentation/widgets/phone_field_widget.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -82,11 +82,9 @@ class _MyHomePageState extends State<MyHomePage> {
   onRegionPressed(Region? current) async {
     dismissKeyboard(context);
 
-    final regions = await getRegions();
-
     final route = MaterialPageRoute<Region>(
       fullscreenDialog: true,
-      builder: (_) => RegionPicker(regions: regions),
+      builder: (_) => const RegionPicker(),
     );
 
     final selectedRegion = await Navigator.of(context).push<Region>(route);
