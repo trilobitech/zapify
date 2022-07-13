@@ -68,7 +68,6 @@ class HistoryPage extends StatelessWidget {
 
   Widget _buildListTile(HistoryEntry entry) {
     return ListTile(
-      // leading: Icon(entries[index].appIcon),
       title: Text(entry.phoneNumber),
       trailing: Timeago(
         date: entry.at,

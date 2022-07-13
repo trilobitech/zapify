@@ -95,7 +95,6 @@ class _HomePageState extends State<HomePage> {
     final selectedRegion = await Navigator.of(context).push<Region>(route);
 
     if (selectedRegion != null) {
-      print('Region selected: $selectedRegion');
       controller.onRegionSelected(selectedRegion);
     }
   }
