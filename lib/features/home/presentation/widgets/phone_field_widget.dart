@@ -27,6 +27,7 @@ class PhoneFieldWidget extends StatelessWidget {
       padding: padding,
       child: Row(
         children: [
+          if (_region != null) regionSelectorButton(_region!),
           Expanded(
             child: TextField(
               style: const TextStyle(fontSize: 22, height: 1.5),
@@ -34,12 +35,11 @@ class PhoneFieldWidget extends StatelessWidget {
               textInputAction: TextInputAction.go,
               keyboardType: TextInputType.phone,
               onSubmitted: onSubmitted,
-              decoration: InputDecoration(
-                prefix: regionSelectorButton(),
+              decoration: const InputDecoration(
                 labelText: 'Phone number',
                 contentPadding:
-                    const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-                border: const OutlineInputBorder(),
+                    EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+                border: OutlineInputBorder(),
                 // errorText: 'an error',
               ),
             ),
@@ -49,17 +49,19 @@ class PhoneFieldWidget extends StatelessWidget {
     );
   }
 
-  Widget? regionSelectorButton() {
-    final region = _region;
-    if (region == null) return null;
-
-    return TextButton(
-      onPressed: () {
-        onRegionPressed(region);
-      },
-      child: Text(
-        '${region.flag} +${region.prefix}',
-        style: const TextStyle(fontSize: 22, height: 1.5),
+  Widget regionSelectorButton(Region region) {
+    return ConstrainedBox(
+      constraints: const BoxConstraints(
+        minWidth: 85,
+      ),
+      child: TextButton(
+        onPressed: () {
+          onRegionPressed(region);
+        },
+        child: Text(
+          '${region.flag} +${region.prefix}',
+          style: const TextStyle(fontSize: 22, height: 1.5),
+        ),
       ),
     );
   }
