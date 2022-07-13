@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zapfy/core/logger.dart';
+import 'package:zapfy/features/history/presentation/history_page.dart';
 import 'package:zapfy/features/home/domain/entity/chat_app.dart';
 import 'package:zapfy/features/home/domain/entity/region.dart';
 import 'package:zapfy/features/home/presentation/widgets/chat_app_launcher_widget.dart';
@@ -38,6 +39,11 @@ class _HomePageState extends State<HomePage> {
             future: controller.chatAppsState(),
             builder: (_, AsyncSnapshot<ChatAppsViewState> snapshot) =>
                 _buildChatAppLaunchers(snapshot),
+          ),
+          Expanded(
+            child: HistoryPage(
+              onEntryTap: _onHistoryEntryTap,
+            ),
           ),
         ],
       ),
@@ -78,10 +84,20 @@ class _HomePageState extends State<HomePage> {
   }
 
   _onRegionPressed(Region? region) {
+    dismissKeyboard(context);
     // TODO: navigate to region picker
   }
 
-  _onChatAppPressed(ChatApp chatApp) {
-    controller.onChatAppPressed(chatApp);
+  _onChatAppPressed(ChatApp chatApp) async {
+    if (await controller.onChatAppPressed(chatApp)) {
+      dismissKeyboard(context);
+    }
   }
+
+  _onHistoryEntryTap(String phoneNumber) {
+    controller.onPhoneNumberChanged(phoneNumber);
+  }
+
+  void dismissKeyboard(BuildContext context) =>
+      FocusScope.of(context).unfocus();
 }

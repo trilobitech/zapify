@@ -62,6 +62,18 @@ mixin _PhoneFieldController {
       ),
     );
   }
+
+  onPhoneNumberChanged(String phoneNumberString) async {
+    final phoneNumber = await _plugin.parse(phoneNumberString);
+    _textEditingController.text = phoneNumber.nationalNumber;
+    _textEditingController.selection = TextSelection.fromPosition(
+      TextPosition(offset: _textEditingController.text.length),
+    );
+  }
+
+  clearPhoneField() {
+    _textEditingController.clear();
+  }
 }
 
 mixin _ChatAppsController {
@@ -70,20 +82,24 @@ mixin _ChatAppsController {
 
   Future<PhoneNumber> phoneNumber();
 
+  clearPhoneField();
+
   Future<ChatAppsViewState> chatAppsState() =>
       getChatApps().then((value) => ChatAppsViewState(chatApps: value));
 
-  onChatAppPressed(ChatApp chatApp) async {
+  Future<bool> onChatAppPressed(ChatApp chatApp) async {
     try {
       PhoneNumber phoneNumber = await this.phoneNumber();
       await _openChatApp(chatApp.deepLinkPrefix, phoneNumber.e164);
       await savePhoneNumberHistory(
-        appIcon: chatApp.icon,
         phoneNumber: phoneNumber.international,
       );
+      clearPhoneField();
+      return true;
     } catch (error, stackTrace) {
       logError(error, stackTrace);
     }
+    return false;
   }
 
   _openChatApp(String deepLinkPrefix, String phoneNumber) async {
