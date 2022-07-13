@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zapfy/app/home/models/region.dart';
+import 'package:zapfy/features/home/domain/entity/region.dart';
 
 class RegionPicker extends StatefulWidget {
   final List<Region> regions;

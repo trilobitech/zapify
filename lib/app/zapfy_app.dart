@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:zapfy/app/home/home_page.dart';
+import 'package:zapfy/features/home/presentation/home_page.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class ZapfyApp extends StatelessWidget {
+  const ZapfyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         ),
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: MyHomePage(title: 'Zapfy'),
+      home: const HomePage(),
     );
   }
 }

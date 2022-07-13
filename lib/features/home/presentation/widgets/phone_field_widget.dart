@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:zapfy/app/home/models/region.dart';
+import 'package:zapfy/features/home/domain/entity/region.dart';
+
+typedef OnSubmitted = Function(String);
+typedef OnRegionPressed = Function(Region);
 
 class PhoneFieldWidget extends StatelessWidget {
   const PhoneFieldWidget({
     Key? key,
-    this.region,
+    Region? region,
     required this.onRegionPressed,
+    this.onSubmitted,
     required this.controller,
     this.padding = EdgeInsets.zero,
-  }) : super(key: key);
+  })  : _region = region,
+        super(key: key);
 
-  final Region? region;
+  final Region? _region;
   final TextEditingController controller;
   final EdgeInsetsGeometry padding;
-  final Function(Region?) onRegionPressed;
+  final OnRegionPressed onRegionPressed;
+  final OnSubmitted? onSubmitted;
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +31,9 @@ class PhoneFieldWidget extends StatelessWidget {
             child: TextField(
               style: const TextStyle(fontSize: 22, height: 1.5),
               controller: controller,
-              // maxLength: 12,
               textInputAction: TextInputAction.go,
               keyboardType: TextInputType.phone,
-              onSubmitted: _onSubmitted,
+              onSubmitted: onSubmitted,
               decoration: InputDecoration(
                 prefix: regionSelectorButton(),
                 labelText: 'Phone number',
@@ -45,6 +50,7 @@ class PhoneFieldWidget extends StatelessWidget {
   }
 
   Widget? regionSelectorButton() {
+    final region = _region;
     if (region == null) return null;
 
     return TextButton(
@@ -52,20 +58,9 @@ class PhoneFieldWidget extends StatelessWidget {
         onRegionPressed(region);
       },
       child: Text(
-        '${region!.flag} +${region!.prefix}',
+        '${region.flag} +${region.prefix}',
         style: const TextStyle(fontSize: 22, height: 1.5),
       ),
     );
-  }
-
-  void _onSubmitted(String phoneNumber) {
-    if (isValidPhoneNumber(phoneNumber)) {
-      // launchChat(phoneNumber);
-    }
-  }
-
-  bool isValidPhoneNumber(String phoneNumber) {
-    // TODO: validate phone number
-    return true;
   }
 }
