@@ -5,7 +5,7 @@ typedef OnSubmitted = Function(String);
 typedef OnRegionPressed = Function(Region);
 
 class PhoneFieldWidget extends StatelessWidget {
-  const PhoneFieldWidget({
+  PhoneFieldWidget({
     Key? key,
     Region? region,
     required this.onRegionPressed,
@@ -20,6 +20,10 @@ class PhoneFieldWidget extends StatelessWidget {
   final EdgeInsetsGeometry padding;
   final OnRegionPressed onRegionPressed;
   final OnSubmitted? onSubmitted;
+  final TextStyle _textFieldStyle = const TextStyle(fontSize: 20, height: 1.5);
+  // Workaround to adapt region button respecting content width
+  late final _regionButtonSize =
+      _calcTextWidth('🇧🇷  +99999', _textFieldStyle);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +34,7 @@ class PhoneFieldWidget extends StatelessWidget {
           if (_region != null) regionSelectorButton(_region!),
           Expanded(
             child: TextField(
-              style: const TextStyle(fontSize: 22, height: 1.5),
+              style: _textFieldStyle,
               controller: controller,
               textInputAction: TextInputAction.go,
               keyboardType: TextInputType.phone,
@@ -51,8 +55,8 @@ class PhoneFieldWidget extends StatelessWidget {
 
   Widget regionSelectorButton(Region region) {
     return ConstrainedBox(
-      constraints: const BoxConstraints(
-        minWidth: 85,
+      constraints: BoxConstraints(
+        minWidth: _regionButtonSize,
       ),
       child: TextButton(
         onPressed: () {
@@ -60,9 +64,18 @@ class PhoneFieldWidget extends StatelessWidget {
         },
         child: Text(
           '${region.flag} +${region.prefix}',
-          style: const TextStyle(fontSize: 22, height: 1.5),
+          style: _textFieldStyle,
         ),
       ),
     );
+  }
+
+  double _calcTextWidth(String text, TextStyle style) {
+    final TextPainter textPainter = TextPainter(
+      text: TextSpan(text: text, style: style),
+      textDirection: TextDirection.ltr,
+      textScaleFactor: WidgetsBinding.instance!.window.textScaleFactor,
+    )..layout();
+    return textPainter.size.width;
   }
 }
