@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:zapfy/core/logger.dart';
 import 'package:zapfy/features/history/presentation/history_page.dart';
 import 'package:zapfy/features/home/domain/entity/chat_app.dart';
-import 'package:zapfy/features/region/presentation/region_picker.dart';
+import 'package:zapfy/features/region/presentation/region_picker_page.dart';
 import 'package:zapfy/features/shared/domain/entity/region.dart';
 import 'package:zapfy/features/home/presentation/widgets/chat_app_launcher_widget.dart';
 import 'package:zapfy/features/home/presentation/widgets/phone_field_widget.dart';
@@ -89,7 +89,7 @@ class _HomePageState extends State<HomePage> {
 
     final route = MaterialPageRoute<Region>(
       fullscreenDialog: true,
-      builder: (_) => const RegionPicker(),
+      builder: (_) => RegionPicker(selected: region),
     );
 
     final selectedRegion = await Navigator.of(context).push<Region>(route);
