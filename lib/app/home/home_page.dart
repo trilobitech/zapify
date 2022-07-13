@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:phone_number/phone_number.dart';
 import 'package:zapfy/app/home/chatapp_launcher/telegram_launcher.dart';
 import 'package:zapfy/app/home/chatapp_launcher/whatsapp_launcher.dart';
-import 'package:zapfy/app/home/models/region.dart';
 import 'package:zapfy/app/home/widgets/app_launcher_widget.dart';
 import 'package:zapfy/app/home/widgets/call_log_tab_page.dart';
-import 'package:zapfy/app/home/widgets/phone_field_widget.dart';
 import 'package:zapfy/app/home/widgets/recents_tab_page.dart';
 import 'package:zapfy/app/home/widgets/region_picker.dart';
 import 'package:zapfy/app/home/widgets/tabs.dart';
+import 'package:zapfy/features/home/domain/entity/region.dart';
+import 'package:zapfy/features/home/presentation/widgets/phone_field_widget.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key, required this.title}) : super(key: key);

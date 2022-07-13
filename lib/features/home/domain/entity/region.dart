@@ -1,6 +1,8 @@
 class Region extends Comparable<Region> {
   Region(this.code, this.prefix, this.name);
 
+  factory Region.br() => Region('BR', 55, 'Brazil');
+
   final String code;
   final int prefix;
   final String name;

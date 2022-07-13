@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:zapfy/app/home/chatapp_launcher/chatapp_launcher.dart';
-import 'package:zapfy/app/home/models/region.dart';
+import 'package:zapfy/features/home/domain/entity/region.dart';
 
 class AppLauncherWidget extends StatelessWidget {
   const AppLauncherWidget({
@@ -47,7 +47,7 @@ class AppLauncherWidget extends StatelessWidget {
         '+${region!.prefix}${valueListenable.value.text.replaceAll(RegExp(r'\D'), '')}';
 
     chatAppLauncher.launch(phoneNumber).then((value) {
-      // TODO: save on history
+      // TODO: save in history
     }).onError((error, stackTrace) {
       // TODO: log error
     });

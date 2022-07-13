@@ -9,8 +9,25 @@ class RecentsTabPage extends StatelessWidget implements TabPage {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Empty history'),
+    return ListView(
+      children: [
+        ListTile(
+          leading: Icon(
+            Icons.whatsapp,
+            color: Color(0xFF25d366),
+          ),
+          title: Text("+5551991165128"),
+          trailing: Text("07/07/2022 02:28"),
+        ),
+        Divider(
+          color: Colors.grey,
+        ),
+        ListTile(
+          leading: Icon(Icons.telegram, color: Color(0xFF0088CC)),
+          title: Text("+5551991165128"),
+          trailing: Text("07/07/2022 02:28"),
+        ),
+      ],
     );
   }
 }
