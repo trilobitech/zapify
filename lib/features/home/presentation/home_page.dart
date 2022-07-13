@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
         onRegionPressed: _onRegionPressed,
         controller: state.controller,
         padding: const EdgeInsets.symmetric(
-          vertical: 8,
+          vertical: 16,
           horizontal: 16,
         ),
       );
