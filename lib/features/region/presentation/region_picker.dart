@@ -1,29 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:zapfy/features/home/domain/entity/region.dart';
+import 'package:zapfy/core/di/inject.dart';
+import 'package:zapfy/features/region/presentation/region_picker_controller.dart';
+import 'package:zapfy/features/shared/domain/entity/region.dart';
 
 class RegionPicker extends StatefulWidget {
-  final List<Region> regions;
-
-  const RegionPicker({
-    Key? key,
-    required this.regions,
-  }) : super(key: key);
+  const RegionPicker({Key? key}) : super(key: key);
 
   @override
   _RegionPickerState createState() => _RegionPickerState();
 }
 
 class _RegionPickerState extends State<RegionPicker> {
-  late List<Region> _regions;
+  List<Region> _regions = [];
   final _ctrl = TextEditingController();
+  late final RegionPickerController controller = inject();
 
   @override
   void initState() {
-    _regions = widget.regions;
-    _ctrl.addListener(() {
-      setState(() => _regions = _filtered(_ctrl.text));
-    });
+    initRegions();
     super.initState();
+  }
+
+  initRegions() async {
+    _ctrl.addListener(() async {
+      final regions = await controller.getRegionByTerm(_ctrl.text);
+      setState(() => _regions = regions);
+    });
+
+    final regions = await controller.getAllRegions();
+    setState(() => _regions = regions);
   }
 
   @override
@@ -62,16 +67,6 @@ class _RegionPickerState extends State<RegionPicker> {
         ),
       ),
     );
-  }
-
-  List<Region> _filtered(String input) {
-    return widget.regions.where(
-      (elt) {
-        return elt.code.toUpperCase().contains(input.toUpperCase()) ||
-            elt.prefix.toString().contains(input) ||
-            elt.name.toLowerCase().startsWith(input.toLowerCase());
-      },
-    ).toList(growable: false);
   }
 }
 

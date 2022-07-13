@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:zapfy/core/logger.dart';
 import 'package:zapfy/features/history/presentation/history_page.dart';
 import 'package:zapfy/features/home/domain/entity/chat_app.dart';
-import 'package:zapfy/features/home/domain/entity/region.dart';
+import 'package:zapfy/features/region/presentation/region_picker.dart';
+import 'package:zapfy/features/shared/domain/entity/region.dart';
 import 'package:zapfy/features/home/presentation/widgets/chat_app_launcher_widget.dart';
 import 'package:zapfy/features/home/presentation/widgets/phone_field_widget.dart';
 import 'package:zapfy/features/home/presentation/home_controller.dart';
@@ -83,9 +84,20 @@ class _HomePageState extends State<HomePage> {
     return Container();
   }
 
-  _onRegionPressed(Region? region) {
+  _onRegionPressed(Region? region) async {
     dismissKeyboard(context);
-    // TODO: navigate to region picker
+
+    final route = MaterialPageRoute<Region>(
+      fullscreenDialog: true,
+      builder: (_) => const RegionPicker(),
+    );
+
+    final selectedRegion = await Navigator.of(context).push<Region>(route);
+
+    if (selectedRegion != null) {
+      print('Region selected: $selectedRegion');
+      controller.onRegionSelected(selectedRegion);
+    }
   }
 
   _onChatAppPressed(ChatApp chatApp) async {
@@ -95,7 +107,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   _onHistoryEntryTap(String phoneNumber) {
-    controller.onPhoneNumberChanged(phoneNumber);
+    controller.onPhoneNumberSelected(phoneNumber);
   }
 
   void dismissKeyboard(BuildContext context) =>

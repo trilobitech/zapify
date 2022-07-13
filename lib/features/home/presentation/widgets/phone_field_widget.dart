@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zapfy/features/home/domain/entity/region.dart';
+import 'package:zapfy/features/shared/domain/entity/region.dart';
 
 typedef OnSubmitted = Function(String);
 typedef OnRegionPressed = Function(Region);

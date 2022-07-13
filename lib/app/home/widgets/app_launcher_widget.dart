@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:zapfy/app/home/chatapp_launcher/chatapp_launcher.dart';
-import 'package:zapfy/features/home/domain/entity/region.dart';
+import 'package:zapfy/features/shared/domain/entity/region.dart';
 
 class AppLauncherWidget extends StatelessWidget {
   const AppLauncherWidget({
