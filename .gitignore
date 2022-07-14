@@ -47,3 +47,7 @@ app.*.map.json
 
 # Code generator
 **/*.freezed.dart
+
+# Firebase
+**/google-services.json
+**/firebase_app_id_file.json
