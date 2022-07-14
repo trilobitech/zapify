@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zapfy/core/di/inject.dart';
+import 'package:zapfy/core/firebase.dart';
 import 'package:zapfy/features/region/presentation/region_picker_controller.dart';
 import 'package:zapfy/features/shared/domain/entity/region.dart';
 
@@ -35,6 +36,7 @@ class _RegionPickerState extends State<RegionPicker> {
 
   @override
   Widget build(BuildContext context) {
+    analytics.currentScreen = widget;
     return Scaffold(
       appBar: AppBar(title: const Text("Available regions")),
       body: Scrollbar(
@@ -58,12 +60,10 @@ class _RegionPickerState extends State<RegionPicker> {
                 separatorBuilder: (_, i) => const Divider(height: 0),
                 itemBuilder: (context, i) {
                   final region = _regions[i];
-                  return InkWell(
-                    onTap: () => Navigator.of(context).pop(region),
-                    child: _RegionListTile(
-                      region: region,
-                      isSelected: widget.selected == region,
-                    ),
+                  return _RegionListTile(
+                    region: _regions[i],
+                    onTap: (region) => Navigator.of(context).pop(region),
+                    isSelected: widget.selected == region,
                   );
                 },
               ),
@@ -79,12 +79,14 @@ class _RegionListTile extends StatelessWidget {
   const _RegionListTile({
     Key? key,
     required Region region,
+    required this.onTap,
     this.isSelected = false,
   })  : _region = region,
         super(key: key);
 
   final Region _region;
   final bool isSelected;
+  final Function(Region) onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -94,6 +96,13 @@ class _RegionListTile extends StatelessWidget {
       selected: isSelected,
       selectedColor: Colors.white,
       selectedTileColor: theme.colorScheme.primary,
+      onTap: () {
+        analytics.logButtonPressed('select_region', {
+          'region': _region.name,
+          'prefix': _region.prefix.toString(),
+        });
+        onTap(_region);
+      },
       title: Row(
         children: [
           SizedBox(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zapfy/core/firebase.dart';
 import 'package:zapfy/core/logger.dart';
 import 'package:zapfy/features/history/presentation/history_page.dart';
 import 'package:zapfy/features/home/domain/entity/chat_app.dart';
@@ -24,6 +25,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    analytics.currentScreen = widget;
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -83,6 +85,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   _onRegionPressed(Region? region) async {
+    analytics.logButtonPressed('open_region_picker');
     dismissKeyboard(context);
 
     final route = MaterialPageRoute<Region>(
@@ -98,12 +101,14 @@ class _HomePageState extends State<HomePage> {
   }
 
   _onChatAppPressed(ChatApp chatApp) async {
+    analytics.logButtonPressed('launch_chat_app', {'type': chatApp.name});
     if (await controller.onChatAppPressed(chatApp)) {
       dismissKeyboard(context);
     }
   }
 
   _onHistoryEntryTap(String phoneNumber) {
+    analytics.logButtonPressed('select_phone_from_history');
     controller.onPhoneNumberSelected(phoneNumber);
   }
 

@@ -17,8 +17,8 @@ void main() {
         options: DefaultFirebaseOptions.currentPlatform,
       );
 
-      crashlytics.setCrashlyticsCollectionEnabled(kReleaseMode);
-      analytics.setAnalyticsCollectionEnabled(kReleaseMode);
+      await crashlytics.setCrashlyticsCollectionEnabled(kReleaseMode);
+      await analytics.setAnalyticsCollectionEnabled(kReleaseMode);
 
       FlutterError.onError = crashlytics.recordFlutterFatalError;
 
