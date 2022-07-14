@@ -1,1 +1,6 @@
-{}
+{
+    "recentNumbersTitle": "Recent numbers",
+    "recentNumbersEmpty": "No recent numbers yet",
+    "recentNumberRemoved": "Recent number \"{phoneNumber}\" was removed!",
+    "undoAction": "Undo"
+}
