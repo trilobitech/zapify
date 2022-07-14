@@ -11,6 +11,7 @@ class PhoneFieldWidget extends StatelessWidget {
     required this.onRegionPressed,
     this.onSubmitted,
     required this.controller,
+    this.errorText,
     this.padding = EdgeInsets.zero,
   })  : _region = region,
         super(key: key);
@@ -20,6 +21,8 @@ class PhoneFieldWidget extends StatelessWidget {
   final EdgeInsetsGeometry padding;
   final OnRegionPressed onRegionPressed;
   final OnSubmitted? onSubmitted;
+  final String? errorText;
+
   final TextStyle _textFieldStyle = const TextStyle(fontSize: 20, height: 1.5);
   // Workaround to adapt region button respecting content width
   late final _regionButtonSize =
@@ -30,6 +33,7 @@ class PhoneFieldWidget extends StatelessWidget {
     return Padding(
       padding: padding,
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (_region != null) regionSelectorButton(_region!),
           Expanded(
@@ -39,12 +43,14 @@ class PhoneFieldWidget extends StatelessWidget {
               textInputAction: TextInputAction.go,
               keyboardType: TextInputType.phone,
               onSubmitted: onSubmitted,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'Phone number',
+                // https://github.com/flutter/flutter/issues/15400#issuecomment-475773473
+                helperText: ' ',
+                errorText: errorText,
                 contentPadding:
-                    EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-                border: OutlineInputBorder(),
-                // errorText: 'an error',
+                    const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+                border: const OutlineInputBorder(),
               ),
             ),
           ),
