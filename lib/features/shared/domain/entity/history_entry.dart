@@ -1,11 +1,21 @@
 class HistoryEntry {
   HistoryEntry({
     required this.phoneNumber,
-    required this.at,
+    required this.lastUsageAt,
+    required this.createdAt,
   });
 
+  factory HistoryEntry.fromJson(Map<String, dynamic> json) {
+    return HistoryEntry(
+      phoneNumber: json['number'],
+      lastUsageAt: DateTime.parse('${json['last_usage_at']}'),
+      createdAt: DateTime.parse('${json['created_at']}'),
+    );
+  }
+
   String phoneNumber;
-  DateTime at;
+  DateTime lastUsageAt;
+  DateTime createdAt;
 
   @override
   int get hashCode => phoneNumber.hashCode;
@@ -17,5 +27,6 @@ class HistoryEntry {
   }
 
   @override
-  String toString() => 'HistoryEntry{phoneNumber: $phoneNumber, at: $at}';
+  String toString() =>
+      'HistoryEntry{phoneNumber: $phoneNumber, lastUsageAt: $lastUsageAt, createdAt: $createdAt}';
 }

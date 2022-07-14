@@ -17,23 +17,42 @@ class HistoryRepository implements IHistoryRepository {
           'historic',
           orderBy: 'last_usage_at DESC',
         )
-        .mapToList(
-          (row) => HistoryEntry(
-            phoneNumber: row['number'],
-            at: DateTime.parse('${row['last_usage_at']}Z'),
-          ),
-        );
+        .mapToList((row) => HistoryEntry.fromJson(row));
   }
 
   @override
   Future add(String phoneNumber) async {
     final db = await this.db;
-    db.rawInsert(
+    await db.rawInsert(
       '''
       INSERT OR REPLACE INTO historic(number, last_usage_at)
-      VALUES("$phoneNumber", CURRENT_TIMESTAMP)
+      VALUES("$phoneNumber", strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))
       ''',
     );
     db.sendTableTrigger(['historic']);
+  }
+
+  @override
+  Future remove(HistoryEntry entry) async {
+    final db = await this.db;
+    await db.delete(
+      'historic',
+      where: 'number = ?',
+      whereArgs: [entry.phoneNumber],
+    );
+  }
+
+  @override
+  Future restore(HistoryEntry entry) async {
+    final db = await this.db;
+    await db.insert(
+      'historic',
+      {
+        'number': entry.phoneNumber,
+        'last_usage_at': entry.lastUsageAt.toIso8601String(),
+        'created_at': entry.createdAt.toIso8601String(),
+      },
+      conflictAlgorithm: ConflictAlgorithm.abort,
+    );
   }
 }
