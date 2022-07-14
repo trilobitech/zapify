@@ -1,8 +1,13 @@
+import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/material.dart';
+import 'package:zapfy/core/firebase.dart';
 import 'package:zapfy/features/home/presentation/home_page.dart';
 
 class ZapfyApp extends StatelessWidget {
   const ZapfyApp({Key? key}) : super(key: key);
+
+  static FirebaseAnalyticsObserver observer =
+      FirebaseAnalyticsObserver(analytics: analytics);
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +25,7 @@ class ZapfyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
       ),
       home: const HomePage(),
+      navigatorObservers: <NavigatorObserver>[observer],
     );
   }
 }
