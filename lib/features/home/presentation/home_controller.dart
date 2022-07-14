@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:phone_number/phone_number.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -10,6 +11,7 @@ import 'package:zapfy/features/home/domain/usecase/get_chat_apps.dart';
 import 'package:zapfy/features/home/domain/usecase/get_default_region.dart';
 import 'package:zapfy/features/home/domain/usecase/save_phone_number_history.dart';
 import 'package:zapfy/features/home/presentation/home_state.dart';
+import 'package:zapfy/features/shared/domain/error/user_input_error.dart';
 
 class HomeController with _PhoneFieldController, _ChatAppsController {
   HomeController({
@@ -63,10 +65,28 @@ mixin _PhoneFieldController {
 
   Stream<PhoneFieldViewState> phoneFieldState() => _phoneFieldState;
 
-  Future<PhoneNumber> phoneNumber() => _plugin.parse(
-        _textEditingController.text,
-        regionCode: _region.code,
+  Future<PhoneNumber> phoneNumber() async {
+    try {
+      if (_textEditingController.text.isEmpty) {
+        throw UserInputError('Phone number cannot be empty');
+      }
+      return await _plugin
+          .parse(_textEditingController.text, regionCode: _region.code)
+          .catchError(
+        (error, stackTrace) {
+          if (error is PlatformException && error.code == 'InvalidNumber') {
+            error = UserInputError('Invalid phone number');
+          }
+          Error.throwWithStackTrace(error, stackTrace);
+        },
       );
+    } catch (error) {
+      if (error is UserInputError) {
+        _refreshState(error.message);
+      }
+      rethrow;
+    }
+  }
 
   onRegionSelected(Region region) {
     _updateTextField(region, _textEditingController.value);
@@ -101,12 +121,32 @@ mixin _PhoneFieldController {
       regionCode: _region.code,
     );
 
+    _refreshState();
+  }
+
+  _refreshState([String? error]) {
+    if (error != null) {
+      _addClearErrorListener();
+    }
+
     _phoneFieldState.add(
       PhoneFieldViewState(
         selectedRegion: _region,
         controller: _textEditingController,
+        errorMessage: error,
       ),
     );
+  }
+
+  _addClearErrorListener() {
+    final oldText = _textEditingController.text;
+    late final Function() listener;
+    listener = () {
+      if (oldText == _textEditingController.text) return;
+      _textEditingController.removeListener(listener);
+      _refreshState();
+    };
+    _textEditingController.addListener(listener);
   }
 }
 
