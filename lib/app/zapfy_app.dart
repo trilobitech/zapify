@@ -1,5 +1,6 @@
 import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:zapfy/core/firebase.dart';
 import 'package:zapfy/features/home/presentation/home_page.dart';
 
@@ -24,6 +25,8 @@ class ZapfyApp extends StatelessWidget {
         ),
         scaffoldBackgroundColor: Colors.white,
       ),
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       home: const HomePage(),
       navigatorObservers: <NavigatorObserver>[observer],
     );
