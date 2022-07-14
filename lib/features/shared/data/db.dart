@@ -6,12 +6,11 @@ Future<Database> getDatabase() async {
     join(await getDatabasesPath(), 'zapfy.db'),
     version: 1,
     onCreate: (db, version) {
-      // Run the CREATE TABLE statement on the database.
       return db.execute(
         '''
         CREATE TABLE historic(
           number TEXT PRIMARY KEY,
-          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+          created_at TIMESTAMP DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) NOT NULL,
           last_usage_at TIMESTAMP
         );
         ''',

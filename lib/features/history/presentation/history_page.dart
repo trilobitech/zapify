@@ -59,24 +59,59 @@ class HistoryPage extends StatelessWidget {
   }
 
   Widget _buildListWidget(List<HistoryEntry> entries) {
-    print(entries);
     return ListView.separated(
       itemCount: entries.length,
-      itemBuilder: (context, index) => _buildListTile(entries[index]),
+      itemBuilder: (context, index) => _buildListTile(context, entries[index]),
       separatorBuilder: (_, __) => const Divider(height: 0),
     );
   }
 
-  Widget _buildListTile(HistoryEntry entry) {
-    return ListTile(
-      title: Text(entry.phoneNumber),
-      trailing: Timeago(
-        date: entry.at,
-        builder: (_, text) => Text(text),
-      ),
-      onTap: () {
-        onEntryTap(entry.phoneNumber);
+  Widget _buildListTile(BuildContext context, HistoryEntry entry) {
+    return Dismissible(
+      key: ValueKey(entry.phoneNumber),
+      direction: DismissDirection.endToStart,
+      onDismissed: (_) {
+        controller.remove(entry);
+        _showRestoreEntrySnackBar(context, entry);
       },
+      background: Container(
+        color: const Color.fromARGB(255, 186, 12, 0),
+        child: Stack(
+          children: const [
+            Positioned(
+              right: 16,
+              top: 0,
+              bottom: 0,
+              child: Icon(Icons.cancel, color: Colors.white),
+            ),
+          ],
+        ),
+      ),
+      child: ListTile(
+        title: Text(entry.phoneNumber),
+        trailing: Timeago(
+          date: entry.lastUsageAt,
+          builder: (_, text) => Text(text),
+        ),
+        onTap: () {
+          onEntryTap(entry.phoneNumber);
+        },
+      ),
     );
+  }
+
+  _showRestoreEntrySnackBar(BuildContext context, HistoryEntry entry) {
+    final snackBar = SnackBar(
+      content: Text(
+        'Recent number "${entry.phoneNumber}" was removed!',
+      ),
+      action: SnackBarAction(
+        label: 'Undo',
+        onPressed: () {
+          controller.restore(entry);
+        },
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }
