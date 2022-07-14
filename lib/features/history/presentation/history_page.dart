@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:timeago_flutter/timeago_flutter.dart';
 import 'package:zapfy/core/di/inject.dart';
+import 'package:zapfy/core/ext/context.dart';
 import 'package:zapfy/core/logger.dart';
 import 'package:zapfy/features/history/presentation/history_controller.dart';
 import 'package:zapfy/features/history/presentation/history_state.dart';
@@ -23,27 +24,29 @@ class HistoryPage extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: Text(
-            'Recent numbers',
+            context.strings.recentNumbersTitle,
             style: theme.textTheme.headline6,
           ),
         ),
         Expanded(
           child: StreamBuilder(
             stream: controller.state,
-            builder: (context, AsyncSnapshot<HistoryViewState> snapshot) =>
-                _buildList(snapshot),
+            builder: _buildList,
           ),
         ),
       ],
     );
   }
 
-  Widget _buildList(AsyncSnapshot<HistoryViewState> snapshot) {
+  Widget _buildList(
+    BuildContext context,
+    AsyncSnapshot<HistoryViewState> snapshot,
+  ) {
     if (snapshot.hasData) {
       final state = snapshot.requireData;
       return state.when(
         _buildListWidget,
-        empty: _buildEmptyListWidget,
+        empty: () => _buildEmptyListWidget(context),
       );
     }
     if (snapshot.hasError) {
@@ -52,9 +55,9 @@ class HistoryPage extends StatelessWidget {
     return Container();
   }
 
-  Widget _buildEmptyListWidget() {
-    return const Center(
-      child: Text('No history'),
+  Widget _buildEmptyListWidget(BuildContext context) {
+    return Center(
+      child: Text(context.strings.recentNumbersEmpty),
     );
   }
 
@@ -82,7 +85,7 @@ class HistoryPage extends StatelessWidget {
               right: 16,
               top: 0,
               bottom: 0,
-              child: Icon(Icons.cancel, color: Colors.white),
+              child: Icon(Icons.delete, color: Colors.white),
             ),
           ],
         ),
@@ -92,6 +95,7 @@ class HistoryPage extends StatelessWidget {
         trailing: Timeago(
           date: entry.lastUsageAt,
           builder: (_, text) => Text(text),
+          locale: context.currentLocale.toLanguageTag(),
         ),
         onTap: () {
           onEntryTap(entry.phoneNumber);
@@ -103,10 +107,10 @@ class HistoryPage extends StatelessWidget {
   _showRestoreEntrySnackBar(BuildContext context, HistoryEntry entry) {
     final snackBar = SnackBar(
       content: Text(
-        'Recent number "${entry.phoneNumber}" was removed!',
+        context.strings.recentNumberRemoved.format([entry.phoneNumber]),
       ),
       action: SnackBarAction(
-        label: 'Undo',
+        label: context.strings.undoAction,
         onPressed: () {
           controller.restore(entry);
         },
