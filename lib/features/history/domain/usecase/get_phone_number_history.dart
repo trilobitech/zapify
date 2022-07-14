@@ -8,5 +8,5 @@ class GetPhoneNumberHistoryUseCase {
 
   IHistoryRepository repository;
 
-  Stream<Set<HistoryEntry>> call() => repository.getAll();
+  Stream<List<HistoryEntry>> call() => repository.getAll();
 }

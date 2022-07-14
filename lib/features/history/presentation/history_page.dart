@@ -59,6 +59,7 @@ class HistoryPage extends StatelessWidget {
   }
 
   Widget _buildListWidget(List<HistoryEntry> entries) {
+    print(entries);
     return ListView.separated(
       itemCount: entries.length,
       itemBuilder: (context, index) => _buildListTile(entries[index]),

@@ -42,6 +42,9 @@ dependencies:
   get_it: ^7.2.0
   timeago: ^3.2.2
   timeago_flutter: ^1.1.0
+  sqflite: ^2.0.2+1
+  path: ^1.8.0
+  sqlbrite: ^2.2.0
 
 dev_dependencies:
   flutter_test:
