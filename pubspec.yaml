@@ -46,6 +46,7 @@ dependencies:
   path: ^1.8.0
   sqlbrite: ^2.2.0
   firebase_core: ^1.19.2
+  firebase_crashlytics: ^2.8.5
 
 dev_dependencies:
   flutter_test:
