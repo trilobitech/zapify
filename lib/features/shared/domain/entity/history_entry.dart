@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class HistoryEntry {
   HistoryEntry({
     required this.phoneNumber,
@@ -17,4 +15,7 @@ class HistoryEntry {
     return super == other ||
         (other is HistoryEntry && other.phoneNumber == phoneNumber);
   }
+
+  @override
+  String toString() => 'HistoryEntry{phoneNumber: $phoneNumber, at: $at}';
 }

@@ -10,7 +10,7 @@ class HistoryController {
 
   late final Stream<HistoryViewState> state = getPhoneNumberHistory().map(
     (event) => event.isNotEmpty
-        ? HistoryViewState(entries: event.toList())
+        ? HistoryViewState(entries: event)
         : HistoryViewState.empty(),
   );
 }
