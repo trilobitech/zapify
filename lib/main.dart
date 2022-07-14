@@ -1,11 +1,11 @@
 import 'dart:async';
 
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:zapfy/app/modules.dart';
 import 'package:zapfy/app/zapfy_app.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:zapfy/core/firebase.dart';
 import 'firebase_options.dart';
 
 void main() {
@@ -17,17 +17,14 @@ void main() {
         options: DefaultFirebaseOptions.currentPlatform,
       );
 
-      FirebaseCrashlytics.instance
-          .setCrashlyticsCollectionEnabled(kReleaseMode);
+      crashlytics.setCrashlyticsCollectionEnabled(kReleaseMode);
+      analytics.setAnalyticsCollectionEnabled(kReleaseMode);
 
-      FlutterError.onError =
-          FirebaseCrashlytics.instance.recordFlutterFatalError;
+      FlutterError.onError = crashlytics.recordFlutterFatalError;
 
       loadModules();
       runApp(const ZapfyApp());
     },
-    (error, stack) {
-      FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
-    },
+    (error, stack) => crashlytics.recordError(error, stack, fatal: true),
   );
 }

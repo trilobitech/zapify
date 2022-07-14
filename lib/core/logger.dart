@@ -1,5 +1,5 @@
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:zapfy/core/firebase.dart';
 
 void logError(Object? error, [StackTrace? stackTrace]) {
-  FirebaseCrashlytics.instance.recordError(error, stackTrace);
+  crashlytics.recordError(error, stackTrace);
 }
