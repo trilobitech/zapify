@@ -7,84 +7,81 @@ import 'package:zapfy/features/shared/domain/entity/region.dart';
 typedef OnSubmitted = Function(String);
 typedef OnRegionPressed = Function(Region);
 
-class PhoneFieldWidget extends StatelessWidget {
-  PhoneFieldWidget({
+class PhoneFieldWidget extends StatefulWidget {
+  const PhoneFieldWidget({
     Key? key,
-    Region? region,
+    this.region,
     required this.onRegionPressed,
     this.onSubmitted,
     required this.controller,
     this.error,
     this.padding = EdgeInsets.zero,
-  })  : _region = region,
-        super(key: key);
+  }) : super(key: key);
 
-  final Region? _region;
+  final Region? region;
   final TextEditingController controller;
   final EdgeInsetsGeometry padding;
   final OnRegionPressed onRegionPressed;
   final OnSubmitted? onSubmitted;
   final dynamic error;
 
-  final TextStyle _textFieldStyle = const TextStyle(fontSize: 20, height: 1.5);
-  // Workaround to adapt region button respecting content width
-  late final _regionButtonSize = _calcTextWidth('🇧🇷 +99999', _textFieldStyle);
-  late final errorMessageResolver = inject<ErrorMessageResolver>();
+  @override
+  State<StatefulWidget> createState() => _PhoneFieldState();
+}
+
+class _PhoneFieldState extends State<PhoneFieldWidget> {
+  late final _errorMessageResolver = inject<ErrorMessageResolver>();
+  final TextStyle _textFieldStyle = const TextStyle(fontSize: 24, height: 1.5);
+  final FocusNode _textFieldFocus = FocusNode();
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: padding,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          if (_region != null) regionSelectorButton(_region!),
-          Expanded(
-            child: TextField(
-              style: _textFieldStyle,
-              controller: controller,
-              textInputAction: TextInputAction.go,
-              keyboardType: TextInputType.phone,
-              onSubmitted: onSubmitted,
-              decoration: InputDecoration(
-                labelText: context.strings.homePhoneNumberLabel,
-                // https://github.com/flutter/flutter/issues/15400#issuecomment-475773473
-                helperText: ' ',
-                errorText: errorMessageResolver.maybeResolve(context, error),
-                contentPadding:
-                    const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-                border: const OutlineInputBorder(),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget regionSelectorButton(Region region) {
-    return ConstrainedBox(
-      constraints: BoxConstraints(
-        minWidth: _regionButtonSize,
-      ),
-      child: TextButton(
-        onPressed: () {
-          onRegionPressed(region);
-        },
-        child: Text(
-          '${region.flag} +${region.prefix}',
-          style: _textFieldStyle,
+      padding: widget.padding,
+      child: TextField(
+        key: const ValueKey('PhoneNumber'),
+        style: _textFieldStyle,
+        focusNode: _textFieldFocus,
+        controller: widget.controller,
+        textInputAction: TextInputAction.go,
+        keyboardType: TextInputType.phone,
+        onSubmitted: widget.onSubmitted,
+        decoration: InputDecoration(
+          prefix: widget.region != null
+              ? regionSelectorButton(widget.region!)
+              : null,
+          labelText: context.strings.homePhoneNumberLabel,
+          // https://github.com/flutter/flutter/issues/15400#issuecomment-475773473
+          helperText: ' ',
+          errorText: _errorMessageResolver.maybeResolve(context, widget.error),
+          contentPadding: const EdgeInsets.only(left: 8, right: 8),
+          border: const OutlineInputBorder(),
         ),
       ),
     );
   }
 
-  double _calcTextWidth(String text, TextStyle style) {
-    final TextPainter textPainter = TextPainter(
-      text: TextSpan(text: text, style: style),
-      textDirection: TextDirection.ltr,
-      textScaleFactor: WidgetsBinding.instance!.window.textScaleFactor,
-    )..layout();
-    return textPainter.size.width;
+  Widget regionSelectorButton(Region region) {
+    return TextButton(
+      style: TextButton.styleFrom(
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        padding: const EdgeInsets.only(left: 8, right: 8, bottom: 2),
+        side: BorderSide.none,
+      ),
+      onPressed: () {
+        if (!_textFieldFocus.hasFocus && widget.controller.text.isEmpty) {
+          setState(() {
+            _textFieldFocus.requestFocus();
+          });
+          return;
+        }
+        _textFieldFocus.unfocus();
+        widget.onRegionPressed(region);
+      },
+      child: Text(
+        '${region.flag} +${region.prefix}',
+        style: _textFieldStyle,
+      ),
+    );
   }
 }
