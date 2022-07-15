@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
         region: state.selectedRegion,
         onRegionPressed: _onRegionPressed,
         controller: state.controller,
-        errorText: state.errorMessage,
+        error: state.error,
         padding: const EdgeInsets.only(top: 8, right: 16, bottom: 4, left: 8),
       );
     }

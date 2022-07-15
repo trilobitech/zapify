@@ -6,12 +6,12 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:zapfy/core/logger.dart';
 import 'package:zapfy/features/home/domain/entity/chat_app.dart';
 import 'package:zapfy/features/home/domain/usecase/get_region_by_code.dart';
+import 'package:zapfy/features/home/presentation/error/home_failure.dart';
 import 'package:zapfy/features/shared/domain/entity/region.dart';
 import 'package:zapfy/features/home/domain/usecase/get_chat_apps.dart';
 import 'package:zapfy/features/home/domain/usecase/get_default_region.dart';
 import 'package:zapfy/features/home/domain/usecase/save_phone_number_history.dart';
 import 'package:zapfy/features/home/presentation/home_state.dart';
-import 'package:zapfy/features/shared/domain/error/user_input_error.dart';
 
 class HomeController with _PhoneFieldController, _ChatAppsController {
   HomeController({
@@ -68,22 +68,20 @@ mixin _PhoneFieldController {
   Future<PhoneNumber> phoneNumber() async {
     try {
       if (_textEditingController.text.isEmpty) {
-        throw UserInputError('Phone number cannot be empty');
+        throw EmptyPhoneNumberFailure();
       }
       return await _plugin
           .parse(_textEditingController.text, regionCode: _region.code)
           .catchError(
         (error, stackTrace) {
           if (error is PlatformException && error.code == 'InvalidNumber') {
-            error = UserInputError('Invalid phone number');
+            error = InvalidPhoneNumberFailure();
           }
           Error.throwWithStackTrace(error, stackTrace);
         },
       );
     } catch (error) {
-      if (error is UserInputError) {
-        _refreshState(error.message);
-      }
+      _refreshState(error);
       rethrow;
     }
   }
@@ -124,7 +122,7 @@ mixin _PhoneFieldController {
     _refreshState();
   }
 
-  _refreshState([String? error]) {
+  _refreshState([dynamic error]) {
     if (error != null) {
       _addClearErrorListener();
     }
@@ -133,7 +131,7 @@ mixin _PhoneFieldController {
       PhoneFieldViewState(
         selectedRegion: _region,
         controller: _textEditingController,
-        errorMessage: error,
+        error: error,
       ),
     );
   }

@@ -1,10 +1,16 @@
 {
+    "unknowErrorMessage": "Oops! Something went wrong!",
+
     "homePhoneNumberLabel": "Phone number",
     "homeOpenWithButton": "Open with {appName}",
+    "homeEmptyPhoneNumberError": "Please provide the phone number",
+    "homeInvalidPhoneNumberError": "Invalid phone number",
+
     "recentNumbersTitle": "Recent numbers",
     "recentNumbersEmpty": "No recent numbers yet",
     "recentNumberRemoved": "Recent number \"{phoneNumber}\" was removed!",
     "undoAction": "Undo",
+
     "availableRegionsTitle": "Available regions",
     "availableRegionsSearch": "Search…"
 }
