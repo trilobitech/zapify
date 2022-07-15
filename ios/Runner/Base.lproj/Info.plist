@@ -48,5 +48,10 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>whatsapp-consumer</string>
+		<string>whatsapp-smb</string>
+	</array>
 </dict>
 </plist>

@@ -162,7 +162,10 @@ mixin _ChatAppsController {
   Future<bool> onChatAppPressed(ChatApp chatApp) async {
     try {
       PhoneNumber phoneNumber = await this.phoneNumber();
-      await _openChatApp(chatApp.deepLinkPrefix, phoneNumber.e164);
+      await _openChatApp(
+        chatApp.deepLinkPrefix,
+        phoneNumber.e164.replaceFirst("+", ""),
+      );
       await savePhoneNumberHistory(
         phoneNumber: phoneNumber.international,
       );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zapfy/core/ext/context.dart';
 import 'package:zapfy/features/home/domain/entity/chat_app.dart';
+import 'package:zapfy/features/home/presentation/widgets/raw_icon_widget.dart';
 
 class ChatAppLauncherWidget extends StatelessWidget {
   const ChatAppLauncherWidget({
@@ -31,12 +32,15 @@ class ChatAppLauncherWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 8),
       child: ActionChip(
-        avatar: Icon(chatApp.icon, color: Colors.white),
+        avatar: RawIconWidget(
+          icon: chatApp.icon,
+          color: Colors.white,
+        ),
         label: Text(
           context.strings.homeOpenWithButton.format([chatApp.name]),
         ),
         labelStyle: const TextStyle(color: Colors.white),
-        backgroundColor: chatApp.brandColor,
+        backgroundColor: Color(chatApp.brandColor),
         onPressed: () {
           onChatAppPressed(chatApp);
         },
