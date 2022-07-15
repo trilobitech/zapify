@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:zapfy/core/di/inject.dart';
+import 'package:zapfy/core/error_handler/error_message_resolver.dart';
 import 'package:zapfy/core/ext/context.dart';
 import 'package:zapfy/features/shared/domain/entity/region.dart';
 
@@ -12,7 +14,7 @@ class PhoneFieldWidget extends StatelessWidget {
     required this.onRegionPressed,
     this.onSubmitted,
     required this.controller,
-    this.errorText,
+    this.error,
     this.padding = EdgeInsets.zero,
   })  : _region = region,
         super(key: key);
@@ -22,11 +24,12 @@ class PhoneFieldWidget extends StatelessWidget {
   final EdgeInsetsGeometry padding;
   final OnRegionPressed onRegionPressed;
   final OnSubmitted? onSubmitted;
-  final String? errorText;
+  final dynamic error;
 
   final TextStyle _textFieldStyle = const TextStyle(fontSize: 20, height: 1.5);
   // Workaround to adapt region button respecting content width
   late final _regionButtonSize = _calcTextWidth('🇧🇷 +99999', _textFieldStyle);
+  late final errorMessageResolver = inject<ErrorMessageResolver>();
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +50,7 @@ class PhoneFieldWidget extends StatelessWidget {
                 labelText: context.strings.homePhoneNumberLabel,
                 // https://github.com/flutter/flutter/issues/15400#issuecomment-475773473
                 helperText: ' ',
-                errorText: errorText,
+                errorText: errorMessageResolver.maybeResolve(context, error),
                 contentPadding:
                     const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
                 border: const OutlineInputBorder(),

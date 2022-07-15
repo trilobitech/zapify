@@ -10,7 +10,7 @@ class PhoneFieldViewState with _$PhoneFieldViewState {
   const factory PhoneFieldViewState({
     required Region? selectedRegion,
     required TextEditingController controller,
-    String? errorMessage,
+    dynamic error,
   }) = _PhoneFieldViewState;
 }
 
