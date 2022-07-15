@@ -1,10 +1,16 @@
 {
+    "unknowErrorMessage": "Oops! Ocorreu um erro inesperado!",
+
     "homePhoneNumberLabel": "Número de telefone",
     "homeOpenWithButton": "Abrir com {appName}",
+    "homeEmptyPhoneNumberError": "Por favor informe o número desejado.",
+    "homeInvalidPhoneNumberError": "O número informado é inválido",
+
     "recentNumbersTitle": "Números recentes",
     "recentNumbersEmpty": "Nenhum número recente",
     "recentNumberRemoved": "O número \"{phoneNumber}\" foi removido do histórico!",
     "undoAction": "Desfazer",
+
     "availableRegionsTitle": "Regiões disponíveis",
     "availableRegionsSearch": "Procurar…"
 }
