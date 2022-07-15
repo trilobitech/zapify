@@ -61,7 +61,7 @@ class _HomePageState extends State<HomePage> {
         onRegionPressed: _onRegionPressed,
         controller: state.controller,
         error: state.error,
-        padding: const EdgeInsets.only(top: 8, right: 16, bottom: 4, left: 8),
+        padding: const EdgeInsets.only(top: 8, right: 16, left: 16),
       );
     }
     if (snapshot.hasError) {

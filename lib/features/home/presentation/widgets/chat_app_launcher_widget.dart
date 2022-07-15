@@ -16,7 +16,7 @@ class ChatAppLauncherWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      padding: const EdgeInsets.only(left: 12, right: 12, bottom: 8),
+      padding: const EdgeInsets.only(left: 16, right: 8, bottom: 8),
       child: Row(
         children: chatApps
             .map(
@@ -29,7 +29,7 @@ class ChatAppLauncherWidget extends StatelessWidget {
 
   Widget _buildChatAppLauncher(BuildContext context, ChatApp chatApp) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 2),
+      padding: const EdgeInsets.only(right: 8),
       child: ActionChip(
         avatar: Icon(chatApp.icon, color: Colors.white),
         label: Text(
