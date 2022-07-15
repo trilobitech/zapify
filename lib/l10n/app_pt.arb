@@ -2,5 +2,7 @@
     "recentNumbersTitle": "Números recentes",
     "recentNumbersEmpty": "Nenhum número recente",
     "recentNumberRemoved": "O número \"{phoneNumber}\" foi removido do histórico!",
-    "undoAction": "Desfazer"
+    "undoAction": "Desfazer",
+    "availableRegionsTitle": "Regiões disponíveis",
+    "availableRegionsSearch": "Procurar…"
 }
