@@ -52,11 +52,13 @@ class _PhoneFieldState extends State<PhoneFieldWidget> {
               : null,
           labelText: context.strings.homePhoneNumberLabel,
           // https://github.com/flutter/flutter/issues/15400#issuecomment-475773473
-          helperText: ' ',
+          // helperText: ' ', // FIXME: talkback says "Space", should be avoided to fix it
           errorText: _errorMessageResolver.maybeResolve(context, widget.error),
           contentPadding: const EdgeInsets.only(left: 8, right: 8),
           border: const OutlineInputBorder(),
         ),
+        autocorrect: false,
+        enableSuggestions: false,
       ),
     );
   }
