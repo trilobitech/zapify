@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:zapfy/features/home/domain/entity/icon.dart';
 
 class ChatApp {
   ChatApp({
@@ -6,10 +6,14 @@ class ChatApp {
     required this.name,
     required this.brandColor,
     required this.deepLinkPrefix,
+    this.requirePreVerification = false,
+    this.fallbackFor = const [],
   });
 
-  IconData icon;
+  RawIcon icon;
   String name;
-  Color brandColor;
+  int brandColor;
   String deepLinkPrefix;
+  bool requirePreVerification;
+  List<String> fallbackFor;
 }
