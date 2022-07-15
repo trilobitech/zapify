@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zapfy/core/di/inject.dart';
+import 'package:zapfy/core/ext/context.dart';
 import 'package:zapfy/core/firebase.dart';
 import 'package:zapfy/features/region/presentation/region_picker_controller.dart';
 import 'package:zapfy/features/shared/domain/entity/region.dart';
@@ -38,7 +39,9 @@ class _RegionPickerState extends State<RegionPicker> {
   Widget build(BuildContext context) {
     analytics.currentScreen = widget;
     return Scaffold(
-      appBar: AppBar(title: const Text("Available regions")),
+      appBar: AppBar(
+        title: Text(context.strings.availableRegionsTitle),
+      ),
       body: Scrollbar(
         child: Column(
           children: [
@@ -46,7 +49,7 @@ class _RegionPickerState extends State<RegionPicker> {
               controller: _ctrl,
               decoration: InputDecoration(
                 contentPadding: const EdgeInsets.all(16),
-                hintText: 'Search...',
+                hintText: context.strings.availableRegionsSearch,
                 border: const UnderlineInputBorder(),
                 suffixIcon: IconButton(
                   icon: const Icon(Icons.clear),
@@ -78,13 +81,12 @@ class _RegionPickerState extends State<RegionPicker> {
 class _RegionListTile extends StatelessWidget {
   const _RegionListTile({
     Key? key,
-    required Region region,
+    required this.region,
     required this.onTap,
     this.isSelected = false,
-  })  : _region = region,
-        super(key: key);
+  }) : super(key: key);
 
-  final Region _region;
+  final Region region;
   final bool isSelected;
   final Function(Region) onTap;
 
@@ -98,23 +100,26 @@ class _RegionListTile extends StatelessWidget {
       selectedTileColor: theme.colorScheme.primary,
       onTap: () {
         analytics.logButtonPressed('select_region', {
-          'region': _region.name,
-          'prefix': _region.prefix.toString(),
+          'region': region.name,
+          'prefix': region.prefix.toString(),
         });
-        onTap(_region);
+        onTap(region);
       },
       title: Row(
         children: [
-          SizedBox(
-            width: 50,
+          ConstrainedBox(
+            constraints: const BoxConstraints(
+              minWidth: 50,
+            ),
             child: Text(
-              _region.flag ?? '',
+              region.flag ?? '',
+              style: const TextStyle(fontSize: 28),
             ),
           ),
-          Text(_region.name),
+          Text(region.name),
           const Spacer(),
           Text(
-            '+${_region.prefix}',
+            '+${region.prefix}',
             style: const TextStyle(fontWeight: FontWeight.bold),
           ),
         ],
