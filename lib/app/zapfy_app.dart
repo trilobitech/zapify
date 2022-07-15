@@ -18,6 +18,7 @@ class ZapfyApp extends StatelessWidget {
 
     return MaterialApp(
       title: 'Appfy',
+      home: const HomePage(),
       theme: ThemeData(
         primarySwatch: Colors.teal,
         appBarTheme: theme.appBarTheme.copyWith(
@@ -31,7 +32,6 @@ class ZapfyApp extends StatelessWidget {
       // locale: const Locale.fromSubtags(languageCode: 'pt', countryCode: 'BR'),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const HomePage(),
       navigatorObservers: <NavigatorObserver>[observer],
     );
   }
