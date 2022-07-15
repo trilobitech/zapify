@@ -1,4 +1,6 @@
 {
+    "homePhoneNumberLabel": "Phone number",
+    "homeOpenWithButton": "Open with {appName}",
     "recentNumbersTitle": "Recent numbers",
     "recentNumbersEmpty": "No recent numbers yet",
     "recentNumberRemoved": "Recent number \"{phoneNumber}\" was removed!",
