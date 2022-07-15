@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zapfy/core/ext/context.dart';
 import 'package:zapfy/features/shared/domain/entity/region.dart';
 
 typedef OnSubmitted = Function(String);
@@ -25,8 +26,7 @@ class PhoneFieldWidget extends StatelessWidget {
 
   final TextStyle _textFieldStyle = const TextStyle(fontSize: 20, height: 1.5);
   // Workaround to adapt region button respecting content width
-  late final _regionButtonSize =
-      _calcTextWidth('🇧🇷  +99999', _textFieldStyle);
+  late final _regionButtonSize = _calcTextWidth('🇧🇷 +99999', _textFieldStyle);
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class PhoneFieldWidget extends StatelessWidget {
               keyboardType: TextInputType.phone,
               onSubmitted: onSubmitted,
               decoration: InputDecoration(
-                labelText: 'Phone number',
+                labelText: context.strings.homePhoneNumberLabel,
                 // https://github.com/flutter/flutter/issues/15400#issuecomment-475773473
                 helperText: ' ',
                 errorText: errorText,
