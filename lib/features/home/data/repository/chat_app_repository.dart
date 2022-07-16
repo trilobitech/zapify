@@ -1,6 +1,5 @@
 import 'package:url_launcher/url_launcher.dart';
 import 'package:zapfy/features/home/domain/entity/chat_app.dart';
-import 'package:zapfy/features/home/domain/entity/icon.dart';
 import 'package:zapfy/features/home/domain/repository/chat_app_repository.dart';
 
 class ChatAppRepository implements IChatAppRepository {
@@ -36,21 +35,21 @@ class ChatAppRepository implements IChatAppRepository {
   List<ChatApp> _allKnownApps() {
     return [
       ChatApp(
-        icon: RawIconData(0xf05a6),
+        icon: Uri.parse('assets/icons/whatsapp.svg'),
         name: 'WhatsApp',
         brandColor: 0xff25d366,
         deepLinkPrefix: 'whatsapp-consumer://send?phone=',
         requirePreVerification: true,
       ),
       ChatApp(
-        icon: RawIconUrl('assets/icons/whatsapp-business.svg'),
+        icon: Uri.parse('assets/icons/whatsapp-business.svg'),
         name: 'WhatsApp Business',
         brandColor: 0xff25d366,
         deepLinkPrefix: 'whatsapp-smb://send?phone=',
         requirePreVerification: true,
       ),
       ChatApp(
-        icon: RawIconData(0xf05a6),
+        icon: Uri.parse('assets/icons/whatsapp.svg'),
         name: 'WhatsApp',
         brandColor: 0xff25d366,
         deepLinkPrefix: 'https://wa.me/',
@@ -60,13 +59,13 @@ class ChatAppRepository implements IChatAppRepository {
         ],
       ),
       ChatApp(
-        icon: RawIconData(0xf0586),
+        icon: Uri.parse('assets/icons/telegram.svg'),
         name: 'Telegram',
         brandColor: 0xff0088cc,
         deepLinkPrefix: 'https://t.me/',
       ),
       ChatApp(
-        icon: RawIconUrl('assets/icons/signal.svg'),
+        icon: Uri.parse('assets/icons/signal.svg'),
         name: 'Signal',
         brandColor: 0xff3a76f0,
         deepLinkPrefix: 'https://signal.me/#p/+',
