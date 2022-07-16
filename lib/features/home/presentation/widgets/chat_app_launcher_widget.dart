@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zapfy/core/ext/context.dart';
 import 'package:zapfy/features/home/domain/entity/chat_app.dart';
-import 'package:zapfy/features/home/presentation/widgets/raw_icon_widget.dart';
+import 'package:zapfy/core/widgets/image_resolver_widget.dart';
 
 class ChatAppLauncherWidget extends StatelessWidget {
   const ChatAppLauncherWidget({
@@ -32,8 +32,8 @@ class ChatAppLauncherWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 8),
       child: ActionChip(
-        avatar: RawIconWidget(
-          icon: chatApp.icon,
+        avatar: ImageResolverWidget(
+          uri: chatApp.icon,
           color: Colors.white,
         ),
         label: Text(
