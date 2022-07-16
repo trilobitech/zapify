@@ -1,5 +1,3 @@
-import 'package:zapfy/features/home/domain/entity/icon.dart';
-
 class ChatApp {
   ChatApp({
     required this.icon,
@@ -10,7 +8,7 @@ class ChatApp {
     this.fallbackFor = const [],
   });
 
-  RawIcon icon;
+  Uri icon;
   String name;
   int brandColor;
   String deepLinkPrefix;
