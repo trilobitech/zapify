@@ -52,6 +52,10 @@ dependencies:
   firebase_analytics: ^9.2.0
   intl: ^0.17.0
   flutter_svg: ^1.1.1+1
+  http: ^0.13.4
+  package_info: ^2.0.2
+  device_info: ^2.0.3
+  connectivity_plus: ^2.3.5
 
 dev_dependencies:
   flutter_test:
