@@ -1,5 +1,7 @@
+import 'package:http/http.dart' as http;
 import 'package:phone_number/phone_number.dart';
 import 'package:sqlbrite/sqlbrite.dart';
+import 'package:zapfy/core/data/network/api_client.dart';
 import 'package:zapfy/core/di/definition.dart';
 import 'package:zapfy/core/di/inject.dart';
 import 'package:zapfy/core/error_handler/composite_error_message_resolver.dart';
@@ -37,5 +39,9 @@ void sharedModule() {
   registerSingleton<Future<BriteDatabase>>(
     () => getDatabase().then((db) => BriteDatabase(db)),
     dispose: (param) => param.then((db) => db.close()),
+  );
+
+  registerSingleton<http.Client>(
+    () => ApiClient.withDefaultInterceptors(),
   );
 }
