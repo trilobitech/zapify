@@ -100,8 +100,8 @@ class _RegionListTile extends StatelessWidget {
       selectedTileColor: theme.colorScheme.primary,
       onTap: () {
         analytics.logButtonPressed('select_region', {
-          'region': region.name,
-          'prefix': region.prefix.toString(),
+          'region_selected': region.name,
+          'region_prefix': region.prefix.toString(),
         });
         onTap(region);
       },
