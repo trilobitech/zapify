@@ -1,4 +1,5 @@
 import 'package:sqlbrite/sqlbrite.dart';
+import 'package:zapfy/config/local_config.dart';
 import 'package:zapfy/features/shared/domain/entity/history_entry.dart';
 import 'package:zapfy/features/shared/domain/repository/history_repository.dart';
 
@@ -11,14 +12,13 @@ class HistoryRepository implements IHistoryRepository {
 
   @override
   Stream<List<HistoryEntry>> getAll() async* {
-    yield [];
     final db = await this.db;
     yield* db
         .createQuery(
           'historic',
           orderBy: 'last_usage_at DESC',
         )
-        .mapToList((row) => HistoryEntry.fromJson(row));
+        .mapToList(HistoryEntry.fromJson);
   }
 
   @override
@@ -32,6 +32,7 @@ class HistoryRepository implements IHistoryRepository {
       [phoneNumber],
     );
     db.sendTableTrigger(['historic']);
+    _updateHistoricSize(db);
   }
 
   @override
@@ -42,6 +43,7 @@ class HistoryRepository implements IHistoryRepository {
       where: 'number = ?',
       whereArgs: [entry.phoneNumber],
     );
+    _updateHistoricSize(db);
   }
 
   @override
@@ -56,5 +58,13 @@ class HistoryRepository implements IHistoryRepository {
       },
       conflictAlgorithm: ConflictAlgorithm.abort,
     );
+    _updateHistoricSize(db);
   }
+
+  Future<void> _updateHistoricSize(BriteDatabase db) => db
+      .rawQuery(
+        'SELECT COUNT(number) AS historic_size FROM historic',
+      )
+      .then<int>((newSize) => newSize.first['historic_size'] as int)
+      .then(LocalConfig.historicSize.set);
 }
