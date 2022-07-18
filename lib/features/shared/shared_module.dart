@@ -1,7 +1,13 @@
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:phone_number/phone_number.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqlbrite/sqlbrite.dart';
+import 'package:zapfy/config/defaults.dart';
+import 'package:zapfy/config/storage/impl/firebase_storage.dart';
+import 'package:zapfy/config/storage/impl/preferences_storage.dart';
+import 'package:zapfy/config/storage/key_value_storage.dart';
 import 'package:zapfy/core/data/network/api_client.dart';
 import 'package:zapfy/core/di/definition.dart';
 import 'package:zapfy/core/di/inject.dart';
@@ -49,5 +55,22 @@ void sharedModule() {
     () => ApiClient.withDefaultInterceptors(),
   );
 
-  registerSingletonAsync<RemoteConfig>(getRemoteConfig);
+  registerSingletonAsync<FirebaseRemoteConfig>(getRemoteConfig);
+
+  registerSingletonAsync<SharedPreferences>(
+    () => SharedPreferences.getInstance(),
+  );
+
+  registerSingleton<LocalConfigStorage>(
+    () => PreferencesStorage(
+      prefs: get(),
+      localConfigDefaults: localConfigDefaults,
+    ),
+  );
+
+  registerSingleton<RemoteConfigStorage>(
+    () => FirebaseStorage(
+      remoteConfig: get(),
+    ),
+  );
 }

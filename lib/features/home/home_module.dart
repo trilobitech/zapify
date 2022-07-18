@@ -62,7 +62,6 @@ void homeModule() {
   registerFactory<ChatAppDataSourceRemote>(
     () => ChatAppDataSourceRemoteImpl(
       httpClient: get(),
-      remoteConfig: get(),
     ),
   );
 }

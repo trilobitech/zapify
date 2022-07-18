@@ -1,14 +1,11 @@
 import 'package:firebase_remote_config/firebase_remote_config.dart';
-
-typedef RemoteConfig = FirebaseRemoteConfig;
+import 'package:zapfy/config/defaults.dart';
 
 Future<FirebaseRemoteConfig> getRemoteConfig() async {
   final remoteConfig = FirebaseRemoteConfig.instance;
 
   await Future.wait([
-    remoteConfig.setDefaults({
-      RemoteConfigKey.chatAppsSourceUrl.name: "assets://data/chat-apps.json",
-    }),
+    remoteConfig.setDefaults(remoteConfigDefaults),
     remoteConfig.setConfigSettings(
       RemoteConfigSettings(
         fetchTimeout: const Duration(minutes: 1),
@@ -20,10 +17,4 @@ Future<FirebaseRemoteConfig> getRemoteConfig() async {
   remoteConfig.fetchAndActivate();
 
   return remoteConfig;
-}
-
-enum RemoteConfigKey { chatAppsSourceUrl }
-
-extension RemoteConfigExt on RemoteConfig {
-  RemoteConfigValue get(RemoteConfigKey key) => getValue(key.name);
 }
