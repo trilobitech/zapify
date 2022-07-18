@@ -2,9 +2,9 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/widgets.dart';
 
-late FirebaseCrashlytics crashlytics = FirebaseCrashlytics.instance;
+FirebaseCrashlytics get crashlytics => FirebaseCrashlytics.instance;
 
-late FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+FirebaseAnalytics get analytics => FirebaseAnalytics.instance;
 
 extension AnalyticsExt on FirebaseAnalytics {
   void logButtonPressed(
@@ -13,7 +13,7 @@ extension AnalyticsExt on FirebaseAnalytics {
   ]) {
     logEvent(
       name: 'button_clicked',
-      parameters: {'name': buttonName, ...aditionalParams},
+      parameters: {'button_name': buttonName, ...aditionalParams},
     );
   }
 
