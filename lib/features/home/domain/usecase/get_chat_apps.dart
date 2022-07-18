@@ -8,5 +8,5 @@ class GetChatAppsUseCase {
 
   IChatAppRepository repository;
 
-  Future<List<ChatApp>> call() => repository.getAll();
+  Stream<List<ChatApp>> call() => repository.getAll();
 }

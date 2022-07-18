@@ -18,7 +18,7 @@ class ZapfyApp extends StatelessWidget {
 
     return MaterialApp(
       title: 'Appfy',
-      home: const HomePage(),
+      home: HomePage(),
       theme: ThemeData(
         primarySwatch: Colors.teal,
         appBarTheme: theme.appBarTheme.copyWith(

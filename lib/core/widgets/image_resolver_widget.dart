@@ -1,52 +1,61 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:zapfy/core/logger.dart';
 
 class ImageResolverWidget extends StatelessWidget {
-  const ImageResolverWidget({
+  ImageResolverWidget({
     Key? key,
     required this.uri,
     this.color,
-    this.size = 24,
+    this.height,
+    this.width,
   }) : super(key: key);
+
+  factory ImageResolverWidget.icon({
+    Key? key,
+    required Uri uri,
+    Color? color,
+    double size = 24,
+  }) =>
+      ImageResolverWidget(
+        key: key,
+        uri: uri,
+        color: color,
+        height: size,
+        width: size,
+      );
 
   final Uri uri;
   final Color? color;
-  final double? size;
+  final double? height;
+  final double? width;
+
+  late final _extension = uri.path.split('.').last;
+  late final _isSvg = _extension == 'svg';
 
   @override
   Widget build(BuildContext context) {
-    final extension = uri.path.split('.').last;
-    final isSvg = extension == 'svg';
-    final isRemote = uri.isScheme('https');
-
-    if (isSvg) {
-      return isRemote
-          ? SvgPicture.network(
-              uri.toString(),
-              color: color,
-              height: size,
-              width: size,
-            )
-          : SvgPicture.asset(
-              uri.path,
-              color: color,
-              height: size,
-              width: size,
-            );
+    switch (uri.scheme) {
+      case 'https':
+        return _fromNetwork();
+      case 'assets':
+        return _fromAssets();
+      default:
+        logError('Unsupported scheme: "${uri.scheme}"');
+        return Container();
     }
+  }
 
-    return isRemote
-        ? Image.network(
-            uri.toString(),
-            color: color,
-            height: size,
-            width: size,
-          )
-        : Image.asset(
-            uri.path,
-            color: color,
-            height: size,
-            width: size,
-          );
+  Widget _fromNetwork() {
+    return _isSvg
+        ? SvgPicture.network('$uri', color: color, height: height, width: width)
+        : Image.network('$uri', color: color, height: height, width: width);
+  }
+
+  Widget _fromAssets() {
+    final path = uri.toString().replaceFirst(':/', '');
+    return _isSvg
+        ? SvgPicture.asset(path, color: color, height: height, width: width)
+        : Image.asset(path, color: color, height: height, width: width);
   }
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:phone_number/phone_number.dart';
 import 'package:sqlbrite/sqlbrite.dart';
@@ -38,7 +39,9 @@ void sharedModule() {
   );
 
   registerSingleton<Future<BriteDatabase>>(
-    () => getDatabase().then((db) => BriteDatabase(db)),
+    () => getDatabase().then(
+      (db) => BriteDatabase(db, logger: kDebugMode ? print : null),
+    ),
     dispose: (param) => param.then((db) => db.close()),
   );
 
@@ -46,7 +49,5 @@ void sharedModule() {
     () => ApiClient.withDefaultInterceptors(),
   );
 
-  registerSingleton<Future<RemoteConfig>>(
-    () => getRemoteConfig(),
-  );
+  registerSingletonAsync<RemoteConfig>(getRemoteConfig);
 }
