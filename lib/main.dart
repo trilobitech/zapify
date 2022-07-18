@@ -17,12 +17,14 @@ void main() {
         options: DefaultFirebaseOptions.currentPlatform,
       );
 
-      await crashlytics.setCrashlyticsCollectionEnabled(kReleaseMode);
-      await analytics.setAnalyticsCollectionEnabled(kReleaseMode);
-
       FlutterError.onError = crashlytics.recordFlutterFatalError;
 
-      loadModules();
+      await Future.wait([
+        crashlytics.setCrashlyticsCollectionEnabled(kReleaseMode),
+        analytics.setAnalyticsCollectionEnabled(kReleaseMode),
+        loadModules(),
+      ]);
+
       runApp(const ZapfyApp());
     },
     (error, stack) => crashlytics.recordError(error, stack, fatal: true),
