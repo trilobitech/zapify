@@ -11,37 +11,30 @@ import 'package:zapfy/features/home/presentation/home_controller.dart';
 import 'package:zapfy/features/home/presentation/home_state.dart';
 import 'package:zapfy/core/di/inject.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class HomePage extends StatelessWidget {
+  HomePage({Key? key}) : super(key: key);
 
   final String title = 'Zapfy';
-
-  @override
-  State<StatefulWidget> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
   late final HomeController controller = inject();
 
   @override
   Widget build(BuildContext context) {
-    analytics.currentScreen = widget;
+    analytics.currentScreen = this;
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(title),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           StreamBuilder(
             stream: controller.phoneFieldState(),
-            builder: (_, AsyncSnapshot<PhoneFieldViewState> snapshot) =>
-                _buildPhoneField(snapshot),
+            builder: _buildPhoneField,
           ),
-          FutureBuilder(
-            future: controller.chatAppsState(),
-            builder: (_, AsyncSnapshot<ChatAppsViewState> snapshot) =>
-                _buildChatAppLaunchers(snapshot),
+          StreamBuilder(
+            key: GlobalKey(),
+            stream: controller.chatAppsState(),
+            builder: _buildChatAppLaunchers,
           ),
           Expanded(
             child: HistoryPage(
@@ -53,15 +46,18 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildPhoneField(AsyncSnapshot<PhoneFieldViewState> snapshot) {
+  Widget _buildPhoneField(
+    BuildContext context,
+    AsyncSnapshot<PhoneFieldViewState> snapshot,
+  ) {
     if (snapshot.hasData) {
       final state = snapshot.requireData;
       return PhoneFieldWidget(
         region: state.selectedRegion,
-        onRegionPressed: _onRegionPressed,
+        onRegionPressed: (region) => _onRegionPressed(context, region),
         controller: state.controller,
         error: state.error,
-        padding: const EdgeInsets.only(top: 8, right: 16, left: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       );
     }
     if (snapshot.hasError) {
@@ -70,12 +66,15 @@ class _HomePageState extends State<HomePage> {
     return Container();
   }
 
-  Widget _buildChatAppLaunchers(AsyncSnapshot<ChatAppsViewState> snapshot) {
+  Widget _buildChatAppLaunchers(
+    BuildContext context,
+    AsyncSnapshot<ChatAppsViewState> snapshot,
+  ) {
     if (snapshot.hasData) {
       final state = snapshot.requireData;
-      return ChatAppLauncherWidget(
+      return ChatAppsWidget(
         chatApps: state.chatApps,
-        onChatAppPressed: _onChatAppPressed,
+        onChatAppPressed: (chatApp) => _onChatAppPressed(context, chatApp),
       );
     }
     if (snapshot.hasError) {
@@ -84,7 +83,7 @@ class _HomePageState extends State<HomePage> {
     return Container();
   }
 
-  _onRegionPressed(Region? region) async {
+  _onRegionPressed(BuildContext context, Region? region) async {
     analytics.logButtonPressed('open_region_picker');
     dismissKeyboard(context);
 
@@ -100,7 +99,7 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  _onChatAppPressed(ChatApp chatApp) async {
+  _onChatAppPressed(BuildContext context, ChatApp chatApp) async {
     analytics.logButtonPressed('launch_chat_app', {'type': chatApp.name});
     if (await controller.onChatAppPressed(chatApp)) {
       dismissKeyboard(context);

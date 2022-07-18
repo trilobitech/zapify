@@ -11,13 +11,16 @@ class AssetsInterceptor extends RequestInterceptor {
 
   @override
   Future<StreamedResponse> intercept(BaseRequest request, Next next) async {
-    if (!request.url.isScheme('assets')) {
+    final url = request.url;
+    if (!url.isScheme('assets')) {
       return next(request);
     }
 
-    final data = await rootBundle.load('$assetsRootPath/${request.url.path}');
+    final path = url.toString().replaceFirst('assets:/', assetsRootPath);
+    final data = await rootBundle.load(path);
     final intData =
         data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+
     return StreamedResponse(
       Stream.value(intData),
       200,

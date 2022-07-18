@@ -1,75 +1,63 @@
+import 'package:flutter/material.dart' as m;
 import 'package:url_launcher/url_launcher.dart';
+import 'package:zapfy/core/logger.dart';
+import 'package:zapfy/features/home/data/datasource/chat_app_datasource.dart';
+import 'package:zapfy/features/home/data/model/chat_app_remote.dart';
 import 'package:zapfy/features/home/domain/entity/chat_app.dart';
+import 'package:zapfy/features/home/domain/entity/color.dart';
 import 'package:zapfy/features/home/domain/repository/chat_app_repository.dart';
 
 class ChatAppRepository implements IChatAppRepository {
-  @override
-  Future<List<ChatApp>> getAll() async {
-    final knownApps = _allKnownApps();
+  ChatAppRepository({
+    required this.localDataSource,
+    required this.remoteDataSource,
+  });
 
-    return await _filterSupportedApps(knownApps);
+  final ChatAppDataSourceLocal localDataSource;
+  final ChatAppDataSourceRemote remoteDataSource;
+
+  @override
+  Stream<List<ChatApp>> getAll() async* {
+    final placeholder = ChatApp(
+      icon: Uri.parse('assets://icons/whatsapp.svg'),
+      name: 'WhatsApp',
+      brandColor: Color(0xff25d366),
+      deepLinkPrefix: 'https://wa.me/',
+    );
+    yield [placeholder];
+
+    _syncWithRemote();
+
+    yield* localDataSource.get();
   }
 
-  Future<List<ChatApp>> _filterSupportedApps(List<ChatApp> apps) async {
+  Future _syncWithRemote() async {
+    await remoteDataSource
+        .get()
+        .then(_filterAvailableApps)
+        .then(localDataSource.syncWith)
+        .catchError(catchErrorLogger);
+  }
+
+  Future<List<ChatApp>> _filterAvailableApps(List<ChatAppRemote> apps) async {
     final validated = await Future.wait(apps.map(_validate));
     return validated.whereType<ChatApp>().toList();
   }
 
-  Future<ChatApp?> _validate(ChatApp app) async =>
+  Future<ChatApp?> _validate(ChatAppRemote app) async =>
       await _canLaunchApp(app) ? app : null;
 
-  Future<bool> _canLaunchApp(ChatApp app) async {
+  Future<bool> _canLaunchApp(ChatAppRemote app) async {
     if (app.requirePreVerification) {
       return await _canLaunchUrl(app.deepLinkPrefix);
     }
 
     return app.fallbackFor.fold(
       Future.value(true),
-      (previousValue, element) async =>
-          (await previousValue) & !(await _canLaunchUrl(element)),
+      (previousValue, url) async =>
+          (await previousValue) & !(await _canLaunchUrl(url)),
     );
   }
 
   Future<bool> _canLaunchUrl(String url) => canLaunchUrl(Uri.parse(url));
-
-  List<ChatApp> _allKnownApps() {
-    return [
-      ChatApp(
-        icon: Uri.parse('assets/icons/whatsapp.svg'),
-        name: 'WhatsApp',
-        brandColor: 0xff25d366,
-        deepLinkPrefix: 'whatsapp-consumer://send?phone=',
-        requirePreVerification: true,
-      ),
-      ChatApp(
-        icon: Uri.parse('assets/icons/whatsapp-business.svg'),
-        name: 'WhatsApp Business',
-        brandColor: 0xff25d366,
-        deepLinkPrefix: 'whatsapp-smb://send?phone=',
-        requirePreVerification: true,
-      ),
-      ChatApp(
-        icon: Uri.parse('assets/icons/whatsapp.svg'),
-        name: 'WhatsApp',
-        brandColor: 0xff25d366,
-        deepLinkPrefix: 'https://wa.me/',
-        fallbackFor: [
-          'whatsapp-consumer://send',
-          'whatsapp-smb://send',
-        ],
-      ),
-      ChatApp(
-        icon: Uri.parse('assets/icons/telegram.svg'),
-        name: 'Telegram',
-        brandColor: 0xff0088cc,
-        deepLinkPrefix: 'https://t.me/',
-      ),
-      ChatApp(
-        icon: Uri.parse('assets/icons/signal.svg'),
-        name: 'Signal',
-        brandColor: 0xff3a76f0,
-        deepLinkPrefix: 'https://signal.me/#p/+',
-      ),
-    ];
-  }
 }

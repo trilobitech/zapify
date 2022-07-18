@@ -11,6 +11,7 @@ class HistoryRepository implements IHistoryRepository {
 
   @override
   Stream<List<HistoryEntry>> getAll() async* {
+    yield [];
     final db = await this.db;
     yield* db
         .createQuery(
@@ -26,8 +27,9 @@ class HistoryRepository implements IHistoryRepository {
     await db.rawInsert(
       '''
       INSERT OR REPLACE INTO historic(number, last_usage_at)
-      VALUES("$phoneNumber", strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))
+      VALUES(?, strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))
       ''',
+      [phoneNumber],
     );
     db.sendTableTrigger(['historic']);
   }
