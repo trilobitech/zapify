@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:zapfy/core/di/inject.dart';
 import 'package:zapfy/core/firebase.dart';
 import 'package:zapfy/core/logger.dart';
 import 'package:zapfy/features/history/presentation/history_page.dart';
 import 'package:zapfy/features/home/domain/entity/chat_app.dart';
-import 'package:zapfy/features/region/presentation/region_picker_page.dart';
-import 'package:zapfy/features/shared/domain/entity/region.dart';
-import 'package:zapfy/features/home/presentation/widgets/chat_app_launcher_widget.dart';
-import 'package:zapfy/features/home/presentation/widgets/phone_field_widget.dart';
 import 'package:zapfy/features/home/presentation/home_controller.dart';
 import 'package:zapfy/features/home/presentation/home_state.dart';
-import 'package:zapfy/core/di/inject.dart';
+import 'package:zapfy/features/home/presentation/widgets/chat_apps_widget.dart';
+import 'package:zapfy/features/home/presentation/widgets/phone_field_widget.dart';
+import 'package:zapfy/features/region/presentation/region_picker_page.dart';
+import 'package:zapfy/features/shared/domain/entity/region.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
@@ -32,7 +32,6 @@ class HomePage extends StatelessWidget {
             builder: _buildPhoneField,
           ),
           StreamBuilder(
-            key: GlobalKey(),
             stream: controller.chatAppsState(),
             builder: _buildChatAppLaunchers,
           ),
