@@ -7,6 +7,7 @@ import 'package:zapfy/core/di/inject.dart';
 import 'package:zapfy/core/error_handler/composite_error_message_resolver.dart';
 import 'package:zapfy/core/error_handler/error_message_resolver.dart';
 import 'package:zapfy/features/shared/data/db.dart';
+import 'package:zapfy/features/shared/data/remote_config.dart';
 import 'package:zapfy/features/shared/data/repository/history_repository.dart';
 import 'package:zapfy/features/shared/data/repository/region_repository.dart';
 import 'package:zapfy/features/shared/domain/repository/history_repository.dart';
@@ -43,5 +44,9 @@ void sharedModule() {
 
   registerSingleton<http.Client>(
     () => ApiClient.withDefaultInterceptors(),
+  );
+
+  registerSingleton<Future<RemoteConfig>>(
+    () => getRemoteConfig(),
   );
 }
