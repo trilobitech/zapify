@@ -1,8 +1,8 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:zapfy/core/ext/context.dart';
-import 'package:zapfy/features/home/domain/entity/chat_app.dart';
 import 'package:zapfy/core/widgets/image_resolver_widget.dart';
+import 'package:zapfy/features/home/domain/entity/chat_app.dart';
 
 class ChatAppsWidget extends StatelessWidget {
   const ChatAppsWidget({
@@ -60,7 +60,7 @@ class _ChatAppLauncherWidgetState extends State<_ChatAppLauncherWidget>
     super.initState();
 
     _controller = AnimationController(
-      duration: Duration(milliseconds: widget.position * 200 + 400),
+      duration: Duration(milliseconds: widget.position * 200 + 300),
       vsync: this,
     );
     _animation = Tween(begin: 0.0, end: 1.0).animate(_controller);

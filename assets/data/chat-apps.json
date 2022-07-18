@@ -7,7 +7,7 @@
         "require_pre_verification": true
     },
     {
-        "name": "WhatsApp Business",
+        "name": "WA Business",
         "icon": "assets://icons/whatsapp-business.svg",
         "brand_color": "#ff25d366",
         "deeplink_prefix": "whatsapp-smb://send?phone=",
