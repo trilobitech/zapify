@@ -61,6 +61,7 @@ dependencies:
   equatable: ^2.0.3
   collection: ^1.16.0
   shared_preferences: ^2.0.15
+  shimmer: ^2.0.0
 
 dev_dependencies:
   flutter_test:

@@ -1,4 +1,7 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:timeago_flutter/timeago_flutter.dart';
 import 'package:zapfy/core/di/inject.dart';
 import 'package:zapfy/core/ext/context.dart';
@@ -30,6 +33,7 @@ class HistoryPage extends StatelessWidget {
         ),
         Expanded(
           child: StreamBuilder(
+            initialData: HistoryViewState.loading(controller.historicSize),
             stream: controller.state,
             builder: _buildList,
           ),
@@ -46,6 +50,7 @@ class HistoryPage extends StatelessWidget {
       final state = snapshot.requireData;
       return state.when(
         _buildListWidget,
+        loading: (size) => _buildLoadingListWidget(context, size),
         empty: () => _buildEmptyListWidget(context),
       );
     }
@@ -55,17 +60,11 @@ class HistoryPage extends StatelessWidget {
     return Container();
   }
 
-  Widget _buildEmptyListWidget(BuildContext context) {
-    return Center(
-      child: Text(context.strings.recentNumbersEmpty),
-    );
-  }
-
   Widget _buildListWidget(List<HistoryEntry> entries) {
     return ListView.separated(
       itemCount: entries.length,
       itemBuilder: (context, index) => _buildListTile(context, entries[index]),
-      separatorBuilder: (_, __) => const Divider(height: 0),
+      separatorBuilder: (_, __) => const Divider(height: 1),
     );
   }
 
@@ -101,6 +100,31 @@ class HistoryPage extends StatelessWidget {
           onEntryTap(entry.phoneNumber);
         },
       ),
+    );
+  }
+
+  Widget _buildEmptyListWidget(BuildContext context) {
+    return Center(
+      child: Text(context.strings.recentNumbersEmpty),
+    );
+  }
+
+  Widget _buildLoadingListWidget(BuildContext context, int size) {
+    return ListView.separated(
+      itemCount: size,
+      itemBuilder: (context, _) => Shimmer.fromColors(
+        loop: 10,
+        baseColor: Colors.grey.shade500,
+        highlightColor: Colors.grey.shade100,
+        child: ImageFiltered(
+          imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+          child: const ListTile(
+            title: Text('+99 99 99999-9999'),
+            trailing: Text('any past moment'),
+          ),
+        ),
+      ),
+      separatorBuilder: (_, __) => const Divider(height: 1),
     );
   }
 

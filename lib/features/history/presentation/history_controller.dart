@@ -5,14 +5,17 @@ import 'package:zapfy/features/history/presentation/history_state.dart';
 import 'package:zapfy/features/shared/domain/entity/history_entry.dart';
 
 class HistoryController {
-  HistoryController(
-      {required this.getPhoneNumberHistory,
-      required this.removePhoneNumberHistory,
-      required this.restorePhoneNumberHistory});
+  HistoryController({
+    required this.getPhoneNumberHistory,
+    required this.removePhoneNumberHistory,
+    required this.restorePhoneNumberHistory,
+    required this.historicSize,
+  });
 
   final GetPhoneNumberHistoryUseCase getPhoneNumberHistory;
   final RemovePhoneNumberHistory removePhoneNumberHistory;
   final RestorePhoneNumberHistory restorePhoneNumberHistory;
+  final int historicSize;
 
   late final Stream<HistoryViewState> state =
       getPhoneNumberHistory().map(_stateFor);

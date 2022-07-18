@@ -1,3 +1,4 @@
+import 'package:zapfy/config/local_config.dart';
 import 'package:zapfy/core/di/definition.dart';
 import 'package:zapfy/core/di/inject.dart';
 import 'package:zapfy/features/history/domain/usecase/get_phone_number_history.dart';
@@ -11,6 +12,7 @@ void historyModule() {
       getPhoneNumberHistory: get(),
       removePhoneNumberHistory: get(),
       restorePhoneNumberHistory: get(),
+      historicSize: LocalConfig.historicSize.get(),
     ),
   );
 

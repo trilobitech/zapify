@@ -5,6 +5,7 @@ part 'history_state.freezed.dart';
 
 @freezed
 class HistoryViewState with _$HistoryViewState {
+  factory HistoryViewState.loading(int size) = _HistoryViewStateLoading;
   factory HistoryViewState.empty() = _HistoryViewStateEmpty;
   factory HistoryViewState({
     required List<HistoryEntry> entries,
