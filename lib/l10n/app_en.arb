@@ -2,7 +2,7 @@
     "unknowErrorMessage": "Oops! Something went wrong!",
 
     "homePhoneNumberLabel": "Phone number",
-    "homeOpenWithButton": "Open with {appName}",
+    "homeOpenWithButton": "{appName}",
     "homeEmptyPhoneNumberError": "Please provide the phone number",
     "homeInvalidPhoneNumberError": "Invalid phone number",
 
