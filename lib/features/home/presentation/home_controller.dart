@@ -156,8 +156,8 @@ mixin _ChatAppsController {
 
   clearPhoneField();
 
-  Future<ChatAppsViewState> chatAppsState() =>
-      getChatApps().then((value) => ChatAppsViewState(chatApps: value));
+  Stream<ChatAppsViewState> chatAppsState() =>
+      getChatApps().map((value) => ChatAppsViewState(chatApps: value));
 
   Future<bool> onChatAppPressed(ChatApp chatApp) async {
     try {

@@ -1,6 +1,8 @@
-import 'package:phone_number/phone_number.dart';
 import 'package:zapfy/core/di/definition.dart';
 import 'package:zapfy/core/di/inject.dart';
+import 'package:zapfy/features/home/data/datasource/chat_app_datasource.dart';
+import 'package:zapfy/features/home/data/datasource/impl/chat_app_datasource_local.dart';
+import 'package:zapfy/features/home/data/datasource/impl/chat_app_datasource_remote.dart';
 import 'package:zapfy/features/home/data/repository/chat_app_repository.dart';
 import 'package:zapfy/features/home/domain/repository/chat_app_repository.dart';
 import 'package:zapfy/features/home/domain/usecase/get_chat_apps.dart';
@@ -45,6 +47,22 @@ void homeModule() {
   );
 
   registerFactory<IChatAppRepository>(
-    () => ChatAppRepository(),
+    () => ChatAppRepository(
+      localDataSource: get(),
+      remoteDataSource: get(),
+    ),
+  );
+
+  registerFactory<ChatAppDataSourceLocal>(
+    () => ChatAppDataSourceLocalImpl(
+      db: get(),
+    ),
+  );
+
+  registerFactory<ChatAppDataSourceRemote>(
+    () => ChatAppDataSourceRemoteImpl(
+      httpClient: get(),
+      remoteConfig: get(),
+    ),
   );
 }
