@@ -51,6 +51,7 @@ app.*.map.json
 # Firebase
 **/google-services.json
 **/firebase_app_id_file.json
+**/Runner/GoogleService-Info.plist
 
 # FVM
 .fvm/flutter_sdk

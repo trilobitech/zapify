@@ -1,12 +1,12 @@
 import 'dart:async';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:zapfy/app/modules.dart';
 import 'package:zapfy/app/zapfy_app.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:zapfy/core/firebase.dart';
-import 'firebase_options.dart';
+import 'package:zapfy/firebase_options.dart';
 
 void main() {
   runZonedGuarded<Future<void>>(
@@ -20,6 +20,7 @@ void main() {
       FlutterError.onError = crashlytics.recordFlutterFatalError;
 
       await Future.wait([
+        performanceMonitor.setPerformanceCollectionEnabled(kReleaseMode),
         crashlytics.setCrashlyticsCollectionEnabled(kReleaseMode),
         analytics.setAnalyticsCollectionEnabled(kReleaseMode),
         loadModules(),
