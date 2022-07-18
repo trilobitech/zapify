@@ -99,7 +99,10 @@ class HomePage extends StatelessWidget {
   }
 
   _onChatAppPressed(BuildContext context, ChatApp chatApp) async {
-    analytics.logButtonPressed('launch_chat_app', {'type': chatApp.name});
+    analytics.logButtonPressed(
+      'launch_chat_app',
+      {'app_launched': chatApp.name},
+    );
     if (await controller.onChatAppPressed(chatApp)) {
       dismissKeyboard(context);
     }
