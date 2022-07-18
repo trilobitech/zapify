@@ -2,7 +2,7 @@
     "unknowErrorMessage": "Oops! Ocorreu um erro inesperado!",
 
     "homePhoneNumberLabel": "Número de telefone",
-    "homeOpenWithButton": "Abrir com {appName}",
+    "homeOpenWithButton": "{appName}",
     "homeEmptyPhoneNumberError": "Por favor informe o número desejado.",
     "homeInvalidPhoneNumberError": "O número informado é inválido",
 
