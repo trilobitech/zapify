@@ -4,6 +4,11 @@
         android:label="zapfy"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="${ADS_APP_ID}"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

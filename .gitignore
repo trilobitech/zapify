@@ -56,3 +56,6 @@ lib/firebase_options.dart
 
 # FVM
 .fvm/flutter_sdk
+
+# Env
+ios/Flutter/Secrets.xcconfig

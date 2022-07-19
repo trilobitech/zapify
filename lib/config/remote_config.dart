@@ -3,6 +3,7 @@ import 'package:zapfy/core/di/inject.dart' as di;
 
 enum RemoteConfig {
   chatAppsSourceUrl,
+  homeBannerUnitId,
 }
 
 extension RemoteConfigExt on RemoteConfig {
