@@ -56,12 +56,12 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.zapfy.app"
         minSdkVersion flutterMinSdkVersion.toInteger()
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        manifestPlaceholders["ADS_APP_ID"] = System.getenv('ANDROID_ADS_APP_ID') ?: localProperties.getProperty('ads.appId')
     }
 
     signingConfigs {
