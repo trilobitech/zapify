@@ -55,3 +55,6 @@ app.*.map.json
 
 # FVM
 .fvm/flutter_sdk
+
+# Env
+ios/Flutter/Secrets.xcconfig

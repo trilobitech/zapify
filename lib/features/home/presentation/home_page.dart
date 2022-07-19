@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zapfy/config/remote_config.dart';
 import 'package:zapfy/core/di/inject.dart';
 import 'package:zapfy/core/firebase.dart';
 import 'package:zapfy/core/logger.dart';
@@ -6,6 +7,7 @@ import 'package:zapfy/features/history/presentation/history_page.dart';
 import 'package:zapfy/features/home/domain/entity/chat_app.dart';
 import 'package:zapfy/features/home/presentation/home_controller.dart';
 import 'package:zapfy/features/home/presentation/home_state.dart';
+import 'package:zapfy/features/home/presentation/widgets/ad_banner_widget.dart';
 import 'package:zapfy/features/home/presentation/widgets/chat_apps_widget.dart';
 import 'package:zapfy/features/home/presentation/widgets/phone_field_widget.dart';
 import 'package:zapfy/features/region/presentation/region_picker_page.dart';
@@ -20,6 +22,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     analytics.currentScreen = this;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
@@ -39,6 +42,10 @@ class HomePage extends StatelessWidget {
             child: HistoryPage(
               onEntryTap: _onHistoryEntryTap,
             ),
+          ),
+          AdBannerWidget(
+            unitId: RemoteConfig.homeBannerUnitId.get(),
+            windowSize: MediaQuery.of(context).size,
           ),
         ],
       ),
