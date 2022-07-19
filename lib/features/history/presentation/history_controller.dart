@@ -17,6 +17,10 @@ class HistoryController {
   final RestorePhoneNumberHistory restorePhoneNumberHistory;
   final int historicSize;
 
+  late final HistoryViewState initialState = historicSize > 0
+      ? HistoryViewState.loading(historicSize)
+      : HistoryViewState.empty();
+
   late final Stream<HistoryViewState> state =
       getPhoneNumberHistory().map(_stateFor);
 

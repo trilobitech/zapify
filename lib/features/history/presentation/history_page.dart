@@ -33,7 +33,7 @@ class HistoryPage extends StatelessWidget {
         ),
         Expanded(
           child: StreamBuilder(
-            initialData: HistoryViewState.loading(controller.historicSize),
+            initialData: controller.initialState,
             stream: controller.state,
             builder: _buildList,
           ),
@@ -49,8 +49,8 @@ class HistoryPage extends StatelessWidget {
     if (snapshot.hasData) {
       final state = snapshot.requireData;
       return state.when(
-        _buildListWidget,
-        loading: (size) => _buildLoadingListWidget(context, size),
+        _buildLoadedListWidget,
+        loading: _buildLoadingListWidget,
         empty: () => _buildEmptyListWidget(context),
       );
     }
@@ -60,10 +60,20 @@ class HistoryPage extends StatelessWidget {
     return Container();
   }
 
-  Widget _buildListWidget(List<HistoryEntry> entries) {
+  Widget _buildLoadedListWidget(List<HistoryEntry> entries) {
+    return _buildListWidget(
+      entries.length,
+      (context, index) => _buildListTile(context, entries[index]),
+    );
+  }
+
+  Widget _buildLoadingListWidget(int size) =>
+      _buildListWidget(size, (_, __) => _buildShimmer());
+
+  Widget _buildListWidget(int itemCount, IndexedWidgetBuilder itemBuilder) {
     return ListView.separated(
-      itemCount: entries.length,
-      itemBuilder: (context, index) => _buildListTile(context, entries[index]),
+      itemCount: itemCount,
+      itemBuilder: itemBuilder,
       separatorBuilder: (_, __) => const Divider(height: 1),
     );
   }
@@ -109,22 +119,18 @@ class HistoryPage extends StatelessWidget {
     );
   }
 
-  Widget _buildLoadingListWidget(BuildContext context, int size) {
-    return ListView.separated(
-      itemCount: size,
-      itemBuilder: (context, _) => Shimmer.fromColors(
-        loop: 10,
-        baseColor: Colors.grey.shade500,
-        highlightColor: Colors.grey.shade100,
-        child: ImageFiltered(
-          imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-          child: const ListTile(
-            title: Text('+99 99 99999-9999'),
-            trailing: Text('any past moment'),
-          ),
+  Widget _buildShimmer() {
+    return Shimmer.fromColors(
+      loop: 10,
+      baseColor: Colors.grey.shade500,
+      highlightColor: Colors.grey.shade100,
+      child: ImageFiltered(
+        imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+        child: const ListTile(
+          title: Text('+99 99 99999-9999'),
+          trailing: Text('any time ago'),
         ),
       ),
-      separatorBuilder: (_, __) => const Divider(height: 1),
     );
   }
 
@@ -139,7 +145,10 @@ class HistoryPage extends StatelessWidget {
           controller.restore(entry);
         },
       ),
+      behavior: SnackBarBehavior.floating,
     );
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    ScaffoldMessenger.of(context)
+      ..removeCurrentSnackBar()
+      ..showSnackBar(snackBar);
   }
 }
