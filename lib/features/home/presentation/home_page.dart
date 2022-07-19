@@ -43,11 +43,10 @@ class HomePage extends StatelessWidget {
               onEntryTap: _onHistoryEntryTap,
             ),
           ),
-          AdBannerWidget(
-            unitId: RemoteConfig.homeBannerUnitId.get(),
-            windowSize: MediaQuery.of(context).size,
-          ),
         ],
+      ),
+      bottomNavigationBar: AdBannerWidget(
+        unitId: RemoteConfig.homeBannerUnitId.get(),
       ),
     );
   }
