@@ -11,7 +11,7 @@ class RegionPicker extends StatefulWidget {
   final Region? selected;
 
   @override
-  _RegionPickerState createState() => _RegionPickerState();
+  State<RegionPicker> createState() => _RegionPickerState();
 }
 
 class _RegionPickerState extends State<RegionPicker> {
@@ -37,7 +37,6 @@ class _RegionPickerState extends State<RegionPicker> {
 
   @override
   Widget build(BuildContext context) {
-    analytics.currentScreen = widget;
     return Scaffold(
       appBar: AppBar(
         title: Text(context.strings.availableRegionsTitle),
