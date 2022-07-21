@@ -21,8 +21,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    analytics.currentScreen = this;
-
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
@@ -94,6 +92,7 @@ class HomePage extends StatelessWidget {
 
     final route = MaterialPageRoute<Region>(
       fullscreenDialog: true,
+      settings: const RouteSettings(name: 'RegionPicker'),
       builder: (_) => RegionPicker(selected: region),
     );
 
