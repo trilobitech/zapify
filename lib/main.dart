@@ -1,9 +1,7 @@
 import 'dart:async';
 
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:zapfy/app/modules.dart';
 import 'package:zapfy/app/zapfy_app.dart';
 import 'package:zapfy/core/firebase.dart';
@@ -20,13 +18,7 @@ void main() {
 
       FlutterError.onError = crashlytics.recordFlutterFatalError;
 
-      await Future.wait([
-        performanceMonitor.setPerformanceCollectionEnabled(kReleaseMode),
-        crashlytics.setCrashlyticsCollectionEnabled(kReleaseMode),
-        analytics.setAnalyticsCollectionEnabled(kReleaseMode),
-        loadModules(),
-        MobileAds.instance.initialize(),
-      ]);
+      await loadModules();
 
       runApp(const ZapfyApp());
     },

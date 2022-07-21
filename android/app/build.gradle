@@ -74,6 +74,12 @@ android {
     }
 
     buildTypes {
+        debug {
+            FirebasePerformance {
+                instrumentationEnabled false
+            }
+        }
+
         release {
             signingConfig signingConfigs.release
         }
@@ -86,4 +92,7 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation platform('com.google.firebase:firebase-bom:30.3.0')
+    implementation 'com.google.firebase:firebase-analytics'
 }
