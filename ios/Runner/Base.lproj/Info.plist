@@ -56,5 +56,11 @@
 	</array>
 	<key>GADApplicationIdentifier</key>
 	<string>$(IOS_ADS_APP_ID)</string>
+	<key>FirebaseCrashlyticsCollectionEnabled</key>
+	<false/>
+	<key>firebase_performance_collection_enabled</key>
+	<false/>
+	<key>FIREBASE_ANALYTICS_COLLECTION_ENABLED</key>
+	<false/>
 </dict>
 </plist>
