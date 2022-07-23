@@ -16,9 +16,12 @@ void main() {
         options: DefaultFirebaseOptions.currentPlatform,
       );
 
+      final preRunTrace = performance.newTrace('pre-run-trace');
       FlutterError.onError = crashlytics.recordFlutterFatalError;
 
       await loadModules();
+
+      preRunTrace.stop();
 
       runApp(const ZapfyApp());
     },
