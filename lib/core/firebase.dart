@@ -1,7 +1,10 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:firebase_performance/firebase_performance.dart';
 
 FirebaseCrashlytics get crashlytics => FirebaseCrashlytics.instance;
+
+FirebasePerformance get performance => FirebasePerformance.instance;
 
 FirebaseAnalytics get analytics => FirebaseAnalytics.instance;
 
