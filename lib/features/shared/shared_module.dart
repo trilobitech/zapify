@@ -21,6 +21,12 @@ import 'package:zapfy/features/shared/domain/repository/history_repository.dart'
 import 'package:zapfy/features/shared/domain/repository/region_repository.dart';
 
 void sharedModule() {
+  registerSingletonAsync<FirebaseRemoteConfig>(getRemoteConfig);
+
+  registerSingletonAsync<SharedPreferences>(
+    () => SharedPreferences.getInstance(),
+  );
+
   registerSingleton<ErrorMessageResolver>(
     () => CompositeErrorMessageResolver([]),
   );
@@ -53,12 +59,6 @@ void sharedModule() {
 
   registerSingleton<http.Client>(
     () => ApiClient.withDefaultInterceptors(),
-  );
-
-  registerSingletonAsync<FirebaseRemoteConfig>(getRemoteConfig);
-
-  registerSingletonAsync<SharedPreferences>(
-    () => SharedPreferences.getInstance(),
   );
 
   registerSingleton<LocalConfigStorage>(
