@@ -1,10 +1,10 @@
 import 'package:http/http.dart';
-import 'package:zapfy/core/data/network/ext.dart';
-import 'package:zapfy/core/data/network/interceptor/impl/assets.dart';
-import 'package:zapfy/core/data/network/interceptor/impl/connection.dart';
-import 'package:zapfy/core/data/network/interceptor/impl/user_agent.dart';
-import 'package:zapfy/core/data/network/interceptor/interceptor.dart';
-import 'package:zapfy/core/data/network/network_info.dart';
+import 'package:zapify/core/data/network/ext.dart';
+import 'package:zapify/core/data/network/interceptor/impl/assets.dart';
+import 'package:zapify/core/data/network/interceptor/impl/connection.dart';
+import 'package:zapify/core/data/network/interceptor/impl/user_agent.dart';
+import 'package:zapify/core/data/network/interceptor/interceptor.dart';
+import 'package:zapify/core/data/network/network_info.dart';
 
 class ApiClient extends BaseClient {
   ApiClient(

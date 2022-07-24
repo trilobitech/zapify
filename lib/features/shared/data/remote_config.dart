@@ -1,6 +1,6 @@
 import 'package:firebase_remote_config/firebase_remote_config.dart';
-import 'package:zapfy/config/defaults.dart';
-import 'package:zapfy/core/logger.dart';
+import 'package:zapify/config/defaults.dart';
+import 'package:zapify/core/logger.dart';
 
 Future<FirebaseRemoteConfig> getRemoteConfig() async {
   final remoteConfig = FirebaseRemoteConfig.instance;

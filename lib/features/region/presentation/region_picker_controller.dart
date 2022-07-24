@@ -1,5 +1,5 @@
-import 'package:zapfy/features/region/domain/get_regions_by_term.dart';
-import 'package:zapfy/features/shared/domain/entity/region.dart';
+import 'package:zapify/features/region/domain/get_regions_by_term.dart';
+import 'package:zapify/features/shared/domain/entity/region.dart';
 
 class RegionPickerController {
   RegionPickerController({

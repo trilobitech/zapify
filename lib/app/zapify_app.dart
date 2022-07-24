@@ -2,12 +2,12 @@ import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:timeago/timeago.dart' as timeago;
-import 'package:zapfy/core/firebase.dart';
-import 'package:zapfy/core/logger.dart';
-import 'package:zapfy/features/home/presentation/home_page.dart';
+import 'package:zapify/core/firebase.dart';
+import 'package:zapify/core/logger.dart';
+import 'package:zapify/features/home/presentation/home_page.dart';
 
-class ZapfyApp extends StatelessWidget {
-  const ZapfyApp({Key? key}) : super(key: key);
+class ZapifyApp extends StatelessWidget {
+  const ZapifyApp({Key? key}) : super(key: key);
 
   static FirebaseAnalyticsObserver observer = FirebaseAnalyticsObserver(
     analytics: analytics,
@@ -21,7 +21,7 @@ class ZapfyApp extends StatelessWidget {
     timeago.setLocaleMessages('pt', timeago.PtBrMessages());
 
     return MaterialApp(
-      title: 'Appfy',
+      title: 'Zapify',
       home: HomePage(),
       theme: ThemeData(
         primarySwatch: Colors.teal,

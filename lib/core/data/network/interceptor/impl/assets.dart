@@ -1,8 +1,6 @@
-import 'package:http/src/streamed_response.dart';
-import 'package:http/src/base_request.dart';
-import 'package:zapfy/core/data/network/interceptor/interceptor.dart';
-
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:http/http.dart';
+import 'package:zapify/core/data/network/interceptor/interceptor.dart';
 
 class AssetsInterceptor extends RequestInterceptor {
   AssetsInterceptor({this.assetsRootPath = 'assets'});
