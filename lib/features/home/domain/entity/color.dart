@@ -1,7 +1,9 @@
-class Color {
-  Color._(this.value);
+import 'package:equatable/equatable.dart';
 
-  int value;
+class Color extends Equatable {
+  const Color._(this.value);
+
+  final int value;
 
   factory Color(dynamic value) {
     if (value is int) {
@@ -24,4 +26,7 @@ class Color {
 
   @override
   String toString() => '#${value.toRadixString(16).padLeft(8, '0')}';
+
+  @override
+  List get props => [value];
 }

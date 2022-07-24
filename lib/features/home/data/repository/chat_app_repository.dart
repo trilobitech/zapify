@@ -30,8 +30,8 @@ class ChatAppRepository implements IChatAppRepository {
     yield* localDataSource.get();
   }
 
-  Future _syncWithRemote() async {
-    await remoteDataSource
+  void _syncWithRemote() {
+    remoteDataSource
         .get()
         .then(_filterAvailableApps)
         .then(localDataSource.syncWith)

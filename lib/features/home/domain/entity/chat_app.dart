@@ -9,8 +9,8 @@ class ChatApp extends Equatable {
     required this.deepLinkPrefix,
   });
 
-  final Uri icon;
   final String name;
+  final Uri icon;
   final Color brandColor;
   final String deepLinkPrefix;
 
