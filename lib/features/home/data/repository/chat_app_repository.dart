@@ -1,4 +1,5 @@
 import 'package:url_launcher/url_launcher.dart';
+import 'package:zapify/config/local_config.dart';
 import 'package:zapify/core/logger.dart';
 import 'package:zapify/features/home/data/datasource/chat_app_datasource.dart';
 import 'package:zapify/features/home/data/model/chat_app_remote.dart';
@@ -25,16 +26,24 @@ class ChatAppRepository implements IChatAppRepository {
     );
     yield [placeholder];
 
-    _syncWithRemote();
+    _syncWithRemoteIfNeeded();
 
     yield* localDataSource.get();
   }
 
-  void _syncWithRemote() {
+  void _syncWithRemoteIfNeeded() {
+    final now = DateTime.now().millisecond;
+    const expiration = LocalConfig.chatAppsExpiration;
+    if (now > expiration.get<int>()) {
+      return;
+    }
+    final cacheDuration = const Duration(days: 1).inMilliseconds;
+
     remoteDataSource
         .get()
         .then(_filterAvailableApps)
         .then(localDataSource.syncWith)
+        .then((_) => expiration.set(now + cacheDuration))
         .catchError(catchErrorLogger);
   }
 

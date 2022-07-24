@@ -4,6 +4,7 @@ import 'package:zapify/config/remote_config.dart';
 
 final Map<String, dynamic> localConfigDefaults = {
   LocalConfig.historicSize.key: 0,
+  LocalConfig.chatAppsExpiration.key: -1,
 };
 
 final Map<String, dynamic> remoteConfigDefaults = {
