@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.zapfy">
+    package="com.trilobitech.zapify">
    <application
-        android:label="Zapfy"
+        android:label="Zapify"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
 

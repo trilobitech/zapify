@@ -4,7 +4,7 @@ import 'package:device_info/device_info.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart';
 import 'package:package_info/package_info.dart';
-import 'package:zapfy/core/data/network/interceptor/interceptor.dart';
+import 'package:zapify/core/data/network/interceptor/interceptor.dart';
 
 class UserAgentInterceptor implements RequestInterceptor {
   @override
@@ -25,7 +25,7 @@ class UserAgentInterceptor implements RequestInterceptor {
     final appInfo = await _appInfo();
 
     return _ClientInfo(
-      userAgent: "$deviceInfo/${appInfo.version}",
+      userAgent: '$deviceInfo/${appInfo.version}',
       buildNumber: appInfo.buildNumber,
     );
   }
@@ -56,14 +56,14 @@ class UserAgentInterceptor implements RequestInterceptor {
       );
     }
 
-    return "${deviceData.platform} ${deviceData.version}/${deviceData.model}";
+    return '${deviceData.platform} ${deviceData.version}/${deviceData.model}';
   }
 
   _DeviceInfo _readAndroidBuildData(AndroidDeviceInfo build) {
     return _DeviceInfo(
       platform: 'Android',
       version: build.version.release,
-      model: "${build.brand} ${build.model}",
+      model: '${build.brand} ${build.model}',
     );
   }
 

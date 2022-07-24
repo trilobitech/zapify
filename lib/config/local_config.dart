@@ -1,5 +1,5 @@
-import 'package:zapfy/config/storage/key_value_storage.dart';
-import 'package:zapfy/core/di/inject.dart' as di;
+import 'package:zapify/config/storage/key_value_storage.dart';
+import 'package:zapify/core/di/inject.dart' as di;
 
 const appId = 'com.zapfy.app';
 

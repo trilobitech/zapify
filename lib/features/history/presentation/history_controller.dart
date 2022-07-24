@@ -1,8 +1,8 @@
-import 'package:zapfy/features/history/domain/usecase/get_phone_number_history.dart';
-import 'package:zapfy/features/history/domain/usecase/remove_phone_number_history.dart';
-import 'package:zapfy/features/history/domain/usecase/restore_phone_number_history.dart';
-import 'package:zapfy/features/history/presentation/history_state.dart';
-import 'package:zapfy/features/shared/domain/entity/history_entry.dart';
+import 'package:zapify/features/history/domain/usecase/get_phone_number_history.dart';
+import 'package:zapify/features/history/domain/usecase/remove_phone_number_history.dart';
+import 'package:zapify/features/history/domain/usecase/restore_phone_number_history.dart';
+import 'package:zapify/features/history/presentation/history_state.dart';
+import 'package:zapify/features/shared/domain/entity/history_entry.dart';
 
 class HistoryController {
   HistoryController({

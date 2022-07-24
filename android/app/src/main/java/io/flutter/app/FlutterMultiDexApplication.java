@@ -14,7 +14,7 @@ import androidx.annotation.CallSuper;
 import androidx.multidex.MultiDex;
 import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.analytics.FirebaseAnalytics;
-import com.zapfy.BuildConfig;
+import com.trilobitech.zapify.BuildConfig;
 
 /**
  * Extension of {@link android.app.Application}, adding multidex support.

@@ -3,12 +3,12 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:timeago_flutter/timeago_flutter.dart';
-import 'package:zapfy/core/di/inject.dart';
-import 'package:zapfy/core/ext/context.dart';
-import 'package:zapfy/core/logger.dart';
-import 'package:zapfy/features/history/presentation/history_controller.dart';
-import 'package:zapfy/features/history/presentation/history_state.dart';
-import 'package:zapfy/features/shared/domain/entity/history_entry.dart';
+import 'package:zapify/core/di/inject.dart';
+import 'package:zapify/core/ext/context.dart';
+import 'package:zapify/core/logger.dart';
+import 'package:zapify/features/history/presentation/history_controller.dart';
+import 'package:zapify/features/history/presentation/history_state.dart';
+import 'package:zapify/features/shared/domain/entity/history_entry.dart';
 
 typedef OnHistoryEntryTap = Function(String phoneNumber);
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:zapfy/core/error_handler/failure.dart';
-import 'package:zapfy/core/ext/context.dart';
+import 'package:zapify/core/error_handler/failure.dart';
+import 'package:zapify/core/ext/context.dart';
 
 class EmptyPhoneNumberFailure extends Failure {
   @override

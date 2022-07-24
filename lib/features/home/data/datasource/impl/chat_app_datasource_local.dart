@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:sqlbrite/sqlbrite.dart';
-import 'package:zapfy/features/home/data/datasource/chat_app_datasource.dart';
-import 'package:zapfy/features/home/domain/entity/chat_app.dart';
+import 'package:zapify/features/home/data/datasource/chat_app_datasource.dart';
+import 'package:zapify/features/home/domain/entity/chat_app.dart';
 
 class ChatAppDataSourceLocalImpl implements ChatAppDataSourceLocal {
   ChatAppDataSourceLocalImpl({

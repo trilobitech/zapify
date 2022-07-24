@@ -1,5 +1,5 @@
-import 'package:zapfy/features/home/domain/entity/chat_app.dart';
-import 'package:zapfy/features/home/domain/entity/color.dart';
+import 'package:zapify/features/home/domain/entity/chat_app.dart';
+import 'package:zapify/features/home/domain/entity/color.dart';
 
 class ChatAppRemote extends ChatApp {
   const ChatAppRemote({

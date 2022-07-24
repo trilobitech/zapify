@@ -1,5 +1,5 @@
 import 'package:firebase_remote_config/firebase_remote_config.dart';
-import 'package:zapfy/config/storage/key_value_storage.dart';
+import 'package:zapify/config/storage/key_value_storage.dart';
 
 class FirebaseStorage implements RemoteConfigStorage {
   FirebaseStorage({

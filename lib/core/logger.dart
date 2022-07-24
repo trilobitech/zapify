@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:zapfy/core/firebase.dart';
 import 'package:stack_trace/stack_trace.dart';
+import 'package:zapify/core/firebase.dart';
 
 typedef OnError<T> = T Function(Object exception, StackTrace? stack);
 

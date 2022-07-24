@@ -3,15 +3,15 @@ import 'package:flutter/services.dart';
 import 'package:phone_number/phone_number.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:zapfy/core/logger.dart';
-import 'package:zapfy/features/home/domain/entity/chat_app.dart';
-import 'package:zapfy/features/home/domain/usecase/get_region_by_code.dart';
-import 'package:zapfy/features/home/presentation/error/home_failure.dart';
-import 'package:zapfy/features/shared/domain/entity/region.dart';
-import 'package:zapfy/features/home/domain/usecase/get_chat_apps.dart';
-import 'package:zapfy/features/home/domain/usecase/get_default_region.dart';
-import 'package:zapfy/features/home/domain/usecase/save_phone_number_history.dart';
-import 'package:zapfy/features/home/presentation/home_state.dart';
+import 'package:zapify/core/logger.dart';
+import 'package:zapify/features/home/domain/entity/chat_app.dart';
+import 'package:zapify/features/home/domain/usecase/get_chat_apps.dart';
+import 'package:zapify/features/home/domain/usecase/get_default_region.dart';
+import 'package:zapify/features/home/domain/usecase/get_region_by_code.dart';
+import 'package:zapify/features/home/domain/usecase/save_phone_number_history.dart';
+import 'package:zapify/features/home/presentation/error/home_failure.dart';
+import 'package:zapify/features/home/presentation/home_state.dart';
+import 'package:zapify/features/shared/domain/entity/region.dart';
 
 class HomeController with _PhoneFieldController, _ChatAppsController {
   HomeController({
@@ -164,7 +164,7 @@ mixin _ChatAppsController {
       PhoneNumber phoneNumber = await this.phoneNumber();
       await _openChatApp(
         chatApp.deepLinkPrefix,
-        phoneNumber.e164.replaceFirst("+", ""),
+        phoneNumber.e164.replaceFirst('+', ''),
       );
       await savePhoneNumberHistory(
         phoneNumber: phoneNumber.international,

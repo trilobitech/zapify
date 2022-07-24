@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zapfy/app/home/widgets/tabs.dart';
+import 'package:zapify/app/home/widgets/tabs.dart';
 
 class CallLogTabPage extends StatelessWidget implements TabPage {
   const CallLogTabPage({Key? key}) : super(key: key);

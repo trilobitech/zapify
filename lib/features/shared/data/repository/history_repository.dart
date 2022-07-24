@@ -1,7 +1,7 @@
 import 'package:sqlbrite/sqlbrite.dart';
-import 'package:zapfy/config/local_config.dart';
-import 'package:zapfy/features/shared/domain/entity/history_entry.dart';
-import 'package:zapfy/features/shared/domain/repository/history_repository.dart';
+import 'package:zapify/config/local_config.dart';
+import 'package:zapify/features/shared/domain/entity/history_entry.dart';
+import 'package:zapify/features/shared/domain/repository/history_repository.dart';
 
 class HistoryRepository implements IHistoryRepository {
   HistoryRepository({

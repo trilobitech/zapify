@@ -1,8 +1,8 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:zapfy/core/ext/context.dart';
-import 'package:zapfy/core/widgets/image_resolver_widget.dart';
-import 'package:zapfy/features/home/domain/entity/chat_app.dart';
+import 'package:zapify/core/ext/context.dart';
+import 'package:zapify/core/widgets/image_resolver_widget.dart';
+import 'package:zapify/features/home/domain/entity/chat_app.dart';
 
 class ChatAppsWidget extends StatelessWidget {
   const ChatAppsWidget({

@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:zapfy/config/remote_config.dart';
-import 'package:zapfy/core/di/inject.dart';
-import 'package:zapfy/core/firebase.dart';
-import 'package:zapfy/core/logger.dart';
-import 'package:zapfy/features/history/presentation/history_page.dart';
-import 'package:zapfy/features/home/domain/entity/chat_app.dart';
-import 'package:zapfy/features/home/presentation/home_controller.dart';
-import 'package:zapfy/features/home/presentation/home_state.dart';
-import 'package:zapfy/features/home/presentation/widgets/ad_banner_widget.dart';
-import 'package:zapfy/features/home/presentation/widgets/chat_apps_widget.dart';
-import 'package:zapfy/features/home/presentation/widgets/phone_field_widget.dart';
-import 'package:zapfy/features/region/presentation/region_picker_page.dart';
-import 'package:zapfy/features/shared/domain/entity/region.dart';
+import 'package:zapify/config/remote_config.dart';
+import 'package:zapify/core/di/inject.dart';
+import 'package:zapify/core/firebase.dart';
+import 'package:zapify/core/logger.dart';
+import 'package:zapify/features/history/presentation/history_page.dart';
+import 'package:zapify/features/home/domain/entity/chat_app.dart';
+import 'package:zapify/features/home/presentation/home_controller.dart';
+import 'package:zapify/features/home/presentation/home_state.dart';
+import 'package:zapify/features/home/presentation/widgets/ad_banner_widget.dart';
+import 'package:zapify/features/home/presentation/widgets/chat_apps_widget.dart';
+import 'package:zapify/features/home/presentation/widgets/phone_field_widget.dart';
+import 'package:zapify/features/region/presentation/region_picker_page.dart';
+import 'package:zapify/features/shared/domain/entity/region.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
 
-  final String title = 'Zapfy';
+  final String title = 'Zapify';
   late final HomeController controller = inject();
 
   @override
