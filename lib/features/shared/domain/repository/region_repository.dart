@@ -1,4 +1,4 @@
-import 'package:zapfy/features/shared/domain/entity/region.dart';
+import 'package:zapify/features/shared/domain/entity/region.dart';
 
 abstract class IRegionRepository {
   Future<List<Region>> getAll();

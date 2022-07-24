@@ -1,4 +1,4 @@
-import 'package:zapfy/features/shared/domain/entity/history_entry.dart';
+import 'package:zapify/features/shared/domain/entity/history_entry.dart';
 
 abstract class IHistoryRepository {
   Stream<List<HistoryEntry>> getAll();

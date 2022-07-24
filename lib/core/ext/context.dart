@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-export 'package:zapfy/core/ext/string.dart';
+export 'package:zapify/core/ext/string.dart';
 
 extension BuildContextExt on BuildContext {
   AppLocalizations get strings => AppLocalizations.of(this)!;

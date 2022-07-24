@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:http/http.dart';
-import 'package:zapfy/core/data/network/interceptor/interceptor.dart';
-import 'package:zapfy/core/data/network/network_info.dart';
+import 'package:zapify/core/data/network/interceptor/interceptor.dart';
+import 'package:zapify/core/data/network/network_info.dart';
 
 class ConnectionInterceptor implements RequestInterceptor {
   ConnectionInterceptor(this.networkInfo);

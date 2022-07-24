@@ -1,11 +1,10 @@
-import 'package:flutter/material.dart' as m;
 import 'package:url_launcher/url_launcher.dart';
-import 'package:zapfy/core/logger.dart';
-import 'package:zapfy/features/home/data/datasource/chat_app_datasource.dart';
-import 'package:zapfy/features/home/data/model/chat_app_remote.dart';
-import 'package:zapfy/features/home/domain/entity/chat_app.dart';
-import 'package:zapfy/features/home/domain/entity/color.dart';
-import 'package:zapfy/features/home/domain/repository/chat_app_repository.dart';
+import 'package:zapify/core/logger.dart';
+import 'package:zapify/features/home/data/datasource/chat_app_datasource.dart';
+import 'package:zapify/features/home/data/model/chat_app_remote.dart';
+import 'package:zapify/features/home/domain/entity/chat_app.dart';
+import 'package:zapify/features/home/domain/entity/color.dart';
+import 'package:zapify/features/home/domain/repository/chat_app_repository.dart';
 
 class ChatAppRepository implements IChatAppRepository {
   ChatAppRepository({

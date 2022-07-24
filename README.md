@@ -1,4 +1,4 @@
-# zapfy
+# Zapify
 
 A new Flutter project.
 

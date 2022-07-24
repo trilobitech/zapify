@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:zapfy/core/di/inject.dart';
-import 'package:zapfy/core/ext/context.dart';
-import 'package:zapfy/core/firebase.dart';
-import 'package:zapfy/features/region/presentation/region_picker_controller.dart';
-import 'package:zapfy/features/shared/domain/entity/region.dart';
+import 'package:zapify/core/di/inject.dart';
+import 'package:zapify/core/ext/context.dart';
+import 'package:zapify/core/firebase.dart';
+import 'package:zapify/features/region/presentation/region_picker_controller.dart';
+import 'package:zapify/features/shared/domain/entity/region.dart';
 
 class RegionPicker extends StatefulWidget {
   const RegionPicker({Key? key, this.selected}) : super(key: key);
