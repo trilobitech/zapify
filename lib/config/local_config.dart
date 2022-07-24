@@ -5,6 +5,7 @@ const appId = 'com.zapfy.app';
 
 enum LocalConfig {
   historicSize,
+  chatAppsExpiration,
 }
 
 extension LocalConfigExt on LocalConfig {
