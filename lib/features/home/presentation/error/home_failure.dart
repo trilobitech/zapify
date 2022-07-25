@@ -1,15 +1,14 @@
-import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:zapify/core/error_handler/failure.dart';
-import 'package:zapify/core/ext/context.dart';
 
 class EmptyPhoneNumberFailure extends Failure {
   @override
-  String message(BuildContext context) =>
-      context.strings.homeEmptyPhoneNumberError;
+  String message(AppLocalizations localizations) =>
+      localizations.homeEmptyPhoneNumberError;
 }
 
 class InvalidPhoneNumberFailure extends Failure {
   @override
-  String message(BuildContext context) =>
-      context.strings.homeInvalidPhoneNumberError;
+  String message(AppLocalizations localizations) =>
+      localizations.homeInvalidPhoneNumberError;
 }
