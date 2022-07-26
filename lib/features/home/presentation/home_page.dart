@@ -35,11 +35,11 @@ class HomePage extends StatelessWidget {
             builder: _handleBannerType,
           ),
           StreamBuilder(
-            stream: controller.phoneFieldState(),
+            stream: controller.phoneFieldState,
             builder: _buildPhoneField,
           ),
           StreamBuilder(
-            stream: controller.chatAppsState(),
+            stream: controller.chatAppsState,
             builder: _buildChatAppLaunchers,
           ),
           Expanded(
