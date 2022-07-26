@@ -60,7 +60,7 @@ class _ChatAppLauncherWidgetState extends State<_ChatAppLauncherWidget>
     super.initState();
 
     _controller = AnimationController(
-      duration: Duration(milliseconds: widget.position * 200 + 300),
+      duration: Duration(milliseconds: widget.position * 200 + 150),
       vsync: this,
     );
     _animation = Tween(begin: 0.0, end: 1.0).animate(_controller);
