@@ -5,3 +5,7 @@ if [ ${CONFIGURATION} = "Release" ]; then
     /usr/libexec/PlistBuddy -c "Set :firebase_performance_collection_enabled YES" "${TARGET_BUILD_DIR}/${INFOPLIST_PATH}"
     /usr/libexec/PlistBuddy -c "Set :FIREBASE_ANALYTICS_COLLECTION_ENABLED YES" "${TARGET_BUILD_DIR}/${INFOPLIST_PATH}"
 fi
+
+if [ ${CONFIGURATION} = "Debug" ]; then
+    /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $FLUTTER_BUILD_NAME.dev" "${TARGET_BUILD_DIR}/${INFOPLIST_PATH}"
+fi
