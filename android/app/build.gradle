@@ -75,6 +75,7 @@ android {
 
     buildTypes {
         debug {
+            versionNameSuffix "-dev"
             FirebasePerformance {
                 instrumentationEnabled false
             }
