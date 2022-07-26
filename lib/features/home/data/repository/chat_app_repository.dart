@@ -31,19 +31,29 @@ class ChatAppRepository implements IChatAppRepository {
     yield* localDataSource.get();
   }
 
-  void _syncWithRemoteIfNeeded() {
+  _syncWithRemoteIfNeeded() async {
     final now = DateTime.now().millisecond;
     const expiration = LocalConfig.chatAppsExpiration;
-    if (now > expiration.get<int>()) {
+    final expiratedAt = await expiration.get<int>();
+
+    if (now < expiratedAt) {
+      logDebug('Cache is not expired, skip sync');
       return;
     }
-    final cacheDuration = const Duration(days: 1).inMilliseconds;
+
+    logDebug('Cache is expired, syncing with remote');
+    _syncWithRemote(expiration, now);
+  }
+
+  void _syncWithRemote(LocalConfig expiration, int now) {
+    // TODO: use syncInterval from env variable
+    final syncInterval = const Duration(days: 1).inMilliseconds;
 
     remoteDataSource
         .get()
         .then(_filterAvailableApps)
         .then(localDataSource.syncWith)
-        .then((_) => expiration.set(now + cacheDuration))
+        .then((_) => expiration.set(now + syncInterval))
         .catchError(catchErrorLogger);
   }
 

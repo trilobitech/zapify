@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:phone_number/phone_number.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:zapify/config/remote_config.dart';
 import 'package:zapify/core/logger.dart';
 import 'package:zapify/features/home/domain/entity/banner.dart';
 import 'package:zapify/features/home/domain/entity/chat_app.dart';
@@ -16,7 +17,11 @@ import 'package:zapify/features/home/presentation/home_state.dart';
 import 'package:zapify/features/shared/domain/entity/region.dart';
 
 class HomeController
-    with _BannerController, _PhoneFieldController, _ChatAppsController {
+    with
+        _BannerController,
+        _PhoneFieldController,
+        _ChatAppsController,
+        _AdBannerController {
   HomeController({
     required PhoneNumberUtil plugin,
     required this.getDefaultRegion,
@@ -200,5 +205,17 @@ mixin _ChatAppsController {
         !await launchUrl(uri, mode: LaunchMode.externalApplication)) {
       throw 'Could not launch $uri';
     }
+  }
+}
+
+mixin _AdBannerController {
+  Future<AdBannerViewState> get adBannerState async {
+    final String unitId = await RemoteConfig.homeBannerUnitId.get();
+
+    if (unitId.isEmpty) {
+      return AdBannerViewState.none();
+    }
+
+    return AdBannerViewState(unitId: unitId);
   }
 }

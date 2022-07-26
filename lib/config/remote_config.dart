@@ -9,5 +9,6 @@ enum RemoteConfig {
 extension RemoteConfigExt on RemoteConfig {
   String get key => name;
 
-  T get<T extends Object>() => di.get<RemoteConfigStorage>().getValue(key);
+  Future<T> get<T extends Object>() =>
+      di.lazyGet<RemoteConfigStorage>().getValueAsync(key);
 }

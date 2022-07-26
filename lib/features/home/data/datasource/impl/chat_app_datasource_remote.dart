@@ -12,8 +12,8 @@ class ChatAppDataSourceRemoteImpl implements ChatAppDataSourceRemote {
   final Client httpClient;
 
   @override
-  Future<List<ChatAppRemote>> get() {
-    final sourceUrl = RemoteConfig.chatAppsSourceUrl.get<String>();
+  Future<List<ChatAppRemote>> get() async {
+    final String sourceUrl = await RemoteConfig.chatAppsSourceUrl.get();
 
     return httpClient
         .get(Uri.parse(sourceUrl))
