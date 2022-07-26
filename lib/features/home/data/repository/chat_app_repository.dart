@@ -37,7 +37,7 @@ class ChatAppRepository implements IChatAppRepository {
     final expiratedAt = await expiration.get<int>();
 
     if (now < expiratedAt) {
-      logDebug('Cache is not expired, skip sync');
+      logDebug('Cache is not expired, skipping sync');
       return;
     }
 

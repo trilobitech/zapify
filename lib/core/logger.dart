@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:stack_trace/stack_trace.dart';
 import 'package:zapify/core/firebase.dart';
@@ -7,10 +9,11 @@ typedef OnError<T> = T Function(Object exception, StackTrace? stack);
 void logDebug(dynamic message) {
   if (!kDebugMode) return;
 
-  final location = Trace.current(1).frames[0].location;
-  debugPrint(
-    '🤖 \u001b[96m\u001b[1m$location\u001b[0m\u001b[39m: ${message.toString()}',
-  );
+  var location = Trace.current(1).frames[0].location;
+  if (!Platform.isIOS) {
+    location = '\x1B[1;96m$location\x1B[0m';
+  }
+  debugPrint('🤖 $location: ${message.toString()}');
 }
 
 void logError(Object? error, [StackTrace? stackTrace]) {
