@@ -10,6 +10,7 @@ import 'package:zapify/features/home/presentation/home_state.dart';
 import 'package:zapify/features/home/presentation/widgets/ad_banner_widget.dart';
 import 'package:zapify/features/home/presentation/widgets/chat_apps_widget.dart';
 import 'package:zapify/features/home/presentation/widgets/phone_field_widget.dart';
+import 'package:zapify/features/home/presentation/widgets/top_banner_widget.dart';
 import 'package:zapify/features/region/presentation/region_picker_page.dart';
 import 'package:zapify/features/shared/domain/entity/region.dart';
 
@@ -28,6 +29,11 @@ class HomePage extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          StreamBuilder(
+            stream: controller.bannerViewState,
+            initialData: BannerViewState.none(),
+            builder: _handleBannerType,
+          ),
           StreamBuilder(
             stream: controller.phoneFieldState(),
             builder: _buildPhoneField,
@@ -120,4 +126,22 @@ class HomePage extends StatelessWidget {
 
   void dismissKeyboard(BuildContext context) =>
       FocusScope.of(context).unfocus();
+
+  Widget _handleBannerType(
+    BuildContext context,
+    AsyncSnapshot<BannerViewState> snapshot,
+  ) {
+    if (snapshot.hasError) {
+      logError(snapshot.error, snapshot.stackTrace);
+      return Container();
+    }
+    final data = snapshot.requireData;
+    return data.when(
+      (type) => TopBanner(
+        type: type,
+        onActionTap: controller.onTopBannerActionTap,
+      ),
+      none: () => Container(),
+    );
+  }
 }

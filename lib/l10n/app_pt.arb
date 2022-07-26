@@ -1,6 +1,9 @@
 {
     "unknowErrorMessage": "Oops! Ocorreu um erro inesperado!",
 
+    "homeTopBannerAskToReviewContent": "Poderia nos dizer como está sendo sua experiência por aqui?",
+    "homeTopBannerAskToReviewButton": "AVALIAR",
+
     "homePhoneNumberLabel": "Número de telefone",
     "homeOpenWithButton": "{appName}",
     "homeEmptyPhoneNumberError": "Por favor informe o número desejado.",
