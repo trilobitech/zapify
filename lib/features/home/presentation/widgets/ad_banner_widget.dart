@@ -27,10 +27,6 @@ class _AdBannerWidgetState extends State<AdBannerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.unitId.isEmpty) {
-      return const SizedBox(height: 0);
-    }
-
     final adBanner = _initBanner(context);
     final AdWidget adWidget = AdWidget(ad: adBanner);
 
