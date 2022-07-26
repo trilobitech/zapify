@@ -49,8 +49,10 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: AdBannerWidget(
-        unitId: RemoteConfig.homeBannerUnitId.get(),
+      bottomNavigationBar: FutureBuilder<AdBannerViewState>(
+        initialData: AdBannerViewState.none(),
+        future: controller.adBannerState,
+        builder: _buildAdBanner,
       ),
     );
   }
@@ -143,5 +145,20 @@ class HomePage extends StatelessWidget {
       ),
       none: () => Container(),
     );
+  }
+
+  Widget _buildAdBanner(
+    BuildContext context,
+    AsyncSnapshot<AdBannerViewState> snapshot,
+  ) {
+    if (snapshot.hasData) {
+      final state = snapshot.requireData;
+      return state.when((unitId) => AdBannerWidget(unitId: unitId),
+          none: () => const SizedBox.shrink());
+    }
+    if (snapshot.hasError) {
+      logError(snapshot.error, snapshot.stackTrace);
+    }
+    return const SizedBox.shrink();
   }
 }

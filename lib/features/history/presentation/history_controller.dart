@@ -1,3 +1,5 @@
+import 'package:zapify/config/local_config.dart';
+import 'package:zapify/core/logger.dart';
 import 'package:zapify/features/history/domain/usecase/get_phone_number_history.dart';
 import 'package:zapify/features/history/domain/usecase/remove_phone_number_history.dart';
 import 'package:zapify/features/history/domain/usecase/restore_phone_number_history.dart';
@@ -9,19 +11,21 @@ class HistoryController {
     required this.getPhoneNumberHistory,
     required this.removePhoneNumberHistory,
     required this.restorePhoneNumberHistory,
-    required this.historicSize,
   });
 
   final GetPhoneNumberHistoryUseCase getPhoneNumberHistory;
   final RemovePhoneNumberHistory removePhoneNumberHistory;
   final RestorePhoneNumberHistory restorePhoneNumberHistory;
-  final int historicSize;
 
-  late final HistoryViewState initialState = historicSize > 0
-      ? HistoryViewState.loading(historicSize)
-      : HistoryViewState.empty();
+  Stream<HistoryViewState> get state async* {
+    final int historicSize = await LocalConfig.historicSize.get();
 
-  Stream<HistoryViewState> get state => getPhoneNumberHistory().map(_stateFor);
+    yield historicSize > 0
+        ? HistoryViewState.loading(historicSize)
+        : HistoryViewState.empty();
+
+    yield* getPhoneNumberHistory().map(_stateFor);
+  }
 
   remove(HistoryEntry entry) {
     removePhoneNumberHistory(entry);

@@ -33,7 +33,6 @@ class HistoryPage extends StatelessWidget {
         ),
         Expanded(
           child: StreamBuilder(
-            initialData: controller.initialState,
             stream: controller.state,
             builder: _buildList,
           ),

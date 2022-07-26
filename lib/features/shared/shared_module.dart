@@ -66,11 +66,13 @@ void sharedModule() {
       prefs: get(),
       localConfigDefaults: localConfigDefaults,
     ),
+    dependsOn: [SharedPreferences],
   );
 
   registerSingleton<RemoteConfigStorage>(
     () => FirebaseStorage(
       remoteConfig: get(),
     ),
+    dependsOn: [FirebaseRemoteConfig],
   );
 }
