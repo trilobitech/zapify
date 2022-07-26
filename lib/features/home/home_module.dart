@@ -8,6 +8,7 @@ import 'package:zapify/features/home/domain/repository/chat_app_repository.dart'
 import 'package:zapify/features/home/domain/usecase/get_chat_apps.dart';
 import 'package:zapify/features/home/domain/usecase/get_default_region.dart';
 import 'package:zapify/features/home/domain/usecase/get_region_by_code.dart';
+import 'package:zapify/features/home/domain/usecase/get_top_banner.dart';
 import 'package:zapify/features/home/domain/usecase/save_phone_number_history.dart';
 import 'package:zapify/features/home/presentation/home_controller.dart';
 
@@ -19,7 +20,12 @@ void homeModule() {
       getRegionByCode: get(),
       getChatApps: get(),
       savePhoneNumberHistory: get(),
+      getTopBanner: get(),
     ),
+  );
+
+  registerFactory(
+    () => GetTopBannerUseCase(),
   );
 
   registerFactory(

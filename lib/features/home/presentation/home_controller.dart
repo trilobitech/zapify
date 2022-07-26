@@ -4,22 +4,26 @@ import 'package:phone_number/phone_number.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:zapify/core/logger.dart';
+import 'package:zapify/features/home/domain/entity/banner.dart';
 import 'package:zapify/features/home/domain/entity/chat_app.dart';
 import 'package:zapify/features/home/domain/usecase/get_chat_apps.dart';
 import 'package:zapify/features/home/domain/usecase/get_default_region.dart';
 import 'package:zapify/features/home/domain/usecase/get_region_by_code.dart';
+import 'package:zapify/features/home/domain/usecase/get_top_banner.dart';
 import 'package:zapify/features/home/domain/usecase/save_phone_number_history.dart';
 import 'package:zapify/features/home/presentation/error/home_failure.dart';
 import 'package:zapify/features/home/presentation/home_state.dart';
 import 'package:zapify/features/shared/domain/entity/region.dart';
 
-class HomeController with _PhoneFieldController, _ChatAppsController {
+class HomeController
+    with _BannerController, _PhoneFieldController, _ChatAppsController {
   HomeController({
     required PhoneNumberUtil plugin,
     required this.getDefaultRegion,
     required this.getRegionByCode,
     required this.getChatApps,
     required this.savePhoneNumberHistory,
+    required this.getTopBanner,
   }) : _plugin = plugin {
     init();
   }
@@ -38,6 +42,9 @@ class HomeController with _PhoneFieldController, _ChatAppsController {
   @override
   final SavePhoneNumberHistoryUseCase savePhoneNumberHistory;
 
+  @override
+  final GetTopBannerUseCase getTopBanner;
+
   init() async {
     try {
       final region = await getDefaultRegion();
@@ -45,6 +52,16 @@ class HomeController with _PhoneFieldController, _ChatAppsController {
     } catch (error, stackTrace) {
       logError(error, stackTrace);
     }
+  }
+}
+
+mixin _BannerController {
+  GetTopBannerUseCase get getTopBanner;
+
+  late final Stream<BannerViewState> bannerViewState = getTopBanner();
+
+  onTopBannerActionTap(TopBannerType type) {
+    // TODO: execute action
   }
 }
 

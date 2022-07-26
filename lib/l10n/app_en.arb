@@ -1,6 +1,9 @@
 {
     "unknowErrorMessage": "Oops! Something went wrong!",
 
+    "homeTopBannerAskToReviewContent": "How are your experience here? Please tell us.",
+    "homeTopBannerAskToReviewButton": "REVIEW",
+
     "homePhoneNumberLabel": "Phone number",
     "homeOpenWithButton": "{appName}",
     "homeEmptyPhoneNumberError": "Please provide the phone number",
