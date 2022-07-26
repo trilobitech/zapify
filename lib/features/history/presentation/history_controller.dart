@@ -21,8 +21,7 @@ class HistoryController {
       ? HistoryViewState.loading(historicSize)
       : HistoryViewState.empty();
 
-  late final Stream<HistoryViewState> state =
-      getPhoneNumberHistory().map(_stateFor);
+  Stream<HistoryViewState> get state => getPhoneNumberHistory().map(_stateFor);
 
   remove(HistoryEntry entry) {
     removePhoneNumberHistory(entry);

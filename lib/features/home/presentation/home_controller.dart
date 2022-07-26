@@ -58,7 +58,7 @@ class HomeController
 mixin _BannerController {
   GetTopBannerUseCase get getTopBanner;
 
-  late final Stream<BannerViewState> bannerViewState = getTopBanner();
+  Stream<BannerViewState> get bannerViewState => getTopBanner();
 
   onTopBannerActionTap(TopBannerType type) {
     // TODO: execute action
@@ -80,7 +80,7 @@ mixin _PhoneFieldController {
     ),
   );
 
-  Stream<PhoneFieldViewState> phoneFieldState() => _phoneFieldState;
+  Stream<PhoneFieldViewState> get phoneFieldState => _phoneFieldState;
 
   Future<PhoneNumber> phoneNumber() async {
     try {
@@ -173,7 +173,7 @@ mixin _ChatAppsController {
 
   clearPhoneField();
 
-  Stream<ChatAppsViewState> chatAppsState() =>
+  Stream<ChatAppsViewState> get chatAppsState =>
       getChatApps().map((value) => ChatAppsViewState(chatApps: value));
 
   Future<bool> onChatAppPressed(ChatApp chatApp) async {
