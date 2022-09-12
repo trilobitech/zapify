@@ -17,7 +17,7 @@ void logDebug(dynamic message) {
 }
 
 void logError(Object? error, [StackTrace? stackTrace]) {
-  stackTrace ??= StackTrace.current;
+  stackTrace ??= Trace.current(1);
   crashlytics.recordError(error, stackTrace);
 }
 
