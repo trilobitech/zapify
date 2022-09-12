@@ -1,5 +1,4 @@
 import 'package:zapify/config/local_config.dart';
-import 'package:zapify/core/logger.dart';
 import 'package:zapify/features/history/domain/usecase/get_phone_number_history.dart';
 import 'package:zapify/features/history/domain/usecase/remove_phone_number_history.dart';
 import 'package:zapify/features/history/domain/usecase/restore_phone_number_history.dart';
