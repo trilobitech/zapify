@@ -79,6 +79,7 @@ android {
             FirebasePerformance {
                 instrumentationEnabled false
             }
+            signingConfig signingConfigs.debug
         }
 
         release {
