@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:zapify/config/remote_config.dart';
+import 'dart:async';
+
+import 'package:flutter/material.dart' hide Intent;
 import 'package:zapify/core/di/inject.dart';
 import 'package:zapify/core/firebase.dart';
 import 'package:zapify/core/logger.dart';
@@ -13,18 +14,45 @@ import 'package:zapify/features/home/presentation/widgets/phone_field_widget.dar
 import 'package:zapify/features/home/presentation/widgets/top_banner_widget.dart';
 import 'package:zapify/features/region/presentation/region_picker_page.dart';
 import 'package:zapify/features/shared/domain/entity/region.dart';
+import 'package:receive_intent/receive_intent.dart';
+import 'package:zapify/features/shared/presentation/share_service.dart';
 
-class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   final String title = 'Zapify';
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   late final HomeController controller = inject();
+
+  late final ShareService _shareService = ShareService();
+  StreamSubscription? _sub;
+
+  @override
+  void initState() {
+    super.initState();
+    _init();
+  }
+
+  Future<void> _init() async {
+    _sub = _shareService.stream().listen(_handleSharedPhoneNumber);
+  }
+
+  @override
+  void dispose() {
+    _sub?.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text(widget.title),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -160,5 +188,12 @@ class HomePage extends StatelessWidget {
       logError(snapshot.error, snapshot.stackTrace);
     }
     return const SizedBox.shrink();
+  }
+
+  void _handleSharedPhoneNumber(Intent intent) {
+    final phoneNumber = intent.data;
+    if (phoneNumber != null && phoneNumber.startsWith('tel:')) {
+      controller.onPhoneNumberReceived(phoneNumber.replaceFirst('tel:', ''));
+    }
   }
 }
