@@ -11,15 +11,14 @@ class HistoryRepository implements IHistoryRepository {
   final Future<BriteDatabase> db;
 
   @override
-  Stream<List<HistoryEntry>> getAll() async* {
-    final db = await this.db;
-    yield* db
-        .createQuery(
-          'historic',
-          orderBy: 'last_usage_at DESC',
-        )
-        .mapToList(HistoryEntry.fromJson);
-  }
+  Stream<List<HistoryEntry>> getAll() => db.asStream().asyncExpand(
+        (db) => db
+            .createQuery(
+              'historic',
+              orderBy: 'last_usage_at DESC',
+            )
+            .mapToList(HistoryEntry.fromJson),
+      );
 
   @override
   Future add(String phoneNumber) async {
