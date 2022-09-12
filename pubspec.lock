@@ -660,6 +660,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0"
+  receive_intent:
+    dependency: "direct main"
+    description:
+      name: receive_intent
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.1"
   rxdart:
     dependency: "direct main"
     description:
