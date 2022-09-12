@@ -73,6 +73,7 @@ mixin _BannerController {
 mixin _PhoneFieldController {
   PhoneNumberUtil get _plugin;
   GetRegionByCode get getRegionByCode;
+  GetDefaultRegionUseCase get getDefaultRegion;
 
   TextEditingController _textEditingController = TextEditingController();
   Region _region = Region.br();
@@ -112,7 +113,23 @@ mixin _PhoneFieldController {
     _updateTextField(region, _textEditingController.value);
   }
 
-  onPhoneNumberSelected(String phoneNumberString) async {
+  Future onPhoneNumberSelected(String phoneNumber) =>
+      _updatePhoneNumberFromString(phoneNumber);
+
+  Future onPhoneNumberReceived(String phoneNumber) async {
+    if (phoneNumber.startsWith('+')) {
+      return _updatePhoneNumberFromString(phoneNumber);
+    }
+
+    return _updatePhoneNumberFromString('+$phoneNumber').catchError(
+      (e) async {
+        final region = await getDefaultRegion();
+        return _updatePhoneNumberFromString('+${region.prefix}$phoneNumber');
+      },
+    );
+  }
+
+  Future _updatePhoneNumberFromString(String phoneNumberString) async {
     final phoneNumber = await _plugin.parse(phoneNumberString);
     final region = await getRegionByCode(phoneNumber.countryCode);
     final formatted =
