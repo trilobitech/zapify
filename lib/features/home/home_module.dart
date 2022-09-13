@@ -5,6 +5,7 @@ import 'package:zapify/features/home/data/datasource/impl/chat_app_datasource_lo
 import 'package:zapify/features/home/data/datasource/impl/chat_app_datasource_remote.dart';
 import 'package:zapify/features/home/data/repository/chat_app_repository.dart';
 import 'package:zapify/features/home/domain/repository/chat_app_repository.dart';
+import 'package:zapify/features/home/domain/usecase/app_review.dart';
 import 'package:zapify/features/home/domain/usecase/get_chat_apps.dart';
 import 'package:zapify/features/home/domain/usecase/get_default_region.dart';
 import 'package:zapify/features/home/domain/usecase/get_region_by_code.dart';
@@ -21,11 +22,22 @@ void homeModule() {
       getChatApps: get(),
       savePhoneNumberHistory: get(),
       getTopBanner: get(),
+      setLastAppReviewAtNow: get(),
     ),
   );
 
   registerFactory(
-    () => GetTopBannerUseCase(),
+    () => GetTopBannerUseCase(
+      canAskForReview: get(),
+    ),
+  );
+
+  registerFactory(
+    () => CanAskForReview(),
+  );
+
+  registerFactory(
+    () => SetLastAppReviewAtNow(),
   );
 
   registerFactory(

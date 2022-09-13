@@ -22,7 +22,7 @@ class ZapifyApp extends StatelessWidget {
 
     return MaterialApp(
       title: 'Zapify',
-      home: HomePage(),
+      home: const HomePage(),
       theme: ThemeData(
         primarySwatch: Colors.teal,
         appBarTheme: theme.appBarTheme.copyWith(
