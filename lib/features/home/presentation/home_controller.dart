@@ -10,8 +10,7 @@ import 'package:zapify/features/home/domain/entity/banner.dart';
 import 'package:zapify/features/home/domain/entity/chat_app.dart';
 import 'package:zapify/features/home/domain/usecase/app_review.dart';
 import 'package:zapify/features/home/domain/usecase/get_chat_apps.dart';
-import 'package:zapify/features/home/domain/usecase/get_default_region.dart';
-import 'package:zapify/features/home/domain/usecase/get_region_by_code.dart';
+import 'package:zapify/features/home/domain/usecase/get_region.dart';
 import 'package:zapify/features/home/domain/usecase/get_top_banner.dart';
 import 'package:zapify/features/home/domain/usecase/save_phone_number_history.dart';
 import 'package:zapify/features/home/presentation/error/home_failure.dart';
@@ -27,7 +26,7 @@ class HomeController
   HomeController({
     required PhoneNumberUtil plugin,
     required this.getDefaultRegion,
-    required this.getRegionByCode,
+    required this.getRegion,
     required this.getChatApps,
     required this.savePhoneNumberHistory,
     required this.getTopBanner,
@@ -43,7 +42,7 @@ class HomeController
   final GetDefaultRegionUseCase getDefaultRegion;
 
   @override
-  final GetRegionByCode getRegionByCode;
+  final GetRegionUseCase getRegion;
 
   @override
   final GetChatAppsUseCase getChatApps;
@@ -103,7 +102,7 @@ mixin _BannerController {
 
 mixin _PhoneFieldController {
   PhoneNumberUtil get _plugin;
-  GetRegionByCode get getRegionByCode;
+  GetRegionUseCase get getRegion;
   GetDefaultRegionUseCase get getDefaultRegion;
 
   TextEditingController _textEditingController = TextEditingController();
@@ -162,7 +161,10 @@ mixin _PhoneFieldController {
 
   Future _updatePhoneNumberFromString(String phoneNumberString) async {
     final phoneNumber = await _plugin.parse(phoneNumberString);
-    final region = await getRegionByCode(phoneNumber.countryCode);
+    final region = await getRegion(
+      prefix: phoneNumber.countryCode,
+      code: phoneNumber.regionCode,
+    );
     final formatted =
         await _plugin.format(phoneNumber.nationalNumber, region.code);
 
