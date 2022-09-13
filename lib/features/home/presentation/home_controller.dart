@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:in_app_review/in_app_review.dart';
 import 'package:phone_number/phone_number.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -7,6 +8,7 @@ import 'package:zapify/config/remote_config.dart';
 import 'package:zapify/core/logger.dart';
 import 'package:zapify/features/home/domain/entity/banner.dart';
 import 'package:zapify/features/home/domain/entity/chat_app.dart';
+import 'package:zapify/features/home/domain/usecase/app_review.dart';
 import 'package:zapify/features/home/domain/usecase/get_chat_apps.dart';
 import 'package:zapify/features/home/domain/usecase/get_default_region.dart';
 import 'package:zapify/features/home/domain/usecase/get_region_by_code.dart';
@@ -29,6 +31,7 @@ class HomeController
     required this.getChatApps,
     required this.savePhoneNumberHistory,
     required this.getTopBanner,
+    required this.setLastAppReviewAtNow,
   }) : _plugin = plugin {
     init();
   }
@@ -36,6 +39,7 @@ class HomeController
   @override
   final PhoneNumberUtil _plugin;
 
+  @override
   final GetDefaultRegionUseCase getDefaultRegion;
 
   @override
@@ -50,6 +54,9 @@ class HomeController
   @override
   final GetTopBannerUseCase getTopBanner;
 
+  @override
+  final SetLastAppReviewAtNow setLastAppReviewAtNow;
+
   init() async {
     try {
       final region = await getDefaultRegion();
@@ -62,11 +69,35 @@ class HomeController
 
 mixin _BannerController {
   GetTopBannerUseCase get getTopBanner;
+  SetLastAppReviewAtNow get setLastAppReviewAtNow;
 
   Stream<BannerViewState> get bannerViewState => getTopBanner();
 
   onTopBannerActionTap(TopBannerType type) {
-    // TODO: execute action
+    switch (type) {
+      case TopBannerType.appReview:
+        askForReview();
+        break;
+    }
+  }
+
+  Future askForReview() async {
+    final inAppReview = InAppReview.instance;
+
+    await inAppReview
+        .isAvailable()
+        .then((isAvailable) async {
+          if (!isAvailable) {
+            throw 'InAppReview not available';
+          }
+        })
+        .then((value) => inAppReview.requestReview())
+        .catchError((error, stack) {
+          logError(error, stack);
+          // TODO: add appStoreId param getting from env var
+          return inAppReview.openStoreListing();
+        })
+        .then((_) => setLastAppReviewAtNow());
   }
 }
 
