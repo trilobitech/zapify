@@ -43,6 +43,10 @@ class _TopBannerState extends State<TopBanner> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    analytics.logEvent(
+      name: 'top_banner_viewed',
+      parameters: {'banner_type': widget.type.name},
+    );
     final content = _mapContent(context, widget.type);
     return SizeTransition(
       sizeFactor: _animation,
