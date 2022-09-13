@@ -1,5 +1,5 @@
 abstract class KeyValueStorageReadOnly {
-  T getValue<T extends Object>(String key);
+  T getValue<T extends Object?>(String key);
 }
 
 abstract class KeyValueStorage implements KeyValueStorageReadOnly {
@@ -12,7 +12,7 @@ abstract class RemoteConfigStorage implements KeyValueStorageReadOnly {}
 
 extension KeyValueStorageReadOnlyExt<S extends KeyValueStorageReadOnly>
     on Future<S> {
-  Future<T> getValueAsync<T extends Object>(String key) =>
+  Future<T> getValueAsync<T extends Object?>(String key) =>
       then((s) => s.getValue<T>(key));
 }
 

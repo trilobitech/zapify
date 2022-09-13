@@ -9,7 +9,7 @@ class FirebaseStorage implements RemoteConfigStorage {
   final FirebaseRemoteConfig _remoteConfig;
 
   @override
-  T getValue<T extends Object>(String key) {
+  T getValue<T extends Object?>(String key) {
     final value = _remoteConfig.getValue(key);
 
     final type = T.toString();

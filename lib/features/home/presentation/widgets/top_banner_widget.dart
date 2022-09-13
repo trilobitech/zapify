@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zapify/core/ext/context.dart';
+import 'package:zapify/core/firebase.dart';
 import 'package:zapify/features/home/domain/entity/banner.dart';
 
 typedef OnTopBannerActionTap = Function(TopBannerType type);
@@ -49,11 +50,12 @@ class _TopBannerState extends State<TopBanner> with TickerProviderStateMixin {
         padding: const EdgeInsets.only(bottom: 8),
         child: MaterialBanner(
           content: Text(content.contentText),
-          leading: Icon(content.icon),
+          leading: Icon(content.icon, size: 18),
           backgroundColor: content.backgroundColor,
           actions: <Widget>[
             TextButton(
               onPressed: () {
+                analytics.logButtonPressed(content.buttonText);
                 _controller.reverse();
                 widget.onActionTap(widget.type);
               },
@@ -66,15 +68,15 @@ class _TopBannerState extends State<TopBanner> with TickerProviderStateMixin {
   }
 
   TopBannerContent _mapContent(BuildContext context, TopBannerType type) {
-    if (type == TopBannerType.appReview) {
-      return TopBannerContent(
-        icon: Icons.rate_review_outlined,
-        contentText: context.strings.homeTopBannerAskToReviewContent,
-        buttonText: context.strings.homeTopBannerAskToReviewButton,
-        backgroundColor: Theme.of(context).primaryColor.withOpacity(0.2),
-      );
+    switch (type) {
+      case TopBannerType.appReview:
+        return TopBannerContent(
+          icon: Icons.rate_review_outlined,
+          contentText: context.strings.homeTopBannerAskToReviewContent,
+          buttonText: context.strings.homeTopBannerAskToReviewButton,
+          backgroundColor: Theme.of(context).primaryColor.withOpacity(0.2),
+        );
     }
-    throw 'Unsupported TopBannerType: $type';
   }
 }
 

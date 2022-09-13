@@ -3,10 +3,8 @@ import 'package:zapify/core/di/inject.dart' as di;
 
 enum RemoteConfig {
   chatAppsSourceUrl,
-  homeBannerUnitId,
-}
+  homeBannerUnitId;
 
-extension RemoteConfigExt on RemoteConfig {
   String get key => name;
 
   Future<T> get<T extends Object>() =>

@@ -12,7 +12,7 @@ class PreferencesStorage implements LocalConfigStorage {
   final Map<String, dynamic> _defaults;
 
   @override
-  T getValue<T extends Object>(String key) {
+  T getValue<T extends Object?>(String key) {
     if (!_prefs.containsKey(key)) {
       return _defaults[key];
     }
@@ -20,7 +20,10 @@ class PreferencesStorage implements LocalConfigStorage {
   }
 
   @override
-  Future setValue<T extends Object>(String key, T value) async {
+  Future setValue<T extends Object>(String key, T value) =>
+      _setValue(value, key).then((_) => _prefs.reload());
+
+  Future<bool> _setValue(value, String key) async {
     if (value is int) {
       return await _prefs.setInt(key, value);
     }
