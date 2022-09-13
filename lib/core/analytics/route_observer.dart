@@ -4,10 +4,12 @@ import 'package:zapify/core/analytics/analytics.dart';
 typedef ScreenNameExtractor = String? Function(RouteSettings settings);
 
 String? defaultNameExtractor(RouteSettings settings) {
-  if (settings.name == '/') {
-    return 'HomePage';
+  switch (settings.name) {
+    case '/':
+      return 'HomePage';
+    default:
+      return settings.name;
   }
-  return settings.name;
 }
 
 typedef RouteFilter = bool Function(Route<dynamic>? route);
