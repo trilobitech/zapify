@@ -6,10 +6,19 @@ import 'package:zapify/core/firebase.dart';
 
 typedef OnError<T> = T Function(Object exception, StackTrace? stack);
 
-void logDebug(dynamic message) {
+void logDebug(dynamic message, {bool skipCallerFile = false}) {
   if (!kDebugMode) return;
 
-  var location = Trace.current(1).frames[0].location;
+  final trace = Trace.current(1);
+  final caller = trace.frames.first;
+
+  String location = trace.frames
+      .firstWhere(
+        (el) => !skipCallerFile || el.library != caller.library,
+        orElse: () => caller,
+      )
+      .location;
+
   if (!Platform.isIOS) {
     location = '\x1B[1;96m$location\x1B[0m';
   }

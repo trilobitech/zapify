@@ -1,53 +1,48 @@
-import 'package:amplitude_flutter/amplitude.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:zapify/core/analytics/impl/amplitude.dart';
+import 'package:zapify/core/analytics/impl/firebase.dart';
+import 'package:zapify/core/analytics/wrapper.dart';
 import 'package:zapify/core/logger.dart';
 
-final Analytics analytics = Analytics();
-
-abstract class AnalyticsWrapper {
-  Future<void> init(bool isEnabled);
-
-  Future<void> screenViewed(
-    String screenName, {
-    Map<String, dynamic> properties = const {},
-  });
-
-  Future<void> logEvent(name, {Map<String, dynamic> properties = const {}});
-}
+final Analytics analytics = Analytics([
+  FirebaseAnalyticsWrapper(),
+  AmplitudeAnalyticsWrapper(),
+]);
 
 class Analytics {
-  late final wrappers = <AnalyticsWrapper>[
-    FirebaseAnalyticsWrapper(),
-    AmplitudeAnalyticsWrapper(),
-  ];
+  const Analytics(this._wrappers);
+
+  final List<AnalyticsWrapper> _wrappers;
 
   Future<void> init(bool isEnabled) async {
-    for (final wrapper in wrappers) {
+    for (final wrapper in _wrappers) {
       await wrapper.init(isEnabled);
     }
   }
 
-  screenViewed(
+  void screenViewed(
     String screenName, {
     Map<String, dynamic> properties = const {},
   }) {
     _log('screen_viewed', {'screen_name': screenName, ...properties});
-    for (final wrapper in wrappers) {
+    for (final wrapper in _wrappers) {
       wrapper
           .screenViewed(screenName, properties: properties)
           .catchError(catchErrorLogger);
     }
   }
 
-  buttonPressed(String name, {Map<String, dynamic> properties = const {}}) =>
+  void buttonPressed(
+    String name, {
+    Map<String, dynamic> properties = const {},
+  }) =>
       logEvent(
         'button_clicked',
         properties: {'button_name': name, ...properties},
       );
 
-  logEvent(name, {Map<String, dynamic> properties = const {}}) {
+  void logEvent(name, {Map<String, dynamic> properties = const {}}) {
     _log(name, properties);
-    for (final wrapper in wrappers) {
+    for (final wrapper in _wrappers) {
       wrapper
           .logEvent(name, properties: properties)
           .catchError(catchErrorLogger);
@@ -55,55 +50,9 @@ class Analytics {
   }
 
   void _log(String event, Map<String, dynamic> properties) {
-    logDebug({'event_name': event, 'properties': properties});
+    logDebug(
+      {'event_name': event, 'properties': properties},
+      skipCallerFile: true,
+    );
   }
-}
-
-class FirebaseAnalyticsWrapper extends AnalyticsWrapper {
-  late final FirebaseAnalytics _firebase = FirebaseAnalytics.instance;
-
-  @override
-  Future<void> init(bool isEnabled) =>
-      _firebase.setAnalyticsCollectionEnabled(isEnabled);
-
-  @override
-  Future<void> screenViewed(
-    String screenName, {
-    Map<String, dynamic> properties = const {},
-  }) =>
-      _firebase.setCurrentScreen(screenName: screenName);
-
-  @override
-  Future<void> logEvent(name, {Map<String, dynamic> properties = const {}}) =>
-      _firebase.logEvent(name: name, parameters: properties);
-}
-
-class AmplitudeAnalyticsWrapper extends AnalyticsWrapper {
-  bool _isEnabled = true;
-  late final Amplitude _instance = Amplitude.getInstance();
-  Amplitude? get _amplitude => _isEnabled ? _instance : null;
-
-  @override
-  Future<void> init(bool isEnabled) async {
-    _isEnabled = isEnabled;
-    // TODO: retrieve key from env var
-    await _amplitude?.init('secret');
-  }
-
-  @override
-  Future<void> screenViewed(
-    String screenName, {
-    Map<String, dynamic> properties = const {},
-  }) =>
-      logEvent(
-        'screen_viewd',
-        properties: {'screen_name': screenName, ...properties},
-      );
-
-  @override
-  Future<void> logEvent(
-    name, {
-    Map<String, dynamic> properties = const {},
-  }) async =>
-      await _amplitude?.logEvent(name, eventProperties: properties);
 }
