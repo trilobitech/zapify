@@ -19,7 +19,7 @@ class AmplitudeAnalyticsWrapper extends AnalyticsWrapper {
     Map<String, dynamic> properties = const {},
   }) =>
       logEvent(
-        'screen_viewd',
+        'screen_viewed',
         properties: {'screen_name': screenName, ...properties},
       );
 
