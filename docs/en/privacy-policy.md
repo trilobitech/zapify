@@ -20,6 +20,7 @@ Link to the privacy policy of third-party service providers used by the app
 *   [AdMob](https://support.google.com/admob/answer/6128543?hl=en)
 *   [Google Analytics for Firebase](https://firebase.google.com/policies/analytics)
 *   [Firebase Crashlytics](https://firebase.google.com/support/privacy/)
+*   [Amplitude](https://amplitude.com/privacy)
 
 **Log Data**
 
@@ -58,7 +59,7 @@ These Services do not address anyone under the age of 13. We do not knowingly co
 
 We may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes. We will notify you of any changes by posting the new Privacy Policy on this page.
 
-This policy is effective as of 2022-07-19
+This policy is effective as of 2022-09-13
 
 **Contact Us**
 

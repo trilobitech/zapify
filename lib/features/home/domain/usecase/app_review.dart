@@ -1,7 +1,6 @@
 import 'package:app_install_date/app_install_date.dart';
 import 'package:zapify/config/local_config.dart';
 import 'package:zapify/core/ext/future.dart';
-import 'package:zapify/core/logger.dart';
 
 class CanAskForReview {
   Future<bool> call() async {
@@ -10,8 +9,6 @@ class CanAskForReview {
         .thenIfNotNull(DateTime.fromMillisecondsSinceEpoch)
         .orDefault(() => AppInstallDate().installDate)
         .then((date) => date.add(const Duration(days: 31)));
-
-    logDebug(nextReviewAt);
 
     return DateTime.now().isAfter(nextReviewAt);
   }
