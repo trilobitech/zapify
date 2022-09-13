@@ -1,19 +1,15 @@
-import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:timeago/timeago.dart' as timeago;
-import 'package:zapify/core/firebase.dart';
-import 'package:zapify/core/logger.dart';
+import 'package:zapify/core/analytics/analytics.dart';
+import 'package:zapify/core/analytics/route_observer.dart';
 import 'package:zapify/features/home/presentation/home_page.dart';
 
 class ZapifyApp extends StatelessWidget {
   const ZapifyApp({Key? key}) : super(key: key);
 
-  static FirebaseAnalyticsObserver observer = FirebaseAnalyticsObserver(
-    analytics: analytics,
-    nameExtractor: nameExtractor,
-    onError: logError,
-  );
+  static AnalyticsRouteObserver observer =
+      AnalyticsRouteObserver(analytics: analytics);
 
   @override
   Widget build(BuildContext context) {

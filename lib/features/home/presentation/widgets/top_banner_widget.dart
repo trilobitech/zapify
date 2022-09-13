@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:zapify/core/analytics/analytics.dart';
 import 'package:zapify/core/ext/context.dart';
-import 'package:zapify/core/firebase.dart';
 import 'package:zapify/features/home/domain/entity/banner.dart';
 
 typedef OnTopBannerActionTap = Function(TopBannerType type);
@@ -44,8 +44,8 @@ class _TopBannerState extends State<TopBanner> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     analytics.logEvent(
-      name: 'top_banner_viewed',
-      parameters: {'banner_type': widget.type.name},
+      'top_banner_viewed',
+      properties: {'banner_type': widget.type.name},
     );
     final content = _mapContent(context, widget.type);
     return SizeTransition(
@@ -59,7 +59,7 @@ class _TopBannerState extends State<TopBanner> with TickerProviderStateMixin {
           actions: <Widget>[
             TextButton(
               onPressed: () {
-                analytics.logButtonPressed(content.buttonText);
+                analytics.buttonPressed(content.buttonText);
                 _controller.reverse();
                 widget.onActionTap(widget.type);
               },

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:zapify/core/analytics/analytics.dart';
 import 'package:zapify/core/di/inject.dart';
 import 'package:zapify/core/ext/context.dart';
-import 'package:zapify/core/firebase.dart';
 import 'package:zapify/features/region/presentation/region_picker_controller.dart';
 import 'package:zapify/features/shared/domain/entity/region.dart';
 
@@ -98,7 +98,7 @@ class _RegionListTile extends StatelessWidget {
       selectedColor: Colors.white,
       selectedTileColor: theme.colorScheme.primary,
       onTap: () {
-        analytics.logButtonPressed('select_region', {
+        analytics.buttonPressed('select_region', properties: {
           'region_selected': region.name,
           'region_prefix': region.prefix.toString(),
         });

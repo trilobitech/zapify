@@ -1,8 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart' hide Intent;
+import 'package:receive_intent/receive_intent.dart';
+import 'package:zapify/core/analytics/analytics.dart';
 import 'package:zapify/core/di/inject.dart';
-import 'package:zapify/core/firebase.dart';
 import 'package:zapify/core/logger.dart';
 import 'package:zapify/features/history/presentation/history_page.dart';
 import 'package:zapify/features/home/domain/entity/chat_app.dart';
@@ -14,7 +15,6 @@ import 'package:zapify/features/home/presentation/widgets/phone_field_widget.dar
 import 'package:zapify/features/home/presentation/widgets/top_banner_widget.dart';
 import 'package:zapify/features/region/presentation/region_picker_page.dart';
 import 'package:zapify/features/shared/domain/entity/region.dart';
-import 'package:receive_intent/receive_intent.dart';
 import 'package:zapify/features/shared/presentation/share_service.dart';
 
 class HomePage extends StatefulWidget {
@@ -123,7 +123,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   _onRegionPressed(BuildContext context, Region? region) async {
-    analytics.logButtonPressed('open_region_picker');
+    analytics.buttonPressed('open_region_picker');
     dismissKeyboard(context);
 
     final route = MaterialPageRoute<Region>(
@@ -140,9 +140,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   _onChatAppPressed(BuildContext context, ChatApp chatApp) async {
-    analytics.logButtonPressed(
+    analytics.buttonPressed(
       'launch_chat_app',
-      {'app_launched': chatApp.name},
+      properties: {'app_launched': chatApp.name},
     );
     if (await controller.onChatAppPressed(chatApp)) {
       dismissKeyboard(context);
@@ -150,7 +150,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   _onHistoryEntryTap(String phoneNumber) {
-    analytics.logButtonPressed('select_phone_from_history');
+    analytics.buttonPressed('select_phone_from_history');
     controller.onPhoneNumberSelected(phoneNumber);
   }
 
