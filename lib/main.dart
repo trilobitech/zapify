@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:is_firebase_test_lab_activated/is_firebase_test_lab_activated.dart';
 import 'package:zapify/app/modules.dart';
 import 'package:zapify/app/zapify_app.dart';
 import 'package:zapify/core/firebase.dart';
@@ -24,6 +25,10 @@ void main() {
           performance.setPerformanceCollectionEnabled(false),
           analytics.setAnalyticsCollectionEnabled(false),
         ]);
+      } else {
+        final bool isFirebaseTestLabActivated =
+            await IsFirebaseTestLabActivated.isFirebaseTestLabActivated;
+        analytics.setAnalyticsCollectionEnabled(!isFirebaseTestLabActivated);
       }
 
       FlutterError.onError = crashlytics.recordFlutterFatalError;
