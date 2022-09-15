@@ -147,7 +147,7 @@ packages:
       name: connectivity_plus
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.3.6+1"
+    version: "2.3.7"
   connectivity_plus_linux:
     dependency: transitive
     description:
@@ -464,6 +464,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.13.5"
+  http_client_plus:
+    dependency: "direct main"
+    description:
+      path: "packages/http_client_plus"
+      relative: true
+    source: path
+    version: "0.1.0"
   http_multi_server:
     dependency: transitive
     description:
