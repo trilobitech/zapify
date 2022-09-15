@@ -6,9 +6,12 @@ if (localPropertiesFile.exists()) {
     }
 }
 
-def keystorePropertiesFile = rootProject.file("key.properties")
-def keystoreProperties = new Properties()
-keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+def secretsPropertiesFile = rootProject.file("secrets.properties")
+if (!secretsPropertiesFile.exists()) {
+    secretsPropertiesFile = rootProject.file("secrets.defaults.properties")
+}
+def secretsProperties = new Properties()
+secretsProperties.load(new FileInputStream(secretsPropertiesFile))
 
 def flutterRoot = localProperties.getProperty('flutter.sdk')
 if (flutterRoot == null) {
@@ -61,15 +64,15 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
-        manifestPlaceholders["ADS_APP_ID"] = System.getenv('ANDROID_ADS_APP_ID') ?: localProperties.getProperty('ads.appId')
+        manifestPlaceholders["ADS_APP_ID"] = System.getenv('ANDROID_ADS_APP_ID') ?: secretsProperties.getProperty('ads.appId')
     }
 
     signingConfigs {
         release {
-            keyAlias keystoreProperties['keyAlias']
-            keyPassword keystoreProperties['keyPassword']
-            storeFile file(keystoreProperties['storeFile'])
-            storePassword keystoreProperties['storePassword']
+            storeFile file(secretsProperties['keystore.file'])
+            storePassword secretsProperties['keystore.password']
+            keyAlias secretsProperties['keystore.keyAlias']
+            keyPassword secretsProperties['keystore.keyPassword']
         }
     }
 
