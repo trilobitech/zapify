@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:device_info/device_info.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart';
+import 'package:http_client_plus/http_client_plus.dart';
 import 'package:package_info/package_info.dart';
-import 'package:zapify/core/data/network/interceptor/interceptor.dart';
 
-class UserAgentInterceptor implements RequestInterceptor {
+class UserAgentInterceptor implements HttpInterceptor {
   @override
   Future<StreamedResponse> intercept(
     BaseRequest request,

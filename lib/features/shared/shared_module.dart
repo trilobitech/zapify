@@ -1,6 +1,7 @@
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:http_client_plus/http_client_plus.dart';
 import 'package:phone_number/phone_number.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqlbrite/sqlbrite.dart';
@@ -8,7 +9,7 @@ import 'package:zapify/config/defaults.dart';
 import 'package:zapify/config/storage/impl/firebase_storage.dart';
 import 'package:zapify/config/storage/impl/preferences_storage.dart';
 import 'package:zapify/config/storage/key_value_storage.dart';
-import 'package:zapify/core/data/network/api_client.dart';
+import 'package:zapify/core/data/network/user_agent_interceptor.dart';
 import 'package:zapify/core/di/definition.dart';
 import 'package:zapify/core/di/inject.dart';
 import 'package:zapify/core/error_handler/composite_error_message_resolver.dart';
@@ -58,7 +59,9 @@ void sharedModule() {
   );
 
   registerSingleton<http.Client>(
-    () => ApiClient.withDefaultInterceptors(),
+    () => InterceptableClient.withDefaultInterceptors(interceptors: [
+      UserAgentInterceptor(),
+    ]),
   );
 
   registerSingleton<LocalConfigStorage>(
