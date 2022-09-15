@@ -73,6 +73,8 @@ dependencies:
   in_app_review: ^2.0.4
   is_firebase_test_lab_activated: ^2.0.0
   amplitude_flutter: ^3.10.0
+  http_client_plus:
+    path: 'packages/http_client_plus'
 
 dev_dependencies:
   flutter_test:

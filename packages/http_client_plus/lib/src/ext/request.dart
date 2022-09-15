@@ -1,17 +1,6 @@
-import 'dart:convert';
-
 import 'package:http/http.dart';
 
-extension ResponseExt on Response {
-  dynamic get bodyJson => json.decode(body);
-}
-
-extension FutureResponseExt on Future<Response> {
-  Future<Out> mapJsonWith<In, Out>(Out Function(In) fn) =>
-      then((response) => fn(response.bodyJson));
-}
-
-extension BaseRequestExt<T extends BaseRequest> on T {
+extension RequestExt<T extends BaseRequest> on T {
   BaseRequest copyWith({
     String? method,
     Uri? url,
@@ -25,12 +14,14 @@ extension BaseRequestExt<T extends BaseRequest> on T {
         ..encoding = other.encoding
         ..bodyBytes = other.bodyBytes;
     } else if (other is MultipartRequest) {
+      other.send();
       newRequest = MultipartRequest(method ?? other.method, url ?? other.url)
         ..fields.addAll(other.fields)
         ..files.addAll(other.files);
     } else {
       throw UnsupportedError(
-          "Unsupported request type `${runtimeType.toString()}`");
+        'Unsupported request type `${runtimeType.toString()}`',
+      );
     }
 
     return newRequest..headers.addAll(headers ?? other.headers);

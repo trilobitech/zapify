@@ -1,6 +1,6 @@
 import 'package:http/http.dart';
+import 'package:http_client_plus/http_client_plus.dart';
 import 'package:zapify/config/remote_config.dart';
-import 'package:zapify/core/data/network/ext.dart';
 import 'package:zapify/features/home/data/datasource/chat_app_datasource.dart';
 import 'package:zapify/features/home/data/model/chat_app_remote.dart';
 
