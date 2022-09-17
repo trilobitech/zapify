@@ -151,10 +151,10 @@ mixin _PhoneFieldController {
       return _updatePhoneNumberFromString(phoneNumber);
     }
 
-    return _updatePhoneNumberFromString('+$phoneNumber').catchError(
+    final region = await getDefaultRegion();
+    return _updatePhoneNumberFromString('+${region.prefix}$phoneNumber').catchError(
       (e) async {
-        final region = await getDefaultRegion();
-        return _updatePhoneNumberFromString('+${region.prefix}$phoneNumber');
+        return _updatePhoneNumberFromString('+$phoneNumber');
       },
     );
   }
