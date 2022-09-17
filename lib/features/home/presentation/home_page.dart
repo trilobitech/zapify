@@ -189,7 +189,13 @@ class _HomePageState extends State<HomePage> {
     final phoneNumber = intent.data;
     if (phoneNumber != null && phoneNumber.startsWith('tel:')) {
       analytics.intentHandled('phone_number_received');
-      controller.onPhoneNumberReceived(phoneNumber.replaceFirst('tel:', ''));
+      controller
+          .onPhoneNumberReceived(phoneNumber.replaceFirst('tel:', ''))
+          .catchError((_) {
+        final obfuscatedNumber =
+            phoneNumber.replaceAll('*', '\\*').replaceAll(RegExp('[0-9]'), '*');
+        logError('invalid phone number: $obfuscatedNumber');
+      });
     }
   }
 }
