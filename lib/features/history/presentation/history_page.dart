@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:timeago_flutter/timeago_flutter.dart';
+import 'package:zapify/core/analytics/analytics.dart';
 import 'package:zapify/core/di/inject.dart';
 import 'package:zapify/core/ext/context.dart';
 import 'package:zapify/core/logger.dart';
@@ -82,6 +83,7 @@ class HistoryPage extends StatelessWidget {
       key: ValueKey(entry.phoneNumber),
       direction: DismissDirection.endToStart,
       onDismissed: (_) {
+        analytics.itemRemoved('phone_from_history');
         controller.remove(entry);
         _showRestoreEntrySnackBar(context, entry);
       },
@@ -106,8 +108,12 @@ class HistoryPage extends StatelessWidget {
           locale: context.currentLocale.toLanguageTag(),
         ),
         onTap: () {
+          analytics.itemSelected('phone_from_history');
           onEntryTap(entry.phoneNumber);
         },
+        // onLongPress: () {
+        //   analytics.itemLongPressed('phone_from_history');
+        // },
       ),
     );
   }
@@ -141,6 +147,7 @@ class HistoryPage extends StatelessWidget {
       action: SnackBarAction(
         label: context.strings.undoAction,
         onPressed: () {
+          analytics.buttonPressed('restore_phone_from_history');
           controller.restore(entry);
         },
       ),

@@ -11,33 +11,43 @@ import 'package:zapify/core/firebase.dart';
 import 'package:zapify/firebase_options.dart';
 
 void main() {
+  Stopwatch? stopwatch = Stopwatch()..start();
   runZonedGuarded<Future<void>>(
     () async {
       WidgetsFlutterBinding.ensureInitialized();
 
-      await Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform,
-      );
-
-      if (kDebugMode) {
-        // for some reason config set on native android not working well
-        await Future.wait([
-          crashlytics.setCrashlyticsCollectionEnabled(false),
-          performance.setPerformanceCollectionEnabled(false),
-          analytics.init(false),
-        ]);
-      } else {
-        final bool isFirebaseTestLabActivated =
-            await IsFirebaseTestLabActivated.isFirebaseTestLabActivated;
-        await analytics.init(!isFirebaseTestLabActivated);
-      }
-
-      FlutterError.onError = crashlytics.recordFlutterFatalError;
+      await setupApp();
 
       loadModules();
+
+      analytics.onAppOpened(properties: {
+        'start_up_time': (stopwatch?.elapsedMilliseconds ?? 0) / 1000,
+      });
+      stopwatch = null;
 
       runApp(const ZapifyApp());
     },
     (error, stack) => crashlytics.recordError(error, stack, fatal: true),
   );
+}
+
+Future<void> setupApp() async {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  
+  FlutterError.onError = crashlytics.recordFlutterFatalError;
+  
+  if (kDebugMode) {
+    // for some reason config set on native android not working well
+    await Future.wait([
+      crashlytics.setCrashlyticsCollectionEnabled(false),
+      performance.setPerformanceCollectionEnabled(false),
+      analytics.init(false),
+    ]);
+  } else {
+    final bool isFirebaseTestLabActivated =
+        await IsFirebaseTestLabActivated.isFirebaseTestLabActivated;
+    await analytics.init(!isFirebaseTestLabActivated);
+  }
 }

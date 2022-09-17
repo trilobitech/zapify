@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:zapify/core/analytics/impl/amplitude.dart';
 import 'package:zapify/core/analytics/impl/firebase.dart';
 import 'package:zapify/core/analytics/wrapper.dart';
@@ -19,6 +20,12 @@ class Analytics {
     }
   }
 
+  void onAppOpened({Map<String, dynamic> properties = const {}}) =>
+      logEvent('app_opened', properties: properties);
+
+  void onAppLifecycleChanged(AppLifecycleState state) =>
+      logEvent('app_${state.name}');
+
   void screenViewed(
     String screenName, {
     Map<String, dynamic> properties = const {},
@@ -38,6 +45,42 @@ class Analytics {
       logEvent(
         'button_clicked',
         properties: {'button_name': name, ...properties},
+      );
+
+  void itemSelected(
+    String name, {
+    Map<String, dynamic> properties = const {},
+  }) =>
+      logEvent(
+        'item_selected',
+        properties: {'item_name': name, ...properties},
+      );
+
+  void itemLongPressed(
+    String name, {
+    Map<String, dynamic> properties = const {},
+  }) =>
+      logEvent(
+        'item_long_pressed',
+        properties: {'item_name': name, ...properties},
+      );
+
+  void itemRemoved(
+    String name, {
+    Map<String, dynamic> properties = const {},
+  }) =>
+      logEvent(
+        'item_removed',
+        properties: {'item_name': name, ...properties},
+      );
+
+  void intentHandled(
+    String name, {
+    Map<String, dynamic> properties = const {},
+  }) =>
+      logEvent(
+        'intent_handled',
+        properties: {'intent_name': name, ...properties},
       );
 
   void logEvent(name, {Map<String, dynamic> properties = const {}}) {

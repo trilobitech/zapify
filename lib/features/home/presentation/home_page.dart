@@ -72,7 +72,7 @@ class _HomePageState extends State<HomePage> {
           ),
           Expanded(
             child: HistoryPage(
-              onEntryTap: _onHistoryEntryTap,
+              onEntryTap: controller.onPhoneNumberSelected,
             ),
           ),
         ],
@@ -149,11 +149,6 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  _onHistoryEntryTap(String phoneNumber) {
-    analytics.buttonPressed('select_phone_from_history');
-    controller.onPhoneNumberSelected(phoneNumber);
-  }
-
   void dismissKeyboard(BuildContext context) =>
       FocusScope.of(context).unfocus();
 
@@ -193,6 +188,7 @@ class _HomePageState extends State<HomePage> {
   void _handleSharedPhoneNumber(Intent intent) {
     final phoneNumber = intent.data;
     if (phoneNumber != null && phoneNumber.startsWith('tel:')) {
+      analytics.intentHandled('phone_number_received');
       controller.onPhoneNumberReceived(phoneNumber.replaceFirst('tel:', ''));
     }
   }
