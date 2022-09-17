@@ -5,9 +5,14 @@ import 'package:zapify/core/analytics/analytics.dart';
 import 'package:zapify/core/analytics/route_observer.dart';
 import 'package:zapify/features/home/presentation/home_page.dart';
 
-class ZapifyApp extends StatelessWidget {
-  const ZapifyApp({Key? key}) : super(key: key);
+class ZapifyApp extends StatefulWidget {
+  const ZapifyApp({super.key});
 
+  @override
+  State<ZapifyApp> createState() => _ZapifyAppState();
+}
+
+class _ZapifyAppState extends State<ZapifyApp> with WidgetsBindingObserver {
   static AnalyticsRouteObserver observer =
       AnalyticsRouteObserver(analytics: analytics);
 
@@ -36,10 +41,20 @@ class ZapifyApp extends StatelessWidget {
     );
   }
 
-  static String? nameExtractor(RouteSettings settings) {
-    if (settings.name == '/') {
-      return 'HomePage';
-    }
-    return settings.name;
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    analytics.onAppLifecycleChanged(state);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
   }
 }
