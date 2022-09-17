@@ -6,15 +6,19 @@ import 'interceptors/assets.dart';
 import 'interceptors/base_url_resolver.dart';
 import 'interceptors/connection.dart';
 
+typedef ChainInterceptor = Future<StreamedResponse> Function(BaseRequest req);
+
 class InterceptableClient extends BaseClient {
   InterceptableClient({
-    List<HttpInterceptor> interceptors = const [],
+    required this.interceptors,
     Client? baseClient,
-  })  : client = ClientWrapper(baseClient ?? Client()),
-        interceptors = interceptors.reversed;
+  }) : _client = ClientWrapper(baseClient ?? Client());
 
-  final ClientWrapper client;
+  final ClientWrapper _client;
   final Iterable<HttpInterceptor> interceptors;
+
+  ChainInterceptor get _chain =>
+      interceptors.toList().reversed.fold(_client, _chainInterceptor);
 
   factory InterceptableClient.withDefaultInterceptors({
     Uri? baseUrl,
@@ -32,12 +36,9 @@ class InterceptableClient extends BaseClient {
       );
 
   @override
-  Future<StreamedResponse> send(BaseRequest request) {
-    return interceptors.fold<Next>(
-      client,
-      (chain, interceptor) {
-        return (BaseRequest request) => interceptor.intercept(request, chain);
-      },
-    ).call(request);
+  Future<StreamedResponse> send(BaseRequest request) => _chain.call(request);
+
+  ChainInterceptor _chainInterceptor(chain, interceptor) {
+    return (BaseRequest request) => interceptor.intercept(request, chain);
   }
 }
