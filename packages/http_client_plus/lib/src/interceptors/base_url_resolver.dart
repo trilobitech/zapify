@@ -10,9 +10,14 @@ class ResolveBaseUrlInterceptor extends HttpInterceptor {
 
   @override
   Future<StreamedResponse> intercept(BaseRequest request, Next next) {
+    if (request.url.hasScheme) {
+      return next(request);
+    }
+
     BaseRequest newRequest = request.copyWith(
       url: baseUrl.resolveUri(request.url),
     );
+
     return next(newRequest);
   }
 }
