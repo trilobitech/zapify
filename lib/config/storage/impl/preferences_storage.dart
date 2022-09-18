@@ -1,8 +1,8 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zapify/config/storage/key_value_storage.dart';
 
-class PreferencesStorage implements LocalConfigStorage {
-  PreferencesStorage({
+class PreferencesConfigStorage implements ILocalConfigStorage {
+  PreferencesConfigStorage({
     required SharedPreferences prefs,
     Map<String, dynamic> localConfigDefaults = const {},
   })  : _prefs = prefs,
