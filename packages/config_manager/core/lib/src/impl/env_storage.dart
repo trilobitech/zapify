@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:zapify/config/storage/key_value_storage.dart';
+import '../../config_core.dart';
 
 class EnvConfigStorage extends IEnvConfigStorage {
   EnvConfigStorage({Map<String, dynamic> defaults = const {}})
