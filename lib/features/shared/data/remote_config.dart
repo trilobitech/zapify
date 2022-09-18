@@ -1,11 +1,12 @@
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:logger/logger.dart';
-import 'package:zapify/config/defaults.dart';
 
-Future<FirebaseRemoteConfig> getRemoteConfig() async {
+Future<FirebaseRemoteConfig> getRemoteConfig(
+  Map<String, dynamic> defaults,
+) async {
   final remoteConfig = FirebaseRemoteConfig.instance;
 
-  await remoteConfig.setDefaults(remoteConfigDefaults);
+  await remoteConfig.setDefaults(defaults);
   await remoteConfig.activate();
 
   _fetch(remoteConfig).catchError(catchErrorLogger);

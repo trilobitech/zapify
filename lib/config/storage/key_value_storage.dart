@@ -1,22 +1,13 @@
-abstract class KeyValueStorageReadOnly {
+abstract class KeyValueStorage {
   T getValue<T extends Object?>(String key);
 }
 
-abstract class KeyValueStorage implements KeyValueStorageReadOnly {
+abstract class KeyValueWritableStorage implements KeyValueStorage {
   Future setValue<T extends Object>(String key, T value);
 }
 
-abstract class LocalConfigStorage implements KeyValueStorage {}
+abstract class IEnvConfigStorage implements KeyValueStorage {}
 
-abstract class RemoteConfigStorage implements KeyValueStorageReadOnly {}
+abstract class ILocalConfigStorage implements KeyValueWritableStorage {}
 
-extension KeyValueStorageReadOnlyExt<S extends KeyValueStorageReadOnly>
-    on Future<S> {
-  Future<T> getValueAsync<T extends Object?>(String key) =>
-      then((s) => s.getValue<T>(key));
-}
-
-extension KeyValueStorageeExt<S extends KeyValueStorage> on Future<S> {
-  Future setValueAsync<T extends Object>(String key, T value) =>
-      then((s) => s.setValue(key, value));
-}
+abstract class IRemoteConfigStorage implements KeyValueStorage {}
