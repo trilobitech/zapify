@@ -13,8 +13,10 @@ class ZapifyApp extends StatefulWidget {
 }
 
 class _ZapifyAppState extends State<ZapifyApp> with WidgetsBindingObserver {
-  static AnalyticsRouteObserver observer =
-      AnalyticsRouteObserver(analytics: analytics);
+  static AnalyticsRouteObserver observer = AnalyticsRouteObserver(
+    analytics: analytics,
+    nameExtractor: _routeNameExtractor,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -56,5 +58,14 @@ class _ZapifyAppState extends State<ZapifyApp> with WidgetsBindingObserver {
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
+  }
+
+  static String? _routeNameExtractor(RouteSettings settings) {
+    switch (settings.name) {
+      case '/':
+        return 'HomePage';
+      default:
+        return settings.name;
+    }
   }
 }
