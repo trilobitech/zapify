@@ -1,16 +1,8 @@
 import 'package:flutter/widgets.dart';
-import 'package:zapify/core/analytics/analytics.dart';
+
+import 'analytics.dart';
 
 typedef ScreenNameExtractor = String? Function(RouteSettings settings);
-
-String? defaultNameExtractor(RouteSettings settings) {
-  switch (settings.name) {
-    case '/':
-      return 'HomePage';
-    default:
-      return settings.name;
-  }
-}
 
 typedef RouteFilter = bool Function(Route<dynamic>? route);
 
@@ -20,7 +12,7 @@ bool defaultRouteFilter(Route<dynamic>? route) => route is PageRoute;
 class AnalyticsRouteObserver extends RouteObserver<ModalRoute<dynamic>> {
   AnalyticsRouteObserver({
     required this.analytics,
-    this.nameExtractor = defaultNameExtractor,
+    required this.nameExtractor,
     this.routeFilter = defaultRouteFilter,
   });
 
