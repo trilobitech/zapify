@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:in_app_review/in_app_review.dart';
+import 'package:logger/logger.dart';
 import 'package:phone_number/phone_number.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:zapify/config/remote_config.dart';
-import 'package:zapify/core/logger.dart';
 import 'package:zapify/features/home/domain/entity/banner.dart';
 import 'package:zapify/features/home/domain/entity/chat_app.dart';
 import 'package:zapify/features/home/domain/usecase/app_review.dart';

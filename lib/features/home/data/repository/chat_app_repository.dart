@@ -1,6 +1,6 @@
+import 'package:logger/logger.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:zapify/config/local_config.dart';
-import 'package:zapify/core/logger.dart';
 import 'package:zapify/features/home/data/datasource/chat_app_datasource.dart';
 import 'package:zapify/features/home/data/model/chat_app_remote.dart';
 import 'package:zapify/features/home/domain/entity/chat_app.dart';

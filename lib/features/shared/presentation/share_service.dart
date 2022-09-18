@@ -1,5 +1,5 @@
+import 'package:logger/logger.dart';
 import 'package:receive_intent/receive_intent.dart';
-import 'package:zapify/core/logger.dart';
 
 class ShareService {
   Stream<Intent> stream() async* {

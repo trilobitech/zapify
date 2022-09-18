@@ -58,7 +58,6 @@ dependencies:
   device_info: ^2.0.3
   connectivity_plus: ^2.3.5
   firebase_remote_config: ^2.0.12
-  stack_trace: ^1.10.0
   equatable: ^2.0.3
   collection: ^1.16.0
   shared_preferences: ^2.0.15
@@ -75,6 +74,8 @@ dependencies:
   amplitude_flutter: ^3.10.0
   http_client_plus:
     path: 'packages/http_client_plus'
+  logger:
+    path: 'packages/logger'
 
 dev_dependencies:
   flutter_test:
