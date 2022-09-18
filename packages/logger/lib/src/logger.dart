@@ -2,9 +2,16 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:stack_trace/stack_trace.dart';
-import 'package:zapify/core/firebase.dart';
 
 typedef OnError<T> = T Function(Object exception, StackTrace? stack);
+
+typedef ErrorRecorder = void Function(Object? exception, StackTrace? stack);
+
+ErrorRecorder? _errorRecorder;
+
+void defaultErrorRecorder(ErrorRecorder? errorRecorder) {
+  _errorRecorder = errorRecorder;
+}
 
 void logDebug(dynamic message, {bool skipCallerFile = false}) {
   if (!kDebugMode) return;
@@ -27,7 +34,7 @@ void logDebug(dynamic message, {bool skipCallerFile = false}) {
 
 void logError(Object? error, [StackTrace? stackTrace]) {
   stackTrace ??= Trace.current(1);
-  crashlytics.recordError(error, stackTrace);
+  _errorRecorder?.call(error, stackTrace);
 }
 
 OnError get catchErrorLogger {

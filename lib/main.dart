@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:is_firebase_test_lab_activated/is_firebase_test_lab_activated.dart';
+import 'package:logger/logger.dart';
 import 'package:zapify/app/modules.dart';
 import 'package:zapify/app/zapify_app.dart';
 import 'package:zapify/core/analytics/analytics.dart';
@@ -35,9 +36,10 @@ Future<void> setupApp() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  
+
   FlutterError.onError = crashlytics.recordFlutterFatalError;
-  
+  defaultErrorRecorder(crashlytics.recordError);
+
   if (kDebugMode) {
     // for some reason config set on native android not working well
     await Future.wait([

@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
+import 'package:logger/logger.dart';
 import 'package:zapify/core/analytics/impl/amplitude.dart';
 import 'package:zapify/core/analytics/impl/firebase.dart';
 import 'package:zapify/core/analytics/wrapper.dart';
-import 'package:zapify/core/logger.dart';
 
 final Analytics analytics = Analytics([
   FirebaseAnalyticsWrapper(),

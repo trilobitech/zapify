@@ -1,12 +1,12 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:timeago_flutter/timeago_flutter.dart';
 import 'package:zapify/core/analytics/analytics.dart';
 import 'package:zapify/core/di/inject.dart';
 import 'package:zapify/core/ext/context.dart';
-import 'package:zapify/core/logger.dart';
 import 'package:zapify/features/history/presentation/history_controller.dart';
 import 'package:zapify/features/history/presentation/history_state.dart';
 import 'package:zapify/features/shared/domain/entity/history_entry.dart';
