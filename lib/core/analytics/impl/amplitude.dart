@@ -1,17 +1,19 @@
 import 'package:amplitude_flutter/amplitude.dart';
-import 'package:zapify/config/env_config.dart';
 import 'package:zapify/core/analytics/wrapper.dart';
 
 class AmplitudeAnalyticsWrapper extends AnalyticsWrapper {
+  AmplitudeAnalyticsWrapper({required String apiKey}) : _apiKey = apiKey;
+
   bool _isEnabled = true;
+  final String _apiKey;
+
   late final Amplitude _instance = Amplitude.getInstance();
   Amplitude? get _amplitude => _isEnabled ? _instance : null;
 
   @override
   Future<void> init(bool isEnabled) async {
     _isEnabled = isEnabled;
-    // TODO: retrieve key from constructor
-    await _amplitude?.init(await EnvConfig.amplitudeKey.get());
+    await _amplitude?.init(_apiKey);
   }
 
   @override

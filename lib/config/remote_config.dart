@@ -14,7 +14,7 @@ enum RemoteConfig with KeyValueMixin<IRemoteConfigStorage> {
   Future<IRemoteConfigStorage> get storage => di.lazyGet();
 }
 
-Future<Map<String, dynamic>> get remoteConfigDefaults async => {
+Map<String, dynamic> get remoteConfigDefaults => {
       RemoteConfig.chatAppsSourceUrl.key: 'assets://data/chat-apps.json',
-      RemoteConfig.homeBannerUnitId.key: await EnvConfig.homeBannerUnitId.get(),
+      RemoteConfig.homeBannerUnitId.key: EnvConfig.homeBannerUnitId,
     };

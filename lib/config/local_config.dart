@@ -20,6 +20,6 @@ enum LocalConfig
 }
 
 Map<String, dynamic> get localConfigDefaults => {
-  LocalConfig.historicSize.key: 0,
-  LocalConfig.chatAppsExpiration.key: -1,
-};
+      LocalConfig.historicSize.key: 0,
+      LocalConfig.chatAppsExpiration.key: -1,
+    };

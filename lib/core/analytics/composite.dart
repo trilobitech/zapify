@@ -3,7 +3,7 @@ import 'package:logger/logger.dart';
 
 import 'wrapper.dart';
 
-class Analytics {
+class Analytics implements IAnalytics{
   const Analytics(this._wrappers);
 
   final List<AnalyticsWrapper> _wrappers;
@@ -14,12 +14,15 @@ class Analytics {
     }
   }
 
+  @override
   void onAppOpened({Map<String, dynamic> properties = const {}}) =>
       logEvent('app_opened', properties: properties);
 
+  @override
   void onAppLifecycleChanged(AppLifecycleState state) =>
       logEvent('app_${state.name}');
 
+  @override
   void screenViewed(
     String screenName, {
     Map<String, dynamic> properties = const {},
@@ -32,6 +35,7 @@ class Analytics {
     }
   }
 
+  @override
   void buttonPressed(
     String name, {
     Map<String, dynamic> properties = const {},
@@ -41,6 +45,7 @@ class Analytics {
         properties: {'button_name': name, ...properties},
       );
 
+  @override
   void itemSelected(
     String name, {
     Map<String, dynamic> properties = const {},
@@ -50,6 +55,7 @@ class Analytics {
         properties: {'item_name': name, ...properties},
       );
 
+  @override
   void itemLongPressed(
     String name, {
     Map<String, dynamic> properties = const {},
@@ -59,6 +65,7 @@ class Analytics {
         properties: {'item_name': name, ...properties},
       );
 
+  @override
   void itemRemoved(
     String name, {
     Map<String, dynamic> properties = const {},
@@ -68,6 +75,7 @@ class Analytics {
         properties: {'item_name': name, ...properties},
       );
 
+  @override
   void intentHandled(
     String name, {
     Map<String, dynamic> properties = const {},
@@ -77,6 +85,7 @@ class Analytics {
         properties: {'intent_name': name, ...properties},
       );
 
+  @override
   void logEvent(name, {Map<String, dynamic> properties = const {}}) {
     _log(name, properties);
     for (final wrapper in _wrappers) {
