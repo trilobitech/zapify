@@ -45,11 +45,11 @@ Future<void> setupApp() async {
     await Future.wait([
       crashlytics.setCrashlyticsCollectionEnabled(false),
       performance.setPerformanceCollectionEnabled(false),
-      analytics.init(false),
+      initAnalytics(isEnabled: false),
     ]);
   } else {
     final bool isFirebaseTestLabActivated =
         await IsFirebaseTestLabActivated.isFirebaseTestLabActivated;
-    await analytics.init(!isFirebaseTestLabActivated);
+    await initAnalytics(isEnabled: !isFirebaseTestLabActivated);
   }
 }

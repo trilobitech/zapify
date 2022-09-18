@@ -4,7 +4,11 @@ mixin KeyValueMixin<Storage extends KeyValueStorage> {
   String get key;
 
   Future<Storage> get storage;
-  Future<T> get<T extends Object?>() async => (await storage).getValue(key);
+
+  Future<T> get<T extends Object?>() async {
+    final storage = await this.storage;
+    return storage.getValue<T>(key);
+  }
 }
 
 mixin KeyValueWritableMixin<Storage extends KeyValueWritableStorage>

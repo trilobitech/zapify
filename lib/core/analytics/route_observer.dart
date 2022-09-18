@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import 'analytics.dart';
+import 'wrapper.dart';
 
 typedef ScreenNameExtractor = String? Function(RouteSettings settings);
 
@@ -16,7 +16,7 @@ class AnalyticsRouteObserver extends RouteObserver<ModalRoute<dynamic>> {
     this.routeFilter = defaultRouteFilter,
   });
 
-  final Analytics analytics;
+  final IAnalytics analytics;
   final ScreenNameExtractor nameExtractor;
   final RouteFilter routeFilter;
 

@@ -5,7 +5,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../core/di/definition.dart';
 import '../core/di/inject.dart';
-import 'env_config.dart';
 import 'firebase_remote_config.dart';
 import 'local_config.dart';
 import 'remote_config.dart';
@@ -16,11 +15,7 @@ void configModule() {
   );
 
   registerSingletonAsync<FirebaseRemoteConfig>(
-    () async => await getRemoteConfig(await remoteConfigDefaults),
-  );
-
-  registerSingleton<IEnvConfigStorage>(
-    () => EnvConfigStorage(defaults: envConfigDefaults),
+    () => getRemoteConfig(remoteConfigDefaults),
   );
 
   registerSingleton<IRemoteConfigStorage>(
