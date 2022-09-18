@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart';
+import 'package:logger/logger.dart';
 import 'package:sqlbrite/sqlbrite.dart';
-import 'package:zapify/core/logger.dart';
 import 'package:zapify/features/home/data/datasource/chat_app_datasource.dart';
 import 'package:zapify/features/home/data/model/chat_app_local.dart';
 import 'package:zapify/features/home/domain/entity/chat_app.dart';
