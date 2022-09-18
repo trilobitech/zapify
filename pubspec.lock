@@ -141,6 +141,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.16.0"
+  config_core:
+    dependency: "direct main"
+    description:
+      path: "packages/config_manager/core"
+      relative: true
+    source: path
+    version: "0.1.0"
+  config_firebase:
+    dependency: "direct main"
+    description:
+      path: "packages/config_manager/firebase"
+      relative: true
+    source: path
+    version: "0.1.0"
   connectivity_plus:
     dependency: "direct main"
     description:
