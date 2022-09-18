@@ -1,18 +1,25 @@
-import 'package:zapify/config/storage/key_value_storage.dart';
-import 'package:zapify/core/di/inject.dart' as di;
+import '../core/di/inject.dart' as di;
+import 'storage/enum_mixin.dart';
+import 'storage/key_value_storage.dart';
 
-const appId = 'com.zapfy.app';
+const _appId = 'com.zapfy.app';
 
-enum LocalConfig {
+enum LocalConfig
+    with
+        KeyValueMixin<ILocalConfigStorage>,
+        KeyValueWritableMixin<ILocalConfigStorage> {
   historicSize,
   chatAppsExpiration,
   lastAppReviewAt;
 
-  String get key => '$appId\$$name';
-  Future<LocalConfigStorage> get _storage => di.lazyGet();
+  @override
+  String get key => '$_appId\$$name';
 
-  Future<void> set<T extends Object>(T value) =>
-      _storage.setValueAsync(key, value);
-
-  Future<T> get<T extends Object?>() => _storage.getValueAsync(key);
+  @override
+  Future<ILocalConfigStorage> get storage => di.lazyGet();
 }
+
+final Map<String, dynamic> localConfigDefaults = {
+  LocalConfig.historicSize.key: 0,
+  LocalConfig.chatAppsExpiration.key: -1,
+};
