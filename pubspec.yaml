@@ -76,6 +76,10 @@ dependencies:
     path: 'packages/http_client_plus'
   logger:
     path: 'packages/logger'
+  config_core:
+    path: 'packages/config_manager/core'
+  config_firebase:
+    path: 'packages/config_manager/firebase'
 
 dev_dependencies:
   flutter_test:

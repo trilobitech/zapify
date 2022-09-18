@@ -1,6 +1,6 @@
+import 'package:config_core/config_core.dart';
+
 import '../core/di/inject.dart' as di;
-import 'storage/enum_mixin.dart';
-import 'storage/key_value_storage.dart';
 
 const _appId = 'com.zapfy.app';
 
@@ -19,7 +19,7 @@ enum LocalConfig
   Future<ILocalConfigStorage> get storage => di.lazyGet();
 }
 
-final Map<String, dynamic> localConfigDefaults = {
+Map<String, dynamic> get localConfigDefaults => {
   LocalConfig.historicSize.key: 0,
   LocalConfig.chatAppsExpiration.key: -1,
 };

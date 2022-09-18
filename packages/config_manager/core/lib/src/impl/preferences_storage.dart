@@ -1,5 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:zapify/config/storage/key_value_storage.dart';
+
+import '../../config_core.dart';
 
 class PreferencesConfigStorage implements ILocalConfigStorage {
   PreferencesConfigStorage({

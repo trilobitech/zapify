@@ -1,6 +1,6 @@
+import 'package:config_core/config_core.dart';
+
 import '../core/di/inject.dart' as di;
-import 'storage/enum_mixin.dart';
-import 'storage/key_value_storage.dart';
 
 enum EnvConfig with KeyValueMixin<IEnvConfigStorage> {
   amplitudeKey,
@@ -13,7 +13,7 @@ enum EnvConfig with KeyValueMixin<IEnvConfigStorage> {
   Future<IEnvConfigStorage> get storage => di.lazyGet();
 }
 
-final Map<String, dynamic> envConfigDefaults = {
+Map<String, dynamic> get envConfigDefaults => {
   EnvConfig.amplitudeKey.key: '',
   EnvConfig.homeBannerUnitId.key: '',
 };

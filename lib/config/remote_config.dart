@@ -1,7 +1,7 @@
+import 'package:config_core/config_core.dart';
+
 import '../core/di/inject.dart' as di;
 import 'env_config.dart';
-import 'storage/enum_mixin.dart';
-import 'storage/key_value_storage.dart';
 
 enum RemoteConfig with KeyValueMixin<IRemoteConfigStorage> {
   chatAppsSourceUrl,
