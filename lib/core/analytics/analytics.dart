@@ -1,10 +1,16 @@
 import 'package:zapify/core/analytics/impl/amplitude.dart';
 import 'package:zapify/core/analytics/impl/firebase.dart';
 
+import '../../config/env_config.dart';
 import 'composite.dart';
-export 'composite.dart';
+import 'wrapper.dart';
 
-final Analytics analytics = Analytics([
+IAnalytics get analytics => _analytics;
+
+final Analytics _analytics = Analytics([
   FirebaseAnalyticsWrapper(),
-  AmplitudeAnalyticsWrapper(),
+  AmplitudeAnalyticsWrapper(apiKey: EnvConfig.amplitudeKey),
 ]);
+
+Future<void> initAnalytics({required bool isEnabled}) =>
+    _analytics.init(isEnabled);

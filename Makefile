@@ -11,14 +11,19 @@ help: ## Show this help
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/: ##\s*/\t/' | expand -t 18 | pr -to2
   
 
+dart_define:
+DART_DEFINE := $$(env | grep -i '^Zapify_' | sed -e 's/Zapify_/--dart-define env./')
+
 run: ## Run app
-	fvm flutter run
+run: dart_define
+	fvm flutter run $(DART_DEFINE)
 
 codegen: ## Run code generation
 	fvm flutter pub run build_runner build --delete-conflicting-outputs
 
 release: ## Generate applications package
-	fvm flutter build appbundle --release
+release: dart_define
+	fvm flutter build appbundle --release $(DART_DEFINE)
 
 phony: ## Create .PHONY section in this file (look https://stackoverflow.com/a/2145605)
 ifeq ($(UNAME_S),Linux)
