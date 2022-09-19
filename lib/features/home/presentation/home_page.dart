@@ -29,6 +29,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   late final HomeController controller = inject();
 
+  late FocusNode _phoneNumberFocus;
   late final ShareService _shareService = ShareService();
   StreamSubscription? _sub;
 
@@ -39,12 +40,14 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> _init() async {
+    _phoneNumberFocus = FocusNode();
     _sub = _shareService.stream().listen(_handleSharedPhoneNumber);
   }
 
   @override
   void dispose() {
     _sub?.cancel();
+    _phoneNumberFocus.dispose();
     super.dispose();
   }
 
@@ -95,6 +98,7 @@ class _HomePageState extends State<HomePage> {
         region: state.selectedRegion,
         onRegionPressed: (region) => _onRegionPressed(context, region),
         controller: state.controller,
+        focusNode: _phoneNumberFocus,
         error: state.error,
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       );
@@ -137,6 +141,7 @@ class _HomePageState extends State<HomePage> {
     if (selectedRegion != null) {
       controller.onRegionSelected(selectedRegion);
     }
+    _phoneNumberFocus.requestFocus();
   }
 
   _onChatAppPressed(BuildContext context, ChatApp chatApp) async {
