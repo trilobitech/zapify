@@ -115,7 +115,7 @@ class _RegionListTile extends StatelessWidget {
               style: const TextStyle(fontSize: 28),
             ),
           ),
-          Text(region.name),
+          Text('${region.name} (${region.code})'),
           const Spacer(),
           Text(
             '+${region.prefix}',

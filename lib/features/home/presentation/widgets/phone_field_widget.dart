@@ -16,6 +16,7 @@ class PhoneFieldWidget extends StatefulWidget {
     required this.controller,
     this.error,
     this.padding = EdgeInsets.zero,
+    this.focusNode,
   }) : super(key: key);
 
   final Region? region;
@@ -24,6 +25,7 @@ class PhoneFieldWidget extends StatefulWidget {
   final OnRegionPressed onRegionPressed;
   final OnSubmitted? onSubmitted;
   final dynamic error;
+  final FocusNode? focusNode;
 
   @override
   State<StatefulWidget> createState() => _PhoneFieldState();
@@ -32,7 +34,21 @@ class PhoneFieldWidget extends StatefulWidget {
 class _PhoneFieldState extends State<PhoneFieldWidget> {
   late final _errorMessageResolver = inject<ErrorMessageResolver>();
   final TextStyle _textFieldStyle = const TextStyle(fontSize: 24, height: 1.5);
-  final FocusNode _textFieldFocus = FocusNode();
+  late FocusNode _textFieldFocus;
+
+  @override
+  void initState() {
+    super.initState();
+    _textFieldFocus = widget.focusNode ?? FocusNode();
+  }
+
+  @override
+  void dispose() {
+    if (widget.focusNode == null) {
+      _textFieldFocus.dispose();
+    }
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,6 +88,7 @@ class _PhoneFieldState extends State<PhoneFieldWidget> {
       ),
       onPressed: () {
         if (!_textFieldFocus.hasFocus && widget.controller.text.isEmpty) {
+          // avoid invisible region area click
           setState(() {
             _textFieldFocus.requestFocus();
           });
