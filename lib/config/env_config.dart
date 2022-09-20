@@ -1,11 +1,11 @@
 class EnvConfig {
   static const amplitudeKey = String.fromEnvironment(
-    'env.amplitudeKey',
+    'zapify_amplitudeKey',
     defaultValue: '',
   );
   
   static const homeBannerUnitId = String.fromEnvironment(
-    'env.homeBannerUnitId',
+    'zapify_homeBannerUnitId',
     defaultValue: '',
   );
 }
