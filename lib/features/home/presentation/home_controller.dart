@@ -5,6 +5,7 @@ import 'package:logger/logger.dart';
 import 'package:phone_number/phone_number.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:zapify/config/env_config.dart';
 import 'package:zapify/config/remote_config.dart';
 import 'package:zapify/features/home/domain/entity/banner.dart';
 import 'package:zapify/features/home/domain/entity/chat_app.dart';
@@ -93,8 +94,7 @@ mixin _BannerController {
         .then((value) => inAppReview.requestReview())
         .catchError((error, stack) {
           logError(error, stack);
-          // TODO: add appStoreId param getting from env var
-          return inAppReview.openStoreListing();
+          return inAppReview.openStoreListing(appStoreId: EnvConfig.appStoreId);
         })
         .then((_) => setLastAppReviewAtNow());
   }
