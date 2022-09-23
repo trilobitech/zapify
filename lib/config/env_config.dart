@@ -8,4 +8,9 @@ class EnvConfig {
     'zapify_homeBannerUnitId',
     defaultValue: '',
   );
+  
+  static const appStoreId = String.fromEnvironment(
+    'zapify_appStoreId',
+    defaultValue: '',
+  );
 }
