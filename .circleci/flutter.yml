@@ -1,0 +1,71 @@
+version: 2.1
+
+orbs:
+  android: circleci/android@2.1.2
+  flutter: circleci/flutter@1.1.0
+
+parameters:
+  flutterSdkVersion:
+    type: string
+    default: ''
+
+jobs:
+
+  lint:
+    docker:
+      - image: cirrusci/flutter:<<pipeline.parameters.flutterSdkVersion>>
+    resource_class: small
+    steps:
+      - checkout
+      - flutter/install_pub
+      - run:
+          name: Run static analysis
+          command: flutter analyze lib
+
+  unit_test:
+    docker:
+      - image: cirrusci/flutter:<<pipeline.parameters.flutterSdkVersion>>
+    resource_class: small
+    steps:
+      - checkout
+      - flutter/install_pub
+      - run:
+          name: Run Unit Test
+          command: flutter test
+
+  distribute:
+    executor:
+      name: android/android-docker
+      tag: "2022.09"
+    steps:
+      - checkout
+      - android/accept-licenses
+      - flutter/install_sdk_and_pub:
+          flutter_version: <<pipeline.parameters.flutterSdkVersion>>
+      - flutter/install_android_gradle
+      - flutter/install_android_gem
+      - run:
+          name: "Create required files"
+          command: |
+            file_from_env() {
+              ENV_NAME=$1; DESTINATION_PATH=$2
+              echo "Creating $DESTINATION_PATH"
+              echo ${!ENV_NAME} | base64 -d > $DESTINATION_PATH
+            }
+            file_from_env $ANDROID_GOOGLE_SERVICES    android/app/google-services.json
+            file_from_env $ANDROID_KEYSTORE           android/trilobitech.keystore
+            file_from_env $ANDROID_SECRETS_PROPERTIES android/secrets.properties
+            file_from_env $ANDROID_GPLAY_SECRET       android/gplay.secret.json
+      - run:
+          command: bundle exec fastlane build_bundle
+          working_directory: android
+
+workflows:
+  distribute-workflow:
+    jobs:
+      - lint
+      - unit_test
+      - distribute:
+          requires:
+            - lint
+            - unit_test
