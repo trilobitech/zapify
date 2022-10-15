@@ -18,6 +18,6 @@ jobs:
           channel: ${{ env.FLUTTER_CHANNEL }}
       - run: flutter pub get
       - name: Analyze Dart
-        uses: zgosalvez/github-actions-analyze-dart@v1
+        uses: peterfortuin/github-actions-analyze-dart@v1
         with:
           fail-on-warnings: true
