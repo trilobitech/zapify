@@ -45,9 +45,6 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-# Code generator
-**/*.freezed.dart
-
 # Firebase
 **/google-services.json
 **/firebase_app_id_file.json
