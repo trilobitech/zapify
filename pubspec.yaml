@@ -57,7 +57,7 @@ dependencies:
   package_info: ^2.0.2
   device_info: ^2.0.3
   connectivity_plus: ^2.3.9
-  firebase_remote_config: ^2.0.12
+  firebase_remote_config: ^2.0.20
   equatable: ^2.0.3
   collection: ^1.16.0
   shared_preferences: ^2.0.15
