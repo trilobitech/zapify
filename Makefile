@@ -3,19 +3,19 @@ SHELL := /bin/bash
 
 # Define environment variables
 ENV_FILES := $(wildcard .env.default .env)
-ifneq ($(ENV_FILES),"")
+ifneq ($(ENV_FILES),)
 include $(ENV_FILES)
 export $(shell grep -he '^[^\#;]' $(ENV_FILES) | sed 's/[?:]\?=.*//' | sort | uniq)
 endif
 
 # Make sed portable with macOS
-SED_CMD := sed -i
+SED_CMD = sed -i
 ifeq ($(shell uname),Darwin)
-SED_CMD := sed -i ''
+SED_CMD = sed -i ''
 endif
 
 MAK_FILES := $(wildcard *.mak)
-ifneq ($(MAK_FILES),"")
+ifneq ($(MAK_FILES),)
 include $(MAK_FILES)
 endif
 # endregion
