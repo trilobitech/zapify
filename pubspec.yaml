@@ -49,7 +49,7 @@ dependencies:
   sqlbrite: ^2.2.0
   firebase_core: ^1.19.2
   firebase_crashlytics: ^2.8.5
-  firebase_analytics: ^9.1.12
+  firebase_analytics: ^9.3.8
   firebase_performance: ^0.8.2
   intl: ^0.17.0
   flutter_svg: ^1.1.1+1
