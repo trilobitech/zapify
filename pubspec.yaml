@@ -47,7 +47,7 @@ dependencies:
   sqflite: ^2.0.2+1
   path: ^1.8.0
   sqlbrite: ^2.2.0
-  firebase_core: ^1.19.2
+  firebase_core: ^1.24.0
   firebase_crashlytics: ^2.9.0
   firebase_analytics: ^9.3.8
   firebase_performance: ^0.8.2
