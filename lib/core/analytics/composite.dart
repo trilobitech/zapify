@@ -3,7 +3,7 @@ import 'package:logger/logger.dart';
 
 import 'wrapper.dart';
 
-class Analytics implements IAnalytics{
+class Analytics implements IAnalytics {
   const Analytics(this._wrappers);
 
   final List<AnalyticsWrapper> _wrappers;
