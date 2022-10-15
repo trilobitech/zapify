@@ -1,0 +1,14 @@
+minApprovals:
+  OWNER: 1
+  MEMBER: 2
+  COLLABORATOR: 2
+requiredBaseBranches:
+- main
+- regex: ^release/v\d
+blockingLabels:
+- blocked
+blockingTitleRegex: '\bWIP\b'
+reportStatus: true
+updateBranch: true
+deleteBranchAfterMerge: true
+mergeMethod: squash
