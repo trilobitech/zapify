@@ -152,11 +152,8 @@ mixin _PhoneFieldController {
     }
 
     final region = await getDefaultRegion();
-    return _updatePhoneNumberFromString('+${region.prefix}$phoneNumber').catchError(
-      (e) async {
-        return _updatePhoneNumberFromString('+$phoneNumber');
-      },
-    );
+    return _updatePhoneNumberFromString('+${region.prefix}$phoneNumber')
+        .catchError((e) async => _updatePhoneNumberFromString('+$phoneNumber'));
   }
 
   Future _updatePhoneNumberFromString(String phoneNumberString) async {

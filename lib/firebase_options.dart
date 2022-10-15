@@ -67,7 +67,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '995018310320',
     projectId: 'zapfy-f575a',
     storageBucket: 'zapfy-f575a.appspot.com',
-    iosClientId: '995018310320-hrabs7m4m0q936du845rgki4516ufjpc.apps.googleusercontent.com',
+    iosClientId:
+        '995018310320-hrabs7m4m0q936du845rgki4516ufjpc.apps.googleusercontent.com',
     iosBundleId: 'com.zapfy.app',
   );
 
@@ -77,7 +78,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '995018310320',
     projectId: 'zapfy-f575a',
     storageBucket: 'zapfy-f575a.appspot.com',
-    iosClientId: '995018310320-hrabs7m4m0q936du845rgki4516ufjpc.apps.googleusercontent.com',
+    iosClientId:
+        '995018310320-hrabs7m4m0q936du845rgki4516ufjpc.apps.googleusercontent.com',
     iosBundleId: 'com.zapfy.app',
   );
 }
