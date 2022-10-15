@@ -1,6 +1,5 @@
 minApprovals:
-  OWNER: 1
-  MEMBER: 2
+  MEMBER: 1
   COLLABORATOR: 2
 requiredBaseBranches:
 - main
