@@ -1,6 +1,6 @@
 minApprovals:
   MEMBER: 1
-  COLLABORATOR: 2
+  COLLABORATOR: 1
 requiredBaseBranches:
 - main
 - regex: ^release/v\d
