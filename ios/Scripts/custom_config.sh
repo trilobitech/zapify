@@ -6,6 +6,7 @@ if [ ${CONFIGURATION} = "Release" ]; then
     /usr/libexec/PlistBuddy -c "Set :FIREBASE_ANALYTICS_COLLECTION_ENABLED YES" "${TARGET_BUILD_DIR}/${INFOPLIST_PATH}"
 fi
 
-if [ ${CONFIGURATION} = "Debug" ]; then
-    /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $FLUTTER_BUILD_NAME.dev" "${TARGET_BUILD_DIR}/${INFOPLIST_PATH}"
+if [[ ${CONFIGURATION} = "Debug" || ${IS_FIREBASE_DISTRIBUTION} = "true" ]]; then
+    /usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName \"Zapify Dev\"" "${TARGET_BUILD_DIR}/${INFOPLIST_PATH}"
+    /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier \"com.zapfy.app.dev\"" "${TARGET_BUILD_DIR}/${INFOPLIST_PATH}"
 fi

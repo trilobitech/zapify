@@ -33,6 +33,8 @@ if (flutterMinSdkVersion == null) {
     flutterMinSdkVersion = '19'
 }
 
+def isFirebaseDistribution = System.getenv('IS_FIREBASE_DISTRIBUTION') == 'true'
+
 apply plugin: 'com.android.application'
 // START: FlutterFire Configuration
 apply plugin: 'com.google.gms.google-services'
@@ -78,15 +80,25 @@ android {
 
     buildTypes {
         debug {
-            versionNameSuffix "-dev"
             FirebasePerformance {
                 instrumentationEnabled false
             }
+            applicationIdSuffix ".dev"
             signingConfig signingConfigs.debug
         }
 
         release {
+            applicationIdSuffix isFirebaseDistribution ? ".dev" : ""
             signingConfig signingConfigs.release
+        }
+    }
+
+    sourceSets {
+        debug {
+            res.srcDirs += ['src/dev/res']
+        }
+        release {
+            res.srcDirs += isFirebaseDistribution ? ['src/dev/res'] : []
         }
     }
 }
