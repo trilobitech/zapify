@@ -22,4 +22,5 @@ jobs:
           lane: "firebase_distribute"
           working-directory: "./ios"
         env:
+          zapify_amplitudeKey: ${{ secrets.AMPLITUDE_KEY }}
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}

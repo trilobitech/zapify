@@ -32,3 +32,5 @@ jobs:
         with:
           lane: "release_distribute"
           working-directory: "./android"
+        env:
+          zapify_amplitudeKey: ${{ secrets.AMPLITUDE_KEY }}

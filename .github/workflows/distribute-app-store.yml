@@ -21,3 +21,5 @@ jobs:
         with:
           lane: "release_distribute"
           working-directory: "./ios"
+        env:
+          zapify_amplitudeKey: ${{ secrets.AMPLITUDE_KEY }}
