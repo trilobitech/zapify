@@ -1,48 +1,54 @@
 PODS:
+  - Amplitude (8.5.0)
+  - amplitude_flutter (0.0.1):
+    - Amplitude (= 8.5.0)
+    - Flutter
+  - app_install_date (0.0.1):
+    - Flutter
   - connectivity_plus (0.0.1):
     - Flutter
     - ReachabilitySwift
   - device_info (0.0.1):
     - Flutter
-  - Firebase/Analytics (9.2.0):
+  - Firebase/Analytics (9.6.0):
     - Firebase/Core
-  - Firebase/Core (9.2.0):
+  - Firebase/Core (9.6.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (~> 9.2.0)
-  - Firebase/CoreOnly (9.2.0):
-    - FirebaseCore (= 9.2.0)
-  - Firebase/Crashlytics (9.2.0):
+    - FirebaseAnalytics (~> 9.6.0)
+  - Firebase/CoreOnly (9.6.0):
+    - FirebaseCore (= 9.6.0)
+  - Firebase/Crashlytics (9.6.0):
     - Firebase/CoreOnly
-    - FirebaseCrashlytics (~> 9.2.0)
-  - Firebase/Performance (9.2.0):
+    - FirebaseCrashlytics (~> 9.6.0)
+  - Firebase/Performance (9.6.0):
     - Firebase/CoreOnly
-    - FirebasePerformance (~> 9.2.0)
-  - Firebase/RemoteConfig (9.2.0):
+    - FirebasePerformance (~> 9.6.0)
+  - Firebase/RemoteConfig (9.6.0):
     - Firebase/CoreOnly
-    - FirebaseRemoteConfig (~> 9.2.0)
-  - firebase_analytics (9.2.0):
-    - Firebase/Analytics (= 9.2.0)
+    - FirebaseRemoteConfig (~> 9.6.0)
+  - firebase_analytics (9.3.8):
+    - Firebase/Analytics (= 9.6.0)
     - firebase_core
     - Flutter
-  - firebase_core (1.19.2):
-    - Firebase/CoreOnly (= 9.2.0)
+  - firebase_core (1.24.0):
+    - Firebase/CoreOnly (= 9.6.0)
     - Flutter
-  - firebase_crashlytics (2.8.5):
-    - Firebase/Crashlytics (= 9.2.0)
+  - firebase_crashlytics (2.9.0):
+    - Firebase/Crashlytics (= 9.6.0)
     - firebase_core
     - Flutter
-  - firebase_performance (0.8.2):
-    - Firebase/Performance (= 9.2.0)
+  - firebase_performance (0.8.3-3):
+    - Firebase/Performance (= 9.6.0)
     - firebase_core
     - Flutter
-  - firebase_remote_config (2.0.12):
-    - Firebase/RemoteConfig (= 9.2.0)
+  - firebase_remote_config (2.0.20):
+    - Firebase/RemoteConfig (= 9.6.0)
     - firebase_core
     - Flutter
-  - FirebaseABTesting (9.3.0):
+  - FirebaseABTesting (9.6.0):
     - FirebaseCore (~> 9.0)
-  - FirebaseAnalytics (9.2.0):
-    - FirebaseAnalytics/AdIdSupport (= 9.2.0)
+  - FirebaseAnalytics (9.6.0):
+    - FirebaseAnalytics/AdIdSupport (= 9.6.0)
     - FirebaseCore (~> 9.0)
     - FirebaseInstallations (~> 9.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
@@ -50,40 +56,40 @@ PODS:
     - GoogleUtilities/Network (~> 7.7)
     - "GoogleUtilities/NSData+zlib (~> 7.7)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - FirebaseAnalytics/AdIdSupport (9.2.0):
+  - FirebaseAnalytics/AdIdSupport (9.6.0):
     - FirebaseCore (~> 9.0)
     - FirebaseInstallations (~> 9.0)
-    - GoogleAppMeasurement (= 9.2.0)
+    - GoogleAppMeasurement (= 9.6.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
     - GoogleUtilities/MethodSwizzler (~> 7.7)
     - GoogleUtilities/Network (~> 7.7)
     - "GoogleUtilities/NSData+zlib (~> 7.7)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - FirebaseCore (9.2.0):
+  - FirebaseCore (9.6.0):
     - FirebaseCoreDiagnostics (~> 9.0)
     - FirebaseCoreInternal (~> 9.0)
     - GoogleUtilities/Environment (~> 7.7)
     - GoogleUtilities/Logger (~> 7.7)
-  - FirebaseCoreDiagnostics (9.3.0):
+  - FirebaseCoreDiagnostics (9.6.0):
     - GoogleDataTransport (< 10.0.0, >= 9.1.4)
     - GoogleUtilities/Environment (~> 7.7)
     - GoogleUtilities/Logger (~> 7.7)
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - FirebaseCoreInternal (9.3.0):
+  - FirebaseCoreInternal (9.6.0):
     - "GoogleUtilities/NSData+zlib (~> 7.7)"
-  - FirebaseCrashlytics (9.2.0):
+  - FirebaseCrashlytics (9.6.0):
     - FirebaseCore (~> 9.0)
     - FirebaseInstallations (~> 9.0)
     - GoogleDataTransport (< 10.0.0, >= 9.1.4)
     - GoogleUtilities/Environment (~> 7.7)
     - nanopb (< 2.30910.0, >= 2.30908.0)
     - PromisesObjC (~> 2.1)
-  - FirebaseInstallations (9.3.0):
+  - FirebaseInstallations (9.6.0):
     - FirebaseCore (~> 9.0)
     - GoogleUtilities/Environment (~> 7.7)
     - GoogleUtilities/UserDefaults (~> 7.7)
     - PromisesObjC (~> 2.1)
-  - FirebasePerformance (9.2.0):
+  - FirebasePerformance (9.6.0):
     - FirebaseCore (~> 9.0)
     - FirebaseInstallations (~> 9.0)
     - FirebaseRemoteConfig (~> 9.0)
@@ -92,7 +98,7 @@ PODS:
     - GoogleUtilities/ISASwizzler (~> 7.7)
     - GoogleUtilities/MethodSwizzler (~> 7.7)
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - FirebaseRemoteConfig (9.2.0):
+  - FirebaseRemoteConfig (9.6.0):
     - FirebaseABTesting (~> 9.0)
     - FirebaseCore (~> 9.0)
     - FirebaseInstallations (~> 9.0)
@@ -102,57 +108,61 @@ PODS:
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
-  - Google-Mobile-Ads-SDK (9.6.0):
+  - Google-Mobile-Ads-SDK (9.10.0):
     - GoogleAppMeasurement (< 10.0, >= 7.0)
     - GoogleUserMessagingPlatform (>= 1.1)
   - google_mobile_ads (0.0.1):
     - Flutter
-    - Google-Mobile-Ads-SDK (= 9.6.0)
-  - GoogleAppMeasurement (9.2.0):
-    - GoogleAppMeasurement/AdIdSupport (= 9.2.0)
+    - Google-Mobile-Ads-SDK (= 9.10.0)
+  - GoogleAppMeasurement (9.6.0):
+    - GoogleAppMeasurement/AdIdSupport (= 9.6.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
     - GoogleUtilities/MethodSwizzler (~> 7.7)
     - GoogleUtilities/Network (~> 7.7)
     - "GoogleUtilities/NSData+zlib (~> 7.7)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - GoogleAppMeasurement/AdIdSupport (9.2.0):
-    - GoogleAppMeasurement/WithoutAdIdSupport (= 9.2.0)
+  - GoogleAppMeasurement/AdIdSupport (9.6.0):
+    - GoogleAppMeasurement/WithoutAdIdSupport (= 9.6.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
     - GoogleUtilities/MethodSwizzler (~> 7.7)
     - GoogleUtilities/Network (~> 7.7)
     - "GoogleUtilities/NSData+zlib (~> 7.7)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - GoogleAppMeasurement/WithoutAdIdSupport (9.2.0):
+  - GoogleAppMeasurement/WithoutAdIdSupport (9.6.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
     - GoogleUtilities/MethodSwizzler (~> 7.7)
     - GoogleUtilities/Network (~> 7.7)
     - "GoogleUtilities/NSData+zlib (~> 7.7)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - GoogleDataTransport (9.1.4):
+  - GoogleDataTransport (9.2.0):
     - GoogleUtilities/Environment (~> 7.7)
     - nanopb (< 2.30910.0, >= 2.30908.0)
     - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleUserMessagingPlatform (2.0.0)
-  - GoogleUtilities/AppDelegateSwizzler (7.7.0):
+  - GoogleUserMessagingPlatform (2.0.1)
+  - GoogleUtilities/AppDelegateSwizzler (7.8.0):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (7.7.0):
+  - GoogleUtilities/Environment (7.8.0):
     - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleUtilities/ISASwizzler (7.7.0)
-  - GoogleUtilities/Logger (7.7.0):
+  - GoogleUtilities/ISASwizzler (7.8.0)
+  - GoogleUtilities/Logger (7.8.0):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (7.7.0):
+  - GoogleUtilities/MethodSwizzler (7.8.0):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (7.7.0):
+  - GoogleUtilities/Network (7.8.0):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (7.7.0)"
-  - GoogleUtilities/Reachability (7.7.0):
+  - "GoogleUtilities/NSData+zlib (7.8.0)"
+  - GoogleUtilities/Reachability (7.8.0):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (7.7.0):
+  - GoogleUtilities/UserDefaults (7.8.0):
     - GoogleUtilities/Logger
+  - in_app_review (0.2.0):
+    - Flutter
+  - is_firebase_test_lab_activated (0.0.1):
+    - Flutter
   - nanopb (2.30909.0):
     - nanopb/decode (= 2.30909.0)
     - nanopb/encode (= 2.30909.0)
@@ -160,7 +170,9 @@ PODS:
   - nanopb/encode (2.30909.0)
   - package_info (0.0.1):
     - Flutter
-  - phone_number (0.12.0):
+  - path_provider_ios (0.0.1):
+    - Flutter
+  - phone_number (1.0.0):
     - Flutter
     - PhoneNumberKit/PhoneNumberKitCore (= 3.3.4)
   - PhoneNumberKit/PhoneNumberKitCore (3.3.4)
@@ -175,6 +187,8 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
+  - amplitude_flutter (from `.symlinks/plugins/amplitude_flutter/ios`)
+  - app_install_date (from `.symlinks/plugins/app_install_date/ios`)
   - connectivity_plus (from `.symlinks/plugins/connectivity_plus/ios`)
   - device_info (from `.symlinks/plugins/device_info/ios`)
   - firebase_analytics (from `.symlinks/plugins/firebase_analytics/ios`)
@@ -184,7 +198,10 @@ DEPENDENCIES:
   - firebase_remote_config (from `.symlinks/plugins/firebase_remote_config/ios`)
   - Flutter (from `Flutter`)
   - google_mobile_ads (from `.symlinks/plugins/google_mobile_ads/ios`)
+  - in_app_review (from `.symlinks/plugins/in_app_review/ios`)
+  - is_firebase_test_lab_activated (from `.symlinks/plugins/is_firebase_test_lab_activated/ios`)
   - package_info (from `.symlinks/plugins/package_info/ios`)
+  - path_provider_ios (from `.symlinks/plugins/path_provider_ios/ios`)
   - phone_number (from `.symlinks/plugins/phone_number/ios`)
   - shared_preferences_ios (from `.symlinks/plugins/shared_preferences_ios/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
@@ -192,6 +209,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - Amplitude
     - Firebase
     - FirebaseABTesting
     - FirebaseAnalytics
@@ -214,6 +232,10 @@ SPEC REPOS:
     - ReachabilitySwift
 
 EXTERNAL SOURCES:
+  amplitude_flutter:
+    :path: ".symlinks/plugins/amplitude_flutter/ios"
+  app_install_date:
+    :path: ".symlinks/plugins/app_install_date/ios"
   connectivity_plus:
     :path: ".symlinks/plugins/connectivity_plus/ios"
   device_info:
@@ -232,8 +254,14 @@ EXTERNAL SOURCES:
     :path: Flutter
   google_mobile_ads:
     :path: ".symlinks/plugins/google_mobile_ads/ios"
+  in_app_review:
+    :path: ".symlinks/plugins/in_app_review/ios"
+  is_firebase_test_lab_activated:
+    :path: ".symlinks/plugins/is_firebase_test_lab_activated/ios"
   package_info:
     :path: ".symlinks/plugins/package_info/ios"
+  path_provider_ios:
+    :path: ".symlinks/plugins/path_provider_ios/ios"
   phone_number:
     :path: ".symlinks/plugins/phone_number/ios"
   shared_preferences_ios:
@@ -244,34 +272,40 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
+  Amplitude: ef9ed339ddd33c9183edf63fa4bbaa86cf873321
+  amplitude_flutter: 8ddb231989e68ed8c005c838d7fc59edbca09833
+  app_install_date: 8d9e98cd5329ec376d38012a1cb82f37810de359
   connectivity_plus: 413a8857dd5d9f1c399a39130850d02fe0feaf7e
   device_info: d7d233b645a32c40dfdc212de5cf646ca482f175
-  Firebase: 4ba896cb8e5105d4b9e247e1c1b6222b548df55a
-  firebase_analytics: e6754d7dd82bd2006b002d88c0f44f8f50da26e6
-  firebase_core: ada8be870601fe3c2684dae2356f634189bd598f
-  firebase_crashlytics: c07347255e8609dbe65a72feb82a76943827730d
-  firebase_performance: 58084929e08f449e2b5b1259dab451f0518dc998
-  firebase_remote_config: 6be94018a45a050e440addc14c17c637e43143df
-  FirebaseABTesting: d7383da017eff5dc4fccb40987fa76271fd1cdbf
-  FirebaseAnalytics: af5a03a8dff7648c7b8486f6a78b1368e0268dd3
-  FirebaseCore: 0e27f2a15d8f7b7ef11e7d93e23b1cbab55d748c
-  FirebaseCoreDiagnostics: 060eb57cc56dfaf40b1b1b5874a5c17c41ce79f8
-  FirebaseCoreInternal: 635d1c9a612a6502b6377a0c92af83758076ffff
-  FirebaseCrashlytics: 9fff819edb2bfc9d3eff612225b207d41945a935
-  FirebaseInstallations: 54b40022cb06e462740c9f2b9fbe38b5e78a825a
-  FirebasePerformance: 5a8d2a9e645a398dfcc02657853f4b946675d5d4
-  FirebaseRemoteConfig: 16e29297f0dd0c7d2415c4506d614fe0b54875d1
-  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
+  Firebase: 5ae8b7cf8efce559a653aef0ad95bab3f427c351
+  firebase_analytics: 9937a91df25cce5b0ee19eaf65277ff8bf0f88e5
+  firebase_core: 7c28ecc1e5dd74e03829ac3e9ff5ba3314e737a9
+  firebase_crashlytics: 520a59314eaaadb34f9be4c2a285d99cfa88ebdb
+  firebase_performance: 3ae9ae3142d5d0bf8782e1e7a73dde2267bc4415
+  firebase_remote_config: df81462997f4d1582113c543e5a39ef832cebb92
+  FirebaseABTesting: 61826730ce9eee8781ba99a2b3420e9bce148dc9
+  FirebaseAnalytics: 89ad762c6c3852a685794174757e2c60a36b6a82
+  FirebaseCore: 2082fffcd855f95f883c0a1641133eb9bbe76d40
+  FirebaseCoreDiagnostics: 99a495094b10a57eeb3ae8efa1665700ad0bdaa6
+  FirebaseCoreInternal: bca76517fe1ed381e989f5e7d8abb0da8d85bed3
+  FirebaseCrashlytics: 3210572ddb77801e5a0bd9d7bc890769f2066a0c
+  FirebaseInstallations: 0a115432c4e223c5ab20b0dbbe4cbefa793a0e8e
+  FirebasePerformance: f1e62598cd98c88ce6c10e0d26223d18b85c26d6
+  FirebaseRemoteConfig: ee09d77a7d7c7e31da6a0d1cf956cd611c85609c
+  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
-  Google-Mobile-Ads-SDK: bdf13d37aa77e368510687b5305d4972b4f9e9c7
-  google_mobile_ads: 8d52c91890e95afc0718f810860b25e55394a327
-  GoogleAppMeasurement: 7a33224321f975d58c166657260526775d9c6b1a
-  GoogleDataTransport: 5fffe35792f8b96ec8d6775f5eccd83c998d5a3b
-  GoogleUserMessagingPlatform: ab890ce5f6620f293a21b6bdd82e416a2c73aeca
-  GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
+  Google-Mobile-Ads-SDK: eb398023f0d97cdd259b171052f1eb433de00c87
+  google_mobile_ads: f75c0a851119350bae87dc06aac86102a7e690a0
+  GoogleAppMeasurement: 6de2b1a69e4326eb82ee05d138f6a5cb7311bcb1
+  GoogleDataTransport: 1c8145da7117bd68bbbed00cf304edb6a24de00f
+  GoogleUserMessagingPlatform: 5f8b30daf181805317b6b985bb51c1ff3beca054
+  GoogleUtilities: 1d20a6ad97ef46f67bbdec158ce00563a671ebb7
+  in_app_review: 4a97249f7a2f539a0f294c2d9196b7fe35e49541
+  is_firebase_test_lab_activated: 84effe92e5d79a58455a2861b5e1ba688016cf57
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   package_info: 873975fc26034f0b863a300ad47e7f1ac6c7ec62
-  phone_number: 7e56d6e4e43fbe37507512a3aab3f11cf082af69
+  path_provider_ios: 14f3d2fd28c4fdb42f44e0f751d12861c43cee02
+  phone_number: ad6f917e4fd2e507a198b93dca5eadcb463ec8c2
   PhoneNumberKit: 441e8b26ec88d598e3591de9061eff18f5dd12e8
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
