@@ -4,12 +4,14 @@ name: QA Workflow
 
 jobs:
   lint:
-    name: Code Quality
+    name: Check code standards
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.5.0
+      - name: Checkout repository
+        uses: actions/checkout@v2.5.0
 
-      - uses: ./.github/actions/flutter
+      - name: Setup Flutter SDK
+        uses: ./.github/actions/flutter
 
       - name: Setup Firebase Options
         run: |
@@ -19,6 +21,27 @@ jobs:
           }
           EOF
 
-      - uses: peterfortuin/github-actions-analyze-dart@2dcc207b0d93ca4df53d4497fbdf6e50daf16ab8
+      - name: Run dart analyze and check format
+        uses: peterfortuin/github-actions-analyze-dart@2dcc207b0d93ca4df53d4497fbdf6e50daf16ab8
         with:
           fail-on-warnings: true
+  unit-tests:
+    name: Run unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2.5.0
+
+      - name: Setup Flutter SDK
+        uses: ./.github/actions/flutter
+
+      - name: Setup Firebase Options
+        run: |
+          tee lib/firebase_options.dart <<EOF
+          class DefaultFirebaseOptions {
+            static const currentPlatform = null;
+          }
+          EOF
+
+      - name: Run unit tests
+        run: flutter test
