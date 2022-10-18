@@ -1,6 +1,7 @@
 # Define env variables to use with Flutter's commands
-DART_DEFINE := $$(./scripts/get-dart-define.sh)
+DART_DEFINE := $$(./bin/get-dart-define.sh)
 
+# Define Flutter command
 FLUTTER_CMD = flutter
 ifneq ($(shell command -v fvm),)
 FLUTTER_CMD = fvm flutter
@@ -8,7 +9,7 @@ endif
 
 
 run: ## Run app
-	@echo $(FLUTTER_CMD) run $(DART_DEFINE)
+	$(FLUTTER_CMD) run $(DART_DEFINE)
 
 
 codegen: ## Run code generation
