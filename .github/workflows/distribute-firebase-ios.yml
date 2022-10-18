@@ -1,0 +1,22 @@
+on: [workflow_dispatch]
+
+name: "[iOS] Firebase AppDistribution"
+
+jobs:
+  firebase-app-distribution-ios:
+    runs-on: macos-latest
+    environment: firebase-distribution
+    steps:
+      - uses: actions/checkout@v2.5.0
+
+      - uses: ./.github/actions/flutter
+
+      - name: Setup Google Services
+        run: echo ${{ secrets.GOOGLE_SERVICES }} | base64 -d  | tar xzf -
+
+      - uses: ./.github/actions/fastlane
+        with:
+          lane: "firebase_distribute"
+          working-directory: "./ios"
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
