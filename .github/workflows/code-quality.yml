@@ -3,21 +3,22 @@ on: [pull_request]
 name: QA Workflow
 
 jobs:
-  build:
+  lint:
     name: Code Quality
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2.5.0
-      - name: Retrieve Flutter version from FVM config
-        uses: kuhnroyal/flutter-fvm-config-action@v1
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
-          channel: ${{ env.FLUTTER_CHANNEL }}
-      - run: flutter pub get
-      - name: Analyze Dart
-        uses: peterfortuin/github-actions-analyze-dart@2dcc207b0d93ca4df53d4497fbdf6e50daf16ab8
+      - uses: actions/checkout@v2.5.0
+
+      - uses: ./.github/actions/flutter
+
+      - name: Setup Firebase Options
+        run: |
+          tee lib/firebase_options.dart <<EOF
+          class DefaultFirebaseOptions {
+            static const currentPlatform = null;
+          }
+          EOF
+
+      - uses: peterfortuin/github-actions-analyze-dart@2dcc207b0d93ca4df53d4497fbdf6e50daf16ab8
         with:
           fail-on-warnings: true

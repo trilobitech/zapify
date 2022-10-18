@@ -1,0 +1,32 @@
+on: [workflow_dispatch]
+
+name: "[Android] Firebase AppDistribution"
+
+jobs:
+  firebase-app-distribution-android:
+    runs-on: ubuntu-latest
+    environment: firebase-distribution
+    steps:
+      - uses: actions/checkout@v2.5.0
+
+      - uses: ./.github/actions/flutter
+
+      - name: Setup Google Services
+        run: echo ${{ secrets.GOOGLE_SERVICES }} | base64 -d  | tar xzf -
+
+      - name: Get Android Secrets
+        run: echo ${{ secrets.ANDROID_SECRETS }} | base64 -d  | tar xzf -
+
+      - uses: actions/setup-java@v3
+        with:
+          java-version: 8
+          distribution: "zulu"
+
+      - uses: android-actions/setup-android@v2
+
+      - uses: ./.github/actions/fastlane
+        with:
+          lane: "firebase_distribute"
+          working-directory: "./android"
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
