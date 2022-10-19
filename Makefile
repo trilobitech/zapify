@@ -5,7 +5,7 @@ SHELL := /bin/bash
 ENV_FILES := $(wildcard .env.default .env)
 ifneq ($(ENV_FILES),)
 include $(ENV_FILES)
-export $(shell grep -he '^[^\#;]' $(ENV_FILES) | sed 's/[?:]\?=.*//' | sort | uniq)
+export $(shell grep -he '^[^\#;]' $(ENV_FILES) | sed 's/=.*//' | sort | uniq)
 endif
 
 # Make sed portable with macOS
@@ -14,7 +14,7 @@ ifeq ($(shell uname),Darwin)
 SED_CMD = sed -i ''
 endif
 
-MAK_FILES := $(wildcard *.mak)
+MAK_FILES := $(wildcard bin/mak/*.mak)
 ifneq ($(MAK_FILES),)
 include $(MAK_FILES)
 endif
