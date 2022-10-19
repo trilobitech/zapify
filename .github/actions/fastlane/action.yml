@@ -18,14 +18,8 @@ runs:
         ruby-version: '3.0'
         bundler-cache: true
         working-directory: ${{ inputs.working-directory }}
+
     - run: bundle exec fastlane "${{ inputs.lane }}"
       shell: bash
       working-directory: ${{ inputs.working-directory }}
-      env:
-        LC_ALL: en_US.UTF-8
-        LANG: en_US.UTF-8
-    # - uses: maierj/fastlane-action@v2.3.0
-    #   with:
-    #     lane: ${{ inputs.lane }}
-    #     subdirectory: ${{ inputs.working-directory }}
   
