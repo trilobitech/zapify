@@ -8,6 +8,7 @@ on:
         options:
           - android
           - ios
+          - all
         type: choice
         required: true
       channel:
@@ -81,7 +82,7 @@ jobs:
           esac
 
           JQ_EXPR=$(cat <<EOF
-            del( .[] | select(.platform != "$PLATFORM"))
+            del( .[] | select(.platform != "$PLATFORM" and "$PLATFORM" != "all"))
             | .[] += { environment: "$ENVIRONMENT", lane: "$CHANNEL" }
           EOF
           )
