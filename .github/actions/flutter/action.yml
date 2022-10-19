@@ -1,18 +1,17 @@
-name: 'Flutter Setup'
-description: 'Configure flutter environment'
+name: "Flutter Setup"
+description: "Configure Flutter environment"
 
 runs:
   using: "composite"
   steps:
     - name: Retrieve Flutter version from FVM config
       uses: kuhnroyal/flutter-fvm-config-action@v1
+
     - name: Set up Flutter
       uses: subosito/flutter-action@v2
       with:
         flutter-version: ${{ env.FLUTTER_VERSION }}
         channel: ${{ env.FLUTTER_CHANNEL }}
-    - run: git config --global --add safe.directory /tmp/flutter/--
-      shell: bash
+
     - run: flutter pub get
       shell: bash
-  

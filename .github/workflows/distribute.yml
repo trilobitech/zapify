@@ -1,0 +1,70 @@
+name: "Distribute App"
+
+on:
+  workflow_dispatch:
+    inputs:
+      platform:
+        description: "Build target platform"
+        options: [android, ios]
+        type: string
+        required: true
+      channel:
+        description: "Distribution channel"
+        options: [firebase_distribute, release_distribute]
+        type: string
+        required: true
+
+    secrets:
+      GOOGLE_SERVICES: { required: true }
+      ANDROID_SECRETS: { required: true }
+      AMPLITUDE_KEY: { required: true }
+      FIREBASE_TOKEN: { required: false }
+
+jobs:
+  distribute:
+    needs: pre-distribute
+    strategy:
+      matrix:
+        matrix: ${{ fromJSON(needs.pre-distribute.outputs.matrix-definition) }}
+
+    runs-on: ${{ matrix.runs-on }}
+    environment: ${{ inputs.env-name }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2.5.0
+
+      - name: Setup Flutter SDK
+        uses: ./.github/actions/flutter
+
+      - name: Setup Android SDK
+        if: ${{ matrix.platform == 'android' }}
+        uses: ./.github/actions/android
+
+      - name: Get secrets files
+        run: |
+          echo ${{ secrets.GOOGLE_SERVICES }} | base64 -d  | tar xzf -
+          echo ${{ secrets.ANDROID_SECRETS }} | base64 -d  | tar xzf -
+
+      - name: Distribute
+        uses: ./.github/actions/fastlane
+        with:
+          lane: ${{ github.event.inputs.channel }}
+          working-directory: ${{ matrix.working-directory }}
+        env:
+          zapify_amplitudeKey: ${{ secrets.AMPLITUDE_KEY }}
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+
+  pre-distribute:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix-definition: ${{ steps.definition.outputs.matrix }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2.5.0
+
+      - id: definition
+        name: "Prepare distribution"
+        run: |
+          ALL_MATRIX="{ \"include\": $(jq -Mc . .github/supported-platforms.json) }"
+          FILTERED_MATRIX=$(echo $ALL_MATRIX | jq -Mc "del(.include[]|select(.platform != \"${{ github.event.inputs.platform }}\"))")
+          echo "matrix=$FILTERED_MATRIX" >> $GITHUB_OUTPUT
