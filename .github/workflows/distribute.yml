@@ -5,30 +5,37 @@ on:
     inputs:
       platform:
         description: "Build target platform"
-        options: [android, ios]
-        type: string
+        options:
+          - android
+          - ios
+        type: choice
         required: true
       channel:
         description: "Distribution channel"
-        options: [firebase_distribute, release_distribute]
-        type: string
+        options: 
+          - firebase_distribute
+          - release_distribute
+        type: choice
         required: true
 
     secrets:
-      GOOGLE_SERVICES: { required: true }
-      ANDROID_SECRETS: { required: true }
-      AMPLITUDE_KEY: { required: true }
-      FIREBASE_TOKEN: { required: false }
+      GOOGLE_SERVICES:
+        required: false
+      ANDROID_SECRETS:
+        required: false
+      AMPLITUDE_KEY:
+        required: false
+      FIREBASE_TOKEN:
+        required: false
 
 jobs:
   distribute:
     needs: pre-distribute
     strategy:
-      matrix:
-        matrix: ${{ fromJSON(needs.pre-distribute.outputs.matrix-definition) }}
+      matrix: ${{ fromJSON(needs.pre-distribute.outputs.matrix-definition) }}
 
     runs-on: ${{ matrix.runs-on }}
-    environment: ${{ inputs.env-name }}
+    environment: ${{ matrix.environment }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2.5.0
@@ -48,7 +55,7 @@ jobs:
       - name: Distribute
         uses: ./.github/actions/fastlane
         with:
-          lane: ${{ github.event.inputs.channel }}
+          lane: ${{ matrix.lane }}
           working-directory: ${{ matrix.working-directory }}
         env:
           zapify_amplitudeKey: ${{ secrets.AMPLITUDE_KEY }}
@@ -65,6 +72,19 @@ jobs:
       - id: definition
         name: "Prepare distribution"
         run: |
-          ALL_MATRIX="{ \"include\": $(jq -Mc . .github/supported-platforms.json) }"
-          FILTERED_MATRIX=$(echo $ALL_MATRIX | jq -Mc "del(.include[]|select(.platform != \"${{ github.event.inputs.platform }}\"))")
-          echo "matrix=$FILTERED_MATRIX" >> $GITHUB_OUTPUT
+          CHANNEL=${{ github.event.inputs.channel }}
+          PLATFORM=${{ github.event.inputs.platform }}
+
+          case "$CHANNEL" in
+          release_distribute) ENVIRONMENT=production ;;
+          *) ENVIRONMENT="firebase-distribution" ;;
+          esac
+
+          JQ_EXPR=$(cat <<EOF
+            del( .[] | select(.platform != "$PLATFORM"))
+            | .[] += { environment: "$ENVIRONMENT", lane: "$CHANNEL" }
+          EOF
+          )
+          MATRIX="{ \"include\": $(jq -Mc "$JQ_EXPR" .github/supported-platforms.json) }"
+
+          echo "matrix=$MATRIX" >> $GITHUB_OUTPUT
