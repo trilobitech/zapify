@@ -1,23 +1,9 @@
 {
     "dart.flutterSdkPath": ".fvm/flutter_sdk",
-    // Remove .fvm files from search
     "search.exclude": {
       "**/.fvm": true
     },
-    // Remove from file watching
     "files.watcherExclude": {
       "**/.fvm": true
-    },
-    "editor.codeActionsOnSave": {
-      "source.fixAll": true,
-      "source.organizeImports": true
-    },
-    "explorer.fileNesting.enabled": true,
-    "explorer.fileNesting.expand": false,
-    "explorer.fileNesting.patterns": {
-      ".env": ".env.*",
-      "pubspec.yaml": "pubspec.lock,pubspec_overrides.yaml,.packages,.flutter-plugins,.flutter-plugins-dependencies,.metadata,all_lint_rules.yaml,analysis_options.yaml,build.yaml,l10n.yaml",
-      "*.dart": "${capture}.g.dart,${capture}.freezed.dart",
-      "Makefile": "*.mak"
     }
   }
