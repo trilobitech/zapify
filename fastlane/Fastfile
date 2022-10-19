@@ -25,14 +25,6 @@ ios_testers_group = "iostesters"
 
 ios_devices_file = "#{project_path}/build/ios_devices.txt"
 
-platform :all do
-  desc "Publish Android and iOS Apps"
-  lane :publish do |options|
-    Fastlane::LaneManager.cruise_lane("android", "publish", options)
-    Fastlane::LaneManager.cruise_lane("ios", "publish", options)
-  end
-end
-
 platform :android do
 
   desc "Build release APK"
@@ -59,6 +51,7 @@ platform :android do
 
   desc "Deploy a new version to the Play Store"
   lane :release_distribute do
+    verify_play_store_key
     build_bundle
     upload_to_play_store(
       track: "alpha",
@@ -67,15 +60,7 @@ platform :android do
     )
   end
 
-  desc "Publish APK, pass `is_release:true` to Play Store otherwise will be sent to Firebase"
-  lane :publish do |options|
-    if options[:is_release]
-      release_distribute
-    else
-      firebase_distribute
-    end
-  end
-
+  desc "Verify if has valid Play Store credentials"
   lane :verify_play_store_key do
     validate_play_store_json_key(
       json_key: CredentialsManager::AppfileConfig.try_fetch_value(:json_key_file)
@@ -158,15 +143,6 @@ platform :ios do
       groups: ios_testers_group,
       debug: true,
     )
-  end
-
-  desc "Publish iOS package, pass `is_release:true` to App Store otherwise will be sent to Firebase"
-  lane :publish do |options|
-    if options[:is_release]
-      release_distribute
-    else
-      firebase_distribute
-    end
   end
 
 end
