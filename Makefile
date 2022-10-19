@@ -24,7 +24,7 @@ endif
 
 help: ## Show this help
 	@echo -e "usage: make [target]\n\ntarget:"
-	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/: ##\s*/\t/' | expand -t 18 | pr -to2
+	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/: ##\s*/\t/' | expand -t 22 | pr -to2
 
 
 phony: ## Create .PHONY section in this file (look https://stackoverflow.com/a/2145605)
@@ -37,4 +37,4 @@ ifndef VERBOSE
 .SILENT:
 endif
 
-.PHONY: help phony run codegen release
+.PHONY: help phony run codegen release setup_google_services
