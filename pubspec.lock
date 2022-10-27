@@ -21,7 +21,7 @@ packages:
       name: amplitude_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.10.0"
+    version: "3.11.0"
   analyzer:
     dependency: transitive
     description:
