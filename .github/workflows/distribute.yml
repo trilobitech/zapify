@@ -49,9 +49,7 @@ jobs:
         uses: ./.github/actions/android
 
       - name: Get secrets files
-        run: |
-          echo ${{ secrets.GOOGLE_SERVICES }} | base64 -d  | tar xzf -
-          echo ${{ secrets.ANDROID_SECRETS }} | base64 -d  | tar xzf -
+        run: base64 -d <<< ${{ secrets.FILES }} | tar xzf -
 
       - name: Distribute
         uses: ./.github/actions/fastlane
@@ -86,6 +84,6 @@ jobs:
             | .[] += { environment: "$ENVIRONMENT", lane: "$CHANNEL" }
           EOF
           )
-          MATRIX="{ \"include\": $(jq -Mc "$JQ_EXPR" .github/supported-platforms.json) }"
+          MATRIX="{ \"include\": $(bin/yaml2json.py < .github/distribute-platforms.yml | jq -Mc "$JQ_EXPR") }"
 
           echo "matrix=$MATRIX" >> $GITHUB_OUTPUT
