@@ -1,5 +1,5 @@
+import 'package:analytics/analytics.dart';
 import 'package:flutter/material.dart';
-import 'package:zapify/core/analytics/analytics.dart';
 import 'package:zapify/core/di/inject.dart';
 import 'package:zapify/core/ext/context.dart';
 import 'package:zapify/features/region/presentation/region_picker_controller.dart';

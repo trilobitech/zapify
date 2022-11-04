@@ -1,5 +1,6 @@
 import 'package:amplitude_flutter/amplitude.dart';
-import 'package:zapify/core/analytics/wrapper.dart';
+
+import '../wrapper.dart';
 
 class AmplitudeAnalyticsWrapper extends AnalyticsWrapper {
   AmplitudeAnalyticsWrapper({required String apiKey}) : _apiKey = apiKey;

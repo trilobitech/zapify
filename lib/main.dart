@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:analytics/analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,7 @@ import 'package:is_firebase_test_lab_activated/is_firebase_test_lab_activated.da
 import 'package:logger/logger.dart';
 import 'package:zapify/app/modules.dart';
 import 'package:zapify/app/zapify_app.dart';
-import 'package:zapify/core/analytics/analytics.dart';
+import 'package:zapify/config/env_config.dart';
 import 'package:zapify/core/firebase.dart';
 import 'package:zapify/firebase_options.dart';
 
@@ -45,11 +46,14 @@ Future<void> setupApp() async {
     await Future.wait([
       crashlytics.setCrashlyticsCollectionEnabled(false),
       performance.setPerformanceCollectionEnabled(false),
-      initAnalytics(isEnabled: false),
+      initAnalytics(amplitudeKey: EnvConfig.amplitudeKey, isEnabled: false),
     ]);
   } else {
     final bool isFirebaseTestLabActivated =
         await IsFirebaseTestLabActivated.isFirebaseTestLabActivated;
-    await initAnalytics(isEnabled: !isFirebaseTestLabActivated);
+    await initAnalytics(
+      amplitudeKey: EnvConfig.amplitudeKey,
+      isEnabled: !isFirebaseTestLabActivated,
+    );
   }
 }

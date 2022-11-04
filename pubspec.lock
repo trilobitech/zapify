@@ -16,12 +16,19 @@ packages:
     source: hosted
     version: "1.0.2"
   amplitude_flutter:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: amplitude_flutter
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.11.0"
+  analytics:
+    dependency: "direct main"
+    description:
+      path: "packages/analytics"
+      relative: true
+    source: path
+    version: "0.1.0"
   analyzer:
     dependency: transitive
     description:
@@ -310,7 +317,7 @@ packages:
     source: hosted
     version: "9.0.3"
   firebase_analytics:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: firebase_analytics
       url: "https://pub.dartlang.org"
