@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:timeago/timeago.dart' as timeago;
+import 'package:zapify/app/styles/theme.dart';
 import 'package:zapify/core/analytics/analytics.dart';
 import 'package:zapify/core/analytics/route_observer.dart';
 import 'package:zapify/features/home/presentation/home_page.dart';
@@ -20,22 +21,12 @@ class _ZapifyAppState extends State<ZapifyApp> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     timeago.setLocaleMessages('pt', timeago.PtBrMessages());
 
     return MaterialApp(
       title: 'Zapify',
       home: const HomePage(),
-      theme: ThemeData(
-        primarySwatch: Colors.teal,
-        appBarTheme: theme.appBarTheme.copyWith(
-          foregroundColor: Colors.teal,
-          backgroundColor: Colors.white,
-          elevation: 0,
-          centerTitle: true,
-        ),
-        scaffoldBackgroundColor: Colors.white,
-      ),
+      theme: AppTheme.of(context),
       // locale: const Locale.fromSubtags(languageCode: 'pt', countryCode: 'BR'),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
