@@ -127,6 +127,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
+  client_info:
+    dependency: "direct main"
+    description:
+      path: "packages/client_info"
+      relative: true
+    source: path
+    version: "0.1.0"
   clock:
     dependency: transitive
     description:
@@ -177,7 +184,7 @@ packages:
     source: path
     version: "0.1.0"
   connectivity_plus:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: connectivity_plus
       url: "https://pub.dartlang.org"
@@ -254,7 +261,7 @@ packages:
     source: hosted
     version: "0.7.8"
   device_info:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: device_info
       url: "https://pub.dartlang.org"
@@ -631,7 +638,7 @@ packages:
     source: hosted
     version: "2.1.0"
   package_info:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: package_info
       url: "https://pub.dartlang.org"

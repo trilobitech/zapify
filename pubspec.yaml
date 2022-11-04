@@ -54,9 +54,6 @@ dependencies:
   intl: ^0.17.0
   flutter_svg: ^1.1.1+1
   http: ^0.13.4
-  package_info: ^2.0.2
-  device_info: ^2.0.3
-  connectivity_plus: ^2.3.9
   firebase_remote_config: ^2.0.20
   equatable: ^2.0.3
   collection: ^1.16.0
@@ -76,6 +73,8 @@ dependencies:
     path: 'packages/config_manager/core'
   config_firebase:
     path: 'packages/config_manager/firebase'
+  client_info:
+    path: 'packages/client_info'
 
 dev_dependencies:
   flutter_test:
