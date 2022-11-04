@@ -82,11 +82,11 @@ platform :ios do
     is_edirock = options[:profile_type] == profile_type_edirock
     provisioning_name_suffix = is_edirock ? 'AdHoc' : 'AppStore'
 
-    cert(output_path: '#{project_path}/ios/certificates')
+    cert(output_path: "#{project_path}/ios/certificates")
 
     sigh(
-      provisioning_name: "App #{provisioning_name_suffix}",
-      output_path: '#{project_path}/ios/certificates',
+      provisioning_name: "Zapify #{provisioning_name_suffix}",
+      output_path: "#{project_path}/ios/certificates",
       adhoc: is_edirock,
       force: true,
     )
@@ -117,6 +117,7 @@ platform :ios do
       archive_path: "#{project_path}/build/ios/Runner.xcarchive",
       export_method: options[:profile_type],
       output_directory: "#{project_path}/build/Runner",
+      xcargs: "-allowProvisioningUpdates",
       export_xcargs: "-allowProvisioningUpdates",
     )
   end

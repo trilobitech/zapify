@@ -7,6 +7,7 @@ if [ ${CONFIGURATION} = "Release" ]; then
 fi
 
 if [[ ${CONFIGURATION} = "Debug" || ${IS_FIREBASE_DISTRIBUTION} = "true" ]]; then
-    /usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName \"Zapify Dev\"" "${TARGET_BUILD_DIR}/${INFOPLIST_PATH}"
+    /usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName \"Zapify Dev\"" "${TARGET_BUILD_DIR}/${INFOPLIST_PATH}" ||
+        /usr/libexec/PlistBuddy -c "Set :CFBundleName \"Zapify Dev\"" "${TARGET_BUILD_DIR}/${INFOPLIST_PATH}"
     /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier \"com.zapfy.app.dev\"" "${TARGET_BUILD_DIR}/${INFOPLIST_PATH}"
 fi
