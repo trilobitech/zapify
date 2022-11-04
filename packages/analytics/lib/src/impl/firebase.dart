@@ -1,5 +1,6 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:zapify/core/analytics/wrapper.dart';
+
+import '../wrapper.dart';
 
 class FirebaseAnalyticsWrapper extends AnalyticsWrapper {
   late final FirebaseAnalytics _firebase = FirebaseAnalytics.instance;

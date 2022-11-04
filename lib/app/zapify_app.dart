@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:zapify/app/styles/theme.dart';
-import 'package:zapify/core/analytics/analytics.dart';
-import 'package:zapify/core/analytics/route_observer.dart';
+import 'package:analytics/analytics.dart';
 import 'package:zapify/features/home/presentation/home_page.dart';
 
 class ZapifyApp extends StatefulWidget {

@@ -1,9 +1,9 @@
 import 'dart:async';
 
+import 'package:analytics/analytics.dart';
 import 'package:flutter/material.dart' hide Intent;
 import 'package:logger/logger.dart';
 import 'package:receive_intent/receive_intent.dart';
-import 'package:zapify/core/analytics/analytics.dart';
 import 'package:zapify/core/di/inject.dart';
 import 'package:zapify/features/history/presentation/history_page.dart';
 import 'package:zapify/features/home/domain/entity/chat_app.dart';
