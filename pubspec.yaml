@@ -75,6 +75,8 @@ dependencies:
     path: 'packages/client_info'
   analytics:
     path: 'packages/analytics'
+  error_handler:
+    path: 'packages/error_handler'
 
 dev_dependencies:
   flutter_test:

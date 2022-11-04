@@ -1,6 +1,6 @@
+import 'package:error_handler/error_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:zapify/core/di/inject.dart';
-import 'package:zapify/core/error_handler/error_message_resolver.dart';
 import 'package:zapify/core/ext/context.dart';
 import 'package:zapify/features/shared/domain/entity/region.dart';
 

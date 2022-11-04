@@ -1,13 +1,18 @@
 import 'package:flutter/widgets.dart';
 import 'package:logger/logger.dart';
-import 'package:zapify/core/error_handler/error_message_resolver.dart';
-import 'package:zapify/core/error_handler/failure_message_resolver.dart';
-import 'package:zapify/core/ext/context.dart';
+
+import 'error_message_resolver.dart';
+import 'failure_message_resolver.dart';
 
 class CompositeErrorMessageResolver extends ErrorMessageResolver {
-  CompositeErrorMessageResolver([
+  CompositeErrorMessageResolver({
+    OnUnknownError? onUnknownError,
     List<ErrorMessageResolver> resolvers = const [],
-  ]) : _resolvers = {FailureErrorMessageResolver(), ...resolvers};
+  }) : _resolvers = {
+          FailureErrorMessageResolver(),
+          ...resolvers,
+          UnknowErrorResolver(onUnknownError),
+        };
 
   final Set<ErrorMessageResolver> _resolvers;
 
@@ -25,7 +30,6 @@ class CompositeErrorMessageResolver extends ErrorMessageResolver {
     }
 
     logError('Resolver not found for: "${error.runtimeType}" -> $error');
-
-    return context.strings.unknowErrorMessage;
+    return null;
   }
 }
