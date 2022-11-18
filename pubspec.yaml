@@ -59,7 +59,7 @@ dependencies:
   shared_preferences: ^2.0.15
   shimmer: ^2.0.0
   google_mobile_ads: ^2.1.0
-  receive_intent: ^0.2.1
+  receive_intent: ^0.2.3
   app_install_date: ^0.1.1
   in_app_review: ^2.0.4
   is_firebase_test_lab_activated: ^2.0.0
