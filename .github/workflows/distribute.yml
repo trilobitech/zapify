@@ -20,9 +20,7 @@ on:
         required: true
 
     secrets:
-      GOOGLE_SERVICES:
-        required: false
-      ANDROID_SECRETS:
+      FILES:
         required: false
       AMPLITUDE_KEY:
         required: false
