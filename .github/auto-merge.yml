@@ -1,13 +1,15 @@
 minApprovals:
   MEMBER: 1
   COLLABORATOR: 1
+mergeMethod: squash
 requiredBaseBranches:
 - main
 - regex: ^release/v\d
+requiredLabels:
+- automerge
 blockingLabels:
 - blocked
 blockingTitleRegex: '\bWIP\b'
-reportStatus: true
 updateBranch: true
+reportStatus: true
 deleteBranchAfterMerge: true
-mergeMethod: squash
