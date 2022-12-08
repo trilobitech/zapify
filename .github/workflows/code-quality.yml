@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2.5.0
+        uses: actions/checkout@v3.1.0
 
       - name: Setup Flutter SDK
         uses: ./.github/actions/flutter
@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2.5.0
+        uses: actions/checkout@v3.1.0
 
       - name: Setup Flutter SDK
         uses: ./.github/actions/flutter
