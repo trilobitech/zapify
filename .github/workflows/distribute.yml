@@ -37,7 +37,7 @@ jobs:
     environment: ${{ matrix.environment }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2.5.0
+        uses: actions/checkout@v3.1.0
 
       - name: Setup Flutter SDK
         uses: ./.github/actions/flutter
@@ -64,7 +64,7 @@ jobs:
       matrix-definition: ${{ steps.definition.outputs.matrix }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2.5.0
+        uses: actions/checkout@v3.1.0
 
       - id: definition
         name: "Prepare distribution"
