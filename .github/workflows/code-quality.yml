@@ -22,7 +22,7 @@ jobs:
           EOF
 
       - name: Run dart analyze and check format
-        uses: peterfortuin/github-actions-analyze-dart@2dcc207b0d93ca4df53d4497fbdf6e50daf16ab8
+        uses: zgosalvez/github-actions-analyze-dart@v2
         with:
           fail-on-warnings: true
   unit-tests:
