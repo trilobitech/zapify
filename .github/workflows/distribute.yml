@@ -48,7 +48,8 @@ jobs:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: ${{ env.FLUTTER_CHANNEL }}
 
-      - run: flutter pub get
+      - name: Install dependencies
+        run: flutter pub get
         
       - name: Setup Java
         if: ${{ matrix.platform == 'android' }}
