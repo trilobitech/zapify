@@ -37,7 +37,7 @@ jobs:
     environment: ${{ matrix.environment }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3.1.0
+        uses: actions/checkout@v3.2.0
 
       - name: Retrieve Flutter version from FVM config
         uses: kuhnroyal/flutter-fvm-config-action@v1
@@ -84,7 +84,7 @@ jobs:
       matrix-definition: ${{ steps.definition.outputs.matrix }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3.1.0
+        uses: actions/checkout@v3.2.0
 
       - id: definition
         name: "Prepare distribution"
