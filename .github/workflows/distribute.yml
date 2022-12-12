@@ -92,6 +92,10 @@ jobs:
           CHANNEL=${{ github.event.inputs.channel }}
           PLATFORM=${{ github.event.inputs.platform }}
 
+          yaml2json() {
+            python -c 'import sys, yaml, json; print(json.dumps(yaml.safe_load(sys.stdin.read())))'
+          }
+
           case "$CHANNEL" in
           release_distribute) ENVIRONMENT=production ;;
           *) ENVIRONMENT="firebase-distribution" ;;
@@ -102,6 +106,6 @@ jobs:
             | .[] += { environment: "$ENVIRONMENT", lane: "$CHANNEL" }
           EOF
           )
-          MATRIX="{ \"include\": $(bin/yaml2json.py < .github/distribute-platforms.yml | jq -Mc "$JQ_EXPR") }"
+          MATRIX="{ \"include\": $(yaml2json < .github/distribute-platforms.yml | jq -Mc "$JQ_EXPR") }"
 
           echo "matrix=$MATRIX" >> $GITHUB_OUTPUT
