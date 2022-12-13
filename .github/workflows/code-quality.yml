@@ -1,4 +1,13 @@
-on: [pull_request]
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '**.dart'
+      - '**/pubspec.*'
+      - '*.yaml'
+      - assets/**
+      - .fvm/fvm_config.json
 
 name: QA Workflow
 
@@ -30,10 +39,31 @@ jobs:
           }
           EOF
 
-      - name: Run dart analyze and check format
-        uses: zgosalvez/github-actions-analyze-dart@v2
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v34
         with:
-          fail-on-warnings: true
+          files: |
+            \.dart$
+            pubspec.yaml
+
+      - name: Get all added and modified files
+        id: added-and-modified-files
+        run: |
+          changed_files=$(echo "${{ steps.changed-files.outputs.added_files }} ${{ steps.changed-files.outputs.modified_files }}" | xargs)
+          changed_dart_files=$(echo "$changed_files" | tr ' ' '\n' | grep '\.dart$')
+
+          echo "all='$changed_files'" >> $GITHUB_OUTPUT
+          echo "dart='$changed_dart_files'" >> $GITHUB_OUTPUT
+
+      - name: Analyze code
+        if: steps.added-and-modified-files.outputs.all
+        run: flutter analyze ${{ steps.added-and-modified-files.outputs.all }}
+
+      - name: Check code formatting
+        if: steps.added-and-modified-files.outputs.dart
+        run: flutter format --output=none ${{ steps.added-and-modified-files.outputs.dart }}
+
   unit-tests:
     name: Run unit tests
     runs-on: ubuntu-latest
