@@ -75,7 +75,7 @@ jobs:
         run: bundle exec fastlane "${{ matrix.lane }}"
         working-directory: ${{ matrix.working-directory }}
         env:
-          zapify_amplitudeKey: ${{ secrets.AMPLITUDE_KEY }}
+          ZAPIFY_AMPLITUDE_KEY: ${{ secrets.AMPLITUDE_KEY }}
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
 
   pre-distribute:

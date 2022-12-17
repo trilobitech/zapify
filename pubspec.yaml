@@ -89,6 +89,10 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.1
   build_runner: ^2.3.2
+  flutter_toolkit:
+    git:
+      url: https://github.com/pedrox-hs/flutter_packages
+      path: flutter_toolkit
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
