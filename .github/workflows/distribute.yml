@@ -1,53 +1,35 @@
-name: "Distribute App"
+name: "Distribute app"
 
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
       platform:
         description: "Build target platform"
-        options:
-          - android
-          - ios
-          - all
-        type: choice
+        type: string
         required: true
       environment:
         description: "Distribution environment"
-        type: environment
-        required: true
-      tester_email:
-        description: "Distribute to tester email address"
         type: string
-        required: false
+        required: true
 
     secrets:
-      FILES:
-        required: false
-      AMPLITUDE_KEY:
-        required: false
       FIREBASE_TOKEN:
+        required: true
+      FILES:
+        required: true
+      AMPLITUDE_KEY:
+        required: true
+      TESTER_EMAIL:
         required: false
 
 jobs:
   distribute:
     needs: pre-distribute
     strategy:
-      matrix: ${{ fromJSON(needs.pre-distribute.outputs.matrix-definition) }}
-
+      matrix: ${{ fromJSON(needs.pre-distribute.outputs.matrix) }}
     runs-on: ${{ matrix.runs-on }}
-    environment: ${{ github.event.inputs.environment }}
+    environment: ${{ inputs.environment }}
     steps:
-      - name: Mask email
-        id: tester_email
-        if: ${{ github.event.inputs.tester_email != '' }}
-        run: |
-          # issue https://github.com/actions/runner/issues/475
-          # gambi https://github.com/actions/runner/issues/643#issuecomment-708228940
-
-          tester_email=$(jq -r '.inputs.tester_email' $GITHUB_EVENT_PATH)
-          echo "::add-mask::$tester_email"
-          echo "value=$tester_email" >> $GITHUB_OUTPUT
-
       - name: Checkout repository
         uses: actions/checkout@v3.2.0
 
@@ -73,21 +55,22 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
-
-      - name: Get secrets files
-        run: base64 -d <<< ${{ secrets.FILES }} | tar xzf -
         
-      - uses: ruby/setup-ruby@v1
+      - name: Install Ruby to use Fastlane
+        uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.0'
           bundler-cache: true
           working-directory: ${{ matrix.working-directory }}
 
+      - name: Get secrets files
+        run: base64 -d <<< ${{ secrets.FILES }} | tar xzf -
+
       - name: Run lane to distribute
         uses: maierj/fastlane-action@v3.0.0
         with:
           lane: ${{ needs.pre-distribute.outputs.lane }}
-          options: '{ "tester_email": "${{ steps.tester_email.outputs.value }}" }'
+          options: '{ "tester_email": "${{ secrets.TESTER_EMAIL }}" }'
           subdirectory: ${{ matrix.working-directory }}
         env:
           ZAPIFY_AMPLITUDE_KEY: ${{ secrets.AMPLITUDE_KEY }}
@@ -96,27 +79,32 @@ jobs:
   pre-distribute:
     runs-on: ubuntu-latest
     outputs:
-      matrix-definition: ${{ steps.definition.outputs.matrix }}
-      lane: ${{ steps.definition.outputs.channel }}
+      matrix: ${{ steps.definition.outputs.matrix }}
+      lane: ${{ steps.lane.outputs.name }}
+    env:
+      ENVIRONMENT: ${{ inputs.environment }}
+      PLATFORM: ${{ inputs.platform }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3.2.0
 
+      - id: lane
+        name: Define lane
+        run: |
+          case "$ENVIRONMENT" in
+          production) LANE=release_distribute ;;
+          firebase-distribution) LANE=firebase_distribute ;;
+          *) echo "Invalid environment $ENVIRONMENT"; exit 1 ;;
+          esac
+
+          echo "name=$LANE" >> $GITHUB_OUTPUT
+
       - id: definition
         name: "Prepare distribution"
         run: |
-          ENVIRONMENT=${{ github.event.inputs.environment }}
-          PLATFORM=${{ github.event.inputs.platform }}
-
           yaml2json() {
             python -c 'import sys, yaml, json; print(json.dumps(yaml.safe_load(sys.stdin.read())))'
           }
-
-          case "$ENVIRONMENT" in
-          production) CHANNEL=release_distribute ;;
-          firebase-distribution) CHANNEL=firebase_distribute ;;
-          *) echo "Invalid environment $ENVIRONMENT"; exit 1 ;;
-          esac
 
           JQ_EXPR=$(cat <<EOF
             del( .[] | select(.platform != "$PLATFORM" and "$PLATFORM" != "all"))
@@ -125,4 +113,3 @@ jobs:
           MATRIX="{ \"include\": $(yaml2json < .github/distribute-platforms.yml | jq -Mc "$JQ_EXPR") }"
 
           echo "matrix=$MATRIX" >> $GITHUB_OUTPUT
-          echo "channel=$CHANNEL" >> $GITHUB_OUTPUT
