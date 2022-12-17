@@ -29,12 +29,12 @@ platform :android do
 
   desc "Build release APK"
   lane :build_apk do
-    flutter("build apk --release #{get_dart_define()}")
+    flutter("build apk --release}")
   end
 
   desc "Build release Bundle"
   lane :build_bundle do
-    flutter("build appbundle --release #{get_dart_define()}")
+    flutter("build appbundle --release")
   end
 
   desc "Distribute to Android beta testers"
@@ -73,7 +73,7 @@ platform :ios do
 
   desc "Build release IPA"
   lane :build do |options|
-    flutter("build ios --release --no-codesign #{get_dart_define()}")
+    flutter("build ios --release --no-codesign")
   end
 
   desc "Generates a provisioning profile, saving it in the current folder "
@@ -165,18 +165,7 @@ private_lane :get_changelog do
 end
 
 def flutter(cmd)
-  flutter_cmd = "fvm flutter"
-  sh(
-    "fvm --version > /dev/null", # check if fvm is available
-    error_callback: ->(result) { flutter_cmd = "flutter" },
-    log: false,
-  )
-
-  sh("#{flutter_cmd} #{cmd}")
-end
-
-private_lane :get_dart_define do
-  sh("#{project_path}/bin/get-dart-define.sh")
+  sh("dart run flutter_toolkit:cli dart-define | flutter #{cmd}")
 end
 
 private_lane :firebase_android_id do
