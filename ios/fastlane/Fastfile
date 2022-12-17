@@ -3,4 +3,4 @@ import("../../fastlane/Fastfile")
 skip_docs
 
 default_platform(:ios)
-xcversion(version: "~> 13.1")
+xcversion(version: ">= 13.1")
