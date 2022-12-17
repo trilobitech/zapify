@@ -25,11 +25,13 @@ ios_testers_group = "iostesters"
 
 ios_devices_file = "#{project_path}/build/ios_devices.txt"
 
+apple_api_key_path = "#{project_path}/ios/certificates/app-store-api-key.json"
+
 platform :android do
 
   desc "Build release APK"
   lane :build_apk do
-    flutter("build apk --release}")
+    flutter("build apk --release")
   end
 
   desc "Build release Bundle"
@@ -38,14 +40,20 @@ platform :android do
   end
 
   desc "Distribute to Android beta testers"
-  lane :firebase_distribute do
+  lane :firebase_distribute do |options|
     ENV['IS_FIREBASE_DISTRIBUTION'] = 'true'
+
+    tester_email = options[:tester_email]
+    testers_group = tester_email ? nil : android_testers_group
+
     build_apk
+
     firebase_app_distribution(
       app: firebase_android_id(),
       release_notes: get_changelog(),
-      groups: android_testers_group,
-      android_artifact_path: "#{project_path}/build/app/outputs/apk/release/app-release.apk"
+      android_artifact_path: "#{project_path}/build/app/outputs/apk/release/app-release.apk",
+      groups: testers_group,
+      testers: tester_email,
     )
   end
 
@@ -82,7 +90,9 @@ platform :ios do
     is_edirock = options[:profile_type] == profile_type_edirock
     provisioning_name_suffix = is_edirock ? 'AdHoc' : 'AppStore'
 
-    cert(output_path: "#{project_path}/ios/certificates")
+    cert(
+      output_path: "#{project_path}/ios/certificates",
+    )
 
     sigh(
       provisioning_name: "Zapify #{provisioning_name_suffix}",
@@ -96,19 +106,23 @@ platform :ios do
   private_lane :download_udids do |options|
     firebase_app_distribution_get_udids(
       app: options[:app_id],
-      output_file: ios_devices_file
+      output_file: ios_devices_file,
     )
   end
 
   desc "Registers devices to the Apple Dev Portal"
   private_lane :sync_device_info do
-    register_devices(devices_file: ios_devices_file)
+    register_devices(
+      devices_file: ios_devices_file,
+    )
   end
 
   desc "Generate IPA"
   private_lane :generate_ipa do |options|
     build
-    update_profile(profile_type: options[:profile_type])
+    update_profile(
+      profile_type: options[:profile_type],
+    )
 
     gym(
       scheme: "Runner",
@@ -124,14 +138,19 @@ platform :ios do
 
   desc "Distribute to iOS beta testers in TestFlight"
   lane :release_distribute do
+    request_api_key
     generate_ipa(profile_type: profile_type_store)
     pilot
   end
 
   desc "Distribute to iOS beta testers in Firebase"
-  lane :firebase_distribute do
+  lane :firebase_distribute do |options|
     ENV['IS_FIREBASE_DISTRIBUTION'] = 'true'
 
+    tester_email = options[:tester_email]
+    testers_group = tester_email ? nil : ios_testers_group
+    
+    request_api_key
     app_id = firebase_ios_id()
     download_udids(app_id: app_id)
     sync_device_info
@@ -141,11 +160,28 @@ platform :ios do
       app: app_id,
       release_notes: get_changelog(),
       ipa_path: "#{project_path}/build/Runner/Runner.ipa",
-      groups: ios_testers_group,
-      debug: true,
+      groups: testers_group,
+      testers: tester_email,
     )
   end
 
+  private_lane :request_api_key do
+    api_key_content = File.read(apple_api_key_path)
+    api_key_json = JSON.parse(api_key_content)
+
+    app_store_connect_api_key(
+      key_id: api_key_json['key_id'],
+      issuer_id: api_key_json['issuer_id'],
+      key_content: api_key_json['key'],
+      duration: api_key_json['duration'],
+      in_house: api_key_json['in_house'],
+    )
+  end
+
+end
+
+def flutter(cmd)
+  sh("dart run flutter_toolkit:cli dart-define | xargs flutter #{cmd}")
 end
 
 private_lane :get_changelog do
@@ -162,10 +198,6 @@ private_lane :get_changelog do
     is_unreleased_section = is_unreleased_section || line.start_with?("## [Unreleased]")
   end
   changelog_contents.strip
-end
-
-def flutter(cmd)
-  sh("dart run flutter_toolkit:cli dart-define | flutter #{cmd}")
 end
 
 private_lane :firebase_android_id do
