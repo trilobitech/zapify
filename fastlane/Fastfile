@@ -13,10 +13,9 @@
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
 
-default_platform(:all)
-
 project_path = File.realpath(File.dirname(File.dirname(__FILE__)))
 
+app_name = 'Zapify'
 profile_type_edirock = 'ad-hoc' # Firebase
 profile_type_store = 'app-store'
 
@@ -24,7 +23,6 @@ android_testers_group = "androidtesters"
 ios_testers_group = "iostesters"
 
 ios_devices_file = "#{project_path}/build/ios_devices.txt"
-
 apple_api_key_path = "#{project_path}/ios/certificates/app-store-api-key.json"
 
 platform :android do
@@ -95,7 +93,7 @@ platform :ios do
     )
 
     sigh(
-      provisioning_name: "Zapify #{provisioning_name_suffix}",
+      provisioning_name: "#{app_name} #{provisioning_name_suffix}",
       output_path: "#{project_path}/ios/certificates",
       adhoc: is_edirock,
       force: true,
