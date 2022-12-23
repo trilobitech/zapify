@@ -106,12 +106,12 @@ jobs:
           echo "is_pr=${{ github.event.type == 'PullRequestEvent' }}" >> $GITHUB_OUTPUT
 
       - name: Checkout repository
-        if: ${{ steps.event-check.outputs.is_pr }}
+        if: ${{ steps.event-check.outputs.is_pr == 'true' }}
         uses: actions/checkout@v3.2.0
 
       - id: changed-files
         name: Get changed files
-        if: ${{ steps.event-check.outputs.is_pr }}
+        if: ${{ steps.event-check.outputs.is_pr == 'true' }}
         uses: tj-actions/changed-files@v35
         with:
           files: |
@@ -120,7 +120,7 @@ jobs:
 
       - id: added-and-modified-files
         name: Get all added and modified files
-        if: ${{ steps.event-check.outputs.is_pr }}
+        if: ${{ steps.event-check.outputs.is_pr == 'true' }}
         run: |
           changed_files=$(echo "${{ steps.changed-files.outputs.added_files }} ${{ steps.changed-files.outputs.modified_files }}" | xargs)
           changed_dart_files=$(echo "$changed_files" | tr ' ' '\n' | grep -E '\.dart$' | xargs)
