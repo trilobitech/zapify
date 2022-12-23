@@ -614,9 +614,11 @@ packages:
   http_client_plus:
     dependency: "direct main"
     description:
-      path: "packages/http_client_plus"
-      relative: true
-    source: path
+      path: http_client_plus
+      ref: HEAD
+      resolved-ref: "169623e8b58786f59805c53049f66dcf51976037"
+      url: "https://github.com/pedrox-hs/flutter_packages"
+    source: git
     version: "0.1.0"
   http_multi_server:
     dependency: transitive
