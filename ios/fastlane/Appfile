@@ -1,1 +1,5 @@
-../../fastlane/Appfile
+app_identifier "com.zapfy.app" # The bundle identifier of your app
+# apple_id ENV['APPLE_ID'] # Your Apple email address
+
+# itc_team_id ENV['ITC_TEAM_ID'] # App Store Connect Team ID
+# team_id "GZ7JYQ737A" # Developer Portal Team ID

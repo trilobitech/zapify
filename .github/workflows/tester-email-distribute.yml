@@ -24,6 +24,7 @@ jobs:
       environment: firebase-distribution
     secrets:
       FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-      FILES: ${{ secrets.FILES }}
+      ANDROID_BUILD_FILES: ${{ secrets.ANDROID_BUILD_FILES }}
+      IOS_BUILD_FILES: ${{ secrets.IOS_BUILD_FILES }}
       AMPLITUDE_KEY: ${{ secrets.AMPLITUDE_KEY }}
       TESTER_EMAIL: ${{ github.event.inputs.tester_email }}

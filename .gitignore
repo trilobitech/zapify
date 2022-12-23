@@ -47,7 +47,7 @@ app.*.map.json
 
 # Fastlane
 **/fastlane/report.xml
-android/gplay.secret.json
+**/fastlane/credentials/
 
 # Firebase
 **/google-services.json
