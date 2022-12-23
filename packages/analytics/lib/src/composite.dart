@@ -96,7 +96,8 @@ class Analytics implements IAnalytics {
   }
 
   void _log(String event, Map<String, dynamic> properties) {
-    Log.d( // replace with Log.tag(tag).d when available
+    // replace with Log.tag(tag).d when available
+    Log.d(
       {'event_name': event, 'properties': properties},
       // skipCallerFile: true, // not supported
     );
