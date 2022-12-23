@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:analytics/analytics.dart';
 import 'package:flutter/material.dart' hide Intent;
-import 'package:logger/logger.dart';
+import 'package:logger_plus/logger_plus.dart';
 import 'package:receive_intent/receive_intent.dart';
 import 'package:zapify/core/di/inject.dart';
 import 'package:zapify/features/history/presentation/history_page.dart';
@@ -104,7 +104,7 @@ class _HomePageState extends State<HomePage> {
       );
     }
     if (snapshot.hasError) {
-      logError(snapshot.error, snapshot.stackTrace);
+      Log.e(snapshot.error, snapshot.stackTrace);
     }
     return Container();
   }
@@ -121,7 +121,7 @@ class _HomePageState extends State<HomePage> {
       );
     }
     if (snapshot.hasError) {
-      logError(snapshot.error, snapshot.stackTrace);
+      Log.e(snapshot.error, snapshot.stackTrace);
     }
     return Container();
   }
@@ -162,7 +162,7 @@ class _HomePageState extends State<HomePage> {
     AsyncSnapshot<BannerViewState> snapshot,
   ) {
     if (snapshot.hasError) {
-      logError(snapshot.error, snapshot.stackTrace);
+      Log.e(snapshot.error, snapshot.stackTrace);
       return Container();
     }
     final data = snapshot.requireData;
@@ -185,7 +185,7 @@ class _HomePageState extends State<HomePage> {
           none: () => const SizedBox.shrink());
     }
     if (snapshot.hasError) {
-      logError(snapshot.error, snapshot.stackTrace);
+      Log.e(snapshot.error, snapshot.stackTrace);
     }
     return const SizedBox.shrink();
   }
@@ -199,7 +199,7 @@ class _HomePageState extends State<HomePage> {
           .catchError((_) {
         final obfuscatedNumber =
             phoneNumber.replaceAll('*', '\\*').replaceAll(RegExp('[0-9]'), '*');
-        logError('invalid phone number: $obfuscatedNumber');
+        Log.e('invalid phone number: $obfuscatedNumber');
       });
     }
   }

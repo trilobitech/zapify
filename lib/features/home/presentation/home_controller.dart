@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:in_app_review/in_app_review.dart';
-import 'package:logger/logger.dart';
+import 'package:logger_plus/logger_plus.dart';
 import 'package:phone_number/phone_number.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -62,7 +62,7 @@ class HomeController
       final region = await getDefaultRegion();
       onRegionSelected(region);
     } catch (error, stackTrace) {
-      logError(error, stackTrace);
+      Log.e(error, stackTrace);
     }
   }
 }
@@ -93,7 +93,7 @@ mixin _BannerController {
         })
         .then((value) => inAppReview.requestReview())
         .catchError((error, stack) {
-          logError(error, stack);
+          Log.e(error, stack);
           return inAppReview.openStoreListing(appStoreId: EnvConfig.appStoreId);
         })
         .then((_) => setLastAppReviewAtNow());
@@ -241,7 +241,7 @@ mixin _ChatAppsController {
       clearPhoneField();
       return true;
     } catch (error, stackTrace) {
-      logError(error, stackTrace);
+      Log.e(error, stackTrace);
     }
     return false;
   }

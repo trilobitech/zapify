@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:logger/logger.dart';
+import 'package:logger_plus/logger_plus.dart';
 
 class ImageResolverWidget extends StatelessWidget {
   ImageResolverWidget({
@@ -41,7 +41,7 @@ class ImageResolverWidget extends StatelessWidget {
       case 'assets':
         return _fromAssets();
       default:
-        logError('Unsupported scheme: "${uri.scheme}"');
+        Log.e('Unsupported scheme: "${uri.scheme}"');
         return Container();
     }
   }

@@ -1,4 +1,4 @@
-import 'package:logger/logger.dart';
+import 'package:logger_plus/logger_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:zapify/config/local_config.dart';
 import 'package:zapify/features/home/data/datasource/chat_app_datasource.dart';
@@ -37,11 +37,11 @@ class ChatAppRepository implements IChatAppRepository {
     final expiratedAt = await expiration.get<int>();
 
     if (now < expiratedAt) {
-      logDebug('Cache is not expired, skipping sync');
+      Log.d('Cache is not expired, skipping sync');
       return;
     }
 
-    logDebug('Cache is expired, syncing with remote');
+    Log.d('Cache is expired, syncing with remote');
     _syncWithRemote(expiration, now);
   }
 

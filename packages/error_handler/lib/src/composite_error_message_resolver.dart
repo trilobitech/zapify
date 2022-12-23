@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:logger/logger.dart';
+import 'package:logger_plus/logger_plus.dart';
 
 import 'error_message_resolver.dart';
 import 'failure_message_resolver.dart';
@@ -29,7 +29,7 @@ class CompositeErrorMessageResolver extends ErrorMessageResolver {
       }
     }
 
-    logError('Resolver not found for: "${error.runtimeType}" -> $error');
+    Log.e('Resolver not found for: "${error.runtimeType}" -> $error');
     return null;
   }
 }

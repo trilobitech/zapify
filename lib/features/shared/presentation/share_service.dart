@@ -1,4 +1,4 @@
-import 'package:logger/logger.dart';
+import 'package:logger_plus/logger_plus.dart';
 import 'package:receive_intent/receive_intent.dart';
 
 class ShareService {
@@ -10,7 +10,7 @@ class ShareService {
         yield receivedIntent;
       }
     } catch (e, stack) {
-      logError(e, stack);
+      Log.e(e, stack);
     }
 
     yield* ReceiveIntent.receivedIntentStream

@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:logger/logger.dart';
+import 'package:logger_plus/logger_plus.dart';
 
 import 'wrapper.dart';
 
@@ -96,9 +96,9 @@ class Analytics implements IAnalytics {
   }
 
   void _log(String event, Map<String, dynamic> properties) {
-    logDebug(
+    Log.d( // replace with Log.tag(tag).d when available
       {'event_name': event, 'properties': properties},
-      skipCallerFile: true,
+      // skipCallerFile: true, // not supported
     );
   }
 }

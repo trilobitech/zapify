@@ -12,8 +12,10 @@ dependencies:
     sdk: flutter
   firebase_analytics: ^9.3.8
   amplitude_flutter: ^3.11.0
-  logger:
-    path: '../logger'
+  logger_plus:
+    git:
+      url: https://github.com/pedrox-hs/flutter_packages
+      path: logger_plus
 
 dev_dependencies:
   flutter_test:

@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:analytics/analytics.dart';
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
+import 'package:logger_plus/logger_plus.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:timeago_flutter/timeago_flutter.dart';
 import 'package:zapify/core/di/inject.dart';
@@ -55,7 +55,7 @@ class HistoryPage extends StatelessWidget {
       );
     }
     if (snapshot.hasError) {
-      logError(snapshot.error, snapshot.stackTrace);
+      Log.e(snapshot.error, snapshot.stackTrace);
     }
     return Container();
   }

@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:device_info/device_info.dart';
-import 'package:logger/logger.dart';
+import 'package:logger_plus/logger_plus.dart';
 
 final DeviceInfoPlugin _deviceInfoPlugin = DeviceInfoPlugin();
 
@@ -38,7 +38,7 @@ class DeviceInfo {
         return DeviceInfo.ios(await plugin.iosInfo);
       }
     } catch (e, stack) {
-      logError(e, stack);
+      Log.e(e, stack);
     }
     return DeviceInfo(
       platform: Platform.operatingSystem,

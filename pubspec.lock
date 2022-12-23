@@ -697,12 +697,14 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
-  logger:
+  logger_plus:
     dependency: "direct main"
     description:
-      path: "packages/logger"
-      relative: true
-    source: path
+      path: logger_plus
+      ref: HEAD
+      resolved-ref: e899c79b7f9f0075ef67fb1fabe9295b0750f62f
+      url: "https://github.com/pedrox-hs/flutter_packages"
+    source: git
     version: "0.1.0"
   logging:
     dependency: transitive
