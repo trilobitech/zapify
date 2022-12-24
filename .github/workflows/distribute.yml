@@ -88,6 +88,7 @@ jobs:
         env:
           ZAPIFY_AMPLITUDE_KEY: ${{ secrets.AMPLITUDE_KEY }}
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          FASTLANE_SKIP_UPDATE_CHECK: true
 
   pre-distribute:
     runs-on: ubuntu-latest
