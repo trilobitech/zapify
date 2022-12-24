@@ -1,23 +1,23 @@
-import("../../fastlane/Fastfile")
+import('../../fastlane/Fastfile')
 
 skip_docs
 
 default_platform(:android)
 
-testers_group = "androidtesters"
+testers_group = 'androidtesters'
 
 platform :android do
-  desc "Build release APK"
+  desc 'Build release APK'
   lane :build_apk do
-    flutter("build apk --release")
+    flutter('build apk --release')
   end
 
-  desc "Build release Bundle"
+  desc 'Build release Bundle'
   lane :build_bundle do
-    flutter("build appbundle --release")
+    flutter('build appbundle --release')
   end
 
-  desc "Distribute to Android beta testers"
+  desc 'Distribute to Android beta testers'
   lane :firebase_distribute do |options|
     ENV['IS_FIREBASE_DISTRIBUTION'] = 'true'
 
@@ -29,24 +29,24 @@ platform :android do
     firebase_app_distribution(
       app: firebase_id(),
       release_notes: get_changelog(),
-      android_artifact_path: "#{project_path}/build/app/outputs/apk/release/app-release.apk",
+      android_artifact_path: "#{$project_path}/build/app/outputs/apk/release/app-release.apk",
       groups: groups,
       testers: testers,
     )
   end
 
-  desc "Deploy a new version to the Play Store"
+  desc 'Deploy a new version to the Play Store'
   lane :release_distribute do
     verify_play_store_key
     build_bundle
     upload_to_play_store(
-      track: "alpha",
-      release_status: "completed",
-      aab: "#{project_path}/build/app/outputs/bundle/release/app-release.aab",
+      track: 'alpha',
+      release_status: 'completed',
+      aab: "#{$project_path}/build/app/outputs/bundle/release/app-release.aab",
     )
   end
 
-  desc "Verify if has valid Play Store credentials"
+  desc 'Verify if has valid Play Store credentials'
   lane :verify_play_store_key do
     validate_play_store_json_key(
       json_key: CredentialsManager::AppfileConfig.try_fetch_value(:json_key_file)
@@ -54,7 +54,7 @@ platform :android do
   end
 
   lane :firebase_id do
-    google_services_file = "#{project_path}/android/app/google-services.json"
+    google_services_file = "#{$project_path}/android/app/google-services.json"
     sh("cat '#{google_services_file}' | jq '.client[0]|.client_info.mobilesdk_app_id' -r").strip
   end
 end

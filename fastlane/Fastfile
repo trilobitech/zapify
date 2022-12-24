@@ -1,6 +1,7 @@
-project_path = File.realpath(File.dirname(File.dirname(__FILE__)))
+# Shared lanes
 
-app_name = 'Zapify'
+$app_name = 'Zapify'
+$project_path = File.realpath(File.dirname(File.dirname(__FILE__)))
 
 def flutter(cmd)
   sh("dart run flutter_toolkit:cli dart-define | xargs flutter #{cmd}")
@@ -10,14 +11,14 @@ lane :get_changelog do
   is_unreleased_section = false
   changelog_contents = ''
 
-  File.readlines("#{project_path}/CHANGELOG.md").each do |line|
+  File.readlines("#{$project_path}/CHANGELOG.md").each do |line|
     if is_unreleased_section
-      if line.start_with?("## [")
+      if line.start_with?('## [')
         break
       end
       changelog_contents += line
     end
-    is_unreleased_section = is_unreleased_section || line.start_with?("## [Unreleased]")
+    is_unreleased_section = is_unreleased_section || line.start_with?('## [Unreleased]')
   end
 
   changelog_contents.strip
