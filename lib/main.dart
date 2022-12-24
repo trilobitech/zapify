@@ -29,16 +29,17 @@ void main() {
 
       runApp(const ZapifyApp());
     },
-    (error, stack) => crashlytics.recordError(error, stack, fatal: true),
+    Log.f,
   );
 }
 
 Future<void> setupApp() async {
+  FlutterError.onError = Log.f;
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  FlutterError.onError = crashlytics.recordFlutterFatalError;
   if (!kDebugMode) {
     Log.plant(_CrashlyticsTree());
   }
@@ -63,8 +64,8 @@ Future<void> setupApp() async {
 class _CrashlyticsTree extends DebugTree {
   @override
   void log(Level level, String tag, dynamic message, [StackTrace? stackTrace]) {
-    if (level == Level.error) {
-      crashlytics.recordError(message, stackTrace);
+    if (level.isError) {
+      crashlytics.recordError(message, stackTrace, fatal: level == Level.fatal);
     }
   }
 }
