@@ -9,6 +9,7 @@ end
 lane :get_changelog do
   is_unreleased_section = false
   changelog_contents = ''
+
   File.readlines("#{project_path}/CHANGELOG.md").each do |line|
     if is_unreleased_section
       if line.start_with?("## [")
@@ -16,8 +17,8 @@ lane :get_changelog do
       end
       changelog_contents += line
     end
-
     is_unreleased_section = is_unreleased_section || line.start_with?("## [Unreleased]")
   end
+
   changelog_contents.strip
 end

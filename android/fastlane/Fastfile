@@ -27,7 +27,7 @@ platform :android do
     build_apk
 
     firebase_app_distribution(
-      app: firebase_android_id(),
+      app: firebase_id(),
       release_notes: get_changelog(),
       android_artifact_path: "#{project_path}/build/app/outputs/apk/release/app-release.apk",
       groups: groups,
