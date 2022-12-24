@@ -532,7 +532,7 @@ packages:
     description:
       path: flutter_toolkit
       ref: HEAD
-      resolved-ref: "79a2fd9272be3a942f5941fe7c68b7430040284a"
+      resolved-ref: "18fc89b24511f680f95f1c8937508a06d9570a3b"
       url: "https://github.com/pedrox-hs/flutter_packages"
     source: git
     version: "0.1.0"
