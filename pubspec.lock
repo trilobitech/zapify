@@ -702,7 +702,7 @@ packages:
     description:
       path: logger_plus
       ref: HEAD
-      resolved-ref: e899c79b7f9f0075ef67fb1fabe9295b0750f62f
+      resolved-ref: "18fc89b24511f680f95f1c8937508a06d9570a3b"
       url: "https://github.com/pedrox-hs/flutter_packages"
     source: git
     version: "0.1.0"
