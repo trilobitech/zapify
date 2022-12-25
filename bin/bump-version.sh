@@ -4,7 +4,7 @@ set -e
 
 PROJECT_DIR=$(dirname $(dirname ${BASH_SOURCE[0]}))
 
-CHANGELOG_PATH="${PROJECT_DIR}/docs/CHANGELOG.md"
+CHANGELOG_PATH="${PROJECT_DIR}/CHANGELOG.md"
 PUBSPEC_PATH="${PROJECT_DIR}/pubspec.yaml"
 ALLOW_COMMIT_CHANGES=false
 
@@ -28,6 +28,7 @@ main() {
 
     if $ALLOW_COMMIT_CHANGES; then
         git commit -m "Release version $new_version_name" ${CHANGED_FILES[*]}
+        git tag "v${new_version_name}"
     fi
 }
 
