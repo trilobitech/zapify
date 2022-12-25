@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.0] - 2022-12-24
+
 ### Added
 
 - GitHub pages for terms and privacy police
@@ -52,7 +54,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Save history
 - Language support to Portuguese (Brazil) and English
 
-[Unreleased]: https://github.com/trilobitech/zapify/compare/v1.3.0...HEAD
+[Unreleased]: https://github.com/trilobitech/zapify/compare/v1.4.0...HEAD
+[1.4.0]: https://github.com/trilobitech/zapify/compare/v1.3.0...1.4.0
 [1.3.0]: https://github.com/trilobitech/zapify/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/trilobitech/zapify/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/trilobitech/zapify/compare/v1.0.0...v1.1.0
