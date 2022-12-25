@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 abstract class AppTheme {
   static of(BuildContext context) {
@@ -13,6 +14,7 @@ abstract class AppTheme {
         centerTitle: true,
       ),
       scaffoldBackgroundColor: Colors.white,
+      textTheme: GoogleFonts.getTextTheme('Archivo', theme.textTheme),
     );
   }
 }
