@@ -5,6 +5,7 @@ import 'package:timeago_flutter/timeago_flutter.dart';
 
 import '../../../core/di/inject.dart';
 import '../../../core/ext/context.dart';
+import '../../../core/widgets/list_divider.dart';
 import '../../../core/widgets/shimmer_view.dart';
 import '../../home/presentation/widgets/tab_list_view.dart';
 import '../../shared/domain/entity/history_entry.dart';
@@ -65,7 +66,7 @@ class HistoryPage extends StatelessWidget implements TabPage {
     return ListView.separated(
       itemCount: itemCount,
       itemBuilder: itemBuilder,
-      separatorBuilder: (_, __) => const Divider(height: 1),
+      separatorBuilder: (_, __) => const ListDivider(),
     );
   }
 
