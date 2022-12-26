@@ -4,18 +4,21 @@ import 'package:analytics/analytics.dart';
 import 'package:flutter/material.dart' hide Intent;
 import 'package:logger_plus/logger_plus.dart';
 import 'package:receive_intent/receive_intent.dart';
-import 'package:zapify/core/di/inject.dart';
-import 'package:zapify/features/history/presentation/history_page.dart';
-import 'package:zapify/features/home/domain/entity/chat_app.dart';
-import 'package:zapify/features/home/presentation/home_controller.dart';
-import 'package:zapify/features/home/presentation/home_state.dart';
-import 'package:zapify/features/home/presentation/widgets/ad_banner_widget.dart';
-import 'package:zapify/features/home/presentation/widgets/chat_apps_widget.dart';
-import 'package:zapify/features/home/presentation/widgets/phone_field_widget.dart';
-import 'package:zapify/features/home/presentation/widgets/top_banner_widget.dart';
-import 'package:zapify/features/region/presentation/region_picker_page.dart';
-import 'package:zapify/features/shared/domain/entity/region.dart';
-import 'package:zapify/features/shared/presentation/share_service.dart';
+
+import '../../../core/di/inject.dart';
+import '../../call_log/call_log_tab_page.dart';
+import '../../history/presentation/history_page.dart';
+import '../../region/presentation/region_picker_page.dart';
+import '../../shared/domain/entity/region.dart';
+import '../../shared/presentation/share_service.dart';
+import '../domain/entity/chat_app.dart';
+import 'home_controller.dart';
+import 'home_state.dart';
+import 'widgets/ad_banner_widget.dart';
+import 'widgets/chat_apps_widget.dart';
+import 'widgets/phone_field_widget.dart';
+import 'widgets/tab_list_view.dart';
+import 'widgets/top_banner_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -74,9 +77,12 @@ class _HomePageState extends State<HomePage> {
             builder: _buildChatAppLaunchers,
           ),
           Expanded(
-            child: HistoryPage(
-              onEntryTap: controller.onPhoneNumberSelected,
-            ),
+            child: TabListView(tabs: [
+              HistoryPage(
+                onEntryTap: controller.onPhoneNumberSelected,
+              ),
+              CallLogTabPage(),
+            ]),
           ),
         ],
       ),

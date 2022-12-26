@@ -5,40 +5,33 @@ import 'package:flutter/material.dart';
 import 'package:logger_plus/logger_plus.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:timeago_flutter/timeago_flutter.dart';
-import 'package:zapify/core/di/inject.dart';
-import 'package:zapify/core/ext/context.dart';
-import 'package:zapify/features/history/presentation/history_controller.dart';
-import 'package:zapify/features/history/presentation/history_state.dart';
-import 'package:zapify/features/shared/domain/entity/history_entry.dart';
+
+import '../../../core/di/inject.dart';
+import '../../../core/ext/context.dart';
+import '../../home/presentation/widgets/tab_list_view.dart';
+import '../../shared/domain/entity/history_entry.dart';
+import 'history_controller.dart';
+import 'history_state.dart';
 
 typedef OnHistoryEntryTap = Function(String phoneNumber);
 
-class HistoryPage extends StatelessWidget {
+class HistoryPage extends StatelessWidget implements TabPage {
   HistoryPage({Key? key, required this.onEntryTap}) : super(key: key);
 
   late final controller = inject<HistoryController>();
   final OnHistoryEntryTap onEntryTap;
 
   @override
+  IconData get icon => Icons.history;
+
+  @override
+  String buildTitle(BuildContext context) => context.strings.recentNumbersTitle;
+
+  @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          child: Text(
-            context.strings.recentNumbersTitle,
-            style: theme.textTheme.headline6,
-          ),
-        ),
-        Expanded(
-          child: StreamBuilder(
-            stream: controller.state,
-            builder: _buildList,
-          ),
-        ),
-      ],
+    return StreamBuilder(
+      stream: controller.state,
+      builder: _buildList,
     );
   }
 
