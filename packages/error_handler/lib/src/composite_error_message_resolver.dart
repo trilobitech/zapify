@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:logger_plus/logger_plus.dart';
 
 import 'error_message_resolver.dart';
+import 'failure.dart';
 import 'failure_message_resolver.dart';
 
 class CompositeErrorMessageResolver extends ErrorMessageResolver {
@@ -17,13 +18,13 @@ class CompositeErrorMessageResolver extends ErrorMessageResolver {
   final Set<ErrorMessageResolver> _resolvers;
 
   @override
-  String? maybeResolve(BuildContext context, dynamic error) {
+  ResolvedFailure? maybeResolve(BuildContext context, dynamic error) {
     if (error == null) {
       return null;
     }
 
     for (ErrorMessageResolver resolver in _resolvers) {
-      String? message = resolver.maybeResolve(context, error);
+      ResolvedFailure? message = resolver.maybeResolve(context, error);
       if (message != null) {
         return message;
       }

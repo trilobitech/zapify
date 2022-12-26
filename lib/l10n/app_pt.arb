@@ -1,5 +1,6 @@
 {
     "unknowErrorMessage": "Oops! Ocorreu um erro inesperado!",
+    "unknowErrorAction": "Tentar novamente",
 
     "homeTopBannerAskToReviewContent": "Você está gostando do Zapify? Envie sua avaliação.",
     "homeTopBannerAskToReviewButton": "AVALIAR",

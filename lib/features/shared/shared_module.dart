@@ -4,20 +4,24 @@ import 'package:http/http.dart' as http;
 import 'package:http_client_plus/http_client_plus.dart';
 import 'package:phone_number/phone_number.dart';
 import 'package:sqlbrite/sqlbrite.dart';
-import 'package:zapify/core/data/network/user_agent_interceptor.dart';
-import 'package:zapify/core/di/definition.dart';
-import 'package:zapify/core/di/inject.dart';
-import 'package:zapify/core/ext/context.dart';
-import 'package:zapify/features/shared/data/db.dart';
-import 'package:zapify/features/shared/data/repository/history_repository.dart';
-import 'package:zapify/features/shared/data/repository/region_repository.dart';
-import 'package:zapify/features/shared/domain/repository/history_repository.dart';
-import 'package:zapify/features/shared/domain/repository/region_repository.dart';
+
+import '../../core/data/network/user_agent_interceptor.dart';
+import '../../core/di/definition.dart';
+import '../../core/di/inject.dart';
+import '../../core/ext/context.dart';
+import 'data/db.dart';
+import 'data/repository/history_repository.dart';
+import 'data/repository/region_repository.dart';
+import 'domain/repository/history_repository.dart';
+import 'domain/repository/region_repository.dart';
 
 void sharedModule() {
   registerSingleton<ErrorMessageResolver>(
     () => CompositeErrorMessageResolver(
-      onUnknownError: (context) => context.strings.unknowErrorMessage,
+      onUnknownError: (context) => ResolvedActionableFailure(
+        message: context.strings.unknowErrorMessage,
+        action: context.strings.unknowErrorAction,
+      ),
     ),
   );
 

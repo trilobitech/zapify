@@ -1,5 +1,6 @@
 {
     "unknowErrorMessage": "Oops! Something went wrong!",
+    "unknowErrorAction": "Try again",
 
     "homeTopBannerAskToReviewContent": "Are you enjoying Zapify? Please tell us.",
     "homeTopBannerAskToReviewButton": "REVIEW",

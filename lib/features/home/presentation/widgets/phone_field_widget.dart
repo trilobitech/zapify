@@ -1,8 +1,9 @@
 import 'package:error_handler/error_handler.dart';
 import 'package:flutter/material.dart';
-import 'package:zapify/core/di/inject.dart';
-import 'package:zapify/core/ext/context.dart';
-import 'package:zapify/features/shared/domain/entity/region.dart';
+
+import '../../../../core/di/inject.dart';
+import '../../../../core/ext/context.dart';
+import '../../../shared/domain/entity/region.dart';
 
 typedef OnSubmitted = Function(String);
 typedef OnRegionPressed = Function(Region);
@@ -69,7 +70,9 @@ class _PhoneFieldState extends State<PhoneFieldWidget> {
           labelText: context.strings.homePhoneNumberLabel,
           // https://github.com/flutter/flutter/issues/15400#issuecomment-475773473
           // helperText: ' ', // FIXME: talkback says "Space", should be avoided to fix it
-          errorText: _errorMessageResolver.maybeResolve(context, widget.error),
+          errorText: _errorMessageResolver
+              .maybeResolve(context, widget.error)
+              ?.message,
           contentPadding: const EdgeInsets.only(left: 8, right: 8),
           border: const OutlineInputBorder(),
         ),

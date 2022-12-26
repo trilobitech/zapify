@@ -1,18 +1,20 @@
 import 'package:flutter/widgets.dart';
 
-typedef OnUnknownError = String Function(BuildContext context);
+import 'failure.dart';
+
+typedef OnUnknownError = ResolvedFailure Function(BuildContext context);
 
 abstract class ErrorMessageResolver {
-  String? maybeResolve(BuildContext context, dynamic error);
+  ResolvedFailure? maybeResolve(BuildContext context, dynamic error);
 
-  String resolve(BuildContext context, dynamic error) {
-    String? message = maybeResolve(context, error);
-    if (message == null) {
+  ResolvedFailure resolve(BuildContext context, dynamic error) {
+    ResolvedFailure? failure = maybeResolve(context, error);
+    if (failure == null) {
       throw UnsupportedError(
         'Resolver not found for: "${error.runtimeType}" -> $error',
       );
     }
-    return message;
+    return failure;
   }
 }
 
@@ -22,6 +24,6 @@ class UnknowErrorResolver extends ErrorMessageResolver {
   final OnUnknownError? _onUnknownError;
 
   @override
-  String? maybeResolve(BuildContext context, error) =>
+  ResolvedFailure? maybeResolve(BuildContext context, error) =>
       _onUnknownError?.call(context);
 }
