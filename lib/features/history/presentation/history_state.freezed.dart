@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'history_state.dart';
 
@@ -25,9 +25,9 @@ mixin _$HistoryViewState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(List<HistoryEntry> entries)? $default, {
-    TResult Function(int size)? loading,
-    TResult Function()? empty,
+    TResult? Function(List<HistoryEntry> entries)? $default, {
+    TResult? Function(int size)? loading,
+    TResult? Function()? empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -47,9 +47,9 @@ mixin _$HistoryViewState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
-    TResult Function(_HistoryViewStatePopulated value)? $default, {
-    TResult Function(_HistoryViewStateLoading value)? loading,
-    TResult Function(_HistoryViewStateEmpty value)? empty,
+    TResult? Function(_HistoryViewStatePopulated value)? $default, {
+    TResult? Function(_HistoryViewStateLoading value)? loading,
+    TResult? Function(_HistoryViewStateEmpty value)? empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -66,17 +66,18 @@ mixin _$HistoryViewState {
 abstract class $HistoryViewStateCopyWith<$Res> {
   factory $HistoryViewStateCopyWith(
           HistoryViewState value, $Res Function(HistoryViewState) then) =
-      _$HistoryViewStateCopyWithImpl<$Res>;
+      _$HistoryViewStateCopyWithImpl<$Res, HistoryViewState>;
 }
 
 /// @nodoc
-class _$HistoryViewStateCopyWithImpl<$Res>
+class _$HistoryViewStateCopyWithImpl<$Res, $Val extends HistoryViewState>
     implements $HistoryViewStateCopyWith<$Res> {
   _$HistoryViewStateCopyWithImpl(this._value, this._then);
 
-  final HistoryViewState _value;
   // ignore: unused_field
-  final $Res Function(HistoryViewState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -84,27 +85,25 @@ abstract class _$$_HistoryViewStateLoadingCopyWith<$Res> {
   factory _$$_HistoryViewStateLoadingCopyWith(_$_HistoryViewStateLoading value,
           $Res Function(_$_HistoryViewStateLoading) then) =
       __$$_HistoryViewStateLoadingCopyWithImpl<$Res>;
+  @useResult
   $Res call({int size});
 }
 
 /// @nodoc
 class __$$_HistoryViewStateLoadingCopyWithImpl<$Res>
-    extends _$HistoryViewStateCopyWithImpl<$Res>
+    extends _$HistoryViewStateCopyWithImpl<$Res, _$_HistoryViewStateLoading>
     implements _$$_HistoryViewStateLoadingCopyWith<$Res> {
   __$$_HistoryViewStateLoadingCopyWithImpl(_$_HistoryViewStateLoading _value,
       $Res Function(_$_HistoryViewStateLoading) _then)
-      : super(_value, (v) => _then(v as _$_HistoryViewStateLoading));
+      : super(_value, _then);
 
-  @override
-  _$_HistoryViewStateLoading get _value =>
-      super._value as _$_HistoryViewStateLoading;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? size = freezed,
+    Object? size = null,
   }) {
     return _then(_$_HistoryViewStateLoading(
-      size == freezed
+      null == size
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
               as int,
@@ -130,15 +129,15 @@ class _$_HistoryViewStateLoading implements _HistoryViewStateLoading {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_HistoryViewStateLoading &&
-            const DeepCollectionEquality().equals(other.size, size));
+            (identical(other.size, size) || other.size == size));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(size));
+  int get hashCode => Object.hash(runtimeType, size);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_HistoryViewStateLoadingCopyWith<_$_HistoryViewStateLoading>
       get copyWith =>
           __$$_HistoryViewStateLoadingCopyWithImpl<_$_HistoryViewStateLoading>(
@@ -157,9 +156,9 @@ class _$_HistoryViewStateLoading implements _HistoryViewStateLoading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(List<HistoryEntry> entries)? $default, {
-    TResult Function(int size)? loading,
-    TResult Function()? empty,
+    TResult? Function(List<HistoryEntry> entries)? $default, {
+    TResult? Function(int size)? loading,
+    TResult? Function()? empty,
   }) {
     return loading?.call(size);
   }
@@ -191,9 +190,9 @@ class _$_HistoryViewStateLoading implements _HistoryViewStateLoading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
-    TResult Function(_HistoryViewStatePopulated value)? $default, {
-    TResult Function(_HistoryViewStateLoading value)? loading,
-    TResult Function(_HistoryViewStateEmpty value)? empty,
+    TResult? Function(_HistoryViewStatePopulated value)? $default, {
+    TResult? Function(_HistoryViewStateLoading value)? loading,
+    TResult? Function(_HistoryViewStateEmpty value)? empty,
   }) {
     return loading?.call(this);
   }
@@ -231,15 +230,11 @@ abstract class _$$_HistoryViewStateEmptyCopyWith<$Res> {
 
 /// @nodoc
 class __$$_HistoryViewStateEmptyCopyWithImpl<$Res>
-    extends _$HistoryViewStateCopyWithImpl<$Res>
+    extends _$HistoryViewStateCopyWithImpl<$Res, _$_HistoryViewStateEmpty>
     implements _$$_HistoryViewStateEmptyCopyWith<$Res> {
   __$$_HistoryViewStateEmptyCopyWithImpl(_$_HistoryViewStateEmpty _value,
       $Res Function(_$_HistoryViewStateEmpty) _then)
-      : super(_value, (v) => _then(v as _$_HistoryViewStateEmpty));
-
-  @override
-  _$_HistoryViewStateEmpty get _value =>
-      super._value as _$_HistoryViewStateEmpty;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -274,9 +269,9 @@ class _$_HistoryViewStateEmpty implements _HistoryViewStateEmpty {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(List<HistoryEntry> entries)? $default, {
-    TResult Function(int size)? loading,
-    TResult Function()? empty,
+    TResult? Function(List<HistoryEntry> entries)? $default, {
+    TResult? Function(int size)? loading,
+    TResult? Function()? empty,
   }) {
     return empty?.call();
   }
@@ -308,9 +303,9 @@ class _$_HistoryViewStateEmpty implements _HistoryViewStateEmpty {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
-    TResult Function(_HistoryViewStatePopulated value)? $default, {
-    TResult Function(_HistoryViewStateLoading value)? loading,
-    TResult Function(_HistoryViewStateEmpty value)? empty,
+    TResult? Function(_HistoryViewStatePopulated value)? $default, {
+    TResult? Function(_HistoryViewStateLoading value)? loading,
+    TResult? Function(_HistoryViewStateEmpty value)? empty,
   }) {
     return empty?.call(this);
   }
@@ -340,28 +335,26 @@ abstract class _$$_HistoryViewStatePopulatedCopyWith<$Res> {
           _$_HistoryViewStatePopulated value,
           $Res Function(_$_HistoryViewStatePopulated) then) =
       __$$_HistoryViewStatePopulatedCopyWithImpl<$Res>;
+  @useResult
   $Res call({List<HistoryEntry> entries});
 }
 
 /// @nodoc
 class __$$_HistoryViewStatePopulatedCopyWithImpl<$Res>
-    extends _$HistoryViewStateCopyWithImpl<$Res>
+    extends _$HistoryViewStateCopyWithImpl<$Res, _$_HistoryViewStatePopulated>
     implements _$$_HistoryViewStatePopulatedCopyWith<$Res> {
   __$$_HistoryViewStatePopulatedCopyWithImpl(
       _$_HistoryViewStatePopulated _value,
       $Res Function(_$_HistoryViewStatePopulated) _then)
-      : super(_value, (v) => _then(v as _$_HistoryViewStatePopulated));
+      : super(_value, _then);
 
-  @override
-  _$_HistoryViewStatePopulated get _value =>
-      super._value as _$_HistoryViewStatePopulated;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? entries = freezed,
+    Object? entries = null,
   }) {
     return _then(_$_HistoryViewStatePopulated(
-      entries: entries == freezed
+      entries: null == entries
           ? _value._entries
           : entries // ignore: cast_nullable_to_non_nullable
               as List<HistoryEntry>,
@@ -378,6 +371,7 @@ class _$_HistoryViewStatePopulated implements _HistoryViewStatePopulated {
   final List<HistoryEntry> _entries;
   @override
   List<HistoryEntry> get entries {
+    if (_entries is EqualUnmodifiableListView) return _entries;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_entries);
   }
@@ -401,6 +395,7 @@ class _$_HistoryViewStatePopulated implements _HistoryViewStatePopulated {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_HistoryViewStatePopulatedCopyWith<_$_HistoryViewStatePopulated>
       get copyWith => __$$_HistoryViewStatePopulatedCopyWithImpl<
           _$_HistoryViewStatePopulated>(this, _$identity);
@@ -418,9 +413,9 @@ class _$_HistoryViewStatePopulated implements _HistoryViewStatePopulated {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(List<HistoryEntry> entries)? $default, {
-    TResult Function(int size)? loading,
-    TResult Function()? empty,
+    TResult? Function(List<HistoryEntry> entries)? $default, {
+    TResult? Function(int size)? loading,
+    TResult? Function()? empty,
   }) {
     return $default?.call(entries);
   }
@@ -452,9 +447,9 @@ class _$_HistoryViewStatePopulated implements _HistoryViewStatePopulated {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
-    TResult Function(_HistoryViewStatePopulated value)? $default, {
-    TResult Function(_HistoryViewStateLoading value)? loading,
-    TResult Function(_HistoryViewStateEmpty value)? empty,
+    TResult? Function(_HistoryViewStatePopulated value)? $default, {
+    TResult? Function(_HistoryViewStateLoading value)? loading,
+    TResult? Function(_HistoryViewStateEmpty value)? empty,
   }) {
     return $default?.call(this);
   }
