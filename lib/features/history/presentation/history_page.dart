@@ -1,13 +1,11 @@
-import 'dart:ui';
-
 import 'package:analytics/analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:logger_plus/logger_plus.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:timeago_flutter/timeago_flutter.dart';
 
 import '../../../core/di/inject.dart';
 import '../../../core/ext/context.dart';
+import '../../../core/widgets/shimmer_view.dart';
 import '../../home/presentation/widgets/tab_list_view.dart';
 import '../../shared/domain/entity/history_entry.dart';
 import 'history_controller.dart';
@@ -118,16 +116,10 @@ class HistoryPage extends StatelessWidget implements TabPage {
   }
 
   Widget _buildShimmer() {
-    return Shimmer.fromColors(
-      loop: 10,
-      baseColor: Colors.grey.shade500,
-      highlightColor: Colors.grey.shade100,
-      child: ImageFiltered(
-        imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-        child: const ListTile(
-          title: Text('+99 99 99999-9999'),
-          trailing: Text('any time ago'),
-        ),
+    return const ShimmerView(
+      child: ListTile(
+        title: Text('+99 99 99999-9999'),
+        trailing: Text('any time ago'),
       ),
     );
   }
