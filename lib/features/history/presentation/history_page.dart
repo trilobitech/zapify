@@ -119,8 +119,8 @@ class HistoryPage extends StatelessWidget implements TabPage {
   Widget _buildShimmer() {
     return const ShimmerView(
       child: ListTile(
-        title: Text('+99 99 99999-9999'),
-        trailing: Text('any time ago'),
+        title: Text('■■■ ■■ ■■■■■-■■■■'),
+        trailing: Text('■■■ ■■■■ ■■■'),
       ),
     );
   }

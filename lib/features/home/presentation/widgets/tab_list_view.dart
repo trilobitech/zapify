@@ -119,10 +119,10 @@ class _TabIndicator extends StatefulWidget {
   final TabController? controller;
 
   @override
-  State<_TabIndicator> createState() => _TabIndicatorState();
+  State<_TabIndicator> createState() => _TabStateIndicatorView();
 }
 
-class _TabIndicatorState extends State<_TabIndicator> {
+class _TabStateIndicatorView extends State<_TabIndicator> {
   late TabController? controller =
       widget.controller ?? DefaultTabController.of(context);
 
@@ -148,7 +148,7 @@ class _TabIndicatorState extends State<_TabIndicator> {
         const SizedBox(width: 8),
         Text(
           widget.title,
-          style: theme.textTheme.button?.copyWith(color: tabColor),
+          style: TextStyle(color: tabColor),
         )
       ],
     );

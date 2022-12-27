@@ -11,11 +11,14 @@ class ShimmerView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      loop: 10,
-      baseColor: Colors.grey.shade500,
-      highlightColor: Colors.grey.shade100,
+      baseColor: const Color(0xFFD6D6D6),
+      highlightColor: Colors.grey.shade200,
       child: ImageFiltered(
-        imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+        imageFilter: ImageFilter.blur(
+          sigmaX: 5,
+          sigmaY: 4,
+          tileMode: TileMode.decal,
+        ),
         child: child,
       ),
     );
