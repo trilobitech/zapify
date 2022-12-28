@@ -5,6 +5,7 @@ import 'package:timeago_flutter/timeago_flutter.dart';
 
 import '../../../core/di/inject.dart';
 import '../../../core/ext/context.dart';
+import '../../../core/widgets/feedback_view.dart';
 import '../../../core/widgets/list_divider.dart';
 import '../../../core/widgets/shimmer_view.dart';
 import '../../home/presentation/widgets/tab_list_view.dart';
@@ -43,7 +44,7 @@ class HistoryPage extends StatelessWidget implements TabPage {
       return state.when(
         _buildLoadedListWidget,
         loading: _buildLoadingListWidget,
-        empty: () => _buildEmptyListWidget(context),
+        empty: () => FeedbackView(text: context.strings.recentNumbersEmpty),
       );
     }
     if (snapshot.hasError) {
@@ -107,12 +108,6 @@ class HistoryPage extends StatelessWidget implements TabPage {
         //   analytics.itemLongPressed('phone_from_history');
         // },
       ),
-    );
-  }
-
-  Widget _buildEmptyListWidget(BuildContext context) {
-    return Center(
-      child: Text(context.strings.recentNumbersEmpty),
     );
   }
 
