@@ -15,6 +15,11 @@
     "recentNumberRemoved": "O número \"{phoneNumber}\" foi removido do histórico!",
     "undoAction": "Desfazer",
 
+    "callLogTabTitle": "Chamadas",
+    "callLogPermissionMessage": "Para exibir o histórico de chamadas, é necessário permitir o acesso.",
+    "callLogPermissionButtonLabel": "Permitir",
+    "callLogEmptyMessage": "Nenhuma chamada para exibir",
+
     "availableRegionsTitle": "Selecione o país",
     "availableRegionsSearch": "Procurar…"
 }

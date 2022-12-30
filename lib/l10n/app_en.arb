@@ -15,6 +15,11 @@
     "recentNumberRemoved": "Recent number \"{phoneNumber}\" was removed!",
     "undoAction": "Undo",
 
+    "callLogTabTitle": "Phone calls",
+    "callLogPermissionMessage": "You need to give permission to display call log.",
+    "callLogPermissionButtonLabel": "Give permission",
+    "callLogEmptyMessage": "No calls to display",
+
     "availableRegionsTitle": "Select a country",
     "availableRegionsSearch": "Search…"
 }
