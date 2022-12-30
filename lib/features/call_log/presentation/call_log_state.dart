@@ -22,20 +22,22 @@ class CallItem {
   CallItem({
     required this.leading,
     required this.title,
-    required this.subtitle,
+    this.subtitle,
+    required this.date,
     required this.number,
   });
 
   factory CallItem.from(CallEntity item) => CallItem(
         leading: item.type.leading,
         title: item.name ?? item.number,
-        subtitle: item.date.formatted,
+        date: item.date,
         number: item.number,
       );
 
   final Leading leading;
   final String title;
-  final String subtitle;
+  final String? subtitle;
+  final DateTime date;
   final String number;
 }
 
@@ -77,9 +79,4 @@ extension _CallTypeExt on CallType {
         return null;
     }
   }
-}
-
-extension _DateExt on DateTime {
-  // TODO
-  String get formatted => toString();
 }

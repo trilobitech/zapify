@@ -21,5 +21,11 @@
     "callLogEmptyMessage": "No calls to display",
 
     "availableRegionsTitle": "Select a country",
-    "availableRegionsSearch": "Search…"
+    "availableRegionsSearch": "Search…",
+
+    "today": "'Today at' h:mm a",
+    "yesterday": "'Yesterday at' h:mm a",
+    "lastCoupleOfDays": "EEEE 'at' h:mm a",
+    "lastCoupleOfMonths": "MMMM d 'at' h:mm a",
+    "longTimeAgo": "MMMM d, yyyy"
 }

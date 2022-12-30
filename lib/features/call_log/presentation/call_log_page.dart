@@ -6,6 +6,7 @@ import '../../../core/ext/context.dart';
 import '../../../core/widgets/feedback_view.dart';
 import '../../../core/widgets/list_divider.dart';
 import '../../../core/widgets/shimmer_view.dart';
+import '../../../l10n/l10n_ext.dart';
 import '../../home/presentation/widgets/tab_list_view.dart';
 import 'call_log_controller.dart';
 import 'call_log_state.dart';
@@ -115,6 +116,7 @@ class _CallEntryView extends StatelessWidget {
           ),
           title: '■■ ■■ ■■■■■-■■■■',
           subtitle: '■■/■■/■■■■ ■■:■■',
+          date: DateTime(2022, 12, 30, 18, 50),
           number: '',
         ),
         null,
@@ -131,7 +133,7 @@ class _CallEntryView extends StatelessWidget {
         child: Icon(item.leading.icon),
       ),
       title: Text(item.title),
-      subtitle: Text(item.subtitle),
+      subtitle: Text(item.subtitle ?? context.strings.formatDate(item.date)),
       onTap: onTap,
     );
   }

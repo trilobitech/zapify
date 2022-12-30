@@ -21,5 +21,11 @@
     "callLogEmptyMessage": "Nenhuma chamada para exibir",
 
     "availableRegionsTitle": "Selecione o país",
-    "availableRegionsSearch": "Procurar…"
+    "availableRegionsSearch": "Procurar…",
+
+    "today": "'Hoje às' HH:mm",
+    "yesterday": "'Ontem às' HH:mm",
+    "lastCoupleOfDays": "EEEE 'às' HH:mm",
+    "lastCoupleOfMonths": "d 'de' MMMM 'às' HH:mm",
+    "longTimeAgo": "d 'de' MMMM 'de' yyyy"
 }
