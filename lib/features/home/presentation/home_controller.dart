@@ -5,18 +5,19 @@ import 'package:logger_plus/logger_plus.dart';
 import 'package:phone_number/phone_number.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:zapify/config/env_config.dart';
-import 'package:zapify/config/remote_config.dart';
-import 'package:zapify/features/home/domain/entity/banner.dart';
-import 'package:zapify/features/home/domain/entity/chat_app.dart';
-import 'package:zapify/features/home/domain/usecase/app_review.dart';
-import 'package:zapify/features/home/domain/usecase/get_chat_apps.dart';
-import 'package:zapify/features/home/domain/usecase/get_region.dart';
-import 'package:zapify/features/home/domain/usecase/get_top_banner.dart';
-import 'package:zapify/features/home/domain/usecase/save_phone_number_history.dart';
-import 'package:zapify/features/home/presentation/error/home_failure.dart';
-import 'package:zapify/features/home/presentation/home_state.dart';
-import 'package:zapify/features/shared/domain/entity/region.dart';
+
+import '../../../config/env_config.dart';
+import '../../../config/remote_config.dart';
+import '../../shared/domain/entity/region.dart';
+import '../domain/entity/banner.dart';
+import '../domain/entity/chat_app.dart';
+import '../domain/usecase/app_review.dart';
+import '../domain/usecase/get_chat_apps.dart';
+import '../domain/usecase/get_region.dart';
+import '../domain/usecase/get_top_banner.dart';
+import '../domain/usecase/save_phone_number_history.dart';
+import 'error/home_failure.dart';
+import 'home_state.dart';
 
 class HomeController
     with
@@ -57,7 +58,7 @@ class HomeController
   @override
   final SetLastAppReviewAtNow setLastAppReviewAtNow;
 
-  init() async {
+  Future<void> init() async {
     try {
       final region = await getDefaultRegion();
       onRegionSelected(region);
@@ -73,7 +74,7 @@ mixin _BannerController {
 
   Stream<BannerViewState> get bannerViewState => getTopBanner();
 
-  onTopBannerActionTap(TopBannerType type) {
+  void onTopBannerActionTap(TopBannerType type) {
     switch (type) {
       case TopBannerType.appReview:
         askForReview();
@@ -81,7 +82,7 @@ mixin _BannerController {
     }
   }
 
-  Future askForReview() async {
+  Future<void> askForReview() async {
     final inAppReview = InAppReview.instance;
 
     await inAppReview
@@ -139,24 +140,29 @@ mixin _PhoneFieldController {
     }
   }
 
-  onRegionSelected(Region region) {
+  void clearPhoneField() {
+    _textEditingController.clear();
+  }
+
+  void onRegionSelected(Region region) {
     _updateTextField(region, _textEditingController.value);
   }
 
-  Future onPhoneNumberSelected(String phoneNumber) =>
-      _updatePhoneNumberFromString(phoneNumber);
+  Future<void> onPhoneNumberSelected(String phoneNumber) =>
+      onPhoneNumberReceived(phoneNumber);
 
-  Future onPhoneNumberReceived(String phoneNumber) async {
+  Future<void> onPhoneNumberReceived(String phoneNumber) async {
     if (phoneNumber.startsWith('+')) {
       return _updatePhoneNumberFromString(phoneNumber);
     }
 
     final region = await getDefaultRegion();
     return _updatePhoneNumberFromString('+${region.prefix}$phoneNumber')
-        .catchError((e) async => _updatePhoneNumberFromString('+$phoneNumber'));
+        .catchError((e) async => _updatePhoneNumberFromString('+$phoneNumber'))
+        .catchError((e) => _updatePhoneFieldWith(phoneNumber: phoneNumber));
   }
 
-  Future _updatePhoneNumberFromString(String phoneNumberString) async {
+  Future<void> _updatePhoneNumberFromString(String phoneNumberString) async {
     final phoneNumber = await _plugin.parse(phoneNumberString);
     final region = await getRegion(
       prefix: phoneNumber.countryCode,
@@ -165,22 +171,25 @@ mixin _PhoneFieldController {
     final formatted =
         await _plugin.format(phoneNumber.nationalNumber, region.code);
 
+    _updatePhoneFieldWith(
+      region: region,
+      phoneNumber: formatted,
+    );
+  }
+
+  void _updatePhoneFieldWith({Region? region, required String phoneNumber}) {
     _updateTextField(
-      region,
+      region ?? _region,
       TextEditingValue(
-        text: formatted,
+        text: phoneNumber,
         selection: TextSelection.fromPosition(
-          TextPosition(offset: formatted.length),
+          TextPosition(offset: phoneNumber.length),
         ),
       ),
     );
   }
 
-  clearPhoneField() {
-    _textEditingController.clear();
-  }
-
-  _updateTextField(Region region, TextEditingValue value) {
+  void _updateTextField(Region region, TextEditingValue value) {
     _region = region;
     _textEditingController = PhoneNumberEditingController.fromValue(
       _plugin,
@@ -191,7 +200,7 @@ mixin _PhoneFieldController {
     _refreshState();
   }
 
-  _refreshState([dynamic error]) {
+  void _refreshState([dynamic error]) {
     if (error != null) {
       _addClearErrorListener();
     }
@@ -205,7 +214,7 @@ mixin _PhoneFieldController {
     );
   }
 
-  _addClearErrorListener() {
+  void _addClearErrorListener() {
     final oldText = _textEditingController.text;
     late final Function() listener;
     listener = () {
@@ -246,7 +255,7 @@ mixin _ChatAppsController {
     return false;
   }
 
-  _openChatApp(String deepLinkPrefix, String phoneNumber) async {
+  Future<void> _openChatApp(String deepLinkPrefix, String phoneNumber) async {
     final Uri uri = Uri.parse('$deepLinkPrefix$phoneNumber');
     if (!await canLaunchUrl(uri) ||
         !await launchUrl(uri, mode: LaunchMode.externalApplication)) {
