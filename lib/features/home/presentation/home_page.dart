@@ -6,7 +6,7 @@ import 'package:logger_plus/logger_plus.dart';
 import 'package:receive_intent/receive_intent.dart';
 
 import '../../../core/di/inject.dart';
-import '../../call_log/call_log_tab_page.dart';
+import '../../call_log/presentation/call_log_page.dart';
 import '../../history/presentation/history_page.dart';
 import '../../region/presentation/region_picker_page.dart';
 import '../../shared/domain/entity/region.dart';
@@ -81,7 +81,9 @@ class _HomePageState extends State<HomePage> {
               HistoryPage(
                 onEntryTap: controller.onPhoneNumberSelected,
               ),
-              CallLogTabPage(),
+              CallLogTabPage(
+                onEntryTap: controller.onPhoneNumberSelected,
+              ),
             ]),
           ),
         ],

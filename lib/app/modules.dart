@@ -1,9 +1,10 @@
-import 'package:zapify/config/config_module.dart';
-import 'package:zapify/core/di/inject.dart';
-import 'package:zapify/features/history/history_module.dart';
-import 'package:zapify/features/home/home_module.dart';
-import 'package:zapify/features/region/region_module.dart';
-import 'package:zapify/features/shared/shared_module.dart';
+import '../config/config_module.dart';
+import '../core/di/inject.dart';
+import '../features/call_log/call_log_module.dart';
+import '../features/history/history_module.dart';
+import '../features/home/home_module.dart';
+import '../features/region/region_module.dart';
+import '../features/shared/shared_module.dart';
 
 Future<void> loadModules() async {
   configModule();
@@ -11,5 +12,6 @@ Future<void> loadModules() async {
   homeModule();
   historyModule();
   regionModule();
+  callLogModule();
   await getIt.allReady();
 }
