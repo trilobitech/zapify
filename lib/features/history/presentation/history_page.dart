@@ -15,10 +15,11 @@ import 'history_state.dart';
 
 typedef OnHistoryEntryTap = Function(String phoneNumber);
 
-class HistoryPage extends StatelessWidget implements TabPage {
-  HistoryPage({Key? key, required this.onEntryTap}) : super(key: key);
-
-  late final controller = inject<HistoryController>();
+class HistoryPage extends StatefulWidget implements TabPage {
+  const HistoryPage({
+    super.key,
+    required this.onEntryTap,
+  });
   final OnHistoryEntryTap onEntryTap;
 
   @override
@@ -28,7 +29,20 @@ class HistoryPage extends StatelessWidget implements TabPage {
   String buildTitle(BuildContext context) => context.strings.recentNumbersTitle;
 
   @override
+  State<HistoryPage> createState() => _HistoryPageState();
+}
+
+class _HistoryPageState extends State<HistoryPage>
+    with AutomaticKeepAliveClientMixin {
+  late final controller = inject<HistoryController>();
+
+  @override
+  bool wantKeepAlive = true;
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     return StreamBuilder(
       stream: controller.state,
       builder: _buildList,
@@ -102,7 +116,7 @@ class HistoryPage extends StatelessWidget implements TabPage {
         ),
         onTap: () {
           analytics.itemSelected('phone_from_history');
-          onEntryTap(entry.phoneNumber);
+          widget.onEntryTap(entry.phoneNumber);
         },
         // onLongPress: () {
         //   analytics.itemLongPressed('phone_from_history');
