@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:config_core/config_core.dart';
 import 'package:flutter/foundation.dart';
 
@@ -19,5 +21,5 @@ enum RemoteConfig with KeyValueMixin<IRemoteConfigStorage> {
 Map<String, dynamic> get remoteConfigDefaults => {
       RemoteConfig.chatAppsSourceUrl.key: 'assets://data/chat-apps.json',
       RemoteConfig.homeBannerUnitId.key: EnvConfig.homeBannerUnitId,
-      RemoteConfig.isCallLogTabEnabled.key: kDebugMode,
+      RemoteConfig.isCallLogTabEnabled.key: kDebugMode && Platform.isAndroid,
     };
