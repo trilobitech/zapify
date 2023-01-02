@@ -1,6 +1,6 @@
-import 'package:zapify/features/home/domain/entity/banner.dart';
-import 'package:zapify/features/home/domain/usecase/app_review.dart';
-import 'package:zapify/features/home/presentation/home_state.dart';
+import '../../presentation/home_state.dart';
+import '../entity/banner.dart';
+import 'app_review.dart';
 
 class GetTopBannerUseCase {
   GetTopBannerUseCase({

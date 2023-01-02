@@ -1,9 +1,10 @@
+import 'package:analytics/analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:timeago/timeago.dart' as timeago;
-import 'package:zapify/app/theme.dart';
-import 'package:analytics/analytics.dart';
-import 'package:zapify/features/home/presentation/home_page.dart';
+
+import '../features/home/presentation/home_page.dart';
+import 'theme.dart';
 
 class ZapifyApp extends StatefulWidget {
   const ZapifyApp({super.key});

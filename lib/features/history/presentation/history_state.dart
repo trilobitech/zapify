@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:zapify/features/shared/domain/entity/history_entry.dart';
+
+import '../../shared/domain/entity/history_entry.dart';
 
 part 'history_state.freezed.dart';
 

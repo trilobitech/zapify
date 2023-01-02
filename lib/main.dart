@@ -6,11 +6,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:is_firebase_test_lab_activated/is_firebase_test_lab_activated.dart';
 import 'package:logger_plus/logger_plus.dart';
-import 'package:zapify/app/modules.dart';
-import 'package:zapify/app/zapify_app.dart';
-import 'package:zapify/config/env_config.dart';
-import 'package:zapify/core/firebase.dart';
-import 'package:zapify/firebase_options.dart';
+
+import 'app/modules.dart';
+import 'app/zapify_app.dart';
+import 'config/env_config.dart';
+import 'core/firebase.dart';
+import 'firebase_options.dart';
 
 void main() {
   Stopwatch? stopwatch = Stopwatch()..start();

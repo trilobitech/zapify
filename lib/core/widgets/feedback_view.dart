@@ -62,7 +62,7 @@ class ErrorFeedbackView extends FeedbackView {
 }
 
 class FeedbackButton {
-  FeedbackButton({
+  const FeedbackButton({
     required this.text,
     required this.onClick,
   });

@@ -1,6 +1,7 @@
 import 'package:phone_number/phone_number.dart';
-import 'package:zapify/features/shared/domain/entity/region.dart';
-import 'package:zapify/features/shared/domain/repository/region_repository.dart';
+
+import '../../domain/entity/region.dart';
+import '../../domain/repository/region_repository.dart';
 
 class RegionRepository implements IRegionRepository {
   RegionRepository({required this.plugin});

@@ -1,6 +1,6 @@
-import 'package:zapify/features/home/data/model/chat_app_local.dart';
-import 'package:zapify/features/home/data/model/chat_app_remote.dart';
-import 'package:zapify/features/home/domain/entity/chat_app.dart';
+import '../../domain/entity/chat_app.dart';
+import '../model/chat_app_local.dart';
+import '../model/chat_app_remote.dart';
 
 abstract class ChatAppDataSource {}
 

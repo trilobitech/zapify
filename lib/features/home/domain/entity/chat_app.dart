@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:zapify/features/home/domain/entity/color.dart';
+
+import 'color.dart';
 
 class ChatApp extends Equatable {
   const ChatApp({

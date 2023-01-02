@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:zapify/features/home/domain/entity/banner.dart';
-import 'package:zapify/features/home/domain/entity/chat_app.dart';
-import 'package:zapify/features/shared/domain/entity/region.dart';
+
+import '../../shared/domain/entity/region.dart';
+import '../domain/entity/banner.dart';
+import '../domain/entity/chat_app.dart';
 
 part 'home_state.freezed.dart';
 

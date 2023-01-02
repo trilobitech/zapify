@@ -1,5 +1,5 @@
-import 'package:zapify/features/home/domain/entity/chat_app.dart';
-import 'package:zapify/features/home/domain/entity/color.dart';
+import '../../domain/entity/chat_app.dart';
+import '../../domain/entity/color.dart';
 
 class ChatAppLocal extends ChatApp {
   const ChatAppLocal({

@@ -1,7 +1,8 @@
 import 'package:analytics/analytics.dart';
 import 'package:flutter/material.dart';
-import 'package:zapify/core/ext/context.dart';
-import 'package:zapify/features/home/domain/entity/banner.dart';
+
+import '../../../../core/ext/context.dart';
+import '../../domain/entity/banner.dart';
 
 typedef OnTopBannerActionTap = Function(TopBannerType type);
 

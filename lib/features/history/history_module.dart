@@ -1,9 +1,9 @@
-import 'package:zapify/core/di/definition.dart';
-import 'package:zapify/core/di/inject.dart';
-import 'package:zapify/features/history/domain/usecase/get_phone_number_history.dart';
-import 'package:zapify/features/history/domain/usecase/remove_phone_number_history.dart';
-import 'package:zapify/features/history/domain/usecase/restore_phone_number_history.dart';
-import 'package:zapify/features/history/presentation/history_controller.dart';
+import '../../core/di/definition.dart';
+import '../../core/di/inject.dart';
+import 'domain/usecase/get_phone_number_history.dart';
+import 'domain/usecase/remove_phone_number_history.dart';
+import 'domain/usecase/restore_phone_number_history.dart';
+import 'presentation/history_controller.dart';
 
 void historyModule() {
   registerFactory(

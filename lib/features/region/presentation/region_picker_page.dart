@@ -1,9 +1,10 @@
 import 'package:analytics/analytics.dart';
 import 'package:flutter/material.dart';
-import 'package:zapify/core/di/inject.dart';
-import 'package:zapify/core/ext/context.dart';
-import 'package:zapify/features/region/presentation/region_picker_controller.dart';
-import 'package:zapify/features/shared/domain/entity/region.dart';
+
+import '../../../core/di/inject.dart';
+import '../../../core/ext/context.dart';
+import '../../shared/domain/entity/region.dart';
+import 'region_picker_controller.dart';
 
 class RegionPicker extends StatefulWidget {
   const RegionPicker({Key? key, this.selected}) : super(key: key);

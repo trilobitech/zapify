@@ -1,16 +1,16 @@
-import 'package:zapify/core/di/definition.dart';
-import 'package:zapify/core/di/inject.dart';
-import 'package:zapify/features/home/data/datasource/chat_app_datasource.dart';
-import 'package:zapify/features/home/data/datasource/impl/chat_app_datasource_local.dart';
-import 'package:zapify/features/home/data/datasource/impl/chat_app_datasource_remote.dart';
-import 'package:zapify/features/home/data/repository/chat_app_repository.dart';
-import 'package:zapify/features/home/domain/repository/chat_app_repository.dart';
-import 'package:zapify/features/home/domain/usecase/app_review.dart';
-import 'package:zapify/features/home/domain/usecase/get_chat_apps.dart';
-import 'package:zapify/features/home/domain/usecase/get_region.dart';
-import 'package:zapify/features/home/domain/usecase/get_top_banner.dart';
-import 'package:zapify/features/home/domain/usecase/save_phone_number_history.dart';
-import 'package:zapify/features/home/presentation/home_controller.dart';
+import '../../core/di/definition.dart';
+import '../../core/di/inject.dart';
+import 'data/datasource/chat_app_datasource.dart';
+import 'data/datasource/impl/chat_app_datasource_local.dart';
+import 'data/datasource/impl/chat_app_datasource_remote.dart';
+import 'data/repository/chat_app_repository.dart';
+import 'domain/repository/chat_app_repository.dart';
+import 'domain/usecase/app_review.dart';
+import 'domain/usecase/get_chat_apps.dart';
+import 'domain/usecase/get_region.dart';
+import 'domain/usecase/get_top_banner.dart';
+import 'domain/usecase/save_phone_number_history.dart';
+import 'presentation/home_controller.dart';
 
 void homeModule() {
   registerFactory(

@@ -1,6 +1,7 @@
 import 'package:app_install_date/app_install_date.dart';
-import 'package:zapify/config/local_config.dart';
-import 'package:zapify/core/ext/future.dart';
+
+import '../../../../config/local_config.dart';
+import '../../../../core/ext/future.dart';
 
 class CanAskForReview {
   Future<bool> call() async {

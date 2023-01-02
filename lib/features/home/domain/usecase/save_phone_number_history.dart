@@ -1,4 +1,4 @@
-import 'package:zapify/features/shared/domain/repository/history_repository.dart';
+import '../../../shared/domain/repository/history_repository.dart';
 
 class SavePhoneNumberHistoryUseCase {
   SavePhoneNumberHistoryUseCase({
