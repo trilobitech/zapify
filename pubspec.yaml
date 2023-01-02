@@ -52,7 +52,7 @@ dependencies:
   firebase_performance: ^0.8.3+3
   firebase_remote_config: ^2.0.20
   intl: ^0.17.0
-  flutter_svg: ^1.1.1+1
+  flutter_svg: ^1.1.6
   http: ^0.13.4
   equatable: ^2.0.3
   collection: ^1.16.0
