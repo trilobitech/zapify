@@ -88,7 +88,7 @@ class _HistoryPageState extends State<HistoryPage>
   Widget _buildListTile(BuildContext context, HistoryEntry entry) {
     return Dismissible(
       key: ValueKey(entry.phoneNumber),
-      direction: DismissDirection.endToStart,
+      direction: DismissDirection.startToEnd,
       onDismissed: (_) {
         analytics.itemRemoved('phone_from_history');
         controller.remove(entry);
@@ -99,7 +99,7 @@ class _HistoryPageState extends State<HistoryPage>
         child: Stack(
           children: const [
             Positioned(
-              right: 16,
+              left: 16,
               top: 0,
               bottom: 0,
               child: Icon(Icons.delete, color: Colors.white),
