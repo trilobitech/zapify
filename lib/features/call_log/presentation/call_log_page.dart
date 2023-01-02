@@ -1,3 +1,4 @@
+import 'package:analytics/analytics.dart';
 import 'package:flutter/material.dart';
 
 import '../../../config/remote_config.dart';
@@ -107,13 +108,16 @@ class _LoadingView extends StatelessWidget {
 
 class _CallEntryView extends StatelessWidget {
   _CallEntryView(this.item, OnCallLogEntryTap? onEntryTap)
-      : onTap = onEntryTap == null ? null : (() => onEntryTap(item.number));
+      : onTap = onEntryTap == null
+            ? null
+            : (() {
+                analytics.itemSelected('phone_from_call_log');
+                onEntryTap(item.number);
+              });
 
   factory _CallEntryView.fake() => _CallEntryView(
         CallItem(
-          leading: Leading(
-            icon: Icons.circle_outlined,
-          ),
+          leading: Leading(icon: Icons.circle_outlined),
           title: '■■ ■■ ■■■■■-■■■■',
           subtitle: '■■/■■/■■■■ ■■:■■',
           date: DateTime(2022, 12, 30, 18, 50),

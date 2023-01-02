@@ -1,5 +1,7 @@
+import 'package:logger_plus/logger_plus.dart';
 import 'package:rxdart/rxdart.dart';
 
+import '../domain/exception/no_call_log_access_permission.dart';
 import '../domain/usecase/get_call_log.dart';
 import '../domain/usecase/request_call_log_permission.dart';
 import 'call_log_state.dart';
@@ -27,7 +29,7 @@ class CallLogController {
     final state = await getCallLog()
         .then((items) => items.map((e) => CallItem.from(e)))
         .then((items) => CallLogState(entries: items))
-        .catchError((error, stack) => CallLogState.error(error));
+        .catchError(_onError);
 
     _state.add(state);
   }
@@ -35,5 +37,10 @@ class CallLogController {
   Future<void> retry() async {
     await requestCallLogPermission();
     _load();
+  }
+
+  CallLogState _onError(error, stack) {
+    if (error is! NoCallLogAccessPermission) Log.e(error, stack);
+    return CallLogState.error(error);
   }
 }
