@@ -5,5 +5,8 @@
     },
     "files.watcherExclude": {
       "**/.fvm": true
-    }
+    },
+    "git.ignoredRepositories": [
+      "**/.fvm/flutter_sdk"
+    ],
   }
