@@ -15,11 +15,6 @@ class ChatAppLocal extends ChatApp {
           deepLinkPrefix: deepLinkPrefix,
         );
 
-  final int id;
-
-  @override
-  List get props => [id, ...super.props];
-
   factory ChatAppLocal.fromJson(Map<String, dynamic> json) => ChatAppLocal(
         id: json['id'],
         name: json['name'],
@@ -40,6 +35,11 @@ class ChatAppLocal extends ChatApp {
       deepLinkPrefix: entity.deepLinkPrefix,
     );
   }
+
+  final int id;
+
+  @override
+  List get props => [id, ...super.props];
 
   Map<String, dynamic> toJson() => {
         'id': id,

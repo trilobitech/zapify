@@ -3,8 +3,6 @@ import 'package:equatable/equatable.dart';
 class Color extends Equatable {
   const Color._(this.value);
 
-  final int value;
-
   factory Color(dynamic value) {
     if (value is int) {
       return Color._(value);
@@ -23,6 +21,8 @@ class Color extends Equatable {
     );
     return Color._(int.parse(value, radix: 16));
   }
+
+  final int value;
 
   @override
   String toString() => '#${value.toRadixString(16).padLeft(8, '0')}';

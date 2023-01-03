@@ -16,9 +16,6 @@ class ChatAppRemote extends ChatApp {
           deepLinkPrefix: deepLinkPrefix,
         );
 
-  final bool requirePreVerification;
-  final List<String> fallbackFor;
-
   factory ChatAppRemote.fromJson(Map<String, dynamic> json) => ChatAppRemote(
         icon: Uri.parse(json['icon']),
         name: json['name'],
@@ -27,6 +24,9 @@ class ChatAppRemote extends ChatApp {
         requirePreVerification: json['require_pre_verification'] == true,
         fallbackFor: json['fallback_for']?.whereType<String>()?.toList() ?? [],
       );
+
+  final bool requirePreVerification;
+  final List<String> fallbackFor;
 
   static List<ChatAppRemote> fromJsonList(List<dynamic> json) =>
       json.map<ChatAppRemote>((e) => ChatAppRemote.fromJson(e)).toList();
