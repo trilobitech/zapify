@@ -8,5 +8,5 @@ class RemovePhoneNumberHistory {
 
   IHistoryRepository repository;
 
-  call(HistoryEntry entry) => repository.remove(entry);
+  Future<void> call(HistoryEntry entry) => repository.remove(entry);
 }

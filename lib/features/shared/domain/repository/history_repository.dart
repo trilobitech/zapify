@@ -3,9 +3,9 @@ import '../entity/history_entry.dart';
 abstract class IHistoryRepository {
   Stream<List<HistoryEntry>> getAll();
 
-  Future add(String phoneNumber);
+  Future<void> add(String phoneNumber);
 
-  Future remove(HistoryEntry entry);
+  Future<void> remove(HistoryEntry entry);
 
-  Future restore(HistoryEntry entry);
+  Future<void> restore(HistoryEntry entry);
 }

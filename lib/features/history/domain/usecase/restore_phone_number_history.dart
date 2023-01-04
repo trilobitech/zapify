@@ -8,5 +8,5 @@ class RestorePhoneNumberHistory {
 
   IHistoryRepository repository;
 
-  call(HistoryEntry entry) => repository.restore(entry);
+  Future<void> call(HistoryEntry entry) => repository.restore(entry);
 }

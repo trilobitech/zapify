@@ -22,7 +22,7 @@ class HistoryRepository implements IHistoryRepository {
       );
 
   @override
-  Future add(String phoneNumber) async {
+  Future<void> add(String phoneNumber) async {
     final db = await this.db;
     await db.rawInsert(
       '''
@@ -36,7 +36,7 @@ class HistoryRepository implements IHistoryRepository {
   }
 
   @override
-  Future remove(HistoryEntry entry) async {
+  Future<void> remove(HistoryEntry entry) async {
     final db = await this.db;
     await db.delete(
       'historic',
@@ -47,7 +47,7 @@ class HistoryRepository implements IHistoryRepository {
   }
 
   @override
-  Future restore(HistoryEntry entry) async {
+  Future<void> restore(HistoryEntry entry) async {
     final db = await this.db;
     await db.insert(
       'historic',

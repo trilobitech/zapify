@@ -1,25 +1,26 @@
-import 'package:analytics/analytics.dart';
 import 'package:flutter/material.dart';
-import 'package:logger_plus/logger_plus.dart';
 import 'package:timeago_flutter/timeago_flutter.dart';
 
-import '../../../core/di/inject.dart';
+import '../../../core/arch/bloc_widget.dart';
 import '../../../core/ext/context.dart';
 import '../../../core/widgets/feedback_view.dart';
 import '../../../core/widgets/list_divider.dart';
 import '../../../core/widgets/shimmer_view.dart';
 import '../../home/presentation/widgets/tab_list_view.dart';
 import '../../shared/domain/entity/history_entry.dart';
-import 'history_controller.dart';
+import 'history_bloc.dart';
 import 'history_state.dart';
 
 typedef OnHistoryEntryTap = Function(String phoneNumber);
 
-class HistoryPage extends StatefulWidget implements TabPage {
-  const HistoryPage({
+class HistoryPage extends StatelessWidget
+    with BlocWidget<HistoryBloc, HistoryEvent, HistoryState>
+    implements TabPage {
+  HistoryPage({
     super.key,
     required this.onEntryTap,
   });
+
   final OnHistoryEntryTap onEntryTap;
 
   @override
@@ -29,71 +30,85 @@ class HistoryPage extends StatefulWidget implements TabPage {
   String buildTitle(BuildContext context) => context.strings.recentNumbersTitle;
 
   @override
-  State<HistoryPage> createState() => _HistoryPageState();
-}
-
-class _HistoryPageState extends State<HistoryPage>
-    with AutomaticKeepAliveClientMixin {
-  late final controller = inject<HistoryController>();
+  Widget buildState(BuildContext context, HistoryState state) => state.when(
+        (entries) => _SuccessView(entries),
+        loading: (size) => _LoadingView(size),
+        empty: () => FeedbackView(text: context.strings.recentNumbersEmpty),
+      );
 
   @override
-  bool wantKeepAlive = true;
+  void handleEvent(BuildContext context, HistoryEvent event) {
+    event.when(
+      select: (entry) => onEntryTap(entry.phoneNumber),
+      showRestoreEntrySnackBar: (entry) =>
+          _showRestoreEntrySnackBar(context, entry),
+    );
+  }
+
+  void _showRestoreEntrySnackBar(BuildContext context, HistoryEntry entry) {
+    final snackBar = SnackBar(
+      content: Text(
+        context.strings.recentNumberRemoved.format([entry.phoneNumber]),
+      ),
+      action: SnackBarAction(
+        label: context.strings.undoAction,
+        onPressed: () => context.read<HistoryBloc>().restore(entry),
+      ),
+      behavior: SnackBarBehavior.floating,
+    );
+
+    ScaffoldMessenger.of(context)
+      ..removeCurrentSnackBar()
+      ..showSnackBar(snackBar);
+  }
+}
+
+class _LoadingView extends StatelessWidget {
+  const _LoadingView(this.itemCount);
+
+  final int itemCount;
 
   @override
   Widget build(BuildContext context) {
-    super.build(context);
-
-    return StreamBuilder(
-      stream: controller.state,
-      builder: _buildList,
-    );
-  }
-
-  Widget _buildList(
-    BuildContext context,
-    AsyncSnapshot<HistoryViewState> snapshot,
-  ) {
-    if (snapshot.hasData) {
-      final state = snapshot.requireData;
-      return state.when(
-        _buildLoadedListWidget,
-        loading: _buildLoadingListWidget,
-        empty: () => FeedbackView(text: context.strings.recentNumbersEmpty),
-      );
-    }
-    if (snapshot.hasError) {
-      Log.e(snapshot.error, snapshot.stackTrace);
-    }
-    return Container();
-  }
-
-  Widget _buildLoadedListWidget(List<HistoryEntry> entries) {
-    return _buildListWidget(
-      entries.length,
-      (context, index) => _buildListTile(context, entries[index]),
-    );
-  }
-
-  Widget _buildLoadingListWidget(int size) =>
-      _buildListWidget(size, (_, __) => _buildShimmer());
-
-  Widget _buildListWidget(int itemCount, IndexedWidgetBuilder itemBuilder) {
     return ListView.separated(
       itemCount: itemCount,
-      itemBuilder: itemBuilder,
+      itemBuilder: (_, __) => const ShimmerView(
+        child: ListTile(
+          title: Text('■■■ ■■ ■■■■■-■■■■'),
+          trailing: Text('■■■ ■■■■ ■■■'),
+        ),
+      ),
       separatorBuilder: (_, __) => const ListDivider(),
     );
   }
+}
 
-  Widget _buildListTile(BuildContext context, HistoryEntry entry) {
+class _SuccessView extends StatelessWidget {
+  const _SuccessView(this.entries);
+
+  final Iterable<HistoryEntry> entries;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.separated(
+      itemCount: entries.length,
+      itemBuilder: (_, index) => _EntryView(entries.elementAt(index)),
+      separatorBuilder: (_, __) => const ListDivider(),
+    );
+  }
+}
+
+class _EntryView extends StatelessWidget {
+  const _EntryView(this.entry);
+
+  final HistoryEntry entry;
+
+  @override
+  Widget build(BuildContext context) {
     return Dismissible(
       key: ValueKey(entry.phoneNumber),
       direction: DismissDirection.startToEnd,
-      onDismissed: (_) {
-        analytics.itemRemoved('phone_from_history');
-        controller.remove(entry);
-        _showRestoreEntrySnackBar(context, entry);
-      },
+      onDismissed: (_) => context.read<HistoryBloc>().remove(entry),
       background: Container(
         color: const Color.fromARGB(255, 186, 12, 0),
         child: Stack(
@@ -114,42 +129,9 @@ class _HistoryPageState extends State<HistoryPage>
           builder: (_, text) => Text(text),
           locale: context.currentLocale.toLanguageTag(),
         ),
-        onTap: () {
-          analytics.itemSelected('phone_from_history');
-          widget.onEntryTap(entry.phoneNumber);
-        },
-        // onLongPress: () {
-        //   analytics.itemLongPressed('phone_from_history');
-        // },
+        onTap: () => context.read<HistoryBloc>().select(entry),
+        onLongPress: () => context.read<HistoryBloc>().longPress(entry),
       ),
     );
-  }
-
-  Widget _buildShimmer() {
-    return const ShimmerView(
-      child: ListTile(
-        title: Text('■■■ ■■ ■■■■■-■■■■'),
-        trailing: Text('■■■ ■■■■ ■■■'),
-      ),
-    );
-  }
-
-  _showRestoreEntrySnackBar(BuildContext context, HistoryEntry entry) {
-    final snackBar = SnackBar(
-      content: Text(
-        context.strings.recentNumberRemoved.format([entry.phoneNumber]),
-      ),
-      action: SnackBarAction(
-        label: context.strings.undoAction,
-        onPressed: () {
-          analytics.buttonPressed('restore_phone_from_history');
-          controller.restore(entry);
-        },
-      ),
-      behavior: SnackBarBehavior.floating,
-    );
-    ScaffoldMessenger.of(context)
-      ..removeCurrentSnackBar()
-      ..showSnackBar(snackBar);
   }
 }

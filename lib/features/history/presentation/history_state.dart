@@ -5,10 +5,19 @@ import '../../shared/domain/entity/history_entry.dart';
 part 'history_state.freezed.dart';
 
 @freezed
-class HistoryViewState with _$HistoryViewState {
-  factory HistoryViewState.loading(int size) = _HistoryViewStateLoading;
-  factory HistoryViewState.empty() = _HistoryViewStateEmpty;
-  factory HistoryViewState({
+class HistoryState with _$HistoryState {
+  factory HistoryState.loading(int size) = _HistoryStateLoading;
+  factory HistoryState.empty() = _HistoryStateEmpty;
+  factory HistoryState({
     required List<HistoryEntry> entries,
-  }) = _HistoryViewStatePopulated;
+  }) = _HistoryStatePopulated;
+}
+
+@freezed
+class HistoryEvent with _$HistoryEvent {
+  factory HistoryEvent.select(HistoryEntry entry) =
+      _HistoryEventEntrySelect;
+
+  factory HistoryEvent.showRestoreEntrySnackBar(HistoryEntry entry) =
+      _HistoryEventEntryRemoved;
 }
