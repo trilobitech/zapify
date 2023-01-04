@@ -11,9 +11,7 @@ import '../../core/di/inject.dart';
 import '../../core/ext/context.dart';
 import 'data/db.dart';
 import 'data/repository/history_repository.dart';
-import 'data/repository/region_repository.dart';
 import 'domain/repository/history_repository.dart';
-import 'domain/repository/region_repository.dart';
 
 void sharedModule() {
   registerSingleton<ErrorMessageResolver>(
@@ -30,12 +28,6 @@ void sharedModule() {
   registerSingleton<IHistoryRepository>(
     () => HistoryRepository(
       db: get(),
-    ),
-  );
-
-  registerSingleton<IRegionRepository>(
-    () => RegionRepository(
-      plugin: get(),
     ),
   );
 

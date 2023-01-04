@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/di/inject.dart';
 import '../../../../core/ext/context.dart';
-import '../../../shared/domain/entity/region.dart';
+import '../../../region/domain/entity/region.dart';
 
 typedef OnSubmitted = Function(String);
 typedef OnRegionPressed = Function(Region);

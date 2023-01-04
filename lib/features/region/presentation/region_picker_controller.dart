@@ -1,5 +1,5 @@
-import '../../shared/domain/entity/region.dart';
-import '../domain/get_regions_by_term.dart';
+import '../domain/entity/region.dart';
+import '../domain/usecase/get_regions_by_term.dart';
 
 class RegionPickerController {
   RegionPickerController({

@@ -8,12 +8,12 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../config/env_config.dart';
 import '../../../config/remote_config.dart';
-import '../../shared/domain/entity/region.dart';
+import '../../region/domain/entity/region.dart';
 import '../domain/entity/banner.dart';
 import '../domain/entity/chat_app.dart';
 import '../domain/usecase/app_review.dart';
 import '../domain/usecase/get_chat_apps.dart';
-import '../domain/usecase/get_region.dart';
+import '../../region/domain/usecase/get_region.dart';
 import '../domain/usecase/get_top_banner.dart';
 import '../domain/usecase/save_phone_number_history.dart';
 import 'error/home_failure.dart';

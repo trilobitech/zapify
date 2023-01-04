@@ -9,7 +9,7 @@ import '../../../core/di/inject.dart';
 import '../../call_log/presentation/call_log_page.dart';
 import '../../history/presentation/history_page.dart';
 import '../../region/presentation/region_picker_page.dart';
-import '../../shared/domain/entity/region.dart';
+import '../../region/domain/entity/region.dart';
 import '../../shared/presentation/share_service.dart';
 import '../domain/entity/chat_app.dart';
 import 'home_controller.dart';

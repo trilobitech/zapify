@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../core/di/inject.dart';
 import '../../../core/ext/context.dart';
-import '../../shared/domain/entity/region.dart';
+import '../domain/entity/region.dart';
 import 'region_picker_controller.dart';
 
 class RegionPicker extends StatefulWidget {
