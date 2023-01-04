@@ -1,19 +1,42 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
+import '../../../core/arch/bloc_widget.dart';
 import '../../../core/ext/context.dart';
 import '../../../core/widgets/image_resolver_widget.dart';
 import '../domain/entity/chat_app.dart';
+import 'chat_apps_bloc.dart';
+import 'chat_apps_state.dart';
 
-class ChatAppsWidget extends StatelessWidget {
-  const ChatAppsWidget({
+typedef OnChatAppPressed = void Function(ChatApp entry);
+
+class ChatAppsWidget extends StatelessWidget
+    with BlocWidget<ChatAppsBloc, ChatAppsEvent, ChatAppsState> {
+  ChatAppsWidget({
     Key? key,
-    required this.chatApps,
     required this.onChatAppPressed,
   }) : super(key: key);
 
-  final List<ChatApp> chatApps;
-  final Function(ChatApp) onChatAppPressed;
+  final OnChatAppPressed onChatAppPressed;
+
+  @override
+  Widget buildState(BuildContext context, ChatAppsState state) => state.when(
+        (entries) => _SuccessView(entries),
+        initial: () => Container(),
+      );
+
+  @override
+  void handleEvent(BuildContext context, ChatAppsEvent event) {
+    event.when(
+      select: onChatAppPressed,
+    );
+  }
+}
+
+class _SuccessView extends StatelessWidget {
+  const _SuccessView(this.entries);
+
+  final Iterable<ChatApp> entries;
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +44,11 @@ class ChatAppsWidget extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       padding: const EdgeInsets.only(left: 16, right: 8, bottom: 8),
       child: Row(
-        children: chatApps
+        children: entries
             .mapIndexed(
-              (index, chatApp) => _ChatAppLauncherWidget(
+              (index, chatApp) => _EntryView(
                 position: index,
-                chatApp: chatApp,
-                onChatAppPressed: onChatAppPressed,
+                entry: chatApp,
               ),
             )
             .toList(growable: false),
@@ -35,33 +57,33 @@ class ChatAppsWidget extends StatelessWidget {
   }
 }
 
-class _ChatAppLauncherWidget extends StatefulWidget {
-  const _ChatAppLauncherWidget({
+class _EntryView extends StatefulWidget {
+  const _EntryView({
     Key? key,
     required this.position,
-    required this.chatApp,
-    required this.onChatAppPressed,
+    required this.entry,
   }) : super(key: key);
 
   final int position;
-  final ChatApp chatApp;
-  final Function(ChatApp) onChatAppPressed;
+  final ChatApp entry;
 
   @override
-  State<StatefulWidget> createState() => _ChatAppLauncherWidgetState();
+  State<StatefulWidget> createState() => _EntryViewState();
 }
 
-class _ChatAppLauncherWidgetState extends State<_ChatAppLauncherWidget>
-    with TickerProviderStateMixin {
+class _EntryViewState extends State<_EntryView> with TickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
+
+  int get position => widget.position;
+  ChatApp get entry => widget.entry;
 
   @override
   void initState() {
     super.initState();
 
     _controller = AnimationController(
-      duration: Duration(milliseconds: widget.position * 200 + 150),
+      duration: Duration(milliseconds: position * 200 + 150),
       vsync: this,
     );
     _animation = Tween(begin: 0.0, end: 1.0).animate(_controller);
@@ -76,24 +98,23 @@ class _ChatAppLauncherWidgetState extends State<_ChatAppLauncherWidget>
 
   @override
   Widget build(BuildContext context) {
-    final chatApp = widget.chatApp;
     return Padding(
-      key: ValueKey(chatApp.name),
+      key: ValueKey(entry.name),
       padding: const EdgeInsets.only(right: 8),
       child: ScaleTransition(
         scale: _animation,
         child: ActionChip(
           avatar: ImageResolverWidget.icon(
-            uri: chatApp.icon,
+            uri: entry.icon,
             color: Colors.white,
           ),
           label: Text(
-            context.strings.homeOpenWithButton.format([chatApp.name]),
+            context.strings.homeOpenWithButton.format([entry.name]),
           ),
           labelStyle: const TextStyle(color: Colors.white),
-          backgroundColor: Color(chatApp.brandColor.value),
+          backgroundColor: Color(entry.brandColor.value),
           onPressed: () {
-            widget.onChatAppPressed(chatApp);
+            context.read<ChatAppsBloc>().selected(entry);
           },
         ),
       ),

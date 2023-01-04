@@ -10,7 +10,6 @@ void homeModule() {
       plugin: get(),
       getDefaultRegion: get(),
       getRegion: get(),
-      getChatApps: get(),
       savePhoneNumberHistory: get(),
       getTopBanner: get(),
       setLastAppReviewAtNow: get(),

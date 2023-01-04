@@ -72,9 +72,8 @@ class _HomePageState extends State<HomePage> {
             stream: controller.phoneFieldState,
             builder: _buildPhoneField,
           ),
-          StreamBuilder(
-            stream: controller.chatAppsState,
-            builder: _buildChatAppLaunchers,
+          ChatAppsWidget(
+            onChatAppPressed: (chatApp) => _onChatAppPressed(context, chatApp),
           ),
           Expanded(
             child: TabListView(tabs: [
@@ -117,24 +116,7 @@ class _HomePageState extends State<HomePage> {
     return Container();
   }
 
-  Widget _buildChatAppLaunchers(
-    BuildContext context,
-    AsyncSnapshot<ChatAppsViewState> snapshot,
-  ) {
-    if (snapshot.hasData) {
-      final state = snapshot.requireData;
-      return ChatAppsWidget(
-        chatApps: state.chatApps,
-        onChatAppPressed: (chatApp) => _onChatAppPressed(context, chatApp),
-      );
-    }
-    if (snapshot.hasError) {
-      Log.e(snapshot.error, snapshot.stackTrace);
-    }
-    return Container();
-  }
-
-  _onRegionPressed(BuildContext context, Region? region) async {
+  void _onRegionPressed(BuildContext context, Region? region) async {
     analytics.buttonPressed('open_region_picker');
     dismissKeyboard(context);
 
@@ -153,10 +135,6 @@ class _HomePageState extends State<HomePage> {
   }
 
   _onChatAppPressed(BuildContext context, ChatApp chatApp) async {
-    analytics.buttonPressed(
-      'launch_chat_app',
-      properties: {'app_launched': chatApp.name},
-    );
     if (await controller.onChatAppPressed(chatApp)) {
       dismissKeyboard(context);
     }

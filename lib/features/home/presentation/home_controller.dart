@@ -9,7 +9,6 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../config/env_config.dart';
 import '../../../config/remote_config.dart';
 import '../../chat_apps/domain/entity/chat_app.dart';
-import '../../chat_apps/domain/usecase/get_chat_apps.dart';
 import '../../history/domain/usecase/save_phone_number_history.dart';
 import '../../region/domain/entity/region.dart';
 import '../../region/domain/usecase/get_region.dart';
@@ -29,7 +28,6 @@ class HomeController
     required PhoneNumberUtil plugin,
     required this.getDefaultRegion,
     required this.getRegion,
-    required this.getChatApps,
     required this.savePhoneNumberHistory,
     required this.getTopBanner,
     required this.setLastAppReviewAtNow,
@@ -45,9 +43,6 @@ class HomeController
 
   @override
   final GetRegionUseCase getRegion;
-
-  @override
-  final GetChatAppsUseCase getChatApps;
 
   @override
   final SavePhoneNumberHistoryUseCase savePhoneNumberHistory;
@@ -227,15 +222,11 @@ mixin _PhoneFieldController {
 }
 
 mixin _ChatAppsController {
-  GetChatAppsUseCase get getChatApps;
   SavePhoneNumberHistoryUseCase get savePhoneNumberHistory;
 
   Future<PhoneNumber> phoneNumber();
 
   clearPhoneField();
-
-  Stream<ChatAppsViewState> get chatAppsState =>
-      getChatApps().map((value) => ChatAppsViewState(chatApps: value));
 
   Future<bool> onChatAppPressed(ChatApp chatApp) async {
     try {

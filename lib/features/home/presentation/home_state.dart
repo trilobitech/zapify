@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../chat_apps/domain/entity/chat_app.dart';
 import '../../region/domain/entity/region.dart';
 import '../domain/entity/banner.dart';
 
@@ -14,13 +13,6 @@ class PhoneFieldViewState with _$PhoneFieldViewState {
     required TextEditingController controller,
     dynamic error,
   }) = _PhoneFieldViewState;
-}
-
-@freezed
-class ChatAppsViewState with _$ChatAppsViewState {
-  const factory ChatAppsViewState({
-    required List<ChatApp> chatApps,
-  }) = _ChatAppsViewState;
 }
 
 @freezed
