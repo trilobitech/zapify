@@ -75,9 +75,17 @@ class _SingleTabPage extends StatelessWidget {
 }
 
 class _MultiTabPage extends StatelessWidget {
-  const _MultiTabPage(this.tabs);
+  _MultiTabPage(this.tabs);
 
   final List<TabPage> tabs;
+
+  late final List<Tab> tabSelectors = tabs
+      .map(
+        (tab) => Tab(
+          child: _TabIndicatorView(tab),
+        ),
+      )
+      .toList(growable: false);
 
   @override
   Widget build(BuildContext context) {
@@ -85,17 +93,7 @@ class _MultiTabPage extends StatelessWidget {
       length: tabs.length,
       child: Scaffold(
         appBar: TabBar(
-          tabs: tabs
-              .mapIndexed(
-                (index, tab) => Tab(
-                  child: _TabIndicator(
-                    index: index,
-                    icon: tab.icon,
-                    title: tab.buildTitle(context),
-                  ),
-                ),
-              )
-              .toList(growable: false),
+          tabs: tabSelectors,
         ),
         body: TabBarView(children: tabs),
       ),
@@ -103,60 +101,20 @@ class _MultiTabPage extends StatelessWidget {
   }
 }
 
-class _TabIndicator extends StatefulWidget {
-  const _TabIndicator({
-    required this.index,
-    required this.icon,
-    required this.title,
-    // ignore: unused_element
-    this.controller,
-  });
+class _TabIndicatorView extends StatelessWidget {
+  const _TabIndicatorView(this.tab);
 
-  _TabIndicator get widget => this;
-  final int index;
-  final IconData icon;
-  final String title;
-  final TabController? controller;
-
-  @override
-  State<_TabIndicator> createState() => _TabStateIndicatorView();
-}
-
-class _TabStateIndicatorView extends State<_TabIndicator> {
-  late TabController? controller =
-      widget.controller ?? DefaultTabController.of(context);
-
-  int get selectedIndex => controller?.index ?? -1;
-  bool get isSelected => selectedIndex == widget.index;
-
-  void onTabChanged() => setState(() {});
+  final TabPage tab;
 
   @override
   Widget build(BuildContext context) {
-    controller?.addListener(onTabChanged);
-
-    var theme = Theme.of(context);
-    final tabColor = isSelected ? theme.primaryColor : Colors.blueGrey;
-
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Icon(
-          widget.icon,
-          color: tabColor,
-        ),
+        Icon(tab.icon),
         const SizedBox(width: 8),
-        Text(
-          widget.title,
-          style: TextStyle(color: tabColor),
-        )
+        Text(tab.buildTitle(context)),
       ],
     );
-  }
-
-  @override
-  void dispose() {
-    controller?.removeListener(onTabChanged);
-    super.dispose();
   }
 }
