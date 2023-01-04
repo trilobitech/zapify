@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$CallLogState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(Iterable<CallItem> entries) $default, {
+    TResult Function(Iterable<CallEntry> entries) $default, {
     required TResult Function() empty,
     required TResult Function(dynamic error) error,
     required TResult Function(int itemCount) loading,
@@ -26,7 +26,7 @@ mixin _$CallLogState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(Iterable<CallItem> entries)? $default, {
+    TResult? Function(Iterable<CallEntry> entries)? $default, {
     TResult? Function()? empty,
     TResult? Function(dynamic error)? error,
     TResult? Function(int itemCount)? loading,
@@ -34,7 +34,7 @@ mixin _$CallLogState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Iterable<CallItem> entries)? $default, {
+    TResult Function(Iterable<CallEntry> entries)? $default, {
     TResult Function()? empty,
     TResult Function(dynamic error)? error,
     TResult Function(int itemCount)? loading,
@@ -92,7 +92,7 @@ abstract class _$$_CallLogStatePopulatedCopyWith<$Res> {
           $Res Function(_$_CallLogStatePopulated) then) =
       __$$_CallLogStatePopulatedCopyWithImpl<$Res>;
   @useResult
-  $Res call({Iterable<CallItem> entries});
+  $Res call({Iterable<CallEntry> entries});
 }
 
 /// @nodoc
@@ -112,7 +112,7 @@ class __$$_CallLogStatePopulatedCopyWithImpl<$Res>
       entries: null == entries
           ? _value.entries
           : entries // ignore: cast_nullable_to_non_nullable
-              as Iterable<CallItem>,
+              as Iterable<CallEntry>,
     ));
   }
 }
@@ -123,7 +123,7 @@ class _$_CallLogStatePopulated implements _CallLogStatePopulated {
   _$_CallLogStatePopulated({required this.entries});
 
   @override
-  final Iterable<CallItem> entries;
+  final Iterable<CallEntry> entries;
 
   @override
   String toString() {
@@ -152,7 +152,7 @@ class _$_CallLogStatePopulated implements _CallLogStatePopulated {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(Iterable<CallItem> entries) $default, {
+    TResult Function(Iterable<CallEntry> entries) $default, {
     required TResult Function() empty,
     required TResult Function(dynamic error) error,
     required TResult Function(int itemCount) loading,
@@ -163,7 +163,7 @@ class _$_CallLogStatePopulated implements _CallLogStatePopulated {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(Iterable<CallItem> entries)? $default, {
+    TResult? Function(Iterable<CallEntry> entries)? $default, {
     TResult? Function()? empty,
     TResult? Function(dynamic error)? error,
     TResult? Function(int itemCount)? loading,
@@ -174,7 +174,7 @@ class _$_CallLogStatePopulated implements _CallLogStatePopulated {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Iterable<CallItem> entries)? $default, {
+    TResult Function(Iterable<CallEntry> entries)? $default, {
     TResult Function()? empty,
     TResult Function(dynamic error)? error,
     TResult Function(int itemCount)? loading,
@@ -225,10 +225,10 @@ class _$_CallLogStatePopulated implements _CallLogStatePopulated {
 }
 
 abstract class _CallLogStatePopulated implements CallLogState {
-  factory _CallLogStatePopulated({required final Iterable<CallItem> entries}) =
+  factory _CallLogStatePopulated({required final Iterable<CallEntry> entries}) =
       _$_CallLogStatePopulated;
 
-  Iterable<CallItem> get entries;
+  Iterable<CallEntry> get entries;
   @JsonKey(ignore: true)
   _$$_CallLogStatePopulatedCopyWith<_$_CallLogStatePopulated> get copyWith =>
       throw _privateConstructorUsedError;
@@ -272,7 +272,7 @@ class _$_CallLogStateEmpty implements _CallLogStateEmpty {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(Iterable<CallItem> entries) $default, {
+    TResult Function(Iterable<CallEntry> entries) $default, {
     required TResult Function() empty,
     required TResult Function(dynamic error) error,
     required TResult Function(int itemCount) loading,
@@ -283,7 +283,7 @@ class _$_CallLogStateEmpty implements _CallLogStateEmpty {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(Iterable<CallItem> entries)? $default, {
+    TResult? Function(Iterable<CallEntry> entries)? $default, {
     TResult? Function()? empty,
     TResult? Function(dynamic error)? error,
     TResult? Function(int itemCount)? loading,
@@ -294,7 +294,7 @@ class _$_CallLogStateEmpty implements _CallLogStateEmpty {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Iterable<CallItem> entries)? $default, {
+    TResult Function(Iterable<CallEntry> entries)? $default, {
     TResult Function()? empty,
     TResult Function(dynamic error)? error,
     TResult Function(int itemCount)? loading,
@@ -414,7 +414,7 @@ class _$_CallLogStateError implements _CallLogStateError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(Iterable<CallItem> entries) $default, {
+    TResult Function(Iterable<CallEntry> entries) $default, {
     required TResult Function() empty,
     required TResult Function(dynamic error) error,
     required TResult Function(int itemCount) loading,
@@ -425,7 +425,7 @@ class _$_CallLogStateError implements _CallLogStateError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(Iterable<CallItem> entries)? $default, {
+    TResult? Function(Iterable<CallEntry> entries)? $default, {
     TResult? Function()? empty,
     TResult? Function(dynamic error)? error,
     TResult? Function(int itemCount)? loading,
@@ -436,7 +436,7 @@ class _$_CallLogStateError implements _CallLogStateError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Iterable<CallItem> entries)? $default, {
+    TResult Function(Iterable<CallEntry> entries)? $default, {
     TResult Function()? empty,
     TResult Function(dynamic error)? error,
     TResult Function(int itemCount)? loading,
@@ -561,7 +561,7 @@ class _$_CallLogStateLoading implements _CallLogStateLoading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(Iterable<CallItem> entries) $default, {
+    TResult Function(Iterable<CallEntry> entries) $default, {
     required TResult Function() empty,
     required TResult Function(dynamic error) error,
     required TResult Function(int itemCount) loading,
@@ -572,7 +572,7 @@ class _$_CallLogStateLoading implements _CallLogStateLoading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(Iterable<CallItem> entries)? $default, {
+    TResult? Function(Iterable<CallEntry> entries)? $default, {
     TResult? Function()? empty,
     TResult? Function(dynamic error)? error,
     TResult? Function(int itemCount)? loading,
@@ -583,7 +583,7 @@ class _$_CallLogStateLoading implements _CallLogStateLoading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Iterable<CallItem> entries)? $default, {
+    TResult Function(Iterable<CallEntry> entries)? $default, {
     TResult Function()? empty,
     TResult Function(dynamic error)? error,
     TResult Function(int itemCount)? loading,
@@ -640,4 +640,212 @@ abstract class _CallLogStateLoading implements CallLogState {
   @JsonKey(ignore: true)
   _$$_CallLogStateLoadingCopyWith<_$_CallLogStateLoading> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$CallLogEvent {
+  CallEntry get entry => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(CallEntry entry) select,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(CallEntry entry)? select,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(CallEntry entry)? select,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CallLogEventEntrySelect value) select,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CallLogEventEntrySelect value)? select,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CallLogEventEntrySelect value)? select,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $CallLogEventCopyWith<CallLogEvent> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CallLogEventCopyWith<$Res> {
+  factory $CallLogEventCopyWith(
+          CallLogEvent value, $Res Function(CallLogEvent) then) =
+      _$CallLogEventCopyWithImpl<$Res, CallLogEvent>;
+  @useResult
+  $Res call({CallEntry entry});
+}
+
+/// @nodoc
+class _$CallLogEventCopyWithImpl<$Res, $Val extends CallLogEvent>
+    implements $CallLogEventCopyWith<$Res> {
+  _$CallLogEventCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? entry = null,
+  }) {
+    return _then(_value.copyWith(
+      entry: null == entry
+          ? _value.entry
+          : entry // ignore: cast_nullable_to_non_nullable
+              as CallEntry,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_CallLogEventEntrySelectCopyWith<$Res>
+    implements $CallLogEventCopyWith<$Res> {
+  factory _$$_CallLogEventEntrySelectCopyWith(_$_CallLogEventEntrySelect value,
+          $Res Function(_$_CallLogEventEntrySelect) then) =
+      __$$_CallLogEventEntrySelectCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({CallEntry entry});
+}
+
+/// @nodoc
+class __$$_CallLogEventEntrySelectCopyWithImpl<$Res>
+    extends _$CallLogEventCopyWithImpl<$Res, _$_CallLogEventEntrySelect>
+    implements _$$_CallLogEventEntrySelectCopyWith<$Res> {
+  __$$_CallLogEventEntrySelectCopyWithImpl(_$_CallLogEventEntrySelect _value,
+      $Res Function(_$_CallLogEventEntrySelect) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? entry = null,
+  }) {
+    return _then(_$_CallLogEventEntrySelect(
+      null == entry
+          ? _value.entry
+          : entry // ignore: cast_nullable_to_non_nullable
+              as CallEntry,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_CallLogEventEntrySelect implements _CallLogEventEntrySelect {
+  _$_CallLogEventEntrySelect(this.entry);
+
+  @override
+  final CallEntry entry;
+
+  @override
+  String toString() {
+    return 'CallLogEvent.select(entry: $entry)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_CallLogEventEntrySelect &&
+            (identical(other.entry, entry) || other.entry == entry));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, entry);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_CallLogEventEntrySelectCopyWith<_$_CallLogEventEntrySelect>
+      get copyWith =>
+          __$$_CallLogEventEntrySelectCopyWithImpl<_$_CallLogEventEntrySelect>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(CallEntry entry) select,
+  }) {
+    return select(entry);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(CallEntry entry)? select,
+  }) {
+    return select?.call(entry);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(CallEntry entry)? select,
+    required TResult orElse(),
+  }) {
+    if (select != null) {
+      return select(entry);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CallLogEventEntrySelect value) select,
+  }) {
+    return select(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CallLogEventEntrySelect value)? select,
+  }) {
+    return select?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CallLogEventEntrySelect value)? select,
+    required TResult orElse(),
+  }) {
+    if (select != null) {
+      return select(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CallLogEventEntrySelect implements CallLogEvent {
+  factory _CallLogEventEntrySelect(final CallEntry entry) =
+      _$_CallLogEventEntrySelect;
+
+  @override
+  CallEntry get entry;
+  @override
+  @JsonKey(ignore: true)
+  _$$_CallLogEventEntrySelectCopyWith<_$_CallLogEventEntrySelect>
+      get copyWith => throw _privateConstructorUsedError;
 }

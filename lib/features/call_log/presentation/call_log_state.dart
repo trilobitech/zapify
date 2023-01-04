@@ -8,7 +8,7 @@ part 'call_log_state.freezed.dart';
 @freezed
 class CallLogState with _$CallLogState {
   factory CallLogState({
-    required Iterable<CallItem> entries,
+    required Iterable<CallEntry> entries,
   }) = _CallLogStatePopulated;
 
   factory CallLogState.empty() = _CallLogStateEmpty;
@@ -18,27 +18,32 @@ class CallLogState with _$CallLogState {
   factory CallLogState.loading(int itemCount) = _CallLogStateLoading;
 }
 
-class CallItem {
-  CallItem({
+@freezed
+class CallLogEvent with _$CallLogEvent {
+  factory CallLogEvent.select(CallEntry entry) = _CallLogEventEntrySelect;
+}
+
+class CallEntry {
+  CallEntry({
     required this.leading,
     required this.title,
     this.subtitle,
     required this.date,
-    required this.number,
+    required this.phoneNumber,
   });
 
-  factory CallItem.from(CallEntity item) => CallItem(
+  factory CallEntry.from(CallEntity item) => CallEntry(
         leading: item.type.leading,
         title: item.name ?? item.number,
         date: item.date,
-        number: item.number,
+        phoneNumber: item.number,
       );
 
   final Leading leading;
   final String title;
   final String? subtitle;
   final DateTime date;
-  final String number;
+  final String phoneNumber;
 }
 
 class Leading {
