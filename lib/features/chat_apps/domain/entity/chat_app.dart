@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import 'color.dart';
+import '../../../shared/domain/entity/color.dart';
 
 class ChatApp extends Equatable {
   const ChatApp({

@@ -7,15 +7,15 @@ import 'package:receive_intent/receive_intent.dart';
 
 import '../../../core/di/inject.dart';
 import '../../call_log/presentation/call_log_page.dart';
+import '../../chat_apps/domain/entity/chat_app.dart';
+import '../../chat_apps/presentation/chat_apps_widget.dart';
 import '../../history/presentation/history_page.dart';
-import '../../region/presentation/region_picker_page.dart';
 import '../../region/domain/entity/region.dart';
+import '../../region/presentation/region_picker_page.dart';
 import '../../shared/presentation/share_service.dart';
-import '../domain/entity/chat_app.dart';
 import 'home_controller.dart';
 import 'home_state.dart';
 import 'widgets/ad_banner_widget.dart';
-import 'widgets/chat_apps_widget.dart';
 import 'widgets/phone_field_widget.dart';
 import 'widgets/tab_list_view.dart';
 import 'widgets/top_banner_widget.dart';

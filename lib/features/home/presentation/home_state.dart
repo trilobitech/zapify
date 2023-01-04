@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../chat_apps/domain/entity/chat_app.dart';
 import '../../region/domain/entity/region.dart';
 import '../domain/entity/banner.dart';
-import '../domain/entity/chat_app.dart';
 
 part 'home_state.freezed.dart';
 

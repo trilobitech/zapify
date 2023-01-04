@@ -2,8 +2,8 @@ import 'package:logger_plus/logger_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../config/local_config.dart';
+import '../../../shared/domain/entity/color.dart';
 import '../../domain/entity/chat_app.dart';
-import '../../domain/entity/color.dart';
 import '../../domain/repository/chat_app_repository.dart';
 import '../datasource/chat_app_datasource.dart';
 import '../model/chat_app_remote.dart';
