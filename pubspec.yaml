@@ -84,6 +84,10 @@ dependencies:
   google_fonts: ^3.0.1
   call_log: ^4.0.0
   permission_handler: ^10.2.0
+  flutter_bloc: ^8.1.1
+  bloc: ^8.1.0
+  meta: ^1.8.0
+  provider: ^6.0.5
 
 dev_dependencies:
   flutter_test:
