@@ -1,4 +1,4 @@
-import '../entity/history_entry.dart';
+import '../entity/history.dart';
 
 abstract class IHistoryRepository {
   Stream<List<HistoryEntry>> getAll();

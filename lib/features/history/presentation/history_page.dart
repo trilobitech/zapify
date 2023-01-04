@@ -7,7 +7,7 @@ import '../../../core/widgets/feedback_view.dart';
 import '../../../core/widgets/list_divider.dart';
 import '../../../core/widgets/shimmer_view.dart';
 import '../../home/presentation/widgets/tab_list_view.dart';
-import '../../shared/domain/entity/history_entry.dart';
+import '../domain/entity/history.dart';
 import 'history_bloc.dart';
 import 'history_state.dart';
 

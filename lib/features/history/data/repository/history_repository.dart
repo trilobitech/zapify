@@ -1,7 +1,7 @@
 import 'package:sqlbrite/sqlbrite.dart';
 
 import '../../../../config/local_config.dart';
-import '../../domain/entity/history_entry.dart';
+import '../../domain/entity/history.dart';
 import '../../domain/repository/history_repository.dart';
 
 class HistoryRepository implements IHistoryRepository {

@@ -7,11 +7,8 @@ import 'package:sqlbrite/sqlbrite.dart';
 
 import '../../core/data/network/user_agent_interceptor.dart';
 import '../../core/di/definition.dart';
-import '../../core/di/inject.dart';
 import '../../core/ext/context.dart';
 import 'data/db.dart';
-import 'data/repository/history_repository.dart';
-import 'domain/repository/history_repository.dart';
 
 void sharedModule() {
   registerSingleton<ErrorMessageResolver>(
@@ -24,12 +21,6 @@ void sharedModule() {
   );
 
   registerSingleton(() => PhoneNumberUtil());
-
-  registerSingleton<IHistoryRepository>(
-    () => HistoryRepository(
-      db: get(),
-    ),
-  );
 
   registerSingleton<Future<Database>>(
     () => getDatabase(),

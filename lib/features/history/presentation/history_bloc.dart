@@ -6,7 +6,7 @@ import 'package:meta/meta.dart';
 
 import '../../../config/local_config.dart';
 import '../../../core/arch/bloc_controller.dart';
-import '../../shared/domain/entity/history_entry.dart';
+import '../domain/entity/history.dart';
 import '../domain/usecase/get_phone_number_history.dart';
 import '../domain/usecase/remove_phone_number_history.dart';
 import '../domain/usecase/restore_phone_number_history.dart';
@@ -15,16 +15,16 @@ import 'history_state.dart';
 class HistoryBloc extends BlocController<HistoryEvent, HistoryState> {
   HistoryBloc({
     required GetPhoneNumberHistoryUseCase getPhoneNumberHistory,
-    required RemovePhoneNumberHistory removePhoneNumberHistory,
-    required RestorePhoneNumberHistory restorePhoneNumberHistory,
+    required RemovePhoneNumberHistoryUseCase removePhoneNumberHistory,
+    required RestorePhoneNumberHistoryUseCase restorePhoneNumberHistory,
   })  : _getPhoneNumberHistory = getPhoneNumberHistory,
         _removePhoneNumberHistory = removePhoneNumberHistory,
         _restorePhoneNumberHistory = restorePhoneNumberHistory,
         super(HistoryState(entries: []));
 
   final GetPhoneNumberHistoryUseCase _getPhoneNumberHistory;
-  final RemovePhoneNumberHistory _removePhoneNumberHistory;
-  final RestorePhoneNumberHistory _restorePhoneNumberHistory;
+  final RemovePhoneNumberHistoryUseCase _removePhoneNumberHistory;
+  final RestorePhoneNumberHistoryUseCase _restorePhoneNumberHistory;
 
   @override
   @protected

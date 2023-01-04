@@ -8,7 +8,6 @@ import 'domain/repository/chat_app_repository.dart';
 import 'domain/usecase/app_review.dart';
 import 'domain/usecase/get_chat_apps.dart';
 import 'domain/usecase/get_top_banner.dart';
-import 'domain/usecase/save_phone_number_history.dart';
 import 'presentation/home_controller.dart';
 
 void homeModule() {
@@ -40,12 +39,6 @@ void homeModule() {
 
   registerFactory(
     () => GetChatAppsUseCase(
-      repository: get(),
-    ),
-  );
-
-  registerFactory(
-    () => SavePhoneNumberHistoryUseCase(
       repository: get(),
     ),
   );
