@@ -1,5 +1,4 @@
-import '../../core/di/definition.dart';
-import '../../core/di/inject.dart';
+import '../../common/di/definition.dart';
 import 'data/repository/history_repository.dart';
 import 'domain/repository/history_repository.dart';
 import 'domain/usecase/get_phone_number_history.dart';

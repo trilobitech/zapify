@@ -6,20 +6,20 @@ import 'package:logger_plus/logger_plus.dart';
 import 'package:receive_intent/receive_intent.dart';
 import 'package:rxdart/utils.dart';
 
-import '../../../core/arch/bloc_widget.dart';
-import '../../ad_banner/presentation/ad_banner_widget.dart';
+import '../../../common/arch/bloc_widget.dart';
+import '../../../common/services/share_service.dart';
+import '../../../common/widgets/tab_list_view.dart';
 import '../../call_log/presentation/call_log_page.dart';
-import '../../chat_apps/presentation/chat_apps_widget.dart';
 import '../../history/presentation/history_page.dart';
-import '../../phone/presentation/phone_field_widget.dart';
 import '../../region/domain/entity/region.dart';
 import '../../region/presentation/region_picker_page.dart';
 import '../../region/region_mediator.dart';
-import '../../shared/presentation/share_service.dart';
-import '../../top_banner/presentation/top_banner_widget.dart';
+import '../components/ad_banner/presentation/ad_banner_widget.dart';
+import '../components/chat_apps/presentation/chat_apps_widget.dart';
+import '../components/phone/presentation/phone_field_widget.dart';
+import '../components/top_banner/presentation/top_banner_widget.dart';
 import 'home_bloc.dart';
 import 'home_state.dart';
-import 'widgets/tab_list_view.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -32,7 +32,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with BlocStateWidget<HomePage, HomeBloc, HomeEvent, void> {
-  late final ShareService _shareService = ShareService();
+  late final _shareService = ShareService();
   final _sub = CompositeSubscription();
 
   Future<void> _init() async {

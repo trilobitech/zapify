@@ -1,5 +1,4 @@
-import '../../core/di/definition.dart';
-import '../../core/di/inject.dart';
+import '../../common/di/definition.dart';
 import 'data/repository/region_repository.dart';
 import 'domain/repository/region_repository.dart';
 import 'domain/usecase/get_region.dart';

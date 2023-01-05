@@ -1,6 +1,6 @@
 import 'package:config_core/config_core.dart';
 
-import '../core/di/inject.dart' as di;
+import '../common//di/inject.dart' as di;
 
 const _appId = 'com.zapfy.app';
 

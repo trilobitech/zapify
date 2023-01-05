@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../../../common/arch/bloc_widget.dart';
+import '../../../common/ext/context.dart';
+import '../../../common/widgets/feedback_view.dart';
+import '../../../common/widgets/list_divider.dart';
+import '../../../common/widgets/shimmer_view.dart';
+import '../../../common/widgets/tab_list_view.dart';
 import '../../../config/remote_config.dart';
-import '../../../core/arch/bloc_widget.dart';
-import '../../../core/ext/context.dart';
-import '../../../core/widgets/feedback_view.dart';
-import '../../../core/widgets/list_divider.dart';
-import '../../../core/widgets/shimmer_view.dart';
 import '../../../l10n/l10n_ext.dart';
-import '../../home/presentation/widgets/tab_list_view.dart';
 import '../call_log_mediator.dart';
 import 'call_log_bloc.dart';
 import 'call_log_state.dart';

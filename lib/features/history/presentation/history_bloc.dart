@@ -4,8 +4,8 @@ import 'package:analytics/analytics.dart';
 import 'package:logger_plus/logger_plus.dart';
 import 'package:meta/meta.dart';
 
+import '../../../common/arch/bloc_controller.dart';
 import '../../../config/local_config.dart';
-import '../../../core/arch/bloc_controller.dart';
 import '../domain/entity/history.dart';
 import '../domain/usecase/get_phone_number_history.dart';
 import '../domain/usecase/remove_phone_number_history.dart';

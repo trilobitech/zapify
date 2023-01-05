@@ -1,14 +1,14 @@
 import 'package:analytics/analytics.dart';
 import 'package:error_handler/error_handler.dart';
 
-import '../../../core/arch/bloc_controller.dart';
+import '../../../common/arch/bloc_controller.dart';
 import '../../call_log/call_log_mediator.dart';
-import '../../chat_apps/chat_apps_mediator.dart';
 import '../../history/domain/usecase/save_phone_number_history.dart';
 import '../../history/history_mediator.dart';
-import '../../phone/phone_field_component.dart';
 import '../../region/domain/entity/region.dart';
 import '../../region/region_mediator.dart';
+import '../components/chat_apps/chat_apps_mediator.dart';
+import '../components/phone/phone_field_component.dart';
 import 'home_state.dart';
 
 abstract class HomeMediator

@@ -1,8 +1,8 @@
 import 'package:analytics/analytics.dart';
 import 'package:flutter/material.dart';
 
-import '../../../core/di/inject.dart';
-import '../../../core/ext/context.dart';
+import '../../../common/di/inject.dart';
+import '../../../common/ext/context.dart';
 import '../domain/entity/region.dart';
 import 'region_picker_controller.dart';
 

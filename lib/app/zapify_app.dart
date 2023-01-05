@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
-import '../core/arch/provider.dart';
+import '../common/arch/provider.dart';
 import '../features/call_log/call_log_mediator.dart';
 import '../features/call_log/presentation/call_log_bloc.dart';
-import '../features/chat_apps/chat_apps_mediator.dart';
-import '../features/chat_apps/presentation/chat_apps_bloc.dart';
 import '../features/history/history_mediator.dart';
 import '../features/history/presentation/history_bloc.dart';
+import '../features/home/components/chat_apps/chat_apps_mediator.dart';
+import '../features/home/components/chat_apps/presentation/chat_apps_bloc.dart';
+import '../features/home/components/phone/phone_field_component.dart';
+import '../features/home/components/phone/presentation/phone_field_bloc.dart';
 import '../features/home/presentation/home_bloc.dart';
 import '../features/home/presentation/home_page.dart';
-import '../features/phone/phone_field_component.dart';
-import '../features/phone/presentation/phone_field_bloc.dart';
 import '../features/region/region_mediator.dart';
 import 'theme.dart';
 

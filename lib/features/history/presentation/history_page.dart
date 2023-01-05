@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:timeago_flutter/timeago_flutter.dart';
 
-import '../../../core/arch/bloc_widget.dart';
-import '../../../core/ext/context.dart';
-import '../../../core/widgets/feedback_view.dart';
-import '../../../core/widgets/list_divider.dart';
-import '../../../core/widgets/shimmer_view.dart';
-import '../../home/presentation/widgets/tab_list_view.dart';
+import '../../../common/arch/bloc_widget.dart';
+import '../../../common/ext/context.dart';
+import '../../../common/widgets/feedback_view.dart';
+import '../../../common/widgets/list_divider.dart';
+import '../../../common/widgets/shimmer_view.dart';
+import '../../../common/widgets/tab_list_view.dart';
 import '../domain/entity/history.dart';
 import '../history_mediator.dart';
 import 'history_bloc.dart';

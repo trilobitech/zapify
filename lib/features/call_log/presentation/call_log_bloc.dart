@@ -2,7 +2,7 @@ import 'package:analytics/analytics.dart';
 import 'package:logger_plus/logger_plus.dart';
 import 'package:meta/meta.dart';
 
-import '../../../core/arch/bloc_controller.dart';
+import '../../../common/arch/bloc_controller.dart';
 import '../domain/exception/no_call_log_access_permission.dart';
 import '../domain/usecase/get_call_log.dart';
 import '../domain/usecase/request_call_log_permission.dart';

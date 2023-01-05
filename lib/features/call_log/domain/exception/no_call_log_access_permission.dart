@@ -1,7 +1,7 @@
 import 'package:error_handler/error_handler.dart';
 import 'package:flutter/widgets.dart';
 
-import '../../../../core/ext/context.dart';
+import '../../../../common/ext/context.dart';
 
 class NoCallLogAccessPermission extends ActionableFailure {
   @override
