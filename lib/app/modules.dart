@@ -8,6 +8,7 @@ import '../features/home/home_module.dart';
 import '../features/phone/phone_field_module.dart';
 import '../features/region/region_module.dart';
 import '../features/shared/shared_module.dart';
+import '../features/top_banner/top_banner_module.dart';
 
 Future<void> loadModules() async {
   configModule();
@@ -19,5 +20,6 @@ Future<void> loadModules() async {
   callLogModule();
   phoneFiledModule();
   adBannerModule();
+  topBannerModule();
   await getIt.allReady();
 }

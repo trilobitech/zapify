@@ -7,7 +7,6 @@ import 'package:receive_intent/receive_intent.dart';
 import 'package:rxdart/utils.dart';
 
 import '../../../core/arch/bloc_widget.dart';
-import '../../../core/di/inject.dart';
 import '../../ad_banner/presentation/ad_banner_widget.dart';
 import '../../call_log/presentation/call_log_page.dart';
 import '../../chat_apps/presentation/chat_apps_widget.dart';
@@ -17,11 +16,10 @@ import '../../region/domain/entity/region.dart';
 import '../../region/presentation/region_picker_page.dart';
 import '../../region/region_mediator.dart';
 import '../../shared/presentation/share_service.dart';
+import '../../top_banner/presentation/top_banner_widget.dart';
 import 'home_bloc.dart';
-import 'home_controller.dart';
 import 'home_state.dart';
 import 'widgets/tab_list_view.dart';
-import 'widgets/top_banner_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -34,8 +32,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with BlocStateWidget<HomePage, HomeBloc, HomeEvent, void> {
-  late final HomeController controller = inject();
-
   late final ShareService _shareService = ShareService();
   final _sub = CompositeSubscription();
 
@@ -66,11 +62,7 @@ class _HomePageState extends State<HomePage>
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          StreamBuilder(
-            stream: controller.bannerViewState,
-            initialData: BannerViewState.none(),
-            builder: _handleBannerType,
-          ),
+          const TopBannerWidget(),
           PhoneFieldWidget(),
           ChatAppsWidget(),
           Expanded(
@@ -90,24 +82,6 @@ class _HomePageState extends State<HomePage>
     event.when(
       navigateToRegionPicker: (current) =>
           _navigateToRegionPicker(context, current),
-    );
-  }
-
-  Widget _handleBannerType(
-    BuildContext context,
-    AsyncSnapshot<BannerViewState> snapshot,
-  ) {
-    if (snapshot.hasError) {
-      Log.e(snapshot.error, snapshot.stackTrace);
-      return Container();
-    }
-    final data = snapshot.requireData;
-    return data.when(
-      (type) => TopBanner(
-        type: type,
-        onActionTap: controller.onTopBannerActionTap,
-      ),
-      none: () => Container(),
     );
   }
 

@@ -3,7 +3,7 @@ import 'package:app_install_date/app_install_date.dart';
 import '../../../../config/local_config.dart';
 import '../../../../core/ext/future.dart';
 
-class CanAskForReview {
+class CanAskForReviewUseCase {
   Future<bool> call() async {
     final nextReviewAt = await LocalConfig.lastAppReviewAt
         .get<int?>()
@@ -15,7 +15,7 @@ class CanAskForReview {
   }
 }
 
-class SetLastAppReviewAtNow {
+class SetLastAppReviewAtNowUseCase {
   Future<void> call() async {
     final now = DateTime.now().millisecondsSinceEpoch;
     await LocalConfig.lastAppReviewAt.set(now);

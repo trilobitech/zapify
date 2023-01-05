@@ -1,13 +1,34 @@
 import 'package:analytics/analytics.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/ext/context.dart';
-import '../../domain/entity/banner.dart';
+import '../../../core/arch/bloc_widget.dart';
+import '../../../core/ext/context.dart';
+import '../domain/entity/top_banner.dart';
+import 'top_banner_bloc.dart';
+import 'top_banner_state.dart';
 
 typedef OnTopBannerActionTap = Function(TopBannerType type);
 
-class TopBanner extends StatefulWidget {
-  const TopBanner({
+class TopBannerWidget extends StatelessWidget
+    with BlocWidget<TopBannerBloc, void, TopBannerState> {
+  const TopBannerWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget buildState(BuildContext context, TopBannerState state) {
+    return state.when(
+      (type) => _TopBannerView(
+        type: type,
+        onActionTap: (type) {
+          context.read<TopBannerBloc>().onTopBannerActionTap(type);
+        },
+      ),
+      none: () => Container(),
+    );
+  }
+}
+
+class _TopBannerView extends StatefulWidget {
+  const _TopBannerView({
     Key? key,
     required this.type,
     required this.onActionTap,
@@ -17,10 +38,11 @@ class TopBanner extends StatefulWidget {
   final OnTopBannerActionTap onActionTap;
 
   @override
-  State<TopBanner> createState() => _TopBannerState();
+  State<_TopBannerView> createState() => _TopBannerViewState();
 }
 
-class _TopBannerState extends State<TopBanner> with TickerProviderStateMixin {
+class _TopBannerViewState extends State<_TopBannerView>
+    with TickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
 

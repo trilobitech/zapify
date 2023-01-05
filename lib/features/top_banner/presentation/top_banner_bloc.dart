@@ -2,29 +2,29 @@ import 'package:in_app_review/in_app_review.dart';
 import 'package:logger_plus/logger_plus.dart';
 
 import '../../../config/env_config.dart';
-import '../domain/entity/banner.dart';
+import '../../../core/arch/bloc_controller.dart';
+import '../domain/entity/top_banner.dart';
 import '../domain/usecase/app_review.dart';
 import '../domain/usecase/get_top_banner.dart';
-import 'home_state.dart';
+import 'top_banner_state.dart';
 
-class HomeController with _BannerController {
-  HomeController({
-    required this.getTopBanner,
-    required this.setLastAppReviewAtNow,
-  });
+class TopBannerBloc extends BlocController<void, TopBannerState> {
+  TopBannerBloc({
+    required GetTopBannerUseCase getTopBanner,
+    required SetLastAppReviewAtNowUseCase setLastAppReviewAtNow,
+  })  : _getTopBanner = getTopBanner,
+        _setLastAppReviewAtNow = setLastAppReviewAtNow,
+        super(TopBannerState.none());
+
+  final GetTopBannerUseCase _getTopBanner;
+  final SetLastAppReviewAtNowUseCase _setLastAppReviewAtNow;
 
   @override
-  final GetTopBannerUseCase getTopBanner;
-
-  @override
-  final SetLastAppReviewAtNow setLastAppReviewAtNow;
-}
-
-mixin _BannerController {
-  GetTopBannerUseCase get getTopBanner;
-  SetLastAppReviewAtNow get setLastAppReviewAtNow;
-
-  Stream<BannerViewState> get bannerViewState => getTopBanner();
+  Future<void> load() async {
+    subscriptions.add(_getTopBanner().listen((type) {
+      emit(TopBannerState(type: type));
+    }));
+  }
 
   void onTopBannerActionTap(TopBannerType type) {
     switch (type) {
@@ -49,6 +49,6 @@ mixin _BannerController {
           Log.e(error, stack);
           return inAppReview.openStoreListing(appStoreId: EnvConfig.appStoreId);
         })
-        .then((_) => setLastAppReviewAtNow());
+        .then((_) => _setLastAppReviewAtNow());
   }
 }
