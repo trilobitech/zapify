@@ -8,20 +8,14 @@ import '../../../core/widgets/list_divider.dart';
 import '../../../core/widgets/shimmer_view.dart';
 import '../../home/presentation/widgets/tab_list_view.dart';
 import '../domain/entity/history.dart';
+import '../history_mediator.dart';
 import 'history_bloc.dart';
 import 'history_state.dart';
-
-typedef OnHistoryEntryTap = Function(String phoneNumber);
 
 class HistoryPage extends StatelessWidget
     with BlocWidget<HistoryBloc, HistoryEvent, HistoryState>
     implements TabPage {
-  HistoryPage({
-    super.key,
-    required this.onEntryTap,
-  });
-
-  final OnHistoryEntryTap onEntryTap;
+  HistoryPage({super.key});
 
   @override
   IconData get icon => Icons.history;
@@ -39,7 +33,9 @@ class HistoryPage extends StatelessWidget
   @override
   void handleEvent(BuildContext context, HistoryEvent event) {
     event.when(
-      select: (entry) => onEntryTap(entry.phoneNumber),
+      select: (entry) => context
+          .read<HistoryMediator>()
+          .onPhoneReceivedFromHistory(entry.phoneNumber),
       showRestoreEntrySnackBar: (entry) =>
           _showRestoreEntrySnackBar(context, entry),
     );

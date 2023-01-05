@@ -15,32 +15,61 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$PhoneFieldViewState {
-  Region? get selectedRegion => throw _privateConstructorUsedError;
-  TextEditingController get controller => throw _privateConstructorUsedError;
-  dynamic get error => throw _privateConstructorUsedError;
+mixin _$HomeEvent {
+  Region get current => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Region current) navigateToRegionPicker,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Region current)? navigateToRegionPicker,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Region current)? navigateToRegionPicker,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_HomeEventNavigateToRegionPicker value)
+        navigateToRegionPicker,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_HomeEventNavigateToRegionPicker value)?
+        navigateToRegionPicker,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_HomeEventNavigateToRegionPicker value)?
+        navigateToRegionPicker,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $PhoneFieldViewStateCopyWith<PhoneFieldViewState> get copyWith =>
+  $HomeEventCopyWith<HomeEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PhoneFieldViewStateCopyWith<$Res> {
-  factory $PhoneFieldViewStateCopyWith(
-          PhoneFieldViewState value, $Res Function(PhoneFieldViewState) then) =
-      _$PhoneFieldViewStateCopyWithImpl<$Res, PhoneFieldViewState>;
+abstract class $HomeEventCopyWith<$Res> {
+  factory $HomeEventCopyWith(HomeEvent value, $Res Function(HomeEvent) then) =
+      _$HomeEventCopyWithImpl<$Res, HomeEvent>;
   @useResult
-  $Res call(
-      {Region? selectedRegion,
-      TextEditingController controller,
-      dynamic error});
+  $Res call({Region current});
 }
 
 /// @nodoc
-class _$PhoneFieldViewStateCopyWithImpl<$Res, $Val extends PhoneFieldViewState>
-    implements $PhoneFieldViewStateCopyWith<$Res> {
-  _$PhoneFieldViewStateCopyWithImpl(this._value, this._then);
+class _$HomeEventCopyWithImpl<$Res, $Val extends HomeEvent>
+    implements $HomeEventCopyWith<$Res> {
+  _$HomeEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -50,131 +79,156 @@ class _$PhoneFieldViewStateCopyWithImpl<$Res, $Val extends PhoneFieldViewState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? selectedRegion = freezed,
-    Object? controller = null,
-    Object? error = freezed,
+    Object? current = null,
   }) {
     return _then(_value.copyWith(
-      selectedRegion: freezed == selectedRegion
-          ? _value.selectedRegion
-          : selectedRegion // ignore: cast_nullable_to_non_nullable
-              as Region?,
-      controller: null == controller
-          ? _value.controller
-          : controller // ignore: cast_nullable_to_non_nullable
-              as TextEditingController,
-      error: freezed == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+      current: null == current
+          ? _value.current
+          : current // ignore: cast_nullable_to_non_nullable
+              as Region,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_PhoneFieldViewStateCopyWith<$Res>
-    implements $PhoneFieldViewStateCopyWith<$Res> {
-  factory _$$_PhoneFieldViewStateCopyWith(_$_PhoneFieldViewState value,
-          $Res Function(_$_PhoneFieldViewState) then) =
-      __$$_PhoneFieldViewStateCopyWithImpl<$Res>;
+abstract class _$$_HomeEventNavigateToRegionPickerCopyWith<$Res>
+    implements $HomeEventCopyWith<$Res> {
+  factory _$$_HomeEventNavigateToRegionPickerCopyWith(
+          _$_HomeEventNavigateToRegionPicker value,
+          $Res Function(_$_HomeEventNavigateToRegionPicker) then) =
+      __$$_HomeEventNavigateToRegionPickerCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {Region? selectedRegion,
-      TextEditingController controller,
-      dynamic error});
+  $Res call({Region current});
 }
 
 /// @nodoc
-class __$$_PhoneFieldViewStateCopyWithImpl<$Res>
-    extends _$PhoneFieldViewStateCopyWithImpl<$Res, _$_PhoneFieldViewState>
-    implements _$$_PhoneFieldViewStateCopyWith<$Res> {
-  __$$_PhoneFieldViewStateCopyWithImpl(_$_PhoneFieldViewState _value,
-      $Res Function(_$_PhoneFieldViewState) _then)
+class __$$_HomeEventNavigateToRegionPickerCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$_HomeEventNavigateToRegionPicker>
+    implements _$$_HomeEventNavigateToRegionPickerCopyWith<$Res> {
+  __$$_HomeEventNavigateToRegionPickerCopyWithImpl(
+      _$_HomeEventNavigateToRegionPicker _value,
+      $Res Function(_$_HomeEventNavigateToRegionPicker) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? selectedRegion = freezed,
-    Object? controller = null,
-    Object? error = freezed,
+    Object? current = null,
   }) {
-    return _then(_$_PhoneFieldViewState(
-      selectedRegion: freezed == selectedRegion
-          ? _value.selectedRegion
-          : selectedRegion // ignore: cast_nullable_to_non_nullable
-              as Region?,
-      controller: null == controller
-          ? _value.controller
-          : controller // ignore: cast_nullable_to_non_nullable
-              as TextEditingController,
-      error: freezed == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+    return _then(_$_HomeEventNavigateToRegionPicker(
+      null == current
+          ? _value.current
+          : current // ignore: cast_nullable_to_non_nullable
+              as Region,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_PhoneFieldViewState implements _PhoneFieldViewState {
-  const _$_PhoneFieldViewState(
-      {required this.selectedRegion, required this.controller, this.error});
+class _$_HomeEventNavigateToRegionPicker
+    implements _HomeEventNavigateToRegionPicker {
+  _$_HomeEventNavigateToRegionPicker(this.current);
 
   @override
-  final Region? selectedRegion;
-  @override
-  final TextEditingController controller;
-  @override
-  final dynamic error;
+  final Region current;
 
   @override
   String toString() {
-    return 'PhoneFieldViewState(selectedRegion: $selectedRegion, controller: $controller, error: $error)';
+    return 'HomeEvent.navigateToRegionPicker(current: $current)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PhoneFieldViewState &&
-            (identical(other.selectedRegion, selectedRegion) ||
-                other.selectedRegion == selectedRegion) &&
-            (identical(other.controller, controller) ||
-                other.controller == controller) &&
-            const DeepCollectionEquality().equals(other.error, error));
+            other is _$_HomeEventNavigateToRegionPicker &&
+            (identical(other.current, current) || other.current == current));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, selectedRegion, controller,
-      const DeepCollectionEquality().hash(error));
+  int get hashCode => Object.hash(runtimeType, current);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PhoneFieldViewStateCopyWith<_$_PhoneFieldViewState> get copyWith =>
-      __$$_PhoneFieldViewStateCopyWithImpl<_$_PhoneFieldViewState>(
-          this, _$identity);
+  _$$_HomeEventNavigateToRegionPickerCopyWith<
+          _$_HomeEventNavigateToRegionPicker>
+      get copyWith => __$$_HomeEventNavigateToRegionPickerCopyWithImpl<
+          _$_HomeEventNavigateToRegionPicker>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Region current) navigateToRegionPicker,
+  }) {
+    return navigateToRegionPicker(current);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Region current)? navigateToRegionPicker,
+  }) {
+    return navigateToRegionPicker?.call(current);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Region current)? navigateToRegionPicker,
+    required TResult orElse(),
+  }) {
+    if (navigateToRegionPicker != null) {
+      return navigateToRegionPicker(current);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_HomeEventNavigateToRegionPicker value)
+        navigateToRegionPicker,
+  }) {
+    return navigateToRegionPicker(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_HomeEventNavigateToRegionPicker value)?
+        navigateToRegionPicker,
+  }) {
+    return navigateToRegionPicker?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_HomeEventNavigateToRegionPicker value)?
+        navigateToRegionPicker,
+    required TResult orElse(),
+  }) {
+    if (navigateToRegionPicker != null) {
+      return navigateToRegionPicker(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _PhoneFieldViewState implements PhoneFieldViewState {
-  const factory _PhoneFieldViewState(
-      {required final Region? selectedRegion,
-      required final TextEditingController controller,
-      final dynamic error}) = _$_PhoneFieldViewState;
+abstract class _HomeEventNavigateToRegionPicker implements HomeEvent {
+  factory _HomeEventNavigateToRegionPicker(final Region current) =
+      _$_HomeEventNavigateToRegionPicker;
 
   @override
-  Region? get selectedRegion;
-  @override
-  TextEditingController get controller;
-  @override
-  dynamic get error;
+  Region get current;
   @override
   @JsonKey(ignore: true)
-  _$$_PhoneFieldViewStateCopyWith<_$_PhoneFieldViewState> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_HomeEventNavigateToRegionPickerCopyWith<
+          _$_HomeEventNavigateToRegionPicker>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc

@@ -5,23 +5,25 @@ import 'package:flutter/material.dart' hide Intent;
 import 'package:logger_plus/logger_plus.dart';
 import 'package:receive_intent/receive_intent.dart';
 
+import '../../../core/arch/bloc_widget.dart';
 import '../../../core/di/inject.dart';
 import '../../call_log/presentation/call_log_page.dart';
-import '../../chat_apps/domain/entity/chat_app.dart';
 import '../../chat_apps/presentation/chat_apps_widget.dart';
 import '../../history/presentation/history_page.dart';
+import '../../phone/presentation/phone_field_widget.dart';
 import '../../region/domain/entity/region.dart';
 import '../../region/presentation/region_picker_page.dart';
+import '../../region/region_mediator.dart';
 import '../../shared/presentation/share_service.dart';
+import 'home_bloc.dart';
 import 'home_controller.dart';
 import 'home_state.dart';
 import 'widgets/ad_banner_widget.dart';
-import 'widgets/phone_field_widget.dart';
 import 'widgets/tab_list_view.dart';
 import 'widgets/top_banner_widget.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   final String title = 'Zapify';
 
@@ -29,33 +31,31 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage>
+    with BlocStateWidget<HomePage, HomeBloc, HomeEvent, void> {
   late final HomeController controller = inject();
 
-  late FocusNode _phoneNumberFocus;
   late final ShareService _shareService = ShareService();
   StreamSubscription? _sub;
 
-  @override
-  void initState() {
-    super.initState();
-    _init();
+  Future<void> _init() async {
+    _sub = _shareService.stream().listen(_handleSharedPhoneNumber);
   }
 
-  Future<void> _init() async {
-    _phoneNumberFocus = FocusNode();
-    _sub = _shareService.stream().listen(_handleSharedPhoneNumber);
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _init();
   }
 
   @override
   void dispose() {
     _sub?.cancel();
-    _phoneNumberFocus.dispose();
     super.dispose();
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget buildState(BuildContext context, _) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -68,21 +68,12 @@ class _HomePageState extends State<HomePage> {
             initialData: BannerViewState.none(),
             builder: _handleBannerType,
           ),
-          StreamBuilder(
-            stream: controller.phoneFieldState,
-            builder: _buildPhoneField,
-          ),
-          ChatAppsWidget(
-            onChatAppPressed: (chatApp) => _onChatAppPressed(context, chatApp),
-          ),
+          PhoneFieldWidget(),
+          ChatAppsWidget(),
           Expanded(
             child: TabListView(tabs: [
-              HistoryPage(
-                onEntryTap: controller.onPhoneNumberSelected,
-              ),
-              CallLogTabPage(
-                onEntryTap: controller.onPhoneNumberSelected,
-              ),
+              HistoryPage(),
+              CallLogTabPage(),
             ]),
           ),
         ],
@@ -95,53 +86,13 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildPhoneField(
-    BuildContext context,
-    AsyncSnapshot<PhoneFieldViewState> snapshot,
-  ) {
-    if (snapshot.hasData) {
-      final state = snapshot.requireData;
-      return PhoneFieldWidget(
-        region: state.selectedRegion,
-        onRegionPressed: (region) => _onRegionPressed(context, region),
-        controller: state.controller,
-        focusNode: _phoneNumberFocus,
-        error: state.error,
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      );
-    }
-    if (snapshot.hasError) {
-      Log.e(snapshot.error, snapshot.stackTrace);
-    }
-    return Container();
-  }
-
-  void _onRegionPressed(BuildContext context, Region? region) async {
-    analytics.buttonPressed('open_region_picker');
-    dismissKeyboard(context);
-
-    final route = MaterialPageRoute<Region>(
-      fullscreenDialog: true,
-      settings: const RouteSettings(name: 'RegionPicker'),
-      builder: (_) => RegionPicker(selected: region),
+  @override
+  FutureOr<void> handleEvent(BuildContext context, HomeEvent event) {
+    event.when(
+      navigateToRegionPicker: (current) =>
+          _navigateToRegionPicker(context, current),
     );
-
-    final selectedRegion = await Navigator.of(context).push<Region>(route);
-
-    if (selectedRegion != null) {
-      controller.onRegionSelected(selectedRegion);
-    }
-    _phoneNumberFocus.requestFocus();
   }
-
-  _onChatAppPressed(BuildContext context, ChatApp chatApp) async {
-    if (await controller.onChatAppPressed(chatApp)) {
-      dismissKeyboard(context);
-    }
-  }
-
-  void dismissKeyboard(BuildContext context) =>
-      FocusScope.of(context).unfocus();
 
   Widget _handleBannerType(
     BuildContext context,
@@ -167,8 +118,10 @@ class _HomePageState extends State<HomePage> {
   ) {
     if (snapshot.hasData) {
       final state = snapshot.requireData;
-      return state.when((unitId) => AdBannerWidget(unitId: unitId),
-          none: () => const SizedBox.shrink());
+      return state.when(
+        (unitId) => AdBannerWidget(unitId: unitId),
+        none: () => const SizedBox.shrink(),
+      );
     }
     if (snapshot.hasError) {
       Log.e(snapshot.error, snapshot.stackTrace);
@@ -176,12 +129,32 @@ class _HomePageState extends State<HomePage> {
     return const SizedBox.shrink();
   }
 
+  Future<void> _navigateToRegionPicker(
+    BuildContext context,
+    Region region,
+  ) async {
+    final bloc = context.read<RegionMediator>();
+
+    final route = MaterialPageRoute<Region>(
+      fullscreenDialog: true,
+      settings: const RouteSettings(name: 'RegionPicker'),
+      builder: (_) => RegionPicker(selected: region),
+    );
+
+    final selectedRegion = await Navigator.of(context).push<Region>(route);
+
+    if (selectedRegion != null) {
+      bloc.onRegionSelected(selectedRegion);
+    }
+  }
+
   void _handleSharedPhoneNumber(Intent intent) {
     final phoneNumber = intent.data;
     if (phoneNumber != null && phoneNumber.startsWith('tel:')) {
       analytics.intentHandled('phone_number_received');
-      controller
-          .onPhoneNumberReceived(phoneNumber.replaceFirst('tel:', ''))
+      context
+          .read<HomeBloc>()
+          .onPhoneReceivedFromIntent(phoneNumber.replaceFirst('tel:', ''))
           .catchError((_) {
         final obfuscatedNumber =
             phoneNumber.replaceAll('*', '\\*').replaceAll(RegExp('[0-9]'), '*');

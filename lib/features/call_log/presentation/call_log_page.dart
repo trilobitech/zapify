@@ -8,20 +8,14 @@ import '../../../core/widgets/list_divider.dart';
 import '../../../core/widgets/shimmer_view.dart';
 import '../../../l10n/l10n_ext.dart';
 import '../../home/presentation/widgets/tab_list_view.dart';
+import '../call_log_mediator.dart';
 import 'call_log_bloc.dart';
 import 'call_log_state.dart';
-
-typedef OnCallLogEntryTap = Function(String phoneNumber);
 
 class CallLogTabPage extends StatelessWidget
     with BlocWidget<CallLogBloc, CallLogEvent, CallLogState>
     implements MaybeAvailableTabPage {
-  CallLogTabPage({
-    super.key,
-    required this.onEntryTap,
-  });
-
-  final OnCallLogEntryTap onEntryTap;
+  CallLogTabPage({super.key});
 
   @override
   late final IconData icon = Icons.call;
@@ -48,7 +42,9 @@ class CallLogTabPage extends StatelessWidget
   @override
   void handleEvent(BuildContext context, CallLogEvent event) {
     event.when(
-      select: (entry) => onEntryTap(entry.phoneNumber),
+      select: (entry) => context
+          .read<CallLogMediator>()
+          .onPhoneReceivedFromCallLog(entry.phoneNumber),
     );
   }
 }

@@ -1,23 +1,21 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:logger_plus/logger_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/arch/bloc_widget.dart';
 import '../../../core/ext/context.dart';
 import '../../../core/widgets/image_resolver_widget.dart';
+import '../chat_apps_mediator.dart';
 import '../domain/entity/chat_app.dart';
 import 'chat_apps_bloc.dart';
 import 'chat_apps_state.dart';
-
-typedef OnChatAppPressed = void Function(ChatApp entry);
 
 class ChatAppsWidget extends StatelessWidget
     with BlocWidget<ChatAppsBloc, ChatAppsEvent, ChatAppsState> {
   ChatAppsWidget({
     Key? key,
-    required this.onChatAppPressed,
   }) : super(key: key);
-
-  final OnChatAppPressed onChatAppPressed;
 
   @override
   Widget buildState(BuildContext context, ChatAppsState state) => state.when(
@@ -28,8 +26,18 @@ class ChatAppsWidget extends StatelessWidget
   @override
   void handleEvent(BuildContext context, ChatAppsEvent event) {
     event.when(
-      select: onChatAppPressed,
+      select: (entry) => _openChatApp(context, entry),
     );
+  }
+
+  void _openChatApp(BuildContext context, ChatApp entry) {
+    context.read<ChatAppsMediator>().launch((phoneNumber) async {
+      final Uri uri = Uri.parse('${entry.deepLinkPrefix}$phoneNumber');
+      if (!await canLaunchUrl(uri) ||
+          !await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+        throw 'Could not launch $uri';
+      }
+    }).catchError(catchErrorLogger);
   }
 }
 

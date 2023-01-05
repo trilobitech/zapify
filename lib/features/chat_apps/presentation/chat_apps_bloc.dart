@@ -25,5 +25,6 @@ class ChatAppsBloc extends BlocController<ChatAppsEvent, ChatAppsState> {
       'launch_chat_app',
       properties: {'app_launched': entry.name},
     );
+    event(ChatAppsEvent.select(entry));
   }
 }
