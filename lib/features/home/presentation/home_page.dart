@@ -4,6 +4,7 @@ import 'package:analytics/analytics.dart';
 import 'package:flutter/material.dart' hide Intent;
 import 'package:logger_plus/logger_plus.dart';
 import 'package:receive_intent/receive_intent.dart';
+import 'package:rxdart/utils.dart';
 
 import '../../../core/arch/bloc_widget.dart';
 import '../../../core/di/inject.dart';
@@ -36,10 +37,12 @@ class _HomePageState extends State<HomePage>
   late final HomeController controller = inject();
 
   late final ShareService _shareService = ShareService();
-  StreamSubscription? _sub;
+  final _sub = CompositeSubscription();
 
   Future<void> _init() async {
-    _sub = _shareService.stream().listen(_handleSharedPhoneNumber);
+    _sub.add(
+      _shareService.stream().listen(_handleSharedPhoneNumber),
+    );
   }
 
   @override
@@ -50,7 +53,7 @@ class _HomePageState extends State<HomePage>
 
   @override
   void dispose() {
-    _sub?.cancel();
+    _sub.dispose();
     super.dispose();
   }
 

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:logger_plus/logger_plus.dart';
 import 'package:meta/meta.dart';
+import 'package:rxdart/utils.dart';
 
 typedef EventConsumer<Event> = FutureOr<void> Function(Event event);
 
@@ -13,7 +14,7 @@ abstract class BlocController<Event, State> extends Bloc<Event, State> {
   }
 
   @protected
-  final List<StreamSubscription> subscriptions = [];
+  final subscriptions = CompositeSubscription();
 
   EventConsumer<Event>? _eventConsumer;
 
@@ -34,10 +35,7 @@ abstract class BlocController<Event, State> extends Bloc<Event, State> {
 
   @override
   Future<void> close() async {
-    subscriptions
-      ..forEach((s) => s.cancel())
-      ..clear();
-
+    subscriptions.dispose();
     return super.close();
   }
 

@@ -15,14 +15,12 @@ class ChatAppDataSourceLocalImpl implements ChatAppDataSourceLocal {
   }
 
   final Future<BriteDatabase> db;
-  late final BehaviorSubject<List<ChatAppLocal>> _chatApps;
+  late final BehaviorSubject<List<ChatAppLocal>> _chatApps = BehaviorSubject();
 
   void _init() {
-    _chatApps = BehaviorSubject();
     Stream.fromFuture(db)
-        .asyncExpand((db) => db
-            .createQuery('chat_app', orderBy: 'id ASC')
-            .mapToList(ChatAppLocal.fromJson))
+        .asyncExpand((db) => db.createQuery('chat_app', orderBy: 'id ASC'))
+        .mapToList(ChatAppLocal.fromJson)
         .listen(_chatApps.add, onError: Log.e);
   }
 
@@ -31,7 +29,7 @@ class ChatAppDataSourceLocalImpl implements ChatAppDataSourceLocal {
 
   @override
   Future<void> syncWith(List<ChatApp> chatApps) async {
-    final actual = await _chatApps.first;
+    final actual = _chatApps.valueOrNull ?? [];
 
     Log.d('Checking if received chat apps is different from local');
     final updated = chatApps
