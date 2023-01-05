@@ -52,7 +52,7 @@ class ErrorFeedbackView extends FeedbackView {
     required Object error,
     required VoidCallback? onRetryPressed,
   }) {
-    final failure = inject<ErrorMessageResolver>().resolve(context, error);
+    final failure = get<ErrorMessageResolver>().resolve(context, error);
     final button =
         onRetryPressed != null && failure is ResolvedActionableFailure
             ? FeedbackButton(text: failure.action, onClick: onRetryPressed)

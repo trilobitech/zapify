@@ -4,6 +4,8 @@ final getIt = GetIt.instance;
 
 final registerFactory = getIt.registerFactory;
 
+final registerFactoryParam = getIt.registerFactoryParam;
+
 final registerSingletonAsync = getIt.registerSingletonAsync;
 
 void registerSingleton<T extends Object>(
