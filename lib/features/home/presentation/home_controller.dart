@@ -2,13 +2,12 @@ import 'package:in_app_review/in_app_review.dart';
 import 'package:logger_plus/logger_plus.dart';
 
 import '../../../config/env_config.dart';
-import '../../../config/remote_config.dart';
 import '../domain/entity/banner.dart';
 import '../domain/usecase/app_review.dart';
 import '../domain/usecase/get_top_banner.dart';
 import 'home_state.dart';
 
-class HomeController with _BannerController, _AdBannerController {
+class HomeController with _BannerController {
   HomeController({
     required this.getTopBanner,
     required this.setLastAppReviewAtNow,
@@ -51,17 +50,5 @@ mixin _BannerController {
           return inAppReview.openStoreListing(appStoreId: EnvConfig.appStoreId);
         })
         .then((_) => setLastAppReviewAtNow());
-  }
-}
-
-mixin _AdBannerController {
-  Future<AdBannerViewState> get adBannerState async {
-    final String unitId = await RemoteConfig.homeBannerUnitId.get();
-
-    if (unitId.isEmpty) {
-      return AdBannerViewState.none();
-    }
-
-    return AdBannerViewState(unitId: unitId);
   }
 }

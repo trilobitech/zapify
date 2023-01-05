@@ -1,5 +1,6 @@
 import '../config/config_module.dart';
 import '../core/di/inject.dart';
+import '../features/ad_banner/ad_banner_module.dart';
 import '../features/call_log/call_log_module.dart';
 import '../features/chat_apps/chat_apps_module.dart';
 import '../features/history/history_module.dart';
@@ -17,5 +18,6 @@ Future<void> loadModules() async {
   regionModule();
   callLogModule();
   phoneFiledModule();
+  adBannerModule();
   await getIt.allReady();
 }

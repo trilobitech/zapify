@@ -23,6 +23,9 @@ mixin BlocWidget<B extends BlocController<E, S>, E, S> on StatelessWidget
       ),
     );
   }
+
+  @override
+  FutureOr<void> handleEvent(BuildContext context, event) {}
 }
 
 mixin BlocStateWidget<W extends StatefulWidget, B extends BlocController<E, S>,
@@ -38,6 +41,9 @@ mixin BlocStateWidget<W extends StatefulWidget, B extends BlocController<E, S>,
       ),
     );
   }
+
+  @override
+  FutureOr<void> handleEvent(BuildContext context, event) {}
 }
 
 abstract class _BaseBlocWidget<B extends BlocController<E, S>, E, S> {

@@ -19,12 +19,3 @@ class BannerViewState with _$BannerViewState {
 
   factory BannerViewState.none() = _BannerViewStateNone;
 }
-
-@freezed
-class AdBannerViewState with _$AdBannerViewState {
-  factory AdBannerViewState({
-    required String unitId,
-  }) = _AdBannerViewState;
-
-  factory AdBannerViewState.none() = _AdBannerViewStateNone;
-}

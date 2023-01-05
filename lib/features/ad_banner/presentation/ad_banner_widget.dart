@@ -3,8 +3,25 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-class AdBannerWidget extends StatefulWidget {
-  const AdBannerWidget({
+import '../../../core/arch/bloc_widget.dart';
+import 'ad_banner_bloc.dart';
+import 'ad_banner_state.dart';
+
+class AdBannerWidget extends StatelessWidget
+    with BlocWidget<AdBannerBloc, void, AdBannerState> {
+  const AdBannerWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget buildState(BuildContext context, AdBannerState state) {
+    return state.when(
+      (unitId) => _AdBannerWidget(unitId: unitId),
+      none: () => const SizedBox.shrink(),
+    );
+  }
+}
+
+class _AdBannerWidget extends StatefulWidget {
+  const _AdBannerWidget({
     Key? key,
     required this.unitId,
   }) : super(key: key);
@@ -16,7 +33,7 @@ class AdBannerWidget extends StatefulWidget {
   State<StatefulWidget> createState() => _AdBannerWidgetState();
 }
 
-class _AdBannerWidgetState extends State<AdBannerWidget> {
+class _AdBannerWidgetState extends State<_AdBannerWidget> {
   BannerAd? _adBanner;
 
   @override
@@ -28,7 +45,7 @@ class _AdBannerWidgetState extends State<AdBannerWidget> {
   @override
   Widget build(BuildContext context) {
     final adBanner = _initBanner(context);
-    final AdWidget adWidget = AdWidget(ad: adBanner);
+    final adWidget = AdWidget(ad: adBanner);
 
     return Container(
       alignment: Alignment.center,

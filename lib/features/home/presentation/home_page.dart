@@ -8,6 +8,7 @@ import 'package:rxdart/utils.dart';
 
 import '../../../core/arch/bloc_widget.dart';
 import '../../../core/di/inject.dart';
+import '../../ad_banner/presentation/ad_banner_widget.dart';
 import '../../call_log/presentation/call_log_page.dart';
 import '../../chat_apps/presentation/chat_apps_widget.dart';
 import '../../history/presentation/history_page.dart';
@@ -19,7 +20,6 @@ import '../../shared/presentation/share_service.dart';
 import 'home_bloc.dart';
 import 'home_controller.dart';
 import 'home_state.dart';
-import 'widgets/ad_banner_widget.dart';
 import 'widgets/tab_list_view.dart';
 import 'widgets/top_banner_widget.dart';
 
@@ -81,11 +81,7 @@ class _HomePageState extends State<HomePage>
           ),
         ],
       ),
-      bottomNavigationBar: FutureBuilder<AdBannerViewState>(
-        initialData: AdBannerViewState.none(),
-        future: controller.adBannerState,
-        builder: _buildAdBanner,
-      ),
+      bottomNavigationBar: const AdBannerWidget(),
     );
   }
 
@@ -113,23 +109,6 @@ class _HomePageState extends State<HomePage>
       ),
       none: () => Container(),
     );
-  }
-
-  Widget _buildAdBanner(
-    BuildContext context,
-    AsyncSnapshot<AdBannerViewState> snapshot,
-  ) {
-    if (snapshot.hasData) {
-      final state = snapshot.requireData;
-      return state.when(
-        (unitId) => AdBannerWidget(unitId: unitId),
-        none: () => const SizedBox.shrink(),
-      );
-    }
-    if (snapshot.hasError) {
-      Log.e(snapshot.error, snapshot.stackTrace);
-    }
-    return const SizedBox.shrink();
   }
 
   Future<void> _navigateToRegionPicker(
