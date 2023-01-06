@@ -9,7 +9,8 @@ import 'env_config.dart';
 enum RemoteConfig with KeyValueMixin<IRemoteConfigStorage> {
   chatAppsSourceUrl,
   homeBannerUnitId,
-  isCallLogTabEnabled;
+  isCallLogTabEnabled,
+  isRequestReviewEnabled;
 
   @override
   String get key => name;
@@ -22,4 +23,5 @@ Map<String, dynamic> get remoteConfigDefaults => {
       RemoteConfig.chatAppsSourceUrl.key: 'assets://data/chat-apps.json',
       RemoteConfig.homeBannerUnitId.key: EnvConfig.homeBannerUnitId,
       RemoteConfig.isCallLogTabEnabled.key: kDebugMode && Platform.isAndroid,
+      RemoteConfig.isRequestReviewEnabled.key: kDebugMode,
     };
