@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:logger_plus/logger_plus.dart';
-import 'package:phone_number/phone_number.dart';
+import 'package:phone_number/phone_number.dart' hide RegionInfo;
 
 import '../../../../../common/arch/bloc_controller.dart';
 import '../../../../region/domain/entity/region.dart';
@@ -14,25 +14,24 @@ class PhoneFieldBloc extends BlocController<PhoneFieldEvent, PhoneFieldState>
     implements PhoneFieldComponent {
   PhoneFieldBloc(
     this._plugin, {
-    required GetRegionUseCase getRegion,
     required GetDefaultRegionUseCase getDefaultRegion,
-  })  : _getRegion = getRegion,
-        _getDefaultRegion = getDefaultRegion,
+  })  : _getDefaultRegion = getDefaultRegion,
         super(PhoneFieldState.initial());
 
   final PhoneNumberUtil _plugin;
-  final GetRegionUseCase _getRegion;
   final GetDefaultRegionUseCase _getDefaultRegion;
 
-  TextEditingController get _textEditingController => state.ctrl;
+  TextEditingController get _textEditingController => state.controller;
 
-  Region get _region => state.region;
+  String get _currentText => _textEditingController.text;
+
+  IRegion? get _region => state.region;
 
   @override
   Future<void> load() async {
     try {
       final region = await _getDefaultRegion();
-      updatePhoneField(region: region);
+      await _updatePhoneField(_currentText, region);
     } catch (error, stackTrace) {
       Log.e(error, stackTrace);
     }
@@ -41,7 +40,7 @@ class PhoneFieldBloc extends BlocController<PhoneFieldEvent, PhoneFieldState>
   @override
   Future<PhoneNumber> getPhoneNumber() async {
     try {
-      return await _parsePhoneNumber(_textEditingController.text, _region);
+      return await _parsePhoneNumber(_currentText, _region?.code);
     } catch (error) {
       _emitState(error: error);
       rethrow;
@@ -49,31 +48,24 @@ class PhoneFieldBloc extends BlocController<PhoneFieldEvent, PhoneFieldState>
   }
 
   @override
-  Future<void> updatePhoneField({
-    String? phone,
-    Region? region,
-    bool showKeyboard = false,
-  }) async {
-    if (region == null) {
-      if (phone == null) {
-        throw 'Invalid arguments: "region" and/or "phone" should be not null';
-      }
-      region = await _tryParsePhoneNumber(phone).then((value) async {
-        phone = await _plugin.format(value.nationalNumber, value.regionCode);
-        return _getRegion(prefix: value.countryCode, code: value.regionCode);
-      }).catchError((_) => _region);
-    }
+  Future<void> updatePhone(String phone) async {
+    if (phone == _currentText) return;
 
-    final ctrl = PhoneNumberEditingController.fromValue(
-      _plugin,
-      _textEditingValueFrom(phone),
-      regionCode: region.code,
+    final parsed = await _tryParsePhoneNumber(phone);
+    final region = parsed?.region ?? _region;
+
+    if (region == null) return;
+
+    await _updatePhoneField(
+      parsed?.nationalNumber ?? phone,
+      region,
     );
+  }
 
-    _emitState(ctrl: ctrl, region: region);
-    if (showKeyboard) {
-      event(PhoneFieldEvent.showKeyboard());
-    }
+  @override
+  Future<void> updateRegion(IRegion region) async {
+    await _updatePhoneField(_currentText, region);
+    event(PhoneFieldEvent.showKeyboard());
   }
 
   @override
@@ -87,22 +79,47 @@ class PhoneFieldBloc extends BlocController<PhoneFieldEvent, PhoneFieldState>
     add(PhoneFieldEvent.hideKeyboard());
   }
 
-  Future<PhoneNumber> _tryParsePhoneNumber(String text) async {
-    if (text.startsWith('+')) {
-      return _parsePhoneNumber(text);
+  Future<void> _updatePhoneField(String phone, IRegion region) async {
+    if (phone == _currentText && region == _region) return;
+
+    final formattedPhone =
+        await _plugin.format(phone, region.code).catchError((_) => phone);
+
+    final newValue = _textEditingValueFrom(formattedPhone);
+
+    if (region == _region) {
+      _textEditingController.value = newValue;
+      return;
     }
 
-    return _getDefaultRegion()
-        .then((region) => _parsePhoneNumber(text, region))
-        .catchError((e) => _parsePhoneNumber('+$text'));
+    final controller = PhoneNumberEditingController.fromValue(
+      _plugin,
+      newValue,
+      regionCode: region.code,
+      behavior: PhoneInputBehavior.strict,
+    );
+
+    _emitState(controller: controller, region: region);
   }
 
-  Future<PhoneNumber> _parsePhoneNumber(String phone, [Region? region]) async {
-    if (phone.isEmpty) {
-      throw EmptyPhoneNumberFailure();
-    }
+  Future<PhoneNumber?> _tryParsePhoneNumber(String text) async {
+    if (text.isEmpty) return null;
 
-    return await _plugin.parse(phone, regionCode: region?.code).catchError(
+    if (text.startsWith('+')) return _parsePhoneNumber(text);
+
+    return _getDefaultRegion()
+        .then<PhoneNumber?>((region) => _parsePhoneNumber(text, region.code))
+        .catchError((_) => _parsePhoneNumber('+$text'))
+        .catchError((_) => null);
+  }
+
+  Future<PhoneNumber> _parsePhoneNumber(
+    String phone, [
+    RegionCode? regionCode,
+  ]) async {
+    if (phone.isEmpty) throw EmptyPhoneNumberFailure();
+
+    return await _plugin.parse(phone, regionCode: regionCode).catchError(
       (error, stackTrace) {
         // prevent phone number on error logging
         if (error is PlatformException && error.code == 'InvalidNumber') {
@@ -114,18 +131,17 @@ class PhoneFieldBloc extends BlocController<PhoneFieldEvent, PhoneFieldState>
   }
 
   void _addClearErrorListener() {
-    final oldText = _textEditingController.text;
-    late final Function() listener;
-    listener = () {
-      if (oldText == _textEditingController.text) return;
+    final oldText = _currentText;
+    late final VoidCallback listener;
+
+    _textEditingController.addListener(listener = () {
+      if (oldText == _currentText) return;
       _textEditingController.removeListener(listener);
       _emitState(error: null);
-    };
-    _textEditingController.addListener(listener);
+    });
   }
 
-  TextEditingValue _textEditingValueFrom(String? text) {
-    if (text == null) return _textEditingController.value;
+  TextEditingValue _textEditingValueFrom(String text) {
     return TextEditingValue(
       text: text,
       selection: TextSelection.fromPosition(
@@ -135,13 +151,25 @@ class PhoneFieldBloc extends BlocController<PhoneFieldEvent, PhoneFieldState>
   }
 
   void _emitState({
-    TextEditingController? ctrl,
-    Region? region,
+    TextEditingController? controller,
+    IRegion? region,
     Object? error,
   }) {
-    if (error != null) {
-      _addClearErrorListener();
-    }
-    emit(state.copyWith(ctrl: ctrl, region: region, error: error));
+    if (error != null) _addClearErrorListener();
+
+    final newState = state.copyWith(
+      controller: controller,
+      region: region,
+      error: error,
+    );
+
+    emit(newState);
   }
+}
+
+extension _PhoneNumberExt on PhoneNumber {
+  RegionInfo get region => RegionInfo(
+        code: regionCode,
+        prefix: int.parse(countryCode),
+      );
 }

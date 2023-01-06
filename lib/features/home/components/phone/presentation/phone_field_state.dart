@@ -6,22 +6,23 @@ import '../../../../region/domain/entity/region.dart';
 part 'phone_field_state.freezed.dart';
 
 class PhoneFieldState {
-  PhoneFieldState(this.ctrl, this.region, [this.error]);
+  PhoneFieldState(this.controller, [this.region, this.error]);
 
-  factory PhoneFieldState.initial() => PhoneFieldState(
-        TextEditingController(),
-        Region.br(),
-      );
+  factory PhoneFieldState.initial() => PhoneFieldState(TextEditingController());
 
   PhoneFieldState copyWith({
-    TextEditingController? ctrl,
-    Region? region,
+    TextEditingController? controller,
+    IRegion? region,
     Object? error,
   }) =>
-      PhoneFieldState(ctrl ?? this.ctrl, region ?? this.region, error);
+      PhoneFieldState(
+        controller ?? this.controller,
+        region ?? this.region,
+        error,
+      );
 
-  final TextEditingController ctrl;
-  final Region region;
+  final TextEditingController controller;
+  final IRegion? region;
   final Object? error;
 }
 

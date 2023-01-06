@@ -16,20 +16,20 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$HomeEvent {
-  Region get current => throw _privateConstructorUsedError;
+  String? get current => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Region current) navigateToRegionPicker,
+    required TResult Function(String? current) navigateToRegionPicker,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Region current)? navigateToRegionPicker,
+    TResult? Function(String? current)? navigateToRegionPicker,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Region current)? navigateToRegionPicker,
+    TResult Function(String? current)? navigateToRegionPicker,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -63,7 +63,7 @@ abstract class $HomeEventCopyWith<$Res> {
   factory $HomeEventCopyWith(HomeEvent value, $Res Function(HomeEvent) then) =
       _$HomeEventCopyWithImpl<$Res, HomeEvent>;
   @useResult
-  $Res call({Region current});
+  $Res call({String? current});
 }
 
 /// @nodoc
@@ -79,13 +79,13 @@ class _$HomeEventCopyWithImpl<$Res, $Val extends HomeEvent>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? current = null,
+    Object? current = freezed,
   }) {
     return _then(_value.copyWith(
-      current: null == current
+      current: freezed == current
           ? _value.current
           : current // ignore: cast_nullable_to_non_nullable
-              as Region,
+              as String?,
     ) as $Val);
   }
 }
@@ -99,7 +99,7 @@ abstract class _$$_HomeEventNavigateToRegionPickerCopyWith<$Res>
       __$$_HomeEventNavigateToRegionPickerCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Region current});
+  $Res call({String? current});
 }
 
 /// @nodoc
@@ -114,13 +114,13 @@ class __$$_HomeEventNavigateToRegionPickerCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? current = null,
+    Object? current = freezed,
   }) {
     return _then(_$_HomeEventNavigateToRegionPicker(
-      null == current
+      freezed == current
           ? _value.current
           : current // ignore: cast_nullable_to_non_nullable
-              as Region,
+              as String?,
     ));
   }
 }
@@ -132,7 +132,7 @@ class _$_HomeEventNavigateToRegionPicker
   _$_HomeEventNavigateToRegionPicker(this.current);
 
   @override
-  final Region current;
+  final String? current;
 
   @override
   String toString() {
@@ -161,7 +161,7 @@ class _$_HomeEventNavigateToRegionPicker
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Region current) navigateToRegionPicker,
+    required TResult Function(String? current) navigateToRegionPicker,
   }) {
     return navigateToRegionPicker(current);
   }
@@ -169,7 +169,7 @@ class _$_HomeEventNavigateToRegionPicker
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Region current)? navigateToRegionPicker,
+    TResult? Function(String? current)? navigateToRegionPicker,
   }) {
     return navigateToRegionPicker?.call(current);
   }
@@ -177,7 +177,7 @@ class _$_HomeEventNavigateToRegionPicker
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Region current)? navigateToRegionPicker,
+    TResult Function(String? current)? navigateToRegionPicker,
     required TResult orElse(),
   }) {
     if (navigateToRegionPicker != null) {
@@ -219,11 +219,11 @@ class _$_HomeEventNavigateToRegionPicker
 }
 
 abstract class _HomeEventNavigateToRegionPicker implements HomeEvent {
-  factory _HomeEventNavigateToRegionPicker(final Region current) =
+  factory _HomeEventNavigateToRegionPicker(final String? current) =
       _$_HomeEventNavigateToRegionPicker;
 
   @override
-  Region get current;
+  String? get current;
   @override
   @JsonKey(ignore: true)
   _$$_HomeEventNavigateToRegionPickerCopyWith<

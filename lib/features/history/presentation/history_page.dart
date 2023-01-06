@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:timeago_flutter/timeago_flutter.dart';
 
@@ -31,15 +33,14 @@ class HistoryPage extends StatelessWidget
       );
 
   @override
-  void handleEvent(BuildContext context, HistoryEvent event) {
-    event.when(
-      select: (entry) => context
-          .read<HistoryMediator>()
-          .onPhoneReceivedFromHistory(entry.phoneNumber),
-      showRestoreEntrySnackBar: (entry) =>
-          _showRestoreEntrySnackBar(context, entry),
-    );
-  }
+  FutureOr<void> handleEvent(BuildContext context, HistoryEvent event) =>
+      event.when(
+        select: (entry) => context
+            .read<HistoryMediator>()
+            .onPhoneReceivedFromHistory(entry.phoneNumber),
+        showRestoreEntrySnackBar: (entry) =>
+            _showRestoreEntrySnackBar(context, entry),
+      );
 
   void _showRestoreEntrySnackBar(BuildContext context, HistoryEntry entry) {
     final snackBar = SnackBar(

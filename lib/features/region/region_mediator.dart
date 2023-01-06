@@ -1,7 +1,9 @@
+import 'dart:async';
+
 import 'domain/entity/region.dart';
 
 abstract class RegionMediator {
-  void showRegionPicker(Region region);
+  void showRegionPicker(RegionCode? selectedCode);
 
-  void onRegionSelected(Region region);
+  FutureOr<void> onRegionSelected(IRegion region);
 }

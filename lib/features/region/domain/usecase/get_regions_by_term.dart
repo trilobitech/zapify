@@ -8,7 +8,7 @@ class GetRegionsByTermUseCase {
 
   IRegionRepository repository;
 
-  Future<List<Region>> call(String term) async {
+  Future<List<Country>> call(String term) async {
     term = term.trim();
     final regions = await repository.getAll();
     if (term.isEmpty) {

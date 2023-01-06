@@ -27,7 +27,7 @@ class PhoneFieldWidget extends StatelessWidget
         key: const ValueKey('PhoneNumber'),
         style: _textFieldStyle,
         focusNode: _textFieldFocus,
-        controller: state.ctrl,
+        controller: state.controller,
         textInputAction: TextInputAction.go,
         keyboardType: TextInputType.phone,
         // onSubmitted: widget.onSubmitted,
@@ -54,8 +54,16 @@ class PhoneFieldWidget extends StatelessWidget
         showKeyboard: showKeyboard,
       );
 
-  Widget regionSelectorButton(BuildContext context, PhoneFieldState state) {
+  Widget? regionSelectorButton(
+    BuildContext context,
+    PhoneFieldState state,
+  ) {
+    final controller = state.controller;
     final region = state.region;
+
+    if (region == null) {
+      return null;
+    }
 
     return TextButton(
       style: TextButton.styleFrom(
@@ -64,12 +72,12 @@ class PhoneFieldWidget extends StatelessWidget
         side: BorderSide.none,
       ),
       onPressed: () {
-        if (!_textFieldFocus.hasFocus && state.ctrl.text.isEmpty) {
+        if (!_textFieldFocus.hasFocus && controller.text.isEmpty) {
           // avoid invisible region area click
           showKeyboard();
           return;
         }
-        context.read<RegionMediator>().showRegionPicker(region);
+        context.read<RegionMediator>().showRegionPicker(region.code);
       },
       child: Text(
         '${region.flag} +${region.prefix}',

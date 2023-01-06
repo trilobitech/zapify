@@ -8,8 +8,8 @@ class RegionPickerController {
 
   GetRegionsByTermUseCase getAvailableRegions;
 
-  Future<List<Region>> getRegionByTerm(String term) =>
+  Future<List<Country>> getRegionByTerm(String term) =>
       getAvailableRegions(term);
 
-  Future<List<Region>> getAllRegions() => getAvailableRegions('');
+  Future<List<Country>> getAllRegions() => getAvailableRegions('');
 }

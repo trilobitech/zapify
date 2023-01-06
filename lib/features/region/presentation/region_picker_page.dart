@@ -9,14 +9,14 @@ import 'region_picker_controller.dart';
 class RegionPicker extends StatefulWidget {
   const RegionPicker({Key? key, this.selected}) : super(key: key);
 
-  final Region? selected;
+  final RegionCode? selected;
 
   @override
   State<RegionPicker> createState() => _RegionPickerState();
 }
 
 class _RegionPickerState extends State<RegionPicker> {
-  List<Region> _regions = [];
+  List<Country> _regions = [];
   final _ctrl = TextEditingController();
   late final RegionPickerController controller = inject();
 
@@ -66,7 +66,7 @@ class _RegionPickerState extends State<RegionPicker> {
                   return _RegionListTile(
                     region: _regions[i],
                     onTap: (region) => Navigator.of(context).pop(region),
-                    isSelected: widget.selected == region,
+                    isSelected: widget.selected == region.code,
                   );
                 },
               ),
@@ -86,9 +86,9 @@ class _RegionListTile extends StatelessWidget {
     this.isSelected = false,
   }) : super(key: key);
 
-  final Region region;
+  final Country region;
   final bool isSelected;
-  final Function(Region) onTap;
+  final Function(Country) onTap;
 
   @override
   Widget build(BuildContext context) {

@@ -13,7 +13,6 @@ void phoneFiledModule() {
     () => instance ??= PhoneFieldBloc(
       get(),
       getDefaultRegion: get(),
-      getRegion: get(),
     ),
   );
 }

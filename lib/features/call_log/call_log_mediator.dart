@@ -1,3 +1,3 @@
 abstract class CallLogMediator {
-  void onPhoneReceivedFromCallLog(String phoneNumber);
+  Future<void> onPhoneReceivedFromCallLog(String phoneNumber);
 }

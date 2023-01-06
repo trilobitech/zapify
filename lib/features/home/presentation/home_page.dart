@@ -78,29 +78,28 @@ class _HomePageState extends State<HomePage>
   }
 
   @override
-  FutureOr<void> handleEvent(BuildContext context, HomeEvent event) {
-    event.when(
-      navigateToRegionPicker: (current) =>
-          _navigateToRegionPicker(context, current),
-    );
-  }
+  FutureOr<void> handleEvent(BuildContext context, HomeEvent event) =>
+      event.when(
+        navigateToRegionPicker: (current) =>
+            _navigateToRegionPicker(context, current),
+      );
 
   Future<void> _navigateToRegionPicker(
     BuildContext context,
-    Region region,
+    String? regionCode,
   ) async {
     final bloc = context.read<RegionMediator>();
 
-    final route = MaterialPageRoute<Region>(
+    final route = MaterialPageRoute(
       fullscreenDialog: true,
       settings: const RouteSettings(name: 'RegionPicker'),
-      builder: (_) => RegionPicker(selected: region),
+      builder: (_) => RegionPicker(selected: regionCode),
     );
 
-    final selectedRegion = await Navigator.of(context).push<Region>(route);
+    final selectedRegion = await Navigator.of(context).push(route);
 
-    if (selectedRegion != null) {
-      bloc.onRegionSelected(selectedRegion);
+    if (selectedRegion is IRegion) {
+      await bloc.onRegionSelected(selectedRegion);
     }
   }
 

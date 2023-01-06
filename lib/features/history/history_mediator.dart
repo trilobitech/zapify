@@ -1,3 +1,5 @@
+import 'dart:async';
+
 abstract class HistoryMediator {
-  void onPhoneReceivedFromHistory(String phoneNumber);
+  FutureOr<void> onPhoneReceivedFromHistory(String phoneNumber);
 }

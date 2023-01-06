@@ -31,29 +31,26 @@ class HomeBloc extends BlocController<HomeEvent, void> implements HomeMediator {
   final PhoneFieldComponent _phoneFieldComponent;
 
   Future<void> onPhoneReceivedFromIntent(String phoneNumber) =>
-      _phoneFieldComponent.updatePhoneField(phone: phoneNumber);
+      _phoneFieldComponent.updatePhone(phoneNumber);
 
   @override
-  void onPhoneReceivedFromCallLog(String phoneNumber) {
-    _phoneFieldComponent.updatePhoneField(phone: phoneNumber);
-  }
+  Future<void> onPhoneReceivedFromCallLog(String phoneNumber) =>
+      _phoneFieldComponent.updatePhone(phoneNumber);
 
   @override
-  void onPhoneReceivedFromHistory(String phoneNumber) {
-    _phoneFieldComponent.updatePhoneField(phone: phoneNumber);
-  }
+  Future<void> onPhoneReceivedFromHistory(String phoneNumber) =>
+      _phoneFieldComponent.updatePhone(phoneNumber);
 
   @override
-  void showRegionPicker(Region region) {
+  void showRegionPicker(RegionCode? selectedCode) {
     analytics.buttonPressed('open_region_picker');
     _phoneFieldComponent.unfocusField();
-    event(HomeEvent.navigateToRegionPicker(region));
+    event(HomeEvent.navigateToRegionPicker(selectedCode));
   }
 
   @override
-  void onRegionSelected(Region region) {
-    _phoneFieldComponent.updatePhoneField(region: region, showKeyboard: true);
-  }
+  Future<void> onRegionSelected(IRegion region) =>
+      _phoneFieldComponent.updateRegion(region);
 
   @override
   Future<void> launch(ChatAppLauncher launcher) async {

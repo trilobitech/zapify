@@ -1,7 +1,7 @@
 import '../entity/region.dart';
 
 abstract class IRegionRepository {
-  Future<List<Region>> getAll();
+  Future<List<Country>> getAll();
 
-  Future<Region> getCurrent();
+  Future<IRegion> getCurrent();
 }

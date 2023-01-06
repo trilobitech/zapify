@@ -6,7 +6,7 @@ class GetRegionUseCase {
 
   IRegionRepository repository;
 
-  Future<Region> call({required String prefix, required String code}) async {
+  Future<Country> call({required String prefix, required String code}) async {
     final regions = await repository.getAll();
     return regions.firstWhere(
       (element) => '${element.prefix}' == prefix && element.code == code,
@@ -21,5 +21,5 @@ class GetDefaultRegionUseCase {
 
   IRegionRepository repository;
 
-  Future<Region> call() => repository.getCurrent();
+  Future<IRegion> call() => repository.getCurrent();
 }

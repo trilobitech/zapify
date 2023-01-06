@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import '../../../common/arch/bloc_widget.dart';
@@ -40,13 +42,12 @@ class CallLogTabPage extends StatelessWidget
       );
 
   @override
-  void handleEvent(BuildContext context, CallLogEvent event) {
-    event.when(
-      select: (entry) => context
-          .read<CallLogMediator>()
-          .onPhoneReceivedFromCallLog(entry.phoneNumber),
-    );
-  }
+  FutureOr<void> handleEvent(BuildContext context, CallLogEvent event) =>
+      event.when(
+        select: (entry) => context
+            .read<CallLogMediator>()
+            .onPhoneReceivedFromCallLog(entry.phoneNumber),
+      );
 }
 
 class _SuccessView extends StatelessWidget {

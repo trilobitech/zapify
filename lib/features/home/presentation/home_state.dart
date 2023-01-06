@@ -6,6 +6,6 @@ part 'home_state.freezed.dart';
 
 @freezed
 class HomeEvent with _$HomeEvent {
-  factory HomeEvent.navigateToRegionPicker(Region current) =
+  factory HomeEvent.navigateToRegionPicker(RegionCode? current) =
       _HomeEventNavigateToRegionPicker;
 }
