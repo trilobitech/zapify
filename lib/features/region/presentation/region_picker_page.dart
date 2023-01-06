@@ -1,40 +1,40 @@
+import 'dart:async';
+
 import 'package:analytics/analytics.dart';
 import 'package:flutter/material.dart';
 
-import '../../../common/di/inject.dart';
+import '../../../common/arch/bloc_widget.dart';
 import '../../../common/ext/context.dart';
 import '../domain/entity/region.dart';
-import 'region_picker_controller.dart';
+import 'region_picker_bloc.dart';
+import 'region_picker_state.dart';
 
-class RegionPicker extends StatefulWidget {
-  const RegionPicker({Key? key, this.selected}) : super(key: key);
+class RegionPicker extends StatelessWidget
+    with BlocWidget<RegionPickerBloc, RegionPickerEvent, RegionPickerState> {
+  RegionPicker({super.key, this.selected});
 
   final RegionCode? selected;
 
   @override
-  State<RegionPicker> createState() => _RegionPickerState();
-}
-
-class _RegionPickerState extends State<RegionPicker> {
-  List<Country> _regions = [];
-  final _ctrl = TextEditingController();
-  late final RegionPickerController controller = inject();
+  Widget buildState(BuildContext context, RegionPickerState state) =>
+      state.when(
+        (countries) => _SuccessView(countries: countries, selected: selected),
+        initial: () => Container(),
+      );
 
   @override
-  void initState() {
-    initRegions();
-    super.initState();
-  }
+  FutureOr<void> handleEvent(BuildContext context, event) =>
+      event.when(close: (country) => Navigator.of(context).pop(country));
+}
 
-  initRegions() async {
-    _ctrl.addListener(() async {
-      final regions = await controller.getRegionByTerm(_ctrl.text);
-      setState(() => _regions = regions);
-    });
+class _SuccessView extends StatelessWidget {
+  const _SuccessView({
+    required this.countries,
+    required this.selected,
+  });
 
-    final regions = await controller.getAllRegions();
-    setState(() => _regions = regions);
-  }
+  final List<Country> countries;
+  final RegionCode? selected;
 
   @override
   Widget build(BuildContext context) {
@@ -45,28 +45,18 @@ class _RegionPickerState extends State<RegionPicker> {
       body: Scrollbar(
         child: Column(
           children: [
-            TextField(
-              controller: _ctrl,
-              decoration: InputDecoration(
-                contentPadding: const EdgeInsets.all(16),
-                hintText: context.strings.availableRegionsSearch,
-                border: const UnderlineInputBorder(),
-                suffixIcon: IconButton(
-                  icon: const Icon(Icons.clear),
-                  onPressed: _ctrl.clear,
-                ),
-              ),
-            ),
+            const _SearchView(),
             Expanded(
               child: ListView.separated(
-                itemCount: _regions.length,
+                itemCount: countries.length,
                 separatorBuilder: (_, i) => const Divider(height: 0),
                 itemBuilder: (context, i) {
-                  final region = _regions[i];
+                  final region = countries[i];
                   return _RegionListTile(
-                    region: _regions[i],
-                    onTap: (region) => Navigator.of(context).pop(region),
-                    isSelected: widget.selected == region.code,
+                    region: countries[i],
+                    onTap: (country) =>
+                        context.read<RegionPickerBloc>().select(country),
+                    isSelected: selected == region.code,
                   );
                 },
               ),
@@ -75,6 +65,50 @@ class _RegionPickerState extends State<RegionPicker> {
         ),
       ),
     );
+  }
+}
+
+class _SearchView extends StatefulWidget {
+  const _SearchView();
+
+  @override
+  State<_SearchView> createState() => _SearchViewState();
+}
+
+class _SearchViewState extends State<_SearchView> {
+  late final bloc = context.read<RegionPickerBloc>();
+  late final ctrl = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    ctrl.addListener(searchTerm);
+  }
+
+  @override
+  void dispose() {
+    ctrl.removeListener(searchTerm);
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      controller: ctrl,
+      decoration: InputDecoration(
+        contentPadding: const EdgeInsets.all(16),
+        hintText: context.strings.availableRegionsSearch,
+        border: const UnderlineInputBorder(),
+        suffixIcon: IconButton(
+          icon: const Icon(Icons.clear),
+          onPressed: ctrl.clear,
+        ),
+      ),
+    );
+  }
+
+  void searchTerm() {
+    bloc.getRegionByTerm(ctrl.text);
   }
 }
 

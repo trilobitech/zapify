@@ -19,6 +19,7 @@ abstract class BlocController<Event, State> extends Bloc<Event, State> {
   EventConsumer<Event>? _eventConsumer;
 
   @protected
+  @visibleForOverriding
   Future<void> load() async {}
 
   @override
