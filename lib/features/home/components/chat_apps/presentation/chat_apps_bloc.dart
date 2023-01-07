@@ -15,8 +15,8 @@ class ChatAppsBloc extends BlocController<ChatAppsState, ChatAppsAction> {
 
   @override
   Future<void> load() async {
-    subscriptions.add(
-      _getChatApps().map(_mapToState).listen(setState),
+    setStateFrom(
+      _getChatApps().map(_mapToState),
     );
   }
 

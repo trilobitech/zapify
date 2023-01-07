@@ -37,8 +37,8 @@ class HistoryBloc extends BlocController<HistoryState, HistoryAction> {
 
     setState(initialState);
 
-    subscriptions.add(
-      _getPhoneNumberHistory().map(_mapToState).listen(setState),
+    setStateFrom(
+      _getPhoneNumberHistory().map(_mapToState),
     );
   }
 

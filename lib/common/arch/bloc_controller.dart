@@ -16,8 +16,7 @@ class BlocController<S extends IState, A extends IAction>
     load();
   }
 
-  @protected
-  final subscriptions = CompositeSubscription();
+  final _subscriptions = CompositeSubscription();
 
   S _currentState;
 
@@ -36,6 +35,10 @@ class BlocController<S extends IState, A extends IAction>
     super.emit(newState);
   }
 
+  void setStateFrom(Stream<S> stream) {
+    stream.listen(setState).addTo(_subscriptions);
+  }
+
   void sendAction(A action) {
     // workarount to enable same action dispatch
     super.emit(action);
@@ -50,7 +53,7 @@ class BlocController<S extends IState, A extends IAction>
 
   @override
   Future<void> close() async {
-    subscriptions.dispose();
+    _subscriptions.dispose();
     return super.close();
   }
 }

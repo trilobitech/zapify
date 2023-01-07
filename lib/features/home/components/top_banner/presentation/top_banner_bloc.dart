@@ -21,8 +21,8 @@ class TopBannerBloc extends BlocController<TopBannerState, NoAction> {
 
   @override
   Future<void> load() async {
-    subscriptions.add(
-      _getTopBanner().map(_mapToState).listen(setState),
+    setStateFrom(
+      _getTopBanner().map(_mapToState),
     );
   }
 
