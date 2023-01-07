@@ -18,13 +18,14 @@ abstract class HomeMediator
         HistoryMediator,
         CallLogMediator {}
 
-class HomeBloc extends BlocController<HomeEvent, void> implements HomeMediator {
+class HomeBloc extends BlocController<NoState, HomeAction>
+    implements HomeMediator {
   HomeBloc({
     required PhoneFieldComponent phoneFieldComponent,
     required SavePhoneNumberHistoryUseCase savePhoneNumberHistory,
   })  : _phoneFieldComponent = phoneFieldComponent,
         _savePhoneNumberHistory = savePhoneNumberHistory,
-        super(null);
+        super(NoState.empty());
 
   final SavePhoneNumberHistoryUseCase _savePhoneNumberHistory;
 
@@ -45,7 +46,7 @@ class HomeBloc extends BlocController<HomeEvent, void> implements HomeMediator {
   void showRegionPicker(RegionCode? selectedCode) {
     analytics.buttonPressed('open_region_picker');
     _phoneFieldComponent.unfocusField();
-    event(HomeEvent.navigateToRegionPicker(selectedCode));
+    sendAction(HomeAction.navigateToRegionPicker(selectedCode));
   }
 
   @override

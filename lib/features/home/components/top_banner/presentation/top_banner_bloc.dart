@@ -8,7 +8,7 @@ import '../domain/usecase/app_review.dart';
 import '../domain/usecase/get_top_banner.dart';
 import 'top_banner_state.dart';
 
-class TopBannerBloc extends BlocController<void, TopBannerState> {
+class TopBannerBloc extends BlocController<TopBannerState, NoAction> {
   TopBannerBloc({
     required GetTopBannerUseCase getTopBanner,
     required SetLastAppReviewAtNowUseCase setLastAppReviewAtNow,
@@ -21,9 +21,9 @@ class TopBannerBloc extends BlocController<void, TopBannerState> {
 
   @override
   Future<void> load() async {
-    subscriptions.add(_getTopBanner().listen((type) {
-      emit(TopBannerState(type: type));
-    }));
+    subscriptions.add(
+      _getTopBanner().map(_mapToState).listen(setState),
+    );
   }
 
   void onTopBannerActionTap(TopBannerType type) {
@@ -51,4 +51,6 @@ class TopBannerBloc extends BlocController<void, TopBannerState> {
         })
         .then((_) => _setLastAppReviewAtNow());
   }
+
+  TopBannerState _mapToState(TopBannerType type) => TopBannerState(type: type);
 }

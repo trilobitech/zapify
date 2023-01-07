@@ -10,7 +10,7 @@ import 'top_banner_state.dart';
 typedef OnTopBannerActionTap = Function(TopBannerType type);
 
 class TopBannerWidget extends StatelessWidget
-    with BlocWidget<TopBannerBloc, void, TopBannerState> {
+    with StateMixin<TopBannerBloc, TopBannerState> {
   const TopBannerWidget({Key? key}) : super(key: key);
 
   @override

@@ -313,7 +313,7 @@ abstract class _ChatAppsStateLoaded implements ChatAppsState {
 }
 
 /// @nodoc
-mixin _$ChatAppsEvent {
+mixin _$ChatAppsAction {
   ChatApp get entry => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -333,39 +333,39 @@ mixin _$ChatAppsEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_ChatAppsEventSelected value) select,
+    required TResult Function(_ChatAppsActionSelected value) select,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ChatAppsEventSelected value)? select,
+    TResult? Function(_ChatAppsActionSelected value)? select,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ChatAppsEventSelected value)? select,
+    TResult Function(_ChatAppsActionSelected value)? select,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $ChatAppsEventCopyWith<ChatAppsEvent> get copyWith =>
+  $ChatAppsActionCopyWith<ChatAppsAction> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ChatAppsEventCopyWith<$Res> {
-  factory $ChatAppsEventCopyWith(
-          ChatAppsEvent value, $Res Function(ChatAppsEvent) then) =
-      _$ChatAppsEventCopyWithImpl<$Res, ChatAppsEvent>;
+abstract class $ChatAppsActionCopyWith<$Res> {
+  factory $ChatAppsActionCopyWith(
+          ChatAppsAction value, $Res Function(ChatAppsAction) then) =
+      _$ChatAppsActionCopyWithImpl<$Res, ChatAppsAction>;
   @useResult
   $Res call({ChatApp entry});
 }
 
 /// @nodoc
-class _$ChatAppsEventCopyWithImpl<$Res, $Val extends ChatAppsEvent>
-    implements $ChatAppsEventCopyWith<$Res> {
-  _$ChatAppsEventCopyWithImpl(this._value, this._then);
+class _$ChatAppsActionCopyWithImpl<$Res, $Val extends ChatAppsAction>
+    implements $ChatAppsActionCopyWith<$Res> {
+  _$ChatAppsActionCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -387,22 +387,22 @@ class _$ChatAppsEventCopyWithImpl<$Res, $Val extends ChatAppsEvent>
 }
 
 /// @nodoc
-abstract class _$$_ChatAppsEventSelectedCopyWith<$Res>
-    implements $ChatAppsEventCopyWith<$Res> {
-  factory _$$_ChatAppsEventSelectedCopyWith(_$_ChatAppsEventSelected value,
-          $Res Function(_$_ChatAppsEventSelected) then) =
-      __$$_ChatAppsEventSelectedCopyWithImpl<$Res>;
+abstract class _$$_ChatAppsActionSelectedCopyWith<$Res>
+    implements $ChatAppsActionCopyWith<$Res> {
+  factory _$$_ChatAppsActionSelectedCopyWith(_$_ChatAppsActionSelected value,
+          $Res Function(_$_ChatAppsActionSelected) then) =
+      __$$_ChatAppsActionSelectedCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({ChatApp entry});
 }
 
 /// @nodoc
-class __$$_ChatAppsEventSelectedCopyWithImpl<$Res>
-    extends _$ChatAppsEventCopyWithImpl<$Res, _$_ChatAppsEventSelected>
-    implements _$$_ChatAppsEventSelectedCopyWith<$Res> {
-  __$$_ChatAppsEventSelectedCopyWithImpl(_$_ChatAppsEventSelected _value,
-      $Res Function(_$_ChatAppsEventSelected) _then)
+class __$$_ChatAppsActionSelectedCopyWithImpl<$Res>
+    extends _$ChatAppsActionCopyWithImpl<$Res, _$_ChatAppsActionSelected>
+    implements _$$_ChatAppsActionSelectedCopyWith<$Res> {
+  __$$_ChatAppsActionSelectedCopyWithImpl(_$_ChatAppsActionSelected _value,
+      $Res Function(_$_ChatAppsActionSelected) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -410,7 +410,7 @@ class __$$_ChatAppsEventSelectedCopyWithImpl<$Res>
   $Res call({
     Object? entry = null,
   }) {
-    return _then(_$_ChatAppsEventSelected(
+    return _then(_$_ChatAppsActionSelected(
       null == entry
           ? _value.entry
           : entry // ignore: cast_nullable_to_non_nullable
@@ -421,22 +421,22 @@ class __$$_ChatAppsEventSelectedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ChatAppsEventSelected implements _ChatAppsEventSelected {
-  _$_ChatAppsEventSelected(this.entry);
+class _$_ChatAppsActionSelected implements _ChatAppsActionSelected {
+  _$_ChatAppsActionSelected(this.entry);
 
   @override
   final ChatApp entry;
 
   @override
   String toString() {
-    return 'ChatAppsEvent.select(entry: $entry)';
+    return 'ChatAppsAction.select(entry: $entry)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ChatAppsEventSelected &&
+            other is _$_ChatAppsActionSelected &&
             (identical(other.entry, entry) || other.entry == entry));
   }
 
@@ -446,8 +446,8 @@ class _$_ChatAppsEventSelected implements _ChatAppsEventSelected {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ChatAppsEventSelectedCopyWith<_$_ChatAppsEventSelected> get copyWith =>
-      __$$_ChatAppsEventSelectedCopyWithImpl<_$_ChatAppsEventSelected>(
+  _$$_ChatAppsActionSelectedCopyWith<_$_ChatAppsActionSelected> get copyWith =>
+      __$$_ChatAppsActionSelectedCopyWithImpl<_$_ChatAppsActionSelected>(
           this, _$identity);
 
   @override
@@ -481,7 +481,7 @@ class _$_ChatAppsEventSelected implements _ChatAppsEventSelected {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_ChatAppsEventSelected value) select,
+    required TResult Function(_ChatAppsActionSelected value) select,
   }) {
     return select(this);
   }
@@ -489,7 +489,7 @@ class _$_ChatAppsEventSelected implements _ChatAppsEventSelected {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ChatAppsEventSelected value)? select,
+    TResult? Function(_ChatAppsActionSelected value)? select,
   }) {
     return select?.call(this);
   }
@@ -497,7 +497,7 @@ class _$_ChatAppsEventSelected implements _ChatAppsEventSelected {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ChatAppsEventSelected value)? select,
+    TResult Function(_ChatAppsActionSelected value)? select,
     required TResult orElse(),
   }) {
     if (select != null) {
@@ -507,14 +507,14 @@ class _$_ChatAppsEventSelected implements _ChatAppsEventSelected {
   }
 }
 
-abstract class _ChatAppsEventSelected implements ChatAppsEvent {
-  factory _ChatAppsEventSelected(final ChatApp entry) =
-      _$_ChatAppsEventSelected;
+abstract class _ChatAppsActionSelected implements ChatAppsAction {
+  factory _ChatAppsActionSelected(final ChatApp entry) =
+      _$_ChatAppsActionSelected;
 
   @override
   ChatApp get entry;
   @override
   @JsonKey(ignore: true)
-  _$$_ChatAppsEventSelectedCopyWith<_$_ChatAppsEventSelected> get copyWith =>
+  _$$_ChatAppsActionSelectedCopyWith<_$_ChatAppsActionSelected> get copyWith =>
       throw _privateConstructorUsedError;
 }

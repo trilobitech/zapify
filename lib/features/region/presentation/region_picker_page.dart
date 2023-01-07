@@ -10,21 +10,29 @@ import 'region_picker_bloc.dart';
 import 'region_picker_state.dart';
 
 class RegionPicker extends StatelessWidget
-    with BlocWidget<RegionPickerBloc, RegionPickerEvent, RegionPickerState> {
+    with
+        StateActionMixin<RegionPickerBloc, RegionPickerState,
+            RegionPickerAction> {
   RegionPicker({super.key, this.selected});
 
   final RegionCode? selected;
 
   @override
-  Widget buildState(BuildContext context, RegionPickerState state) =>
+  Widget buildState(
+    BuildContext context,
+    RegionPickerState state,
+  ) =>
       state.when(
         (countries) => _SuccessView(countries: countries, selected: selected),
         initial: () => Container(),
       );
 
   @override
-  FutureOr<void> handleEvent(BuildContext context, event) =>
-      event.when(close: (country) => Navigator.of(context).pop(country));
+  FutureOr<void> handleAction(
+    BuildContext context,
+    RegionPickerAction action,
+  ) =>
+      action.when(close: (country) => Navigator.of(context).pop(country));
 }
 
 class _SuccessView extends StatelessWidget {

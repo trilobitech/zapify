@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$HomeEvent {
+mixin _$HomeAction {
   String? get current => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -35,41 +35,42 @@ mixin _$HomeEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_HomeEventNavigateToRegionPicker value)
+    required TResult Function(_HomeActionNavigateToRegionPicker value)
         navigateToRegionPicker,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_HomeEventNavigateToRegionPicker value)?
+    TResult? Function(_HomeActionNavigateToRegionPicker value)?
         navigateToRegionPicker,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_HomeEventNavigateToRegionPicker value)?
+    TResult Function(_HomeActionNavigateToRegionPicker value)?
         navigateToRegionPicker,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $HomeEventCopyWith<HomeEvent> get copyWith =>
+  $HomeActionCopyWith<HomeAction> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $HomeEventCopyWith<$Res> {
-  factory $HomeEventCopyWith(HomeEvent value, $Res Function(HomeEvent) then) =
-      _$HomeEventCopyWithImpl<$Res, HomeEvent>;
+abstract class $HomeActionCopyWith<$Res> {
+  factory $HomeActionCopyWith(
+          HomeAction value, $Res Function(HomeAction) then) =
+      _$HomeActionCopyWithImpl<$Res, HomeAction>;
   @useResult
   $Res call({String? current});
 }
 
 /// @nodoc
-class _$HomeEventCopyWithImpl<$Res, $Val extends HomeEvent>
-    implements $HomeEventCopyWith<$Res> {
-  _$HomeEventCopyWithImpl(this._value, this._then);
+class _$HomeActionCopyWithImpl<$Res, $Val extends HomeAction>
+    implements $HomeActionCopyWith<$Res> {
+  _$HomeActionCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -91,24 +92,24 @@ class _$HomeEventCopyWithImpl<$Res, $Val extends HomeEvent>
 }
 
 /// @nodoc
-abstract class _$$_HomeEventNavigateToRegionPickerCopyWith<$Res>
-    implements $HomeEventCopyWith<$Res> {
-  factory _$$_HomeEventNavigateToRegionPickerCopyWith(
-          _$_HomeEventNavigateToRegionPicker value,
-          $Res Function(_$_HomeEventNavigateToRegionPicker) then) =
-      __$$_HomeEventNavigateToRegionPickerCopyWithImpl<$Res>;
+abstract class _$$_HomeActionNavigateToRegionPickerCopyWith<$Res>
+    implements $HomeActionCopyWith<$Res> {
+  factory _$$_HomeActionNavigateToRegionPickerCopyWith(
+          _$_HomeActionNavigateToRegionPicker value,
+          $Res Function(_$_HomeActionNavigateToRegionPicker) then) =
+      __$$_HomeActionNavigateToRegionPickerCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? current});
 }
 
 /// @nodoc
-class __$$_HomeEventNavigateToRegionPickerCopyWithImpl<$Res>
-    extends _$HomeEventCopyWithImpl<$Res, _$_HomeEventNavigateToRegionPicker>
-    implements _$$_HomeEventNavigateToRegionPickerCopyWith<$Res> {
-  __$$_HomeEventNavigateToRegionPickerCopyWithImpl(
-      _$_HomeEventNavigateToRegionPicker _value,
-      $Res Function(_$_HomeEventNavigateToRegionPicker) _then)
+class __$$_HomeActionNavigateToRegionPickerCopyWithImpl<$Res>
+    extends _$HomeActionCopyWithImpl<$Res, _$_HomeActionNavigateToRegionPicker>
+    implements _$$_HomeActionNavigateToRegionPickerCopyWith<$Res> {
+  __$$_HomeActionNavigateToRegionPickerCopyWithImpl(
+      _$_HomeActionNavigateToRegionPicker _value,
+      $Res Function(_$_HomeActionNavigateToRegionPicker) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -116,7 +117,7 @@ class __$$_HomeEventNavigateToRegionPickerCopyWithImpl<$Res>
   $Res call({
     Object? current = freezed,
   }) {
-    return _then(_$_HomeEventNavigateToRegionPicker(
+    return _then(_$_HomeActionNavigateToRegionPicker(
       freezed == current
           ? _value.current
           : current // ignore: cast_nullable_to_non_nullable
@@ -127,23 +128,23 @@ class __$$_HomeEventNavigateToRegionPickerCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_HomeEventNavigateToRegionPicker
-    implements _HomeEventNavigateToRegionPicker {
-  _$_HomeEventNavigateToRegionPicker(this.current);
+class _$_HomeActionNavigateToRegionPicker
+    implements _HomeActionNavigateToRegionPicker {
+  _$_HomeActionNavigateToRegionPicker(this.current);
 
   @override
   final String? current;
 
   @override
   String toString() {
-    return 'HomeEvent.navigateToRegionPicker(current: $current)';
+    return 'HomeAction.navigateToRegionPicker(current: $current)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HomeEventNavigateToRegionPicker &&
+            other is _$_HomeActionNavigateToRegionPicker &&
             (identical(other.current, current) || other.current == current));
   }
 
@@ -153,10 +154,10 @@ class _$_HomeEventNavigateToRegionPicker
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HomeEventNavigateToRegionPickerCopyWith<
-          _$_HomeEventNavigateToRegionPicker>
-      get copyWith => __$$_HomeEventNavigateToRegionPickerCopyWithImpl<
-          _$_HomeEventNavigateToRegionPicker>(this, _$identity);
+  _$$_HomeActionNavigateToRegionPickerCopyWith<
+          _$_HomeActionNavigateToRegionPicker>
+      get copyWith => __$$_HomeActionNavigateToRegionPickerCopyWithImpl<
+          _$_HomeActionNavigateToRegionPicker>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -189,7 +190,7 @@ class _$_HomeEventNavigateToRegionPicker
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_HomeEventNavigateToRegionPicker value)
+    required TResult Function(_HomeActionNavigateToRegionPicker value)
         navigateToRegionPicker,
   }) {
     return navigateToRegionPicker(this);
@@ -198,7 +199,7 @@ class _$_HomeEventNavigateToRegionPicker
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_HomeEventNavigateToRegionPicker value)?
+    TResult? Function(_HomeActionNavigateToRegionPicker value)?
         navigateToRegionPicker,
   }) {
     return navigateToRegionPicker?.call(this);
@@ -207,7 +208,7 @@ class _$_HomeEventNavigateToRegionPicker
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_HomeEventNavigateToRegionPicker value)?
+    TResult Function(_HomeActionNavigateToRegionPicker value)?
         navigateToRegionPicker,
     required TResult orElse(),
   }) {
@@ -218,15 +219,15 @@ class _$_HomeEventNavigateToRegionPicker
   }
 }
 
-abstract class _HomeEventNavigateToRegionPicker implements HomeEvent {
-  factory _HomeEventNavigateToRegionPicker(final String? current) =
-      _$_HomeEventNavigateToRegionPicker;
+abstract class _HomeActionNavigateToRegionPicker implements HomeAction {
+  factory _HomeActionNavigateToRegionPicker(final String? current) =
+      _$_HomeActionNavigateToRegionPicker;
 
   @override
   String? get current;
   @override
   @JsonKey(ignore: true)
-  _$$_HomeEventNavigateToRegionPickerCopyWith<
-          _$_HomeEventNavigateToRegionPicker>
+  _$$_HomeActionNavigateToRegionPickerCopyWith<
+          _$_HomeActionNavigateToRegionPicker>
       get copyWith => throw _privateConstructorUsedError;
 }

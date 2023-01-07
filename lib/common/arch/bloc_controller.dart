@@ -1,50 +1,56 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:logger_plus/logger_plus.dart';
 import 'package:meta/meta.dart';
 import 'package:rxdart/utils.dart';
 
-typedef EventConsumer<Event> = FutureOr<void> Function(Event event);
+import 'bloc_state.dart';
 
-abstract class BlocController<Event, State> extends Bloc<Event, State> {
-  BlocController(super.initialState) {
+export 'bloc_state.dart' show NoAction, NoState;
+
+class BlocController<S extends IState, A extends IAction>
+    extends Cubit<Object> {
+  BlocController(initialState)
+      : _currentState = initialState,
+        super(initialState) {
     load();
-    on<Event>((event, _) => _callEventConsumer(event));
   }
 
   @protected
   final subscriptions = CompositeSubscription();
 
-  EventConsumer<Event>? _eventConsumer;
+  S _currentState;
+
+  S get currentState => state is S ? state as S : _currentState;
+
+  @override
+  @visibleForTesting
+  Object get state => super.state;
 
   @protected
   @visibleForOverriding
   Future<void> load() async {}
 
-  @override
-  @protected
-  // ignore: invalid_use_of_visible_for_testing_member
-  void emit(State state) => super.emit(state);
-
-  @protected
-  void event(Event event) => add(event);
-
-  void listen(EventConsumer<Event>? consumer) {
-    _eventConsumer = consumer;
+  void setState(S newState) {
+    _currentState = newState;
+    super.emit(newState);
   }
+
+  void sendAction(A action) {
+    // workarount to enable same action dispatch
+    super.emit(action);
+    super.emit(currentState);
+  }
+
+  @override
+  @alwaysThrows
+  @visibleForTesting
+  void emit(state) =>
+      throw UnsupportedError('Use `setState` or `sendAction` instead');
 
   @override
   Future<void> close() async {
     subscriptions.dispose();
     return super.close();
-  }
-
-  void _callEventConsumer(event) async {
-    try {
-      await _eventConsumer?.call(event);
-    } catch (e, stack) {
-      Log.e(e, stack);
-    }
   }
 }

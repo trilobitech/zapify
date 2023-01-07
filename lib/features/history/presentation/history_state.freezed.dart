@@ -477,7 +477,7 @@ abstract class _HistoryStatePopulated implements HistoryState {
 }
 
 /// @nodoc
-mixin _$HistoryEvent {
+mixin _$HistoryAction {
   HistoryEntry get entry => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -500,44 +500,45 @@ mixin _$HistoryEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_HistoryEventEntrySelect value) select,
-    required TResult Function(_HistoryEventEntryRemoved value)
+    required TResult Function(_HistoryActionEntrySelect value) select,
+    required TResult Function(_HistoryActionEntryRemoved value)
         showRestoreEntrySnackBar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_HistoryEventEntrySelect value)? select,
-    TResult? Function(_HistoryEventEntryRemoved value)?
+    TResult? Function(_HistoryActionEntrySelect value)? select,
+    TResult? Function(_HistoryActionEntryRemoved value)?
         showRestoreEntrySnackBar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_HistoryEventEntrySelect value)? select,
-    TResult Function(_HistoryEventEntryRemoved value)? showRestoreEntrySnackBar,
+    TResult Function(_HistoryActionEntrySelect value)? select,
+    TResult Function(_HistoryActionEntryRemoved value)?
+        showRestoreEntrySnackBar,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $HistoryEventCopyWith<HistoryEvent> get copyWith =>
+  $HistoryActionCopyWith<HistoryAction> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $HistoryEventCopyWith<$Res> {
-  factory $HistoryEventCopyWith(
-          HistoryEvent value, $Res Function(HistoryEvent) then) =
-      _$HistoryEventCopyWithImpl<$Res, HistoryEvent>;
+abstract class $HistoryActionCopyWith<$Res> {
+  factory $HistoryActionCopyWith(
+          HistoryAction value, $Res Function(HistoryAction) then) =
+      _$HistoryActionCopyWithImpl<$Res, HistoryAction>;
   @useResult
   $Res call({HistoryEntry entry});
 }
 
 /// @nodoc
-class _$HistoryEventCopyWithImpl<$Res, $Val extends HistoryEvent>
-    implements $HistoryEventCopyWith<$Res> {
-  _$HistoryEventCopyWithImpl(this._value, this._then);
+class _$HistoryActionCopyWithImpl<$Res, $Val extends HistoryAction>
+    implements $HistoryActionCopyWith<$Res> {
+  _$HistoryActionCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -559,22 +560,23 @@ class _$HistoryEventCopyWithImpl<$Res, $Val extends HistoryEvent>
 }
 
 /// @nodoc
-abstract class _$$_HistoryEventEntrySelectCopyWith<$Res>
-    implements $HistoryEventCopyWith<$Res> {
-  factory _$$_HistoryEventEntrySelectCopyWith(_$_HistoryEventEntrySelect value,
-          $Res Function(_$_HistoryEventEntrySelect) then) =
-      __$$_HistoryEventEntrySelectCopyWithImpl<$Res>;
+abstract class _$$_HistoryActionEntrySelectCopyWith<$Res>
+    implements $HistoryActionCopyWith<$Res> {
+  factory _$$_HistoryActionEntrySelectCopyWith(
+          _$_HistoryActionEntrySelect value,
+          $Res Function(_$_HistoryActionEntrySelect) then) =
+      __$$_HistoryActionEntrySelectCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({HistoryEntry entry});
 }
 
 /// @nodoc
-class __$$_HistoryEventEntrySelectCopyWithImpl<$Res>
-    extends _$HistoryEventCopyWithImpl<$Res, _$_HistoryEventEntrySelect>
-    implements _$$_HistoryEventEntrySelectCopyWith<$Res> {
-  __$$_HistoryEventEntrySelectCopyWithImpl(_$_HistoryEventEntrySelect _value,
-      $Res Function(_$_HistoryEventEntrySelect) _then)
+class __$$_HistoryActionEntrySelectCopyWithImpl<$Res>
+    extends _$HistoryActionCopyWithImpl<$Res, _$_HistoryActionEntrySelect>
+    implements _$$_HistoryActionEntrySelectCopyWith<$Res> {
+  __$$_HistoryActionEntrySelectCopyWithImpl(_$_HistoryActionEntrySelect _value,
+      $Res Function(_$_HistoryActionEntrySelect) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -582,7 +584,7 @@ class __$$_HistoryEventEntrySelectCopyWithImpl<$Res>
   $Res call({
     Object? entry = null,
   }) {
-    return _then(_$_HistoryEventEntrySelect(
+    return _then(_$_HistoryActionEntrySelect(
       null == entry
           ? _value.entry
           : entry // ignore: cast_nullable_to_non_nullable
@@ -593,22 +595,22 @@ class __$$_HistoryEventEntrySelectCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_HistoryEventEntrySelect implements _HistoryEventEntrySelect {
-  _$_HistoryEventEntrySelect(this.entry);
+class _$_HistoryActionEntrySelect implements _HistoryActionEntrySelect {
+  _$_HistoryActionEntrySelect(this.entry);
 
   @override
   final HistoryEntry entry;
 
   @override
   String toString() {
-    return 'HistoryEvent.select(entry: $entry)';
+    return 'HistoryAction.select(entry: $entry)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HistoryEventEntrySelect &&
+            other is _$_HistoryActionEntrySelect &&
             (identical(other.entry, entry) || other.entry == entry));
   }
 
@@ -618,10 +620,9 @@ class _$_HistoryEventEntrySelect implements _HistoryEventEntrySelect {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HistoryEventEntrySelectCopyWith<_$_HistoryEventEntrySelect>
-      get copyWith =>
-          __$$_HistoryEventEntrySelectCopyWithImpl<_$_HistoryEventEntrySelect>(
-              this, _$identity);
+  _$$_HistoryActionEntrySelectCopyWith<_$_HistoryActionEntrySelect>
+      get copyWith => __$$_HistoryActionEntrySelectCopyWithImpl<
+          _$_HistoryActionEntrySelect>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -657,8 +658,8 @@ class _$_HistoryEventEntrySelect implements _HistoryEventEntrySelect {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_HistoryEventEntrySelect value) select,
-    required TResult Function(_HistoryEventEntryRemoved value)
+    required TResult Function(_HistoryActionEntrySelect value) select,
+    required TResult Function(_HistoryActionEntryRemoved value)
         showRestoreEntrySnackBar,
   }) {
     return select(this);
@@ -667,8 +668,8 @@ class _$_HistoryEventEntrySelect implements _HistoryEventEntrySelect {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_HistoryEventEntrySelect value)? select,
-    TResult? Function(_HistoryEventEntryRemoved value)?
+    TResult? Function(_HistoryActionEntrySelect value)? select,
+    TResult? Function(_HistoryActionEntryRemoved value)?
         showRestoreEntrySnackBar,
   }) {
     return select?.call(this);
@@ -677,8 +678,9 @@ class _$_HistoryEventEntrySelect implements _HistoryEventEntrySelect {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_HistoryEventEntrySelect value)? select,
-    TResult Function(_HistoryEventEntryRemoved value)? showRestoreEntrySnackBar,
+    TResult Function(_HistoryActionEntrySelect value)? select,
+    TResult Function(_HistoryActionEntryRemoved value)?
+        showRestoreEntrySnackBar,
     required TResult orElse(),
   }) {
     if (select != null) {
@@ -688,36 +690,37 @@ class _$_HistoryEventEntrySelect implements _HistoryEventEntrySelect {
   }
 }
 
-abstract class _HistoryEventEntrySelect implements HistoryEvent {
-  factory _HistoryEventEntrySelect(final HistoryEntry entry) =
-      _$_HistoryEventEntrySelect;
+abstract class _HistoryActionEntrySelect implements HistoryAction {
+  factory _HistoryActionEntrySelect(final HistoryEntry entry) =
+      _$_HistoryActionEntrySelect;
 
   @override
   HistoryEntry get entry;
   @override
   @JsonKey(ignore: true)
-  _$$_HistoryEventEntrySelectCopyWith<_$_HistoryEventEntrySelect>
+  _$$_HistoryActionEntrySelectCopyWith<_$_HistoryActionEntrySelect>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_HistoryEventEntryRemovedCopyWith<$Res>
-    implements $HistoryEventCopyWith<$Res> {
-  factory _$$_HistoryEventEntryRemovedCopyWith(
-          _$_HistoryEventEntryRemoved value,
-          $Res Function(_$_HistoryEventEntryRemoved) then) =
-      __$$_HistoryEventEntryRemovedCopyWithImpl<$Res>;
+abstract class _$$_HistoryActionEntryRemovedCopyWith<$Res>
+    implements $HistoryActionCopyWith<$Res> {
+  factory _$$_HistoryActionEntryRemovedCopyWith(
+          _$_HistoryActionEntryRemoved value,
+          $Res Function(_$_HistoryActionEntryRemoved) then) =
+      __$$_HistoryActionEntryRemovedCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({HistoryEntry entry});
 }
 
 /// @nodoc
-class __$$_HistoryEventEntryRemovedCopyWithImpl<$Res>
-    extends _$HistoryEventCopyWithImpl<$Res, _$_HistoryEventEntryRemoved>
-    implements _$$_HistoryEventEntryRemovedCopyWith<$Res> {
-  __$$_HistoryEventEntryRemovedCopyWithImpl(_$_HistoryEventEntryRemoved _value,
-      $Res Function(_$_HistoryEventEntryRemoved) _then)
+class __$$_HistoryActionEntryRemovedCopyWithImpl<$Res>
+    extends _$HistoryActionCopyWithImpl<$Res, _$_HistoryActionEntryRemoved>
+    implements _$$_HistoryActionEntryRemovedCopyWith<$Res> {
+  __$$_HistoryActionEntryRemovedCopyWithImpl(
+      _$_HistoryActionEntryRemoved _value,
+      $Res Function(_$_HistoryActionEntryRemoved) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -725,7 +728,7 @@ class __$$_HistoryEventEntryRemovedCopyWithImpl<$Res>
   $Res call({
     Object? entry = null,
   }) {
-    return _then(_$_HistoryEventEntryRemoved(
+    return _then(_$_HistoryActionEntryRemoved(
       null == entry
           ? _value.entry
           : entry // ignore: cast_nullable_to_non_nullable
@@ -736,22 +739,22 @@ class __$$_HistoryEventEntryRemovedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_HistoryEventEntryRemoved implements _HistoryEventEntryRemoved {
-  _$_HistoryEventEntryRemoved(this.entry);
+class _$_HistoryActionEntryRemoved implements _HistoryActionEntryRemoved {
+  _$_HistoryActionEntryRemoved(this.entry);
 
   @override
   final HistoryEntry entry;
 
   @override
   String toString() {
-    return 'HistoryEvent.showRestoreEntrySnackBar(entry: $entry)';
+    return 'HistoryAction.showRestoreEntrySnackBar(entry: $entry)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HistoryEventEntryRemoved &&
+            other is _$_HistoryActionEntryRemoved &&
             (identical(other.entry, entry) || other.entry == entry));
   }
 
@@ -761,9 +764,9 @@ class _$_HistoryEventEntryRemoved implements _HistoryEventEntryRemoved {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HistoryEventEntryRemovedCopyWith<_$_HistoryEventEntryRemoved>
-      get copyWith => __$$_HistoryEventEntryRemovedCopyWithImpl<
-          _$_HistoryEventEntryRemoved>(this, _$identity);
+  _$$_HistoryActionEntryRemovedCopyWith<_$_HistoryActionEntryRemoved>
+      get copyWith => __$$_HistoryActionEntryRemovedCopyWithImpl<
+          _$_HistoryActionEntryRemoved>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -799,8 +802,8 @@ class _$_HistoryEventEntryRemoved implements _HistoryEventEntryRemoved {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_HistoryEventEntrySelect value) select,
-    required TResult Function(_HistoryEventEntryRemoved value)
+    required TResult Function(_HistoryActionEntrySelect value) select,
+    required TResult Function(_HistoryActionEntryRemoved value)
         showRestoreEntrySnackBar,
   }) {
     return showRestoreEntrySnackBar(this);
@@ -809,8 +812,8 @@ class _$_HistoryEventEntryRemoved implements _HistoryEventEntryRemoved {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_HistoryEventEntrySelect value)? select,
-    TResult? Function(_HistoryEventEntryRemoved value)?
+    TResult? Function(_HistoryActionEntrySelect value)? select,
+    TResult? Function(_HistoryActionEntryRemoved value)?
         showRestoreEntrySnackBar,
   }) {
     return showRestoreEntrySnackBar?.call(this);
@@ -819,8 +822,9 @@ class _$_HistoryEventEntryRemoved implements _HistoryEventEntryRemoved {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_HistoryEventEntrySelect value)? select,
-    TResult Function(_HistoryEventEntryRemoved value)? showRestoreEntrySnackBar,
+    TResult Function(_HistoryActionEntrySelect value)? select,
+    TResult Function(_HistoryActionEntryRemoved value)?
+        showRestoreEntrySnackBar,
     required TResult orElse(),
   }) {
     if (showRestoreEntrySnackBar != null) {
@@ -830,14 +834,14 @@ class _$_HistoryEventEntryRemoved implements _HistoryEventEntryRemoved {
   }
 }
 
-abstract class _HistoryEventEntryRemoved implements HistoryEvent {
-  factory _HistoryEventEntryRemoved(final HistoryEntry entry) =
-      _$_HistoryEventEntryRemoved;
+abstract class _HistoryActionEntryRemoved implements HistoryAction {
+  factory _HistoryActionEntryRemoved(final HistoryEntry entry) =
+      _$_HistoryActionEntryRemoved;
 
   @override
   HistoryEntry get entry;
   @override
   @JsonKey(ignore: true)
-  _$$_HistoryEventEntryRemovedCopyWith<_$_HistoryEventEntryRemoved>
+  _$$_HistoryActionEntryRemovedCopyWith<_$_HistoryActionEntryRemoved>
       get copyWith => throw _privateConstructorUsedError;
 }

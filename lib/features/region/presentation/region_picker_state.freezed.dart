@@ -323,7 +323,7 @@ abstract class _RegionPickerStateInitial implements RegionPickerState {
 }
 
 /// @nodoc
-mixin _$RegionPickerEvent {
+mixin _$RegionPickerAction {
   IRegion? get region => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -343,39 +343,39 @@ mixin _$RegionPickerEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_RegionPickerEventClose value) close,
+    required TResult Function(_RegionPickerActionClose value) close,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_RegionPickerEventClose value)? close,
+    TResult? Function(_RegionPickerActionClose value)? close,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_RegionPickerEventClose value)? close,
+    TResult Function(_RegionPickerActionClose value)? close,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $RegionPickerEventCopyWith<RegionPickerEvent> get copyWith =>
+  $RegionPickerActionCopyWith<RegionPickerAction> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $RegionPickerEventCopyWith<$Res> {
-  factory $RegionPickerEventCopyWith(
-          RegionPickerEvent value, $Res Function(RegionPickerEvent) then) =
-      _$RegionPickerEventCopyWithImpl<$Res, RegionPickerEvent>;
+abstract class $RegionPickerActionCopyWith<$Res> {
+  factory $RegionPickerActionCopyWith(
+          RegionPickerAction value, $Res Function(RegionPickerAction) then) =
+      _$RegionPickerActionCopyWithImpl<$Res, RegionPickerAction>;
   @useResult
   $Res call({IRegion? region});
 }
 
 /// @nodoc
-class _$RegionPickerEventCopyWithImpl<$Res, $Val extends RegionPickerEvent>
-    implements $RegionPickerEventCopyWith<$Res> {
-  _$RegionPickerEventCopyWithImpl(this._value, this._then);
+class _$RegionPickerActionCopyWithImpl<$Res, $Val extends RegionPickerAction>
+    implements $RegionPickerActionCopyWith<$Res> {
+  _$RegionPickerActionCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -397,22 +397,22 @@ class _$RegionPickerEventCopyWithImpl<$Res, $Val extends RegionPickerEvent>
 }
 
 /// @nodoc
-abstract class _$$_RegionPickerEventCloseCopyWith<$Res>
-    implements $RegionPickerEventCopyWith<$Res> {
-  factory _$$_RegionPickerEventCloseCopyWith(_$_RegionPickerEventClose value,
-          $Res Function(_$_RegionPickerEventClose) then) =
-      __$$_RegionPickerEventCloseCopyWithImpl<$Res>;
+abstract class _$$_RegionPickerActionCloseCopyWith<$Res>
+    implements $RegionPickerActionCopyWith<$Res> {
+  factory _$$_RegionPickerActionCloseCopyWith(_$_RegionPickerActionClose value,
+          $Res Function(_$_RegionPickerActionClose) then) =
+      __$$_RegionPickerActionCloseCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({IRegion? region});
 }
 
 /// @nodoc
-class __$$_RegionPickerEventCloseCopyWithImpl<$Res>
-    extends _$RegionPickerEventCopyWithImpl<$Res, _$_RegionPickerEventClose>
-    implements _$$_RegionPickerEventCloseCopyWith<$Res> {
-  __$$_RegionPickerEventCloseCopyWithImpl(_$_RegionPickerEventClose _value,
-      $Res Function(_$_RegionPickerEventClose) _then)
+class __$$_RegionPickerActionCloseCopyWithImpl<$Res>
+    extends _$RegionPickerActionCopyWithImpl<$Res, _$_RegionPickerActionClose>
+    implements _$$_RegionPickerActionCloseCopyWith<$Res> {
+  __$$_RegionPickerActionCloseCopyWithImpl(_$_RegionPickerActionClose _value,
+      $Res Function(_$_RegionPickerActionClose) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -420,7 +420,7 @@ class __$$_RegionPickerEventCloseCopyWithImpl<$Res>
   $Res call({
     Object? region = freezed,
   }) {
-    return _then(_$_RegionPickerEventClose(
+    return _then(_$_RegionPickerActionClose(
       freezed == region
           ? _value.region
           : region // ignore: cast_nullable_to_non_nullable
@@ -431,22 +431,22 @@ class __$$_RegionPickerEventCloseCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_RegionPickerEventClose implements _RegionPickerEventClose {
-  _$_RegionPickerEventClose([this.region]);
+class _$_RegionPickerActionClose implements _RegionPickerActionClose {
+  _$_RegionPickerActionClose([this.region]);
 
   @override
   final IRegion? region;
 
   @override
   String toString() {
-    return 'RegionPickerEvent.close(region: $region)';
+    return 'RegionPickerAction.close(region: $region)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_RegionPickerEventClose &&
+            other is _$_RegionPickerActionClose &&
             (identical(other.region, region) || other.region == region));
   }
 
@@ -456,9 +456,10 @@ class _$_RegionPickerEventClose implements _RegionPickerEventClose {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_RegionPickerEventCloseCopyWith<_$_RegionPickerEventClose> get copyWith =>
-      __$$_RegionPickerEventCloseCopyWithImpl<_$_RegionPickerEventClose>(
-          this, _$identity);
+  _$$_RegionPickerActionCloseCopyWith<_$_RegionPickerActionClose>
+      get copyWith =>
+          __$$_RegionPickerActionCloseCopyWithImpl<_$_RegionPickerActionClose>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -491,7 +492,7 @@ class _$_RegionPickerEventClose implements _RegionPickerEventClose {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_RegionPickerEventClose value) close,
+    required TResult Function(_RegionPickerActionClose value) close,
   }) {
     return close(this);
   }
@@ -499,7 +500,7 @@ class _$_RegionPickerEventClose implements _RegionPickerEventClose {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_RegionPickerEventClose value)? close,
+    TResult? Function(_RegionPickerActionClose value)? close,
   }) {
     return close?.call(this);
   }
@@ -507,7 +508,7 @@ class _$_RegionPickerEventClose implements _RegionPickerEventClose {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_RegionPickerEventClose value)? close,
+    TResult Function(_RegionPickerActionClose value)? close,
     required TResult orElse(),
   }) {
     if (close != null) {
@@ -517,14 +518,14 @@ class _$_RegionPickerEventClose implements _RegionPickerEventClose {
   }
 }
 
-abstract class _RegionPickerEventClose implements RegionPickerEvent {
-  factory _RegionPickerEventClose([final IRegion? region]) =
-      _$_RegionPickerEventClose;
+abstract class _RegionPickerActionClose implements RegionPickerAction {
+  factory _RegionPickerActionClose([final IRegion? region]) =
+      _$_RegionPickerActionClose;
 
   @override
   IRegion? get region;
   @override
   @JsonKey(ignore: true)
-  _$$_RegionPickerEventCloseCopyWith<_$_RegionPickerEventClose> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_RegionPickerActionCloseCopyWith<_$_RegionPickerActionClose>
+      get copyWith => throw _privateConstructorUsedError;
 }

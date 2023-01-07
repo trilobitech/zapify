@@ -643,7 +643,7 @@ abstract class _CallLogStateLoading implements CallLogState {
 }
 
 /// @nodoc
-mixin _$CallLogEvent {
+mixin _$CallLogAction {
   CallEntry get entry => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -663,39 +663,39 @@ mixin _$CallLogEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_CallLogEventEntrySelect value) select,
+    required TResult Function(_CallLogActionEntrySelect value) select,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_CallLogEventEntrySelect value)? select,
+    TResult? Function(_CallLogActionEntrySelect value)? select,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CallLogEventEntrySelect value)? select,
+    TResult Function(_CallLogActionEntrySelect value)? select,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $CallLogEventCopyWith<CallLogEvent> get copyWith =>
+  $CallLogActionCopyWith<CallLogAction> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CallLogEventCopyWith<$Res> {
-  factory $CallLogEventCopyWith(
-          CallLogEvent value, $Res Function(CallLogEvent) then) =
-      _$CallLogEventCopyWithImpl<$Res, CallLogEvent>;
+abstract class $CallLogActionCopyWith<$Res> {
+  factory $CallLogActionCopyWith(
+          CallLogAction value, $Res Function(CallLogAction) then) =
+      _$CallLogActionCopyWithImpl<$Res, CallLogAction>;
   @useResult
   $Res call({CallEntry entry});
 }
 
 /// @nodoc
-class _$CallLogEventCopyWithImpl<$Res, $Val extends CallLogEvent>
-    implements $CallLogEventCopyWith<$Res> {
-  _$CallLogEventCopyWithImpl(this._value, this._then);
+class _$CallLogActionCopyWithImpl<$Res, $Val extends CallLogAction>
+    implements $CallLogActionCopyWith<$Res> {
+  _$CallLogActionCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -717,22 +717,23 @@ class _$CallLogEventCopyWithImpl<$Res, $Val extends CallLogEvent>
 }
 
 /// @nodoc
-abstract class _$$_CallLogEventEntrySelectCopyWith<$Res>
-    implements $CallLogEventCopyWith<$Res> {
-  factory _$$_CallLogEventEntrySelectCopyWith(_$_CallLogEventEntrySelect value,
-          $Res Function(_$_CallLogEventEntrySelect) then) =
-      __$$_CallLogEventEntrySelectCopyWithImpl<$Res>;
+abstract class _$$_CallLogActionEntrySelectCopyWith<$Res>
+    implements $CallLogActionCopyWith<$Res> {
+  factory _$$_CallLogActionEntrySelectCopyWith(
+          _$_CallLogActionEntrySelect value,
+          $Res Function(_$_CallLogActionEntrySelect) then) =
+      __$$_CallLogActionEntrySelectCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({CallEntry entry});
 }
 
 /// @nodoc
-class __$$_CallLogEventEntrySelectCopyWithImpl<$Res>
-    extends _$CallLogEventCopyWithImpl<$Res, _$_CallLogEventEntrySelect>
-    implements _$$_CallLogEventEntrySelectCopyWith<$Res> {
-  __$$_CallLogEventEntrySelectCopyWithImpl(_$_CallLogEventEntrySelect _value,
-      $Res Function(_$_CallLogEventEntrySelect) _then)
+class __$$_CallLogActionEntrySelectCopyWithImpl<$Res>
+    extends _$CallLogActionCopyWithImpl<$Res, _$_CallLogActionEntrySelect>
+    implements _$$_CallLogActionEntrySelectCopyWith<$Res> {
+  __$$_CallLogActionEntrySelectCopyWithImpl(_$_CallLogActionEntrySelect _value,
+      $Res Function(_$_CallLogActionEntrySelect) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -740,7 +741,7 @@ class __$$_CallLogEventEntrySelectCopyWithImpl<$Res>
   $Res call({
     Object? entry = null,
   }) {
-    return _then(_$_CallLogEventEntrySelect(
+    return _then(_$_CallLogActionEntrySelect(
       null == entry
           ? _value.entry
           : entry // ignore: cast_nullable_to_non_nullable
@@ -751,22 +752,22 @@ class __$$_CallLogEventEntrySelectCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_CallLogEventEntrySelect implements _CallLogEventEntrySelect {
-  _$_CallLogEventEntrySelect(this.entry);
+class _$_CallLogActionEntrySelect implements _CallLogActionEntrySelect {
+  _$_CallLogActionEntrySelect(this.entry);
 
   @override
   final CallEntry entry;
 
   @override
   String toString() {
-    return 'CallLogEvent.select(entry: $entry)';
+    return 'CallLogAction.select(entry: $entry)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CallLogEventEntrySelect &&
+            other is _$_CallLogActionEntrySelect &&
             (identical(other.entry, entry) || other.entry == entry));
   }
 
@@ -776,10 +777,9 @@ class _$_CallLogEventEntrySelect implements _CallLogEventEntrySelect {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CallLogEventEntrySelectCopyWith<_$_CallLogEventEntrySelect>
-      get copyWith =>
-          __$$_CallLogEventEntrySelectCopyWithImpl<_$_CallLogEventEntrySelect>(
-              this, _$identity);
+  _$$_CallLogActionEntrySelectCopyWith<_$_CallLogActionEntrySelect>
+      get copyWith => __$$_CallLogActionEntrySelectCopyWithImpl<
+          _$_CallLogActionEntrySelect>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -812,7 +812,7 @@ class _$_CallLogEventEntrySelect implements _CallLogEventEntrySelect {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_CallLogEventEntrySelect value) select,
+    required TResult Function(_CallLogActionEntrySelect value) select,
   }) {
     return select(this);
   }
@@ -820,7 +820,7 @@ class _$_CallLogEventEntrySelect implements _CallLogEventEntrySelect {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_CallLogEventEntrySelect value)? select,
+    TResult? Function(_CallLogActionEntrySelect value)? select,
   }) {
     return select?.call(this);
   }
@@ -828,7 +828,7 @@ class _$_CallLogEventEntrySelect implements _CallLogEventEntrySelect {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CallLogEventEntrySelect value)? select,
+    TResult Function(_CallLogActionEntrySelect value)? select,
     required TResult orElse(),
   }) {
     if (select != null) {
@@ -838,14 +838,14 @@ class _$_CallLogEventEntrySelect implements _CallLogEventEntrySelect {
   }
 }
 
-abstract class _CallLogEventEntrySelect implements CallLogEvent {
-  factory _CallLogEventEntrySelect(final CallEntry entry) =
-      _$_CallLogEventEntrySelect;
+abstract class _CallLogActionEntrySelect implements CallLogAction {
+  factory _CallLogActionEntrySelect(final CallEntry entry) =
+      _$_CallLogActionEntrySelect;
 
   @override
   CallEntry get entry;
   @override
   @JsonKey(ignore: true)
-  _$$_CallLogEventEntrySelectCopyWith<_$_CallLogEventEntrySelect>
+  _$$_CallLogActionEntrySelectCopyWith<_$_CallLogActionEntrySelect>
       get copyWith => throw _privateConstructorUsedError;
 }

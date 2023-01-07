@@ -8,7 +8,7 @@ import 'ad_banner_bloc.dart';
 import 'ad_banner_state.dart';
 
 class AdBannerWidget extends StatelessWidget
-    with BlocWidget<AdBannerBloc, void, AdBannerState> {
+    with StateMixin<AdBannerBloc, AdBannerState> {
   const AdBannerWidget({Key? key}) : super(key: key);
 
   @override

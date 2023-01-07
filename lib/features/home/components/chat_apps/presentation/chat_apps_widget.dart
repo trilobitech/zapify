@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:logger_plus/logger_plus.dart';
@@ -12,7 +14,7 @@ import 'chat_apps_bloc.dart';
 import 'chat_apps_state.dart';
 
 class ChatAppsWidget extends StatelessWidget
-    with BlocWidget<ChatAppsBloc, ChatAppsEvent, ChatAppsState> {
+    with StateActionMixin<ChatAppsBloc, ChatAppsState, ChatAppsAction> {
   ChatAppsWidget({
     Key? key,
   }) : super(key: key);
@@ -24,11 +26,10 @@ class ChatAppsWidget extends StatelessWidget
       );
 
   @override
-  void handleEvent(BuildContext context, ChatAppsEvent event) {
-    event.when(
-      select: (entry) => _openChatApp(context, entry),
-    );
-  }
+  FutureOr<void> handleAction(BuildContext context, ChatAppsAction action) =>
+      action.when(
+        select: (entry) => _openChatApp(context, entry),
+      );
 
   void _openChatApp(BuildContext context, ChatApp entry) {
     context.read<ChatAppsMediator>().launch((phoneNumber) async {

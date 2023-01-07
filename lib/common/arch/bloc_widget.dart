@@ -2,55 +2,89 @@ import 'dart:async';
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:logger_plus/logger_plus.dart';
 
-import 'bloc_controller.dart';
+import 'bloc_state.dart';
 import 'provider.dart';
 
 export 'package:flutter_bloc/flutter_bloc.dart';
 
-typedef EventHandler<Event> = void Function(BuildContext context, Event event);
+typedef WidgetStateBuilder<S> = Widget Function(BuildContext context, S state);
 
-mixin BlocWidget<B extends BlocController<E, S>, E, S> on StatelessWidget
-    implements _BaseBlocWidget<B, E, S> {
+typedef WidgetActionHandler<A> = FutureOr Function(
+    BuildContext context, A action);
+
+typedef StateWidget<B extends BlocBase<S>, S extends IState>
+    = BlocBuilder<B, S>;
+
+class StateActionWidget<B extends BlocBase<Object>, S extends IState,
+    A extends IAction> extends StatelessWidget {
+  const StateActionWidget({
+    super.key,
+    required this.stateBuilder,
+    this.actionHandler,
+  });
+
+  final WidgetStateBuilder<S> stateBuilder;
+  final WidgetActionHandler<A>? actionHandler;
+
   @override
   Widget build(BuildContext context) {
-    return DiProvider<B>(
-      child: Builder(
-        builder: (context) {
-          context.read<B>().listen((event) => handleEvent(context, event));
-          return BlocBuilder<B, S>(builder: buildState);
-        },
-      ),
+    return BlocConsumer<B, dynamic>(
+      listenWhen: (previous, current) => current is A,
+      listener: _handleAction,
+      buildWhen: (previous, current) =>
+          current is S && previous is! A && previous != current,
+      builder: _buildState,
     );
   }
 
-  @override
-  FutureOr<void> handleEvent(BuildContext context, event) {}
-}
-
-mixin BlocStateWidget<W extends StatefulWidget, B extends BlocController<E, S>,
-    E, S> on State<W> implements _BaseBlocWidget<B, E, S> {
-  @override
-  Widget build(BuildContext context) {
-    return DiProvider<B>(
-      child: Builder(
-        builder: (context) {
-          context.read<B>().listen((event) => handleEvent(context, event));
-          return BlocBuilder<B, S>(builder: buildState);
-        },
-      ),
-    );
+  Widget _buildState(BuildContext context, state) {
+    return stateBuilder(context, state as S);
   }
 
-  @override
-  FutureOr<void> handleEvent(BuildContext context, event) {}
+  void _handleAction(BuildContext context, action) async {
+    try {
+      await actionHandler?.call(context, action as A);
+    } catch (e, stack) {
+      Log.e(e, stack);
+    }
+  }
 }
 
-abstract class _BaseBlocWidget<B extends BlocController<E, S>, E, S> {
-  Widget buildState(
-    BuildContext context,
-    S state,
-  );
+mixin StateActionMixin<B extends BlocBase<Object>, S extends IState,
+    A extends IAction> {
+  Widget build(BuildContext context) => DiProvider<B>(
+        child: StateActionWidget<B, S, A>(
+          stateBuilder: buildState,
+          actionHandler: handleAction,
+        ),
+      );
 
-  FutureOr<void> handleEvent(BuildContext context, E event);
+  Widget buildState(BuildContext context, S state);
+
+  FutureOr handleAction(BuildContext context, A action);
+}
+
+mixin StateMixin<B extends BlocBase<Object>, S extends IState> {
+  Widget build(BuildContext context) => DiProvider<B>(
+        child: StateActionWidget<B, S, NoAction>(
+          stateBuilder: buildState,
+        ),
+      );
+
+  Widget buildState(BuildContext context, S state);
+}
+
+mixin ActionMixin<B extends BlocBase<Object>, A extends IAction> {
+  Widget build(BuildContext context) => DiProvider<B>(
+        child: StateActionWidget<B, NoState, A>(
+          stateBuilder: (context, _) => buildWidget(context),
+          actionHandler: handleAction,
+        ),
+      );
+
+  Widget buildWidget(BuildContext context);
+
+  FutureOr handleAction(BuildContext context, A action);
 }

@@ -1,11 +1,12 @@
 import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../../../common/arch/bloc_state.dart';
 import '../../../../region/domain/entity/region.dart';
 
 part 'phone_field_state.freezed.dart';
 
-class PhoneFieldState {
+class PhoneFieldState implements IState {
   PhoneFieldState(this.controller, [this.region, this.error]);
 
   factory PhoneFieldState.initial() => PhoneFieldState(TextEditingController());
@@ -27,7 +28,7 @@ class PhoneFieldState {
 }
 
 @freezed
-class PhoneFieldEvent with _$PhoneFieldEvent {
-  factory PhoneFieldEvent.hideKeyboard() = _PhoneFieldEventHideKeyboard;
-  factory PhoneFieldEvent.showKeyboard() = _PhoneFieldEventShowKeyboard;
+class PhoneFieldAction with _$PhoneFieldAction implements IAction {
+  factory PhoneFieldAction.hideKeyboard() = _PhoneFieldActionHideKeyboard;
+  factory PhoneFieldAction.showKeyboard() = _PhoneFieldActionShowKeyboard;
 }

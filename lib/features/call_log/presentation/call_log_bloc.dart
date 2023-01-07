@@ -10,7 +10,7 @@ import 'call_log_state.dart';
 
 const _shimmerListSize = 10;
 
-class CallLogBloc extends BlocController<CallLogEvent, CallLogState> {
+class CallLogBloc extends BlocController<CallLogState, CallLogAction> {
   CallLogBloc({
     required GetCallLogUseCase getCallLog,
     required RequestCallLogPermissionUseCase requestCallLogPermission,
@@ -29,17 +29,17 @@ class CallLogBloc extends BlocController<CallLogEvent, CallLogState> {
         .then((items) => CallLogState(entries: items))
         .catchError(_onError);
 
-    emit(state);
+    setState(state);
   }
 
   void selected(CallEntry item) {
     analytics.itemSelected('phone_from_call_log');
-    add(CallLogEvent.select(item));
+    sendAction(CallLogAction.select(item));
   }
 
   Future<void> retry() async {
     await _requestCallLogPermission();
-    emit(CallLogState.loading(_shimmerListSize));
+    setState(CallLogState.loading(_shimmerListSize));
     load();
   }
 

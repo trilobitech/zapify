@@ -10,7 +10,7 @@ import '../phone_field_component.dart';
 import 'error/home_failure.dart';
 import 'phone_field_state.dart';
 
-class PhoneFieldBloc extends BlocController<PhoneFieldEvent, PhoneFieldState>
+class PhoneFieldBloc extends BlocController<PhoneFieldState, PhoneFieldAction>
     implements PhoneFieldComponent {
   PhoneFieldBloc(
     this._plugin, {
@@ -21,11 +21,11 @@ class PhoneFieldBloc extends BlocController<PhoneFieldEvent, PhoneFieldState>
   final PhoneNumberUtil _plugin;
   final GetDefaultRegionUseCase _getDefaultRegion;
 
-  TextEditingController get _textEditingController => state.controller;
+  TextEditingController get _textEditingController => currentState.controller;
 
   String get _currentText => _textEditingController.text;
 
-  IRegion? get _region => state.region;
+  IRegion? get _region => currentState.region;
 
   @override
   Future<void> load() async {
@@ -65,7 +65,7 @@ class PhoneFieldBloc extends BlocController<PhoneFieldEvent, PhoneFieldState>
   @override
   Future<void> updateRegion(IRegion region) async {
     await _updatePhoneField(_currentText, region);
-    event(PhoneFieldEvent.showKeyboard());
+    sendAction(PhoneFieldAction.showKeyboard());
   }
 
   @override
@@ -76,7 +76,7 @@ class PhoneFieldBloc extends BlocController<PhoneFieldEvent, PhoneFieldState>
 
   @override
   void unfocusField() {
-    add(PhoneFieldEvent.hideKeyboard());
+    sendAction(PhoneFieldAction.hideKeyboard());
   }
 
   Future<void> _updatePhoneField(String phone, IRegion region) async {
@@ -157,13 +157,13 @@ class PhoneFieldBloc extends BlocController<PhoneFieldEvent, PhoneFieldState>
   }) {
     if (error != null) _addClearErrorListener();
 
-    final newState = state.copyWith(
+    final newState = currentState.copyWith(
       controller: controller,
       region: region,
       error: error,
     );
 
-    emit(newState);
+    setState(newState);
   }
 }
 

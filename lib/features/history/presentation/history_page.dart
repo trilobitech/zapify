@@ -15,7 +15,7 @@ import 'history_bloc.dart';
 import 'history_state.dart';
 
 class HistoryPage extends StatelessWidget
-    with BlocWidget<HistoryBloc, HistoryEvent, HistoryState>
+    with StateActionMixin<HistoryBloc, HistoryState, HistoryAction>
     implements TabPage {
   HistoryPage({super.key});
 
@@ -33,8 +33,8 @@ class HistoryPage extends StatelessWidget
       );
 
   @override
-  FutureOr<void> handleEvent(BuildContext context, HistoryEvent event) =>
-      event.when(
+  FutureOr<void> handleAction(BuildContext context, HistoryAction action) =>
+      action.when(
         select: (entry) => context
             .read<HistoryMediator>()
             .onPhoneReceivedFromHistory(entry.phoneNumber),

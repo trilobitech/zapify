@@ -15,7 +15,7 @@ import 'call_log_bloc.dart';
 import 'call_log_state.dart';
 
 class CallLogTabPage extends StatelessWidget
-    with BlocWidget<CallLogBloc, CallLogEvent, CallLogState>
+    with StateActionMixin<CallLogBloc, CallLogState, CallLogAction>
     implements MaybeAvailableTabPage {
   CallLogTabPage({super.key});
 
@@ -42,8 +42,8 @@ class CallLogTabPage extends StatelessWidget
       );
 
   @override
-  FutureOr<void> handleEvent(BuildContext context, CallLogEvent event) =>
-      event.when(
+  FutureOr<void> handleAction(BuildContext context, CallLogAction action) =>
+      action.when(
         select: (entry) => context
             .read<CallLogMediator>()
             .onPhoneReceivedFromCallLog(entry.phoneNumber),

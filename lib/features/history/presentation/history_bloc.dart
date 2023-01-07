@@ -12,7 +12,7 @@ import '../domain/usecase/remove_phone_number_history.dart';
 import '../domain/usecase/restore_phone_number_history.dart';
 import 'history_state.dart';
 
-class HistoryBloc extends BlocController<HistoryEvent, HistoryState> {
+class HistoryBloc extends BlocController<HistoryState, HistoryAction> {
   HistoryBloc({
     required GetPhoneNumberHistoryUseCase getPhoneNumberHistory,
     required RemovePhoneNumberHistoryUseCase removePhoneNumberHistory,
@@ -35,27 +35,27 @@ class HistoryBloc extends BlocController<HistoryEvent, HistoryState> {
         ? HistoryState.loading(historicSize)
         : HistoryState.empty();
 
-    emit(initialState);
+    setState(initialState);
 
     subscriptions.add(
-      _getPhoneNumberHistory().map(_stateFor).listen(emit),
+      _getPhoneNumberHistory().map(_mapToState).listen(setState),
     );
   }
 
   void select(HistoryEntry entry) {
     analytics.itemSelected('phone_from_history');
-    add(HistoryEvent.select(entry));
+    sendAction(HistoryAction.select(entry));
   }
 
   void longPress(HistoryEntry entry) {
     analytics.itemLongPressed('phone_from_history');
-    add(HistoryEvent.select(entry));
+    sendAction(HistoryAction.select(entry));
   }
 
   Future<void> remove(HistoryEntry entry) async {
     analytics.itemRemoved('phone_from_history');
     await (_removePhoneNumberHistory(entry).catchError(catchErrorLogger));
-    add(HistoryEvent.showRestoreEntrySnackBar(entry));
+    sendAction(HistoryAction.showRestoreEntrySnackBar(entry));
   }
 
   Future<void> restore(HistoryEntry entry) async {
@@ -63,7 +63,7 @@ class HistoryBloc extends BlocController<HistoryEvent, HistoryState> {
     await (_restorePhoneNumberHistory(entry).catchError(catchErrorLogger));
   }
 
-  HistoryState _stateFor(List<HistoryEntry> entries) {
+  HistoryState _mapToState(List<HistoryEntry> entries) {
     return entries.isNotEmpty
         ? HistoryState(entries: entries)
         : HistoryState.empty();

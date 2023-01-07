@@ -11,7 +11,7 @@ import 'phone_field_bloc.dart';
 import 'phone_field_state.dart';
 
 class PhoneFieldWidget extends StatelessWidget
-    with BlocWidget<PhoneFieldBloc, PhoneFieldEvent, PhoneFieldState> {
+    with StateActionMixin<PhoneFieldBloc, PhoneFieldState, PhoneFieldAction> {
   PhoneFieldWidget({super.key});
 
   late final _errorMessageResolver = inject<ErrorMessageResolver>();
@@ -48,8 +48,8 @@ class PhoneFieldWidget extends StatelessWidget
   }
 
   @override
-  FutureOr<void> handleEvent(BuildContext context, PhoneFieldEvent event) =>
-      event.when(
+  FutureOr<void> handleAction(BuildContext context, PhoneFieldAction action) =>
+      action.when(
         hideKeyboard: dismissKeyboard,
         showKeyboard: showKeyboard,
       );

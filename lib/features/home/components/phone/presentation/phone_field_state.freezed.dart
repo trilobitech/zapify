@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$PhoneFieldEvent {
+mixin _$PhoneFieldAction {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() hideKeyboard,
@@ -37,36 +37,36 @@ mixin _$PhoneFieldEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_PhoneFieldEventHideKeyboard value) hideKeyboard,
-    required TResult Function(_PhoneFieldEventShowKeyboard value) showKeyboard,
+    required TResult Function(_PhoneFieldActionHideKeyboard value) hideKeyboard,
+    required TResult Function(_PhoneFieldActionShowKeyboard value) showKeyboard,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_PhoneFieldEventHideKeyboard value)? hideKeyboard,
-    TResult? Function(_PhoneFieldEventShowKeyboard value)? showKeyboard,
+    TResult? Function(_PhoneFieldActionHideKeyboard value)? hideKeyboard,
+    TResult? Function(_PhoneFieldActionShowKeyboard value)? showKeyboard,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_PhoneFieldEventHideKeyboard value)? hideKeyboard,
-    TResult Function(_PhoneFieldEventShowKeyboard value)? showKeyboard,
+    TResult Function(_PhoneFieldActionHideKeyboard value)? hideKeyboard,
+    TResult Function(_PhoneFieldActionShowKeyboard value)? showKeyboard,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PhoneFieldEventCopyWith<$Res> {
-  factory $PhoneFieldEventCopyWith(
-          PhoneFieldEvent value, $Res Function(PhoneFieldEvent) then) =
-      _$PhoneFieldEventCopyWithImpl<$Res, PhoneFieldEvent>;
+abstract class $PhoneFieldActionCopyWith<$Res> {
+  factory $PhoneFieldActionCopyWith(
+          PhoneFieldAction value, $Res Function(PhoneFieldAction) then) =
+      _$PhoneFieldActionCopyWithImpl<$Res, PhoneFieldAction>;
 }
 
 /// @nodoc
-class _$PhoneFieldEventCopyWithImpl<$Res, $Val extends PhoneFieldEvent>
-    implements $PhoneFieldEventCopyWith<$Res> {
-  _$PhoneFieldEventCopyWithImpl(this._value, this._then);
+class _$PhoneFieldActionCopyWithImpl<$Res, $Val extends PhoneFieldAction>
+    implements $PhoneFieldActionCopyWith<$Res> {
+  _$PhoneFieldActionCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -75,38 +75,39 @@ class _$PhoneFieldEventCopyWithImpl<$Res, $Val extends PhoneFieldEvent>
 }
 
 /// @nodoc
-abstract class _$$_PhoneFieldEventHideKeyboardCopyWith<$Res> {
-  factory _$$_PhoneFieldEventHideKeyboardCopyWith(
-          _$_PhoneFieldEventHideKeyboard value,
-          $Res Function(_$_PhoneFieldEventHideKeyboard) then) =
-      __$$_PhoneFieldEventHideKeyboardCopyWithImpl<$Res>;
+abstract class _$$_PhoneFieldActionHideKeyboardCopyWith<$Res> {
+  factory _$$_PhoneFieldActionHideKeyboardCopyWith(
+          _$_PhoneFieldActionHideKeyboard value,
+          $Res Function(_$_PhoneFieldActionHideKeyboard) then) =
+      __$$_PhoneFieldActionHideKeyboardCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_PhoneFieldEventHideKeyboardCopyWithImpl<$Res>
-    extends _$PhoneFieldEventCopyWithImpl<$Res, _$_PhoneFieldEventHideKeyboard>
-    implements _$$_PhoneFieldEventHideKeyboardCopyWith<$Res> {
-  __$$_PhoneFieldEventHideKeyboardCopyWithImpl(
-      _$_PhoneFieldEventHideKeyboard _value,
-      $Res Function(_$_PhoneFieldEventHideKeyboard) _then)
+class __$$_PhoneFieldActionHideKeyboardCopyWithImpl<$Res>
+    extends _$PhoneFieldActionCopyWithImpl<$Res,
+        _$_PhoneFieldActionHideKeyboard>
+    implements _$$_PhoneFieldActionHideKeyboardCopyWith<$Res> {
+  __$$_PhoneFieldActionHideKeyboardCopyWithImpl(
+      _$_PhoneFieldActionHideKeyboard _value,
+      $Res Function(_$_PhoneFieldActionHideKeyboard) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_PhoneFieldEventHideKeyboard implements _PhoneFieldEventHideKeyboard {
-  _$_PhoneFieldEventHideKeyboard();
+class _$_PhoneFieldActionHideKeyboard implements _PhoneFieldActionHideKeyboard {
+  _$_PhoneFieldActionHideKeyboard();
 
   @override
   String toString() {
-    return 'PhoneFieldEvent.hideKeyboard()';
+    return 'PhoneFieldAction.hideKeyboard()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PhoneFieldEventHideKeyboard);
+            other is _$_PhoneFieldActionHideKeyboard);
   }
 
   @override
@@ -146,8 +147,8 @@ class _$_PhoneFieldEventHideKeyboard implements _PhoneFieldEventHideKeyboard {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_PhoneFieldEventHideKeyboard value) hideKeyboard,
-    required TResult Function(_PhoneFieldEventShowKeyboard value) showKeyboard,
+    required TResult Function(_PhoneFieldActionHideKeyboard value) hideKeyboard,
+    required TResult Function(_PhoneFieldActionShowKeyboard value) showKeyboard,
   }) {
     return hideKeyboard(this);
   }
@@ -155,8 +156,8 @@ class _$_PhoneFieldEventHideKeyboard implements _PhoneFieldEventHideKeyboard {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_PhoneFieldEventHideKeyboard value)? hideKeyboard,
-    TResult? Function(_PhoneFieldEventShowKeyboard value)? showKeyboard,
+    TResult? Function(_PhoneFieldActionHideKeyboard value)? hideKeyboard,
+    TResult? Function(_PhoneFieldActionShowKeyboard value)? showKeyboard,
   }) {
     return hideKeyboard?.call(this);
   }
@@ -164,8 +165,8 @@ class _$_PhoneFieldEventHideKeyboard implements _PhoneFieldEventHideKeyboard {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_PhoneFieldEventHideKeyboard value)? hideKeyboard,
-    TResult Function(_PhoneFieldEventShowKeyboard value)? showKeyboard,
+    TResult Function(_PhoneFieldActionHideKeyboard value)? hideKeyboard,
+    TResult Function(_PhoneFieldActionShowKeyboard value)? showKeyboard,
     required TResult orElse(),
   }) {
     if (hideKeyboard != null) {
@@ -175,43 +176,44 @@ class _$_PhoneFieldEventHideKeyboard implements _PhoneFieldEventHideKeyboard {
   }
 }
 
-abstract class _PhoneFieldEventHideKeyboard implements PhoneFieldEvent {
-  factory _PhoneFieldEventHideKeyboard() = _$_PhoneFieldEventHideKeyboard;
+abstract class _PhoneFieldActionHideKeyboard implements PhoneFieldAction {
+  factory _PhoneFieldActionHideKeyboard() = _$_PhoneFieldActionHideKeyboard;
 }
 
 /// @nodoc
-abstract class _$$_PhoneFieldEventShowKeyboardCopyWith<$Res> {
-  factory _$$_PhoneFieldEventShowKeyboardCopyWith(
-          _$_PhoneFieldEventShowKeyboard value,
-          $Res Function(_$_PhoneFieldEventShowKeyboard) then) =
-      __$$_PhoneFieldEventShowKeyboardCopyWithImpl<$Res>;
+abstract class _$$_PhoneFieldActionShowKeyboardCopyWith<$Res> {
+  factory _$$_PhoneFieldActionShowKeyboardCopyWith(
+          _$_PhoneFieldActionShowKeyboard value,
+          $Res Function(_$_PhoneFieldActionShowKeyboard) then) =
+      __$$_PhoneFieldActionShowKeyboardCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_PhoneFieldEventShowKeyboardCopyWithImpl<$Res>
-    extends _$PhoneFieldEventCopyWithImpl<$Res, _$_PhoneFieldEventShowKeyboard>
-    implements _$$_PhoneFieldEventShowKeyboardCopyWith<$Res> {
-  __$$_PhoneFieldEventShowKeyboardCopyWithImpl(
-      _$_PhoneFieldEventShowKeyboard _value,
-      $Res Function(_$_PhoneFieldEventShowKeyboard) _then)
+class __$$_PhoneFieldActionShowKeyboardCopyWithImpl<$Res>
+    extends _$PhoneFieldActionCopyWithImpl<$Res,
+        _$_PhoneFieldActionShowKeyboard>
+    implements _$$_PhoneFieldActionShowKeyboardCopyWith<$Res> {
+  __$$_PhoneFieldActionShowKeyboardCopyWithImpl(
+      _$_PhoneFieldActionShowKeyboard _value,
+      $Res Function(_$_PhoneFieldActionShowKeyboard) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_PhoneFieldEventShowKeyboard implements _PhoneFieldEventShowKeyboard {
-  _$_PhoneFieldEventShowKeyboard();
+class _$_PhoneFieldActionShowKeyboard implements _PhoneFieldActionShowKeyboard {
+  _$_PhoneFieldActionShowKeyboard();
 
   @override
   String toString() {
-    return 'PhoneFieldEvent.showKeyboard()';
+    return 'PhoneFieldAction.showKeyboard()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PhoneFieldEventShowKeyboard);
+            other is _$_PhoneFieldActionShowKeyboard);
   }
 
   @override
@@ -251,8 +253,8 @@ class _$_PhoneFieldEventShowKeyboard implements _PhoneFieldEventShowKeyboard {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_PhoneFieldEventHideKeyboard value) hideKeyboard,
-    required TResult Function(_PhoneFieldEventShowKeyboard value) showKeyboard,
+    required TResult Function(_PhoneFieldActionHideKeyboard value) hideKeyboard,
+    required TResult Function(_PhoneFieldActionShowKeyboard value) showKeyboard,
   }) {
     return showKeyboard(this);
   }
@@ -260,8 +262,8 @@ class _$_PhoneFieldEventShowKeyboard implements _PhoneFieldEventShowKeyboard {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_PhoneFieldEventHideKeyboard value)? hideKeyboard,
-    TResult? Function(_PhoneFieldEventShowKeyboard value)? showKeyboard,
+    TResult? Function(_PhoneFieldActionHideKeyboard value)? hideKeyboard,
+    TResult? Function(_PhoneFieldActionShowKeyboard value)? showKeyboard,
   }) {
     return showKeyboard?.call(this);
   }
@@ -269,8 +271,8 @@ class _$_PhoneFieldEventShowKeyboard implements _PhoneFieldEventShowKeyboard {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_PhoneFieldEventHideKeyboard value)? hideKeyboard,
-    TResult Function(_PhoneFieldEventShowKeyboard value)? showKeyboard,
+    TResult Function(_PhoneFieldActionHideKeyboard value)? hideKeyboard,
+    TResult Function(_PhoneFieldActionShowKeyboard value)? showKeyboard,
     required TResult orElse(),
   }) {
     if (showKeyboard != null) {
@@ -280,6 +282,6 @@ class _$_PhoneFieldEventShowKeyboard implements _PhoneFieldEventShowKeyboard {
   }
 }
 
-abstract class _PhoneFieldEventShowKeyboard implements PhoneFieldEvent {
-  factory _PhoneFieldEventShowKeyboard() = _$_PhoneFieldEventShowKeyboard;
+abstract class _PhoneFieldActionShowKeyboard implements PhoneFieldAction {
+  factory _PhoneFieldActionShowKeyboard() = _$_PhoneFieldActionShowKeyboard;
 }

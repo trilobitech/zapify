@@ -31,7 +31,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage>
-    with BlocStateWidget<HomePage, HomeBloc, HomeEvent, void> {
+    with ActionMixin<HomeBloc, HomeAction> {
   late final _shareService = ShareService();
   final _sub = CompositeSubscription();
 
@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage>
   }
 
   @override
-  Widget buildState(BuildContext context, _) {
+  Widget buildWidget(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -78,8 +78,8 @@ class _HomePageState extends State<HomePage>
   }
 
   @override
-  FutureOr<void> handleEvent(BuildContext context, HomeEvent event) =>
-      event.when(
+  FutureOr<void> handleAction(BuildContext context, HomeAction action) =>
+      action.when(
         navigateToRegionPicker: (current) =>
             _navigateToRegionPicker(context, current),
       );

@@ -1,11 +1,12 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../common/arch/bloc_state.dart';
 import '../domain/entity/history.dart';
 
 part 'history_state.freezed.dart';
 
 @freezed
-class HistoryState with _$HistoryState {
+class HistoryState with _$HistoryState implements IState {
   factory HistoryState.loading(int size) = _HistoryStateLoading;
   factory HistoryState.empty() = _HistoryStateEmpty;
   factory HistoryState({
@@ -14,9 +15,9 @@ class HistoryState with _$HistoryState {
 }
 
 @freezed
-class HistoryEvent with _$HistoryEvent {
-  factory HistoryEvent.select(HistoryEntry entry) = _HistoryEventEntrySelect;
+class HistoryAction with _$HistoryAction implements IAction {
+  factory HistoryAction.select(HistoryEntry entry) = _HistoryActionEntrySelect;
 
-  factory HistoryEvent.showRestoreEntrySnackBar(HistoryEntry entry) =
-      _HistoryEventEntryRemoved;
+  factory HistoryAction.showRestoreEntrySnackBar(HistoryEntry entry) =
+      _HistoryActionEntryRemoved;
 }

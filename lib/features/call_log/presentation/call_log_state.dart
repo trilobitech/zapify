@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../common/arch/bloc_state.dart';
 import '../domain/entity/call.dart';
 
 part 'call_log_state.freezed.dart';
 
 @freezed
-class CallLogState with _$CallLogState {
+class CallLogState with _$CallLogState implements IState {
   factory CallLogState({
     required Iterable<CallEntry> entries,
   }) = _CallLogStatePopulated;
@@ -19,8 +20,8 @@ class CallLogState with _$CallLogState {
 }
 
 @freezed
-class CallLogEvent with _$CallLogEvent {
-  factory CallLogEvent.select(CallEntry entry) = _CallLogEventEntrySelect;
+class CallLogAction with _$CallLogAction implements IAction {
+  factory CallLogAction.select(CallEntry entry) = _CallLogActionEntrySelect;
 }
 
 class CallEntry {
