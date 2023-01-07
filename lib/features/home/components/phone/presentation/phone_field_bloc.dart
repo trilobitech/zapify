@@ -87,7 +87,7 @@ class PhoneFieldBloc extends BlocController<PhoneFieldState, PhoneFieldAction>
 
     final newValue = _textEditingValueFrom(formattedPhone);
 
-    if (region == _region) {
+    if (region.code == _region?.code) {
       _textEditingController.value = newValue;
       return;
     }

@@ -1,21 +1,26 @@
+import 'package:equatable/equatable.dart';
+
 const _kDefaultRegionCode = 'BR';
 const _kDefaultRegionPrefix = 55;
 
 typedef RegionCode = String;
 typedef CountryCode = int;
 
-abstract class IRegion implements Comparable<IRegion> {
+abstract class IRegion extends Equatable implements Comparable<IRegion> {
   RegionCode get code;
 
   CountryCode get prefix;
 
-  late String? flag = code.toUpperCase().replaceAllMapped(
+  late final String? flag = code.toUpperCase().replaceAllMapped(
         RegExp(r'[A-Z]'),
         (match) => String.fromCharCode(match.group(0)!.codeUnitAt(0) + 127397),
       );
 
   @override
   int compareTo(other) => code.compareTo(other.code);
+
+  @override
+  List<Object?> get props => [code];
 }
 
 class RegionInfo extends IRegion {
