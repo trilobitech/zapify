@@ -33,7 +33,7 @@ jobs:
     environment: ${{ inputs.environment }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3.2.0
+        uses: actions/checkout@v3.3.0
 
       - id: platform
         name: Detect platform
@@ -100,7 +100,7 @@ jobs:
       PLATFORM: ${{ inputs.platform }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3.2.0
+        uses: actions/checkout@v3.3.0
 
       - id: lane
         name: Define lane
