@@ -1,6 +1,8 @@
 import 'package:analytics/analytics.dart';
 import 'package:bloc_plus/bloc_plus.dart';
 import 'package:error_handler/error_handler.dart';
+import 'package:logger_plus/logger_plus.dart';
+import 'package:receive_intent/receive_intent.dart';
 
 import '../../call_log/call_log_mediator.dart';
 import '../../history/domain/usecase/save_phone_number_history.dart';
@@ -29,8 +31,20 @@ class HomeBloc extends ActionBloc<HomeAction> implements HomeMediator {
 
   final PhoneFieldComponent _phoneFieldComponent;
 
-  Future<void> onPhoneReceivedFromIntent(String phoneNumber) =>
-      _phoneFieldComponent.updatePhone(phoneNumber);
+  Future<void> onIntentReceived(Intent intent) async {
+    final phoneNumber = intent.data;
+    if (phoneNumber != null && phoneNumber.startsWith('tel:')) {
+      analytics.intentHandled('phone_number_received');
+
+      _phoneFieldComponent
+          .updatePhone(phoneNumber.replaceFirst('tel:', ''))
+          .catchError((_) {
+        final obfuscatedNumber =
+            phoneNumber.replaceAll('*', '\\*').replaceAll(RegExp('[0-9]'), '*');
+        Log.e('invalid phone number: $obfuscatedNumber');
+      });
+    }
+  }
 
   @override
   Future<void> onPhoneReceivedFromCallLog(String phoneNumber) =>

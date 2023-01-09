@@ -1,9 +1,7 @@
 import 'dart:async';
 
-import 'package:analytics/analytics.dart';
 import 'package:bloc_plus/bloc_plus.dart';
 import 'package:flutter/material.dart' hide Intent;
-import 'package:logger_plus/logger_plus.dart';
 import 'package:receive_intent/receive_intent.dart';
 import 'package:rxdart/utils.dart';
 
@@ -37,7 +35,7 @@ class _HomePageState extends State<HomePage>
 
   Future<void> _init() async {
     _sub.add(
-      _shareService.stream().listen(_handleSharedPhoneNumber),
+      _shareService.stream().listen(_handleIntent),
     );
   }
 
@@ -103,18 +101,6 @@ class _HomePageState extends State<HomePage>
     }
   }
 
-  void _handleSharedPhoneNumber(Intent intent) {
-    final phoneNumber = intent.data;
-    if (phoneNumber != null && phoneNumber.startsWith('tel:')) {
-      analytics.intentHandled('phone_number_received');
-      context
-          .read<HomeBloc>()
-          .onPhoneReceivedFromIntent(phoneNumber.replaceFirst('tel:', ''))
-          .catchError((_) {
-        final obfuscatedNumber =
-            phoneNumber.replaceAll('*', '\\*').replaceAll(RegExp('[0-9]'), '*');
-        Log.e('invalid phone number: $obfuscatedNumber');
-      });
-    }
-  }
+  Future _handleIntent(Intent intent) =>
+      context.read<HomeBloc>().onIntentReceived(intent);
 }
