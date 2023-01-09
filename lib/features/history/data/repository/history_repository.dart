@@ -1,6 +1,6 @@
 import 'package:sqlbrite/sqlbrite.dart';
 
-import '../../../../config/local_config.dart';
+import '../../../../common/config/local_config.dart';
 import '../../domain/entity/history.dart';
 import '../../domain/repository/history_repository.dart';
 

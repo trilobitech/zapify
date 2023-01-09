@@ -3,13 +3,13 @@ import 'dart:async';
 import 'package:bloc_plus/bloc_plus.dart';
 import 'package:flutter/material.dart';
 
+import '../../../common/config/remote_config.dart';
 import '../../../common/ext/context.dart';
 import '../../../common/ext/l10n_ext.dart';
 import '../../../common/widgets/feedback_view.dart';
 import '../../../common/widgets/list_divider.dart';
 import '../../../common/widgets/shimmer_view.dart';
 import '../../../common/widgets/tab_list_view.dart';
-import '../../../config/remote_config.dart';
 import '../call_log_mediator.dart';
 import 'call_log_bloc.dart';
 import 'call_log_state.dart';

@@ -5,9 +5,9 @@ import 'package:flutter/material.dart' hide Intent;
 import 'package:receive_intent/receive_intent.dart';
 import 'package:rxdart/utils.dart';
 
-import '../../../common/arch/provider.dart';
 import '../../../common/services/share_service.dart';
 import '../../../common/widgets/tab_list_view.dart';
+import '../../../di/provider.dart';
 import '../../call_log/call_log_mediator.dart';
 import '../../call_log/presentation/call_log_bloc.dart';
 import '../../call_log/presentation/call_log_page.dart';

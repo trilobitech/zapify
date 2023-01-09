@@ -5,7 +5,7 @@ import 'package:bloc_plus/bloc_plus.dart';
 import 'package:logger_plus/logger_plus.dart';
 import 'package:meta/meta.dart';
 
-import '../../../config/local_config.dart';
+import '../../../common/config/local_config.dart';
 import '../domain/entity/history.dart';
 import '../domain/usecase/get_phone_number_history.dart';
 import '../domain/usecase/remove_phone_number_history.dart';

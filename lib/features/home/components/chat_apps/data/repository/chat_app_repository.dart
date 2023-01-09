@@ -1,7 +1,8 @@
 import 'package:logger_plus/logger_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../../../../config/local_config.dart';
+import '../../../../../../common/config/env_config.dart';
+import '../../../../../../common/config/local_config.dart';
 import '../../domain/entity/chat_app.dart';
 import '../../domain/entity/color.dart';
 import '../../domain/repository/chat_app_repository.dart';
@@ -47,8 +48,7 @@ class ChatAppRepository implements IChatAppRepository {
   }
 
   void _syncWithRemote(LocalConfig expiration, int now) {
-    // TODO: use syncInterval from env variable
-    final syncInterval = const Duration(days: 1).inMilliseconds;
+    const syncInterval = EnvConfig.syncAppsInterval;
 
     remoteDataSource
         .get()

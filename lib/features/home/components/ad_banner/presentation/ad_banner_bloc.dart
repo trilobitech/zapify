@@ -1,6 +1,6 @@
 import 'package:bloc_plus/bloc_plus.dart';
 
-import '../../../../../config/remote_config.dart';
+import '../../../../../common/config/remote_config.dart';
 import 'ad_banner_state.dart';
 
 class AdBannerBloc extends StateBloc<AdBannerState> {

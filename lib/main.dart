@@ -8,8 +8,8 @@ import 'package:is_firebase_test_lab_activated/is_firebase_test_lab_activated.da
 import 'package:logger_plus/logger_plus.dart';
 
 import 'app.dart';
+import 'common/config/env_config.dart';
 import 'common/services/firebase.dart';
-import 'config/env_config.dart';
 import 'di/modules.dart';
 import 'firebase_options.dart';
 

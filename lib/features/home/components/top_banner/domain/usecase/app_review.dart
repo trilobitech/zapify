@@ -1,8 +1,8 @@
 import 'package:app_install_date/app_install_date.dart';
 
+import '../../../../../../common/config/local_config.dart';
+import '../../../../../../common/config/remote_config.dart';
 import '../../../../../../common/ext/future.dart';
-import '../../../../../../config/local_config.dart';
-import '../../../../../../config/remote_config.dart';
 
 class CanAskForReviewUseCase {
   Future<bool> call() async {
