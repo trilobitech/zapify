@@ -1,11 +1,11 @@
 import 'dart:async';
 
+import 'package:bloc_plus/bloc_plus.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:logger_plus/logger_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../../../common/arch/bloc_widget.dart';
 import '../../../../../common/ext/context.dart';
 import '../../../../../common/widgets/image_resolver_widget.dart';
 import '../chat_apps_mediator.dart';

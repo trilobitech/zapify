@@ -1,4 +1,5 @@
-import '../../../../../common/arch/bloc_controller.dart';
+import 'package:bloc_plus/bloc_plus.dart';
+
 import '../../../../../config/remote_config.dart';
 import 'ad_banner_state.dart';
 

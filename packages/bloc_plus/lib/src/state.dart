@@ -1,7 +1,10 @@
+import 'package:meta/meta.dart';
+
 abstract class IState {}
 
 abstract class IAction {}
 
+@internal
 class NoState implements IState {
   NoState._();
 

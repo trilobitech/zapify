@@ -1,12 +1,12 @@
 import 'dart:async';
 
 import 'package:analytics/analytics.dart';
+import 'package:bloc_plus/bloc_plus.dart';
 import 'package:flutter/material.dart' hide Intent;
 import 'package:logger_plus/logger_plus.dart';
 import 'package:receive_intent/receive_intent.dart';
 import 'package:rxdart/utils.dart';
 
-import '../../../common/arch/bloc_widget.dart';
 import '../../../common/services/share_service.dart';
 import '../../../common/widgets/tab_list_view.dart';
 import '../../call_log/presentation/call_log_page.dart';
@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage>
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const TopBannerWidget(),
+          TopBannerWidget(),
           PhoneFieldWidget(),
           ChatAppsWidget(),
           Expanded(
@@ -73,7 +73,7 @@ class _HomePageState extends State<HomePage>
           ),
         ],
       ),
-      bottomNavigationBar: const AdBannerWidget(),
+      bottomNavigationBar: AdBannerWidget(),
     );
   }
 

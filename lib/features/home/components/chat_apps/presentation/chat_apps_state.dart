@@ -1,6 +1,6 @@
+import 'package:bloc_plus/bloc_plus.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../../../common/arch/bloc_state.dart';
 import '../domain/entity/chat_app.dart';
 
 part 'chat_apps_state.freezed.dart';

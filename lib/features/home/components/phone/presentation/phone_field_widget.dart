@@ -1,9 +1,9 @@
 import 'dart:async';
 
+import 'package:bloc_plus/bloc_plus.dart';
 import 'package:error_handler/error_handler.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../common/arch/bloc_widget.dart';
 import '../../../../../common/di/inject.dart';
 import '../../../../../common/ext/context.dart';
 import '../../../../region/region_mediator.dart';

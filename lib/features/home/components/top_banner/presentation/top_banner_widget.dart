@@ -1,7 +1,8 @@
 import 'package:analytics/analytics.dart';
+import 'package:bloc_plus/bloc_plus.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../common/arch/bloc_widget.dart';
+import '../../../../../common/di/inject.dart';
 import '../../../../../common/ext/context.dart';
 import '../domain/entity/top_banner.dart';
 import 'top_banner_bloc.dart';
@@ -11,7 +12,10 @@ typedef OnTopBannerActionTap = Function(TopBannerType type);
 
 class TopBannerWidget extends StatelessWidget
     with StateMixin<TopBannerBloc, TopBannerState> {
-  const TopBannerWidget({Key? key}) : super(key: key);
+  TopBannerWidget({Key? key}) : super(key: key);
+
+  @override
+  late final bloc = inject<TopBannerBloc>();
 
   @override
   Widget buildState(BuildContext context, TopBannerState state) {

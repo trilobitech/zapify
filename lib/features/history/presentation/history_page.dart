@@ -1,9 +1,9 @@
 import 'dart:async';
 
+import 'package:bloc_plus/bloc_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:timeago_flutter/timeago_flutter.dart';
 
-import '../../../common/arch/bloc_widget.dart';
 import '../../../common/ext/context.dart';
 import '../../../common/widgets/feedback_view.dart';
 import '../../../common/widgets/list_divider.dart';

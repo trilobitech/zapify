@@ -1,6 +1,5 @@
+import 'package:bloc_plus/bloc_plus.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../../../../common/arch/bloc_state.dart';
 
 part 'ad_banner_state.freezed.dart';
 

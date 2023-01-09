@@ -1,9 +1,10 @@
 import 'dart:async';
 
 import 'package:analytics/analytics.dart';
+import 'package:bloc_plus/bloc_plus.dart';
 import 'package:flutter/material.dart';
 
-import '../../../common/arch/bloc_widget.dart';
+import '../../../common/di/inject.dart';
 import '../../../common/ext/context.dart';
 import '../domain/entity/region.dart';
 import 'region_picker_bloc.dart';
@@ -15,6 +16,8 @@ class RegionPicker extends StatelessWidget
             RegionPickerAction> {
   RegionPicker({super.key, this.selected});
 
+  @override
+  late final bloc = inject<RegionPickerBloc>();
   final RegionCode? selected;
 
   @override

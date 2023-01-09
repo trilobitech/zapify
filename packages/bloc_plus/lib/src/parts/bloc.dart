@@ -1,27 +1,4 @@
-import 'dart:async';
-
-import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
-import 'package:rxdart/utils.dart';
-
-import 'bloc_state.dart';
-
-abstract class StateActionBloc<S extends IState, A extends IAction>
-    extends _StateBloc<S> with _ActionBlocMixin<A, S> {
-  StateActionBloc(super.initialState);
-}
-
-abstract class StateBloc<S extends IState> extends _StateBloc<S> {
-  StateBloc(super.initialState);
-}
-
-abstract class ActionBloc<A extends IAction> extends _BlocBase
-    with _ActionBlocMixin<A, NoState> {
-  ActionBloc() : super(NoState.empty());
-
-  @override
-  NoState get currentState => NoState.empty();
-}
+part of '../bloc.dart';
 
 abstract class _StateBloc<S extends IState> extends _BlocBase
     implements _RealStateType<S> {
@@ -47,6 +24,10 @@ abstract class _BlocBase extends Cubit {
     load();
   }
 
+  @override
+  @internal
+  get state => super.state;
+
   @protected
   final subscriptions = CompositeSubscription();
 
@@ -55,7 +36,7 @@ abstract class _BlocBase extends Cubit {
   Future<void> load() async {}
 
   @override
-  @visibleForTesting
+  @internal
   void emit(state) => super.emit(state);
 
   @override

@@ -1,15 +1,19 @@
 import 'dart:math';
 
+import 'package:bloc_plus/bloc_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-import '../../../../../common/arch/bloc_widget.dart';
+import '../../../../../common/di/inject.dart';
 import 'ad_banner_bloc.dart';
 import 'ad_banner_state.dart';
 
 class AdBannerWidget extends StatelessWidget
     with StateMixin<AdBannerBloc, AdBannerState> {
-  const AdBannerWidget({Key? key}) : super(key: key);
+  AdBannerWidget({Key? key}) : super(key: key);
+
+  @override
+  late final bloc = inject<AdBannerBloc>();
 
   @override
   Widget buildState(BuildContext context, AdBannerState state) {

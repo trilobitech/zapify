@@ -14,6 +14,7 @@ import '../features/home/components/phone/phone_field_component.dart';
 import '../features/home/components/phone/presentation/phone_field_bloc.dart';
 import '../features/home/presentation/home_bloc.dart';
 import '../features/home/presentation/home_page.dart';
+import '../features/region/presentation/region_picker_bloc.dart';
 import '../features/region/region_mediator.dart';
 import 'theme.dart';
 
@@ -43,6 +44,7 @@ class _ZapifyAppState extends State<ZapifyApp> with WidgetsBindingObserver {
           DiProvider<ChatAppsBloc>(),
           DiProvider<HistoryBloc>(),
           DiProvider<CallLogBloc>(),
+          DiProvider<RegionPickerBloc>(),
           ProxyProvider<RegionMediator, HomeBloc>(),
           ProxyProvider<HistoryMediator, HomeBloc>(),
           ProxyProvider<ChatAppsMediator, HomeBloc>(),

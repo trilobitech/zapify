@@ -1,4 +1,5 @@
-import '../../../common/arch/bloc_controller.dart';
+import 'package:bloc_plus/bloc_plus.dart';
+
 import '../domain/entity/region.dart';
 import '../domain/usecase/get_regions_by_term.dart';
 import 'region_picker_state.dart';

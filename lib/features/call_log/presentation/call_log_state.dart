@@ -1,7 +1,7 @@
+import 'package:bloc_plus/bloc_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../common/arch/bloc_state.dart';
 import '../domain/entity/call.dart';
 
 part 'call_log_state.freezed.dart';

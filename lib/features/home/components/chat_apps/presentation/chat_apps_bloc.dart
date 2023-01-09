@@ -1,6 +1,6 @@
 import 'package:analytics/analytics.dart';
+import 'package:bloc_plus/bloc_plus.dart';
 
-import '../../../../../common/arch/bloc_controller.dart';
 import '../domain/entity/chat_app.dart';
 import '../domain/usecase/get_chat_apps.dart';
 import 'chat_apps_state.dart';
