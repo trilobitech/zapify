@@ -27,7 +27,10 @@ class HistoryPage extends StatelessWidget
 
   @override
   Widget buildState(BuildContext context, HistoryState state) => state.when(
-        (entries) => _SuccessView(entries),
+        (entries, isDismissable) => _SuccessView(
+          entries,
+          isDismissable: isDismissable,
+        ),
         loading: (size) => _LoadingView(size),
         empty: () => FeedbackView(text: context.strings.recentNumbersEmpty),
       );
@@ -81,22 +84,37 @@ class _LoadingView extends StatelessWidget {
 }
 
 class _SuccessView extends StatelessWidget {
-  const _SuccessView(this.entries);
+  const _SuccessView(
+    this.entries, {
+    required this.isDismissable,
+  });
 
   final Iterable<HistoryEntry> entries;
+  final bool isDismissable;
 
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
       itemCount: entries.length,
-      itemBuilder: (_, index) => _EntryView(entries.elementAt(index)),
+      itemBuilder: (_, index) {
+        final entry = entries.elementAt(index);
+
+        if (isDismissable) {
+          return _DismissibleEntryView(entry);
+        }
+
+        return _EntryView(
+          entry,
+          key: ValueKey(entry.phoneNumber),
+        );
+      },
       separatorBuilder: (_, __) => const ListDivider(),
     );
   }
 }
 
-class _EntryView extends StatelessWidget {
-  const _EntryView(this.entry);
+class _DismissibleEntryView extends StatelessWidget {
+  const _DismissibleEntryView(this.entry);
 
   final HistoryEntry entry;
 
@@ -104,14 +122,14 @@ class _EntryView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dismissible(
       key: ValueKey(entry.phoneNumber),
-      direction: DismissDirection.startToEnd,
+      direction: DismissDirection.endToStart,
       onDismissed: (_) => context.read<HistoryBloc>().remove(entry),
       background: Container(
         color: const Color.fromARGB(255, 186, 12, 0),
         child: Stack(
           children: const [
             Positioned(
-              left: 16,
+              right: 16,
               top: 0,
               bottom: 0,
               child: Icon(Icons.delete, color: Colors.white),
@@ -119,16 +137,27 @@ class _EntryView extends StatelessWidget {
           ],
         ),
       ),
-      child: ListTile(
-        title: Text(entry.phoneNumber),
-        trailing: Timeago(
-          date: entry.lastUsageAt,
-          builder: (_, text) => Text(text),
-          locale: context.currentLocale.toLanguageTag(),
-        ),
-        onTap: () => context.read<HistoryBloc>().select(entry),
-        onLongPress: () => context.read<HistoryBloc>().longPress(entry),
+      child: _EntryView(entry),
+    );
+  }
+}
+
+class _EntryView extends StatelessWidget {
+  const _EntryView(this.entry, {super.key});
+
+  final HistoryEntry entry;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(entry.phoneNumber),
+      trailing: Timeago(
+        date: entry.lastUsageAt,
+        builder: (_, text) => Text(text),
+        locale: context.currentLocale.toLanguageTag(),
       ),
+      onTap: () => context.read<HistoryBloc>().select(entry),
+      onLongPress: () => context.read<HistoryBloc>().longPress(entry),
     );
   }
 }

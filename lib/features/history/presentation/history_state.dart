@@ -11,6 +11,7 @@ class HistoryState with _$HistoryState implements IState {
   factory HistoryState.empty() = _HistoryStateEmpty;
   factory HistoryState({
     required List<HistoryEntry> entries,
+    @Default(false) bool isDismissable,
   }) = _HistoryStatePopulated;
 }
 

@@ -18,21 +18,23 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$HistoryState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(List<HistoryEntry> entries) $default, {
+    TResult Function(List<HistoryEntry> entries, bool isDismissable) $default, {
     required TResult Function(int size) loading,
     required TResult Function() empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<HistoryEntry> entries)? $default, {
+    TResult? Function(List<HistoryEntry> entries, bool isDismissable)?
+        $default, {
     TResult? Function(int size)? loading,
     TResult? Function()? empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<HistoryEntry> entries)? $default, {
+    TResult Function(List<HistoryEntry> entries, bool isDismissable)?
+        $default, {
     TResult Function(int size)? loading,
     TResult Function()? empty,
     required TResult orElse(),
@@ -145,7 +147,7 @@ class _$_HistoryStateLoading implements _HistoryStateLoading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(List<HistoryEntry> entries) $default, {
+    TResult Function(List<HistoryEntry> entries, bool isDismissable) $default, {
     required TResult Function(int size) loading,
     required TResult Function() empty,
   }) {
@@ -155,7 +157,8 @@ class _$_HistoryStateLoading implements _HistoryStateLoading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<HistoryEntry> entries)? $default, {
+    TResult? Function(List<HistoryEntry> entries, bool isDismissable)?
+        $default, {
     TResult? Function(int size)? loading,
     TResult? Function()? empty,
   }) {
@@ -165,7 +168,8 @@ class _$_HistoryStateLoading implements _HistoryStateLoading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<HistoryEntry> entries)? $default, {
+    TResult Function(List<HistoryEntry> entries, bool isDismissable)?
+        $default, {
     TResult Function(int size)? loading,
     TResult Function()? empty,
     required TResult orElse(),
@@ -258,7 +262,7 @@ class _$_HistoryStateEmpty implements _HistoryStateEmpty {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(List<HistoryEntry> entries) $default, {
+    TResult Function(List<HistoryEntry> entries, bool isDismissable) $default, {
     required TResult Function(int size) loading,
     required TResult Function() empty,
   }) {
@@ -268,7 +272,8 @@ class _$_HistoryStateEmpty implements _HistoryStateEmpty {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<HistoryEntry> entries)? $default, {
+    TResult? Function(List<HistoryEntry> entries, bool isDismissable)?
+        $default, {
     TResult? Function(int size)? loading,
     TResult? Function()? empty,
   }) {
@@ -278,7 +283,8 @@ class _$_HistoryStateEmpty implements _HistoryStateEmpty {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<HistoryEntry> entries)? $default, {
+    TResult Function(List<HistoryEntry> entries, bool isDismissable)?
+        $default, {
     TResult Function(int size)? loading,
     TResult Function()? empty,
     required TResult orElse(),
@@ -334,7 +340,7 @@ abstract class _$$_HistoryStatePopulatedCopyWith<$Res> {
           $Res Function(_$_HistoryStatePopulated) then) =
       __$$_HistoryStatePopulatedCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<HistoryEntry> entries});
+  $Res call({List<HistoryEntry> entries, bool isDismissable});
 }
 
 /// @nodoc
@@ -349,12 +355,17 @@ class __$$_HistoryStatePopulatedCopyWithImpl<$Res>
   @override
   $Res call({
     Object? entries = null,
+    Object? isDismissable = null,
   }) {
     return _then(_$_HistoryStatePopulated(
       entries: null == entries
           ? _value._entries
           : entries // ignore: cast_nullable_to_non_nullable
               as List<HistoryEntry>,
+      isDismissable: null == isDismissable
+          ? _value.isDismissable
+          : isDismissable // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -362,7 +373,8 @@ class __$$_HistoryStatePopulatedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_HistoryStatePopulated implements _HistoryStatePopulated {
-  _$_HistoryStatePopulated({required final List<HistoryEntry> entries})
+  _$_HistoryStatePopulated(
+      {required final List<HistoryEntry> entries, this.isDismissable = false})
       : _entries = entries;
 
   final List<HistoryEntry> _entries;
@@ -374,8 +386,12 @@ class _$_HistoryStatePopulated implements _HistoryStatePopulated {
   }
 
   @override
+  @JsonKey()
+  final bool isDismissable;
+
+  @override
   String toString() {
-    return 'HistoryState(entries: $entries)';
+    return 'HistoryState(entries: $entries, isDismissable: $isDismissable)';
   }
 
   @override
@@ -383,12 +399,14 @@ class _$_HistoryStatePopulated implements _HistoryStatePopulated {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_HistoryStatePopulated &&
-            const DeepCollectionEquality().equals(other._entries, _entries));
+            const DeepCollectionEquality().equals(other._entries, _entries) &&
+            (identical(other.isDismissable, isDismissable) ||
+                other.isDismissable == isDismissable));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_entries));
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_entries), isDismissable);
 
   @JsonKey(ignore: true)
   @override
@@ -400,33 +418,35 @@ class _$_HistoryStatePopulated implements _HistoryStatePopulated {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(List<HistoryEntry> entries) $default, {
+    TResult Function(List<HistoryEntry> entries, bool isDismissable) $default, {
     required TResult Function(int size) loading,
     required TResult Function() empty,
   }) {
-    return $default(entries);
+    return $default(entries, isDismissable);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<HistoryEntry> entries)? $default, {
+    TResult? Function(List<HistoryEntry> entries, bool isDismissable)?
+        $default, {
     TResult? Function(int size)? loading,
     TResult? Function()? empty,
   }) {
-    return $default?.call(entries);
+    return $default?.call(entries, isDismissable);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<HistoryEntry> entries)? $default, {
+    TResult Function(List<HistoryEntry> entries, bool isDismissable)?
+        $default, {
     TResult Function(int size)? loading,
     TResult Function()? empty,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(entries);
+      return $default(entries, isDismissable);
     }
     return orElse();
   }
@@ -467,10 +487,12 @@ class _$_HistoryStatePopulated implements _HistoryStatePopulated {
 }
 
 abstract class _HistoryStatePopulated implements HistoryState {
-  factory _HistoryStatePopulated({required final List<HistoryEntry> entries}) =
-      _$_HistoryStatePopulated;
+  factory _HistoryStatePopulated(
+      {required final List<HistoryEntry> entries,
+      final bool isDismissable}) = _$_HistoryStatePopulated;
 
   List<HistoryEntry> get entries;
+  bool get isDismissable;
   @JsonKey(ignore: true)
   _$$_HistoryStatePopulatedCopyWith<_$_HistoryStatePopulated> get copyWith =>
       throw _privateConstructorUsedError;

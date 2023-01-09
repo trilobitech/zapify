@@ -6,6 +6,7 @@ import 'package:logger_plus/logger_plus.dart';
 import 'package:meta/meta.dart';
 
 import '../../../common/config/local_config.dart';
+import '../../../common/config/remote_config.dart';
 import '../domain/entity/history.dart';
 import '../domain/usecase/get_phone_number_history.dart';
 import '../domain/usecase/remove_phone_number_history.dart';
@@ -38,7 +39,7 @@ class HistoryBloc extends StateActionBloc<HistoryState, HistoryAction> {
     setState(initialState);
 
     setStateFrom(
-      _getPhoneNumberHistory().map(_mapToState),
+      _getPhoneNumberHistory().asyncMap(_mapToState),
     );
   }
 
@@ -63,9 +64,14 @@ class HistoryBloc extends StateActionBloc<HistoryState, HistoryAction> {
     await (_restorePhoneNumberHistory(entry).catchError(catchErrorLogger));
   }
 
-  HistoryState _mapToState(List<HistoryEntry> entries) {
+  Future<HistoryState> _mapToState(List<HistoryEntry> entries) async {
+    final bool isCallLogTabEnabled =
+        await RemoteConfig.isCallLogTabEnabled.get();
     return entries.isNotEmpty
-        ? HistoryState(entries: entries)
+        ? HistoryState(
+            entries: entries,
+            isDismissable: !isCallLogTabEnabled,
+          )
         : HistoryState.empty();
   }
 
