@@ -24,16 +24,21 @@ class _StateActionWidget<B extends BlocBase, S extends IState,
   final WidgetActionHandler<A>? actionHandler;
 
   @override
-  Widget build(BuildContext context) => BlocProvider<B>.value(
-        value: bloc ?? BlocProvider.of(context),
-        child: BlocConsumer<B, dynamic>(
-          listenWhen: (_, current) => current is A,
-          listener: _handleAction,
-          buildWhen: (previous, current) =>
-              current is S && previous is! A && previous != current,
-          builder: _buildState,
-        ),
-      );
+  Widget build(BuildContext context) {
+    final bloc = this.bloc;
+
+    final consumer = BlocConsumer<B, dynamic>(
+      listenWhen: (_, current) => current is A,
+      listener: _handleAction,
+      buildWhen: (previous, current) =>
+          current is S && previous is! A && previous != current,
+      builder: _buildState,
+    );
+
+    if (bloc == null) return consumer;
+
+    return BlocProvider<B>.value(value: bloc, child: consumer);
+  }
 
   Widget _buildState(BuildContext context, state) =>
       stateBuilder(context, state as S);

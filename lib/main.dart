@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:is_firebase_test_lab_activated/is_firebase_test_lab_activated.dart';
 import 'package:logger_plus/logger_plus.dart';
 
-import 'app/zapify_app.dart';
+import 'app.dart';
 import 'common/services/firebase.dart';
 import 'config/env_config.dart';
 import 'di/modules.dart';
@@ -28,7 +28,7 @@ void main() {
       });
       stopwatch = null;
 
-      runApp(const ZapifyApp());
+      runApp(const App());
     },
     Log.f,
   );
