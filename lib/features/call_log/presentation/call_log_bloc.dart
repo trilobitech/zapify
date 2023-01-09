@@ -10,7 +10,7 @@ import 'call_log_state.dart';
 
 const _shimmerListSize = 10;
 
-class CallLogBloc extends BlocController<CallLogState, CallLogAction> {
+class CallLogBloc extends StateActionBloc<CallLogState, CallLogAction> {
   CallLogBloc({
     required GetCallLogUseCase getCallLog,
     required RequestCallLogPermissionUseCase requestCallLogPermission,

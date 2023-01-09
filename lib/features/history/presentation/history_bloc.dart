@@ -12,7 +12,7 @@ import '../domain/usecase/remove_phone_number_history.dart';
 import '../domain/usecase/restore_phone_number_history.dart';
 import 'history_state.dart';
 
-class HistoryBloc extends BlocController<HistoryState, HistoryAction> {
+class HistoryBloc extends StateActionBloc<HistoryState, HistoryAction> {
   HistoryBloc({
     required GetPhoneNumberHistoryUseCase getPhoneNumberHistory,
     required RemovePhoneNumberHistoryUseCase removePhoneNumberHistory,

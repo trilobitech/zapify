@@ -4,7 +4,7 @@ import '../domain/usecase/get_regions_by_term.dart';
 import 'region_picker_state.dart';
 
 class RegionPickerBloc
-    extends BlocController<RegionPickerState, RegionPickerAction> {
+    extends StateActionBloc<RegionPickerState, RegionPickerAction> {
   RegionPickerBloc({
     required this.getAvailableRegions,
   }) : super(RegionPickerState.initial());

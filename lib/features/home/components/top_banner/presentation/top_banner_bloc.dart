@@ -8,7 +8,7 @@ import '../domain/usecase/app_review.dart';
 import '../domain/usecase/get_top_banner.dart';
 import 'top_banner_state.dart';
 
-class TopBannerBloc extends BlocController<TopBannerState, NoAction> {
+class TopBannerBloc extends StateBloc<TopBannerState> {
   TopBannerBloc({
     required GetTopBannerUseCase getTopBanner,
     required SetLastAppReviewAtNowUseCase setLastAppReviewAtNow,

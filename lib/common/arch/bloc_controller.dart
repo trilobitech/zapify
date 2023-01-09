@@ -6,54 +6,74 @@ import 'package:rxdart/utils.dart';
 
 import 'bloc_state.dart';
 
-export 'bloc_state.dart' show NoAction, NoState;
+abstract class StateActionBloc<S extends IState, A extends IAction>
+    extends _StateBloc<S> with _ActionBlocMixin<A, S> {
+  StateActionBloc(super.initialState);
+}
 
-class BlocController<S extends IState, A extends IAction>
-    extends Cubit<Object> {
-  BlocController(initialState)
+abstract class StateBloc<S extends IState> extends _StateBloc<S> {
+  StateBloc(super.initialState);
+}
+
+abstract class ActionBloc<A extends IAction> extends _BlocBase
+    with _ActionBlocMixin<A, NoState> {
+  ActionBloc() : super(NoState.empty());
+
+  @override
+  NoState get currentState => NoState.empty();
+}
+
+abstract class _StateBloc<S extends IState> extends _BlocBase
+    implements _RealStateType<S> {
+  _StateBloc(initialState)
       : _currentState = initialState,
-        super(initialState) {
+        super(initialState);
+
+  S _currentState;
+  @override
+  S get currentState => state is S ? state as S : _currentState;
+
+  void setState(S newState) {
+    _currentState = newState;
+    emit(newState);
+  }
+
+  void setStateFrom(Stream<S> stream) =>
+      stream.listen(setState).addTo(subscriptions);
+}
+
+abstract class _BlocBase extends Cubit {
+  _BlocBase(super.initialState) {
     load();
   }
 
-  final _subscriptions = CompositeSubscription();
-
-  S _currentState;
-
-  S get currentState => state is S ? state as S : _currentState;
-
-  @override
-  @visibleForTesting
-  Object get state => super.state;
+  @protected
+  final subscriptions = CompositeSubscription();
 
   @protected
   @visibleForOverriding
   Future<void> load() async {}
 
-  void setState(S newState) {
-    _currentState = newState;
-    super.emit(newState);
-  }
-
-  void setStateFrom(Stream<S> stream) {
-    stream.listen(setState).addTo(_subscriptions);
-  }
-
-  void sendAction(A action) {
-    // workarount to enable same action dispatch
-    super.emit(action);
-    super.emit(currentState);
-  }
-
   @override
-  @alwaysThrows
   @visibleForTesting
-  void emit(state) =>
-      throw UnsupportedError('Use `setState` or `sendAction` instead');
+  void emit(state) => super.emit(state);
 
   @override
   Future<void> close() async {
-    _subscriptions.dispose();
+    subscriptions.dispose();
     return super.close();
   }
+}
+
+mixin _ActionBlocMixin<A extends IAction, S> on BlocBase
+    implements _RealStateType<S> {
+  void sendAction(A action) {
+    // workarount to enable same action dispatch
+    emit(action);
+    emit(currentState);
+  }
+}
+
+abstract class _RealStateType<S> {
+  S get currentState;
 }

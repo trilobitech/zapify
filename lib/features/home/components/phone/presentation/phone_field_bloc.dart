@@ -10,7 +10,7 @@ import '../phone_field_component.dart';
 import 'error/home_failure.dart';
 import 'phone_field_state.dart';
 
-class PhoneFieldBloc extends BlocController<PhoneFieldState, PhoneFieldAction>
+class PhoneFieldBloc extends StateActionBloc<PhoneFieldState, PhoneFieldAction>
     implements PhoneFieldComponent {
   PhoneFieldBloc(
     this._plugin, {

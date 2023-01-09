@@ -18,14 +18,12 @@ abstract class HomeMediator
         HistoryMediator,
         CallLogMediator {}
 
-class HomeBloc extends BlocController<NoState, HomeAction>
-    implements HomeMediator {
+class HomeBloc extends ActionBloc<HomeAction> implements HomeMediator {
   HomeBloc({
     required PhoneFieldComponent phoneFieldComponent,
     required SavePhoneNumberHistoryUseCase savePhoneNumberHistory,
   })  : _phoneFieldComponent = phoneFieldComponent,
-        _savePhoneNumberHistory = savePhoneNumberHistory,
-        super(NoState.empty());
+        _savePhoneNumberHistory = savePhoneNumberHistory;
 
   final SavePhoneNumberHistoryUseCase _savePhoneNumberHistory;
 

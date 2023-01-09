@@ -2,7 +2,7 @@ import '../../../../../common/arch/bloc_controller.dart';
 import '../../../../../config/remote_config.dart';
 import 'ad_banner_state.dart';
 
-class AdBannerBloc extends BlocController<AdBannerState, NoAction> {
+class AdBannerBloc extends StateBloc<AdBannerState> {
   AdBannerBloc() : super(AdBannerState.none());
 
   @override

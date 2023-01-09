@@ -5,7 +5,7 @@ import '../domain/entity/chat_app.dart';
 import '../domain/usecase/get_chat_apps.dart';
 import 'chat_apps_state.dart';
 
-class ChatAppsBloc extends BlocController<ChatAppsState, ChatAppsAction> {
+class ChatAppsBloc extends StateActionBloc<ChatAppsState, ChatAppsAction> {
   ChatAppsBloc({
     required GetChatAppsUseCase getChatApps,
   })  : _getChatApps = getChatApps,
