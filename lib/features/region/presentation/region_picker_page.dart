@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:analytics/analytics.dart';
 import 'package:bloc_plus/bloc_plus.dart';
 import 'package:flutter/material.dart';
 
@@ -144,10 +143,6 @@ class _RegionListTile extends StatelessWidget {
       selectedColor: Colors.white,
       selectedTileColor: theme.colorScheme.primary,
       onTap: () {
-        analytics.itemSelected('region', properties: {
-          'region_selected': region.name,
-          'region_prefix': region.prefix.toString(),
-        });
         onTap(region);
       },
       title: Row(

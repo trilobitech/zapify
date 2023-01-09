@@ -1,3 +1,4 @@
+import 'package:analytics/analytics.dart';
 import 'package:bloc_plus/bloc_plus.dart';
 
 import '../domain/entity/region.dart';
@@ -24,6 +25,10 @@ class RegionPickerBloc
   }
 
   void select(Country country) {
+    analytics.itemSelected('region', properties: {
+      'region_selected': country.name,
+      'region_prefix': country.prefix.toString(),
+    });
     sendAction(RegionPickerAction.close(country));
   }
 

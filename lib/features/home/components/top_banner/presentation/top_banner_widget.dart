@@ -1,4 +1,3 @@
-import 'package:analytics/analytics.dart';
 import 'package:bloc_plus/bloc_plus.dart';
 import 'package:flutter/material.dart';
 
@@ -70,10 +69,6 @@ class _TopBannerViewState extends State<_TopBannerView>
 
   @override
   Widget build(BuildContext context) {
-    analytics.logEvent(
-      'top_banner_viewed',
-      properties: {'banner_type': widget.type.name},
-    );
     final content = _mapContent(context, widget.type);
     return SizeTransition(
       sizeFactor: _animation,
@@ -86,7 +81,6 @@ class _TopBannerViewState extends State<_TopBannerView>
           actions: <Widget>[
             TextButton(
               onPressed: () {
-                analytics.buttonPressed(content.buttonText);
                 _controller.reverse();
                 widget.onActionTap(widget.type);
               },

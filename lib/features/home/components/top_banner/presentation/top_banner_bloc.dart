@@ -1,3 +1,4 @@
+import 'package:analytics/analytics.dart';
 import 'package:bloc_plus/bloc_plus.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:logger_plus/logger_plus.dart';
@@ -27,6 +28,7 @@ class TopBannerBloc extends StateBloc<TopBannerState> {
   }
 
   void onTopBannerActionTap(TopBannerType type) {
+    analytics.buttonPressed('$type');
     switch (type) {
       case TopBannerType.appReview:
         askForReview();
@@ -52,5 +54,11 @@ class TopBannerBloc extends StateBloc<TopBannerState> {
         .then((_) => _setLastAppReviewAtNow());
   }
 
-  TopBannerState _mapToState(TopBannerType type) => TopBannerState(type: type);
+  TopBannerState _mapToState(TopBannerType type) {
+    analytics.logEvent(
+      'top_banner_viewed',
+      properties: {'banner_type': type.name},
+    );
+    return TopBannerState(type: type);
+  }
 }
