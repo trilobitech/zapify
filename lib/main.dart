@@ -7,10 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:is_firebase_test_lab_activated/is_firebase_test_lab_activated.dart';
 import 'package:logger_plus/logger_plus.dart';
 
-import 'app/modules.dart';
 import 'app/zapify_app.dart';
 import 'common/services/firebase.dart';
 import 'config/env_config.dart';
+import 'di/modules.dart';
 import 'firebase_options.dart';
 
 void main() {

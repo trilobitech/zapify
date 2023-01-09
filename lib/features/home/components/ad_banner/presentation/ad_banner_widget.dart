@@ -4,7 +4,7 @@ import 'package:bloc_plus/bloc_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-import '../../../../../common/di/inject.dart';
+import '../../../../../di/inject.dart';
 import 'ad_banner_bloc.dart';
 import 'ad_banner_state.dart';
 

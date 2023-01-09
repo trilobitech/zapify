@@ -4,8 +4,8 @@ import 'package:bloc_plus/bloc_plus.dart';
 import 'package:error_handler/error_handler.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../common/di/inject.dart';
 import '../../../../../common/ext/context.dart';
+import '../../../../../di/inject.dart';
 import '../../../../region/region_mediator.dart';
 import 'phone_field_bloc.dart';
 import 'phone_field_state.dart';

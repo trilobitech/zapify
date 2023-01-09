@@ -1,7 +1,7 @@
 import 'package:error_handler/error_handler.dart';
 import 'package:flutter/material.dart';
 
-import '../../common/di/inject.dart';
+import '../../di/inject.dart';
 
 class FeedbackView extends StatelessWidget {
   const FeedbackView({

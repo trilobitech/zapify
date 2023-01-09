@@ -1,6 +1,6 @@
 import 'package:provider/provider.dart';
 
-import '../../common//di/inject.dart';
+import '../../di/inject.dart';
 
 export 'package:provider/provider.dart' hide ProxyProvider;
 

@@ -1,6 +1,6 @@
 import 'package:get_it/get_it.dart';
 
-export 'inject.dart';
+export 'inject.dart' show get, lazyGet;
 
 final getIt = GetIt.instance;
 
