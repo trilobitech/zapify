@@ -1,10 +1,4 @@
-import 'package:flutter/widgets.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+export 'package:provider/provider.dart' show ReadContext;
 
-export 'package:zapify/common/ext/string.dart';
-
-extension BuildContextExt on BuildContext {
-  AppLocalizations get strings => AppLocalizations.of(this);
-
-  Locale get currentLocale => Localizations.localeOf(this);
-}
+export 'l10n_ext.dart';
+export 'string.dart';

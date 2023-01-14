@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 import '../../../common/config/remote_config.dart';
 import '../../../common/ext/context.dart';
-import '../../../common/ext/l10n_ext.dart';
 import '../../../common/widgets/feedback_view.dart';
 import '../../../common/widgets/list_divider.dart';
 import '../../../common/widgets/shimmer_view.dart';

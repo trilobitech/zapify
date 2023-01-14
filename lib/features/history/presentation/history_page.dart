@@ -154,7 +154,7 @@ class _EntryView extends StatelessWidget {
       trailing: Timeago(
         date: entry.lastUsageAt,
         builder: (_, text) => Text(text),
-        locale: context.currentLocale.toLanguageTag(),
+        locale: Localizations.localeOf(context).toLanguageTag(),
       ),
       onTap: () => context.read<HistoryBloc>().select(entry),
       onLongPress: () => context.read<HistoryBloc>().longPress(entry),

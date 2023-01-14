@@ -1,7 +1,12 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
 
 export 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+extension StringsContext on BuildContext {
+  AppLocalizations get strings => AppLocalizations.of(this);
+}
 
 extension AppLocalizationsExt on AppLocalizations {
   String formatDate(DateTime dt) =>
