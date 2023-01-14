@@ -9,6 +9,7 @@ import 'package:logger_plus/logger_plus.dart';
 
 import 'app.dart';
 import 'common/config/env_config.dart';
+import 'common/domain/error.dart';
 import 'common/services/firebase.dart';
 import 'di/modules.dart';
 import 'firebase_options.dart';
@@ -65,7 +66,7 @@ Future<void> setupApp() async {
 class _CrashlyticsTree extends DebugTree {
   @override
   void log(Level level, String tag, dynamic message, [StackTrace? stackTrace]) {
-    if (level.isError) {
+    if (level.isError && message is! NonReportableError) {
       crashlytics.recordError(message, stackTrace, fatal: level == Level.fatal);
     }
   }

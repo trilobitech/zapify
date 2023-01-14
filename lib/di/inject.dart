@@ -16,5 +16,9 @@ extension StatefulDiExt<S extends StatefulWidget> on State<S> {
 }
 
 extension StatelessDiExt on StatelessWidget {
-  T inject<T extends Object>() => getIt<T>();
+  T inject<T extends Object>({
+    dynamic param1,
+    dynamic param2,
+  }) =>
+      getIt<T>(param1: param1, param2: param2);
 }

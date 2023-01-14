@@ -12,6 +12,7 @@ import '../../../common/widgets/shimmer_view.dart';
 import '../../../common/widgets/tab_list_view.dart';
 import '../call_log_mediator.dart';
 import 'call_log_bloc.dart';
+import 'call_log_error_registry.dart';
 import 'call_log_state.dart';
 
 class CallLogTabPage extends StatelessWidget
@@ -38,6 +39,7 @@ class CallLogTabPage extends StatelessWidget
           context,
           error: error,
           onRetryPressed: () => context.read<CallLogBloc>().retry(),
+          additionalRegistry: CallLogErrorConverterRegistry(),
         ),
       );
 

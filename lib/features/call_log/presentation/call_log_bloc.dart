@@ -44,7 +44,7 @@ class CallLogBloc extends StateActionBloc<CallLogState, CallLogAction> {
   }
 
   CallLogState _onError(error, stack) {
-    if (error is! NoCallLogAccessPermission) Log.e(error, stack);
+    if (error is! NoCallLogAccessPermissionError) Log.e(error, stack);
     return CallLogState.error(error);
   }
 }

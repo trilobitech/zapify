@@ -386,10 +386,10 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.5"
-  error_handler:
+  error_adapter:
     dependency: "direct main"
     description:
-      path: "packages/error_handler"
+      path: "packages/error_adapter"
       relative: true
     source: path
     version: "0.1.0"

@@ -6,8 +6,8 @@ import 'package:phone_number/phone_number.dart' hide RegionInfo;
 
 import '../../../../region/domain/entity/region.dart';
 import '../../../../region/domain/usecase/get_region.dart';
+import '../domain/phone_field_error.dart';
 import '../phone_field_component.dart';
-import 'error/home_failure.dart';
 import 'phone_field_state.dart';
 
 class PhoneFieldBloc extends StateActionBloc<PhoneFieldState, PhoneFieldAction>
@@ -117,13 +117,13 @@ class PhoneFieldBloc extends StateActionBloc<PhoneFieldState, PhoneFieldAction>
     String phone, [
     RegionCode? regionCode,
   ]) async {
-    if (phone.isEmpty) throw EmptyPhoneNumberFailure();
+    if (phone.isEmpty) throw EmptyPhoneNumberError();
 
     return await _plugin.parse(phone, regionCode: regionCode).catchError(
       (error, stackTrace) {
         // prevent phone number on error logging
         if (error is PlatformException && error.code == 'InvalidNumber') {
-          error = InvalidPhoneNumberFailure();
+          error = InvalidPhoneNumberError();
         }
         Error.throwWithStackTrace(error, stackTrace);
       },

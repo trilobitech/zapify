@@ -1,9 +1,9 @@
 import 'package:analytics/analytics.dart';
 import 'package:bloc_plus/bloc_plus.dart';
-import 'package:error_handler/error_handler.dart';
 import 'package:logger_plus/logger_plus.dart';
 import 'package:receive_intent/receive_intent.dart';
 
+import '../../../common/domain/error.dart';
 import '../../call_log/call_log_mediator.dart';
 import '../../history/domain/usecase/save_phone_number_history.dart';
 import '../../history/history_mediator.dart';
@@ -74,7 +74,7 @@ class HomeBloc extends ActionBloc<HomeAction> implements HomeMediator {
       await _savePhoneNumberHistory(phoneNumber: phoneNumber.international);
 
       _phoneFieldComponent.clearField();
-    } on Failure {
+    } on NonReportableError {
       // ignore already handled errors
     }
   }

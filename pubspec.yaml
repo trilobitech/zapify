@@ -71,8 +71,8 @@ dependencies:
     path: 'packages/client_info'
   analytics:
     path: 'packages/analytics'
-  error_handler:
-    path: 'packages/error_handler'
+  error_adapter:
+    path: 'packages/error_adapter'
   http_client_plus:
     git:
       url: https://github.com/pedrox-hs/flutter_packages
