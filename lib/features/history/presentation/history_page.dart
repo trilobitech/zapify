@@ -41,6 +41,8 @@ class HistoryPage extends StatelessWidget
         select: (entry) => context
             .read<HistoryMediator>()
             .onPhoneReceivedFromHistory(entry.phoneNumber),
+        showMenu: (entry, tapPosition, options) =>
+            showContextMenu(context, entry, tapPosition, options),
         showRestoreEntrySnackBar: (entry) =>
             _showRestoreEntrySnackBar(context, entry),
       );
@@ -51,7 +53,7 @@ class HistoryPage extends StatelessWidget
         context.strings.recentNumberRemoved.format([entry.phoneNumber]),
       ),
       action: SnackBarAction(
-        label: context.strings.undoAction,
+        label: context.strings.actionUndo,
         onPressed: () => context.read<HistoryBloc>().restore(entry),
       ),
       behavior: SnackBarBehavior.floating,
@@ -60,6 +62,33 @@ class HistoryPage extends StatelessWidget
     ScaffoldMessenger.of(context)
       ..removeCurrentSnackBar()
       ..showSnackBar(snackBar);
+  }
+
+  Future<void> showContextMenu(
+    BuildContext context,
+    HistoryEntry entry,
+    Offset tapPosition,
+    Iterable<ContextMenuAction> options,
+  ) async {
+    final bloc = context.read<HistoryBloc>();
+    final RenderObject overlay =
+        Overlay.of(context)!.context.findRenderObject()!;
+
+    final action = await showMenu(
+      context: context,
+      position: RelativeRect.fromRect(
+        Rect.fromLTWH(tapPosition.dx, tapPosition.dy, 30, 30),
+        Rect.fromLTWH(
+          0,
+          0,
+          overlay.paintBounds.size.width,
+          overlay.paintBounds.size.height,
+        ),
+      ),
+      items: options.map((e) => e.asPopupMenuItem(context)).toList(),
+    );
+
+    bloc.selectOption(entry, action);
   }
 }
 
@@ -149,15 +178,36 @@ class _EntryView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(entry.phoneNumber),
-      trailing: Timeago(
-        date: entry.lastUsageAt,
-        builder: (_, text) => Text(text),
-        locale: Localizations.localeOf(context).toLanguageTag(),
+    return GestureDetector(
+      onTapDown: (details) =>
+          context.read<HistoryBloc>().tapPositionFrom(details),
+      child: ListTile(
+        title: Text(entry.phoneNumber),
+        trailing: Timeago(
+          date: entry.lastUsageAt,
+          builder: (_, text) => Text(text),
+          locale: Localizations.localeOf(context).toLanguageTag(),
+        ),
+        onTap: () => context.read<HistoryBloc>().select(entry),
+        onLongPress: () => context.read<HistoryBloc>().longPress(entry),
       ),
-      onTap: () => context.read<HistoryBloc>().select(entry),
-      onLongPress: () => context.read<HistoryBloc>().longPress(entry),
     );
+  }
+}
+
+extension _ContextMenuItem on ContextMenuAction {
+  PopupMenuItem<ContextMenuAction> asPopupMenuItem(BuildContext context) {
+    final label = this.label(context);
+    return PopupMenuItem(
+      value: this,
+      child: Text(label),
+    );
+  }
+
+  String label(BuildContext context) {
+    switch (this) {
+      case ContextMenuAction.remove:
+        return context.strings.actionRemove;
+    }
   }
 }

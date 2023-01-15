@@ -13,7 +13,8 @@
     "recentNumbersTitle": "Números recentes",
     "recentNumbersEmpty": "Nenhum número recente",
     "recentNumberRemoved": "O número \"{phoneNumber}\" foi removido do histórico!",
-    "undoAction": "Desfazer",
+    "actionRemove": "Excluir",
+    "actionUndo": "Desfazer",
 
     "callLogTabTitle": "Chamadas",
     "callLogPermissionMessage": "Para exibir o histórico de chamadas, é necessário permitir o acesso.",

@@ -504,18 +504,27 @@ mixin _$HistoryAction {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(HistoryEntry entry) select,
+    required TResult Function(HistoryEntry entry, Offset position,
+            Iterable<ContextMenuAction> options)
+        showMenu,
     required TResult Function(HistoryEntry entry) showRestoreEntrySnackBar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(HistoryEntry entry)? select,
+    TResult? Function(HistoryEntry entry, Offset position,
+            Iterable<ContextMenuAction> options)?
+        showMenu,
     TResult? Function(HistoryEntry entry)? showRestoreEntrySnackBar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(HistoryEntry entry)? select,
+    TResult Function(HistoryEntry entry, Offset position,
+            Iterable<ContextMenuAction> options)?
+        showMenu,
     TResult Function(HistoryEntry entry)? showRestoreEntrySnackBar,
     required TResult orElse(),
   }) =>
@@ -523,6 +532,7 @@ mixin _$HistoryAction {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_HistoryActionEntrySelect value) select,
+    required TResult Function(_HistoryActionShowMenu value) showMenu,
     required TResult Function(_HistoryActionEntryRemoved value)
         showRestoreEntrySnackBar,
   }) =>
@@ -530,6 +540,7 @@ mixin _$HistoryAction {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_HistoryActionEntrySelect value)? select,
+    TResult? Function(_HistoryActionShowMenu value)? showMenu,
     TResult? Function(_HistoryActionEntryRemoved value)?
         showRestoreEntrySnackBar,
   }) =>
@@ -537,6 +548,7 @@ mixin _$HistoryAction {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_HistoryActionEntrySelect value)? select,
+    TResult Function(_HistoryActionShowMenu value)? showMenu,
     TResult Function(_HistoryActionEntryRemoved value)?
         showRestoreEntrySnackBar,
     required TResult orElse(),
@@ -650,6 +662,9 @@ class _$_HistoryActionEntrySelect implements _HistoryActionEntrySelect {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(HistoryEntry entry) select,
+    required TResult Function(HistoryEntry entry, Offset position,
+            Iterable<ContextMenuAction> options)
+        showMenu,
     required TResult Function(HistoryEntry entry) showRestoreEntrySnackBar,
   }) {
     return select(entry);
@@ -659,6 +674,9 @@ class _$_HistoryActionEntrySelect implements _HistoryActionEntrySelect {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(HistoryEntry entry)? select,
+    TResult? Function(HistoryEntry entry, Offset position,
+            Iterable<ContextMenuAction> options)?
+        showMenu,
     TResult? Function(HistoryEntry entry)? showRestoreEntrySnackBar,
   }) {
     return select?.call(entry);
@@ -668,6 +686,9 @@ class _$_HistoryActionEntrySelect implements _HistoryActionEntrySelect {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(HistoryEntry entry)? select,
+    TResult Function(HistoryEntry entry, Offset position,
+            Iterable<ContextMenuAction> options)?
+        showMenu,
     TResult Function(HistoryEntry entry)? showRestoreEntrySnackBar,
     required TResult orElse(),
   }) {
@@ -681,6 +702,7 @@ class _$_HistoryActionEntrySelect implements _HistoryActionEntrySelect {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_HistoryActionEntrySelect value) select,
+    required TResult Function(_HistoryActionShowMenu value) showMenu,
     required TResult Function(_HistoryActionEntryRemoved value)
         showRestoreEntrySnackBar,
   }) {
@@ -691,6 +713,7 @@ class _$_HistoryActionEntrySelect implements _HistoryActionEntrySelect {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_HistoryActionEntrySelect value)? select,
+    TResult? Function(_HistoryActionShowMenu value)? showMenu,
     TResult? Function(_HistoryActionEntryRemoved value)?
         showRestoreEntrySnackBar,
   }) {
@@ -701,6 +724,7 @@ class _$_HistoryActionEntrySelect implements _HistoryActionEntrySelect {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_HistoryActionEntrySelect value)? select,
+    TResult Function(_HistoryActionShowMenu value)? showMenu,
     TResult Function(_HistoryActionEntryRemoved value)?
         showRestoreEntrySnackBar,
     required TResult orElse(),
@@ -722,6 +746,187 @@ abstract class _HistoryActionEntrySelect implements HistoryAction {
   @JsonKey(ignore: true)
   _$$_HistoryActionEntrySelectCopyWith<_$_HistoryActionEntrySelect>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_HistoryActionShowMenuCopyWith<$Res>
+    implements $HistoryActionCopyWith<$Res> {
+  factory _$$_HistoryActionShowMenuCopyWith(_$_HistoryActionShowMenu value,
+          $Res Function(_$_HistoryActionShowMenu) then) =
+      __$$_HistoryActionShowMenuCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {HistoryEntry entry,
+      Offset position,
+      Iterable<ContextMenuAction> options});
+}
+
+/// @nodoc
+class __$$_HistoryActionShowMenuCopyWithImpl<$Res>
+    extends _$HistoryActionCopyWithImpl<$Res, _$_HistoryActionShowMenu>
+    implements _$$_HistoryActionShowMenuCopyWith<$Res> {
+  __$$_HistoryActionShowMenuCopyWithImpl(_$_HistoryActionShowMenu _value,
+      $Res Function(_$_HistoryActionShowMenu) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? entry = null,
+    Object? position = freezed,
+    Object? options = null,
+  }) {
+    return _then(_$_HistoryActionShowMenu(
+      null == entry
+          ? _value.entry
+          : entry // ignore: cast_nullable_to_non_nullable
+              as HistoryEntry,
+      freezed == position
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as Offset,
+      null == options
+          ? _value.options
+          : options // ignore: cast_nullable_to_non_nullable
+              as Iterable<ContextMenuAction>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_HistoryActionShowMenu implements _HistoryActionShowMenu {
+  _$_HistoryActionShowMenu(this.entry, this.position, this.options);
+
+  @override
+  final HistoryEntry entry;
+  @override
+  final Offset position;
+  @override
+  final Iterable<ContextMenuAction> options;
+
+  @override
+  String toString() {
+    return 'HistoryAction.showMenu(entry: $entry, position: $position, options: $options)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_HistoryActionShowMenu &&
+            (identical(other.entry, entry) || other.entry == entry) &&
+            const DeepCollectionEquality().equals(other.position, position) &&
+            const DeepCollectionEquality().equals(other.options, options));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      entry,
+      const DeepCollectionEquality().hash(position),
+      const DeepCollectionEquality().hash(options));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_HistoryActionShowMenuCopyWith<_$_HistoryActionShowMenu> get copyWith =>
+      __$$_HistoryActionShowMenuCopyWithImpl<_$_HistoryActionShowMenu>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(HistoryEntry entry) select,
+    required TResult Function(HistoryEntry entry, Offset position,
+            Iterable<ContextMenuAction> options)
+        showMenu,
+    required TResult Function(HistoryEntry entry) showRestoreEntrySnackBar,
+  }) {
+    return showMenu(entry, position, options);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(HistoryEntry entry)? select,
+    TResult? Function(HistoryEntry entry, Offset position,
+            Iterable<ContextMenuAction> options)?
+        showMenu,
+    TResult? Function(HistoryEntry entry)? showRestoreEntrySnackBar,
+  }) {
+    return showMenu?.call(entry, position, options);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(HistoryEntry entry)? select,
+    TResult Function(HistoryEntry entry, Offset position,
+            Iterable<ContextMenuAction> options)?
+        showMenu,
+    TResult Function(HistoryEntry entry)? showRestoreEntrySnackBar,
+    required TResult orElse(),
+  }) {
+    if (showMenu != null) {
+      return showMenu(entry, position, options);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_HistoryActionEntrySelect value) select,
+    required TResult Function(_HistoryActionShowMenu value) showMenu,
+    required TResult Function(_HistoryActionEntryRemoved value)
+        showRestoreEntrySnackBar,
+  }) {
+    return showMenu(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_HistoryActionEntrySelect value)? select,
+    TResult? Function(_HistoryActionShowMenu value)? showMenu,
+    TResult? Function(_HistoryActionEntryRemoved value)?
+        showRestoreEntrySnackBar,
+  }) {
+    return showMenu?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_HistoryActionEntrySelect value)? select,
+    TResult Function(_HistoryActionShowMenu value)? showMenu,
+    TResult Function(_HistoryActionEntryRemoved value)?
+        showRestoreEntrySnackBar,
+    required TResult orElse(),
+  }) {
+    if (showMenu != null) {
+      return showMenu(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _HistoryActionShowMenu implements HistoryAction {
+  factory _HistoryActionShowMenu(
+      final HistoryEntry entry,
+      final Offset position,
+      final Iterable<ContextMenuAction> options) = _$_HistoryActionShowMenu;
+
+  @override
+  HistoryEntry get entry;
+  Offset get position;
+  Iterable<ContextMenuAction> get options;
+  @override
+  @JsonKey(ignore: true)
+  _$$_HistoryActionShowMenuCopyWith<_$_HistoryActionShowMenu> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -794,6 +999,9 @@ class _$_HistoryActionEntryRemoved implements _HistoryActionEntryRemoved {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(HistoryEntry entry) select,
+    required TResult Function(HistoryEntry entry, Offset position,
+            Iterable<ContextMenuAction> options)
+        showMenu,
     required TResult Function(HistoryEntry entry) showRestoreEntrySnackBar,
   }) {
     return showRestoreEntrySnackBar(entry);
@@ -803,6 +1011,9 @@ class _$_HistoryActionEntryRemoved implements _HistoryActionEntryRemoved {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(HistoryEntry entry)? select,
+    TResult? Function(HistoryEntry entry, Offset position,
+            Iterable<ContextMenuAction> options)?
+        showMenu,
     TResult? Function(HistoryEntry entry)? showRestoreEntrySnackBar,
   }) {
     return showRestoreEntrySnackBar?.call(entry);
@@ -812,6 +1023,9 @@ class _$_HistoryActionEntryRemoved implements _HistoryActionEntryRemoved {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(HistoryEntry entry)? select,
+    TResult Function(HistoryEntry entry, Offset position,
+            Iterable<ContextMenuAction> options)?
+        showMenu,
     TResult Function(HistoryEntry entry)? showRestoreEntrySnackBar,
     required TResult orElse(),
   }) {
@@ -825,6 +1039,7 @@ class _$_HistoryActionEntryRemoved implements _HistoryActionEntryRemoved {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_HistoryActionEntrySelect value) select,
+    required TResult Function(_HistoryActionShowMenu value) showMenu,
     required TResult Function(_HistoryActionEntryRemoved value)
         showRestoreEntrySnackBar,
   }) {
@@ -835,6 +1050,7 @@ class _$_HistoryActionEntryRemoved implements _HistoryActionEntryRemoved {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_HistoryActionEntrySelect value)? select,
+    TResult? Function(_HistoryActionShowMenu value)? showMenu,
     TResult? Function(_HistoryActionEntryRemoved value)?
         showRestoreEntrySnackBar,
   }) {
@@ -845,6 +1061,7 @@ class _$_HistoryActionEntryRemoved implements _HistoryActionEntryRemoved {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_HistoryActionEntrySelect value)? select,
+    TResult Function(_HistoryActionShowMenu value)? showMenu,
     TResult Function(_HistoryActionEntryRemoved value)?
         showRestoreEntrySnackBar,
     required TResult orElse(),

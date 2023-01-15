@@ -13,7 +13,8 @@
     "recentNumbersTitle": "Recent numbers",
     "recentNumbersEmpty": "No recent numbers yet",
     "recentNumberRemoved": "Recent number \"{phoneNumber}\" was removed!",
-    "undoAction": "Undo",
+    "actionRemove": "Remove",
+    "actionUndo": "Undo",
 
     "callLogTabTitle": "Phone calls",
     "callLogPermissionMessage": "You need to give permission to display call log.",

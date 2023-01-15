@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:analytics/analytics.dart';
+import 'package:flutter/widgets.dart';
 import 'package:logger_plus/logger_plus.dart';
-import 'package:meta/meta.dart';
 import 'package:state_action_bloc/state_action_bloc.dart';
 
 import '../../../common/config/local_config.dart';
@@ -27,6 +27,8 @@ class HistoryBloc extends StateActionBloc<HistoryState, HistoryAction> {
   final RemovePhoneNumberHistoryUseCase _removePhoneNumberHistory;
   final RestorePhoneNumberHistoryUseCase _restorePhoneNumberHistory;
 
+  Offset _currentTapPosition = Offset.zero;
+
   @override
   @protected
   Future<void> load() async {
@@ -48,9 +50,33 @@ class HistoryBloc extends StateActionBloc<HistoryState, HistoryAction> {
     sendAction(HistoryAction.select(entry));
   }
 
+  void tapPositionFrom(TapDownDetails details) {
+    _currentTapPosition = details.globalPosition;
+  }
+
   void longPress(HistoryEntry entry) {
     analytics.itemLongPressed('phone_from_history');
-    sendAction(HistoryAction.select(entry));
+    sendAction(
+      HistoryAction.showMenu(
+        entry,
+        _currentTapPosition,
+        ContextMenuAction.values,
+      ),
+    );
+  }
+
+  Future<void> selectOption(
+    HistoryEntry entry,
+    ContextMenuAction? action,
+  ) async {
+    switch (action) {
+      case ContextMenuAction.remove:
+        await remove(entry);
+        break;
+      case null:
+        // do nothing
+        break;
+    }
   }
 
   Future<void> remove(HistoryEntry entry) async {

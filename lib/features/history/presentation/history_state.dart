@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:state_action_bloc/state_action_bloc.dart';
 
@@ -19,6 +20,17 @@ class HistoryState with _$HistoryState implements IState {
 class HistoryAction with _$HistoryAction implements IAction {
   factory HistoryAction.select(HistoryEntry entry) = _HistoryActionEntrySelect;
 
-  factory HistoryAction.showRestoreEntrySnackBar(HistoryEntry entry) =
-      _HistoryActionEntryRemoved;
+  factory HistoryAction.showMenu(
+    HistoryEntry entry,
+    Offset position,
+    Iterable<ContextMenuAction> options,
+  ) = _HistoryActionShowMenu;
+
+  factory HistoryAction.showRestoreEntrySnackBar(
+    HistoryEntry entry,
+  ) = _HistoryActionEntryRemoved;
+}
+
+enum ContextMenuAction {
+  remove;
 }
