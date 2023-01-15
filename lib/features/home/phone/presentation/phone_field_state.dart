@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../../region/domain/entity/region.dart';
+import '../../../region/domain/entity/region.dart';
 
 part 'phone_field_state.freezed.dart';
 

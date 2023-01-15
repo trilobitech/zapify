@@ -9,8 +9,8 @@ import '../../history/domain/usecase/save_phone_number_history.dart';
 import '../../history/history_mediator.dart';
 import '../../region/domain/entity/region.dart';
 import '../../region/region_mediator.dart';
-import '../components/chat_apps/chat_apps_mediator.dart';
-import '../components/phone/phone_field_component.dart';
+import '../chat_apps/chat_apps_mediator.dart';
+import '../phone/phone_field_component.dart';
 import 'home_state.dart';
 
 abstract class HomeMediator

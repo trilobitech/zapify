@@ -4,7 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 import 'common/resources/theme.dart';
-import 'features/home/presentation/home_page.dart';
+import 'features/home/main/home_page.dart';
 
 class App extends StatefulWidget {
   const App({super.key});

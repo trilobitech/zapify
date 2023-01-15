@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 
 import '../../../../../common/di/inject.dart';
 import '../../../../../common/ext/context.dart';
-import '../../../../region/domain/entity/region.dart';
-import '../../../../region/region_mediator.dart';
+import '../../../region/domain/entity/region.dart';
+import '../../../region/region_mediator.dart';
 import 'phone_field_bloc.dart';
 import 'phone_field_error_registry.dart';
 import 'phone_field_state.dart';

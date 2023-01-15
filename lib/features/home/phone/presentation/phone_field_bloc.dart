@@ -4,8 +4,8 @@ import 'package:flutter/widgets.dart';
 import 'package:logger_plus/logger_plus.dart';
 import 'package:phone_number/phone_number.dart' hide RegionInfo;
 
-import '../../../../region/domain/entity/region.dart';
-import '../../../../region/domain/usecase/get_region.dart';
+import '../../../region/domain/entity/region.dart';
+import '../../../region/domain/usecase/get_region.dart';
 import '../domain/phone_field_error.dart';
 import '../phone_field_component.dart';
 import 'phone_field_state.dart';

@@ -1,6 +1,6 @@
 import 'package:phone_number/phone_number.dart';
 
-import '../../../region/domain/entity/region.dart';
+import '../../region/domain/entity/region.dart';
 
 abstract class PhoneFieldComponent {
   Future<PhoneNumber> getPhoneNumber();
