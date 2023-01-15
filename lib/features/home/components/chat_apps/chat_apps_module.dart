@@ -1,4 +1,4 @@
-import '../../../../di/definition.dart';
+import '../../../../common/di/definition.dart';
 import 'data/datasource/chat_app_datasource.dart';
 import 'data/datasource/impl/chat_app_datasource_local.dart';
 import 'data/datasource/impl/chat_app_datasource_remote.dart';

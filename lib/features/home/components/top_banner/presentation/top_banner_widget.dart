@@ -1,8 +1,8 @@
 import 'package:bloc_plus/bloc_plus.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../common/di/inject.dart';
 import '../../../../../common/ext/context.dart';
-import '../../../../../di/inject.dart';
 import '../domain/entity/top_banner.dart';
 import 'top_banner_bloc.dart';
 import 'top_banner_state.dart';

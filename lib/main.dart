@@ -11,8 +11,8 @@ import 'app.dart';
 import 'common/config/env_config.dart';
 import 'common/domain/error.dart';
 import 'common/services/firebase.dart';
-import 'di/modules.dart';
 import 'firebase_options.dart';
+import 'modules.dart';
 
 void main() {
   Stopwatch? stopwatch = Stopwatch()..start();

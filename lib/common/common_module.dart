@@ -10,11 +10,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqlbrite/sqlbrite.dart';
 
 import '../../common/ext/context.dart';
-import '../di/definition.dart';
 import 'config/local_config.dart';
 import 'config/remote_config.dart';
 import 'data/db.dart';
 import 'data/network/user_agent_interceptor.dart';
+import 'di/definition.dart';
 import 'services/firebase.dart';
 import 'widgets/feedback_view.dart';
 

@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:config_core/config_core.dart';
 import 'package:flutter/foundation.dart';
 
-import '../../di/inject.dart' as di;
+import '../di/inject.dart' as di;
 import 'env_config.dart';
 
 enum RemoteConfig with KeyValueMixin<IRemoteConfigStorage> {
