@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:bloc_plus/bloc_plus.dart';
 import 'package:flutter/material.dart' hide Intent;
 import 'package:receive_intent/receive_intent.dart';
 import 'package:rxdart/utils.dart';
+import 'package:state_action_bloc/state_action_bloc.dart';
 
 import '../../../common/di/provider.dart';
 import '../../../common/services/share_service.dart';

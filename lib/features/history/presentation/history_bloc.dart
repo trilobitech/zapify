@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:analytics/analytics.dart';
-import 'package:bloc_plus/bloc_plus.dart';
 import 'package:logger_plus/logger_plus.dart';
 import 'package:meta/meta.dart';
+import 'package:state_action_bloc/state_action_bloc.dart';
 
 import '../../../common/config/local_config.dart';
 import '../../../common/config/remote_config.dart';

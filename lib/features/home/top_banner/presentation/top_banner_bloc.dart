@@ -1,7 +1,7 @@
 import 'package:analytics/analytics.dart';
-import 'package:bloc_plus/bloc_plus.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:logger_plus/logger_plus.dart';
+import 'package:state_action_bloc/state_action_bloc.dart';
 
 import '../../../../../common/config/env_config.dart';
 import '../domain/entity/top_banner.dart';

@@ -1,4 +1,4 @@
-import 'package:bloc_plus/bloc_plus.dart';
+import 'package:state_action_bloc/state_action_bloc.dart';
 
 import '../../../../../common/config/remote_config.dart';
 import 'ad_banner_state.dart';

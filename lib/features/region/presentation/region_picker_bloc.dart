@@ -1,5 +1,5 @@
 import 'package:analytics/analytics.dart';
-import 'package:bloc_plus/bloc_plus.dart';
+import 'package:state_action_bloc/state_action_bloc.dart';
 
 import '../domain/entity/region.dart';
 import '../domain/usecase/get_regions_by_term.dart';

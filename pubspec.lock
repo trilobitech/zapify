@@ -71,13 +71,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "8.1.0"
-  bloc_plus:
-    dependency: "direct main"
-    description:
-      path: "packages/bloc_plus"
-      relative: true
-    source: path
-    version: "0.1.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -1152,6 +1145,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.10.0"
+  state_action_bloc:
+    dependency: "direct main"
+    description:
+      path: state_action_bloc
+      ref: HEAD
+      resolved-ref: "7e23269c5f168e0f0678617d176ac3c05a8de1af"
+      url: "https://github.com/pedrox-hs/flutter_packages"
+    source: git
+    version: "0.1.0"
   stream_channel:
     dependency: transitive
     description:

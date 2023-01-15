@@ -1,7 +1,7 @@
-import 'package:bloc_plus/bloc_plus.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:state_action_bloc/state_action_bloc.dart';
 
 import '../../../region/domain/entity/region.dart';
 
