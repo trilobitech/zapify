@@ -1,11 +1,13 @@
-import '../../core/di/definition.dart';
-import '../../core/di/inject.dart';
-import 'domain/get_regions_by_term.dart';
-import 'presentation/region_picker_controller.dart';
+import '../../common/di/definition.dart';
+import 'data/repository/region_repository.dart';
+import 'domain/repository/region_repository.dart';
+import 'domain/usecase/get_region.dart';
+import 'domain/usecase/get_regions_by_term.dart';
+import 'presentation/region_picker_bloc.dart';
 
 void regionModule() {
   registerFactory(
-    () => RegionPickerController(
+    () => RegionPickerBloc(
       getAvailableRegions: get(),
     ),
   );
@@ -13,6 +15,24 @@ void regionModule() {
   registerFactory(
     () => GetRegionsByTermUseCase(
       repository: get(),
+    ),
+  );
+
+  registerFactory(
+    () => GetDefaultRegionUseCase(
+      repository: get(),
+    ),
+  );
+
+  registerFactory(
+    () => GetRegionUseCase(
+      repository: get(),
+    ),
+  );
+
+  registerSingleton<IRegionRepository>(
+    () => RegionRepository(
+      plugin: get(),
     ),
   );
 }

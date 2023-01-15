@@ -71,19 +71,30 @@ dependencies:
     path: 'packages/client_info'
   analytics:
     path: 'packages/analytics'
-  error_handler:
-    path: 'packages/error_handler'
+  error_adapter:
+    git:
+      url: https://github.com/pedrox-hs/flutter_packages
+      path: error_adapter
   http_client_plus:
     git:
       url: https://github.com/pedrox-hs/flutter_packages
       path: http_client_plus
+  logger_plus: ^0.1.0
+  google_fonts: ^3.0.1
+  call_log: ^4.0.0
+  permission_handler: ^10.2.0
+  meta: ^1.8.0
+  provider: ^6.0.5
+  state_action_bloc:
+    git:
+      url: https://github.com/pedrox-hs/flutter_packages
+      path: state_action_bloc
+
+dependency_overrides:
   logger_plus:
     git:
       url: https://github.com/pedrox-hs/flutter_packages
       path: logger_plus
-  google_fonts: ^3.0.1
-  call_log: ^4.0.0
-  permission_handler: ^10.2.0
 
 dev_dependencies:
   flutter_test:

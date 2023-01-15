@@ -1,40 +1,50 @@
-import 'package:analytics/analytics.dart';
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:state_action_bloc/state_action_bloc.dart';
 
-import '../../../core/di/inject.dart';
-import '../../../core/ext/context.dart';
-import '../../shared/domain/entity/region.dart';
-import 'region_picker_controller.dart';
+import '../../../common/di/inject.dart';
+import '../../../common/ext/context.dart';
+import '../domain/entity/region.dart';
+import 'region_picker_bloc.dart';
+import 'region_picker_state.dart';
 
-class RegionPicker extends StatefulWidget {
-  const RegionPicker({Key? key, this.selected}) : super(key: key);
-
-  final Region? selected;
+class RegionPicker extends StatelessWidget
+    with
+        StateActionMixin<RegionPickerBloc, RegionPickerState,
+            RegionPickerAction> {
+  RegionPicker({super.key, this.selected});
 
   @override
-  State<RegionPicker> createState() => _RegionPickerState();
+  late final bloc = inject<RegionPickerBloc>();
+  final RegionCode? selected;
+
+  @override
+  Widget buildState(
+    BuildContext context,
+    RegionPickerState state,
+  ) =>
+      state.when(
+        (countries) => _SuccessView(countries: countries, selected: selected),
+        initial: () => Container(),
+      );
+
+  @override
+  FutureOr<void> handleAction(
+    BuildContext context,
+    RegionPickerAction action,
+  ) =>
+      action.when(close: (country) => Navigator.of(context).pop(country));
 }
 
-class _RegionPickerState extends State<RegionPicker> {
-  List<Region> _regions = [];
-  final _ctrl = TextEditingController();
-  late final RegionPickerController controller = inject();
+class _SuccessView extends StatelessWidget {
+  const _SuccessView({
+    required this.countries,
+    required this.selected,
+  });
 
-  @override
-  void initState() {
-    initRegions();
-    super.initState();
-  }
-
-  initRegions() async {
-    _ctrl.addListener(() async {
-      final regions = await controller.getRegionByTerm(_ctrl.text);
-      setState(() => _regions = regions);
-    });
-
-    final regions = await controller.getAllRegions();
-    setState(() => _regions = regions);
-  }
+  final List<Country> countries;
+  final RegionCode? selected;
 
   @override
   Widget build(BuildContext context) {
@@ -45,28 +55,18 @@ class _RegionPickerState extends State<RegionPicker> {
       body: Scrollbar(
         child: Column(
           children: [
-            TextField(
-              controller: _ctrl,
-              decoration: InputDecoration(
-                contentPadding: const EdgeInsets.all(16),
-                hintText: context.strings.availableRegionsSearch,
-                border: const UnderlineInputBorder(),
-                suffixIcon: IconButton(
-                  icon: const Icon(Icons.clear),
-                  onPressed: _ctrl.clear,
-                ),
-              ),
-            ),
+            const _SearchView(),
             Expanded(
               child: ListView.separated(
-                itemCount: _regions.length,
+                itemCount: countries.length,
                 separatorBuilder: (_, i) => const Divider(height: 0),
                 itemBuilder: (context, i) {
-                  final region = _regions[i];
+                  final region = countries[i];
                   return _RegionListTile(
-                    region: _regions[i],
-                    onTap: (region) => Navigator.of(context).pop(region),
-                    isSelected: widget.selected == region,
+                    region: countries[i],
+                    onTap: (country) =>
+                        context.read<RegionPickerBloc>().select(country),
+                    isSelected: selected == region.code,
                   );
                 },
               ),
@@ -78,6 +78,50 @@ class _RegionPickerState extends State<RegionPicker> {
   }
 }
 
+class _SearchView extends StatefulWidget {
+  const _SearchView();
+
+  @override
+  State<_SearchView> createState() => _SearchViewState();
+}
+
+class _SearchViewState extends State<_SearchView> {
+  late final bloc = context.read<RegionPickerBloc>();
+  late final ctrl = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    ctrl.addListener(searchTerm);
+  }
+
+  @override
+  void dispose() {
+    ctrl.removeListener(searchTerm);
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      controller: ctrl,
+      decoration: InputDecoration(
+        contentPadding: const EdgeInsets.all(16),
+        hintText: context.strings.availableRegionsSearch,
+        border: const UnderlineInputBorder(),
+        suffixIcon: IconButton(
+          icon: const Icon(Icons.clear),
+          onPressed: ctrl.clear,
+        ),
+      ),
+    );
+  }
+
+  void searchTerm() {
+    bloc.getRegionByTerm(ctrl.text);
+  }
+}
+
 class _RegionListTile extends StatelessWidget {
   const _RegionListTile({
     Key? key,
@@ -86,9 +130,9 @@ class _RegionListTile extends StatelessWidget {
     this.isSelected = false,
   }) : super(key: key);
 
-  final Region region;
+  final Country region;
   final bool isSelected;
-  final Function(Region) onTap;
+  final Function(Country) onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -99,10 +143,6 @@ class _RegionListTile extends StatelessWidget {
       selectedColor: Colors.white,
       selectedTileColor: theme.colorScheme.primary,
       onTap: () {
-        analytics.itemSelected('region', properties: {
-          'region_selected': region.name,
-          'region_prefix': region.prefix.toString(),
-        });
         onTap(region);
       },
       title: Row(

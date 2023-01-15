@@ -1,8 +1,11 @@
+import 'package:meta/meta.dart';
+
 import 'key_value_storage.dart';
 
 mixin KeyValueMixin<Storage extends KeyValueStorage> {
   String get key;
 
+  @visibleForOverriding
   Future<Storage> get storage;
 
   Future<T> get<T extends Object?>() async {

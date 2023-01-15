@@ -13,7 +13,9 @@ class GetCallLogUseCase {
   final CallLogRepository repository;
 
   Future<Iterable<CallEntity>> call() async {
-    if (!await hasCallLogAccessPermission()) throw NoCallLogAccessPermission();
+    if (!await hasCallLogAccessPermission()) {
+      throw NoCallLogAccessPermissionError();
+    }
 
     return repository.getAll();
   }
