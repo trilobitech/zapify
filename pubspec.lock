@@ -382,9 +382,11 @@ packages:
   error_adapter:
     dependency: "direct main"
     description:
-      path: "packages/error_adapter"
-      relative: true
-    source: path
+      path: error_adapter
+      ref: HEAD
+      resolved-ref: "470952b16e4a9fe18773271a8feb1aa4093abcf2"
+      url: "https://github.com/pedrox-hs/flutter_packages"
+    source: git
     version: "0.1.0"
   fake_async:
     dependency: transitive
