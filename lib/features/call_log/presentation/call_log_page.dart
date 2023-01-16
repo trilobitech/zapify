@@ -103,7 +103,10 @@ class _EntryView extends StatelessWidget {
     return ListTile(
       leading: CircleAvatar(
         backgroundColor: entry.leading.color,
-        child: Icon(entry.leading.icon),
+        child: Icon(
+          entry.leading.icon,
+          color: Colors.white,
+        ),
       ),
       title: Text(entry.title),
       subtitle: Text(entry.subtitle ?? context.strings.formatDate(entry.date)),

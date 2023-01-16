@@ -82,7 +82,7 @@ extension _CallTypeExt on CallType {
       case CallType.blocked:
         return Colors.red;
       default:
-        return null;
+        return Colors.teal;
     }
   }
 }

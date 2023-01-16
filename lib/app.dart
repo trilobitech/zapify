@@ -26,7 +26,9 @@ class _AppState extends State<App> with WidgetsBindingObserver {
     return MaterialApp(
       title: 'Zapify',
       home: const HomePage(),
-      theme: AppTheme.of(context),
+      theme: AppTheme.light(),
+      darkTheme: AppTheme.dark(),
+      themeMode: ThemeMode.system,
       // locale: const Locale.fromSubtags(languageCode: 'pt', countryCode: 'BR'),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
