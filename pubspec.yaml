@@ -89,6 +89,10 @@ dependencies:
     git:
       url: https://github.com/pedrox-hs/flutter_packages
       path: state_action_bloc
+  simple_nav:
+    git:
+      url: https://github.com/pedrox-hs/flutter_packages
+      path: simple_nav
 
 dependency_overrides:
   logger_plus:

@@ -1100,6 +1100,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  simple_nav:
+    dependency: "direct main"
+    description:
+      path: simple_nav
+      ref: HEAD
+      resolved-ref: ad1927128a4604259afabdd0d7cbe2458d8f13e0
+      url: "https://github.com/pedrox-hs/flutter_packages"
+    source: git
+    version: "0.1.0"
   sky_engine:
     dependency: transitive
     description: flutter

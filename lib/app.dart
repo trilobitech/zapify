@@ -1,10 +1,11 @@
 import 'package:analytics/analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:simple_nav/simple_nav.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 import 'common/resources/theme.dart';
-import 'features/home/main/home_page.dart';
+import 'routes.dart';
 
 class App extends StatefulWidget {
   const App({super.key});
@@ -14,10 +15,8 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> with WidgetsBindingObserver {
-  static AnalyticsRouteObserver observer = AnalyticsRouteObserver(
-    analytics: analytics,
-    nameExtractor: _routeNameExtractor,
-  );
+  static AnalyticsRouteObserver observer =
+      AnalyticsRouteObserver(analytics: analytics);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +24,6 @@ class _AppState extends State<App> with WidgetsBindingObserver {
 
     return MaterialApp(
       title: 'Zapify',
-      home: const HomePage(),
       theme: AppTheme.light(),
       darkTheme: AppTheme.dark(),
       themeMode: ThemeMode.system,
@@ -33,6 +31,8 @@ class _AppState extends State<App> with WidgetsBindingObserver {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       navigatorObservers: <NavigatorObserver>[observer],
+      initialRoute: '/',
+      onGenerateRoute: RouteResolver(routes),
     );
   }
 
@@ -51,14 +51,5 @@ class _AppState extends State<App> with WidgetsBindingObserver {
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
-  }
-
-  static String? _routeNameExtractor(RouteSettings settings) {
-    switch (settings.name) {
-      case '/':
-        return 'HomePage';
-      default:
-        return settings.name;
-    }
   }
 }

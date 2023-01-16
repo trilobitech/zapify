@@ -15,7 +15,6 @@ import '../../history/history_mediator.dart';
 import '../../history/presentation/history_bloc.dart';
 import '../../history/presentation/history_page.dart';
 import '../../region/domain/entity/region.dart';
-import '../../region/presentation/region_picker_page.dart';
 import '../../region/region_mediator.dart';
 import '../ad_banner/presentation/ad_banner_widget.dart';
 import '../chat_apps/chat_apps_mediator.dart';
@@ -118,13 +117,11 @@ class _HomePageState extends State<_HomePage>
   ) async {
     final bloc = context.read<RegionMediator>();
 
-    final route = MaterialPageRoute(
-      fullscreenDialog: true,
-      settings: const RouteSettings(name: 'RegionPicker'),
-      builder: (_) => RegionPicker(selected: regionCode),
+    final selectedRegion = await Navigator.pushNamed(
+      context,
+      '/regions',
+      arguments: {'selected_code': regionCode},
     );
-
-    final selectedRegion = await Navigator.of(context).push(route);
 
     if (selectedRegion is IRegion) {
       await bloc.onRegionSelected(selectedRegion);

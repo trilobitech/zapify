@@ -6,13 +6,15 @@ typedef ScreenNameExtractor = String? Function(RouteSettings settings);
 
 typedef RouteFilter = bool Function(Route<dynamic>? route);
 
+String? defaultNameExtractor(settings) => settings.name;
+
 bool defaultRouteFilter(Route<dynamic>? route) => route is PageRoute;
 
 /// Based on `FirebaseAnalyticsObserver`
 class AnalyticsRouteObserver extends RouteObserver<ModalRoute<dynamic>> {
   AnalyticsRouteObserver({
     required this.analytics,
-    required this.nameExtractor,
+    this.nameExtractor = defaultNameExtractor,
     this.routeFilter = defaultRouteFilter,
   });
 
