@@ -84,7 +84,7 @@ platform :ios do
 
     testers = options[:tester_email]
     groups = testers ? nil : testers_group
-    
+
     request_api_key
     app_id = firebase_id()
     download_udids(app_id: app_id)

@@ -63,7 +63,7 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
-        
+
       - name: Install Ruby to use Fastlane
         uses: ruby/setup-ruby@v1
         with:
