@@ -16,3 +16,6 @@ run: ## Run app
 
 codegen: ## Run code generation
 	$(FLUTTER_CMD) pub run build_runner build --delete-conflicting-outputs
+
+fix: ## Fix Dart code
+	$(DART_CMD) fix --apply && $(FLUTTER_CMD) analyze . && $(FLUTTER_CMD) format .
