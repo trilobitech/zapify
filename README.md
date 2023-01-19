@@ -20,7 +20,7 @@ There are many of others applications for the same purpose, but this app is just
 
 - [FVM](https://fvm.app/)
 - Platform SDKs: Android and XCode
-- Registred Android and iOS projects in Firebase
+- Registered Android and iOS projects in Firebase
 
 ### Setup
 
@@ -48,7 +48,7 @@ fvm flutter test
 
 Some important dependencies to highlight:
 
-- [url_launcher](https://pub.dev/packages/url_launcher): check and launch chat application;
+- [url_launcher](https://pub.dev/packages/url_launcher): check and launch applications via deeplink;
 - [phone_number](https://pub.dev/packages/phone_number): provide countries, validate, parse and format phone numbers;
 - [get_it](https://pub.dev/packages/get_it): dart dependency injection;
 - [sqlbrite](https://pub.dev/packages/sqlbrite): reactive local storage built on top of [sqflite](https://pub.dev/packages/sqflite);
