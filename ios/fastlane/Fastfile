@@ -1,37 +1,47 @@
+require 'fastlane_core/keychain_importer'
+
 import('../../fastlane/Fastfile')
 
 skip_docs
 
 default_platform(:ios)
-xcversion(version: '>= 13.1')
 
 profile_type_edirock = 'ad-hoc' # Firebase
 profile_type_store = 'app-store'
 
+provisioning_names = {
+  "#{profile_type_edirock}": "#{$app_name} AdHoc",
+  "#{profile_type_store}": "#{$app_name} AppStore",
+}
+
 ios_devices_file = "#{$project_path}/build/ios_devices.txt"
-apple_api_key_path = 'fastlane/credentials/app-store.json'
+apple_api_key_path = ENV['APP_STORE_API_KEY_PATH']
 
 testers_group = 'iostesters'
 
 platform :ios do
   desc 'Build release IPA'
   lane :build do |options|
-    flutter('build ios --release --no-codesign')
+    flutter('build ios --release --no-codesign --config-only')
   end
 
   desc 'Generates a provisioning profile, saving it in the current folder '
   private_lane :update_profile do |options|
 
     is_edirock = options[:profile_type] == profile_type_edirock
-    provisioning_name_suffix = is_edirock ? 'AdHoc' : 'AppStore'
+    provisioning_name = provisioning_names[:"#{options[:profile_type]}"]
 
-    cert(
-      output_path: "#{$project_path}/ios/certificates",
+    FastlaneCore::KeychainImporter.import_file(
+      ENV['CERTIFICATE_PATH'],
+      ENV['KEYCHAIN_PATH'],
+      certificate_password: ENV['CERTIFICATE_PWD'],
+      keychain_password: ENV['KEYCHAIN_PWD'],
     )
 
     sigh(
-      provisioning_name: "#{$app_name} #{provisioning_name_suffix}",
+      provisioning_name: provisioning_name,
       output_path: "#{$project_path}/ios/certificates",
+      skip_certificate_verification: true,
       adhoc: is_edirock,
       force: true,
     )
@@ -47,54 +57,66 @@ platform :ios do
 
   desc 'Registers devices to the Apple Dev Portal'
   private_lane :sync_device_info do
-    register_devices(
-      devices_file: ios_devices_file,
-    )
+    if File.exists?(ios_devices_file)
+      register_devices(
+        devices_file: ios_devices_file,
+      )
+    end
   end
 
   desc 'Generate IPA'
   private_lane :generate_ipa do |options|
-    build
-    update_profile(
+    profile_uuid = update_profile(
+      profile_type: options[:profile_type],
+    )
+
+    build(
       profile_type: options[:profile_type],
     )
 
     gym(
       scheme: 'Runner',
-      workspace: "#{$project_path}/ios/Runner.xcworkspace",
       configuration: 'Release',
+      workspace: "#{$project_path}/ios/Runner.xcworkspace",
       archive_path: "#{$project_path}/build/ios/Runner.xcarchive",
+      output_directory: "#{$project_path}/build/ios/Runner",
       export_method: options[:profile_type],
-      output_directory: "#{$project_path}/build/Runner",
-      xcargs: '-allowProvisioningUpdates',
-      export_xcargs: '-allowProvisioningUpdates',
+      xcargs: "PROVISIONING_PROFILE_SPECIFIER='#{profile_uuid}'",
     )
   end
 
   desc 'Distribute to iOS beta testers in TestFlight'
   lane :release_distribute do
     request_api_key
-    generate_ipa(profile_type: profile_type_store)
-    pilot
+
+    generate_ipa(
+      profile_type: profile_type_store,
+    )
+
+    pilot(
+      ipa: "#{$project_path}/build/ios/Runner/Runner.ipa",
+    )
   end
 
   desc 'Distribute to iOS beta testers in Firebase'
   lane :firebase_distribute do |options|
     ENV['IS_FIREBASE_DISTRIBUTION'] = 'true'
 
-    testers = options[:tester_email]
-    groups = testers ? nil : testers_group
+    testers = options[:tester_email] || ''
+    groups = testers.empty? ? testers_group : nil
 
     request_api_key
+
     app_id = firebase_id()
     download_udids(app_id: app_id)
     sync_device_info
+
     generate_ipa(profile_type: profile_type_edirock)
 
     firebase_app_distribution(
       app: app_id,
       release_notes: get_changelog(),
-      ipa_path: "#{$project_path}/build/Runner/Runner.ipa",
+      ipa_path: "#{$project_path}/build/ios/Runner/Runner.ipa",
       groups: groups,
       testers: testers,
     )
@@ -108,8 +130,17 @@ platform :ios do
       key_id: api_key_json['key_id'],
       issuer_id: api_key_json['issuer_id'],
       key_content: api_key_json['key'],
-      duration: api_key_json['duration'],
-      in_house: api_key_json['in_house'],
+      duration: api_key_json['duration'] || 1200,
+      in_house: api_key_json['in_house'] || false,
+    )
+  end
+
+  lane :verify_app_store_auth do
+    request_api_key
+    app_store_build_number(
+      live: false,
+      app_identifier: CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier),
+      initial_build_number: true
     )
   end
 

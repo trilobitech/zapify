@@ -2,11 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleLocalizations</key>
-	<array>
-		<string>en</string>
-		<string>pt</string>
-	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -17,6 +12,11 @@
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>en</string>
+		<string>pt</string>
+	</array>
 	<key>CFBundleName</key>
 	<string>Zapify</string>
 	<key>CFBundlePackageType</key>
@@ -27,6 +27,18 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>FIREBASE_ANALYTICS_COLLECTION_ENABLED</key>
+	<false/>
+	<key>FirebaseCrashlyticsCollectionEnabled</key>
+	<false/>
+	<key>GADApplicationIdentifier</key>
+	<string>$(IOS_ADS_APP_ID)</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>whatsapp</string>
+		<string>whatsapp-consumer</string>
+		<string>whatsapp-smb</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
@@ -48,19 +60,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>whatsapp</string>
-		<string>whatsapp-consumer</string>
-		<string>whatsapp-smb</string>
-	</array>
-	<key>GADApplicationIdentifier</key>
-	<string>$(IOS_ADS_APP_ID)</string>
-	<key>FirebaseCrashlyticsCollectionEnabled</key>
-	<false/>
 	<key>firebase_performance_collection_enabled</key>
-	<false/>
-	<key>FIREBASE_ANALYTICS_COLLECTION_ENABLED</key>
 	<false/>
 </dict>
 </plist>

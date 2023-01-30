@@ -6,9 +6,9 @@ on:
       platform:
         description: "Build target platform"
         options:
+          - all
           - android
           - ios
-          - all
         type: choice
         required: true
       tester_email:
@@ -17,14 +17,29 @@ on:
         required: true
 
 jobs:
-  distribute:
-    uses: ./.github/workflows/distribute.yml
+
+  distribute-android:
+    if: ${{ github.event.inputs.platform == 'android' || github.event.inputs.platform == 'all' }}
+    uses: ./.github/workflows/distribute-flutter-android.yml
     with:
-      platform: ${{ github.event.inputs.platform }}
       environment: firebase-distribution
     secrets:
-      FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-      ANDROID_BUILD_FILES: ${{ secrets.ANDROID_BUILD_FILES }}
-      IOS_BUILD_FILES: ${{ secrets.IOS_BUILD_FILES }}
       AMPLITUDE_KEY: ${{ secrets.AMPLITUDE_KEY }}
+      ANDROID_BUILD_FILES: ${{ secrets.ANDROID_BUILD_FILES }}
+      FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      TESTER_EMAIL: ${{ github.event.inputs.tester_email }}
+
+  distribute-ios:
+    if: ${{ github.event.inputs.platform == 'ios' || github.event.inputs.platform == 'all' }}
+    uses: ./.github/workflows/distribute-flutter-ios.yml
+    with:
+      environment: firebase-distribution
+    secrets:
+      AMPLITUDE_KEY: ${{ secrets.AMPLITUDE_KEY }}
+      APP_STORE_API_KEY: ${{ secrets.APP_STORE_API_KEY }}
+      APPLE_ID: ${{ secrets.APPLE_ID }}
+      CERTIFICATE_CONTENT: ${{ secrets.CERTIFICATE_CONTENT }}
+      CERTIFICATE_PWD: ${{ secrets.CERTIFICATE_PWD }}
+      FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      IOS_BUILD_FILES: ${{ secrets.IOS_BUILD_FILES }}
       TESTER_EMAIL: ${{ github.event.inputs.tester_email }}

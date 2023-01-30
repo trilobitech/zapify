@@ -4,7 +4,9 @@ $app_name = 'Zapify'
 $project_path = File.realpath(File.dirname(File.dirname(__FILE__)))
 
 def flutter(cmd)
-  sh("dart run flutter_toolkit:cli dart-define | xargs flutter #{cmd}")
+  Dir.chdir($project_path) do
+    sh("set -o pipefail && dart run flutter_toolkit:cli dart-define | xargs flutter #{cmd}")
+  end
 end
 
 lane :get_changelog do

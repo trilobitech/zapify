@@ -21,8 +21,8 @@ platform :android do
   lane :firebase_distribute do |options|
     ENV['IS_FIREBASE_DISTRIBUTION'] = 'true'
 
-    testers = options[:tester_email]
-    groups = testers ? nil : testers_group
+    testers = options[:tester_email] || ''
+    groups = testers.empty? ? testers_group : nil
 
     build_apk
 
