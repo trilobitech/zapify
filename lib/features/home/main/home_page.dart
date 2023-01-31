@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart' hide Intent;
 import 'package:receive_intent/receive_intent.dart';
@@ -63,9 +64,11 @@ class _HomePageState extends State<_HomePage>
   final _sub = CompositeSubscription();
 
   Future<void> _init() async {
-    _sub.add(
-      _shareService.stream().listen(_handleIntent),
-    );
+    if (Platform.isAndroid) {
+      _sub.add(
+        _shareService.stream().listen(_handleIntent),
+      );
+    }
   }
 
   @override
