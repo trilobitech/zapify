@@ -57,9 +57,7 @@ jobs:
         run: base64 -d <<< ${{ secrets.IOS_BUILD_FILES }} | tar xzf -
 
       - name: Get App Store API KEY
-        run: |
-          mkdir -p ./fastlane/credentials
-          base64 -d <<< "${{ secrets.APP_STORE_API_KEY }}" > $APP_STORE_API_KEY_PATH
+        run: base64 -d <<< "${{ secrets.APP_STORE_API_KEY }}" > $APP_STORE_API_KEY_PATH
         env:
           APP_STORE_API_KEY_PATH: ${{ runner.temp }}/app-store-api-key.json
 
