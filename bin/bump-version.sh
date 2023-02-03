@@ -67,7 +67,7 @@ update_changelog() {
     release_date=$3
 
     $sedi -e "/## \[Unreleased/a \\\n## [$new_version] - $release_date" \
-        -e "s/: \(.*\)\(v$current_version\)...HEAD/: \1v$new_version...HEAD\n[$new_version]: \1\2...$new_version/" \
+        -e "s/: \(.*\)\(v$current_version\)...HEAD/: \1v$new_version...HEAD\n[$new_version]: \1\2...v$new_version/" \
         $CHANGELOG_PATH
 
     CHANGED_FILES+=($CHANGELOG_PATH)
