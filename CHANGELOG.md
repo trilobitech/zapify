@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Removed permission `READ_CALL_LOG` from `call_log` package for release builds and keep only in debug
+
 ## [2.0.2] - 2023-02-03
 
 ### Removed
