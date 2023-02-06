@@ -36,7 +36,7 @@ class ChatAppsWidget extends StatelessWidget
       final Uri uri = Uri.parse('${entry.deepLinkPrefix}$phoneNumber');
       if (!await canLaunchUrl(uri) ||
           !await launchUrl(uri, mode: LaunchMode.externalApplication)) {
-        throw 'Could not launch $uri';
+        throw 'Could not launch ${entry.deepLinkPrefix}';
       }
     }).catchError(catchErrorLogger);
   }
