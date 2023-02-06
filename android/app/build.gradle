@@ -62,10 +62,13 @@ android {
 
     defaultConfig {
         applicationId "com.zapfy.app"
+
         minSdkVersion flutterMinSdkVersion.toInteger()
-        targetSdkVersion flutter.targetSdkVersion
+        targetSdkVersion 33
+
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+
         manifestPlaceholders["ADS_APP_ID"] = System.getenv('ANDROID_ADS_APP_ID') ?: secretsProperties.getProperty('ads.appId')
     }
 
