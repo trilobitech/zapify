@@ -41,7 +41,7 @@ class Region extends IRegion {
   final CountryCode prefix;
 
   @override
-  String toString() => 'RegionInfo{code: $code, prefix: $prefix}';
+  String toString() => 'Region{code: $code, prefix: $prefix}';
 }
 
 class Country extends Region {

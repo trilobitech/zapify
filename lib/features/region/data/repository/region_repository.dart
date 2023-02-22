@@ -28,23 +28,23 @@ class RegionRepository implements IRegionRepository {
 
   @override
   Future<IRegion> getCurrent() async {
-    String? code;
+    final code = await _carrierRegionCode();
+    if (code == _defaultRegion.code) return _defaultRegion;
 
+    final allRegions = (await getAll()).cast<IRegion>();
+
+    return allRegions.firstWhere(
+      (region) => region.code == code,
+      orElse: () => _defaultRegion,
+    );
+  }
+
+  Future<String> _carrierRegionCode() async {
     try {
-      code = (await _plugin.carrierRegionCode()).toUpperCase();
+      return (await _plugin.carrierRegionCode()).toUpperCase();
     } catch (e, stack) {
       Log.e(e, stack);
+      return _defaultRegion.code;
     }
-
-    if (code == null || code == _defaultRegion.code) {
-      return _defaultRegion;
-    }
-
-    final allRegions = await getAll();
-
-    return allRegions.whereType<IRegion>().firstWhere(
-          (region) => region.code == code,
-          orElse: () => _defaultRegion,
-        );
   }
 }
