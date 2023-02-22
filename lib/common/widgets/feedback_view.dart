@@ -17,6 +17,7 @@ class FeedbackView extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final button = this.button;
+
     return Container(
       alignment: Alignment.center,
       padding: const EdgeInsets.all(16),
@@ -58,9 +59,9 @@ class ErrorFeedbackView extends FeedbackView {
       param1: additionalRegistry,
     ).adapt(context, error);
 
-    final button = onRetryPressed != null && failure is HasPrimaryButton
+    final button = onRetryPressed != null && failure is ErrorFeedback
         ? FeedbackButton(
-            text: (failure as HasPrimaryButton).primaryButtonText,
+            text: failure.primaryButtonText,
             onClick: onRetryPressed,
           )
         : null;
@@ -79,11 +80,7 @@ class FeedbackButton {
   final VoidCallback onClick;
 }
 
-abstract class HasPrimaryButton {
-  String get primaryButtonText;
-}
-
-class ErrorFeedback implements Failure, HasPrimaryButton {
+class ErrorFeedback implements Failure {
   ErrorFeedback({
     required this.message,
     required this.primaryButtonText,
@@ -92,6 +89,5 @@ class ErrorFeedback implements Failure, HasPrimaryButton {
   @override
   final String message;
 
-  @override
   final String primaryButtonText;
 }

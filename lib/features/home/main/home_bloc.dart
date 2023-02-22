@@ -31,7 +31,7 @@ class HomeBloc extends ActionBloc<HomeAction> implements HomeMediator {
 
   final PhoneFieldComponent _phoneFieldComponent;
 
-  Future<void> onIntentReceived(Intent intent) async {
+  void onIntentReceived(Intent intent) async {
     final phoneNumber = intent.data;
     if (phoneNumber != null && phoneNumber.startsWith('tel:')) {
       analytics.intentHandled('phone_number_received');

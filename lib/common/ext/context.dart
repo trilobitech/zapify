@@ -1,4 +1,4 @@
 export 'package:provider/provider.dart' show ReadContext;
 
-export 'l10n_ext.dart';
+export 'l10n.dart';
 export 'string.dart';

@@ -25,12 +25,14 @@ extension AppLocalizationsExt on AppLocalizations {
       return this.yesterday;
     }
 
-    if (now.difference(dt).inDays < 4) {
+    final daysToNow = now.difference(dt).inDays;
+
+    if (daysToNow < 4) {
       return lastCoupleOfDays;
     }
 
     const elevenMonthsInDays = 11 * 30;
-    if (now.difference(dt).inDays < elevenMonthsInDays) {
+    if (daysToNow < elevenMonthsInDays) {
       return lastCoupleOfMonths;
     }
 

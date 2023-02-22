@@ -8,7 +8,7 @@ import '../../../common/ext/context.dart';
 import '../../../common/widgets/feedback_view.dart';
 import '../../../common/widgets/list_divider.dart';
 import '../../../common/widgets/shimmer_view.dart';
-import '../../../common/widgets/tab_list_view.dart';
+import '../../../common/widgets/tab_page.dart';
 import '../call_log_mediator.dart';
 import 'call_log_bloc.dart';
 import 'call_log_error_registry.dart';

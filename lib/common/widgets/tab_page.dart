@@ -40,6 +40,7 @@ class TabListView extends StatelessWidget {
       if (snapshot.hasError) {
         Log.e(snapshot.error);
       }
+
       return Container();
     }
 
@@ -61,6 +62,7 @@ class _SingleTabPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

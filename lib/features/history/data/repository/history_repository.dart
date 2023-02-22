@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:sqlbrite/sqlbrite.dart';
 
 import '../../../../common/config/local_config.dart';
-import '../../../../common/di/lazy_instance.dart';
+import '../../../../common/di/lazy.dart';
 import '../../domain/entity/history.dart';
 import '../../domain/repository/history_repository.dart';
 

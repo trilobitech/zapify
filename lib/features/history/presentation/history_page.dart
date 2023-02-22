@@ -8,7 +8,7 @@ import '../../../common/ext/context.dart';
 import '../../../common/widgets/feedback_view.dart';
 import '../../../common/widgets/list_divider.dart';
 import '../../../common/widgets/shimmer_view.dart';
-import '../../../common/widgets/tab_list_view.dart';
+import '../../../common/widgets/tab_page.dart';
 import '../domain/entity/history.dart';
 import '../history_mediator.dart';
 import 'history_bloc.dart';
@@ -74,16 +74,12 @@ class HistoryPage extends StatelessWidget
     final RenderObject overlay =
         Overlay.of(context)!.context.findRenderObject()!;
 
+    final overlaySize = overlay.paintBounds.size;
     final action = await showMenu(
       context: context,
       position: RelativeRect.fromRect(
         Rect.fromLTWH(tapPosition.dx, tapPosition.dy, 30, 30),
-        Rect.fromLTWH(
-          0,
-          0,
-          overlay.paintBounds.size.width,
-          overlay.paintBounds.size.height,
-        ),
+        Rect.fromLTWH(0, 0, overlaySize.width, overlaySize.height),
       ),
       items: options.map((e) => e.asPopupMenuItem(context)).toList(),
     );
@@ -198,6 +194,7 @@ class _EntryView extends StatelessWidget {
 extension _ContextMenuItem on ContextMenuAction {
   PopupMenuItem<ContextMenuAction> asPopupMenuItem(BuildContext context) {
     final label = this.label(context);
+
     return PopupMenuItem(
       value: this,
       child: Text(label),

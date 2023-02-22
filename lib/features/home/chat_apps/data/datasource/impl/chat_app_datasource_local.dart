@@ -3,7 +3,7 @@ import 'package:logger_plus/logger_plus.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sqlbrite/sqlbrite.dart';
 
-import '../../../../../../common/di/lazy_instance.dart';
+import '../../../../../../common/di/lazy.dart';
 import '../../../domain/entity/chat_app.dart';
 import '../../model/chat_app_local.dart';
 import '../chat_app_datasource.dart';
@@ -39,6 +39,7 @@ class ChatAppDataSourceLocalImpl implements ChatAppDataSourceLocal {
 
     if (updated.isEmpty && actual.length == chatApps.length) {
       Log.d('Chat apps not changed');
+
       return;
     }
 

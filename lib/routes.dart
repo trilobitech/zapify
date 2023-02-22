@@ -19,5 +19,5 @@ final routes = <String, RouteBuilder>{
         selected: extras.data['selected_code'],
       ),
     );
-  }
+  },
 };

@@ -8,7 +8,7 @@ import 'package:state_action_bloc/state_action_bloc.dart';
 
 import '../../../common/di/provider.dart';
 import '../../../common/services/share_service.dart';
-import '../../../common/widgets/tab_list_view.dart';
+import '../../../common/widgets/tab_page.dart';
 import '../../call_log/call_log_mediator.dart';
 import '../../call_log/presentation/call_log_bloc.dart';
 import '../../call_log/presentation/call_log_page.dart';
@@ -63,7 +63,7 @@ class _HomePageState extends State<_HomePage>
   late final _shareService = ShareService();
   final _sub = CompositeSubscription();
 
-  void _init() async {
+  void _init() {
     if (Platform.isAndroid) {
       _sub.add(
         _shareService.stream().listen(_handleIntent),
@@ -133,6 +133,6 @@ class _HomePageState extends State<_HomePage>
     }
   }
 
-  Future _handleIntent(Intent intent) =>
+  void _handleIntent(Intent intent) =>
       context.read<HomeBloc>().onIntentReceived(intent);
 }

@@ -3,7 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'inject.dart' show getIt;
 
 export 'inject.dart' show get, lazyGet;
-export 'lazy_instance.dart' show lazy;
+export 'lazy.dart' show lazy;
 
 final registerFactory = getIt.registerFactory;
 
@@ -25,5 +25,6 @@ void registerSingleton<T extends Object>(
       dispose: dispose,
     );
   }
+
   return getIt.registerLazySingleton(factoryFunc, dispose: dispose);
 }
