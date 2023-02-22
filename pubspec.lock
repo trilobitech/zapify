@@ -1210,7 +1210,7 @@ packages:
     description:
       path: state_action_bloc
       ref: HEAD
-      resolved-ref: "7e23269c5f168e0f0678617d176ac3c05a8de1af"
+      resolved-ref: "89b4e522cf21b019c9670d8fccc21446c455417f"
       url: "https://github.com/pedrox-hs/flutter_packages"
     source: git
     version: "0.1.0"
