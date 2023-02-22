@@ -6,10 +6,12 @@
     <queries>
         <intent>
             <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.BROWSABLE" />
             <data android:scheme="whatsapp-consumer" />
         </intent>
         <intent>
             <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.BROWSABLE" />
             <data android:scheme="whatsapp-smb" />
         </intent>
         <intent>
