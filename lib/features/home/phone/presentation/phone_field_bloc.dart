@@ -5,7 +5,7 @@ import 'package:phone_number/phone_number.dart' hide RegionInfo;
 import 'package:state_action_bloc/state_action_bloc.dart';
 
 import '../../../region/domain/entity/region.dart';
-import '../../../region/domain/usecase/get_region.dart';
+import '../../../region/domain/usecase/get_default_region.dart';
 import '../domain/phone_field_error.dart';
 import '../phone_field_component.dart';
 import 'phone_field_state.dart';
