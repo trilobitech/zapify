@@ -9,6 +9,7 @@ void regionModule() {
   registerFactory(
     () => RegionPickerBloc(
       getAvailableRegions: get(),
+      analytics: get(),
     ),
   );
 

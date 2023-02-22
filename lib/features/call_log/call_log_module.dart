@@ -11,6 +11,7 @@ void callLogModule() {
     () => CallLogBloc(
       getCallLog: get(),
       requestCallLogPermission: get(),
+      analytics: get(),
     ),
   );
 

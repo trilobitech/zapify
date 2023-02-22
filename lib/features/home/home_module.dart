@@ -10,6 +10,7 @@ void homeModule() {
     () => HomeBloc(
       phoneFieldComponent: get(),
       savePhoneNumberHistory: get(),
+      analytics: get(),
     ),
   );
 

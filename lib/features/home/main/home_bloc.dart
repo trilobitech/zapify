@@ -24,17 +24,19 @@ class HomeBloc extends ActionBloc<HomeAction> implements HomeMediator {
   HomeBloc({
     required PhoneFieldComponent phoneFieldComponent,
     required SavePhoneNumberHistoryUseCase savePhoneNumberHistory,
+    required IAnalytics analytics,
   })  : _phoneFieldComponent = phoneFieldComponent,
-        _savePhoneNumberHistory = savePhoneNumberHistory;
+        _savePhoneNumberHistory = savePhoneNumberHistory,
+        _analytics = analytics;
 
   final SavePhoneNumberHistoryUseCase _savePhoneNumberHistory;
-
   final PhoneFieldComponent _phoneFieldComponent;
+  final IAnalytics _analytics;
 
   void onIntentReceived(Intent intent) async {
     final phoneNumber = intent.data;
     if (phoneNumber != null && phoneNumber.startsWith('tel:')) {
-      analytics.intentHandled('phone_number_received');
+      _analytics.intentHandled('phone_number_received');
 
       await _phoneFieldComponent
           .updatePhone(phoneNumber.replaceFirst('tel:', ''))
@@ -56,7 +58,7 @@ class HomeBloc extends ActionBloc<HomeAction> implements HomeMediator {
 
   @override
   void showRegionPicker(RegionCode? selectedCode) {
-    analytics.buttonPressed('open_region_picker');
+    _analytics.buttonPressed('open_region_picker');
     _phoneFieldComponent.unfocusField();
     sendAction(HomeAction.navigateToRegionPicker(selectedCode));
   }

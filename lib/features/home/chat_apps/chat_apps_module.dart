@@ -11,6 +11,7 @@ void chatAppsModule() {
   registerFactory(
     () => ChatAppsBloc(
       getChatApps: get(),
+      analytics: get(),
     ),
   );
 

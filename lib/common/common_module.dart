@@ -1,3 +1,4 @@
+import 'package:analytics/analytics.dart';
 import 'package:config_core/config_core.dart';
 import 'package:config_firebase/config_firebase.dart';
 import 'package:error_adapter/error_adapter.dart';
@@ -73,5 +74,9 @@ void commonModule() {
       localConfigDefaults: localConfigDefaults,
     ),
     dependsOn: [SharedPreferences],
+  );
+
+  registerSingleton<IAnalytics>(
+    () => analytics,
   );
 }

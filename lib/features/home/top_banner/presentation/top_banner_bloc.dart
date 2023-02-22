@@ -13,12 +13,15 @@ class TopBannerBloc extends StateBloc<TopBannerState> {
   TopBannerBloc({
     required GetTopBannerUseCase getTopBanner,
     required SetLastAppReviewAtNowUseCase setLastAppReviewAtNow,
+    required IAnalytics analytics,
   })  : _getTopBanner = getTopBanner,
         _setLastAppReviewAtNow = setLastAppReviewAtNow,
+        _analytics = analytics,
         super(TopBannerState.none());
 
   final GetTopBannerUseCase _getTopBanner;
   final SetLastAppReviewAtNowUseCase _setLastAppReviewAtNow;
+  final IAnalytics _analytics;
 
   @override
   Future<void> load() async {
@@ -28,7 +31,7 @@ class TopBannerBloc extends StateBloc<TopBannerState> {
   }
 
   void onTopBannerActionTap(TopBannerType type) {
-    analytics.buttonPressed('$type');
+    _analytics.buttonPressed('$type');
     switch (type) {
       case TopBannerType.appReview:
         _requestAppReview();
@@ -53,7 +56,7 @@ class TopBannerBloc extends StateBloc<TopBannerState> {
   }
 
   TopBannerState _mapToState(TopBannerType type) {
-    analytics.logEvent(
+    _analytics.logEvent(
       'top_banner_viewed',
       properties: {'banner_type': type.name},
     );

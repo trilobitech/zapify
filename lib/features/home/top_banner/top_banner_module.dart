@@ -8,6 +8,7 @@ void topBannerModule() {
     () => TopBannerBloc(
       getTopBanner: get(),
       setLastAppReviewAtNow: get(),
+      analytics: get(),
     ),
   );
 

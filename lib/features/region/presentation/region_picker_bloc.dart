@@ -8,24 +8,28 @@ import 'region_picker_state.dart';
 class RegionPickerBloc
     extends StateActionBloc<RegionPickerState, RegionPickerAction> {
   RegionPickerBloc({
-    required this.getAvailableRegions,
-  }) : super(RegionPickerState.initial());
+    required GetRegionsByTermUseCase getAvailableRegions,
+    required IAnalytics analytics,
+  })  : _getAvailableRegions = getAvailableRegions,
+        _analytics = analytics,
+        super(RegionPickerState.initial());
 
-  final GetRegionsByTermUseCase getAvailableRegions;
+  final GetRegionsByTermUseCase _getAvailableRegions;
+  final IAnalytics _analytics;
 
   @override
   Future<void> load() async {
-    final countries = await getAvailableRegions();
+    final countries = await _getAvailableRegions();
     setState(RegionPickerState(countries));
   }
 
   void fetchRegionsByTerm(String term) async {
-    final countries = await getAvailableRegions(term: term);
+    final countries = await _getAvailableRegions(term: term);
     setState(RegionPickerState(countries));
   }
 
   void select(Country country) {
-    analytics.itemSelected(
+    _analytics.itemSelected(
       'region',
       properties: {
         'region_selected': country.name,

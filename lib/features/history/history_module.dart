@@ -13,6 +13,7 @@ void historyModule() {
       getPhoneNumberHistory: get(),
       removePhoneNumberHistory: get(),
       restorePhoneNumberHistory: get(),
+      analytics: get(),
     ),
   );
 

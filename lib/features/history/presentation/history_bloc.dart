@@ -18,14 +18,17 @@ class HistoryBloc extends StateActionBloc<HistoryState, HistoryAction> {
     required GetPhoneNumberHistoryUseCase getPhoneNumberHistory,
     required RemovePhoneNumberHistoryUseCase removePhoneNumberHistory,
     required RestorePhoneNumberHistoryUseCase restorePhoneNumberHistory,
+    required IAnalytics analytics,
   })  : _getPhoneNumberHistory = getPhoneNumberHistory,
         _removePhoneNumberHistory = removePhoneNumberHistory,
         _restorePhoneNumberHistory = restorePhoneNumberHistory,
+        _analytics = analytics,
         super(HistoryState(entries: []));
 
   final GetPhoneNumberHistoryUseCase _getPhoneNumberHistory;
   final RemovePhoneNumberHistoryUseCase _removePhoneNumberHistory;
   final RestorePhoneNumberHistoryUseCase _restorePhoneNumberHistory;
+  final IAnalytics _analytics;
 
   Offset _currentTapPosition = Offset.zero;
 
@@ -46,7 +49,7 @@ class HistoryBloc extends StateActionBloc<HistoryState, HistoryAction> {
   }
 
   void select(HistoryEntry entry) {
-    analytics.itemSelected('phone_from_history');
+    _analytics.itemSelected('phone_from_history');
     sendAction(HistoryAction.select(entry));
   }
 
@@ -55,7 +58,7 @@ class HistoryBloc extends StateActionBloc<HistoryState, HistoryAction> {
   }
 
   void longPress(HistoryEntry entry) {
-    analytics.itemLongPressed('phone_from_history');
+    _analytics.itemLongPressed('phone_from_history');
     sendAction(
       HistoryAction.showMenu(
         entry,
@@ -80,13 +83,13 @@ class HistoryBloc extends StateActionBloc<HistoryState, HistoryAction> {
   }
 
   Future<void> remove(HistoryEntry entry) async {
-    analytics.itemRemoved('phone_from_history');
+    _analytics.itemRemoved('phone_from_history');
     await (_removePhoneNumberHistory(entry).catchError(catchErrorLogger));
     sendAction(HistoryAction.showRestoreEntrySnackBar(entry));
   }
 
   Future<void> restore(HistoryEntry entry) async {
-    analytics.buttonPressed('restore_phone_from_history');
+    _analytics.buttonPressed('restore_phone_from_history');
     await (_restorePhoneNumberHistory(entry).catchError(catchErrorLogger));
   }
 

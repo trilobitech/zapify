@@ -14,12 +14,15 @@ class CallLogBloc extends StateActionBloc<CallLogState, CallLogAction> {
   CallLogBloc({
     required GetCallLogUseCase getCallLog,
     required RequestCallLogPermissionUseCase requestCallLogPermission,
+    required IAnalytics analytics,
   })  : _getCallLog = getCallLog,
         _requestCallLogPermission = requestCallLogPermission,
+        _analytics = analytics,
         super(CallLogState.loading(_shimmerListSize));
 
   final GetCallLogUseCase _getCallLog;
   final RequestCallLogPermissionUseCase _requestCallLogPermission;
+  final IAnalytics _analytics;
 
   @override
   @protected
@@ -37,7 +40,7 @@ class CallLogBloc extends StateActionBloc<CallLogState, CallLogAction> {
   }
 
   void selected(CallEntry item) {
-    analytics.itemSelected('phone_from_call_log');
+    _analytics.itemSelected('phone_from_call_log');
     sendAction(CallLogAction.select(item));
   }
 

@@ -8,10 +8,13 @@ import 'chat_apps_state.dart';
 class ChatAppsBloc extends StateActionBloc<ChatAppsState, ChatAppsAction> {
   ChatAppsBloc({
     required GetChatAppsUseCase getChatApps,
+    required IAnalytics analytics,
   })  : _getChatApps = getChatApps,
+        _analytics = analytics,
         super(ChatAppsState.initial());
 
   final GetChatAppsUseCase _getChatApps;
+  final IAnalytics _analytics;
 
   @override
   Future<void> load() async {
@@ -21,7 +24,7 @@ class ChatAppsBloc extends StateActionBloc<ChatAppsState, ChatAppsAction> {
   }
 
   void selected(ChatApp entry) {
-    analytics.buttonPressed(
+    _analytics.buttonPressed(
       'launch_chat_app',
       properties: {'app_launched': entry.name},
     );
