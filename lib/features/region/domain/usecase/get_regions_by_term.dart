@@ -1,25 +1,28 @@
+import 'package:meta/meta.dart';
+
 import '../entity/region.dart';
 import '../repository/region_repository.dart';
 
+@immutable
 class GetRegionsByTermUseCase {
-  GetRegionsByTermUseCase({
-    required this.repository,
-  });
+  const GetRegionsByTermUseCase({
+    required IRegionRepository repository,
+  }) : _repository = repository;
 
-  IRegionRepository repository;
+  final IRegionRepository _repository;
 
   Future<List<Country>> call({String term = ''}) async {
     term = term.trim();
-    final regions = await repository.getAll();
+    final countries = await _repository.getAll();
     if (term.isEmpty) {
-      return regions;
+      return countries;
     }
 
-    return regions.where(
-      (elt) {
-        return elt.code.toUpperCase().contains(term.toUpperCase()) ||
-            elt.prefix.toString().contains(term) ||
-            elt.name.toLowerCase().startsWith(term.toLowerCase());
+    return countries.where(
+      (country) {
+        return country.code.toUpperCase().contains(term.toUpperCase()) ||
+            country.prefix.toString().contains(term) ||
+            country.name.toLowerCase().contains(term.toLowerCase());
       },
     ).toList(growable: false);
   }
