@@ -1,5 +1,5 @@
 import 'package:logger_plus/logger_plus.dart';
-import 'package:phone_number/phone_number.dart' hide RegionInfo;
+import 'package:phone_number/phone_number.dart';
 
 import '../../domain/entity/region.dart';
 import '../../domain/repository/region_repository.dart';
@@ -10,11 +10,13 @@ class RegionRepository implements IRegionRepository {
   final PhoneNumberUtil _plugin;
   List<Country>? _cached;
 
+  late final IRegion _defaultRegion = Region.defaults();
+
   @override
   Future<List<Country>> getAll() async {
     return _cached ??= (await _plugin.allSupportedRegions())
         .map(
-          (info) => Country(
+          (RegionInfo info) => Country(
             code: info.code,
             prefix: info.prefix,
             name: info.name,
@@ -26,20 +28,23 @@ class RegionRepository implements IRegionRepository {
 
   @override
   Future<IRegion> getCurrent() async {
-    final defaultRegion = RegionInfo.defaults();
+    String? code;
 
-    final code = await _plugin
-        .carrierRegionCode()
-        .then((value) => value.toUpperCase())
-        .catchError((e, stack) {
+    try {
+      code = (await _plugin.carrierRegionCode()).toUpperCase();
+    } catch (e, stack) {
       Log.e(e, stack);
-      return defaultRegion.code;
-    });
+    }
+
+    if (code == null || code == _defaultRegion.code) {
+      return _defaultRegion;
+    }
 
     final allRegions = await getAll();
+
     return allRegions.whereType<IRegion>().firstWhere(
-          (element) => element.code == code,
-          orElse: () => defaultRegion,
+          (region) => region.code == code,
+          orElse: () => _defaultRegion,
         );
   }
 }

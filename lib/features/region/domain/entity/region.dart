@@ -23,13 +23,13 @@ abstract class IRegion extends Equatable implements Comparable<IRegion> {
   List<Object?> get props => [code];
 }
 
-class RegionInfo extends IRegion {
-  RegionInfo({
+class Region extends IRegion {
+  Region({
     required this.code,
     required this.prefix,
   });
 
-  factory RegionInfo.defaults() => RegionInfo(
+  factory Region.defaults() => Region(
         code: _kDefaultRegionCode,
         prefix: _kDefaultRegionPrefix,
       );
@@ -44,7 +44,7 @@ class RegionInfo extends IRegion {
   String toString() => 'RegionInfo{code: $code, prefix: $prefix}';
 }
 
-class Country extends RegionInfo {
+class Country extends Region {
   Country({
     required super.code,
     required super.prefix,
@@ -54,5 +54,5 @@ class Country extends RegionInfo {
   final String name;
 
   @override
-  String toString() => 'Region{name: $name, code: $code, prefix: $prefix}';
+  String toString() => 'Country{name: $name, code: $code, prefix: $prefix}';
 }

@@ -89,6 +89,7 @@ class PhoneFieldBloc extends StateActionBloc<PhoneFieldState, PhoneFieldAction>
 
     if (region.code == _region?.code) {
       _textEditingController.value = newValue;
+
       return;
     }
 
@@ -170,7 +171,7 @@ class PhoneFieldBloc extends StateActionBloc<PhoneFieldState, PhoneFieldAction>
 }
 
 extension _PhoneNumberExt on PhoneNumber {
-  RegionInfo get region => RegionInfo(
+  Region get region => Region(
         code: regionCode,
         prefix: int.parse(countryCode),
       );
