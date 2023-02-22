@@ -31,26 +31,24 @@ class TopBannerBloc extends StateBloc<TopBannerState> {
     analytics.buttonPressed('$type');
     switch (type) {
       case TopBannerType.appReview:
-        askForReview();
+        _requestAppReview();
         break;
     }
   }
 
-  Future<void> askForReview() async {
+  void _requestAppReview() async {
     final inAppReview = InAppReview.instance;
 
     await inAppReview
         .isAvailable()
-        .then((isAvailable) async {
-          if (!isAvailable) {
-            throw 'InAppReview not available';
+        .then((isInAppReviewAvailable) {
+          if (isInAppReviewAvailable) {
+            return inAppReview.requestReview();
           }
-        })
-        .then((value) => inAppReview.requestReview())
-        .catchError((error, stack) {
-          Log.e(error, stack);
+          Log.e('InAppReview not available');
           return inAppReview.openStoreListing(appStoreId: EnvConfig.appStoreId);
         })
+        .catchError(catchErrorLogger)
         .then((_) => _setLastAppReviewAtNow());
   }
 

@@ -9,9 +9,11 @@ class Analytics implements IAnalytics {
   final List<AnalyticsWrapper> _wrappers;
 
   Future<void> init(bool isEnabled) async {
-    for (final wrapper in _wrappers) {
-      await wrapper.init(isEnabled);
-    }
+    await Future.wait(
+      _wrappers.map(
+        (wrapper) => wrapper.init(isEnabled),
+      ),
+    );
   }
 
   @override
@@ -26,10 +28,10 @@ class Analytics implements IAnalytics {
   void screenViewed(
     String screenName, {
     Map<String, dynamic> properties = const {},
-  }) {
+  }) async {
     _log('screen_viewed', {'screen_name': screenName, ...properties});
     for (final wrapper in _wrappers) {
-      wrapper
+      await wrapper
           .screenViewed(screenName, properties: properties)
           .catchError(catchErrorLogger);
     }
@@ -86,10 +88,10 @@ class Analytics implements IAnalytics {
       );
 
   @override
-  void logEvent(name, {Map<String, dynamic> properties = const {}}) {
+  void logEvent(name, {Map<String, dynamic> properties = const {}}) async {
     _log(name, properties);
     for (final wrapper in _wrappers) {
-      wrapper
+      await wrapper
           .logEvent(name, properties: properties)
           .catchError(catchErrorLogger);
     }

@@ -54,7 +54,7 @@ class HistoryPage extends StatelessWidget
       ),
       action: SnackBarAction(
         label: context.strings.actionUndo,
-        onPressed: () => context.read<HistoryBloc>().restore(entry),
+        onPressed: () async => context.read<HistoryBloc>().restore(entry),
       ),
       behavior: SnackBarBehavior.floating,
     );
@@ -88,7 +88,7 @@ class HistoryPage extends StatelessWidget
       items: options.map((e) => e.asPopupMenuItem(context)).toList(),
     );
 
-    bloc.selectOption(entry, action);
+    await bloc.selectOption(entry, action);
   }
 }
 
@@ -152,7 +152,7 @@ class _DismissibleEntryView extends StatelessWidget {
     return Dismissible(
       key: ValueKey(entry.phoneNumber),
       direction: DismissDirection.endToStart,
-      onDismissed: (_) => context.read<HistoryBloc>().remove(entry),
+      onDismissed: (_) async => context.read<HistoryBloc>().remove(entry),
       background: Container(
         color: const Color.fromARGB(255, 186, 12, 0),
         child: Stack(

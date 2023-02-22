@@ -29,7 +29,7 @@ void chatAppsModule() {
 
   registerFactory<ChatAppDataSourceLocal>(
     () => ChatAppDataSourceLocalImpl(
-      db: get(),
+      db: lazy(),
     ),
   );
 

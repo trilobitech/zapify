@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_performance/firebase_performance.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
@@ -15,17 +17,21 @@ Future<FirebaseRemoteConfig> getRemoteConfig(
   await remoteConfig.setDefaults(defaults);
   await remoteConfig.activate();
 
-  _fetch(remoteConfig).catchError(catchErrorLogger);
+  _fetch(remoteConfig);
 
   return remoteConfig;
 }
 
-Future<void> _fetch(FirebaseRemoteConfig remoteConfig) async {
-  await remoteConfig.setConfigSettings(
-    RemoteConfigSettings(
-      fetchTimeout: const Duration(minutes: 1),
-      minimumFetchInterval: const Duration(days: 1),
-    ),
-  );
-  await remoteConfig.fetch();
+void _fetch(FirebaseRemoteConfig remoteConfig) async {
+  try {
+    await remoteConfig.setConfigSettings(
+      RemoteConfigSettings(
+        fetchTimeout: const Duration(minutes: 1),
+        minimumFetchInterval: const Duration(days: 1),
+      ),
+    );
+    await remoteConfig.fetch();
+  } catch (error, stack) {
+    Log.e(error, stack);
+  }
 }

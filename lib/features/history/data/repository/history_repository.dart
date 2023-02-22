@@ -1,18 +1,21 @@
+import 'dart:async';
+
 import 'package:sqlbrite/sqlbrite.dart';
 
 import '../../../../common/config/local_config.dart';
+import '../../../../common/di/lazy_instance.dart';
 import '../../domain/entity/history.dart';
 import '../../domain/repository/history_repository.dart';
 
 class HistoryRepository implements IHistoryRepository {
   HistoryRepository({
-    required this.db,
-  });
+    required Lazy<BriteDatabase> db,
+  }) : _db = db.get();
 
-  final Future<BriteDatabase> db;
+  final Future<BriteDatabase> _db;
 
   @override
-  Stream<List<HistoryEntry>> getAll() => db.asStream().asyncExpand(
+  Stream<List<HistoryEntry>> getAll() => _db.asStream().asyncExpand(
         (db) => db
             .createQuery(
               'historic',
@@ -23,7 +26,7 @@ class HistoryRepository implements IHistoryRepository {
 
   @override
   Future<void> add(String phoneNumber) async {
-    final db = await this.db;
+    final db = await _db;
     await db.rawInsert(
       '''
       INSERT OR REPLACE INTO historic(number, last_usage_at)
@@ -37,7 +40,7 @@ class HistoryRepository implements IHistoryRepository {
 
   @override
   Future<void> remove(HistoryEntry entry) async {
-    final db = await this.db;
+    final db = await _db;
     await db.delete(
       'historic',
       where: 'number = ?',
@@ -48,7 +51,7 @@ class HistoryRepository implements IHistoryRepository {
 
   @override
   Future<void> restore(HistoryEntry entry) async {
-    final db = await this.db;
+    final db = await _db;
     await db.insert(
       'historic',
       {
@@ -61,7 +64,7 @@ class HistoryRepository implements IHistoryRepository {
     _updateHistoricSize(db);
   }
 
-  Future<void> _updateHistoricSize(BriteDatabase db) => db
+  void _updateHistoricSize(BriteDatabase db) async => db
       .rawQuery(
         'SELECT COUNT(number) AS historic_size FROM historic',
       )

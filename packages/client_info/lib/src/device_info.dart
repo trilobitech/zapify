@@ -6,10 +6,6 @@ import 'package:logger_plus/logger_plus.dart';
 final DeviceInfoPlugin _deviceInfoPlugin = DeviceInfoPlugin();
 
 class DeviceInfo {
-  final String platform;
-  final String version;
-  final String model;
-
   DeviceInfo({
     required this.platform,
     required this.version,
@@ -27,6 +23,10 @@ class DeviceInfo {
         version: info.systemVersion,
         model: 'Apple ${info.model}'.trim(),
       );
+
+  final String platform;
+  final String version;
+  final String model;
 
   static Future<DeviceInfo> fromPlatform() async {
     final plugin = _deviceInfoPlugin;

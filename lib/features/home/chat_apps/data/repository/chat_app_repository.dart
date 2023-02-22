@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:logger_plus/logger_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -33,7 +35,7 @@ class ChatAppRepository implements IChatAppRepository {
     yield* localDataSource.get();
   }
 
-  _syncWithRemoteIfNeeded() async {
+  void _syncWithRemoteIfNeeded() async {
     final now = DateTime.now().millisecond;
     const expiration = LocalConfig.chatAppsExpiration;
     final expiratedAt = await expiration.get<int>();
@@ -44,13 +46,13 @@ class ChatAppRepository implements IChatAppRepository {
     }
 
     Log.d('Cache is expired, syncing with remote');
-    _syncWithRemote(expiration, now);
+    await _syncWithRemote(expiration, now);
   }
 
-  void _syncWithRemote(LocalConfig expiration, int now) {
+  Future<void> _syncWithRemote(LocalConfig expiration, int now) async {
     const syncInterval = EnvConfig.syncAppsInterval;
 
-    remoteDataSource
+    await remoteDataSource
         .get()
         .then(_filterAvailableApps)
         .then(localDataSource.syncWith)

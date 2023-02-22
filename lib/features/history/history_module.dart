@@ -42,7 +42,7 @@ void historyModule() {
 
   registerSingleton<IHistoryRepository>(
     () => HistoryRepository(
-      db: get(),
+      db: lazy(),
     ),
   );
 }

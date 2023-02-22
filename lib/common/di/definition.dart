@@ -1,14 +1,17 @@
 import 'package:get_it/get_it.dart';
 
-export 'inject.dart' show get, lazyGet;
+import 'inject.dart' show getIt;
 
-final getIt = GetIt.instance;
+export 'inject.dart' show get, lazyGet;
+export 'lazy_instance.dart' show lazy;
 
 final registerFactory = getIt.registerFactory;
 
 final registerFactoryParam = getIt.registerFactoryParam;
 
 final registerSingletonAsync = getIt.registerSingletonAsync;
+
+final allReady = getIt.allReady;
 
 void registerSingleton<T extends Object>(
   FactoryFunc<T> factoryFunc, {

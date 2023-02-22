@@ -24,7 +24,7 @@ class CanAskForReviewUseCase {
 }
 
 class SetLastAppReviewAtNowUseCase {
-  Future<void> call() async {
+  void call() async {
     final now = DateTime.now().millisecondsSinceEpoch;
     await LocalConfig.lastAppReviewAt.set(now);
   }

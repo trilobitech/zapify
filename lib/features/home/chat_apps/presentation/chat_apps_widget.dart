@@ -31,8 +31,8 @@ class ChatAppsWidget extends StatelessWidget
         select: (entry) => _openChatApp(context, entry),
       );
 
-  void _openChatApp(BuildContext context, ChatApp entry) {
-    context.read<ChatAppsMediator>().launch((phoneNumber) async {
+  Future<void> _openChatApp(BuildContext context, ChatApp entry) async {
+    await context.read<ChatAppsMediator>().launch((phoneNumber) async {
       final Uri uri = Uri.parse('${entry.deepLinkPrefix}$phoneNumber');
       if (!await canLaunchUrl(uri) ||
           !await launchUrl(uri, mode: LaunchMode.externalApplication)) {

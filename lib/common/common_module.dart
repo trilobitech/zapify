@@ -31,30 +31,33 @@ void commonModule() {
 
   registerSingleton(() => PhoneNumberUtil());
 
-  registerSingleton<Future<Database>>(
-    () => getDatabase(),
-    dispose: (param) => param.then((db) => db.close()),
+  registerSingletonAsync<Database>(
+    getDatabase,
+    dispose: (db) async => db.close(),
   );
 
-  registerSingleton<Future<BriteDatabase>>(
-    () => getDatabase().then(
-      (db) => BriteDatabase(db, logger: kDebugMode ? print : null),
+  registerSingletonAsync<BriteDatabase>(
+    () async => BriteDatabase(
+      await lazyGet(),
+      logger: kDebugMode ? print : null,
     ),
-    dispose: (param) => param.then((db) => db.close()),
+    dispose: (db) async => db.close(),
   );
 
   registerSingleton<http.Client>(
-    () => InterceptableClient.withDefaultInterceptors(interceptors: [
-      UserAgentInterceptor(),
-    ]),
+    () => InterceptableClient.withDefaultInterceptors(
+      interceptors: [
+        UserAgentInterceptor(),
+      ],
+    ),
   );
 
   registerSingletonAsync<SharedPreferences>(
-    () => SharedPreferences.getInstance(),
+    () async => SharedPreferences.getInstance(),
   );
 
   registerSingletonAsync<FirebaseRemoteConfig>(
-    () => getRemoteConfig(remoteConfigDefaults),
+    () async => getRemoteConfig(remoteConfigDefaults),
   );
 
   registerSingleton<IRemoteConfigStorage>(

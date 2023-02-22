@@ -41,10 +41,10 @@ class CallLogBloc extends StateActionBloc<CallLogState, CallLogAction> {
     sendAction(CallLogAction.select(item));
   }
 
-  Future<void> retry() async {
+  void retry() async {
     await _requestCallLogPermission();
     setState(CallLogState.loading(_shimmerListSize));
-    load();
+    await load();
   }
 
   CallLogState _onError(error, stack) {

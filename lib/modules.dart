@@ -11,5 +11,5 @@ Future<void> loadModules() async {
   historyModule();
   regionModule();
   callLogModule();
-  await getIt.allReady();
+  await allReady();
 }

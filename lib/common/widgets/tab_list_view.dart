@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:logger_plus/logger_plus.dart';
 
@@ -15,23 +14,28 @@ abstract class MaybeAvailableTabPage implements TabPage {
 }
 
 class TabListView extends StatelessWidget {
-  const TabListView({required this.tabs, super.key});
+  const TabListView({super.key, required this.tabs});
 
   final List<TabPage> tabs;
+  Future<List<TabPage>> get _filteredTabs => _filterAvailableTabs().toList();
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<bool>>(
-      future: Future.wait(
-        tabs.map(
-          (e) async => e is! MaybeAvailableTabPage || await e.isTabAvailable,
-        ),
-      ),
-      builder: (context, snapshot) => _buildTabs(snapshot),
+    return FutureBuilder<List<TabPage>>(
+      future: _filteredTabs,
+      builder: (_, snapshot) => _buildTabs(snapshot),
     );
   }
 
-  StatelessWidget _buildTabs(AsyncSnapshot<List<bool>> snapshot) {
+  Stream<TabPage> _filterAvailableTabs() async* {
+    for (final tab in tabs) {
+      if (tab is! MaybeAvailableTabPage || await tab.isTabAvailable) {
+        yield tab;
+      }
+    }
+  }
+
+  StatelessWidget _buildTabs(AsyncSnapshot<List<TabPage>> snapshot) {
     if (!snapshot.hasData) {
       if (snapshot.hasError) {
         Log.e(snapshot.error);
@@ -39,14 +43,13 @@ class TabListView extends StatelessWidget {
       return Container();
     }
 
-    final tabs =
-        this.tabs.whereIndexed((index, page) => snapshot.requireData[index]);
+    final tabs = snapshot.requireData;
 
     if (tabs.length == 1) {
       return _SingleTabPage(tabs.first);
     }
 
-    return _MultiTabPage(tabs.toList(growable: false));
+    return _MultiTabPage(tabs);
   }
 }
 

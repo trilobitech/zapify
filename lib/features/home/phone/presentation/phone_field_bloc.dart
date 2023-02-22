@@ -134,11 +134,13 @@ class PhoneFieldBloc extends StateActionBloc<PhoneFieldState, PhoneFieldAction>
     final oldText = _currentText;
     late final VoidCallback listener;
 
-    _textEditingController.addListener(listener = () {
-      if (oldText == _currentText) return;
-      _textEditingController.removeListener(listener);
-      _emitState(error: null);
-    });
+    _textEditingController.addListener(
+      listener = () {
+        if (oldText == _currentText) return;
+        _textEditingController.removeListener(listener);
+        _emitState(error: null);
+      },
+    );
   }
 
   TextEditingValue _textEditingValueFrom(String text) {

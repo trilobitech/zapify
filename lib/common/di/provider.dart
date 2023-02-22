@@ -11,11 +11,13 @@ class ProxyProvider<Base, Child extends Base> extends Provider<Base> {
 
 class DiProvider<T extends Object> extends Provider<T> {
   DiProvider({super.key, super.child})
-      : super(create: (context) {
-          try {
-            return Provider.of<T>(context, listen: false);
-          } on ProviderNotFoundException {
-            return get<T>();
-          }
-        });
+      : super(
+          create: (context) {
+            try {
+              return Provider.of<T>(context, listen: false);
+            } on ProviderNotFoundException {
+              return get<T>();
+            }
+          },
+        );
 }

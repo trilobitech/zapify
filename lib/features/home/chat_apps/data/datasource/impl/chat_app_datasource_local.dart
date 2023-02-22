@@ -3,22 +3,23 @@ import 'package:logger_plus/logger_plus.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sqlbrite/sqlbrite.dart';
 
+import '../../../../../../common/di/lazy_instance.dart';
 import '../../../domain/entity/chat_app.dart';
 import '../../model/chat_app_local.dart';
 import '../chat_app_datasource.dart';
 
 class ChatAppDataSourceLocalImpl implements ChatAppDataSourceLocal {
   ChatAppDataSourceLocalImpl({
-    required this.db,
-  }) {
+    required Lazy<BriteDatabase> db,
+  }) : _db = db.get() {
     _init();
   }
 
-  final Future<BriteDatabase> db;
+  final Future<BriteDatabase> _db;
   late final BehaviorSubject<List<ChatAppLocal>> _chatApps = BehaviorSubject();
 
   void _init() {
-    Stream.fromFuture(db)
+    Stream.fromFuture(_db)
         .asyncExpand((db) => db.createQuery('chat_app', orderBy: 'id ASC'))
         .mapToList(ChatAppLocal.fromJson)
         .listen(_chatApps.add, onError: Log.e);
@@ -49,7 +50,7 @@ class ChatAppDataSourceLocalImpl implements ChatAppDataSourceLocal {
     Iterable<ChatAppLocal> updated,
     List<ChatApp> chatApps,
   ) async {
-    final batch = (await db).batch();
+    final batch = (await _db).batch();
     for (var element in updated) {
       batch.insert(
         'chat_app',

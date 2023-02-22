@@ -36,7 +36,7 @@ class HomeBloc extends ActionBloc<HomeAction> implements HomeMediator {
     if (phoneNumber != null && phoneNumber.startsWith('tel:')) {
       analytics.intentHandled('phone_number_received');
 
-      _phoneFieldComponent
+      await _phoneFieldComponent
           .updatePhone(phoneNumber.replaceFirst('tel:', ''))
           .catchError((_) {
         final obfuscatedNumber =

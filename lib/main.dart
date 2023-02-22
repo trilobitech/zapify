@@ -14,19 +14,21 @@ import 'common/services/firebase.dart';
 import 'firebase_options.dart';
 import 'modules.dart';
 
-void main() {
+void main() async {
   Stopwatch? stopwatch = Stopwatch()..start();
-  runZonedGuarded<Future<void>>(
+  await runZonedGuarded(
     () async {
       WidgetsFlutterBinding.ensureInitialized();
 
       await setupApp();
 
-      loadModules();
+      unawaited(loadModules());
 
-      analytics.onAppOpened(properties: {
-        'start_up_time': (stopwatch?.elapsedMilliseconds ?? 0) / 1000,
-      });
+      analytics.onAppOpened(
+        properties: {
+          'start_up_time': (stopwatch?.elapsedMilliseconds ?? 0) / 1000,
+        },
+      );
       stopwatch = null;
 
       runApp(const App());
@@ -65,9 +67,18 @@ Future<void> setupApp() async {
 
 class _CrashlyticsTree extends DebugTree {
   @override
-  void log(Level level, String tag, dynamic message, [StackTrace? stackTrace]) {
+  void log(
+    Level level,
+    String tag,
+    dynamic message, [
+    StackTrace? stackTrace,
+  ]) async {
     if (level.isError && message is! NonReportableError) {
-      crashlytics.recordError(message, stackTrace, fatal: level == Level.fatal);
+      await crashlytics.recordError(
+        message,
+        stackTrace,
+        fatal: level == Level.fatal,
+      );
     }
   }
 }

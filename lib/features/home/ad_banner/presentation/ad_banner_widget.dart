@@ -41,9 +41,9 @@ class _AdBannerWidgetState extends State<_AdBannerWidget> {
   BannerAd? _adBanner;
 
   @override
-  void dispose() {
-    _adBanner?.dispose();
+  void dispose() async {
     super.dispose();
+    await _adBanner?.dispose();
   }
 
   @override
@@ -65,6 +65,7 @@ class _AdBannerWidgetState extends State<_AdBannerWidget> {
         size: _getBannerSize(context),
         request: const AdRequest(),
         listener: const BannerAdListener(),
+        // ignore: discarded_futures
       )..load();
 
   // to show full banner in any orientation

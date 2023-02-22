@@ -118,7 +118,7 @@ class _SearchViewState extends State<_SearchView> {
   }
 
   void searchTerm() {
-    bloc.getRegionByTerm(ctrl.text);
+    bloc.fetchRegionsByTerm(ctrl.text);
   }
 }
 

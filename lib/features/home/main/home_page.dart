@@ -63,7 +63,7 @@ class _HomePageState extends State<_HomePage>
   late final _shareService = ShareService();
   final _sub = CompositeSubscription();
 
-  Future<void> _init() async {
+  void _init() async {
     if (Platform.isAndroid) {
       _sub.add(
         _shareService.stream().listen(_handleIntent),
@@ -78,9 +78,9 @@ class _HomePageState extends State<_HomePage>
   }
 
   @override
-  void dispose() {
-    _sub.dispose();
+  void dispose() async {
     super.dispose();
+    await _sub.dispose();
   }
 
   @override
@@ -96,10 +96,12 @@ class _HomePageState extends State<_HomePage>
           PhoneFieldWidget(),
           ChatAppsWidget(),
           Expanded(
-            child: TabListView(tabs: [
-              HistoryPage(),
-              CallLogTabPage(),
-            ]),
+            child: TabListView(
+              tabs: [
+                HistoryPage(),
+                CallLogTabPage(),
+              ],
+            ),
           ),
         ],
       ),

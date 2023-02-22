@@ -19,16 +19,19 @@ class RegionPickerBloc
     setState(RegionPickerState(countries));
   }
 
-  Future<void> getRegionByTerm(String term) async {
+  void fetchRegionsByTerm(String term) async {
     final countries = await getAvailableRegions(term: term);
     setState(RegionPickerState(countries));
   }
 
   void select(Country country) {
-    analytics.itemSelected('region', properties: {
-      'region_selected': country.name,
-      'region_prefix': country.prefix.toString(),
-    });
+    analytics.itemSelected(
+      'region',
+      properties: {
+        'region_selected': country.name,
+        'region_prefix': country.prefix.toString(),
+      },
+    );
     sendAction(RegionPickerAction.close(country));
   }
 
