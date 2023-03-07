@@ -2,7 +2,8 @@ include: ../analysis_options.yaml
 
 linter:
   rules:
+    discarded_futures: false
+    only_throw_errors: false
     prefer_const_constructors: false
     prefer_const_literals_to_create_immutables: false
-    discarded_futures: false
     unawaited_futures: false
