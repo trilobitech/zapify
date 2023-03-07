@@ -56,7 +56,7 @@ Future<void> setupApp() async {
       initAnalytics(amplitudeKey: EnvConfig.amplitudeKey, isEnabled: false),
     ]);
   } else {
-    final bool isFirebaseTestLabActivated =
+    final isFirebaseTestLabActivated =
         await IsFirebaseTestLabActivated.isFirebaseTestLabActivated;
     await initAnalytics(
       amplitudeKey: EnvConfig.amplitudeKey,

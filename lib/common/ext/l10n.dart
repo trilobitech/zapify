@@ -13,12 +13,12 @@ extension AppLocalizationsExt on AppLocalizations {
       DateFormat(_formatFrom(dt), localeName).format(dt);
 
   String _formatFrom(DateTime dt) {
-    DateTime now = DateTime.now();
+    final now = DateTime.now();
     if (dt.day == now.day && dt.month == now.month && dt.year == now.year) {
       return today;
     }
 
-    DateTime yesterday = now.subtract(const Duration(days: 1));
+    final yesterday = now.subtract(const Duration(days: 1));
     if (dt.day == yesterday.day &&
         dt.month == yesterday.month &&
         dt.year == yesterday.year) {

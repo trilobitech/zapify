@@ -16,6 +16,7 @@ class ChatAppDataSourceLocalImpl implements ChatAppDataSourceLocal {
   }
 
   final Future<BriteDatabase> _db;
+  // ignore: close_sinks
   late final BehaviorSubject<List<ChatAppLocal>> _chatApps = BehaviorSubject();
 
   void _init() {
@@ -26,25 +27,21 @@ class ChatAppDataSourceLocalImpl implements ChatAppDataSourceLocal {
   }
 
   @override
-  Stream<List<ChatAppLocal>> get() => _chatApps;
+  Stream<List<ChatAppLocal>> get() => _chatApps.stream;
 
   @override
   Future<void> syncWith(List<ChatApp> chatApps) async {
     final actual = _chatApps.valueOrNull ?? [];
 
-    Log.d('Checking if received chat apps is different from local');
     final updated = chatApps
         .mapIndexed(ChatAppLocal.fromEntity)
         .whereNot((element) => actual.contains(element));
 
     if (updated.isEmpty && actual.length == chatApps.length) {
-      Log.d('Chat apps not changed');
-
       return;
     }
 
     await _update(updated, chatApps);
-    Log.d('Chat apps are now updated');
   }
 
   Future<void> _update(
@@ -52,7 +49,7 @@ class ChatAppDataSourceLocalImpl implements ChatAppDataSourceLocal {
     List<ChatApp> chatApps,
   ) async {
     final batch = (await _db).batch();
-    for (var element in updated) {
+    for (final element in updated) {
       batch.insert(
         'chat_app',
         element.toJson(),

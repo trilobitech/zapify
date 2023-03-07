@@ -33,10 +33,10 @@ class ChatAppsWidget extends StatelessWidget
 
   Future<void> _openChatApp(BuildContext context, ChatApp entry) async {
     await context.read<ChatAppsMediator>().launch((phoneNumber) async {
-      final Uri uri = Uri.parse('${entry.deepLinkPrefix}$phoneNumber');
+      final uri = Uri.parse('${entry.deepLinkPrefix}$phoneNumber');
       if (!await canLaunchUrl(uri) ||
           !await launchUrl(uri, mode: LaunchMode.externalApplication)) {
-        throw 'Could not launch ${entry.deepLinkPrefix}';
+        throw UnsupportedError('Could not launch ${entry.deepLinkPrefix}');
       }
     }).catchError(catchErrorLogger);
   }

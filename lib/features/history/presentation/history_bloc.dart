@@ -35,7 +35,7 @@ class HistoryBloc extends StateActionBloc<HistoryState, HistoryAction> {
   @override
   @protected
   Future<void> load() async {
-    final int historicSize = await _historicSize();
+    final historicSize = await _historicSize();
 
     final initialState = historicSize > 0
         ? HistoryState.loading(historicSize)
@@ -94,8 +94,8 @@ class HistoryBloc extends StateActionBloc<HistoryState, HistoryAction> {
   }
 
   Future<HistoryState> _mapToState(List<HistoryEntry> entries) async {
-    final bool isCallLogTabEnabled =
-        await RemoteConfig.isCallLogTabEnabled.get();
+    final isCallLogTabEnabled =
+        await RemoteConfig.isCallLogTabEnabled.get<bool>();
     return entries.isNotEmpty
         ? HistoryState(
             entries: entries,

@@ -7,6 +7,6 @@ enum TopBannerType {
         return type;
       }
     }
-    throw '`TopBannerType` == "$key" not found';
+    throw ArgumentError('`TopBannerType` == "$key" not valid');
   }
 }

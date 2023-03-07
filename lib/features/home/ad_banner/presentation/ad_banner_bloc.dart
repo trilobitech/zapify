@@ -8,7 +8,7 @@ class AdBannerBloc extends StateBloc<AdBannerState> {
 
   @override
   Future<void> load() async {
-    final String unitId = await RemoteConfig.homeBannerUnitId.get();
+    final unitId = await RemoteConfig.homeBannerUnitId.get<String>();
     if (unitId.isNotEmpty) {
       return setState(AdBannerState(unitId: unitId));
     }

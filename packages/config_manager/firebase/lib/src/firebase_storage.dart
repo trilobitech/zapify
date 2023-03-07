@@ -23,7 +23,7 @@ class FirebaseConfigStorage implements IRemoteConfigStorage {
       case 'double':
         return value.asDouble() as T;
       default:
-        throw 'Invalid type: "${T.toString()}"';
+        throw UnsupportedError('Invalid type: "${T.toString()}"');
     }
   }
 }

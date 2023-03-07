@@ -10,7 +10,7 @@ class Color extends Equatable {
     if (value is String) {
       return Color.fromString(value);
     }
-    throw 'Unsupported value: "$value"';
+    throw ArgumentError('Unsupported color value: "$value"');
   }
 
   factory Color.fromString(String hexColor) {

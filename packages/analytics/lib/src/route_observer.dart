@@ -23,7 +23,7 @@ class AnalyticsRouteObserver extends RouteObserver<ModalRoute<dynamic>> {
   final RouteFilter routeFilter;
 
   void _sendScreenView(Route<dynamic> route) {
-    final String? screenName = nameExtractor(route.settings);
+    final screenName = nameExtractor(route.settings);
     if (screenName != null) {
       analytics.screenViewed(screenName);
     }

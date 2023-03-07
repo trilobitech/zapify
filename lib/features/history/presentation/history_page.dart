@@ -71,8 +71,7 @@ class HistoryPage extends StatelessWidget
     Iterable<ContextMenuAction> options,
   ) async {
     final bloc = context.read<HistoryBloc>();
-    final RenderObject overlay =
-        Overlay.of(context)!.context.findRenderObject()!;
+    final overlay = Overlay.of(context)!.context.findRenderObject()!;
 
     final overlaySize = overlay.paintBounds.size;
     final action = await showMenu(

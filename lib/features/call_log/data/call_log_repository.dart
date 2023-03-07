@@ -7,7 +7,7 @@ import '../domain/repository/call_log.dart';
 class CallLogRepositoryImpl extends CallLogRepository {
   @override
   Future<Iterable<CallEntity>> getAll() async {
-    Iterable<plugin.CallLogEntry> entries = await plugin.CallLog.get();
+    final entries = await plugin.CallLog.get();
     return entries.map((e) => e.toDomain()).whereNotNull();
   }
 }

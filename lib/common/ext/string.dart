@@ -1,7 +1,7 @@
 extension StringExt on String {
   // https://stackoverflow.com/a/66554024
   String format(List<dynamic> params) {
-    int index = 0;
+    var index = 0;
     return replaceAllMapped(
       RegExp(r'{.*?}'),
       (_) => params[index++],
