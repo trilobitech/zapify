@@ -6,13 +6,15 @@
     <queries>
         <intent>
             <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT"/>
             <category android:name="android.intent.category.BROWSABLE" />
-            <data android:scheme="whatsapp-consumer" />
+            <data android:host="send" android:scheme="whatsapp-consumer" />
         </intent>
         <intent>
             <action android:name="android.intent.action.VIEW" />
-            <category android:name="android.intent.category.BROWSABLE" />
-            <data android:scheme="whatsapp-smb" />
+            <category android:name="android.intent.category.DEFAULT"/>
+            <category android:name="android.intent.category.BROWSABLE"/>
+            <data android:host="send" android:scheme="whatsapp-smb"/>
         </intent>
         <intent>
             <action android:name="android.intent.action.VIEW" />
