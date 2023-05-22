@@ -2,8 +2,10 @@ import 'package:analytics/analytics.dart';
 import 'package:logger_plus/logger_plus.dart';
 import 'package:receive_intent/receive_intent.dart';
 import 'package:state_action_bloc/state_action_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../common/domain/error.dart';
+import '../../../common/ext/string.dart';
 import '../../call_log/call_log_mediator.dart';
 import '../../history/domain/usecase/save_phone_number_history.dart';
 import '../../history/history_mediator.dart';
@@ -68,11 +70,23 @@ class HomeBloc extends ActionBloc<HomeAction> implements HomeMediator {
       _phoneFieldComponent.updateRegion(region);
 
   @override
-  Future<void> launch(ChatAppLauncher launcher) async {
+  Future<void> launch(String uriTemplate) async {
     try {
       final phoneNumber = await _phoneFieldComponent.getPhoneNumber();
 
-      await launcher(phoneNumber.e164.replaceFirst('+', ''));
+      final uri = uriTemplate.formatWithMap({
+        'phoneNumber': phoneNumber.e164.replaceFirst('+', ''),
+      });
+
+      final successful = await launchUrl(
+        Uri.parse(uri),
+        mode: LaunchMode.externalApplication,
+      );
+
+      if (!successful) {
+        throw UnsupportedError('Could not launch $uriTemplate');
+      }
+
       await _savePhoneNumberHistory(phoneNumber: phoneNumber.international);
 
       _phoneFieldComponent.clearField();

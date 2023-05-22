@@ -7,7 +7,7 @@ class ChatAppLocal extends ChatApp {
     required super.name,
     required super.icon,
     required super.brandColor,
-    required super.deepLinkPrefix,
+    required super.deepLinkTemplate,
   });
 
   factory ChatAppLocal.fromJson(Map<String, dynamic> json) => ChatAppLocal(
@@ -15,7 +15,7 @@ class ChatAppLocal extends ChatApp {
         name: json['name'],
         icon: Uri.parse(json['icon']),
         brandColor: Color(json['brand_color']),
-        deepLinkPrefix: json['deeplink_prefix'],
+        deepLinkTemplate: json['deeplink_template'],
       );
 
   final int id;

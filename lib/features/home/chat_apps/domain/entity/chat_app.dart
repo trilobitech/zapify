@@ -7,16 +7,16 @@ class ChatApp extends Equatable {
     required this.name,
     required this.icon,
     required this.brandColor,
-    required this.deepLinkPrefix,
+    required this.deepLinkTemplate,
   });
 
   final String name;
   final Uri icon;
   final Color brandColor;
-  final String deepLinkPrefix;
+  final String deepLinkTemplate;
 
   @override
-  List get props => [name, icon, brandColor, deepLinkPrefix];
+  List get props => [name, icon, brandColor, deepLinkTemplate];
 
   @override
   bool get stringify => true;
