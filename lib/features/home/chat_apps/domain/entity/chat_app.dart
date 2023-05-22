@@ -10,13 +10,6 @@ class ChatApp extends Equatable {
     required this.deepLinkPrefix,
   });
 
-  factory ChatApp.fromJson(Map<String, dynamic> json) => ChatApp(
-        name: json['name'],
-        icon: Uri.parse(json['icon']),
-        brandColor: Color(json['brand_color']),
-        deepLinkPrefix: json['deeplink_prefix'],
-      );
-
   final String name;
   final Uri icon;
   final Color brandColor;

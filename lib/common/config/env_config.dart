@@ -13,9 +13,4 @@ class EnvConfig {
     'ZAPIFY_APP_STORE_ID',
     defaultValue: '',
   );
-
-  static const syncAppsInterval = int.fromEnvironment(
-    'ZAPIFY_SYNC_APPS_INTERVAL',
-    defaultValue: Duration.millisecondsPerDay,
-  );
 }
