@@ -10,6 +10,11 @@
     "homeEmptyPhoneNumberError": "Please provide the phone number",
     "homeInvalidPhoneNumberError": "Invalid phone number",
 
+    "homeChatAppNotFoundErrorTitle": "Oops!",
+    "homeChatAppNotFoundErrorMessage": "Something went wrong while opening \"{}\".",
+    "homeChatAppNotFoundErrorPrimaryAction": "Search in store",
+    "homeChatAppNotFoundErrorSecondaryAction": "Cancel",
+
     "recentNumbersTitle": "Recent numbers",
     "recentNumbersEmpty": "No recent numbers yet",
     "recentNumberRemoved": "Recent number \"{phoneNumber}\" was removed!",

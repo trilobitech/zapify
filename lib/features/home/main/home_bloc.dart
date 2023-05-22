@@ -1,4 +1,5 @@
 import 'package:analytics/analytics.dart';
+import 'package:flutter/services.dart';
 import 'package:logger_plus/logger_plus.dart';
 import 'package:receive_intent/receive_intent.dart';
 import 'package:state_action_bloc/state_action_bloc.dart';
@@ -12,6 +13,7 @@ import '../../history/history_mediator.dart';
 import '../../region/domain/entity/region.dart';
 import '../../region/region_mediator.dart';
 import '../chat_apps/chat_apps_mediator.dart';
+import '../chat_apps/domain/exception/open_chat_app_error.dart';
 import '../phone/phone_field_component.dart';
 import 'home_state.dart';
 
@@ -84,12 +86,17 @@ class HomeBloc extends ActionBloc<HomeAction> implements HomeMediator {
       );
 
       if (!successful) {
-        throw UnsupportedError('Could not launch $uriTemplate');
+        throw ChatAppNotFoundError('Failed to launch $uriTemplate');
       }
 
       await _savePhoneNumberHistory(phoneNumber: phoneNumber.international);
 
       _phoneFieldComponent.clearField();
+    } on PlatformException catch (e) {
+      if (e.code == 'ACTIVITY_NOT_FOUND') {
+        throw ChatAppNotFoundError(e.message);
+      }
+      rethrow;
     } on NonReportableError {
       // ignore already handled errors
     }
