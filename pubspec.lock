@@ -183,13 +183,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.5"
-  client_info:
-    dependency: "direct main"
-    description:
-      path: "packages/client_info"
-      relative: true
-    source: path
-    version: "0.1.0"
   clock:
     dependency: transitive
     description:
@@ -239,48 +232,6 @@ packages:
       relative: true
     source: path
     version: "0.1.0"
-  connectivity_plus:
-    dependency: transitive
-    description:
-      name: connectivity_plus
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.3.9"
-  connectivity_plus_linux:
-    dependency: transitive
-    description:
-      name: connectivity_plus_linux
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.3.1"
-  connectivity_plus_macos:
-    dependency: transitive
-    description:
-      name: connectivity_plus_macos
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.2.6"
-  connectivity_plus_platform_interface:
-    dependency: transitive
-    description:
-      name: connectivity_plus_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.2.1"
-  connectivity_plus_web:
-    dependency: transitive
-    description:
-      name: connectivity_plus_web
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.2.5"
-  connectivity_plus_windows:
-    dependency: transitive
-    description:
-      name: connectivity_plus_windows
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.2.2"
   console:
     dependency: transitive
     description:
@@ -344,13 +295,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.7"
-  dbus:
-    dependency: transitive
-    description:
-      name: dbus
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.7.8"
   deep_pick:
     dependency: transitive
     description:
@@ -358,20 +302,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.10.0"
-  device_info:
-    dependency: transitive
-    description:
-      name: device_info
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.3"
-  device_info_platform_interface:
-    dependency: transitive
-    description:
-      name: device_info_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.1"
   dotenv:
     dependency: transitive
     description:
@@ -649,21 +579,12 @@ packages:
     source: hosted
     version: "2.1.0"
   http:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: http
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.13.5"
-  http_client_plus:
-    dependency: "direct main"
-    description:
-      path: http_client_plus
-      ref: HEAD
-      resolved-ref: "169623e8b58786f59805c53049f66dcf51976037"
-      url: "https://github.com/pedrox-hs/flutter_packages"
-    source: git
-    version: "0.1.0"
   http_multi_server:
     dependency: transitive
     description:
@@ -745,7 +666,7 @@ packages:
     dependency: "direct main"
     description:
       path: logger_plus
-      ref: HEAD
+      ref: "18fc89b24511f680f95f1c8937508a06d9570a3b"
       resolved-ref: "18fc89b24511f680f95f1c8937508a06d9570a3b"
       url: "https://github.com/pedrox-hs/flutter_packages"
     source: git
@@ -799,13 +720,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
-  nm:
-    dependency: transitive
-    description:
-      name: nm
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.5.0"
   node_preamble:
     dependency: transitive
     description:
@@ -820,13 +734,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
-  package_info:
-    dependency: transitive
-    description:
-      name: package_info
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.2"
   path:
     dependency: "direct main"
     description:
