@@ -31,6 +31,8 @@
     "availableRegionsSearch": "Search…",
 
     "settingsTitle": "Settings",
+    "settingsRegionTitle": "Default region",
+    "settingsRegionSubtitle": "Select the default region to use when opening a number",
 
     "today": "'Today at' h:mm a",
     "yesterday": "'Yesterday at' h:mm a",

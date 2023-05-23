@@ -9,7 +9,8 @@ enum LocalConfig
         KeyValueMixin<ILocalConfigStorage>,
         KeyValueWritableMixin<ILocalConfigStorage> {
   historicSize,
-  lastAppReviewAt;
+  lastAppReviewAt,
+  defaultRegion;
 
   @override
   String get key => '$_appId\$$name';

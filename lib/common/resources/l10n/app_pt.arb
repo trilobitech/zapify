@@ -31,6 +31,8 @@
     "availableRegionsSearch": "Procurar…",
 
     "settingsTitle": "Configurações",
+    "settingsRegionTitle": "País padrão",
+    "settingsRegionSubtitle": "Selecione o país padrão para abrir um número",
 
     "today": "'Hoje às' HH:mm",
     "yesterday": "'Ontem às' HH:mm",

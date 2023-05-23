@@ -30,7 +30,12 @@ class _SettingsList extends StatelessWidget
   @override
   Widget buildWidget(BuildContext context) {
     final items = [
-      // TODO: add items
+      _SettingItemTile(
+        title: context.strings.settingsRegionTitle,
+        subtitle: context.strings.settingsRegionSubtitle,
+        onTap: () =>
+            context.read<SettingsBloc>().onDefaultRegionOptionClicked(),
+      ),
     ];
 
     return ListView.separated(
@@ -53,7 +58,6 @@ class _SettingsList extends StatelessWidget
   }
 }
 
-// ignore: unused_element
 class _SettingItemTile extends StatelessWidget {
   const _SettingItemTile({
     required this.title,
