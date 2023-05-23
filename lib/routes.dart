@@ -3,6 +3,7 @@ import 'package:simple_nav/simple_nav.dart';
 
 import 'features/home/main/home_page.dart';
 import 'features/region/presentation/region_picker_page.dart';
+import 'features/settings/presentation/settings_page.dart';
 
 final routes = <String, RouteBuilder>{
   '/': (settings, _) {
@@ -20,4 +21,10 @@ final routes = <String, RouteBuilder>{
       ),
     );
   },
+  '/settings': (settings, extras) {
+    return MaterialPageRoute(
+      settings: const RouteSettings(name: 'SettingsPage'),
+      builder: (_) => SettingsPage(),
+    );
+  }
 };

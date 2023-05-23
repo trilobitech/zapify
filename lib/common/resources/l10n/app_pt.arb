@@ -20,6 +20,7 @@
     "recentNumberRemoved": "O número \"{phoneNumber}\" foi removido do histórico!",
     "actionRemove": "Excluir",
     "actionUndo": "Desfazer",
+    "actionSettings": "Configurações",
 
     "callLogTabTitle": "Chamadas",
     "callLogPermissionMessage": "Para exibir o histórico de chamadas, é necessário permitir o acesso.",
@@ -28,6 +29,8 @@
 
     "availableRegionsTitle": "Selecione o país",
     "availableRegionsSearch": "Procurar…",
+
+    "settingsTitle": "Configurações",
 
     "today": "'Hoje às' HH:mm",
     "yesterday": "'Ontem às' HH:mm",
