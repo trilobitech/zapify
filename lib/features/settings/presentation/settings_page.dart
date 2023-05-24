@@ -36,6 +36,12 @@ class _SettingsList extends StatelessWidget
         onTap: () =>
             context.read<SettingsBloc>().onDefaultRegionOptionClicked(),
       ),
+      _SettingItemTile(
+        title: context.strings.settingsMessagingAppsTitle,
+        subtitle: context.strings.settingsMessagingAppsSubtitle,
+        onTap: () =>
+            context.read<SettingsBloc>().onMessagingAppsOptionClicked(),
+      ),
     ];
 
     return ListView.separated(

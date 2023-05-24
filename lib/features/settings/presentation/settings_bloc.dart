@@ -28,6 +28,12 @@ class SettingsBloc extends ActionBloc<SettingsAction> {
     );
   }
 
+  void onMessagingAppsOptionClicked() {
+    sendAction(
+      SettingsAction.navigateTo('/messaging_apps'),
+    );
+  }
+
   Future onOptionUpdated(String route, dynamic result) async {
     if (route == '/regions' && result is IRegion) {
       return _setDefaultRegion(result);

@@ -33,6 +33,8 @@
     "settingsTitle": "Settings",
     "settingsRegionTitle": "Default region",
     "settingsRegionSubtitle": "Select the default region to use when opening a number",
+    "settingsMessagingAppsTitle": "Messaging apps",
+    "settingsMessagingAppsSubtitle": "Select the messaging apps you want to use",
 
     "messagingAppsTitle": "Messaging apps",
     "messagingAppsEnabledHeader": "Available apps",
