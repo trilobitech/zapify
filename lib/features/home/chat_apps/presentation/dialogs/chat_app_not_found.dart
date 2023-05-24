@@ -5,7 +5,7 @@ import 'package:logger_plus/logger_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../common/ext/context.dart';
-import '../../domain/entity/chat_app.dart';
+import '../../../../chat_app/domain/entity/chat_app.dart';
 
 class ChatAppNotFoundDialog extends StatelessWidget {
   const ChatAppNotFoundDialog(this.app, {Key? key}) : super(key: key);
@@ -26,14 +26,18 @@ class ChatAppNotFoundDialog extends StatelessWidget {
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: Text(context.strings.homeChatAppNotFoundErrorSecondaryAction),
+          child: Text(
+            context.strings.homeChatAppNotFoundErrorSecondaryAction,
+          ),
         ),
         TextButton(
           onPressed: () {
             _openStore(app);
             Navigator.of(context).pop();
           },
-          child: Text(context.strings.homeChatAppNotFoundErrorPrimaryAction),
+          child: Text(
+            context.strings.homeChatAppNotFoundErrorSecondaryAction,
+          ),
         ),
       ],
     );

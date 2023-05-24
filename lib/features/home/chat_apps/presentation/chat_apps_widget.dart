@@ -6,8 +6,8 @@ import 'package:state_action_bloc/state_action_bloc.dart';
 
 import '../../../../../common/ext/context.dart';
 import '../../../../../common/widgets/image_resolver_widget.dart';
+import '../../../chat_app/domain/entity/chat_app.dart';
 import '../chat_apps_mediator.dart';
-import '../domain/entity/chat_app.dart';
 import 'chat_apps_bloc.dart';
 import 'chat_apps_state.dart';
 import 'dialogs/chat_app_not_found.dart';
@@ -28,19 +28,22 @@ class ChatAppsWidget extends StatelessWidget
   FutureOr<void> handleAction(BuildContext context, ChatAppsAction action) =>
       action.when(
         select: (entry) => _openChatApp(context, entry),
-        showChatFailedMessage: (app) => _showChatFailedMessage(context, app),
+        showFailureMessage: (app) => _showChatFailuredMessage(context, app),
       );
 
   Future<void> _openChatApp(BuildContext context, ChatApp entry) async {
     await context
         .read<ChatAppsMediator>()
-        .launch(entry.deepLinkTemplate)
+        .launch(entry.deeplinkTemplate)
         .catchError(
           (err, stack) => context.read<ChatAppsBloc>().selectFailed(entry, err),
         );
   }
 
-  Future<void> _showChatFailedMessage(BuildContext context, ChatApp app) async {
+  Future<void> _showChatFailuredMessage(
+    BuildContext context,
+    ChatApp app,
+  ) async {
     await showDialog(
       context: context,
       builder: (context) => ChatAppNotFoundDialog(app),
@@ -61,9 +64,9 @@ class _SuccessView extends StatelessWidget {
       child: Row(
         children: entries
             .mapIndexed(
-              (index, chatApp) => _EntryView(
+              (index, entry) => _EntryView(
                 position: index,
-                entry: chatApp,
+                entry: entry,
               ),
             )
             .toList(growable: false),
@@ -128,7 +131,7 @@ class _EntryViewState extends State<_EntryView> with TickerProviderStateMixin {
             context.strings.homeOpenWithButton.format([entry.name]),
           ),
           labelStyle: const TextStyle(color: Colors.white),
-          backgroundColor: Color(entry.brandColor.value),
+          backgroundColor: Color(entry.color.value),
           onPressed: () {
             context.read<ChatAppsBloc>().selected(entry);
           },

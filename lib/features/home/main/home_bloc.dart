@@ -8,12 +8,12 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../common/domain/error.dart';
 import '../../../common/ext/string.dart';
 import '../../call_log/call_log_mediator.dart';
+import '../../chat_app/domain/exception/chat_app_not_found_error.dart';
 import '../../history/domain/usecase/save_phone_number_history.dart';
 import '../../history/history_mediator.dart';
 import '../../region/domain/entity/region.dart';
 import '../../region/region_mediator.dart';
 import '../chat_apps/chat_apps_mediator.dart';
-import '../chat_apps/domain/exception/open_chat_app_error.dart';
 import '../phone/phone_field_component.dart';
 import 'home_state.dart';
 

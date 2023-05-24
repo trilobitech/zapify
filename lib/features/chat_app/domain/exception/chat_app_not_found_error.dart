@@ -4,5 +4,5 @@ class ChatAppNotFoundError extends Error {
   final String? message;
 
   @override
-  String toString() => 'OpenChatAppError: $message';
+  String toString() => 'ChatAppNotFoundError: $message';
 }
