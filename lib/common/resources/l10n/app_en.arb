@@ -34,6 +34,10 @@
     "settingsRegionTitle": "Default region",
     "settingsRegionSubtitle": "Select the default region to use when opening a number",
 
+    "messagingAppsTitle": "Messaging apps",
+    "messagingAppsEnabledHeader": "Available apps",
+    "messagingAppsDisabledHeader": "Hidden apps",
+
     "today": "'Today at' h:mm a",
     "yesterday": "'Yesterday at' h:mm a",
     "lastCoupleOfDays": "EEEE 'at' h:mm a",

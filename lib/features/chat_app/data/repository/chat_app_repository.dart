@@ -11,4 +11,10 @@ class ChatAppRepository extends IChatAppRepository {
 
   @override
   Stream<Iterable<ChatApp>> getAll() => _dataSource.get();
+
+  @override
+  Future<void> disable(ChatApp chatApp) => _dataSource.remove(chatApp);
+
+  @override
+  Future<void> enable(ChatApp chatApp) => _dataSource.add(chatApp);
 }
