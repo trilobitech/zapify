@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'chat_apps_state.dart';
 
@@ -314,42 +314,44 @@ abstract class _ChatAppsStateLoaded implements ChatAppsState {
 
 /// @nodoc
 mixin _$ChatAppsAction {
-  ChatApp get entry => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(ChatApp entry) select,
+    required TResult Function(ChatApp app) showChatFailedMessage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(ChatApp entry)? select,
+    TResult? Function(ChatApp app)? showChatFailedMessage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(ChatApp entry)? select,
+    TResult Function(ChatApp app)? showChatFailedMessage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ChatAppsActionSelected value) select,
+    required TResult Function(_ChatAppsActionNavigate value)
+        showChatFailedMessage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChatAppsActionSelected value)? select,
+    TResult? Function(_ChatAppsActionNavigate value)? showChatFailedMessage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChatAppsActionSelected value)? select,
+    TResult Function(_ChatAppsActionNavigate value)? showChatFailedMessage,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $ChatAppsActionCopyWith<ChatAppsAction> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -358,8 +360,6 @@ abstract class $ChatAppsActionCopyWith<$Res> {
   factory $ChatAppsActionCopyWith(
           ChatAppsAction value, $Res Function(ChatAppsAction) then) =
       _$ChatAppsActionCopyWithImpl<$Res, ChatAppsAction>;
-  @useResult
-  $Res call({ChatApp entry});
 }
 
 /// @nodoc
@@ -371,28 +371,13 @@ class _$ChatAppsActionCopyWithImpl<$Res, $Val extends ChatAppsAction>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? entry = null,
-  }) {
-    return _then(_value.copyWith(
-      entry: null == entry
-          ? _value.entry
-          : entry // ignore: cast_nullable_to_non_nullable
-              as ChatApp,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$_ChatAppsActionSelectedCopyWith<$Res>
-    implements $ChatAppsActionCopyWith<$Res> {
+abstract class _$$_ChatAppsActionSelectedCopyWith<$Res> {
   factory _$$_ChatAppsActionSelectedCopyWith(_$_ChatAppsActionSelected value,
           $Res Function(_$_ChatAppsActionSelected) then) =
       __$$_ChatAppsActionSelectedCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({ChatApp entry});
 }
@@ -454,6 +439,7 @@ class _$_ChatAppsActionSelected implements _ChatAppsActionSelected {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(ChatApp entry) select,
+    required TResult Function(ChatApp app) showChatFailedMessage,
   }) {
     return select(entry);
   }
@@ -462,6 +448,7 @@ class _$_ChatAppsActionSelected implements _ChatAppsActionSelected {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(ChatApp entry)? select,
+    TResult? Function(ChatApp app)? showChatFailedMessage,
   }) {
     return select?.call(entry);
   }
@@ -470,6 +457,7 @@ class _$_ChatAppsActionSelected implements _ChatAppsActionSelected {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(ChatApp entry)? select,
+    TResult Function(ChatApp app)? showChatFailedMessage,
     required TResult orElse(),
   }) {
     if (select != null) {
@@ -482,6 +470,8 @@ class _$_ChatAppsActionSelected implements _ChatAppsActionSelected {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ChatAppsActionSelected value) select,
+    required TResult Function(_ChatAppsActionNavigate value)
+        showChatFailedMessage,
   }) {
     return select(this);
   }
@@ -490,6 +480,7 @@ class _$_ChatAppsActionSelected implements _ChatAppsActionSelected {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChatAppsActionSelected value)? select,
+    TResult? Function(_ChatAppsActionNavigate value)? showChatFailedMessage,
   }) {
     return select?.call(this);
   }
@@ -498,6 +489,7 @@ class _$_ChatAppsActionSelected implements _ChatAppsActionSelected {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChatAppsActionSelected value)? select,
+    TResult Function(_ChatAppsActionNavigate value)? showChatFailedMessage,
     required TResult orElse(),
   }) {
     if (select != null) {
@@ -511,10 +503,144 @@ abstract class _ChatAppsActionSelected implements ChatAppsAction {
   factory _ChatAppsActionSelected(final ChatApp entry) =
       _$_ChatAppsActionSelected;
 
-  @override
   ChatApp get entry;
-  @override
   @JsonKey(ignore: true)
   _$$_ChatAppsActionSelectedCopyWith<_$_ChatAppsActionSelected> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_ChatAppsActionNavigateCopyWith<$Res> {
+  factory _$$_ChatAppsActionNavigateCopyWith(_$_ChatAppsActionNavigate value,
+          $Res Function(_$_ChatAppsActionNavigate) then) =
+      __$$_ChatAppsActionNavigateCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ChatApp app});
+}
+
+/// @nodoc
+class __$$_ChatAppsActionNavigateCopyWithImpl<$Res>
+    extends _$ChatAppsActionCopyWithImpl<$Res, _$_ChatAppsActionNavigate>
+    implements _$$_ChatAppsActionNavigateCopyWith<$Res> {
+  __$$_ChatAppsActionNavigateCopyWithImpl(_$_ChatAppsActionNavigate _value,
+      $Res Function(_$_ChatAppsActionNavigate) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? app = null,
+  }) {
+    return _then(_$_ChatAppsActionNavigate(
+      null == app
+          ? _value.app
+          : app // ignore: cast_nullable_to_non_nullable
+              as ChatApp,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ChatAppsActionNavigate implements _ChatAppsActionNavigate {
+  _$_ChatAppsActionNavigate(this.app);
+
+  @override
+  final ChatApp app;
+
+  @override
+  String toString() {
+    return 'ChatAppsAction.showChatFailedMessage(app: $app)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ChatAppsActionNavigate &&
+            (identical(other.app, app) || other.app == app));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, app);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ChatAppsActionNavigateCopyWith<_$_ChatAppsActionNavigate> get copyWith =>
+      __$$_ChatAppsActionNavigateCopyWithImpl<_$_ChatAppsActionNavigate>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(ChatApp entry) select,
+    required TResult Function(ChatApp app) showChatFailedMessage,
+  }) {
+    return showChatFailedMessage(app);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(ChatApp entry)? select,
+    TResult? Function(ChatApp app)? showChatFailedMessage,
+  }) {
+    return showChatFailedMessage?.call(app);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(ChatApp entry)? select,
+    TResult Function(ChatApp app)? showChatFailedMessage,
+    required TResult orElse(),
+  }) {
+    if (showChatFailedMessage != null) {
+      return showChatFailedMessage(app);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ChatAppsActionSelected value) select,
+    required TResult Function(_ChatAppsActionNavigate value)
+        showChatFailedMessage,
+  }) {
+    return showChatFailedMessage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ChatAppsActionSelected value)? select,
+    TResult? Function(_ChatAppsActionNavigate value)? showChatFailedMessage,
+  }) {
+    return showChatFailedMessage?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ChatAppsActionSelected value)? select,
+    TResult Function(_ChatAppsActionNavigate value)? showChatFailedMessage,
+    required TResult orElse(),
+  }) {
+    if (showChatFailedMessage != null) {
+      return showChatFailedMessage(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChatAppsActionNavigate implements ChatAppsAction {
+  factory _ChatAppsActionNavigate(final ChatApp app) =
+      _$_ChatAppsActionNavigate;
+
+  ChatApp get app;
+  @JsonKey(ignore: true)
+  _$$_ChatAppsActionNavigateCopyWith<_$_ChatAppsActionNavigate> get copyWith =>
       throw _privateConstructorUsedError;
 }

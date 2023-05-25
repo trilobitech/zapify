@@ -10,6 +10,11 @@
     "homeEmptyPhoneNumberError": "Por favor informe o número desejado.",
     "homeInvalidPhoneNumberError": "O número informado é inválido",
 
+    "homeChatAppNotFoundErrorTitle": "Oops!",
+    "homeChatAppNotFoundErrorMessage": "Ocorreu um erro ao abrir o \"{}\".",
+    "homeChatAppNotFoundErrorPrimaryAction": "Procurar na loja",
+    "homeChatAppNotFoundErrorSecondaryAction": "Cancelar",
+
     "recentNumbersTitle": "Números recentes",
     "recentNumbersEmpty": "Nenhum número recente",
     "recentNumberRemoved": "O número \"{phoneNumber}\" foi removido do histórico!",

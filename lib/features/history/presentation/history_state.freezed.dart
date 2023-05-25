@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'history_state.dart';
 
@@ -380,7 +380,6 @@ class _$_HistoryStatePopulated implements _HistoryStatePopulated {
   final List<HistoryEntry> _entries;
   @override
   List<HistoryEntry> get entries {
-    if (_entries is EqualUnmodifiableListView) return _entries;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_entries);
   }
@@ -774,7 +773,7 @@ class __$$_HistoryActionShowMenuCopyWithImpl<$Res>
   @override
   $Res call({
     Object? entry = null,
-    Object? position = freezed,
+    Object? position = null,
     Object? options = null,
   }) {
     return _then(_$_HistoryActionShowMenu(
@@ -782,7 +781,7 @@ class __$$_HistoryActionShowMenuCopyWithImpl<$Res>
           ? _value.entry
           : entry // ignore: cast_nullable_to_non_nullable
               as HistoryEntry,
-      freezed == position
+      null == position
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
               as Offset,
@@ -817,15 +816,13 @@ class _$_HistoryActionShowMenu implements _HistoryActionShowMenu {
         (other.runtimeType == runtimeType &&
             other is _$_HistoryActionShowMenu &&
             (identical(other.entry, entry) || other.entry == entry) &&
-            const DeepCollectionEquality().equals(other.position, position) &&
+            (identical(other.position, position) ||
+                other.position == position) &&
             const DeepCollectionEquality().equals(other.options, options));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      entry,
-      const DeepCollectionEquality().hash(position),
+  int get hashCode => Object.hash(runtimeType, entry, position,
       const DeepCollectionEquality().hash(options));
 
   @JsonKey(ignore: true)

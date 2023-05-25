@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:logger_plus/logger_plus.dart';
 import 'package:state_action_bloc/state_action_bloc.dart';
 
 import '../../../../../common/ext/context.dart';
@@ -11,6 +10,7 @@ import '../chat_apps_mediator.dart';
 import '../domain/entity/chat_app.dart';
 import 'chat_apps_bloc.dart';
 import 'chat_apps_state.dart';
+import 'dialogs/chat_app_not_found.dart';
 
 class ChatAppsWidget extends StatelessWidget
     with StateActionMixin<ChatAppsBloc, ChatAppsState, ChatAppsAction> {
@@ -28,13 +28,23 @@ class ChatAppsWidget extends StatelessWidget
   FutureOr<void> handleAction(BuildContext context, ChatAppsAction action) =>
       action.when(
         select: (entry) => _openChatApp(context, entry),
+        showChatFailedMessage: (app) => _showChatFailedMessage(context, app),
       );
 
   Future<void> _openChatApp(BuildContext context, ChatApp entry) async {
     await context
         .read<ChatAppsMediator>()
         .launch(entry.deepLinkTemplate)
-        .catchError(catchErrorLogger);
+        .catchError(
+          (err, stack) => context.read<ChatAppsBloc>().selectFailed(entry, err),
+        );
+  }
+
+  Future<void> _showChatFailedMessage(BuildContext context, ChatApp app) async {
+    await showDialog(
+      context: context,
+      builder: (context) => ChatAppNotFoundDialog(app),
+    );
   }
 }
 
