@@ -24,7 +24,7 @@ final routes = <String, RouteBuilder>{
   '/settings': (settings, extras) {
     return MaterialPageRoute(
       settings: const RouteSettings(name: 'SettingsPage'),
-      builder: (_) => SettingsPage(),
+      builder: (_) => const SettingsPage(),
     );
   }
 };
