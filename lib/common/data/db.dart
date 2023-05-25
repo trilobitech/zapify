@@ -29,7 +29,8 @@ Future<void> _migrate(Database db, Iterable<String> migrations) async {
 
   migrations
       .expand((e) => e.split(';'))
-      .where((sql) => sql.trim().isNotEmpty)
+      .map((e) => e.trim())
+      .where((sql) => sql.isNotEmpty)
       .forEach((sql) => batch.execute(sql));
 
   await batch.commit(noResult: true);
@@ -56,6 +57,22 @@ List<String> get _migrationsUp => [
       (1, "Telegram", "assets://icons/telegram.svg", "#ff0088cc", "https://t.me/"),
       (2, "Signal",   "assets://icons/signal.svg",   "#ff3a76f0", "https://signal.me/#p/+")
       ''',
+      '''
+      DROP TABLE chat_app;
+      CREATE TABLE chat_app(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT,
+        icon TEXT,
+        brand_color TEXT,
+        deeplink_template TEXT
+      );
+
+      INSERT INTO chat_app(id, name, icon, brand_color, deeplink_template) VALUES
+      (0, "WhatsApp",    "assets://icons/whatsapp.svg",          "#ff25d366", "whatsapp-consumer://send?phone={phoneNumber}"),
+      (1, "WA Business", "assets://icons/whatsapp-business.svg", "#ff25d366", "whatsapp-smb://send?phone={phoneNumber}"),
+      (2, "Telegram",    "assets://icons/telegram.svg",          "#ff0088cc", "https://t.me/{phoneNumber}"),
+      (3, "Signal",      "assets://icons/signal.svg",            "#ff3a76f0", "https://signal.me/#p/+{phoneNumber}")
+      ''',
     ];
 
 List<String> get _migrationsDown => [
@@ -64,5 +81,15 @@ List<String> get _migrationsDown => [
       ''',
       '''
       DROP TABLE IF EXISTS chat_app
+      ''',
+      '''
+      DROP TABLE chat_app;
+      CREATE TABLE chat_app(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT,
+        icon TEXT,
+        brand_color TEXT,
+        deeplink_prefix TEXT
+      );
       ''',
     ];

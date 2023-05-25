@@ -9,7 +9,6 @@ enum LocalConfig
         KeyValueMixin<ILocalConfigStorage>,
         KeyValueWritableMixin<ILocalConfigStorage> {
   historicSize,
-  chatAppsExpiration,
   lastAppReviewAt;
 
   @override
@@ -21,5 +20,4 @@ enum LocalConfig
 
 Map<String, dynamic> get localConfigDefaults => {
       LocalConfig.historicSize.key: 0,
-      LocalConfig.chatAppsExpiration.key: -1,
     };

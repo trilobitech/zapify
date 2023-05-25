@@ -1,7 +1,6 @@
 import '../../../../common/di/definition.dart';
 import 'data/datasource/chat_app_datasource.dart';
-import 'data/datasource/impl/chat_app_datasource_local.dart';
-import 'data/datasource/impl/chat_app_datasource_remote.dart';
+import 'data/datasource/impl/chat_app_datasource.dart';
 import 'data/repository/chat_app_repository.dart';
 import 'domain/repository/chat_app_repository.dart';
 import 'domain/usecase/get_chat_apps.dart';
@@ -23,20 +22,13 @@ void chatAppsModule() {
 
   registerFactory<IChatAppRepository>(
     () => ChatAppRepository(
-      localDataSource: get(),
-      remoteDataSource: get(),
+      dataSource: get(),
     ),
   );
 
-  registerFactory<ChatAppDataSourceLocal>(
-    () => ChatAppDataSourceLocalImpl(
+  registerFactory<ChatAppDataSource>(
+    () => ChatAppDataSourceImpl(
       db: lazy(),
-    ),
-  );
-
-  registerFactory<ChatAppDataSourceRemote>(
-    () => ChatAppDataSourceRemoteImpl(
-      httpClient: get(),
     ),
   );
 }

@@ -16,6 +16,7 @@ dependencies:
     git:
       url: https://github.com/pedrox-hs/flutter_packages
       path: logger_plus
+      ref: "18fc89b24511f680f95f1c8937508a06d9570a3b"
 
 dev_dependencies:
   flutter_test:
