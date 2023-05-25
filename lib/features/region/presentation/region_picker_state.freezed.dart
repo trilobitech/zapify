@@ -16,43 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$RegionPickerState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(List<Country> countries) $default, {
-    required TResult Function() initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<Country> countries)? $default, {
-    TResult? Function()? initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<Country> countries)? $default, {
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_RegionPickerStateSuccess value) $default, {
-    required TResult Function(_RegionPickerStateInitial value) initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_RegionPickerStateSuccess value)? $default, {
-    TResult? Function(_RegionPickerStateInitial value)? initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_RegionPickerStateSuccess value)? $default, {
-    TResult Function(_RegionPickerStateInitial value)? initial,
-    required TResult orElse(),
-  }) =>
+  List<Country> get countries => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $RegionPickerStateCopyWith<RegionPickerState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -61,6 +28,8 @@ abstract class $RegionPickerStateCopyWith<$Res> {
   factory $RegionPickerStateCopyWith(
           RegionPickerState value, $Res Function(RegionPickerState) then) =
       _$RegionPickerStateCopyWithImpl<$Res, RegionPickerState>;
+  @useResult
+  $Res call({List<Country> countries});
 }
 
 /// @nodoc
@@ -72,14 +41,29 @@ class _$RegionPickerStateCopyWithImpl<$Res, $Val extends RegionPickerState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? countries = null,
+  }) {
+    return _then(_value.copyWith(
+      countries: null == countries
+          ? _value.countries
+          : countries // ignore: cast_nullable_to_non_nullable
+              as List<Country>,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$_RegionPickerStateSuccessCopyWith<$Res> {
+abstract class _$$_RegionPickerStateSuccessCopyWith<$Res>
+    implements $RegionPickerStateCopyWith<$Res> {
   factory _$$_RegionPickerStateSuccessCopyWith(
           _$_RegionPickerStateSuccess value,
           $Res Function(_$_RegionPickerStateSuccess) then) =
       __$$_RegionPickerStateSuccessCopyWithImpl<$Res>;
+  @override
   @useResult
   $Res call({List<Country> countries});
 }
@@ -98,7 +82,7 @@ class __$$_RegionPickerStateSuccessCopyWithImpl<$Res>
     Object? countries = null,
   }) {
     return _then(_$_RegionPickerStateSuccess(
-      null == countries
+      countries: null == countries
           ? _value._countries
           : countries // ignore: cast_nullable_to_non_nullable
               as List<Country>,
@@ -109,11 +93,12 @@ class __$$_RegionPickerStateSuccessCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_RegionPickerStateSuccess implements _RegionPickerStateSuccess {
-  _$_RegionPickerStateSuccess(final List<Country> countries)
+  _$_RegionPickerStateSuccess({final List<Country> countries = const []})
       : _countries = countries;
 
   final List<Country> _countries;
   @override
+  @JsonKey()
   List<Country> get countries {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_countries);
@@ -143,182 +128,18 @@ class _$_RegionPickerStateSuccess implements _RegionPickerStateSuccess {
   _$$_RegionPickerStateSuccessCopyWith<_$_RegionPickerStateSuccess>
       get copyWith => __$$_RegionPickerStateSuccessCopyWithImpl<
           _$_RegionPickerStateSuccess>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(List<Country> countries) $default, {
-    required TResult Function() initial,
-  }) {
-    return $default(countries);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<Country> countries)? $default, {
-    TResult? Function()? initial,
-  }) {
-    return $default?.call(countries);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<Country> countries)? $default, {
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(countries);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_RegionPickerStateSuccess value) $default, {
-    required TResult Function(_RegionPickerStateInitial value) initial,
-  }) {
-    return $default(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_RegionPickerStateSuccess value)? $default, {
-    TResult? Function(_RegionPickerStateInitial value)? initial,
-  }) {
-    return $default?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_RegionPickerStateSuccess value)? $default, {
-    TResult Function(_RegionPickerStateInitial value)? initial,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(this);
-    }
-    return orElse();
-  }
 }
 
 abstract class _RegionPickerStateSuccess implements RegionPickerState {
-  factory _RegionPickerStateSuccess(final List<Country> countries) =
+  factory _RegionPickerStateSuccess({final List<Country> countries}) =
       _$_RegionPickerStateSuccess;
 
+  @override
   List<Country> get countries;
+  @override
   @JsonKey(ignore: true)
   _$$_RegionPickerStateSuccessCopyWith<_$_RegionPickerStateSuccess>
       get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_RegionPickerStateInitialCopyWith<$Res> {
-  factory _$$_RegionPickerStateInitialCopyWith(
-          _$_RegionPickerStateInitial value,
-          $Res Function(_$_RegionPickerStateInitial) then) =
-      __$$_RegionPickerStateInitialCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_RegionPickerStateInitialCopyWithImpl<$Res>
-    extends _$RegionPickerStateCopyWithImpl<$Res, _$_RegionPickerStateInitial>
-    implements _$$_RegionPickerStateInitialCopyWith<$Res> {
-  __$$_RegionPickerStateInitialCopyWithImpl(_$_RegionPickerStateInitial _value,
-      $Res Function(_$_RegionPickerStateInitial) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_RegionPickerStateInitial implements _RegionPickerStateInitial {
-  _$_RegionPickerStateInitial();
-
-  @override
-  String toString() {
-    return 'RegionPickerState.initial()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_RegionPickerStateInitial);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(List<Country> countries) $default, {
-    required TResult Function() initial,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<Country> countries)? $default, {
-    TResult? Function()? initial,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<Country> countries)? $default, {
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_RegionPickerStateSuccess value) $default, {
-    required TResult Function(_RegionPickerStateInitial value) initial,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_RegionPickerStateSuccess value)? $default, {
-    TResult? Function(_RegionPickerStateInitial value)? initial,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_RegionPickerStateSuccess value)? $default, {
-    TResult Function(_RegionPickerStateInitial value)? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _RegionPickerStateInitial implements RegionPickerState {
-  factory _RegionPickerStateInitial() = _$_RegionPickerStateInitial;
 }
 
 /// @nodoc

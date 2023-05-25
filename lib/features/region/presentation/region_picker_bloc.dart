@@ -12,7 +12,11 @@ class RegionPickerBloc
     required IAnalytics analytics,
   })  : _getAvailableRegions = getAvailableRegions,
         _analytics = analytics,
-        super(RegionPickerState.initial());
+        super(
+          RegionPickerState(
+            countries: List.generate(20, (_) => ShimmerCountry()),
+          ),
+        );
 
   final GetRegionsByTermUseCase _getAvailableRegions;
   final IAnalytics _analytics;
@@ -20,12 +24,12 @@ class RegionPickerBloc
   @override
   Future<void> load() async {
     final countries = await _getAvailableRegions();
-    setState(RegionPickerState(countries));
+    setState(RegionPickerState(countries: countries));
   }
 
   void fetchRegionsByTerm(String term) async {
     final countries = await _getAvailableRegions(term: term);
-    setState(RegionPickerState(countries));
+    setState(RegionPickerState(countries: countries));
   }
 
   void select(Country country) {

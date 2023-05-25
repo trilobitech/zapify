@@ -44,7 +44,12 @@ void main() {
   test(
     'initial state should be RegionPickerState.initial()',
     () {
-      expect(regionPickerBloc.currentState, RegionPickerState.initial());
+      expect(
+        regionPickerBloc.currentState,
+        RegionPickerState(
+          countries: List.generate(20, (_) => ShimmerCountry()),
+        ),
+      );
     },
   );
 
@@ -53,7 +58,7 @@ void main() {
     () {
       expectLater(
         regionPickerBloc.stream,
-        emits(RegionPickerState(countries)),
+        emits(RegionPickerState(countries: countries)),
       );
     },
   );
@@ -75,7 +80,7 @@ void main() {
 
         expect(
           regionPickerBloc.stream,
-          emits(RegionPickerState([brazil])),
+          emits(RegionPickerState(countries: [brazil])),
         );
       },
     );

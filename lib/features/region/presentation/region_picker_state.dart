@@ -7,13 +7,20 @@ part 'region_picker_state.freezed.dart';
 
 @freezed
 class RegionPickerState with _$RegionPickerState implements IState {
-  factory RegionPickerState(List<Country> countries) =
-      _RegionPickerStateSuccess;
-  factory RegionPickerState.initial() = _RegionPickerStateInitial;
+  factory RegionPickerState({
+    @Default([]) List<Country> countries,
+  }) = _RegionPickerStateSuccess;
 }
 
 @freezed
 class RegionPickerAction with _$RegionPickerAction implements IAction {
   factory RegionPickerAction.close([IRegion? region]) =
       _RegionPickerActionClose;
+}
+
+class ShimmerCountry extends Country {
+  ShimmerCountry() : super(code: '■■', name: '■■■■■■■■■■■■', prefix: 99);
+
+  @override
+  String? get flag => '🇲🇱';
 }
