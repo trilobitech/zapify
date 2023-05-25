@@ -1,0 +1,8 @@
+from_owner:
+  - pedrox-hs
+  - create-issue-branch[bot]
+required_labels: []
+apply_labels:
+  - automerge
+blacklisted_labels:
+  - wip
