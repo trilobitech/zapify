@@ -3,47 +3,19 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:state_action_bloc/state_action_bloc.dart';
 
-import '../../../common/di/inject.dart';
+import '../../../common/di/provider.dart';
 import '../../../common/ext/context.dart';
+import '../../../common/widgets/shimmer_view.dart';
 import '../domain/entity/region.dart';
 import 'region_picker_bloc.dart';
 import 'region_picker_state.dart';
 
-class RegionPicker extends StatelessWidget
-    with
-        StateActionMixin<RegionPickerBloc, RegionPickerState,
-            RegionPickerAction> {
-  RegionPicker({super.key, this.selected});
+typedef _RegionPickerBlocMixin
+    = StateActionMixin<RegionPickerBloc, RegionPickerState, RegionPickerAction>;
 
-  @override
-  late final bloc = inject<RegionPickerBloc>();
-  final RegionCode? selected;
+class RegionPicker extends StatelessWidget {
+  const RegionPicker({super.key, this.selected});
 
-  @override
-  Widget buildState(
-    BuildContext context,
-    RegionPickerState state,
-  ) =>
-      state.when(
-        (countries) => _SuccessView(countries: countries, selected: selected),
-        initial: () => Container(),
-      );
-
-  @override
-  FutureOr<void> handleAction(
-    BuildContext context,
-    RegionPickerAction action,
-  ) =>
-      action.when(close: (country) => Navigator.of(context).pop(country));
-}
-
-class _SuccessView extends StatelessWidget {
-  const _SuccessView({
-    required this.countries,
-    required this.selected,
-  });
-
-  final List<Country> countries;
   final RegionCode? selected;
 
   @override
@@ -52,24 +24,12 @@ class _SuccessView extends StatelessWidget {
       appBar: AppBar(
         title: Text(context.strings.availableRegionsTitle),
       ),
-      body: Scrollbar(
+      body: DiProvider<RegionPickerBloc>(
         child: Column(
           children: [
             const _SearchView(),
             Expanded(
-              child: ListView.separated(
-                itemCount: countries.length,
-                separatorBuilder: (_, i) => const Divider(height: 0),
-                itemBuilder: (context, i) {
-                  final region = countries[i];
-                  return _RegionListTile(
-                    region: countries[i],
-                    onTap: (country) =>
-                        context.read<RegionPickerBloc>().select(country),
-                    isSelected: selected == region.code,
-                  );
-                },
-              ),
+              child: _RegionList(selected: selected),
             ),
           ],
         ),
@@ -86,8 +46,9 @@ class _SearchView extends StatefulWidget {
 }
 
 class _SearchViewState extends State<_SearchView> {
-  late final bloc = context.read<RegionPickerBloc>();
   late final ctrl = TextEditingController();
+
+  RegionPickerBloc get _bloc => context.read<RegionPickerBloc>();
 
   @override
   void initState() {
@@ -118,8 +79,45 @@ class _SearchViewState extends State<_SearchView> {
   }
 
   void searchTerm() {
-    bloc.fetchRegionsByTerm(ctrl.text);
+    _bloc.fetchRegionsByTerm(ctrl.text);
   }
+}
+
+class _RegionList extends StatelessWidget with _RegionPickerBlocMixin {
+  const _RegionList({
+    required this.selected,
+  });
+
+  final RegionCode? selected;
+
+  @override
+  Widget buildState(BuildContext context, RegionPickerState state) {
+    final countries = state.countries;
+    return ListView.separated(
+      itemCount: countries.length,
+      separatorBuilder: (_, __) => const Divider(height: 0),
+      itemBuilder: (context, i) {
+        final region = countries[i];
+        final tile = _RegionListTile(
+          region: region,
+          onTap: (country) => context.read<RegionPickerBloc>().select(country),
+          isSelected: selected == region.code,
+        );
+
+        if (region is ShimmerCountry) return ShimmerView(child: tile);
+        return tile;
+      },
+    );
+  }
+
+  @override
+  FutureOr<void> handleAction(
+    BuildContext context,
+    RegionPickerAction action,
+  ) =>
+      action.when(
+        close: (country) => Navigator.pop(context, country),
+      );
 }
 
 class _RegionListTile extends StatelessWidget {
