@@ -33,6 +33,12 @@
     "settingsTitle": "Configurações",
     "settingsRegionTitle": "País padrão",
     "settingsRegionSubtitle": "Selecione o país padrão para abrir um número",
+    "settingsMessagingAppsTitle": "Aplicativos de mensagens",
+    "settingsMessagingAppsSubtitle": "Selecione os aplicativos de mensagens que deseja usar",
+
+    "messagingAppsTitle": "Aplicativos de mensagens",
+    "messagingAppsEnabledHeader": "Aplicativos disponíveis",
+    "messagingAppsDisabledHeader": "Aplicativos ocultos",
 
     "today": "'Hoje às' HH:mm",
     "yesterday": "'Ontem às' HH:mm",

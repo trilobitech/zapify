@@ -58,7 +58,7 @@ List<String> get _migrationsUp => [
       (2, "Signal",   "assets://icons/signal.svg",   "#ff3a76f0", "https://signal.me/#p/+")
       ''',
       '''
-      DROP TABLE chat_app;
+      DROP TABLE IF EXISTS chat_app;
       CREATE TABLE chat_app(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT,
@@ -71,7 +71,17 @@ List<String> get _migrationsUp => [
       (0, "WhatsApp",    "assets://icons/whatsapp.svg",          "#ff25d366", "whatsapp-consumer://send?phone={phoneNumber}"),
       (1, "WA Business", "assets://icons/whatsapp-business.svg", "#ff25d366", "whatsapp-smb://send?phone={phoneNumber}"),
       (2, "Telegram",    "assets://icons/telegram.svg",          "#ff0088cc", "https://t.me/{phoneNumber}"),
-      (3, "Signal",      "assets://icons/signal.svg",            "#ff3a76f0", "https://signal.me/#p/+{phoneNumber}")
+      (3, "Signal",      "assets://icons/signal.svg",            "#ff3a76f0", "https://signal.me/#p/+{phoneNumber}");
+      ''',
+      '''
+      CREATE TABLE enabled_chat_app(
+        chat_app_id INTEGER PRIMARY KEY,
+        position INTEGER NOT NULL,
+        FOREIGN KEY(chat_app_id) REFERENCES chat_app(id)
+      );
+
+      INSERT INTO enabled_chat_app(chat_app_id, position)
+      SELECT id, id FROM chat_app;
       ''',
     ];
 
@@ -83,7 +93,7 @@ List<String> get _migrationsDown => [
       DROP TABLE IF EXISTS chat_app
       ''',
       '''
-      DROP TABLE chat_app;
+      DROP TABLE IF EXISTS chat_app;
       CREATE TABLE chat_app(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT,
@@ -91,5 +101,8 @@ List<String> get _migrationsDown => [
         brand_color TEXT,
         deeplink_prefix TEXT
       );
+      ''',
+      '''
+      DROP TABLE IF EXISTS enabled_chat_app;
       ''',
     ];
