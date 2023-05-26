@@ -1,6 +1,7 @@
 import 'package:logger_plus/logger_plus.dart';
 import 'package:phone_number/phone_number.dart';
 
+import '../../../../common/config/local_config.dart';
 import '../../domain/entity/region.dart';
 import '../../domain/repository/region_repository.dart';
 
@@ -28,7 +29,9 @@ class RegionRepository implements IRegionRepository {
 
   @override
   Future<IRegion> getCurrent() async {
-    final code = await _carrierRegionCode();
+    final code = await LocalConfig.defaultRegion.get<String?>() ??
+        await _carrierRegionCode();
+
     if (code == _defaultRegion.code) return _defaultRegion;
 
     final allRegions = (await getAll()).cast<IRegion>();
@@ -46,5 +49,10 @@ class RegionRepository implements IRegionRepository {
       Log.e(e, stack);
       return _defaultRegion.code;
     }
+  }
+
+  @override
+  Future<void> setCurrent(IRegion region) async {
+    await LocalConfig.defaultRegion.set(region.code);
   }
 }

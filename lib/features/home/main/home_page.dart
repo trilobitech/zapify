@@ -7,6 +7,7 @@ import 'package:rxdart/utils.dart';
 import 'package:state_action_bloc/state_action_bloc.dart';
 
 import '../../../common/di/provider.dart';
+import '../../../common/ext/context.dart';
 import '../../../common/services/share_service.dart';
 import '../../../common/widgets/tab_page.dart';
 import '../../call_log/call_log_mediator.dart';
@@ -88,6 +89,19 @@ class _HomePageState extends State<_HomePage>
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        actions: [
+          PopupMenuButton<String>(
+            itemBuilder: (context) => [
+              PopupMenuItem<String>(
+                value: '/settings',
+                child: Text(context.strings.actionSettings),
+              ),
+            ],
+            onSelected: (destination) async {
+              await Navigator.pushNamed(context, destination);
+            },
+          ),
+        ],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

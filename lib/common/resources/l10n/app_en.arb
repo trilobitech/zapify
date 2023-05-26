@@ -20,6 +20,7 @@
     "recentNumberRemoved": "Recent number \"{phoneNumber}\" was removed!",
     "actionRemove": "Remove",
     "actionUndo": "Undo",
+    "actionSettings": "Settings",
 
     "callLogTabTitle": "Phone calls",
     "callLogPermissionMessage": "You need to give permission to display call log.",
@@ -28,6 +29,10 @@
 
     "availableRegionsTitle": "Select a country",
     "availableRegionsSearch": "Search…",
+
+    "settingsTitle": "Settings",
+    "settingsRegionTitle": "Default region",
+    "settingsRegionSubtitle": "Select the default region to use when opening a number",
 
     "today": "'Today at' h:mm a",
     "yesterday": "'Yesterday at' h:mm a",
