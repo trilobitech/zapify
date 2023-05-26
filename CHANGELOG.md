@@ -6,6 +6,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.0] - 2023-05-26
+
+### Added
+
+- Alert when can't open chat app
+- Settings screen
+- Setting for default region
+- Setting for select chat apps
+
+### Changed
+
+- Shimmer on load region list
+
+### Removed
+
+- Check if app is installed after show buttons
+- Remote call for chat app lists
+
 ## [2.0.4] - 2023-03-14
 
 ### Fixed
@@ -94,7 +112,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Save history
 - Language support to Portuguese (Brazil) and English
 
-[Unreleased]: https://github.com/trilobitech/zapify/compare/v2.0.4...HEAD
+[Unreleased]: https://github.com/trilobitech/zapify/compare/v2.1.0...HEAD
+[2.1.0]: https://github.com/trilobitech/zapify/compare/v2.0.4...v2.1.0
 [2.0.4]: https://github.com/trilobitech/zapify/compare/v2.0.3...v2.0.4
 [2.0.3]: https://github.com/trilobitech/zapify/compare/v2.0.2...v2.0.3
 [2.0.2]: https://github.com/trilobitech/zapify/compare/v2.0.1...v2.0.2
