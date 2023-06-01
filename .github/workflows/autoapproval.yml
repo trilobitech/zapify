@@ -1,6 +1,6 @@
 on:
   pull_request:
-    types: [opened, reopened, ready_for_review, edited]
+    types: [opened, reopened, ready_for_review, labeled, edited]
   pull_request_review:
     types: [dismissed]
 
@@ -14,8 +14,9 @@ jobs:
   autoapproval:
     name: Autoapproval
     runs-on: ubuntu-latest
+    if: ${{ ! github.event.pull_request.draft }}
     steps:
       - name: Autoapproval
-        uses: dkhmelenko/autoapproval@v1.0
+        uses: pedrox-hs/autoapproval@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
