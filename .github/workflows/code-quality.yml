@@ -24,7 +24,7 @@ jobs:
     if: ${{ needs.check-changes.outputs.changed_files }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3.5.3
+        uses: actions/checkout@v4.1.0
 
       - name: Retrieve Flutter version from FVM config
         uses: kuhnroyal/flutter-fvm-config-action@v1
@@ -63,7 +63,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3.5.3
+        uses: actions/checkout@v4.1.0
 
       - name: Retrieve Flutter version from FVM config
         uses: kuhnroyal/flutter-fvm-config-action@v1
@@ -107,7 +107,7 @@ jobs:
 
       - name: Checkout repository
         if: ${{ steps.event-check.outputs.is_pr == 'true' }}
-        uses: actions/checkout@v3.5.3
+        uses: actions/checkout@v4.1.0
 
       - id: changed-files
         name: Get changed files
