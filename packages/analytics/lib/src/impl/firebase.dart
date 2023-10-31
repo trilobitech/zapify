@@ -17,6 +17,9 @@ class FirebaseAnalyticsWrapper extends AnalyticsWrapper {
       _firebase.setCurrentScreen(screenName: screenName);
 
   @override
-  Future<void> logEvent(name, {Map<String, dynamic> properties = const {}}) =>
+  Future<void> logEvent(
+    String name, {
+    Map<String, dynamic> properties = const {},
+  }) =>
       _firebase.logEvent(name: name, parameters: properties);
 }

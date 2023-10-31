@@ -8,7 +8,10 @@ abstract class AnalyticsWrapper {
     Map<String, dynamic> properties = const {},
   });
 
-  Future<void> logEvent(name, {Map<String, dynamic> properties = const {}});
+  Future<void> logEvent(
+    String name, {
+    Map<String, dynamic> properties = const {},
+  });
 }
 
 abstract class IAnalytics {
@@ -46,5 +49,5 @@ abstract class IAnalytics {
     Map<String, dynamic> properties = const {},
   });
 
-  void logEvent(name, {Map<String, dynamic> properties = const {}});
+  void logEvent(String name, {Map<String, dynamic> properties = const {}});
 }
