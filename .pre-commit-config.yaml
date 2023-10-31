@@ -11,5 +11,6 @@ repos:
 - repo: https://github.com/pedrox-hs/dart-pre-commit
   rev: v1.1.0
   hooks:
-  - id: fvm-dart-format
   - id: fvm-dart-analyze
+  - id: fvm-dart-format
+    args: ["--output=write"]
