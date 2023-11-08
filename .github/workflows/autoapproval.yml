@@ -14,5 +14,3 @@ jobs:
       contents: read
       pull-requests: write
     uses: pedrox-hs/autoapproval/.github/workflows/try-autoapproval.yml@main
-    with:
-      pull_requests: ${{ toJson(github.event.workflow_run.pull_requests) }}
