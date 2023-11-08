@@ -1,22 +1,18 @@
+name: Autoapproval
+
 on:
-  pull_request:
-    types: [opened, reopened, ready_for_review, labeled, edited]
-  pull_request_review:
-    types: [dismissed]
-
-permissions:
-  contents: read
-  pull-requests: write
-
-name: Autoapproval workflow
+  workflow_run:
+    workflows:
+      - Alls green
+    types:
+      - completed
 
 jobs:
   autoapproval:
-    name: Autoapproval
-    runs-on: ubuntu-latest
-    if: ${{ ! github.event.pull_request.draft }}
-    steps:
-      - name: Autoapproval
-        uses: pedrox-hs/autoapproval@main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.pull_requests }}
+    permissions:
+      contents: read
+      pull-requests: write
+    uses: pedrox-hs/autoapproval/.github/workflows/try-autoapproval.yml@main
+    with:
+      pull_requests: ${{ toJson(github.event.workflow_run.pull_requests) }}
