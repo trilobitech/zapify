@@ -2,13 +2,13 @@ name: Alls green
 
 on:
   push:
+    branches:
+      - main
   pull_request:
-    types: [ labeled, ready_for_review ]
-  pull_request_review:
-    types: [ dismissed ]
+    types: [opened, reopened, synchronize, ready_for_review, labeled]
 
 concurrency:
-  group: alls-green-${{ github.ref }}
+  group: alls-green-${{ github.sha }}
   cancel-in-progress: true
 
 jobs:
@@ -17,45 +17,6 @@ jobs:
 
     steps:
       - name: Wait on checks
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const checkInterval = 30000; // 30 seconds
-            const jobName = context.job;
-            let hasPendingChecks = true;
-
-            while (hasPendingChecks) {
-              let { data: { check_runs: checkRuns } } = await github.rest.checks.listForRef({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                ref: context.sha,
-                per_page: 100,
-              });
-
-              checkRuns = checkRuns.filter(checkRun => checkRun.name !== jobName).map(checkRun => {
-                return {
-                  name: checkRun.name,
-                  status: checkRun.status,
-                  conclusion: checkRun.conclusion,
-                };
-              });
-
-              // check if all is completed
-              const pendingChecks = checkRuns.filter(checkRun => checkRun.status !== 'completed');
-              hasPendingChecks = pendingChecks.length > 0;
-
-              if (!hasPendingChecks || checkRuns.length === 0) {
-                // check if all check runs completions is success or neutral
-                const allSuccess = checkRuns.every(checkRun => checkRun.conclusion === 'success' || checkRun.conclusion === 'neutral');
-                // if not success workfow is failed
-                if (!allSuccess) {
-                  core.setFailed('Not all checks are successful');
-                  return;
-                }
-              }
-
-              github.log.warn(`Waiting for checks to complete.`);
-              github.log.warn(JSON.stringify(checkRuns, null, 2));
-
-              await new Promise(resolve => setTimeout(resolve, checkInterval));
-            }
+        uses: pedrox-hs/all-green-checks@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
