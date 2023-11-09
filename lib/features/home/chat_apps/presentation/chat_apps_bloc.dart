@@ -1,5 +1,5 @@
 import 'package:analytics/analytics.dart';
-import 'package:logger_plus/logger_plus.dart';
+import 'package:logify/logify.dart';
 import 'package:state_action_bloc/state_action_bloc.dart';
 
 import '../../../chat_app/domain/entity/chat_app.dart';

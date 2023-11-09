@@ -29,7 +29,7 @@ class AmplitudeAnalyticsWrapper extends AnalyticsWrapper {
 
   @override
   Future<void> logEvent(
-    name, {
+    String name, {
     Map<String, dynamic> properties = const {},
   }) async =>
       await _amplitude?.logEvent(name, eventProperties: properties);

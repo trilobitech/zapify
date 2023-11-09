@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:logger_plus/logger_plus.dart';
+import 'package:logify/logify.dart';
 
 abstract class TabPage implements Widget {
   IconData get icon;

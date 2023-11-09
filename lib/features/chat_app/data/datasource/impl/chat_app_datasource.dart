@@ -1,8 +1,8 @@
-import 'package:logger_plus/logger_plus.dart';
 import 'package:rxdart/subjects.dart';
 import 'package:sqlbrite/sqlbrite.dart';
 
 import '../../../../../common/di/lazy.dart';
+import '../../../../../common/ext/logger.dart';
 import '../../../domain/entity/chat_app.dart';
 import '../../model/chat_app.dart';
 import '../chat_app_datasource.dart';
@@ -34,7 +34,7 @@ class ChatAppDataSource extends IChatAppDataSource {
           ),
         )
         .mapToList(ChatAppModel.fromJson)
-        .listen(_actions.add, onError: Log.e);
+        .listen(_actions.add, onError: catchErrorLogger);
   }
 
   @override

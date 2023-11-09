@@ -1,6 +1,6 @@
 import 'package:analytics/analytics.dart';
 import 'package:flutter/services.dart';
-import 'package:logger_plus/logger_plus.dart';
+import 'package:logify/logify.dart';
 import 'package:receive_intent/receive_intent.dart';
 import 'package:state_action_bloc/state_action_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';

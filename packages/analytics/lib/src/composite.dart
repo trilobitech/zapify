@@ -1,12 +1,14 @@
 import 'package:flutter/widgets.dart';
-import 'package:logger_plus/logger_plus.dart';
+import 'package:logging/logging.dart';
+import 'package:stack_trace/stack_trace.dart';
 
 import 'wrapper.dart';
 
 class Analytics implements IAnalytics {
-  const Analytics(this._wrappers);
+  Analytics(this._wrappers);
 
   final List<AnalyticsWrapper> _wrappers;
+  final Logger _logger = Logger('analytics');
 
   Future<void> init(bool isEnabled) async {
     await Future.wait(
@@ -33,7 +35,7 @@ class Analytics implements IAnalytics {
     for (final wrapper in _wrappers) {
       await wrapper
           .screenViewed(screenName, properties: properties)
-          .catchError(catchErrorLogger);
+          .catchError(_catchErrorLogger('screen_viewed'));
     }
   }
 
@@ -88,22 +90,37 @@ class Analytics implements IAnalytics {
       );
 
   @override
-  void logEvent(name, {Map<String, dynamic> properties = const {}}) async {
+  void logEvent(
+    String name, {
+    Map<String, dynamic> properties = const {},
+  }) async {
     _log(name, properties);
     for (final wrapper in _wrappers) {
       await wrapper
           .logEvent(name, properties: properties)
-          .catchError(catchErrorLogger);
+          .catchError(_catchErrorLogger(name));
     }
   }
 
   void _log(String event, Map<String, dynamic> properties) {
-    final tag = tagFromCaller();
-    Log.tag(tag).d(
+    _logger.info(
       {
         'event_name': event,
         'properties': properties,
       },
+      null,
+      Trace.current(3),
     );
+  }
+
+  dynamic _catchErrorLogger(event) {
+    final callerTrace = Trace.current(1);
+    return (Object error, [StackTrace? trace]) {
+      _logger.warning(
+        'Error while logging event: $event',
+        error,
+        trace ?? callerTrace,
+      );
+    };
   }
 }

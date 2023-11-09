@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:logger_plus/logger_plus.dart';
+import 'package:logify/logify.dart';
 import 'package:phone_number/phone_number.dart' hide RegionInfo;
 import 'package:state_action_bloc/state_action_bloc.dart';
 
