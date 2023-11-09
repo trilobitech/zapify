@@ -1,14 +1,11 @@
 name: Alls green
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     types: [opened, reopened, synchronize, ready_for_review, labeled]
 
 concurrency:
-  group: alls-green-${{ github.event.pull_request.head.sha || github.sha }}
+  group: alls-green-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
