@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:logger_plus/logger_plus.dart';
+import 'package:logify/logify.dart';
 
 class ImageResolverWidget extends StatelessWidget {
   ImageResolverWidget({

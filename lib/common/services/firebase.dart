@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_performance/firebase_performance.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
-import 'package:logger_plus/logger_plus.dart';
+import 'package:logify/logify.dart';
 
 FirebaseCrashlytics get crashlytics => FirebaseCrashlytics.instance;
 

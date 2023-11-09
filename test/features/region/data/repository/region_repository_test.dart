@@ -1,7 +1,6 @@
 import 'package:config_core/config_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
-import 'package:logger_plus/logger_plus.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:phone_number/phone_number.dart';
 import 'package:zapify/common/config/local_config.dart';
@@ -45,7 +44,6 @@ void main() {
     GetIt.instance.registerFactoryAsync<ILocalConfigStorage>(
       () async => mockLocalConfigStorage,
     );
-    Log.plant(null);
   });
 
   setUp(() {

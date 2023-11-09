@@ -1,4 +1,4 @@
-import 'package:logger_plus/logger_plus.dart';
+import 'package:logify/logify.dart';
 import 'package:phone_number/phone_number.dart';
 
 import '../../../../common/config/local_config.dart';

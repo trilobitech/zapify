@@ -1,4 +1,4 @@
-import 'package:logger_plus/logger_plus.dart';
+import 'package:logify/logify.dart';
 import 'package:receive_intent/receive_intent.dart';
 
 class ShareService {
