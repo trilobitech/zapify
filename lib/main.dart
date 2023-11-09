@@ -4,81 +4,76 @@ import 'package:analytics/analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:is_firebase_test_lab_activated/is_firebase_test_lab_activated.dart';
-import 'package:logger_plus/logger_plus.dart';
+import 'package:logging/logging.dart';
+import 'package:logify/logify.dart';
+import 'package:logify/utils.dart';
 
 import 'app.dart';
 import 'common/config/env_config.dart';
 import 'common/domain/error.dart';
+import 'common/ext/logger.dart';
 import 'common/services/firebase.dart';
 import 'firebase_options.dart';
 import 'modules.dart';
 
 void main() async {
-  Stopwatch? stopwatch = Stopwatch()..start();
   await runZonedGuarded(
     () async {
       WidgetsFlutterBinding.ensureInitialized();
 
       await setupApp();
-
       unawaited(loadModules());
-
-      analytics.onAppOpened(
-        properties: {
-          'start_up_time': (stopwatch?.elapsedMilliseconds ?? 0) / 1000,
-        },
-      );
-      stopwatch = null;
 
       runApp(const App());
     },
-    Log.f,
+    Log.wtf,
   );
 }
 
 Future<void> setupApp() async {
-  FlutterError.onError = Log.f;
+  final completer = Completer();
+  FlutterError.onError = Log.wtf;
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  if (!kDebugMode) {
-    Log.plant(_CrashlyticsTree());
-  }
-
-  if (kDebugMode) {
+  assert(() {
+    Log.listen(DebugLogRecorder());
     // for some reason config set on native android not working well
-    await Future.wait([
-      crashlytics.setCrashlyticsCollectionEnabled(false),
-      performance.setPerformanceCollectionEnabled(false),
-      initAnalytics(amplitudeKey: EnvConfig.amplitudeKey, isEnabled: false),
-    ]);
-  } else {
-    final isFirebaseTestLabActivated =
-        await IsFirebaseTestLabActivated.isFirebaseTestLabActivated;
-    await initAnalytics(
-      amplitudeKey: EnvConfig.amplitudeKey,
-      isEnabled: !isFirebaseTestLabActivated,
+    completer.complete(
+      Future.wait([
+        crashlytics.setCrashlyticsCollectionEnabled(false),
+        performance.setPerformanceCollectionEnabled(false),
+        initAnalytics(amplitudeKey: EnvConfig.amplitudeKey, isEnabled: false),
+      ]),
+    );
+    return true;
+  }());
+
+  if (kReleaseMode) {
+    Logger.root.onRecord.listen(_CrashlyticsTree());
+    completer.complete(
+      initAnalytics(
+        amplitudeKey: EnvConfig.amplitudeKey,
+        isEnabled: true,
+      ).catchError(catchErrorLogger),
     );
   }
+
+  await completer.future;
 }
 
-class _CrashlyticsTree extends DebugTree {
-  @override
-  void log(
-    Level level,
-    String tag,
-    dynamic message, [
-    StackTrace? stackTrace,
-  ]) async {
-    if (level.isError && message is! NonReportableError) {
-      await crashlytics.recordError(
-        message,
-        stackTrace,
-        fatal: level == Level.fatal,
-      );
-    }
+class _CrashlyticsTree {
+  void call(LogRecord record) {
+    if (!record.isSevere || record.error is NonReportableError) return;
+
+    unawaited(
+      crashlytics.recordError(
+        record.error ?? record.message,
+        record.stackTrace,
+        fatal: record.level == Level.SHOUT,
+      ),
+    );
   }
 }

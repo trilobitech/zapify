@@ -33,7 +33,7 @@ dependencies:
   collection: ^1.16.0
   cupertino_icons: ^1.0.2
   equatable: ^2.0.3
-  firebase_core: ^1.24.0
+  firebase_core: ^1.22.0
   firebase_crashlytics: ^2.9.0
   firebase_performance: ^0.8.3+3
   firebase_remote_config: ^2.0.20
@@ -45,7 +45,6 @@ dependencies:
   google_mobile_ads: ^2.3.0
   in_app_review: ^2.0.6
   intl: ^0.17.0
-  is_firebase_test_lab_activated: ^2.0.1
   logging: ^1.1.1
   meta: ^1.8.0
   path: ^1.8.0

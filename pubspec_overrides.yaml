@@ -1,13 +1,9 @@
 dependency_overrides:
+  firebase_core_platform_interface: 4.5.1
   error_adapter:
     git:
       url: https://github.com/pedrox-hs/flutter_packages
       path: error_adapter
-      ref: a8295225c2a4e284be85194940da4898a418a003
-  logify:
-    git:
-      url: https://github.com/pedrox-hs/flutter_packages
-      path: logify
       ref: a8295225c2a4e284be85194940da4898a418a003
   simple_nav:
     git:
