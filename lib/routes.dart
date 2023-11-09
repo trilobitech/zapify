@@ -18,9 +18,7 @@ final routes = <String, RouteBuilder>{
       fullscreenDialog: true,
       settings: const RouteSettings(name: 'RegionPicker'),
       builder: (_) => RegionPicker(
-        selected: extras.data is Map<String, dynamic>
-            ? extras.data['selected_code']
-            : null,
+        selected: _getSelectedCode(extras.data),
       ),
     );
   },
@@ -37,3 +35,6 @@ final routes = <String, RouteBuilder>{
     );
   },
 };
+
+String? _getSelectedCode(dynamic data) =>
+    data is Map<String, dynamic> ? data['selected_code'] : null;
