@@ -8,7 +8,7 @@ on:
     types: [opened, reopened, synchronize, ready_for_review, labeled]
 
 concurrency:
-  group: alls-green-${{ github.ref }}
+  group: alls-green-${{ github.event.pull_request.head.sha || github.sha }}
   cancel-in-progress: true
 
 jobs:
