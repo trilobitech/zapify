@@ -35,6 +35,7 @@ class PhoneFieldBloc extends StateActionBloc<PhoneFieldState, PhoneFieldAction>
     } catch (error, stackTrace) {
       Log.e(error, stackTrace);
     }
+    sendAction(PhoneFieldAction.showKeyboard());
   }
 
   @override
