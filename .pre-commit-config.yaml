@@ -13,4 +13,4 @@ repos:
   hooks:
   - id: dart-analyze
   - id: dart-format
-    args: ["--output=write"]
+    args: ["--output=write", "--set-exit-if-changed"]

@@ -1,10 +1,10 @@
 import 'dart:async';
 
+import 'package:config/config.dart';
 import 'package:flutter/material.dart';
+import 'package:resources/strings.dart';
 import 'package:state_action_bloc/state_action_bloc.dart';
 
-import '../../../common/config/remote_config.dart';
-import '../../../common/ext/context.dart';
 import '../../../common/widgets/feedback_view.dart';
 import '../../../common/widgets/list_divider.dart';
 import '../../../common/widgets/shimmer_view.dart';

@@ -1,0 +1,6 @@
+dependency_overrides:
+  state_action_bloc:
+    git:
+      url: https://github.com/pedrox-hs/flutter_packages
+      path: state_action_bloc
+      ref: a8295225c2a4e284be85194940da4898a418a003

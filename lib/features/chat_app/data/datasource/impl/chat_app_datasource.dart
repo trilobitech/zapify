@@ -1,8 +1,8 @@
+import 'package:di_core/di_core.dart';
+import 'package:ext/logger.dart';
 import 'package:rxdart/subjects.dart';
 import 'package:sqlbrite/sqlbrite.dart';
 
-import '../../../../../common/di/lazy.dart';
-import '../../../../../common/ext/logger.dart';
 import '../../../domain/entity/chat_app.dart';
 import '../../model/chat_app.dart';
 import '../chat_app_datasource.dart';

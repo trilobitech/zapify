@@ -1,12 +1,12 @@
-import 'package:analytics/analytics.dart';
+import 'package:analytics_core/analytics_core.dart';
+import 'package:domain_core/domain_core.dart';
+import 'package:ext/string.dart';
 import 'package:flutter/services.dart';
 import 'package:logify/logify.dart';
 import 'package:receive_intent/receive_intent.dart';
 import 'package:state_action_bloc/state_action_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../common/domain/error.dart';
-import '../../../common/ext/string.dart';
 import '../../call_log/call_log_mediator.dart';
 import '../../chat_app/domain/exception/chat_app_not_found_error.dart';
 import '../../history/domain/usecase/save_phone_number_history.dart';

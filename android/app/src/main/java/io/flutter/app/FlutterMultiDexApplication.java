@@ -12,8 +12,6 @@ import android.content.Context;
 import android.provider.Settings;
 import androidx.annotation.CallSuper;
 import androidx.multidex.MultiDex;
-import com.google.android.gms.ads.MobileAds;
-import com.google.firebase.analytics.FirebaseAnalytics;
 import com.trilobitech.zapify.BuildConfig;
 
 /**
@@ -25,10 +23,6 @@ public class FlutterMultiDexApplication extends Application {
   @CallSuper
   public void onCreate() {
     super.onCreate();
-    if (!BuildConfig.DEBUG && isInFirebaseTestLab()) {
-      FirebaseAnalytics.getInstance(this).setAnalyticsCollectionEnabled(false);
-    }
-    MobileAds.initialize(this);
   }
 
   @Override
@@ -36,9 +30,5 @@ public class FlutterMultiDexApplication extends Application {
   protected void attachBaseContext(Context base) {
     super.attachBaseContext(base);
     MultiDex.install(this);
-  }
-
-  private boolean isInFirebaseTestLab() {
-    return Settings.System.getString(getContentResolver(), "firebase.test.lab") == "true";
   }
 }

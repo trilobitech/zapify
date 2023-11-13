@@ -1,4 +1,5 @@
-import '../../../../common/di/definition.dart';
+import 'package:di_core/di_core.dart';
+
 import 'phone_field_component.dart';
 import 'presentation/phone_field_bloc.dart';
 

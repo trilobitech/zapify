@@ -1,4 +1,5 @@
-import '../../../../common/di/definition.dart';
+import 'package:di_core/di_core.dart';
+
 import 'presentation/chat_apps_bloc.dart';
 
 void chatAppsModule() {

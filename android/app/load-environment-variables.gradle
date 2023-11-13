@@ -1,0 +1,68 @@
+task loadEnvVariables {
+    doLast {
+        def flutterProjectRoot = rootProject.projectDir.parentFile
+        def dartDefines = project.properties['dart-defines'] ?: System.getenv('DART_DEFINES')
+
+        def dartEnvVars = parseEnvFromDartDefines(dartDefines)
+        def envVarsFromFiles = parseEnvFiles(flutterProjectRoot, '.env.default', '.env')
+
+        // put new dart defines to task compileFlutterBuild
+        tasks.all { task ->
+            if (task.name.contains('compileFlutterBuild')) {
+                def allEnvVars = dartEnvVars + envVarsFromFiles
+                println "Setting environment variables for task ${task.name}: $allEnvVars"
+                task.dartDefines = formatToDartDefine(allEnvVars)
+            }
+        }
+    }
+}
+
+tasks.whenTaskAdded { task ->
+    if (task.name.contains('compileFlutterBuild')) {
+        task.dependsOn(loadEnvVariables)
+    }
+}
+
+Map<String, String> parseEnvFiles(File root, String ...envFiles) {
+    Map<String, String> envVars = [:]
+
+    envFiles.each { envFile ->
+        File file = new File(root, envFile)
+        if (!file.exists()) return;
+
+        file.eachLine { line ->
+            line = line.trim()
+            // skip comments and empty lines
+            if (line.startsWith('#') || line.isEmpty()) return
+            // split first '='
+            def (key, value) = line.split('=', 2)
+            key = key.trim()
+            // add to envVars
+            envVars[key] = value.trim()
+                .replaceAll(/^['"]/, '').replaceAll(/['"]$/, '') // remove quotes
+        }
+    }
+
+    return envVars
+}
+
+Map<String, String> parseEnvFromDartDefines(String dartDefines) {
+    Map<String, String> envVars = [:]
+
+    if (dartDefines == null) return envVars
+
+    dartDefines.split(',').each { dartDefine ->
+        def (key, value) = new String(dartDefine.decodeBase64()).split('=', 2)
+        envVars[key] = value
+    }
+
+    return envVars
+}
+
+String toBase64(String value) {
+    return value.bytes.encodeBase64().toString()
+}
+
+String formatToDartDefine(Map<String, String> map) {
+    return map.collect { k, v -> toBase64("$k=$v") }.join(',')
+}

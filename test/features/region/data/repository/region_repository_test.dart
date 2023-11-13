@@ -1,9 +1,9 @@
-import 'package:config_core/config_core.dart';
+import 'package:config/config.dart';
+import 'package:config_manager_core/config_manager_core.dart';
+import 'package:di_core/di_core.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get_it/get_it.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:phone_number/phone_number.dart';
-import 'package:zapify/common/config/local_config.dart';
 import 'package:zapify/features/region/data/repository/region_repository.dart';
 import 'package:zapify/features/region/domain/entity/region.dart';
 
@@ -41,7 +41,7 @@ void main() {
     ..sort((a, b) => a.name.compareTo(b.name));
 
   setUpAll(() {
-    GetIt.instance.registerFactoryAsync<ILocalConfigStorage>(
+    registerSingletonAsync<ILocalConfigStorage>(
       () async => mockLocalConfigStorage,
     );
   });

@@ -1,5 +1,6 @@
 import 'package:logify/logify.dart';
 import 'package:receive_intent/receive_intent.dart';
+import 'package:rxdart/rxdart.dart';
 
 class ShareService {
   Stream<Intent> stream() async* {
@@ -13,8 +14,6 @@ class ShareService {
       Log.e(e, stack);
     }
 
-    yield* ReceiveIntent.receivedIntentStream
-        .where((event) => event != null)
-        .cast<Intent>();
+    yield* ReceiveIntent.receivedIntentStream.whereNotNull();
   }
 }

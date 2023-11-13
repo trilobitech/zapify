@@ -1,0 +1,42 @@
+import groovy.json.JsonSlurper
+
+def flutterProjectRoot = rootProject.projectDir.parentFile
+def googleServicesJsonFiles = fileTree(dir: '.', include: '**/google-services.json')
+def pluginsFile = new File(flutterProjectRoot, '.flutter-plugins-dependencies')
+def hasFirebasePlugin = false
+
+if (pluginsFile.exists() && !googleServicesJsonFiles.empty) {
+    def flutterPlugins = new JsonSlurper().parseText(pluginsFile.text).plugins.android
+    hasFirebasePlugin = flutterPlugins.any { plugin -> plugin.name.startsWith('firebase_') }
+}
+
+if (hasFirebasePlugin) {
+    println 'Found Firebase plugin, adding Google Services config'
+} else {
+    println 'No Firebase plugins detected, skipping Google Services'
+    return
+}
+
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.firebase-perf'
+apply plugin: 'com.google.firebase.crashlytics'
+
+android {
+    buildTypes {
+        debug {
+            FirebasePerformance {
+                instrumentationEnabled false
+            }
+        }
+        release {
+            firebaseCrashlytics {
+                mappingFileUploadEnabled true
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation platform('com.google.firebase:firebase-bom:30.3.0')
+    implementation 'com.google.firebase:firebase-analytics'
+}

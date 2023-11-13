@@ -10,16 +10,26 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_localizations:
-    sdk: flutter
 
   # local packages
-  analytics:
-    path: 'packages/analytics'
-  config_core:
-    path: 'packages/config_manager/core'
-  config_firebase:
-    path: 'packages/config_manager/firebase'
+  analytics_core:
+    path: "packages/core/analytics"
+  banner_core:
+    path: "packages/core/banner"
+  config:
+    path: "packages/config"
+  config_manager_core:
+    path: "packages/core/config_manager"
+  di_core:
+    path: "packages/core/di"
+  domain_core:
+    path: "packages/core/domain"
+  ext:
+    path: "packages/core/ext"
+  flavor_main:
+    path: "packages/flavor/main"
+  resources:
+    path: "packages/resources"
 
   # personal flutter packages
   error_adapter: ^0.1.0
@@ -38,7 +48,6 @@ dependencies:
   firebase_performance: ^0.10.0+3
   firebase_remote_config: ^5.0.3
   flutter_svg: ^1.1.6
-  freezed: ^2.2.0
   freezed_annotation: ^2.2.0
   get_it: ^7.2.0
   google_fonts: ^4.0.4
@@ -69,10 +78,10 @@ dev_dependencies:
 
   build_runner: ^2.3.0
   flutter_lints: ^2.0.1
+  freezed: ^2.2.0
   mocktail: ^0.3.0
 
 flutter:
-  generate: true
   uses-material-design: true
   assets:
     - assets/icons/

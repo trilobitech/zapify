@@ -8,6 +8,11 @@ plugins {
     id 'com.google.firebase.crashlytics'
 }
 
+apply from: 'load-environment-variables.gradle'
+apply from: 'google-services.gradle'
+apply from: 'google-ads.gradle'
+
+/* groovylint-disable DuplicateListLiteral, DuplicateNumberLiteral, DuplicateStringLiteral, LineLength, UnnecessaryGString */
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
@@ -51,8 +56,6 @@ android {
 
         versionCode = flutterVersionCode.toInteger()
         versionName = flutterVersionName
-
-        manifestPlaceholders["ADS_APP_ID"] = System.getenv('ANDROID_ADS_APP_ID') ?: secretsProperties.getProperty('ads.appId')
     }
 
     signingConfigs {
@@ -66,9 +69,6 @@ android {
 
     buildTypes {
         debug {
-            FirebasePerformance {
-                instrumentationEnabled false
-            }
             applicationIdSuffix ".dev"
             signingConfig signingConfigs.debug
         }
@@ -94,9 +94,6 @@ flutter {
 }
 
 dependencies {
-    implementation platform('com.google.firebase:firebase-bom:30.3.0')
-    implementation 'com.google.firebase:firebase-analytics'
-
     def multidex_version = "2.0.1"
     implementation "androidx.multidex:multidex:$multidex_version"
 }

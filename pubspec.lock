@@ -17,21 +17,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.39"
-  amplitude_flutter:
-    dependency: transitive
-    description:
-      name: amplitude_flutter
-      sha256: ebf51e4d336c8b97d03b64971673aa518cc05291ac46fa5d71a6ca188d80296f
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.16.0"
-  analytics:
+  analytics_core:
     dependency: "direct main"
     description:
-      path: "packages/analytics"
+      path: "packages/core/analytics"
       relative: true
     source: path
-    version: "0.1.0"
+    version: "0.0.1"
   analyzer:
     dependency: transitive
     description:
@@ -64,6 +56,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
+  banner_core:
+    dependency: "direct main"
+    description:
+      path: "packages/core/banner"
+      relative: true
+    source: path
+    version: "0.0.1"
   bloc:
     dependency: transitive
     description:
@@ -192,20 +191,20 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.18.0"
-  config_core:
+  config:
     dependency: "direct main"
     description:
-      path: "packages/config_manager/core"
+      path: "packages/config"
       relative: true
     source: path
-    version: "0.1.0"
-  config_firebase:
+    version: "0.0.1"
+  config_manager_core:
     dependency: "direct main"
     description:
-      path: "packages/config_manager/firebase"
+      path: "packages/core/config_manager"
       relative: true
     source: path
-    version: "0.1.0"
+    version: "0.0.1"
   convert:
     dependency: transitive
     description:
@@ -254,6 +253,20 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.4"
+  di_core:
+    dependency: "direct main"
+    description:
+      path: "packages/core/di"
+      relative: true
+    source: path
+    version: "0.0.1"
+  domain_core:
+    dependency: "direct main"
+    description:
+      path: "packages/core/domain"
+      relative: true
+    source: path
+    version: "0.0.1"
   equatable:
     dependency: "direct main"
     description:
@@ -271,6 +284,13 @@ packages:
       url: "https://github.com/pedrox-hs/flutter_packages"
     source: git
     version: "0.1.0"
+  ext:
+    dependency: "direct main"
+    description:
+      path: "packages/core/ext"
+      relative: true
+    source: path
+    version: "0.0.1"
   fake_async:
     dependency: transitive
     description:
@@ -295,30 +315,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.4"
-  firebase_analytics:
-    dependency: transitive
-    description:
-      name: firebase_analytics
-      sha256: "2017da2cb0745fa912e13aadfc94e49691796cf6b7ed37edbca2a2388713da11"
-      url: "https://pub.dev"
-    source: hosted
-    version: "11.2.0"
-  firebase_analytics_platform_interface:
-    dependency: transitive
-    description:
-      name: firebase_analytics_platform_interface
-      sha256: "4ea00fe31ff74c92c613e082193b55bd21f0653b536dd77cc1ba4cf60771d214"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.2.0"
-  firebase_analytics_web:
-    dependency: transitive
-    description:
-      name: firebase_analytics_web
-      sha256: e5ce84f0c4e6fb8f8ca673d009445938a61845d8fa6b42c11913d5bbdbedf300
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.5.9"
   firebase_core:
     dependency: "direct main"
     description:
@@ -415,6 +411,20 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.1"
+  flavor_core:
+    dependency: transitive
+    description:
+      path: "packages/core/flavor"
+      relative: true
+    source: path
+    version: "0.0.1"
+  flavor_main:
+    dependency: "direct main"
+    description:
+      path: "packages/flavor/main"
+      relative: true
+    source: path
+    version: "0.0.1"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -437,7 +447,7 @@ packages:
     source: hosted
     version: "2.0.2"
   flutter_localizations:
-    dependency: "direct main"
+    dependency: transitive
     description: flutter
     source: sdk
     version: "0.0.0"
@@ -460,7 +470,7 @@ packages:
     source: sdk
     version: "0.0.0"
   freezed:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: freezed
       sha256: "4179d41127bc7a67dc3f58ceec1d22f1cdf10470653cb86eda2a63f81b4920c7"
@@ -631,10 +641,10 @@ packages:
     dependency: "direct main"
     description:
       name: logging
-      sha256: "04094f2eb032cbb06c6f6e8d3607edcfcb0455e2bb6cbc010cb01171dcb64e6d"
+      sha256: "623a88c9594aa774443aa3eb2d41807a48486b5613e67599fb4c41c0ad47c340"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.1"
+    version: "1.2.0"
   logify:
     dependency: "direct main"
     description:
@@ -891,6 +901,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.4"
+  resources:
+    dependency: "direct main"
+    description:
+      path: "packages/resources"
+      relative: true
+    source: path
+    version: "0.0.1"
   rxdart:
     dependency: "direct main"
     description:
@@ -1338,6 +1355,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.1"
+  zapify_flavor:
+    dependency: transitive
+    description:
+      path: "packages/flavor/minimal"
+      relative: true
+    source: path
+    version: "0.0.1"
 sdks:
   dart: ">=3.4.0 <4.0.0"
   flutter: ">=3.22.2"

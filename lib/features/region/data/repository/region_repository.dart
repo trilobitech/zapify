@@ -1,7 +1,7 @@
+import 'package:config/config.dart';
 import 'package:logify/logify.dart';
 import 'package:phone_number/phone_number.dart';
 
-import '../../../../common/config/local_config.dart';
 import '../../domain/entity/region.dart';
 import '../../domain/repository/region_repository.dart';
 

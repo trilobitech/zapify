@@ -1,0 +1,22 @@
+name: ext
+description: A new Flutter package project.
+version: 0.0.1
+
+publish_to: 'none'
+
+environment:
+  sdk: '>=2.18.0 <3.0.0'
+  flutter: 3.22.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  logging: ^1.2.0
+  stack_trace: ^1.11.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:

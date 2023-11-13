@@ -1,10 +1,10 @@
 import 'dart:async';
 
+import 'package:di_core/di_core.dart';
 import 'package:flutter/material.dart';
+import 'package:resources/strings.dart';
 import 'package:state_action_bloc/state_action_bloc.dart';
 
-import '../../../common/di/provider.dart';
-import '../../../common/ext/context.dart';
 import 'settings_bloc.dart';
 
 class SettingsPage extends StatelessWidget {

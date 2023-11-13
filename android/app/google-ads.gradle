@@ -1,0 +1,35 @@
+import groovy.json.JsonSlurper
+
+def hasGoogleAdsPlugin = false
+
+def flutterProjectRoot = rootProject.projectDir.parentFile
+def pluginsFile = new File(flutterProjectRoot, '.flutter-plugins-dependencies')
+
+if (pluginsFile.exists()) {
+    def flutterPlugins = new JsonSlurper().parseText(pluginsFile.text).plugins.android
+    hasGoogleAdsPlugin = flutterPlugins.any { plugin -> plugin.name == 'google_mobile_ads' }
+}
+
+if (!hasGoogleAdsPlugin) {
+    println 'No Google Ads ID found, skipping'
+    return
+}
+
+println 'Found Google Mobile ADS plugin, adding Google Ads ID to manifest'
+
+def secretsPropertiesFile = rootProject.file("secrets.properties")
+if (!secretsPropertiesFile.exists()) {
+    secretsPropertiesFile = rootProject.file("secrets.defaults.properties")
+}
+def secretsProperties = new Properties()
+secretsProperties.load(new FileInputStream(secretsPropertiesFile))
+
+def adsAppId = System.getenv('ANDROID_ADS_APP_ID') ?: secretsProperties.getProperty('ads.appId')
+
+apply plugin: 'com.google.gms.google-services'
+
+android {
+    defaultConfig {
+        manifestPlaceholders["ADS_APP_ID"] = adsAppId
+    }
+}

@@ -1,11 +1,11 @@
-import 'package:analytics/analytics.dart';
+import 'package:analytics_core/analytics_core.dart';
+import 'package:di_core/di_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:resources/localizations.dart';
+import 'package:resources/theme.dart';
 import 'package:simple_nav/simple_nav.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
-import 'common/di/inject.dart';
-import 'common/resources/theme.dart';
 import 'routes.dart';
 
 class App extends StatefulWidget {
@@ -32,8 +32,9 @@ class _AppState extends State<App> with WidgetsBindingObserver {
       // locale: const Locale.fromSubtags(languageCode: 'pt', countryCode: 'BR'),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      navigatorObservers: <NavigatorObserver>[observer],
       initialRoute: '/',
+      navigatorKey: navigatorKey,
+      navigatorObservers: <NavigatorObserver>[observer],
       onGenerateRoute: RouteResolver(routes),
     );
   }

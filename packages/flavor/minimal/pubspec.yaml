@@ -1,0 +1,32 @@
+name: zapify_flavor
+description: A new Flutter package project.
+version: 0.0.1
+
+publish_to: 'none'
+
+environment:
+  sdk: '>=2.18.6 <3.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  flavor_core:
+    path: ../../core/flavor
+  config_manager_core:
+    path: ../../core/config_manager
+  di_core:
+    path: ../../core/di
+  analytics_core:
+    path: ../../core/analytics
+
+  logging: ^1.1.1
+  stack_trace: ^1.10.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
