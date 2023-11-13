@@ -1,4 +1,4 @@
-import 'package:analytics/analytics.dart';
+import 'package:analytics_core/analytics_core.dart';
 import 'package:logify/logify.dart';
 import 'package:meta/meta.dart';
 import 'package:state_action_bloc/state_action_bloc.dart';

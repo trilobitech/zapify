@@ -1,7 +1,6 @@
+import 'package:di_core/di_core.dart';
 import 'package:error_adapter/error_adapter.dart';
 import 'package:flutter/material.dart';
-
-import '../di/inject.dart';
 
 class FeedbackView extends StatelessWidget {
   const FeedbackView({
@@ -27,8 +26,8 @@ class FeedbackView extends StatelessWidget {
           Text(
             text,
             textAlign: TextAlign.center,
-            style: textTheme.headline6?.copyWith(
-              color: textTheme.headline6?.color?.withOpacity(.6),
+            style: textTheme.titleLarge?.copyWith(
+              color: textTheme.titleLarge?.color?.withOpacity(.6),
             ),
           ),
           if (button != null)

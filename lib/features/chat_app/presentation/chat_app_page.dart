@@ -1,8 +1,8 @@
+import 'package:di_core/di_core.dart';
 import 'package:flutter/material.dart';
+import 'package:resources/strings.dart';
 import 'package:state_action_bloc/state_action_bloc.dart';
 
-import '../../../common/di/provider.dart';
-import '../../../common/ext/context.dart';
 import '../../../common/widgets/image_resolver_widget.dart';
 import '../domain/entity/chat_app.dart';
 import 'chat_app_bloc.dart';
@@ -57,7 +57,7 @@ class _SectionHeader extends StatelessWidget {
   Widget build(BuildContext context) => ListTile(
         title: Text(
           title,
-          style: Theme.of(context).textTheme.headline6,
+          style: Theme.of(context).textTheme.titleLarge,
         ),
       );
 }

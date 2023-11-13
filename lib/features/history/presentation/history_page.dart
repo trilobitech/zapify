@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:resources/strings.dart';
 import 'package:state_action_bloc/state_action_bloc.dart';
 import 'package:timeago_flutter/timeago_flutter.dart';
 
-import '../../../common/ext/context.dart';
 import '../../../common/widgets/feedback_view.dart';
 import '../../../common/widgets/list_divider.dart';
 import '../../../common/widgets/shimmer_view.dart';
@@ -50,7 +50,7 @@ class HistoryPage extends StatelessWidget
   void _showRestoreEntrySnackBar(BuildContext context, HistoryEntry entry) {
     final snackBar = SnackBar(
       content: Text(
-        context.strings.recentNumberRemoved.format([entry.phoneNumber]),
+        context.strings.recentNumberRemoved(entry.phoneNumber),
       ),
       action: SnackBarAction(
         label: context.strings.actionUndo,
@@ -71,7 +71,7 @@ class HistoryPage extends StatelessWidget
     Iterable<ContextMenuAction> options,
   ) async {
     final bloc = context.read<HistoryBloc>();
-    final overlay = Overlay.of(context)!.context.findRenderObject()!;
+    final overlay = Overlay.of(context).context.findRenderObject()!;
 
     final overlaySize = overlay.paintBounds.size;
     final action = await showMenu(

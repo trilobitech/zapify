@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:logify/logify.dart';
+import 'package:resources/strings.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../../../common/ext/context.dart';
 import '../../../../chat_app/domain/entity/chat_app.dart';
 
 class ChatAppNotFoundDialog extends StatelessWidget {
@@ -19,7 +19,7 @@ class ChatAppNotFoundDialog extends StatelessWidget {
         context.strings.homeChatAppNotFoundErrorTitle,
       ),
       content: Text(
-        context.strings.homeChatAppNotFoundErrorMessage.format([app.name]),
+        context.strings.homeChatAppNotFoundErrorMessage(app.name),
       ),
       actions: [
         TextButton(

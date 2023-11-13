@@ -1,9 +1,9 @@
 import 'dart:async';
 
+import 'package:config/config.dart';
+import 'package:di_core/di_core.dart';
 import 'package:sqlbrite/sqlbrite.dart';
 
-import '../../../../common/config/local_config.dart';
-import '../../../../common/di/lazy.dart';
 import '../../domain/entity/history.dart';
 import '../../domain/repository/history_repository.dart';
 
