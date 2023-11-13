@@ -17,8 +17,8 @@ import CryptoKit
     #if DEBUG
     // https://stackoverflow.com/a/19402414
     // https://qiita.com/Meister619/items/fd7cb77a9b0cfabe7424
-    var identifierForVendor = UIDevice.current.identifierForVendor!.uuidString
-    var deviceIdentifier: String = Insecure.MD5.hash(
+    let identifierForVendor = UIDevice.current.identifierForVendor!.uuidString
+    let deviceIdentifier: String = Insecure.MD5.hash(
         data: identifierForVendor.data(using: .utf8)!
       )
       .map { String(format: "%02hhx", $0) }
