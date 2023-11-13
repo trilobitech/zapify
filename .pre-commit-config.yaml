@@ -13,4 +13,4 @@ repos:
   hooks:
   - id: fvm-dart-analyze
   - id: fvm-dart-format
-    args: ["--output=write"]
+    args: ["--output=write", "--set-exit-if-changed"]

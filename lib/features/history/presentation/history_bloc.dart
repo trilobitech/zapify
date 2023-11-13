@@ -1,13 +1,12 @@
 import 'dart:async';
 
-import 'package:analytics/analytics.dart';
+import 'package:analytics_core/analytics_core.dart';
+import 'package:config/config.dart';
+import 'package:ext/logger.dart';
 import 'package:flutter/widgets.dart';
 import 'package:logify/logify.dart';
 import 'package:state_action_bloc/state_action_bloc.dart';
 
-import '../../../common/config/local_config.dart';
-import '../../../common/config/remote_config.dart';
-import '../../../common/ext/logger.dart';
 import '../domain/entity/history.dart';
 import '../domain/usecase/get_phone_number_history.dart';
 import '../domain/usecase/remove_phone_number_history.dart';
@@ -85,13 +84,13 @@ class HistoryBloc extends StateActionBloc<HistoryState, HistoryAction> {
 
   Future<void> remove(HistoryEntry entry) async {
     _analytics.itemRemoved('phone_from_history');
-    await (_removePhoneNumberHistory(entry).catchError(catchErrorLogger));
+    await _removePhoneNumberHistory(entry).catchError(catchErrorLogger);
     sendAction(HistoryAction.showRestoreEntrySnackBar(entry));
   }
 
   Future<void> restore(HistoryEntry entry) async {
     _analytics.buttonPressed('restore_phone_from_history');
-    await (_restorePhoneNumberHistory(entry).catchError(catchErrorLogger));
+    await _restorePhoneNumberHistory(entry).catchError(catchErrorLogger);
   }
 
   Future<HistoryState> _mapToState(List<HistoryEntry> entries) async {

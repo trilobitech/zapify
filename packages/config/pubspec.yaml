@@ -1,0 +1,27 @@
+name: config
+description: A new Flutter package project.
+version: 0.0.1
+
+publish_to: "none"
+
+environment:
+  sdk: ">=2.19.6 <3.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  config_manager_core:
+    path: ../core/config_manager
+  di_core:
+    path: ../core/di
+
+  shared_preferences: ^2.0.15
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:

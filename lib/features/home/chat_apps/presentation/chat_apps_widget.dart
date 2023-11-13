@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:resources/strings.dart';
 import 'package:state_action_bloc/state_action_bloc.dart';
 
-import '../../../../../common/ext/context.dart';
 import '../../../../../common/widgets/image_resolver_widget.dart';
 import '../../../chat_app/domain/entity/chat_app.dart';
 import '../chat_apps_mediator.dart';

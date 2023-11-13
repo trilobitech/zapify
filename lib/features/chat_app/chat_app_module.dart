@@ -1,4 +1,5 @@
-import '../../common/di/definition.dart';
+import 'package:di_core/di_core.dart';
+
 import 'data/datasource/chat_app_datasource.dart';
 import 'data/datasource/impl/chat_app_datasource.dart';
 import 'data/repository/chat_app_repository.dart';

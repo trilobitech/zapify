@@ -20,28 +20,18 @@ There are many of others applications for the same purpose, but this app is just
 
 - Flutter ^3.22.2 or [FVM](https://fvm.app/) (recommended)
 - Platform SDKs: Android and XCode
-- Registered Android and iOS projects in Firebase
-
-### Setup
-
-```bash
-# Get dependencies
-fvm flutter pub get
-
-# Download Firebase configuration
-fvm dart run flutter_toolkit:cli project-setup
-```
+- Registered Android and iOS projects in Firebase (optional)
 
 ### Run
 
 ```bash
-fvm dart run flutter_toolkit:cli run-app
+flutter run
 ```
 
 ### Unit tests
 
 ```bash
-fvm flutter test
+flutter test
 ```
 
 ## Built with

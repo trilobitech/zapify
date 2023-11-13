@@ -1,4 +1,5 @@
-import '../../common/di/definition.dart';
+import 'package:di_core/di_core.dart';
+
 import 'data/call_log_repository.dart';
 import 'domain/repository/call_log.dart';
 import 'domain/usecase/get_call_log.dart';

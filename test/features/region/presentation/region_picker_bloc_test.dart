@@ -1,4 +1,4 @@
-import 'package:analytics/analytics.dart';
+import 'package:analytics_core/analytics_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:zapify/features/region/domain/entity/region.dart';

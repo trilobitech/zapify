@@ -1,13 +1,14 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:banner_core/banner_core.dart';
+import 'package:di_core/di_core.dart';
 import 'package:flutter/material.dart' hide Intent;
 import 'package:receive_intent/receive_intent.dart';
+import 'package:resources/strings.dart';
 import 'package:rxdart/utils.dart';
 import 'package:state_action_bloc/state_action_bloc.dart';
 
-import '../../../common/di/provider.dart';
-import '../../../common/ext/context.dart';
 import '../../../common/services/share_service.dart';
 import '../../../common/widgets/tab_page.dart';
 import '../../call_log/call_log_mediator.dart';
@@ -18,14 +19,12 @@ import '../../history/presentation/history_bloc.dart';
 import '../../history/presentation/history_page.dart';
 import '../../region/domain/entity/region.dart';
 import '../../region/region_mediator.dart';
-import '../ad_banner/presentation/ad_banner_widget.dart';
 import '../chat_apps/chat_apps_mediator.dart';
 import '../chat_apps/presentation/chat_apps_bloc.dart';
 import '../chat_apps/presentation/chat_apps_widget.dart';
 import '../phone/phone_field_component.dart';
 import '../phone/presentation/phone_field_bloc.dart';
 import '../phone/presentation/phone_field_widget.dart';
-import '../top_banner/presentation/top_banner_widget.dart';
 import 'home_bloc.dart';
 import 'home_state.dart';
 
@@ -106,7 +105,7 @@ class _HomePageState extends State<_HomePage>
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          TopBannerWidget(),
+          getOrNull<TopBannerWidget>() ?? Container(),
           PhoneFieldWidget(),
           ChatAppsWidget(),
           Expanded(
@@ -119,7 +118,7 @@ class _HomePageState extends State<_HomePage>
           ),
         ],
       ),
-      bottomNavigationBar: AdBannerWidget(),
+      bottomNavigationBar: getOrNull<BottomBannerWidget>(),
     );
   }
 
