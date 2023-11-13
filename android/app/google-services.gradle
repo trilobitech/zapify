@@ -1,11 +1,10 @@
 import groovy.json.JsonSlurper
 
 def flutterProjectRoot = rootProject.projectDir.parentFile
-def googleServicesJsonFiles = fileTree(dir: '.', include: '**/google-services.json')
 def pluginsFile = new File(flutterProjectRoot, '.flutter-plugins-dependencies')
 def hasFirebasePlugin = false
 
-if (pluginsFile.exists() && !googleServicesJsonFiles.empty) {
+if (pluginsFile.exists()) {
     def flutterPlugins = new JsonSlurper().parseText(pluginsFile.text).plugins.android
     hasFirebasePlugin = flutterPlugins.any { plugin -> plugin.name.startsWith('firebase_') }
 }
