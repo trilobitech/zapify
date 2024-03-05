@@ -110,6 +110,17 @@ flutter {
     source '../..'
 }
 
+project.gradle.taskGraph.whenReady { graph ->
+    project.tasks.findAll().forEach { task ->
+        if (task.name.contains("processDebugGoogleServices")) {
+            def googleServicesJsonFiles = fileTree(dir: ".", include: "**/google-services.json")
+            if (googleServicesJsonFiles.isEmpty()) {
+                task.enabled = false
+            }
+        }
+    }
+}
+
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
