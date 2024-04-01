@@ -112,7 +112,7 @@ jobs:
       - id: changed-files
         name: Get changed files
         if: ${{ steps.event-check.outputs.is_pr == 'true' }}
-        uses: tj-actions/changed-files@v41
+        uses: tj-actions/changed-files@v44
         with:
           files: |
             **/*.dart
