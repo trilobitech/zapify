@@ -60,3 +60,6 @@ lib/firebase_options.dart
 
 # env
 .env
+
+# pubspec.lock from local packages
+packages/**/pubspec.lock
