@@ -26,14 +26,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4.1.1
 
-      - name: Retrieve Flutter version from FVM config
-        uses: kuhnroyal/flutter-fvm-config-action@v2
-
       - name: Setup Flutter SDK
-        uses: subosito/flutter-action@v2
+        uses: subosito/flutter-action@v2.16.0
         with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
-          channel: ${{ env.FLUTTER_CHANNEL }}
+          channel: stable
+          flutter-version-file: pubspec.yaml
 
       - name: Install dependencies
         run: flutter pub get
@@ -55,7 +52,7 @@ jobs:
       - name: Check code formatting
         if: ${{ always() && needs.check-changes.outputs.changed_dart_files }}
         run: |
-          flutter format --output=none --set-exit-if-changed \
+          dart format --output=none --set-exit-if-changed \
             ${{ needs.check-changes.outputs.changed_dart_files }}
 
   unit-tests:
@@ -65,14 +62,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4.1.1
 
-      - name: Retrieve Flutter version from FVM config
-        uses: kuhnroyal/flutter-fvm-config-action@v2
-
       - name: Setup Flutter SDK
-        uses: subosito/flutter-action@v2
+        uses: subosito/flutter-action@v2.16.0
         with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
-          channel: ${{ env.FLUTTER_CHANNEL }}
+          channel: stable
+          flutter-version-file: pubspec.yaml
 
       - name: Install dependencies
         run: flutter pub get

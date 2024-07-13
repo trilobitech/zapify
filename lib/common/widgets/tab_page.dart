@@ -70,7 +70,7 @@ class _SingleTabPage extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: Text(
             page.buildTitle(context),
-            style: theme.textTheme.headline6,
+            style: theme.textTheme.titleLarge,
           ),
         ),
         Expanded(child: page),

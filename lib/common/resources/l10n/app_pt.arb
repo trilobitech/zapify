@@ -11,7 +11,7 @@
     "homeInvalidPhoneNumberError": "O número informado é inválido",
 
     "homeChatAppNotFoundErrorTitle": "Oops!",
-    "homeChatAppNotFoundErrorMessage": "Ocorreu um erro ao abrir o \"{}\".",
+    "homeChatAppNotFoundErrorMessage": "Ocorreu um erro ao abrir o \"{appName}\".",
     "homeChatAppNotFoundErrorPrimaryAction": "Procurar na loja",
     "homeChatAppNotFoundErrorSecondaryAction": "Cancelar",
 

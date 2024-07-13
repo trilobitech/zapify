@@ -19,7 +19,7 @@ class ChatAppNotFoundDialog extends StatelessWidget {
         context.strings.homeChatAppNotFoundErrorTitle,
       ),
       content: Text(
-        context.strings.homeChatAppNotFoundErrorMessage.format([app.name]),
+        context.strings.homeChatAppNotFoundErrorMessage(app.name),
       ),
       actions: [
         TextButton(

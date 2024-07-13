@@ -18,7 +18,7 @@ There are many of others applications for the same purpose, but this app is just
 
 ### Requirements
 
-- [FVM](https://fvm.app/)
+- Flutter ^3.22.2 or [FVM](https://fvm.app/) (recommended)
 - Platform SDKs: Android and XCode
 - Registered Android and iOS projects in Firebase
 

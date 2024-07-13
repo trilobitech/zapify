@@ -128,7 +128,7 @@ class _EntryViewState extends State<_EntryView> with TickerProviderStateMixin {
             color: Colors.white,
           ),
           label: Text(
-            context.strings.homeOpenWithButton.format([entry.name]),
+            context.strings.homeOpenWithButton(entry.name),
           ),
           labelStyle: const TextStyle(color: Colors.white),
           backgroundColor: Color(entry.color.value),

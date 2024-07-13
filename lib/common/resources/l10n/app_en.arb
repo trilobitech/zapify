@@ -11,7 +11,7 @@
     "homeInvalidPhoneNumberError": "Invalid phone number",
 
     "homeChatAppNotFoundErrorTitle": "Oops!",
-    "homeChatAppNotFoundErrorMessage": "Something went wrong while opening \"{}\".",
+    "homeChatAppNotFoundErrorMessage": "Something went wrong while opening \"{appName}\".",
     "homeChatAppNotFoundErrorPrimaryAction": "Search in store",
     "homeChatAppNotFoundErrorSecondaryAction": "Cancel",
 

@@ -5,13 +5,13 @@ publish_to: 'none'
 
 environment:
   sdk: '>=2.18.0 <3.0.0'
-  flutter: ">=1.17.0"
+  flutter: 3.22.2
 
 dependencies:
   flutter:
     sdk: flutter
   amplitude_flutter: ^3.11.0
-  firebase_analytics: ^9.3.8
+  firebase_analytics: ^11.2.0
   logging: ^1.1.1
   stack_trace: ^1.10.0
 
