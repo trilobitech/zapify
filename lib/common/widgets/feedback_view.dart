@@ -27,8 +27,8 @@ class FeedbackView extends StatelessWidget {
           Text(
             text,
             textAlign: TextAlign.center,
-            style: textTheme.headline6?.copyWith(
-              color: textTheme.headline6?.color?.withOpacity(.6),
+            style: textTheme.titleLarge?.copyWith(
+              color: textTheme.titleLarge?.color?.withOpacity(.6),
             ),
           ),
           if (button != null)

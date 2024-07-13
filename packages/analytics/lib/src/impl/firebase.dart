@@ -12,14 +12,14 @@ class FirebaseAnalyticsWrapper extends AnalyticsWrapper {
   @override
   Future<void> screenViewed(
     String screenName, {
-    Map<String, dynamic> properties = const {},
+    Map<String, Object> properties = const {},
   }) =>
-      _firebase.setCurrentScreen(screenName: screenName);
+      _firebase.logScreenView(screenName: screenName);
 
   @override
   Future<void> logEvent(
     String name, {
-    Map<String, dynamic> properties = const {},
+    Map<String, Object> properties = const {},
   }) =>
       _firebase.logEvent(name: name, parameters: properties);
 }

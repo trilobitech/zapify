@@ -19,7 +19,7 @@ class Analytics implements IAnalytics {
   }
 
   @override
-  void onAppOpened({Map<String, dynamic> properties = const {}}) =>
+  void onAppOpened({Map<String, Object> properties = const {}}) =>
       logEvent('app_opened', properties: properties);
 
   @override
@@ -29,7 +29,7 @@ class Analytics implements IAnalytics {
   @override
   void screenViewed(
     String screenName, {
-    Map<String, dynamic> properties = const {},
+    Map<String, Object> properties = const {},
   }) async {
     _log('screen_viewed', {'screen_name': screenName, ...properties});
     for (final wrapper in _wrappers) {
@@ -42,7 +42,7 @@ class Analytics implements IAnalytics {
   @override
   void buttonPressed(
     String name, {
-    Map<String, dynamic> properties = const {},
+    Map<String, Object> properties = const {},
   }) =>
       logEvent(
         'button_clicked',
@@ -52,7 +52,7 @@ class Analytics implements IAnalytics {
   @override
   void itemSelected(
     String name, {
-    Map<String, dynamic> properties = const {},
+    Map<String, Object> properties = const {},
   }) =>
       logEvent(
         'item_selected',
@@ -62,7 +62,7 @@ class Analytics implements IAnalytics {
   @override
   void itemLongPressed(
     String name, {
-    Map<String, dynamic> properties = const {},
+    Map<String, Object> properties = const {},
   }) =>
       logEvent(
         'item_long_pressed',
@@ -72,7 +72,7 @@ class Analytics implements IAnalytics {
   @override
   void itemRemoved(
     String name, {
-    Map<String, dynamic> properties = const {},
+    Map<String, Object> properties = const {},
   }) =>
       logEvent(
         'item_removed',
@@ -82,7 +82,7 @@ class Analytics implements IAnalytics {
   @override
   void intentHandled(
     String name, {
-    Map<String, dynamic> properties = const {},
+    Map<String, Object> properties = const {},
   }) =>
       logEvent(
         'intent_handled',
@@ -92,7 +92,7 @@ class Analytics implements IAnalytics {
   @override
   void logEvent(
     String name, {
-    Map<String, dynamic> properties = const {},
+    Map<String, Object> properties = const {},
   }) async {
     _log(name, properties);
     for (final wrapper in _wrappers) {
@@ -102,7 +102,7 @@ class Analytics implements IAnalytics {
     }
   }
 
-  void _log(String event, Map<String, dynamic> properties) {
+  void _log(String event, Map<String, Object> properties) {
     _logger.info(
       {
         'event_name': event,

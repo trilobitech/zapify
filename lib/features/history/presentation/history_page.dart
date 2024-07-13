@@ -50,7 +50,7 @@ class HistoryPage extends StatelessWidget
   void _showRestoreEntrySnackBar(BuildContext context, HistoryEntry entry) {
     final snackBar = SnackBar(
       content: Text(
-        context.strings.recentNumberRemoved.format([entry.phoneNumber]),
+        context.strings.recentNumberRemoved(entry.phoneNumber),
       ),
       action: SnackBarAction(
         label: context.strings.actionUndo,
@@ -71,7 +71,7 @@ class HistoryPage extends StatelessWidget
     Iterable<ContextMenuAction> options,
   ) async {
     final bloc = context.read<HistoryBloc>();
-    final overlay = Overlay.of(context)!.context.findRenderObject()!;
+    final overlay = Overlay.of(context).context.findRenderObject()!;
 
     final overlaySize = overlay.paintBounds.size;
     final action = await showMenu(
@@ -150,8 +150,8 @@ class _DismissibleEntryView extends StatelessWidget {
       onDismissed: (_) async => context.read<HistoryBloc>().remove(entry),
       background: Container(
         color: const Color.fromARGB(255, 186, 12, 0),
-        child: Stack(
-          children: const [
+        child: const Stack(
+          children: [
             Positioned(
               right: 16,
               top: 0,
