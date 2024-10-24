@@ -1,11 +1,10 @@
 name: ext
 description: A new Flutter package project.
 version: 0.0.1
-
 publish_to: 'none'
 
 environment:
-  sdk: '>=2.18.0 <3.0.0'
+  sdk: ">=3.0.0 <4.0.0"
   flutter: 3.22.2
 
 dependencies:

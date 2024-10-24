@@ -1,12 +1,12 @@
 {
-    "dart.flutterSdkPath": ".fvm/flutter_sdk",
-    "search.exclude": {
-      "**/.fvm": true
-    },
-    "files.watcherExclude": {
-      "**/.fvm": true
-    },
-    "git.ignoredRepositories": [
-      "**/.fvm/flutter_sdk"
-    ],
-  }
+  "dart.flutterSdkPath": "/home/pedrox/.asdf/installs/flutter//3.22.2",
+  "search.exclude": {
+    "**/.fvm": true
+  },
+  "files.watcherExclude": {
+    "**/.fvm": true
+  },
+  "git.ignoredRepositories": [
+    "**/.fvm/flutter_sdk"
+  ],
+}
