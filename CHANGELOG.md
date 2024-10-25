@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.2.0] - 2024-10-24
+
 ## [2.1.0] - 2023-05-26
 
 ### Added
@@ -112,7 +114,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Save history
 - Language support to Portuguese (Brazil) and English
 
-[Unreleased]: https://github.com/trilobitech/zapify/compare/v2.1.0...HEAD
+[Unreleased]: https://github.com/trilobitech/zapify/compare/v2.2.0...HEAD
+[2.2.0]: https://github.com/trilobitech/zapify/compare/v2.1.0...v2.2.0
 [2.1.0]: https://github.com/trilobitech/zapify/compare/v2.0.4...v2.1.0
 [2.0.4]: https://github.com/trilobitech/zapify/compare/v2.0.3...v2.0.4
 [2.0.3]: https://github.com/trilobitech/zapify/compare/v2.0.2...v2.0.3
