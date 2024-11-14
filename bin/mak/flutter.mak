@@ -11,7 +11,7 @@ endif
 
 
 run: ## Run app
-	$(DART_CMD) run flutter_toolkit:cli run-app
+	echo $(FLUTTER_CMD) run $(DART_DEFINE)
 
 
 codegen: ## Run code generation
