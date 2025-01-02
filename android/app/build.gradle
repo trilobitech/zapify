@@ -93,6 +93,17 @@ flutter {
     source '../..'
 }
 
+project.gradle.taskGraph.whenReady { graph ->
+    project.tasks.findAll().forEach { task ->
+        if (task.name.contains("processDebugGoogleServices")) {
+            def googleServicesJsonFiles = fileTree(dir: ".", include: "**/google-services.json")
+            if (googleServicesJsonFiles.isEmpty()) {
+                task.enabled = false
+            }
+        }
+    }
+}
+
 dependencies {
     implementation platform('com.google.firebase:firebase-bom:30.3.0')
     implementation 'com.google.firebase:firebase-analytics'
