@@ -11,8 +11,7 @@ endif
 
 
 run: ## Run app
-	echo $(FLUTTER_CMD) run $(DART_DEFINE)
-
+	$(FLUTTER_CMD) run $(DART_DEFINE)
 
 codegen: ## Run code generation
 	$(FLUTTER_CMD) pub run build_runner build --delete-conflicting-outputs

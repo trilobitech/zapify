@@ -26,6 +26,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4.1.1
 
+      - id: versions
+        name: Read .tool-versions
+        uses: marocchino/tool-versions-action@v1
+
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
@@ -39,7 +43,15 @@ jobs:
         uses: subosito/flutter-action@v2.16.0
         with:
           channel: stable
-          flutter-version-file: pubspec.yaml
+          flutter-version: ${{ steps.versions.outputs.flutter }}
+
+      - name: Cache pub packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.pub-cache
+          key: ${{ runner.os }}-pub-cache-${{ hashFiles('**/pubspec.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pub-cache-
 
       - name: Install dependencies
         run: flutter pub get
@@ -47,7 +59,7 @@ jobs:
       - name: Install Ruby to use Fastlane
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.0'
+          ruby-version: ${{ steps.versions.outputs.ruby }}
           bundler-cache: true
           working-directory: ./android
 
