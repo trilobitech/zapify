@@ -35,20 +35,36 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4.1.1
 
+      - id: versions
+        name: Read .tool-versions
+        uses: marocchino/tool-versions-action@v1
+
       - name: Select Xcode version
-        run: sudo xcode-select -s /Applications/Xcode_14.2.app
+        run: sudo xcode-select -s /Applications/Xcode_15.4.app
 
       - name: Setup Flutter SDK
         uses: subosito/flutter-action@v2.16.0
         with:
           channel: stable
-          flutter-version-file: pubspec.yaml
+          flutter-version: ${{ steps.versions.outputs.flutter }}
+
+      - name: Cache pub packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.pub-cache
+          key: ${{ runner.os }}-pub-cache-${{ hashFiles('**/pubspec.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pub-cache-
 
       - name: Install project dependencies
         run: flutter pub get
 
-      - name: Install Fastlane dependencies
-        run: cd ./ios && bundle install
+      - name: Install Ruby to use Fastlane
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ steps.versions.outputs.ruby }}
+          bundler-cache: true
+          working-directory: ./ios
 
       - name: Get iOS secrets files
         run: base64 -d <<< ${{ secrets.IOS_BUILD_FILES }} | tar xzf -
