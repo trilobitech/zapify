@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Add suport to call log in production
+
 ## [2.2.1] - 2024-11-13
 
 ## [2.2.0] - 2024-10-24
