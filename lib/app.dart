@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:analytics/analytics.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_nav/simple_nav.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -10,6 +13,10 @@ import 'routes.dart';
 
 class App extends StatefulWidget {
   const App({super.key});
+
+  static final navigatorKey = GlobalKey<NavigatorState>();
+  static Locale get currentLocale =>
+      Localizations.localeOf(navigatorKey.currentContext!);
 
   @override
   State<App> createState() => _AppState();
@@ -27,15 +34,17 @@ class _AppState extends State<App> with WidgetsBindingObserver {
 
     return MaterialApp(
       title: 'Zapify',
+      navigatorKey: App.navigatorKey,
       theme: AppTheme.light(),
       darkTheme: AppTheme.dark(),
       themeMode: ThemeMode.system,
-      // locale: const Locale.fromSubtags(languageCode: 'pt', countryCode: 'BR'),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
+      //locale: const Locale.fromSubtags(languageCode: 'pt', countryCode: 'BR'),
       supportedLocales: AppLocalizations.supportedLocales,
       navigatorObservers: <NavigatorObserver>[observer],
       initialRoute: '/',
       onGenerateRoute: RouteResolver(routes),
+      debugShowCheckedModeBanner: kDebugMode && !Platform.isIOS,
     );
   }
 

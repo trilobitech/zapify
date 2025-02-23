@@ -36,4 +36,4 @@ ifndef VERBOSE
 .SILENT:
 endif
 
-.PHONY: help phony run codegen fix serve_page setup_google_services bump_version
+.PHONY: help phony run build codegen fix serve_page setup_google_services bump_version

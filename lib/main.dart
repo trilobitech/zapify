@@ -33,19 +33,6 @@ Future<void> setupApp() async {
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  assert(() {
-    Log.listen(DebugLogRecorder());
-    // for some reason config set on native android not working well
-    completer.complete(
-      Future.wait([
-        crashlytics.setCrashlyticsCollectionEnabled(false),
-        performance.setPerformanceCollectionEnabled(false),
-        initAnalytics(amplitudeKey: EnvConfig.amplitudeKey, isEnabled: false),
-      ]),
-    );
-    return true;
-  }());
-
   if (kReleaseMode) {
     Logger.root.onRecord.listen(_CrashlyticsTree());
     completer.complete(
@@ -53,6 +40,17 @@ Future<void> setupApp() async {
         amplitudeKey: EnvConfig.amplitudeKey,
         isEnabled: true,
       ).catchError(catchErrorLogger),
+    );
+  } else {
+    Logger.root.level = Level.ALL;
+    Log.listen(DebugLogRecorder());
+    // for some reason config set on native android not working well
+    completer.complete(
+      Future.wait([
+        crashlytics.setCrashlyticsCollectionEnabled(false),
+        performance.setPerformanceCollectionEnabled(kProfileMode),
+        initAnalytics(amplitudeKey: EnvConfig.amplitudeKey, isEnabled: false),
+      ]),
     );
   }
 

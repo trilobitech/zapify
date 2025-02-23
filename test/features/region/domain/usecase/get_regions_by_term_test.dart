@@ -11,13 +11,13 @@ void main() {
   late GetRegionsByTermUseCase useCase;
 
   final regions = [
-    Country(code: 'BR', prefix: 55, name: 'Brazil'),
-    Country(code: 'AR', prefix: 54, name: 'Argentina'),
-    Country(code: 'CO', prefix: 57, name: 'Colombia'),
-    Country(code: 'US', prefix: 1, name: 'United States'),
-    Country(code: 'CA', prefix: 1, name: 'Canada'),
-    Country(code: 'PT', prefix: 351, name: 'Portugal'),
-    Country(code: 'UK', prefix: 44, name: 'United Kingdom'),
+    Country(code: 'BR', prefix: '55', name: 'Brazil'),
+    Country(code: 'AR', prefix: '54', name: 'Argentina'),
+    Country(code: 'CO', prefix: '57', name: 'Colombia'),
+    Country(code: 'US', prefix: '1', name: 'United States'),
+    Country(code: 'CA', prefix: '1', name: 'Canada'),
+    Country(code: 'PT', prefix: '351', name: 'Portugal'),
+    Country(code: 'UK', prefix: '44', name: 'United Kingdom'),
   ];
 
   setUp(() {
@@ -41,9 +41,9 @@ void main() {
     test('should return only countries with matching code or name', () async {
       // arrange
       final expectedCountries = [
-        Country(code: 'US', prefix: 1, name: 'United States'),
-        Country(code: 'PT', prefix: 351, name: 'Portugal'),
-        Country(code: 'UK', prefix: 44, name: 'United Kingdom'),
+        Country(code: 'US', prefix: '1', name: 'United States'),
+        Country(code: 'PT', prefix: '351', name: 'Portugal'),
+        Country(code: 'UK', prefix: '44', name: 'United Kingdom'),
       ];
 
       // act
@@ -56,7 +56,7 @@ void main() {
 
     test('should filter regions case insensitive', () async {
       // arrange
-      final expected = [Country(code: 'CA', prefix: 1, name: 'Canada')];
+      final expected = [Country(code: 'CA', prefix: '1', name: 'Canada')];
 
       // act
       final result = await useCase.call(term: 'nAdA');
@@ -81,10 +81,10 @@ void main() {
       // arrange
       const term = '5';
       final expectedRegions = [
-        Country(code: 'BR', prefix: 55, name: 'Brazil'),
-        Country(code: 'AR', prefix: 54, name: 'Argentina'),
-        Country(code: 'CO', prefix: 57, name: 'Colombia'),
-        Country(code: 'PT', prefix: 351, name: 'Portugal'),
+        Country(code: 'BR', prefix: '55', name: 'Brazil'),
+        Country(code: 'AR', prefix: '54', name: 'Argentina'),
+        Country(code: 'CO', prefix: '57', name: 'Colombia'),
+        Country(code: 'PT', prefix: '351', name: 'Portugal'),
       ];
 
       // act

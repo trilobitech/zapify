@@ -71,7 +71,10 @@ android {
                 setInstrumentationEnabled(false)
             }
             applicationIdSuffix = ".dev"
-            signingConfig = signingConfigs.getByName("debug")
+        }
+
+        getByName("profile") {
+            applicationIdSuffix = ".dev"
         }
 
         getByName("release") {

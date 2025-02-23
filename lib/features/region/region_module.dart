@@ -17,5 +17,5 @@ void regionModule() {
 
   registerFactory(() => SetDefaultRegionUseCase(repository: get()));
 
-  registerSingleton<IRegionRepository>(() => RegionRepository(plugin: get()));
+  registerSingleton<IRegionRepository>(() => RegionRepository());
 }

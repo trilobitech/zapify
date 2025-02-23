@@ -5,10 +5,11 @@ publish_to: 'none'
 
 environment:
   sdk: ">=3.7.2 <4.0.0"
-  flutter: ">= 3.29.2 <4.0.0"
+  flutter: ^3.29.2
 
 workspace:
   - packages/analytics
+  - packages/cli
   - packages/config_manager/core
   - packages/config_manager/firebase
   - packages/foundation/lints
@@ -34,15 +35,17 @@ dependencies:
   app_install_date: ^0.1.5
   call_log: ^5.0.1
   collection: ^1.16.0
+  country_codes: ^3.3.0
   cupertino_icons: ^1.0.2
   equatable: ^2.0.3
+  firebase_app_installations: ^0.3.2+4
   firebase_core: ^3.12.1
   firebase_crashlytics: ^4.3.4
   firebase_performance: ^0.10.1+4
   firebase_remote_config: ^5.4.2
   flutter_svg: ^2.0.17
   freezed_annotation: ^3.0.0
-  get_it: ^7.2.0
+  get_it: ^8.0.3
   google_fonts: ^6.2.1
   google_mobile_ads: ^5.3.1
   in_app_review: ^2.0.9
@@ -51,7 +54,8 @@ dependencies:
   meta: ^1.8.0
   path: ^1.8.0
   permission_handler: ^11.4.0
-  phone_number: ^2.1.0
+  phone_number: ^2.1.0 # deprecated!
+  phone_numbers_parser: ^9.0.3
   provider: ^6.0.5
   receive_intent: ^0.2.7
   rxdart: ^0.27.7
@@ -64,9 +68,10 @@ dependencies:
   timeago_flutter: ^1.1.0
   url_launcher: ^6.3.1
 
-
 dev_dependencies:
   flutter_test:
+    sdk: flutter
+  flutter_driver:
     sdk: flutter
 
   build_runner: ^2.4.15
@@ -79,3 +84,69 @@ flutter:
   uses-material-design: true
   assets:
     - assets/icons/
+
+figma_importer:
+  - fileKey: rtF6qU4Xs2h8mUdLquzYN1
+    images:
+      # Google Play
+      # pt-BR
+      - nodeId: "402:110"
+        destination: android/fastlane/metadata/android/pt-BR/images/featureGraphic.jpg
+      - nodeId: "402:2"
+        destination: android/fastlane/metadata/android/pt-BR/images/phoneScreenshots/1_pt-BR.jpeg
+      - nodeId: "919:93"
+        destination: android/fastlane/metadata/android/pt-BR/images/phoneScreenshots/2_pt-BR.jpeg
+      - nodeId: "1000:40"
+        destination: android/fastlane/metadata/android/pt-BR/images/phoneScreenshots/3_pt-BR.jpeg
+      - nodeId: "1001:80"
+        destination: android/fastlane/metadata/android/pt-BR/images/phoneScreenshots/4_pt-BR.jpeg
+      # es-ES
+      - nodeId: "1000:30"
+        destination: android/fastlane/metadata/android/es-ES/images/featureGraphic.jpg
+      - nodeId: "1000:2"
+        destination: android/fastlane/metadata/android/es-ES/images/phoneScreenshots/1_es-ES.jpeg
+      - nodeId: "1000:16"
+        destination: android/fastlane/metadata/android/es-ES/images/phoneScreenshots/2_es-ES.jpeg
+      - nodeId: "1001:126"
+        destination: android/fastlane/metadata/android/es-ES/images/phoneScreenshots/3_es-ES.jpeg
+      - nodeId: "1001:139"
+        destination: android/fastlane/metadata/android/es-ES/images/phoneScreenshots/4_es-ES.jpeg
+      # en-US
+      - nodeId: "919:121"
+        destination: android/fastlane/metadata/android/en-US/images/featureGraphic.jpg
+      - nodeId: "919:108"
+        destination: android/fastlane/metadata/android/en-US/images/phoneScreenshots/1_en-US.jpeg
+      - nodeId: "920:155"
+        destination: android/fastlane/metadata/android/en-US/images/phoneScreenshots/2_en-US.jpeg
+      - nodeId: "1001:101"
+        destination: android/fastlane/metadata/android/en-US/images/phoneScreenshots/3_en-US.jpeg
+      - nodeId: "1001:114"
+        destination: android/fastlane/metadata/android/en-US/images/phoneScreenshots/4_en-US.jpeg
+      # App Store
+      # pt-BR
+      - nodeId: "402:122"
+        destination: ios/fastlane/screenshots/pt-BR/01.jpeg
+      - nodeId: "1021:243"
+        destination: ios/fastlane/screenshots/pt-BR/02.jpeg
+      - nodeId: "1021:250"
+        destination: ios/fastlane/screenshots/pt-BR/03.jpeg
+      - nodeId: "1021:256"
+        destination: ios/fastlane/screenshots/pt-BR/04.jpeg
+      # es-ES
+      - nodeId: "1022:310"
+        destination: ios/fastlane/screenshots/es-ES/01.jpeg
+      - nodeId: "1022:317"
+        destination: ios/fastlane/screenshots/es-ES/02.jpeg
+      - nodeId: "1022:324"
+        destination: ios/fastlane/screenshots/es-ES/03.jpeg
+      - nodeId: "1022:331"
+        destination: ios/fastlane/screenshots/es-ES/04.jpeg
+      # en-US
+      - nodeId: "1022:274"
+        destination: ios/fastlane/screenshots/en-US/01.jpeg
+      - nodeId: "1022:285"
+        destination: ios/fastlane/screenshots/en-US/02.jpeg
+      - nodeId: "1022:294"
+        destination: ios/fastlane/screenshots/en-US/03.jpeg
+      - nodeId: "1022:301"
+        destination: ios/fastlane/screenshots/en-US/04.jpeg

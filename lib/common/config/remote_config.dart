@@ -24,7 +24,7 @@ enum RemoteConfig with KeyValueMixin<IRemoteConfigStorage> {
 Map<String, dynamic> get remoteConfigDefaults => {
   RemoteConfig.homeBannerUnitId.key: EnvConfig.homeBannerUnitId,
   RemoteConfig.homeAdListUnitId.key: EnvConfig.homeAdListUnitId,
-  RemoteConfig.homeAdListInterval.key: 4,
+  RemoteConfig.homeAdListInterval.key: 5,
   RemoteConfig.isCallLogTabEnabled.key: kDebugMode && Platform.isAndroid,
   RemoteConfig.isRequestReviewEnabled.key: false,
   RemoteConfig.askForReviewDaysInterval.key: 30,

@@ -18,11 +18,11 @@ void main() {
   late IAnalytics mockAnalytics;
 
   const term = 'Brazil';
-  final brazil = Country(code: 'BR', prefix: 55, name: 'Brazil');
+  final brazil = Country(code: 'BR', prefix: '55', name: 'Brazil');
   final countries = [
     brazil,
-    Country(code: 'GB', prefix: 44, name: 'United Kingdom'),
-    Country(code: 'US', prefix: 1, name: 'United States'),
+    Country(code: 'GB', prefix: '44', name: 'United Kingdom'),
+    Country(code: 'US', prefix: '1', name: 'United States'),
   ];
 
   setUp(() {

@@ -2,8 +2,8 @@ class HistoryEntry {
   HistoryEntry({
     required this.phoneNumber,
     required this.lastUsageAt,
-    required this.createdAt,
-  });
+    DateTime? createdAt,
+  }) : createdAt = createdAt ?? lastUsageAt;
 
   factory HistoryEntry.fromJson(Map<String, dynamic> json) {
     return HistoryEntry(
