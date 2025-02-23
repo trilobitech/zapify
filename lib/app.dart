@@ -11,6 +11,10 @@ import 'routes.dart';
 class App extends StatefulWidget {
   const App({super.key});
 
+  static final navigatorKey = GlobalKey<NavigatorState>();
+  static Locale get currentLocale =>
+      Localizations.localeOf(navigatorKey.currentContext!);
+
   @override
   State<App> createState() => _AppState();
 }
@@ -27,11 +31,12 @@ class _AppState extends State<App> with WidgetsBindingObserver {
 
     return MaterialApp(
       title: 'Zapify',
+      navigatorKey: App.navigatorKey,
       theme: AppTheme.light(),
       darkTheme: AppTheme.dark(),
       themeMode: ThemeMode.system,
-      // locale: const Locale.fromSubtags(languageCode: 'pt', countryCode: 'BR'),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
+      //locale: const Locale.fromSubtags(languageCode: 'pt', countryCode: 'BR'),
       supportedLocales: AppLocalizations.supportedLocales,
       navigatorObservers: <NavigatorObserver>[observer],
       initialRoute: '/',

@@ -17,7 +17,7 @@ sealed class RegionPickerAction with _$RegionPickerAction implements IAction {
 }
 
 class ShimmerCountry extends Country {
-  ShimmerCountry() : super(code: '■■', name: '■■■■■■■■■■■■', prefix: 99);
+  ShimmerCountry() : super(code: '■■', name: '■■■■■■■■■■■■', prefix: '99');
 
   @override
   String? get flag => '🇲🇱';

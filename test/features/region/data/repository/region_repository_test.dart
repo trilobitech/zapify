@@ -16,7 +16,7 @@ void main() {
   late MockPhoneNumberUtil mockPhoneNumberUtil;
   late ILocalConfigStorage mockLocalConfigStorage;
 
-  final defaultRegion = Region(code: 'BR', prefix: 55);
+  final defaultRegion = Region(code: 'BR', prefix: '55');
 
   const regions = [
     RegionInfo(name: 'Canada', code: 'CA', prefix: 1),
@@ -30,7 +30,7 @@ void main() {
   ];
 
   final countries = regions
-    .map((e) => Country(code: e.code, prefix: e.prefix, name: e.name))
+    .map((e) => Country(code: e.code, prefix: '${e.prefix}', name: e.name))
     .toList(growable: false)..sort((a, b) => a.name.compareTo(b.name));
 
   setUpAll(() {
@@ -42,7 +42,7 @@ void main() {
   setUp(() {
     mockPhoneNumberUtil = MockPhoneNumberUtil();
     mockLocalConfigStorage = MockLocalConfigStorage();
-    regionRepository = RegionRepository(plugin: mockPhoneNumberUtil);
+    regionRepository = RegionRepository();
 
     when(
       () => mockLocalConfigStorage.getValue<String?>(

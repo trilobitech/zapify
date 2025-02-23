@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
+
 const _homeAdListAndroidUnitId = String.fromEnvironment(
   'ZAPIFY_HOME_AD_LIST_ANDROID_UNIT_ID',
   defaultValue: '',
@@ -21,6 +23,7 @@ class EnvConfig {
   );
 
   static String get homeAdListUnitId {
+    if (kProfileMode) return '';
     if (Platform.isAndroid) return _homeAdListAndroidUnitId;
     if (Platform.isIOS) return _homeAdListIosUnitId;
     return '';

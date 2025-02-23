@@ -173,5 +173,5 @@ class PhoneFieldBloc extends StateActionBloc<PhoneFieldState, PhoneFieldAction>
 }
 
 extension _PhoneNumberExt on PhoneNumber {
-  Region get region => Region(code: regionCode, prefix: int.parse(countryCode));
+  Region get region => Region(code: regionCode, prefix: countryCode);
 }

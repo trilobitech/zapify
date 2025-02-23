@@ -1,4 +1,7 @@
+import 'package:flutter/foundation.dart';
+
 import '../../common/di/definition.dart';
+import '../../fakes/history.dart';
 import 'data/repository/history_repository.dart';
 import 'domain/repository/history_repository.dart';
 import 'domain/usecase/get_phone_number_history.dart';
@@ -25,5 +28,8 @@ void historyModule() {
 
   registerFactory(() => SavePhoneNumberHistoryUseCase(repository: get()));
 
-  registerSingleton<IHistoryRepository>(() => HistoryRepository(db: lazy()));
+  registerSingleton<IHistoryRepository>(
+    () =>
+        kReleaseMode ? HistoryRepository(db: lazy()) : HistoryRepositoryFake(),
+  );
 }

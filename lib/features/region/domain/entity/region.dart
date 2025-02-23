@@ -1,15 +1,15 @@
 import 'package:equatable/equatable.dart';
 
 const _kDefaultRegionCode = 'BR';
-const _kDefaultRegionPrefix = 55;
+const _kDefaultRegionPrefix = '55';
 
 typedef RegionCode = String;
-typedef CountryCode = int;
+typedef Prefix = String;
 
 abstract class IRegion extends Equatable implements Comparable<IRegion> {
   RegionCode get code;
 
-  CountryCode get prefix;
+  Prefix get prefix;
 
   late final String? flag = code.toUpperCase().replaceAllMapped(
     RegExp(r'[A-Z]'),
@@ -35,7 +35,7 @@ class Region extends IRegion {
   final RegionCode code;
 
   @override
-  final CountryCode prefix;
+  final Prefix prefix;
 
   @override
   String toString() => 'Region{code: $code, prefix: $prefix}';
