@@ -1,0 +1,3 @@
+Click to chat with any number without adding it on your contact book. Supports WhatsApp, Telegram and Signal.
+
+This app is not affiliated with nor endorsed by WhatsApp Inc.
