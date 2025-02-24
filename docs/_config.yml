@@ -1,5 +1,21 @@
-remote_theme: pages-themes/slate@v0.2.0
+title: Zapify
 google_analytics: G-WS6VJNYSVL
 
-#plugins:
-#- jekyll-remote-theme # add this line to the plugins list if you already have one
+# url: https://trilobitech.com/zapify
+languages: ["en-us", "pt-br", "es-es"]
+default_lang: "en-us"
+lang_from_path: true
+exclude_from_localization:
+  - "assets"
+parallel_localization: true
+
+markdown: kramdown
+
+plugins:
+  - jekyll-polyglot
+
+include: ["_pages"]
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - Makefile

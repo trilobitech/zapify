@@ -1,3 +1,9 @@
+---
+page_id: privacy-policy
+layout: page
+permalink: "privacy-policy/"
+title:  "Privacy Policy"
+---
 **Privacy Policy**
 
 Zapify is an open-source application licensed under the [GNU Affero General Public License v3.0 (AGPL-3.0)](https://www.gnu.org/licenses/agpl-3.0.html). The source code is available on [GitHub](https://github.com/trilobitech/zapify), and users are free to use, modify, and distribute it under the terms of this license. However, the name, logo, and visual identity of Zapify remain the property of Trilobitech and cannot be used without permission.
@@ -50,4 +56,4 @@ Effective Date: 2025-02-22
 
 **Contact Us**
 
-If you have any questions or suggestions about our Privacy Policy, contact us at pedro@trilobitech.com.
+If you have any questions or suggestions about our Privacy Policy, contact us at [contact@trilobitech.com](mailto:contact@trilobitech.com).

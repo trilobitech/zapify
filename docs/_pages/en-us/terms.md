@@ -1,3 +1,9 @@
+---
+page_id: terms
+layout: page
+permalink: "terms-and-conditions/"
+title:  "Terms & Conditions"
+---
 **Terms & Conditions**
 
 Zapify is an open-source application, licensed under the [GNU Affero General Public License v3.0 (AGPL-3.0)](https://www.gnu.org/licenses/agpl-3.0.html). The source code is available at [GitHub](https://github.com/trilobitech/zapify), and you are free to use, modify, and distribute it in accordance with the license terms. However, the Zapify name, logo, and branding remain the property of Trilobitech and may not be used without permission.
@@ -38,4 +44,4 @@ Effective Date: 2025-02-22
 
 **Contact Us**
 
-If you have any questions or suggestions about these Terms and Conditions, contact us at pedro@trilobitech.com.
+If you have any questions or suggestions about these Terms and Conditions, contact us at [contact@trilobitech.com](mailto:contact@trilobitech.com).

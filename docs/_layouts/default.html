@@ -1,0 +1,59 @@
+---
+---
+{%- if page['data-key'] -%}
+{% assign page_data = site.data[site.active_lang][page['data-key']] %}
+{%- endif -%}
+<!DOCTYPE html>
+<html lang="{{site.active_lang}}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% if page.title -%}
+    <title>{{ page.title }} | {{ site.title }}</title>
+    <meta property="og:title" content="{{ page.title }} | {{ site.title }}">
+    {%- else if page_data -%}
+    <title>{{ page_data.title }}</title>
+    <meta property="og:title" content="{{ page_data.title }}">
+    {%- endif %}
+    <meta name="author" content="Trilobitech">
+    {% if page_data.meta.description -%}
+    <meta name="description" content="{{ page_data.meta.description }}">
+    <meta property="og:description" content="{{ page_data.meta.description }}">
+    {%- endif %}
+    {% if page_data.meta.keywords -%}
+    <meta name="keywords" content="{{ page_data.meta.keywords | join: ', ' }}">
+    {%- endif %}
+    <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}">
+
+    <meta http-equiv="Content-Language" content="{{site.active_lang}}">
+    {%- for lang in site.languages -%}
+    {% capture lang_href %}{{site.baseurl}}/{% if lang != site.default_lang %}{{ lang }}/{% endif %}{% if
+    page.permalink_lang[lang] != '/' %}{{page.permalink_lang[lang]}}{% endif %}{% endcapture %}
+    <link rel="alternate" hreflang="{{ lang }}" {% static_href %}href="{{ lang_href }}" {% endstatic_href %} />
+    {%- endfor %}
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/icons/apple-touch-icon.png' | relative_url }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/icons/favicon-32x32.png' | relative_url }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/icons/favicon-16x16.png' | relative_url }}">
+    <link rel="manifest" href="{{ '/assets/site.webmanifest' | relative_url }}">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css" />
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" />
+</head>
+
+<body>
+{% include navbar.html %}
+
+{{ content }}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="{{ '/assets/js/script.js' | relative_url }}"></script>
+{% include head-google-analytics.html %}
+</body>
+
+</html>

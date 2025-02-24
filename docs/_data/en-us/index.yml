@@ -1,0 +1,19 @@
+title: Zapify - Start WhatsApp & Telegram Chats Without Saving Numbers
+
+meta:
+  description: With Zapify, start chats on WhatsApp, Telegram, and Signal without saving contacts. Fast, simple, and hassle-free!
+  keywords:
+    - Click to chat
+    - App
+    - Address book
+    - WhatsApp
+    - Telegram
+    - Signal
+
+headline: Open chats. No hassle. No saving.
+description: No need to clutter your contacts list with one-time numbers! With Zapify, just type and start a conversation instantly in your favorite messenger. Simple, fast, and hassle-free!
+app_preview: /assets/images/zapify-home-en.png
+buttons:
+  play_store:
+    src: https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png
+    alt: Get it on Google Play
