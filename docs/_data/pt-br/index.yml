@@ -1,0 +1,8 @@
+title: Zapify - Use mensageiros sem salvar contatos
+headline: Use mensageiros sem salvar contatos
+description: Com o Zapify, envie mensagens no WhatsApp, Telegram e outros apps sem precisar salvar números.
+app_preview: /assets/images/zapify-home-pt.png
+buttons:
+  play_store:
+    src: https://play.google.com/intl/pt_br/badges/static/images/badges/pt_badge_web_generic.png
+    alt: Baixar na Google Play

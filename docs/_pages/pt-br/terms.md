@@ -1,3 +1,9 @@
+---
+page_id: terms
+layout: page
+permalink: "termos-e-condicoes/"
+title:  "Termos e Condições"
+---
 **Termos e Condições**
 
 O Zapify é um aplicativo de código aberto, licenciado sob a [Licença Pública Geral Affero GNU v3.0 (AGPL-3.0)](https://www.gnu.org/licenses/agpl-3.0.html). O código-fonte está disponível no [GitHub](https://github.com/trilobitech/zapify), e você é livre para usá-lo, modificá-lo e distribuí-lo de acordo com os termos da licença. No entanto, o nome, logotipo e identidade visual do Zapify permanecem propriedade da Trilobitech e não podem ser utilizados sem permissão.
@@ -38,4 +44,4 @@ Data de Vigência: 2025-02-22
 
 **Fale Conosco**
 
-Se tiver dúvidas ou sugestões sobre estes Termos e Condições, entre em contato pelo e-mail pedro@trilobitech.com.
+Se tiver dúvidas ou sugestões sobre estes Termos e Condições, entre em contato pelo e-mail [contact@trilobitech.com](mailto:contact@trilobitech.com).
