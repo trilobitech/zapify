@@ -6,7 +6,7 @@ on:
 
 jobs:
   create-release:
-    if: ${{ github.event.pull_request.merged }}
+    if: ${{ github.event.pull_request.merged == true && github.event.pull_request.head.ref =~ '^release/v[0-9]+\\.[0-9]+\\.[0-9]+$' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -17,15 +17,15 @@ jobs:
         run: |
           VERSION=$(grep 'version:' pubspec.yaml | tail -n1 | awk '{ print $2}')
           VERSION_NAME=${VERSION%+*}
-          echo "VERSION=$VERSION_NAME" >> $GITHUB_ENV
+          echo "VERSION=v$VERSION_NAME" >> $GITHUB_ENV
 
       - name: Create Release
         id: create_release
-        uses: actions/create-release@v1
+        uses: ncipollo/release-action@v1.16.0
+        permissions:
+          contents: write
         with:
-          tag_name: ${{ env.VERSION }}
-          release_name: Release ${{ env.VERSION }}
-          body: |
-            Release created for PR #${{ github.event.pull_request.number }}.
-          draft: false
-          prerelease: false
+          name: Release ${{ env.VERSION }}
+          tag: ${{ env.VERSION }}
+          commit: ${{ github.sha }}
+          generateReleaseNotes: true
