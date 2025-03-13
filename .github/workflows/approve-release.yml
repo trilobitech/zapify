@@ -1,0 +1,40 @@
+name: Approve release
+
+on:
+  repository_dispatch:
+    types:
+      - app_approval
+
+jobs:
+  approve-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Find related Pull Request
+        id: find-pr
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const appVersion = context.payload.client_payload.app_version;
+            const { data: pullRequests } = await github.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              head: `release/v${appVersion}`
+            });
+            if (pullRequests.length === 0) {
+              throw new Error(`No pull request found for release/v${appVersion}`);
+            }
+            return { prNumber: pullRequests[0].number };
+
+      - name: Add autoapproval Label
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const prNumber = steps.find-pr.outputs.prNumber;
+            const label = 'autoapproval';
+            await github.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+              labels: [label]
+            });
