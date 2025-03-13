@@ -218,13 +218,13 @@ abstract class AppLocalizations {
   /// No description provided for @callLogPermissionMessage.
   ///
   /// In en, this message translates to:
-  /// **'You need to give permission to display call log.'**
+  /// **'To access your call history and make messaging easier, we need your permission. Rest assured, no information is stored or shared.'**
   String get callLogPermissionMessage;
 
   /// No description provided for @callLogPermissionButtonLabel.
   ///
   /// In en, this message translates to:
-  /// **'Give permission'**
+  /// **'Grant permission'**
   String get callLogPermissionButtonLabel;
 
   /// No description provided for @callLogEmptyMessage.
