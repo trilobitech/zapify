@@ -40,8 +40,8 @@ platform :android do
     verify_play_store_key
     build_bundle
     upload_to_play_store(
-      track: 'alpha',
-      release_status: 'draft',
+      track: 'production',
+      release_status: 'completed',
       aab: "#{$project_path}/build/app/outputs/bundle/release/app-release.aab",
     )
   end
