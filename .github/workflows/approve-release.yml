@@ -1,38 +1,81 @@
 name: Approve release
 
 on:
-  repository_dispatch:
-    types:
-      - app_approval
+  schedule:
+    - cron: '0 0 * * *'
 
 jobs:
-  approve-release:
+  finds-release-pr:
     runs-on: ubuntu-latest
+    outputs:
+      prNumber: ${{ steps.find-pr.outputs.prNumber }}
+      appVersion: ${{ steps.find-pr.outputs.appVersion }}
     steps:
-      - name: Find related Pull Request
+      - name: Find release PR
         id: find-pr
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7.0.1
         with:
           script: |
-            const appVersion = context.payload.client_payload.app_version;
-            const { data: pullRequests } = await github.pulls.list({
+            const { data: pullRequests } = await github.rest.pulls.list({
               owner: context.repo.owner,
               repo: context.repo.repo,
               state: 'open',
-              head: `release/v${appVersion}`
             });
-            if (pullRequests.length === 0) {
-              throw new Error(`No pull request found for release/v${appVersion}`);
-            }
-            return { prNumber: pullRequests[0].number };
+            const releasePullRequests = pullRequests
+              .filter(pr => pr.head.ref.match(/^release\/v[0-9]+\.[0-9]+\.[0-9]+$/))
+              .map(pr => (
+                {
+                  appVersion: pr.head.ref.match(/^release\/v([0-9]+\.[0-9]+\.[0-9]+)$/)[1],
+                  prNumber: pr.number,
+                  prUrl: pr.html_url,
+                }
+              ));
 
+            if (releasePullRequests.length !== 1) {
+              core.info(`Found ${releasePullRequests.length} release pull requests`);
+              return {};
+            }
+
+            const releasePr = releasePullRequests[0];
+            core.info(`Found release pull request ${releasePr.prUrl} for app version ${releasePr.appVersion}`);
+            core.setOutput('prNumber', releasePr.prNumber);
+            core.setOutput('appVersion', releasePr.appVersion);
+
+
+  get-latest-android-app-version:
+    runs-on: ubuntu-latest
+    needs: finds-release-pr
+    if: ${{ needs.finds-release-pr.outputs.prNumber }}
+    outputs:
+      appVersion: ${{ steps.get-published-version.outputs.app_version }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Get published version
+        id: get-published-version
+        run: |
+          appfile_path=android/fastlane/Appfile
+          package_name=$(grep package_name $appfile_path | awk '{print $2}' | tr -d '"' | tr -d "'")
+          published_version=$(./bin/get-published-version.py $package_name)
+          echo "app_version=$published_version" >> $GITHUB_OUTPUT
+          echo "Published version found: $published_version"
+
+
+  approve-release:
+    runs-on: ubuntu-latest
+    needs:
+      - finds-release-pr
+      - get-latest-android-app-version
+    if: ${{ needs.finds-release-pr.outputs.prNumber == needs.get-latest-android-app-version.outputs.appVersion }}
+    steps:
       - name: Add autoapproval Label
         uses: actions/github-script@v6
         with:
           script: |
-            const prNumber = steps.find-pr.outputs.prNumber;
+            const prNumber = ${{ needs.finds-release-pr.outputs.prNumber }};
             const label = 'autoapproval';
-            await github.issues.addLabels({
+            await github.rest.issues.addLabels({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: prNumber,
