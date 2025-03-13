@@ -67,7 +67,7 @@ jobs:
     needs:
       - finds-release-pr
       - get-latest-android-app-version
-    if: ${{ needs.finds-release-pr.outputs.prNumber == needs.get-latest-android-app-version.outputs.appVersion }}
+    if: ${{ needs.finds-release-pr.outputs.appVersion == needs.get-latest-android-app-version.outputs.appVersion }}
     steps:
       - name: Add autoapproval Label
         uses: actions/github-script@v6
