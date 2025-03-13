@@ -3,7 +3,7 @@ name: "Trigger Distribution on PR"
 on:
   pull_request:
     branches: [ main ]
-    types: [ opened, reopened, synchronize, ready_for_review, unlabeled ]
+    types: [ opened, reopened, synchronize, ready_for_review ]
 
 concurrency:
   group: automatic-distribute-${{ github.ref }}
@@ -27,7 +27,7 @@ jobs:
   distribute-android:
     needs: get-pr-labels
     uses: ./.github/workflows/distribute-flutter-android.yml
-    if: contains(fromJson(needs.get-pr-labels.outputs.labels), 'google-play-submitted')
+    if: contains(fromJson(needs.get-pr-labels.outputs.labels), 'google-play-submitted') == false
     with:
       environment: production
     secrets:
