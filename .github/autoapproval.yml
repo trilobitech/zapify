@@ -5,5 +5,5 @@ required_labels:
   - autoapproval
 apply_labels:
   - automerge
-blacklisted_labels:
+ignored_labels:
   - wip
