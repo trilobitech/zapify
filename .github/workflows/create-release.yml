@@ -1,0 +1,31 @@
+name: Create Release on PR Merge
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  create-release:
+    if: ${{ github.event.pull_request.merged }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Read version from pubspec.yaml
+        id: read_version
+        run: |
+          VERSION=$(grep 'version:' pubspec.yaml | tail -n1 | awk '{ print $2}')
+          VERSION_NAME=${VERSION%+*}
+          echo "VERSION=$VERSION_NAME" >> $GITHUB_ENV
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        with:
+          tag_name: ${{ env.VERSION }}
+          release_name: Release ${{ env.VERSION }}
+          body: |
+            Release created for PR #${{ github.event.pull_request.number }}.
+          draft: false
+          prerelease: false

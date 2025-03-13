@@ -1,0 +1,17 @@
+name: "Trigger Distribution on PR"
+
+on:
+  pull_request:
+    branches: [ main ]
+    types: [opened, reopened, synchronize, ready_for_review]
+
+jobs:
+  distribute-android:
+    if: ${{ github.head_ref =~ '^release/v[0-9]+\\.[0-9]+\\.[0-9]+$' }}
+    uses: ./.github/workflows/distribute-flutter-android.yml
+    with:
+      environment: production
+    secrets:
+      AMPLITUDE_KEY: ${{ secrets.AMPLITUDE_KEY }}
+      ANDROID_BUILD_FILES: ${{ secrets.ANDROID_BUILD_FILES }}
+      FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
