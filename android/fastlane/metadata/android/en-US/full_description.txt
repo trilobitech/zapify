@@ -1,3 +1,13 @@
-Click to chat with any number without adding it on your contact book. Supports WhatsApp, Telegram and Signal.
+📲 **Start chats instantly!**
 
-This app is not affiliated with nor endorsed by WhatsApp Inc.
+Tired of saving contacts just to send a message? Zapify makes it easy!
+
+✔ **Open chats on WhatsApp, Telegram & Signal without saving numbers**
+✔ **Use your call log to start conversations instantly**
+✔ **Easily access and reuse recent numbers**
+✔ **Choose which messengers you want to use**
+✔ **Set a default region to auto-complete numbers**
+
+💡 **Fast, convenient, and hassle-free!**
+
+*This app is not affiliated with or endorsed by WhatsApp Inc., Telegram, or Signal.*
