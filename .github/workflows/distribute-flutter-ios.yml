@@ -89,7 +89,7 @@ jobs:
           KEYCHAIN_PWD: ''
 
       - name: Run lane to distribute
-        uses: maierj/fastlane-action@v3.0.0
+        uses: maierj/fastlane-action@v3.1.0
         with:
           lane: ${{ vars.TARGET_LANE }}
           options: '{ "tester_email": "${{ secrets.TESTER_EMAIL }}" }'
