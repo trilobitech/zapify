@@ -3,15 +3,74 @@ name: "Trigger Distribution on PR"
 on:
   pull_request:
     branches: [ main ]
-    types: [opened, reopened, synchronize, ready_for_review]
+    types: [ opened, reopened, synchronize, ready_for_review, unlabeled ]
+
+concurrency:
+  group: automatic-distribute-${{ github.ref }}
+  cancel-in-progress: true
+
 
 jobs:
+  check-branch:
+    if: startsWith(github.head_ref, 'release/v')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if branch matches pattern
+        id: check_branch
+        run: |
+          if [[ ! "${GITHUB_HEAD_REF}" =~ ^release/v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Branch does not match pattern"
+            exit 1
+          fi
+
+
   distribute-android:
-    if: ${{ github.head_ref =~ '^release/v[0-9]+\\.[0-9]+\\.[0-9]+$' }}
+    needs: get-pr-labels
     uses: ./.github/workflows/distribute-flutter-android.yml
+    if: contains(fromJson(needs.get-pr-labels.outputs.labels), 'google-play-submitted')
     with:
       environment: production
     secrets:
       AMPLITUDE_KEY: ${{ secrets.AMPLITUDE_KEY }}
       ANDROID_BUILD_FILES: ${{ secrets.ANDROID_BUILD_FILES }}
       FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+
+
+  get-pr-labels:
+    runs-on: ubuntu-latest
+    needs: check-branch
+    permissions:
+      contents: read
+    outputs:
+      labels: ${{ steps.get_labels.outputs.labels }}
+    steps:
+      - name: Get pull request labels
+        id: get_labels
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const { data: labels } = await github.rest.issues.listLabelsOnIssue({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number
+            });
+            const prLabels = labels.map(label => label.name)
+            core.setOutput('labels', JSON.stringify(prLabels));
+
+
+  add-google-play-submitted-label:
+    needs: distribute-android
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add Google Play Submitted label
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            const label = 'google-play-submitted';
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+              labels: [label]
+            });
