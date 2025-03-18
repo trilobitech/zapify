@@ -3,7 +3,7 @@ name: "Trigger Distribution on PR"
 on:
   pull_request:
     branches: [ main ]
-    types: [ opened, reopened, synchronize, ready_for_review, unlabeled ]
+    types: [ opened, reopened, synchronize, ready_for_review ]
 
 concurrency:
   group: automatic-distribute-${{ github.ref }}
@@ -27,7 +27,7 @@ jobs:
   distribute-android:
     needs: get-pr-labels
     uses: ./.github/workflows/distribute-flutter-android.yml
-    if: contains(fromJson(needs.get-pr-labels.outputs.labels), 'google-play-submitted')
+    if: contains(fromJson(needs.get-pr-labels.outputs.labels), 'google-play-submitted') == false
     with:
       environment: production
     secrets:
@@ -52,7 +52,7 @@ jobs:
             const { data: labels } = await github.rest.issues.listLabelsOnIssue({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              pull_number: context.payload.pull_request.number
+              issue_number: context.payload.pull_request.number
             });
             const prLabels = labels.map(label => label.name)
             core.setOutput('labels', JSON.stringify(prLabels));
