@@ -1,6 +1,6 @@
 name: zapify
 description: A new Flutter project.
-version: 2.2.1+14
+version: 2.3.0+17
 publish_to: 'none'
 
 environment:

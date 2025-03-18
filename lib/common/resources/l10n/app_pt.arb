@@ -23,8 +23,8 @@
     "actionSettings": "Configurações",
 
     "callLogTabTitle": "Chamadas",
-    "callLogPermissionMessage": "Para exibir o histórico de chamadas, é necessário permitir o acesso.",
-    "callLogPermissionButtonLabel": "Permitir",
+    "callLogPermissionMessage": "Para acessar seu histórico de chamadas e facilitar o envio de mensagens, precisamos da sua permissão. Saiba que nenhuma informação é armazenada ou compartilhada.",
+    "callLogPermissionButtonLabel": "Conceder permissão",
     "callLogEmptyMessage": "Nenhuma chamada para exibir",
 
     "availableRegionsTitle": "Selecione o país",
