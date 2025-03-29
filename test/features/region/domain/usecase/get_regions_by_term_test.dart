@@ -28,68 +28,54 @@ void main() {
   });
 
   group('GetRegionsByTermUseCase', () {
-    test(
-      'should return all regions if term is empty',
-      () async {
-        // act
-        final result = await useCase.call(term: '');
+    test('should return all regions if term is empty', () async {
+      // act
+      final result = await useCase.call(term: '');
 
-        // assert
-        expect(result, equals(regions));
-        verify(() => repository.getAll()).called(1);
-        verifyNoMoreInteractions(repository);
-      },
-    );
+      // assert
+      expect(result, equals(regions));
+      verify(() => repository.getAll()).called(1);
+      verifyNoMoreInteractions(repository);
+    });
 
-    test(
-      'should return only countries with matching code or name',
-      () async {
-        // arrange
-        final expectedCountries = [
-          Country(code: 'US', prefix: 1, name: 'United States'),
-          Country(code: 'PT', prefix: 351, name: 'Portugal'),
-          Country(code: 'UK', prefix: 44, name: 'United Kingdom'),
-        ];
+    test('should return only countries with matching code or name', () async {
+      // arrange
+      final expectedCountries = [
+        Country(code: 'US', prefix: 1, name: 'United States'),
+        Country(code: 'PT', prefix: 351, name: 'Portugal'),
+        Country(code: 'UK', prefix: 44, name: 'United Kingdom'),
+      ];
 
-        // act
-        final result = await useCase.call(term: 'U');
+      // act
+      final result = await useCase.call(term: 'U');
 
-        // assert
-        expect(result, equals(expectedCountries));
-        verify(() => repository.getAll()).called(1);
-      },
-    );
+      // assert
+      expect(result, equals(expectedCountries));
+      verify(() => repository.getAll()).called(1);
+    });
 
-    test(
-      'should filter regions case insensitive',
-      () async {
-        // arrange
-        final expected = [
-          Country(code: 'CA', prefix: 1, name: 'Canada'),
-        ];
+    test('should filter regions case insensitive', () async {
+      // arrange
+      final expected = [Country(code: 'CA', prefix: 1, name: 'Canada')];
 
-        // act
-        final result = await useCase.call(term: 'nAdA');
+      // act
+      final result = await useCase.call(term: 'nAdA');
 
-        // assert
-        expect(result, equals(expected));
-        verify(() => repository.getAll()).called(1);
-        verifyNoMoreInteractions(repository);
-      },
-    );
+      // assert
+      expect(result, equals(expected));
+      verify(() => repository.getAll()).called(1);
+      verifyNoMoreInteractions(repository);
+    });
 
-    test(
-      'should return an empty list if no regions match the term',
-      () async {
-        // act
-        final result = await useCase.call(term: 'xyz');
+    test('should return an empty list if no regions match the term', () async {
+      // act
+      final result = await useCase.call(term: 'xyz');
 
-        // assert
-        expect(result, isEmpty);
-        verify(() => repository.getAll()).called(1);
-        verifyNoMoreInteractions(repository);
-      },
-    );
+      // assert
+      expect(result, isEmpty);
+      verify(() => repository.getAll()).called(1);
+      verifyNoMoreInteractions(repository);
+    });
 
     test('should return regions whose prefix contains the term', () async {
       // arrange

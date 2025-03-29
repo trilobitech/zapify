@@ -29,21 +29,11 @@ void main() {
     RegionInfo(name: 'Colombia', code: 'CO', prefix: 57),
   ];
 
-  final countries = regions
-      .map(
-        (e) => Country(
-          code: e.code,
-          prefix: e.prefix,
-          name: e.name,
-        ),
-      )
-      .toList(growable: false)
+  final countries = regions.map((e) => Country(code: e.code, prefix: e.prefix, name: e.name)).toList(growable: false)
     ..sort((a, b) => a.name.compareTo(b.name));
 
   setUpAll(() {
-    GetIt.instance.registerFactoryAsync<ILocalConfigStorage>(
-      () async => mockLocalConfigStorage,
-    );
+    GetIt.instance.registerFactoryAsync<ILocalConfigStorage>(() async => mockLocalConfigStorage);
   });
 
   setUp(() {
@@ -51,119 +41,80 @@ void main() {
     mockLocalConfigStorage = MockLocalConfigStorage();
     regionRepository = RegionRepository(plugin: mockPhoneNumberUtil);
 
-    when(
-      () => mockLocalConfigStorage
-          .getValue<String?>(LocalConfig.defaultRegion.key),
-    ).thenReturn(null);
+    when(() => mockLocalConfigStorage.getValue<String?>(LocalConfig.defaultRegion.key)).thenReturn(null);
   });
 
-  test(
-    'getAll returns list of countries sorted by name',
-    () async {
-      // arrange
-      when(() => mockPhoneNumberUtil.allSupportedRegions())
-          .thenAnswer((_) async => regions);
+  test('getAll returns list of countries sorted by name', () async {
+    // arrange
+    when(() => mockPhoneNumberUtil.allSupportedRegions()).thenAnswer((_) async => regions);
 
-      // act
-      final result = await regionRepository.getAll();
+    // act
+    final result = await regionRepository.getAll();
 
-      // assert
-      expect(result, equals(countries));
-    },
-  );
+    // assert
+    expect(result, equals(countries));
+  });
 
-  test(
-    'getCurrent returns default region if carrier region code is invalid',
-    () async {
-      // arrange
-      when(() => mockPhoneNumberUtil.carrierRegionCode())
-          .thenAnswer((_) async => 'invalid code');
+  test('getCurrent returns default region if carrier region code is invalid', () async {
+    // arrange
+    when(() => mockPhoneNumberUtil.carrierRegionCode()).thenAnswer((_) async => 'invalid code');
 
-      when(() => mockPhoneNumberUtil.allSupportedRegions())
-          .thenAnswer((_) async => regions);
+    when(() => mockPhoneNumberUtil.allSupportedRegions()).thenAnswer((_) async => regions);
 
-      // act
-      final result = await regionRepository.getCurrent();
+    // act
+    final result = await regionRepository.getCurrent();
 
-      // assert
-      expect(result, equals(defaultRegion));
-    },
-  );
+    // assert
+    expect(result, equals(defaultRegion));
+  });
 
-  test(
-    'getCurrent returns correct region for carrier region code',
-    () async {
-      // arrange
-      when(() => mockPhoneNumberUtil.carrierRegionCode())
-          .thenAnswer((_) async => 'MX');
+  test('getCurrent returns correct region for carrier region code', () async {
+    // arrange
+    when(() => mockPhoneNumberUtil.carrierRegionCode()).thenAnswer((_) async => 'MX');
 
-      when(() => mockPhoneNumberUtil.allSupportedRegions())
-          .thenAnswer((_) async => regions);
+    when(() => mockPhoneNumberUtil.allSupportedRegions()).thenAnswer((_) async => regions);
 
-      // act
-      final result = await regionRepository.getCurrent();
+    // act
+    final result = await regionRepository.getCurrent();
 
-      // assert
-      expect(result, equals(countries[6]));
-    },
-  );
+    // assert
+    expect(result, equals(countries[6]));
+  });
 
-  test(
-    'getCurrent should return default region when carrierRegionCode fails',
-    () async {
-      // arrange
-      when(() => mockPhoneNumberUtil.carrierRegionCode())
-          .thenAnswer((_) async => throw 'Failed to get carrier region code');
+  test('getCurrent should return default region when carrierRegionCode fails', () async {
+    // arrange
+    when(
+      () => mockPhoneNumberUtil.carrierRegionCode(),
+    ).thenAnswer((_) async => throw 'Failed to get carrier region code');
 
-      // act
-      final result = await regionRepository.getCurrent();
+    // act
+    final result = await regionRepository.getCurrent();
 
-      // assert
-      expect(result, equals(defaultRegion));
-    },
-  );
+    // assert
+    expect(result, equals(defaultRegion));
+  });
 
-  test(
-    'getCurrent should return stored region when exists',
-    () async {
-      // arrange
-      when(
-        () => mockLocalConfigStorage
-            .getValue<String?>(LocalConfig.defaultRegion.key),
-      ).thenReturn('CO');
+  test('getCurrent should return stored region when exists', () async {
+    // arrange
+    when(() => mockLocalConfigStorage.getValue<String?>(LocalConfig.defaultRegion.key)).thenReturn('CO');
 
-      when(() => mockPhoneNumberUtil.allSupportedRegions())
-          .thenAnswer((_) async => regions);
+    when(() => mockPhoneNumberUtil.allSupportedRegions()).thenAnswer((_) async => regions);
 
-      // act
-      final result = await regionRepository.getCurrent();
+    // act
+    final result = await regionRepository.getCurrent();
 
-      // assert
-      expect(result, equals(countries[3]));
-    },
-  );
+    // assert
+    expect(result, equals(countries[3]));
+  });
 
-  test(
-    'setCurrent should store region code',
-    () async {
-      // arrange
-      when(
-        () => mockLocalConfigStorage.setValue(
-          LocalConfig.defaultRegion.key,
-          any<String>(),
-        ),
-      ).thenAnswer((_) async {});
+  test('setCurrent should store region code', () async {
+    // arrange
+    when(() => mockLocalConfigStorage.setValue(LocalConfig.defaultRegion.key, any<String>())).thenAnswer((_) async {});
 
-      // act
-      await regionRepository.setCurrent(countries[3]);
+    // act
+    await regionRepository.setCurrent(countries[3]);
 
-      // assert
-      verify(
-        () => mockLocalConfigStorage.setValue(
-          LocalConfig.defaultRegion.key,
-          countries[3].code,
-        ),
-      ).called(1);
-    },
-  );
+    // assert
+    verify(() => mockLocalConfigStorage.setValue(LocalConfig.defaultRegion.key, countries[3].code)).called(1);
+  });
 }

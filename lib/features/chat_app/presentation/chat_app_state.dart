@@ -7,8 +7,6 @@ part 'chat_app_state.freezed.dart';
 
 @freezed
 class ChatAppState with _$ChatAppState implements IState {
-  factory ChatAppState({
-    @Default([]) Iterable<ChatApp> enabled,
-    @Default([]) Iterable<ChatApp> disabled,
-  }) = _ChatAppState;
+  factory ChatAppState({@Default([]) Iterable<ChatApp> enabled, @Default([]) Iterable<ChatApp> disabled}) =
+      _ChatAppState;
 }

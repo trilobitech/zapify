@@ -4,10 +4,7 @@ import '../repository/call_log.dart';
 import 'has_call_log_access_permission.dart';
 
 class GetCallLogUseCase {
-  GetCallLogUseCase({
-    required this.hasCallLogAccessPermission,
-    required this.repository,
-  });
+  GetCallLogUseCase({required this.hasCallLogAccessPermission, required this.repository});
 
   final HasCallLogAccessPermissionUseCase hasCallLogAccessPermission;
   final CallLogRepository repository;

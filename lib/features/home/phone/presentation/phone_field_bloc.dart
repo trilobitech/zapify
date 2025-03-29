@@ -10,13 +10,10 @@ import '../domain/phone_field_error.dart';
 import '../phone_field_component.dart';
 import 'phone_field_state.dart';
 
-class PhoneFieldBloc extends StateActionBloc<PhoneFieldState, PhoneFieldAction>
-    implements PhoneFieldComponent {
-  PhoneFieldBloc(
-    this._plugin, {
-    required GetDefaultRegionUseCase getDefaultRegion,
-  })  : _getDefaultRegion = getDefaultRegion,
-        super(PhoneFieldState.initial());
+class PhoneFieldBloc extends StateActionBloc<PhoneFieldState, PhoneFieldAction> implements PhoneFieldComponent {
+  PhoneFieldBloc(this._plugin, {required GetDefaultRegionUseCase getDefaultRegion})
+    : _getDefaultRegion = getDefaultRegion,
+      super(PhoneFieldState.initial());
 
   final PhoneNumberUtil _plugin;
   final GetDefaultRegionUseCase _getDefaultRegion;
@@ -56,10 +53,7 @@ class PhoneFieldBloc extends StateActionBloc<PhoneFieldState, PhoneFieldAction>
 
     if (region == null) return;
 
-    await _updatePhoneField(
-      parsed?.nationalNumber ?? phone,
-      region,
-    );
+    await _updatePhoneField(parsed?.nationalNumber ?? phone, region);
   }
 
   @override
@@ -82,8 +76,7 @@ class PhoneFieldBloc extends StateActionBloc<PhoneFieldState, PhoneFieldAction>
   Future<void> _updatePhoneField(String phone, IRegion region) async {
     if (phone == _currentText && region == _region) return;
 
-    final formattedPhone =
-        await _plugin.format(phone, region.code).catchError((_) => phone);
+    final formattedPhone = await _plugin.format(phone, region.code).catchError((_) => phone);
 
     final newValue = _textEditingValueFrom(formattedPhone);
 
@@ -114,21 +107,16 @@ class PhoneFieldBloc extends StateActionBloc<PhoneFieldState, PhoneFieldAction>
         .catchError((_) => null);
   }
 
-  Future<PhoneNumber> _parsePhoneNumber(
-    String phone, [
-    RegionCode? regionCode,
-  ]) async {
+  Future<PhoneNumber> _parsePhoneNumber(String phone, [RegionCode? regionCode]) async {
     if (phone.isEmpty) throw EmptyPhoneNumberError();
 
-    return await _plugin.parse(phone, regionCode: regionCode).catchError(
-      (error, stackTrace) {
-        // prevent phone number on error logging
-        if (error is PlatformException && error.code == 'InvalidNumber') {
-          error = InvalidPhoneNumberError();
-        }
-        Error.throwWithStackTrace(error, stackTrace);
-      },
-    );
+    return await _plugin.parse(phone, regionCode: regionCode).catchError((error, stackTrace) {
+      // prevent phone number on error logging
+      if (error is PlatformException && error.code == 'InvalidNumber') {
+        error = InvalidPhoneNumberError();
+      }
+      Error.throwWithStackTrace(error, stackTrace);
+    });
   }
 
   void _addClearErrorListener() {
@@ -145,34 +133,18 @@ class PhoneFieldBloc extends StateActionBloc<PhoneFieldState, PhoneFieldAction>
   }
 
   TextEditingValue _textEditingValueFrom(String text) {
-    return TextEditingValue(
-      text: text,
-      selection: TextSelection.fromPosition(
-        TextPosition(offset: text.length),
-      ),
-    );
+    return TextEditingValue(text: text, selection: TextSelection.fromPosition(TextPosition(offset: text.length)));
   }
 
-  void _emitState({
-    TextEditingController? controller,
-    IRegion? region,
-    Object? error,
-  }) {
+  void _emitState({TextEditingController? controller, IRegion? region, Object? error}) {
     if (error != null) _addClearErrorListener();
 
-    final newState = currentState.copyWith(
-      controller: controller,
-      region: region,
-      error: error,
-    );
+    final newState = currentState.copyWith(controller: controller, region: region, error: error);
 
     setState(newState);
   }
 }
 
 extension _PhoneNumberExt on PhoneNumber {
-  Region get region => Region(
-        code: regionCode,
-        prefix: int.parse(countryCode),
-      );
+  Region get region => Region(code: regionCode, prefix: int.parse(countryCode));
 }

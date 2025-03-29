@@ -4,25 +4,11 @@ import 'domain/usecase/get_top_banner.dart';
 import 'presentation/top_banner_bloc.dart';
 
 void topBannerModule() {
-  registerFactory(
-    () => TopBannerBloc(
-      getTopBanner: get(),
-      setLastAppReviewAtNow: get(),
-      analytics: get(),
-    ),
-  );
+  registerFactory(() => TopBannerBloc(getTopBanner: get(), setLastAppReviewAtNow: get(), analytics: get()));
 
-  registerFactory(
-    () => GetTopBannerUseCase(
-      canAskForReview: get(),
-    ),
-  );
+  registerFactory(() => GetTopBannerUseCase(canAskForReview: get()));
 
-  registerFactory(
-    () => CanAskForReviewUseCase(),
-  );
+  registerFactory(() => CanAskForReviewUseCase());
 
-  registerFactory(
-    () => SetLastAppReviewAtNowUseCase(),
-  );
+  registerFactory(() => SetLastAppReviewAtNowUseCase());
 }

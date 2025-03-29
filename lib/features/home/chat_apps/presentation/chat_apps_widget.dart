@@ -12,22 +12,18 @@ import 'chat_apps_bloc.dart';
 import 'chat_apps_state.dart';
 import 'dialogs/chat_app_not_found.dart';
 
-class ChatAppsWidget extends StatelessWidget
-    with StateActionMixin<ChatAppsBloc, ChatAppsState, ChatAppsAction> {
+class ChatAppsWidget extends StatelessWidget with StateActionMixin<ChatAppsBloc, ChatAppsState, ChatAppsAction> {
   ChatAppsWidget({Key? key}) : super(key: key);
 
   @override
-  Widget buildState(BuildContext context, ChatAppsState state) => state.when(
-    (entries) => _SuccessView(entries),
-    initial: () => Container(),
-  );
+  Widget buildState(BuildContext context, ChatAppsState state) =>
+      state.when((entries) => _SuccessView(entries), initial: () => Container());
 
   @override
-  FutureOr<void> handleAction(BuildContext context, ChatAppsAction action) =>
-      action.when(
-        select: (entry) => _openChatApp(context, entry),
-        showFailureMessage: (app) => _showChatFailuredMessage(context, app),
-      );
+  FutureOr<void> handleAction(BuildContext context, ChatAppsAction action) => action.when(
+    select: (entry) => _openChatApp(context, entry),
+    showFailureMessage: (app) => _showChatFailuredMessage(context, app),
+  );
 
   Future<void> _openChatApp(BuildContext context, ChatApp entry) async {
     final chatAppsBloc = context.read<ChatAppsBloc>();
@@ -37,14 +33,8 @@ class ChatAppsWidget extends StatelessWidget
         .catchError((err, stack) => chatAppsBloc.selectFailed(entry, err));
   }
 
-  Future<void> _showChatFailuredMessage(
-    BuildContext context,
-    ChatApp app,
-  ) async {
-    await showDialog(
-      context: context,
-      builder: (context) => ChatAppNotFoundDialog(app),
-    );
+  Future<void> _showChatFailuredMessage(BuildContext context, ChatApp app) async {
+    await showDialog(context: context, builder: (context) => ChatAppNotFoundDialog(app));
   }
 }
 
@@ -60,9 +50,7 @@ class _SuccessView extends StatelessWidget {
       padding: const EdgeInsets.only(left: 16, right: 8, bottom: 8),
       child: Row(
         children: entries
-            .mapIndexed(
-              (index, entry) => _EntryView(position: index, entry: entry),
-            )
+            .mapIndexed((index, entry) => _EntryView(position: index, entry: entry))
             .toList(growable: false),
       ),
     );
@@ -70,8 +58,7 @@ class _SuccessView extends StatelessWidget {
 }
 
 class _EntryView extends StatefulWidget {
-  const _EntryView({Key? key, required this.position, required this.entry})
-    : super(key: key);
+  const _EntryView({Key? key, required this.position, required this.entry}) : super(key: key);
 
   final int position;
   final ChatApp entry;
@@ -92,10 +79,7 @@ class _EntryViewState extends State<_EntryView> with TickerProviderStateMixin {
   void initState() {
     super.initState();
 
-    _controller = AnimationController(
-      duration: Duration(milliseconds: position * 200 + 150),
-      vsync: this,
-    );
+    _controller = AnimationController(duration: Duration(milliseconds: position * 200 + 150), vsync: this);
     _animation = Tween(begin: 0.0, end: 1.0).animate(_controller);
     _controller.forward();
   }
@@ -114,10 +98,7 @@ class _EntryViewState extends State<_EntryView> with TickerProviderStateMixin {
       child: ScaleTransition(
         scale: _animation,
         child: ActionChip(
-          avatar: ImageResolverWidget.icon(
-            uri: entry.icon,
-            color: Colors.white,
-          ),
+          avatar: ImageResolverWidget.icon(uri: entry.icon, color: Colors.white),
           label: Text(context.strings.homeOpenWithButton(entry.name)),
           labelStyle: const TextStyle(color: Colors.white),
           backgroundColor: Color(entry.color.value),

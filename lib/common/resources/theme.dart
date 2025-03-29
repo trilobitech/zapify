@@ -16,10 +16,7 @@ abstract class AppTheme {
       ),
       scaffoldBackgroundColor: Colors.white,
       textTheme: GoogleFonts.getTextTheme('Archivo', base.textTheme),
-      tabBarTheme: base.tabBarTheme.copyWith(
-        labelColor: Colors.teal,
-        unselectedLabelColor: Colors.blueGrey,
-      ),
+      tabBarTheme: base.tabBarTheme.copyWith(labelColor: Colors.teal, unselectedLabelColor: Colors.blueGrey),
     );
   }
 

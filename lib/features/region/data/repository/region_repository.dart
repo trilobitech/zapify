@@ -16,30 +16,19 @@ class RegionRepository implements IRegionRepository {
   @override
   Future<List<Country>> getAll() async {
     return _cached ??= (await _plugin.allSupportedRegions())
-        .map(
-          (RegionInfo info) => Country(
-            code: info.code,
-            prefix: info.prefix,
-            name: info.name,
-          ),
-        )
-        .toList(growable: false)
-      ..sort((a, b) => a.name.compareTo(b.name));
+      .map((RegionInfo info) => Country(code: info.code, prefix: info.prefix, name: info.name))
+      .toList(growable: false)..sort((a, b) => a.name.compareTo(b.name));
   }
 
   @override
   Future<IRegion> getCurrent() async {
-    final code = await LocalConfig.defaultRegion.get<String?>() ??
-        await _carrierRegionCode();
+    final code = await LocalConfig.defaultRegion.get<String?>() ?? await _carrierRegionCode();
 
     if (code == _defaultRegion.code) return _defaultRegion;
 
     final allRegions = (await getAll()).cast<IRegion>();
 
-    return allRegions.firstWhere(
-      (region) => region.code == code,
-      orElse: () => _defaultRegion,
-    );
+    return allRegions.firstWhere((region) => region.code == code, orElse: () => _defaultRegion);
   }
 
   Future<String> _carrierRegionCode() async {

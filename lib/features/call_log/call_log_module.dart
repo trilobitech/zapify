@@ -7,30 +7,13 @@ import 'domain/usecase/request_call_log_permission.dart';
 import 'presentation/call_log_bloc.dart';
 
 void callLogModule() {
-  registerFactory(
-    () => CallLogBloc(
-      getCallLog: get(),
-      requestCallLogPermission: get(),
-      analytics: get(),
-    ),
-  );
+  registerFactory(() => CallLogBloc(getCallLog: get(), requestCallLogPermission: get(), analytics: get()));
 
-  registerFactory(
-    () => GetCallLogUseCase(
-      hasCallLogAccessPermission: get(),
-      repository: get(),
-    ),
-  );
+  registerFactory(() => GetCallLogUseCase(hasCallLogAccessPermission: get(), repository: get()));
 
-  registerFactory(
-    () => HasCallLogAccessPermissionUseCase(),
-  );
+  registerFactory(() => HasCallLogAccessPermissionUseCase());
 
-  registerFactory(
-    () => RequestCallLogPermissionUseCase(),
-  );
+  registerFactory(() => RequestCallLogPermissionUseCase());
 
-  registerFactory<CallLogRepository>(
-    () => CallLogRepositoryImpl(),
-  );
+  registerFactory<CallLogRepository>(() => CallLogRepositoryImpl());
 }

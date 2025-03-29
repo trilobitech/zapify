@@ -14,11 +14,11 @@ class ChatAppBloc extends StateBloc<ChatAppState> {
     required GetDisabledChatAppsUseCase getDisabledChatApps,
     required DisableChatAppUseCase disableChatApp,
     required EnableChatAppUseCase enableChatApp,
-  })  : _getEnabledChatApps = getEnabledChatApps,
-        _getDisabledChatApps = getDisabledChatApps,
-        _disableChatApp = disableChatApp,
-        _enableChatApp = enableChatApp,
-        super(ChatAppState());
+  }) : _getEnabledChatApps = getEnabledChatApps,
+       _getDisabledChatApps = getDisabledChatApps,
+       _disableChatApp = disableChatApp,
+       _enableChatApp = enableChatApp,
+       super(ChatAppState());
 
   final GetEnabledChatAppsUseCase _getEnabledChatApps;
   final GetDisabledChatAppsUseCase _getDisabledChatApps;
@@ -27,25 +27,13 @@ class ChatAppBloc extends StateBloc<ChatAppState> {
 
   @override
   Future<void> load() async {
-    setStateFrom(
-      ZipStream.zip2(
-        _getEnabledChatApps(),
-        _getDisabledChatApps(),
-        _mapToState,
-      ),
-    );
+    setStateFrom(ZipStream.zip2(_getEnabledChatApps(), _getDisabledChatApps(), _mapToState));
   }
 
   Future<void> disable(ChatApp chatApp) => _disableChatApp(chatApp);
 
   Future<void> enable(ChatApp chatApp) => _enableChatApp(chatApp);
 
-  ChatAppState _mapToState(
-    Iterable<ChatApp> enabled,
-    Iterable<ChatApp> disabled,
-  ) =>
-      ChatAppState(
-        enabled: enabled,
-        disabled: disabled,
-      );
+  ChatAppState _mapToState(Iterable<ChatApp> enabled, Iterable<ChatApp> disabled) =>
+      ChatAppState(enabled: enabled, disabled: disabled);
 }

@@ -5,14 +5,7 @@ import 'presentation/phone_field_bloc.dart';
 void phoneFiledModule() {
   PhoneFieldBloc? instance;
 
-  registerFactory<PhoneFieldComponent>(
-    () => get<PhoneFieldBloc>(),
-  );
+  registerFactory<PhoneFieldComponent>(() => get<PhoneFieldBloc>());
 
-  registerFactory(
-    () => instance ??= PhoneFieldBloc(
-      get(),
-      getDefaultRegion: get(),
-    ),
-  );
+  registerFactory(() => instance ??= PhoneFieldBloc(get(), getDefaultRegion: get()));
 }

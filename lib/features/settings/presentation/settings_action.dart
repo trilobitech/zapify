@@ -5,8 +5,5 @@ part 'settings_action.freezed.dart';
 
 @freezed
 class SettingsAction with _$SettingsAction implements IAction {
-  factory SettingsAction.navigateTo(
-    String route, {
-    @Default(null) Object? args,
-  }) = _SettingsActionNavigateTo;
+  factory SettingsAction.navigateTo(String route, {@Default(null) Object? args}) = _SettingsActionNavigateTo;
 }

@@ -1,9 +1,5 @@
 class HistoryEntry {
-  HistoryEntry({
-    required this.phoneNumber,
-    required this.lastUsageAt,
-    required this.createdAt,
-  });
+  HistoryEntry({required this.phoneNumber, required this.lastUsageAt, required this.createdAt});
 
   factory HistoryEntry.fromJson(Map<String, dynamic> json) {
     return HistoryEntry(
@@ -22,11 +18,9 @@ class HistoryEntry {
 
   @override
   bool operator ==(Object other) {
-    return super == other ||
-        (other is HistoryEntry && other.phoneNumber == phoneNumber);
+    return super == other || (other is HistoryEntry && other.phoneNumber == phoneNumber);
   }
 
   @override
-  String toString() =>
-      'HistoryEntry{phoneNumber: $phoneNumber, lastUsageAt: $lastUsageAt, createdAt: $createdAt}';
+  String toString() => 'HistoryEntry{phoneNumber: $phoneNumber, lastUsageAt: $lastUsageAt, createdAt: $createdAt}';
 }

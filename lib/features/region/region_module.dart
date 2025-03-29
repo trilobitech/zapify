@@ -7,34 +7,13 @@ import 'domain/usecase/set_detault_region.dart';
 import 'presentation/region_picker_bloc.dart';
 
 void regionModule() {
-  registerFactory(
-    () => RegionPickerBloc(
-      getAvailableRegions: get(),
-      analytics: get(),
-    ),
-  );
+  registerFactory(() => RegionPickerBloc(getAvailableRegions: get(), analytics: get()));
 
-  registerFactory(
-    () => GetRegionsByTermUseCase(
-      repository: get(),
-    ),
-  );
+  registerFactory(() => GetRegionsByTermUseCase(repository: get()));
 
-  registerFactory(
-    () => GetDefaultRegionUseCase(
-      repository: get(),
-    ),
-  );
+  registerFactory(() => GetDefaultRegionUseCase(repository: get()));
 
-  registerFactory(
-    () => SetDefaultRegionUseCase(
-      repository: get(),
-    ),
-  );
+  registerFactory(() => SetDefaultRegionUseCase(repository: get()));
 
-  registerSingleton<IRegionRepository>(
-    () => RegionRepository(
-      plugin: get(),
-    ),
-  );
+  registerSingleton<IRegionRepository>(() => RegionRepository(plugin: get()));
 }

@@ -13,18 +13,13 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(context.strings.settingsTitle),
-      ),
-      body: DiProvider<SettingsBloc>(
-        child: const _SettingsList(),
-      ),
+      appBar: AppBar(title: Text(context.strings.settingsTitle)),
+      body: DiProvider<SettingsBloc>(child: const _SettingsList()),
     );
   }
 }
 
-class _SettingsList extends StatelessWidget
-    with ActionMixin<SettingsBloc, SettingsAction> {
+class _SettingsList extends StatelessWidget with ActionMixin<SettingsBloc, SettingsAction> {
   const _SettingsList();
 
   @override
@@ -33,14 +28,12 @@ class _SettingsList extends StatelessWidget
       _SettingItemTile(
         title: context.strings.settingsRegionTitle,
         subtitle: context.strings.settingsRegionSubtitle,
-        onTap: () =>
-            context.read<SettingsBloc>().onDefaultRegionOptionClicked(),
+        onTap: () => context.read<SettingsBloc>().onDefaultRegionOptionClicked(),
       ),
       _SettingItemTile(
         title: context.strings.settingsMessagingAppsTitle,
         subtitle: context.strings.settingsMessagingAppsSubtitle,
-        onTap: () =>
-            context.read<SettingsBloc>().onMessagingAppsOptionClicked(),
+        onTap: () => context.read<SettingsBloc>().onMessagingAppsOptionClicked(),
       ),
     ];
 
@@ -53,9 +46,7 @@ class _SettingsList extends StatelessWidget
 
   @override
   FutureOr handleAction(BuildContext context, SettingsAction action) =>
-      action.when(
-        navigateTo: (route, args) => _navigateTo(context, route, args),
-      );
+      action.when(navigateTo: (route, args) => _navigateTo(context, route, args));
 
   Future _navigateTo(BuildContext context, String route, dynamic args) async {
     final bloc = context.read<SettingsBloc>();
@@ -65,11 +56,7 @@ class _SettingsList extends StatelessWidget
 }
 
 class _SettingItemTile extends StatelessWidget {
-  const _SettingItemTile({
-    required this.title,
-    required this.subtitle,
-    required this.onTap,
-  });
+  const _SettingItemTile({required this.title, required this.subtitle, required this.onTap});
 
   final String title;
   final String subtitle;
@@ -77,9 +64,9 @@ class _SettingItemTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ListTile(
-        title: Text(title),
-        subtitle: Text(subtitle),
-        onTap: onTap,
-        trailing: const Icon(Icons.arrow_forward_ios),
-      );
+    title: Text(title),
+    subtitle: Text(subtitle),
+    onTap: onTap,
+    trailing: const Icon(Icons.arrow_forward_ios),
+  );
 }

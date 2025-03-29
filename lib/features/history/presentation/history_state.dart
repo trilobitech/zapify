@@ -10,27 +10,18 @@ part 'history_state.freezed.dart';
 class HistoryState with _$HistoryState implements IState {
   factory HistoryState.loading(int size) = _HistoryStateLoading;
   factory HistoryState.empty() = _HistoryStateEmpty;
-  factory HistoryState({
-    required List<HistoryEntry> entries,
-    @Default(false) bool isDismissable,
-  }) = _HistoryStatePopulated;
+  factory HistoryState({required List<HistoryEntry> entries, @Default(false) bool isDismissable}) =
+      _HistoryStatePopulated;
 }
 
 @freezed
 class HistoryAction with _$HistoryAction implements IAction {
   factory HistoryAction.select(HistoryEntry entry) = _HistoryActionEntrySelect;
 
-  factory HistoryAction.showMenu(
-    HistoryEntry entry,
-    Offset position,
-    Iterable<ContextMenuAction> options,
-  ) = _HistoryActionShowMenu;
+  factory HistoryAction.showMenu(HistoryEntry entry, Offset position, Iterable<ContextMenuAction> options) =
+      _HistoryActionShowMenu;
 
-  factory HistoryAction.showRestoreEntrySnackBar(
-    HistoryEntry entry,
-  ) = _HistoryActionEntryRemoved;
+  factory HistoryAction.showRestoreEntrySnackBar(HistoryEntry entry) = _HistoryActionEntryRemoved;
 }
 
-enum ContextMenuAction {
-  remove;
-}
+enum ContextMenuAction { remove }

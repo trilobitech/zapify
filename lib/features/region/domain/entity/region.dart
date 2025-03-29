@@ -12,9 +12,9 @@ abstract class IRegion extends Equatable implements Comparable<IRegion> {
   CountryCode get prefix;
 
   late final String? flag = code.toUpperCase().replaceAllMapped(
-        RegExp(r'[A-Z]'),
-        (match) => String.fromCharCode(match.group(0)!.codeUnitAt(0) + 127397),
-      );
+    RegExp(r'[A-Z]'),
+    (match) => String.fromCharCode(match.group(0)!.codeUnitAt(0) + 127397),
+  );
 
   @override
   int compareTo(other) => code.compareTo(other.code);
@@ -24,15 +24,9 @@ abstract class IRegion extends Equatable implements Comparable<IRegion> {
 }
 
 class Region extends IRegion {
-  Region({
-    required this.code,
-    required this.prefix,
-  });
+  Region({required this.code, required this.prefix});
 
-  factory Region.defaults() => Region(
-        code: _kDefaultRegionCode,
-        prefix: _kDefaultRegionPrefix,
-      );
+  factory Region.defaults() => Region(code: _kDefaultRegionCode, prefix: _kDefaultRegionPrefix);
 
   @override
   final RegionCode code;
@@ -45,11 +39,7 @@ class Region extends IRegion {
 }
 
 class Country extends Region {
-  Country({
-    required super.code,
-    required super.prefix,
-    required this.name,
-  });
+  Country({required super.code, required super.prefix, required this.name});
 
   final String name;
 

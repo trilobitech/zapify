@@ -7,9 +7,7 @@ part 'top_banner_state.freezed.dart';
 
 @freezed
 class TopBannerState with _$TopBannerState implements IState {
-  factory TopBannerState({
-    required TopBannerType type,
-  }) = _TopBannerState;
+  factory TopBannerState({required TopBannerType type}) = _TopBannerState;
 
   factory TopBannerState.none() = _TopBannerStateNone;
 }

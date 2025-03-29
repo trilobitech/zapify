@@ -8,9 +8,7 @@ part 'call_log_state.freezed.dart';
 
 @freezed
 class CallLogState with _$CallLogState implements IState {
-  factory CallLogState({
-    required Iterable<CallEntry> entries,
-  }) = _CallLogStatePopulated;
+  factory CallLogState({required Iterable<CallEntry> entries}) = _CallLogStatePopulated;
 
   factory CallLogState.empty() = _CallLogStateEmpty;
 
@@ -25,20 +23,10 @@ class CallLogAction with _$CallLogAction implements IAction {
 }
 
 class CallEntry {
-  CallEntry({
-    required this.leading,
-    required this.title,
-    this.subtitle,
-    required this.date,
-    required this.phoneNumber,
-  });
+  CallEntry({required this.leading, required this.title, this.subtitle, required this.date, required this.phoneNumber});
 
-  factory CallEntry.from(CallEntity item) => CallEntry(
-        leading: item.type.leading,
-        title: item.name ?? item.number,
-        date: item.date,
-        phoneNumber: item.number,
-      );
+  factory CallEntry.from(CallEntity item) =>
+      CallEntry(leading: item.type.leading, title: item.name ?? item.number, date: item.date, phoneNumber: item.number);
 
   final Leading leading;
   final String title;
@@ -48,10 +36,7 @@ class CallEntry {
 }
 
 class Leading {
-  Leading({
-    required this.icon,
-    this.color,
-  });
+  Leading({required this.icon, this.color});
 
   final IconData icon;
   final Color? color;

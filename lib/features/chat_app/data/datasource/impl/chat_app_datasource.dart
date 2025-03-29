@@ -8,9 +8,7 @@ import '../../model/chat_app.dart';
 import '../chat_app_datasource.dart';
 
 class ChatAppDataSource extends IChatAppDataSource {
-  ChatAppDataSource({
-    required Lazy<BriteDatabase> db,
-  }) : _db = db.get() {
+  ChatAppDataSource({required Lazy<BriteDatabase> db}) : _db = db.get() {
     _init();
   }
 
@@ -56,10 +54,6 @@ class ChatAppDataSource extends IChatAppDataSource {
   @override
   Future<void> remove(ChatApp chatApp) async {
     final db = await _db;
-    await db.delete(
-      'enabled_chat_app',
-      where: 'chat_app_id = ?',
-      whereArgs: [chatApp.id],
-    );
+    await db.delete('enabled_chat_app', where: 'chat_app_id = ?', whereArgs: [chatApp.id]);
   }
 }

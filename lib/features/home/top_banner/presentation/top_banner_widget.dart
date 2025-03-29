@@ -9,8 +9,7 @@ import 'top_banner_state.dart';
 
 typedef OnTopBannerActionTap = Function(TopBannerType type);
 
-class TopBannerWidget extends StatelessWidget
-    with StateMixin<TopBannerBloc, TopBannerState> {
+class TopBannerWidget extends StatelessWidget with StateMixin<TopBannerBloc, TopBannerState> {
   TopBannerWidget({Key? key}) : super(key: key);
 
   @override
@@ -31,11 +30,7 @@ class TopBannerWidget extends StatelessWidget
 }
 
 class _TopBannerView extends StatefulWidget {
-  const _TopBannerView({
-    Key? key,
-    required this.type,
-    required this.onActionTap,
-  }) : super(key: key);
+  const _TopBannerView({Key? key, required this.type, required this.onActionTap}) : super(key: key);
 
   final TopBannerType type;
   final OnTopBannerActionTap onActionTap;
@@ -44,18 +39,14 @@ class _TopBannerView extends StatefulWidget {
   State<_TopBannerView> createState() => _TopBannerViewState();
 }
 
-class _TopBannerViewState extends State<_TopBannerView>
-    with TickerProviderStateMixin {
+class _TopBannerViewState extends State<_TopBannerView> with TickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-      duration: const Duration(milliseconds: 250),
-      vsync: this,
-    );
+    _controller = AnimationController(duration: const Duration(milliseconds: 250), vsync: this);
     // TODO: fix animation
     _animation = Tween(begin: 0.0, end: 1.0).animate(_controller);
     _controller.forward();

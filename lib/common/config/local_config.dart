@@ -4,10 +4,7 @@ import '../di/inject.dart' as di;
 
 const _appId = 'com.zapfy.app';
 
-enum LocalConfig
-    with
-        KeyValueMixin<ILocalConfigStorage>,
-        KeyValueWritableMixin<ILocalConfigStorage> {
+enum LocalConfig with KeyValueMixin<ILocalConfigStorage>, KeyValueWritableMixin<ILocalConfigStorage> {
   historicSize,
   lastAppReviewAt,
   defaultRegion;
@@ -19,6 +16,4 @@ enum LocalConfig
   Future<ILocalConfigStorage> get storage => di.lazyGet();
 }
 
-Map<String, dynamic> get localConfigDefaults => {
-      LocalConfig.historicSize.key: 0,
-    };
+Map<String, dynamic> get localConfigDefaults => {LocalConfig.historicSize.key: 0};
