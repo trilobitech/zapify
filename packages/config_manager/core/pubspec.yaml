@@ -4,8 +4,10 @@ version: 0.1.0
 # homepage:
 
 environment:
-  sdk: '>=2.18.0 <3.0.0'
-  flutter: 3.29.2
+  sdk: ^3.7.2
+  flutter: ^3.29.2
+
+resolution: workspace
 
 dependencies:
   flutter:

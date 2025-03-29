@@ -25,13 +25,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.3.0"
-  analytics:
-    dependency: "direct main"
-    description:
-      path: "packages/analytics"
-      relative: true
-    source: path
-    version: "0.1.0"
   analyzer:
     dependency: transitive
     description:
@@ -192,20 +185,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.19.1"
-  config_core:
-    dependency: "direct main"
-    description:
-      path: "packages/config_manager/core"
-      relative: true
-    source: path
-    version: "0.1.0"
-  config_firebase:
-    dependency: "direct main"
-    description:
-      path: "packages/config_manager/firebase"
-      relative: true
-    source: path
-    version: "0.1.0"
   convert:
     dependency: transitive
     description:
