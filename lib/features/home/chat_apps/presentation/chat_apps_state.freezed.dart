@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'chat_apps_state.dart';
 
@@ -12,7 +12,8 @@ part of 'chat_apps_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$ChatAppsState {
@@ -20,80 +21,80 @@ mixin _$ChatAppsState {
   TResult when<TResult extends Object?>(
     TResult Function(Iterable<ChatApp> entries) $default, {
     required TResult Function() initial,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(Iterable<ChatApp> entries)? $default, {
     TResult? Function()? initial,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(Iterable<ChatApp> entries)? $default, {
     TResult Function()? initial,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
     TResult Function(_ChatAppsStateSuccess value) $default, {
     required TResult Function(_ChatAppsStateInitial value) initial,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
     TResult? Function(_ChatAppsStateSuccess value)? $default, {
     TResult? Function(_ChatAppsStateInitial value)? initial,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
     TResult Function(_ChatAppsStateSuccess value)? $default, {
     TResult Function(_ChatAppsStateInitial value)? initial,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $ChatAppsStateCopyWith<$Res> {
-  factory $ChatAppsStateCopyWith(
-          ChatAppsState value, $Res Function(ChatAppsState) then) =
+  factory $ChatAppsStateCopyWith(ChatAppsState value, $Res Function(ChatAppsState) then) =
       _$ChatAppsStateCopyWithImpl<$Res, ChatAppsState>;
 }
 
 /// @nodoc
-class _$ChatAppsStateCopyWithImpl<$Res, $Val extends ChatAppsState>
-    implements $ChatAppsStateCopyWith<$Res> {
+class _$ChatAppsStateCopyWithImpl<$Res, $Val extends ChatAppsState> implements $ChatAppsStateCopyWith<$Res> {
   _$ChatAppsStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of ChatAppsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$_ChatAppsStateInitialCopyWith<$Res> {
-  factory _$$_ChatAppsStateInitialCopyWith(_$_ChatAppsStateInitial value,
-          $Res Function(_$_ChatAppsStateInitial) then) =
-      __$$_ChatAppsStateInitialCopyWithImpl<$Res>;
+abstract class _$$ChatAppsStateInitialImplCopyWith<$Res> {
+  factory _$$ChatAppsStateInitialImplCopyWith(
+    _$ChatAppsStateInitialImpl value,
+    $Res Function(_$ChatAppsStateInitialImpl) then,
+  ) = __$$ChatAppsStateInitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ChatAppsStateInitialCopyWithImpl<$Res>
-    extends _$ChatAppsStateCopyWithImpl<$Res, _$_ChatAppsStateInitial>
-    implements _$$_ChatAppsStateInitialCopyWith<$Res> {
-  __$$_ChatAppsStateInitialCopyWithImpl(_$_ChatAppsStateInitial _value,
-      $Res Function(_$_ChatAppsStateInitial) _then)
-      : super(_value, _then);
+class __$$ChatAppsStateInitialImplCopyWithImpl<$Res>
+    extends _$ChatAppsStateCopyWithImpl<$Res, _$ChatAppsStateInitialImpl>
+    implements _$$ChatAppsStateInitialImplCopyWith<$Res> {
+  __$$ChatAppsStateInitialImplCopyWithImpl(
+    _$ChatAppsStateInitialImpl _value,
+    $Res Function(_$ChatAppsStateInitialImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of ChatAppsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$_ChatAppsStateInitial implements _ChatAppsStateInitial {
-  _$_ChatAppsStateInitial();
+class _$ChatAppsStateInitialImpl implements _ChatAppsStateInitial {
+  _$ChatAppsStateInitialImpl();
 
   @override
   String toString() {
@@ -101,9 +102,8 @@ class _$_ChatAppsStateInitial implements _ChatAppsStateInitial {
   }
 
   @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ChatAppsStateInitial);
+  bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType && other is _$ChatAppsStateInitialImpl);
   }
 
   @override
@@ -173,44 +173,48 @@ class _$_ChatAppsStateInitial implements _ChatAppsStateInitial {
 }
 
 abstract class _ChatAppsStateInitial implements ChatAppsState {
-  factory _ChatAppsStateInitial() = _$_ChatAppsStateInitial;
+  factory _ChatAppsStateInitial() = _$ChatAppsStateInitialImpl;
 }
 
 /// @nodoc
-abstract class _$$_ChatAppsStateSuccessCopyWith<$Res> {
-  factory _$$_ChatAppsStateSuccessCopyWith(_$_ChatAppsStateSuccess value,
-          $Res Function(_$_ChatAppsStateSuccess) then) =
-      __$$_ChatAppsStateSuccessCopyWithImpl<$Res>;
+abstract class _$$ChatAppsStateSuccessImplCopyWith<$Res> {
+  factory _$$ChatAppsStateSuccessImplCopyWith(
+    _$ChatAppsStateSuccessImpl value,
+    $Res Function(_$ChatAppsStateSuccessImpl) then,
+  ) = __$$ChatAppsStateSuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Iterable<ChatApp> entries});
 }
 
 /// @nodoc
-class __$$_ChatAppsStateSuccessCopyWithImpl<$Res>
-    extends _$ChatAppsStateCopyWithImpl<$Res, _$_ChatAppsStateSuccess>
-    implements _$$_ChatAppsStateSuccessCopyWith<$Res> {
-  __$$_ChatAppsStateSuccessCopyWithImpl(_$_ChatAppsStateSuccess _value,
-      $Res Function(_$_ChatAppsStateSuccess) _then)
-      : super(_value, _then);
+class __$$ChatAppsStateSuccessImplCopyWithImpl<$Res>
+    extends _$ChatAppsStateCopyWithImpl<$Res, _$ChatAppsStateSuccessImpl>
+    implements _$$ChatAppsStateSuccessImplCopyWith<$Res> {
+  __$$ChatAppsStateSuccessImplCopyWithImpl(
+    _$ChatAppsStateSuccessImpl _value,
+    $Res Function(_$ChatAppsStateSuccessImpl) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of ChatAppsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? entries = null,
-  }) {
-    return _then(_$_ChatAppsStateSuccess(
-      null == entries
-          ? _value.entries
-          : entries // ignore: cast_nullable_to_non_nullable
-              as Iterable<ChatApp>,
-    ));
+  $Res call({Object? entries = null}) {
+    return _then(
+      _$ChatAppsStateSuccessImpl(
+        null == entries
+            ? _value.entries
+            : entries // ignore: cast_nullable_to_non_nullable
+                as Iterable<ChatApp>,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
-class _$_ChatAppsStateSuccess implements _ChatAppsStateSuccess {
-  _$_ChatAppsStateSuccess(this.entries);
+class _$ChatAppsStateSuccessImpl implements _ChatAppsStateSuccess {
+  _$ChatAppsStateSuccessImpl(this.entries);
 
   @override
   final Iterable<ChatApp> entries;
@@ -221,23 +225,23 @@ class _$_ChatAppsStateSuccess implements _ChatAppsStateSuccess {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ChatAppsStateSuccess &&
+            other is _$ChatAppsStateSuccessImpl &&
             const DeepCollectionEquality().equals(other.entries, entries));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(entries));
+  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(entries));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ChatAppsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ChatAppsStateSuccessCopyWith<_$_ChatAppsStateSuccess> get copyWith =>
-      __$$_ChatAppsStateSuccessCopyWithImpl<_$_ChatAppsStateSuccess>(
-          this, _$identity);
+  _$$ChatAppsStateSuccessImplCopyWith<_$ChatAppsStateSuccessImpl> get copyWith =>
+      __$$ChatAppsStateSuccessImplCopyWithImpl<_$ChatAppsStateSuccessImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -303,13 +307,14 @@ class _$_ChatAppsStateSuccess implements _ChatAppsStateSuccess {
 }
 
 abstract class _ChatAppsStateSuccess implements ChatAppsState {
-  factory _ChatAppsStateSuccess(final Iterable<ChatApp> entries) =
-      _$_ChatAppsStateSuccess;
+  factory _ChatAppsStateSuccess(final Iterable<ChatApp> entries) = _$ChatAppsStateSuccessImpl;
 
   Iterable<ChatApp> get entries;
-  @JsonKey(ignore: true)
-  _$$_ChatAppsStateSuccessCopyWith<_$_ChatAppsStateSuccess> get copyWith =>
-      throw _privateConstructorUsedError;
+
+  /// Create a copy of ChatAppsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ChatAppsStateSuccessImplCopyWith<_$ChatAppsStateSuccessImpl> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -318,98 +323,94 @@ mixin _$ChatAppsAction {
   TResult when<TResult extends Object?>({
     required TResult Function(ChatApp entry) select,
     required TResult Function(ChatApp app) showFailureMessage,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(ChatApp entry)? select,
     TResult? Function(ChatApp app)? showFailureMessage,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(ChatApp entry)? select,
     TResult Function(ChatApp app)? showFailureMessage,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ChatAppsActionSelect value) select,
-    required TResult Function(_ChatAppsActionShowFailureMessage value)
-        showFailureMessage,
-  }) =>
-      throw _privateConstructorUsedError;
+    required TResult Function(_ChatAppsActionShowFailureMessage value) showFailureMessage,
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChatAppsActionSelect value)? select,
-    TResult? Function(_ChatAppsActionShowFailureMessage value)?
-        showFailureMessage,
-  }) =>
-      throw _privateConstructorUsedError;
+    TResult? Function(_ChatAppsActionShowFailureMessage value)? showFailureMessage,
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChatAppsActionSelect value)? select,
-    TResult Function(_ChatAppsActionShowFailureMessage value)?
-        showFailureMessage,
+    TResult Function(_ChatAppsActionShowFailureMessage value)? showFailureMessage,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $ChatAppsActionCopyWith<$Res> {
-  factory $ChatAppsActionCopyWith(
-          ChatAppsAction value, $Res Function(ChatAppsAction) then) =
+  factory $ChatAppsActionCopyWith(ChatAppsAction value, $Res Function(ChatAppsAction) then) =
       _$ChatAppsActionCopyWithImpl<$Res, ChatAppsAction>;
 }
 
 /// @nodoc
-class _$ChatAppsActionCopyWithImpl<$Res, $Val extends ChatAppsAction>
-    implements $ChatAppsActionCopyWith<$Res> {
+class _$ChatAppsActionCopyWithImpl<$Res, $Val extends ChatAppsAction> implements $ChatAppsActionCopyWith<$Res> {
   _$ChatAppsActionCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of ChatAppsAction
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$_ChatAppsActionSelectCopyWith<$Res> {
-  factory _$$_ChatAppsActionSelectCopyWith(_$_ChatAppsActionSelect value,
-          $Res Function(_$_ChatAppsActionSelect) then) =
-      __$$_ChatAppsActionSelectCopyWithImpl<$Res>;
+abstract class _$$ChatAppsActionSelectImplCopyWith<$Res> {
+  factory _$$ChatAppsActionSelectImplCopyWith(
+    _$ChatAppsActionSelectImpl value,
+    $Res Function(_$ChatAppsActionSelectImpl) then,
+  ) = __$$ChatAppsActionSelectImplCopyWithImpl<$Res>;
   @useResult
   $Res call({ChatApp entry});
 }
 
 /// @nodoc
-class __$$_ChatAppsActionSelectCopyWithImpl<$Res>
-    extends _$ChatAppsActionCopyWithImpl<$Res, _$_ChatAppsActionSelect>
-    implements _$$_ChatAppsActionSelectCopyWith<$Res> {
-  __$$_ChatAppsActionSelectCopyWithImpl(_$_ChatAppsActionSelect _value,
-      $Res Function(_$_ChatAppsActionSelect) _then)
-      : super(_value, _then);
+class __$$ChatAppsActionSelectImplCopyWithImpl<$Res>
+    extends _$ChatAppsActionCopyWithImpl<$Res, _$ChatAppsActionSelectImpl>
+    implements _$$ChatAppsActionSelectImplCopyWith<$Res> {
+  __$$ChatAppsActionSelectImplCopyWithImpl(
+    _$ChatAppsActionSelectImpl _value,
+    $Res Function(_$ChatAppsActionSelectImpl) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of ChatAppsAction
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? entry = null,
-  }) {
-    return _then(_$_ChatAppsActionSelect(
-      null == entry
-          ? _value.entry
-          : entry // ignore: cast_nullable_to_non_nullable
-              as ChatApp,
-    ));
+  $Res call({Object? entry = null}) {
+    return _then(
+      _$ChatAppsActionSelectImpl(
+        null == entry
+            ? _value.entry
+            : entry // ignore: cast_nullable_to_non_nullable
+                as ChatApp,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
-class _$_ChatAppsActionSelect implements _ChatAppsActionSelect {
-  _$_ChatAppsActionSelect(this.entry);
+class _$ChatAppsActionSelectImpl implements _ChatAppsActionSelect {
+  _$ChatAppsActionSelectImpl(this.entry);
 
   @override
   final ChatApp entry;
@@ -420,22 +421,23 @@ class _$_ChatAppsActionSelect implements _ChatAppsActionSelect {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ChatAppsActionSelect &&
+            other is _$ChatAppsActionSelectImpl &&
             (identical(other.entry, entry) || other.entry == entry));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, entry);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ChatAppsAction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ChatAppsActionSelectCopyWith<_$_ChatAppsActionSelect> get copyWith =>
-      __$$_ChatAppsActionSelectCopyWithImpl<_$_ChatAppsActionSelect>(
-          this, _$identity);
+  _$$ChatAppsActionSelectImplCopyWith<_$ChatAppsActionSelectImpl> get copyWith =>
+      __$$ChatAppsActionSelectImplCopyWithImpl<_$ChatAppsActionSelectImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -472,8 +474,7 @@ class _$_ChatAppsActionSelect implements _ChatAppsActionSelect {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ChatAppsActionSelect value) select,
-    required TResult Function(_ChatAppsActionShowFailureMessage value)
-        showFailureMessage,
+    required TResult Function(_ChatAppsActionShowFailureMessage value) showFailureMessage,
   }) {
     return select(this);
   }
@@ -482,8 +483,7 @@ class _$_ChatAppsActionSelect implements _ChatAppsActionSelect {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChatAppsActionSelect value)? select,
-    TResult? Function(_ChatAppsActionShowFailureMessage value)?
-        showFailureMessage,
+    TResult? Function(_ChatAppsActionShowFailureMessage value)? showFailureMessage,
   }) {
     return select?.call(this);
   }
@@ -492,8 +492,7 @@ class _$_ChatAppsActionSelect implements _ChatAppsActionSelect {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChatAppsActionSelect value)? select,
-    TResult Function(_ChatAppsActionShowFailureMessage value)?
-        showFailureMessage,
+    TResult Function(_ChatAppsActionShowFailureMessage value)? showFailureMessage,
     required TResult orElse(),
   }) {
     if (select != null) {
@@ -504,53 +503,55 @@ class _$_ChatAppsActionSelect implements _ChatAppsActionSelect {
 }
 
 abstract class _ChatAppsActionSelect implements ChatAppsAction {
-  factory _ChatAppsActionSelect(final ChatApp entry) = _$_ChatAppsActionSelect;
+  factory _ChatAppsActionSelect(final ChatApp entry) = _$ChatAppsActionSelectImpl;
 
   ChatApp get entry;
-  @JsonKey(ignore: true)
-  _$$_ChatAppsActionSelectCopyWith<_$_ChatAppsActionSelect> get copyWith =>
-      throw _privateConstructorUsedError;
+
+  /// Create a copy of ChatAppsAction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ChatAppsActionSelectImplCopyWith<_$ChatAppsActionSelectImpl> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_ChatAppsActionShowFailureMessageCopyWith<$Res> {
-  factory _$$_ChatAppsActionShowFailureMessageCopyWith(
-          _$_ChatAppsActionShowFailureMessage value,
-          $Res Function(_$_ChatAppsActionShowFailureMessage) then) =
-      __$$_ChatAppsActionShowFailureMessageCopyWithImpl<$Res>;
+abstract class _$$ChatAppsActionShowFailureMessageImplCopyWith<$Res> {
+  factory _$$ChatAppsActionShowFailureMessageImplCopyWith(
+    _$ChatAppsActionShowFailureMessageImpl value,
+    $Res Function(_$ChatAppsActionShowFailureMessageImpl) then,
+  ) = __$$ChatAppsActionShowFailureMessageImplCopyWithImpl<$Res>;
   @useResult
   $Res call({ChatApp app});
 }
 
 /// @nodoc
-class __$$_ChatAppsActionShowFailureMessageCopyWithImpl<$Res>
-    extends _$ChatAppsActionCopyWithImpl<$Res,
-        _$_ChatAppsActionShowFailureMessage>
-    implements _$$_ChatAppsActionShowFailureMessageCopyWith<$Res> {
-  __$$_ChatAppsActionShowFailureMessageCopyWithImpl(
-      _$_ChatAppsActionShowFailureMessage _value,
-      $Res Function(_$_ChatAppsActionShowFailureMessage) _then)
-      : super(_value, _then);
+class __$$ChatAppsActionShowFailureMessageImplCopyWithImpl<$Res>
+    extends _$ChatAppsActionCopyWithImpl<$Res, _$ChatAppsActionShowFailureMessageImpl>
+    implements _$$ChatAppsActionShowFailureMessageImplCopyWith<$Res> {
+  __$$ChatAppsActionShowFailureMessageImplCopyWithImpl(
+    _$ChatAppsActionShowFailureMessageImpl _value,
+    $Res Function(_$ChatAppsActionShowFailureMessageImpl) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of ChatAppsAction
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? app = null,
-  }) {
-    return _then(_$_ChatAppsActionShowFailureMessage(
-      null == app
-          ? _value.app
-          : app // ignore: cast_nullable_to_non_nullable
-              as ChatApp,
-    ));
+  $Res call({Object? app = null}) {
+    return _then(
+      _$ChatAppsActionShowFailureMessageImpl(
+        null == app
+            ? _value.app
+            : app // ignore: cast_nullable_to_non_nullable
+                as ChatApp,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
-class _$_ChatAppsActionShowFailureMessage
-    implements _ChatAppsActionShowFailureMessage {
-  _$_ChatAppsActionShowFailureMessage(this.app);
+class _$ChatAppsActionShowFailureMessageImpl implements _ChatAppsActionShowFailureMessage {
+  _$ChatAppsActionShowFailureMessageImpl(this.app);
 
   @override
   final ChatApp app;
@@ -561,23 +562,23 @@ class _$_ChatAppsActionShowFailureMessage
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ChatAppsActionShowFailureMessage &&
+            other is _$ChatAppsActionShowFailureMessageImpl &&
             (identical(other.app, app) || other.app == app));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, app);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ChatAppsAction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ChatAppsActionShowFailureMessageCopyWith<
-          _$_ChatAppsActionShowFailureMessage>
-      get copyWith => __$$_ChatAppsActionShowFailureMessageCopyWithImpl<
-          _$_ChatAppsActionShowFailureMessage>(this, _$identity);
+  _$$ChatAppsActionShowFailureMessageImplCopyWith<_$ChatAppsActionShowFailureMessageImpl> get copyWith =>
+      __$$ChatAppsActionShowFailureMessageImplCopyWithImpl<_$ChatAppsActionShowFailureMessageImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -614,8 +615,7 @@ class _$_ChatAppsActionShowFailureMessage
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ChatAppsActionSelect value) select,
-    required TResult Function(_ChatAppsActionShowFailureMessage value)
-        showFailureMessage,
+    required TResult Function(_ChatAppsActionShowFailureMessage value) showFailureMessage,
   }) {
     return showFailureMessage(this);
   }
@@ -624,8 +624,7 @@ class _$_ChatAppsActionShowFailureMessage
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChatAppsActionSelect value)? select,
-    TResult? Function(_ChatAppsActionShowFailureMessage value)?
-        showFailureMessage,
+    TResult? Function(_ChatAppsActionShowFailureMessage value)? showFailureMessage,
   }) {
     return showFailureMessage?.call(this);
   }
@@ -634,8 +633,7 @@ class _$_ChatAppsActionShowFailureMessage
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChatAppsActionSelect value)? select,
-    TResult Function(_ChatAppsActionShowFailureMessage value)?
-        showFailureMessage,
+    TResult Function(_ChatAppsActionShowFailureMessage value)? showFailureMessage,
     required TResult orElse(),
   }) {
     if (showFailureMessage != null) {
@@ -646,12 +644,13 @@ class _$_ChatAppsActionShowFailureMessage
 }
 
 abstract class _ChatAppsActionShowFailureMessage implements ChatAppsAction {
-  factory _ChatAppsActionShowFailureMessage(final ChatApp app) =
-      _$_ChatAppsActionShowFailureMessage;
+  factory _ChatAppsActionShowFailureMessage(final ChatApp app) = _$ChatAppsActionShowFailureMessageImpl;
 
   ChatApp get app;
-  @JsonKey(ignore: true)
-  _$$_ChatAppsActionShowFailureMessageCopyWith<
-          _$_ChatAppsActionShowFailureMessage>
-      get copyWith => throw _privateConstructorUsedError;
+
+  /// Create a copy of ChatAppsAction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ChatAppsActionShowFailureMessageImplCopyWith<_$ChatAppsActionShowFailureMessageImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

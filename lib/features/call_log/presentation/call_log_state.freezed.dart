@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'call_log_state.dart';
 
@@ -12,7 +12,8 @@ part of 'call_log_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$CallLogState {
@@ -22,16 +23,14 @@ mixin _$CallLogState {
     required TResult Function() empty,
     required TResult Function(dynamic error) error,
     required TResult Function(int itemCount) loading,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(Iterable<CallEntry> entries)? $default, {
     TResult? Function()? empty,
     TResult? Function(dynamic error)? error,
     TResult? Function(int itemCount)? loading,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(Iterable<CallEntry> entries)? $default, {
@@ -39,24 +38,21 @@ mixin _$CallLogState {
     TResult Function(dynamic error)? error,
     TResult Function(int itemCount)? loading,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
     TResult Function(_CallLogStatePopulated value) $default, {
     required TResult Function(_CallLogStateEmpty value) empty,
     required TResult Function(_CallLogStateError value) error,
     required TResult Function(_CallLogStateLoading value) loading,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
     TResult? Function(_CallLogStatePopulated value)? $default, {
     TResult? Function(_CallLogStateEmpty value)? empty,
     TResult? Function(_CallLogStateError value)? error,
     TResult? Function(_CallLogStateLoading value)? loading,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
     TResult Function(_CallLogStatePopulated value)? $default, {
@@ -64,63 +60,68 @@ mixin _$CallLogState {
     TResult Function(_CallLogStateError value)? error,
     TResult Function(_CallLogStateLoading value)? loading,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $CallLogStateCopyWith<$Res> {
-  factory $CallLogStateCopyWith(
-          CallLogState value, $Res Function(CallLogState) then) =
+  factory $CallLogStateCopyWith(CallLogState value, $Res Function(CallLogState) then) =
       _$CallLogStateCopyWithImpl<$Res, CallLogState>;
 }
 
 /// @nodoc
-class _$CallLogStateCopyWithImpl<$Res, $Val extends CallLogState>
-    implements $CallLogStateCopyWith<$Res> {
+class _$CallLogStateCopyWithImpl<$Res, $Val extends CallLogState> implements $CallLogStateCopyWith<$Res> {
   _$CallLogStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of CallLogState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$_CallLogStatePopulatedCopyWith<$Res> {
-  factory _$$_CallLogStatePopulatedCopyWith(_$_CallLogStatePopulated value,
-          $Res Function(_$_CallLogStatePopulated) then) =
-      __$$_CallLogStatePopulatedCopyWithImpl<$Res>;
+abstract class _$$CallLogStatePopulatedImplCopyWith<$Res> {
+  factory _$$CallLogStatePopulatedImplCopyWith(
+    _$CallLogStatePopulatedImpl value,
+    $Res Function(_$CallLogStatePopulatedImpl) then,
+  ) = __$$CallLogStatePopulatedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Iterable<CallEntry> entries});
 }
 
 /// @nodoc
-class __$$_CallLogStatePopulatedCopyWithImpl<$Res>
-    extends _$CallLogStateCopyWithImpl<$Res, _$_CallLogStatePopulated>
-    implements _$$_CallLogStatePopulatedCopyWith<$Res> {
-  __$$_CallLogStatePopulatedCopyWithImpl(_$_CallLogStatePopulated _value,
-      $Res Function(_$_CallLogStatePopulated) _then)
-      : super(_value, _then);
+class __$$CallLogStatePopulatedImplCopyWithImpl<$Res>
+    extends _$CallLogStateCopyWithImpl<$Res, _$CallLogStatePopulatedImpl>
+    implements _$$CallLogStatePopulatedImplCopyWith<$Res> {
+  __$$CallLogStatePopulatedImplCopyWithImpl(
+    _$CallLogStatePopulatedImpl _value,
+    $Res Function(_$CallLogStatePopulatedImpl) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of CallLogState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? entries = null,
-  }) {
-    return _then(_$_CallLogStatePopulated(
-      entries: null == entries
-          ? _value.entries
-          : entries // ignore: cast_nullable_to_non_nullable
-              as Iterable<CallEntry>,
-    ));
+  $Res call({Object? entries = null}) {
+    return _then(
+      _$CallLogStatePopulatedImpl(
+        entries:
+            null == entries
+                ? _value.entries
+                : entries // ignore: cast_nullable_to_non_nullable
+                    as Iterable<CallEntry>,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
-class _$_CallLogStatePopulated implements _CallLogStatePopulated {
-  _$_CallLogStatePopulated({required this.entries});
+class _$CallLogStatePopulatedImpl implements _CallLogStatePopulated {
+  _$CallLogStatePopulatedImpl({required this.entries});
 
   @override
   final Iterable<CallEntry> entries;
@@ -131,23 +132,23 @@ class _$_CallLogStatePopulated implements _CallLogStatePopulated {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CallLogStatePopulated &&
+            other is _$CallLogStatePopulatedImpl &&
             const DeepCollectionEquality().equals(other.entries, entries));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(entries));
+  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(entries));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CallLogState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CallLogStatePopulatedCopyWith<_$_CallLogStatePopulated> get copyWith =>
-      __$$_CallLogStatePopulatedCopyWithImpl<_$_CallLogStatePopulated>(
-          this, _$identity);
+  _$$CallLogStatePopulatedImplCopyWith<_$CallLogStatePopulatedImpl> get copyWith =>
+      __$$CallLogStatePopulatedImplCopyWithImpl<_$CallLogStatePopulatedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -225,35 +226,36 @@ class _$_CallLogStatePopulated implements _CallLogStatePopulated {
 }
 
 abstract class _CallLogStatePopulated implements CallLogState {
-  factory _CallLogStatePopulated({required final Iterable<CallEntry> entries}) =
-      _$_CallLogStatePopulated;
+  factory _CallLogStatePopulated({required final Iterable<CallEntry> entries}) = _$CallLogStatePopulatedImpl;
 
   Iterable<CallEntry> get entries;
-  @JsonKey(ignore: true)
-  _$$_CallLogStatePopulatedCopyWith<_$_CallLogStatePopulated> get copyWith =>
-      throw _privateConstructorUsedError;
+
+  /// Create a copy of CallLogState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CallLogStatePopulatedImplCopyWith<_$CallLogStatePopulatedImpl> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_CallLogStateEmptyCopyWith<$Res> {
-  factory _$$_CallLogStateEmptyCopyWith(_$_CallLogStateEmpty value,
-          $Res Function(_$_CallLogStateEmpty) then) =
-      __$$_CallLogStateEmptyCopyWithImpl<$Res>;
+abstract class _$$CallLogStateEmptyImplCopyWith<$Res> {
+  factory _$$CallLogStateEmptyImplCopyWith(_$CallLogStateEmptyImpl value, $Res Function(_$CallLogStateEmptyImpl) then) =
+      __$$CallLogStateEmptyImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_CallLogStateEmptyCopyWithImpl<$Res>
-    extends _$CallLogStateCopyWithImpl<$Res, _$_CallLogStateEmpty>
-    implements _$$_CallLogStateEmptyCopyWith<$Res> {
-  __$$_CallLogStateEmptyCopyWithImpl(
-      _$_CallLogStateEmpty _value, $Res Function(_$_CallLogStateEmpty) _then)
-      : super(_value, _then);
+class __$$CallLogStateEmptyImplCopyWithImpl<$Res> extends _$CallLogStateCopyWithImpl<$Res, _$CallLogStateEmptyImpl>
+    implements _$$CallLogStateEmptyImplCopyWith<$Res> {
+  __$$CallLogStateEmptyImplCopyWithImpl(_$CallLogStateEmptyImpl _value, $Res Function(_$CallLogStateEmptyImpl) _then)
+    : super(_value, _then);
+
+  /// Create a copy of CallLogState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$_CallLogStateEmpty implements _CallLogStateEmpty {
-  _$_CallLogStateEmpty();
+class _$CallLogStateEmptyImpl implements _CallLogStateEmpty {
+  _$CallLogStateEmptyImpl();
 
   @override
   String toString() {
@@ -261,9 +263,8 @@ class _$_CallLogStateEmpty implements _CallLogStateEmpty {
   }
 
   @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_CallLogStateEmpty);
+  bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType && other is _$CallLogStateEmptyImpl);
   }
 
   @override
@@ -345,44 +346,43 @@ class _$_CallLogStateEmpty implements _CallLogStateEmpty {
 }
 
 abstract class _CallLogStateEmpty implements CallLogState {
-  factory _CallLogStateEmpty() = _$_CallLogStateEmpty;
+  factory _CallLogStateEmpty() = _$CallLogStateEmptyImpl;
 }
 
 /// @nodoc
-abstract class _$$_CallLogStateErrorCopyWith<$Res> {
-  factory _$$_CallLogStateErrorCopyWith(_$_CallLogStateError value,
-          $Res Function(_$_CallLogStateError) then) =
-      __$$_CallLogStateErrorCopyWithImpl<$Res>;
+abstract class _$$CallLogStateErrorImplCopyWith<$Res> {
+  factory _$$CallLogStateErrorImplCopyWith(_$CallLogStateErrorImpl value, $Res Function(_$CallLogStateErrorImpl) then) =
+      __$$CallLogStateErrorImplCopyWithImpl<$Res>;
   @useResult
   $Res call({dynamic error});
 }
 
 /// @nodoc
-class __$$_CallLogStateErrorCopyWithImpl<$Res>
-    extends _$CallLogStateCopyWithImpl<$Res, _$_CallLogStateError>
-    implements _$$_CallLogStateErrorCopyWith<$Res> {
-  __$$_CallLogStateErrorCopyWithImpl(
-      _$_CallLogStateError _value, $Res Function(_$_CallLogStateError) _then)
-      : super(_value, _then);
+class __$$CallLogStateErrorImplCopyWithImpl<$Res> extends _$CallLogStateCopyWithImpl<$Res, _$CallLogStateErrorImpl>
+    implements _$$CallLogStateErrorImplCopyWith<$Res> {
+  __$$CallLogStateErrorImplCopyWithImpl(_$CallLogStateErrorImpl _value, $Res Function(_$CallLogStateErrorImpl) _then)
+    : super(_value, _then);
 
+  /// Create a copy of CallLogState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? error = null,
-  }) {
-    return _then(_$_CallLogStateError(
-      null == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-    ));
+  $Res call({Object? error = freezed}) {
+    return _then(
+      _$CallLogStateErrorImpl(
+        freezed == error
+            ? _value.error
+            : error // ignore: cast_nullable_to_non_nullable
+                as dynamic,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
-class _$_CallLogStateError implements _CallLogStateError {
-  _$_CallLogStateError(this.error);
+class _$CallLogStateErrorImpl implements _CallLogStateError {
+  _$CallLogStateErrorImpl(this.error);
 
   @override
   final dynamic error;
@@ -393,23 +393,23 @@ class _$_CallLogStateError implements _CallLogStateError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CallLogStateError &&
+            other is _$CallLogStateErrorImpl &&
             const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
+  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CallLogState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CallLogStateErrorCopyWith<_$_CallLogStateError> get copyWith =>
-      __$$_CallLogStateErrorCopyWithImpl<_$_CallLogStateError>(
-          this, _$identity);
+  _$$CallLogStateErrorImplCopyWith<_$CallLogStateErrorImpl> get copyWith =>
+      __$$CallLogStateErrorImplCopyWithImpl<_$CallLogStateErrorImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -487,49 +487,54 @@ class _$_CallLogStateError implements _CallLogStateError {
 }
 
 abstract class _CallLogStateError implements CallLogState {
-  factory _CallLogStateError(final dynamic error) = _$_CallLogStateError;
+  factory _CallLogStateError(final dynamic error) = _$CallLogStateErrorImpl;
 
   dynamic get error;
-  @JsonKey(ignore: true)
-  _$$_CallLogStateErrorCopyWith<_$_CallLogStateError> get copyWith =>
-      throw _privateConstructorUsedError;
+
+  /// Create a copy of CallLogState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CallLogStateErrorImplCopyWith<_$CallLogStateErrorImpl> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_CallLogStateLoadingCopyWith<$Res> {
-  factory _$$_CallLogStateLoadingCopyWith(_$_CallLogStateLoading value,
-          $Res Function(_$_CallLogStateLoading) then) =
-      __$$_CallLogStateLoadingCopyWithImpl<$Res>;
+abstract class _$$CallLogStateLoadingImplCopyWith<$Res> {
+  factory _$$CallLogStateLoadingImplCopyWith(
+    _$CallLogStateLoadingImpl value,
+    $Res Function(_$CallLogStateLoadingImpl) then,
+  ) = __$$CallLogStateLoadingImplCopyWithImpl<$Res>;
   @useResult
   $Res call({int itemCount});
 }
 
 /// @nodoc
-class __$$_CallLogStateLoadingCopyWithImpl<$Res>
-    extends _$CallLogStateCopyWithImpl<$Res, _$_CallLogStateLoading>
-    implements _$$_CallLogStateLoadingCopyWith<$Res> {
-  __$$_CallLogStateLoadingCopyWithImpl(_$_CallLogStateLoading _value,
-      $Res Function(_$_CallLogStateLoading) _then)
-      : super(_value, _then);
+class __$$CallLogStateLoadingImplCopyWithImpl<$Res> extends _$CallLogStateCopyWithImpl<$Res, _$CallLogStateLoadingImpl>
+    implements _$$CallLogStateLoadingImplCopyWith<$Res> {
+  __$$CallLogStateLoadingImplCopyWithImpl(
+    _$CallLogStateLoadingImpl _value,
+    $Res Function(_$CallLogStateLoadingImpl) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of CallLogState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? itemCount = null,
-  }) {
-    return _then(_$_CallLogStateLoading(
-      null == itemCount
-          ? _value.itemCount
-          : itemCount // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+  $Res call({Object? itemCount = null}) {
+    return _then(
+      _$CallLogStateLoadingImpl(
+        null == itemCount
+            ? _value.itemCount
+            : itemCount // ignore: cast_nullable_to_non_nullable
+                as int,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
-class _$_CallLogStateLoading implements _CallLogStateLoading {
-  _$_CallLogStateLoading(this.itemCount);
+class _$CallLogStateLoadingImpl implements _CallLogStateLoading {
+  _$CallLogStateLoadingImpl(this.itemCount);
 
   @override
   final int itemCount;
@@ -540,23 +545,23 @@ class _$_CallLogStateLoading implements _CallLogStateLoading {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CallLogStateLoading &&
-            (identical(other.itemCount, itemCount) ||
-                other.itemCount == itemCount));
+            other is _$CallLogStateLoadingImpl &&
+            (identical(other.itemCount, itemCount) || other.itemCount == itemCount));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, itemCount);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CallLogState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CallLogStateLoadingCopyWith<_$_CallLogStateLoading> get copyWith =>
-      __$$_CallLogStateLoadingCopyWithImpl<_$_CallLogStateLoading>(
-          this, _$identity);
+  _$$CallLogStateLoadingImplCopyWith<_$CallLogStateLoadingImpl> get copyWith =>
+      __$$CallLogStateLoadingImplCopyWithImpl<_$CallLogStateLoadingImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -634,67 +639,56 @@ class _$_CallLogStateLoading implements _CallLogStateLoading {
 }
 
 abstract class _CallLogStateLoading implements CallLogState {
-  factory _CallLogStateLoading(final int itemCount) = _$_CallLogStateLoading;
+  factory _CallLogStateLoading(final int itemCount) = _$CallLogStateLoadingImpl;
 
   int get itemCount;
-  @JsonKey(ignore: true)
-  _$$_CallLogStateLoadingCopyWith<_$_CallLogStateLoading> get copyWith =>
-      throw _privateConstructorUsedError;
+
+  /// Create a copy of CallLogState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CallLogStateLoadingImplCopyWith<_$CallLogStateLoadingImpl> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$CallLogAction {
   CallEntry get entry => throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(CallEntry entry) select,
-  }) =>
+  TResult when<TResult extends Object?>({required TResult Function(CallEntry entry) select}) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(CallEntry entry)? select,
-  }) =>
+  TResult? whenOrNull<TResult extends Object?>({TResult? Function(CallEntry entry)? select}) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(CallEntry entry)? select,
-    required TResult orElse(),
-  }) =>
+  TResult maybeWhen<TResult extends Object?>({TResult Function(CallEntry entry)? select, required TResult orElse()}) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_CallLogActionEntrySelect value) select,
-  }) =>
+  TResult map<TResult extends Object?>({required TResult Function(_CallLogActionEntrySelect value) select}) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_CallLogActionEntrySelect value)? select,
-  }) =>
+  TResult? mapOrNull<TResult extends Object?>({TResult? Function(_CallLogActionEntrySelect value)? select}) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_CallLogActionEntrySelect value)? select,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
-  $CallLogActionCopyWith<CallLogAction> get copyWith =>
-      throw _privateConstructorUsedError;
+  /// Create a copy of CallLogAction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $CallLogActionCopyWith<CallLogAction> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $CallLogActionCopyWith<$Res> {
-  factory $CallLogActionCopyWith(
-          CallLogAction value, $Res Function(CallLogAction) then) =
+  factory $CallLogActionCopyWith(CallLogAction value, $Res Function(CallLogAction) then) =
       _$CallLogActionCopyWithImpl<$Res, CallLogAction>;
   @useResult
   $Res call({CallEntry entry});
 }
 
 /// @nodoc
-class _$CallLogActionCopyWithImpl<$Res, $Val extends CallLogAction>
-    implements $CallLogActionCopyWith<$Res> {
+class _$CallLogActionCopyWithImpl<$Res, $Val extends CallLogAction> implements $CallLogActionCopyWith<$Res> {
   _$CallLogActionCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -702,58 +696,64 @@ class _$CallLogActionCopyWithImpl<$Res, $Val extends CallLogAction>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CallLogAction
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? entry = null,
-  }) {
-    return _then(_value.copyWith(
-      entry: null == entry
-          ? _value.entry
-          : entry // ignore: cast_nullable_to_non_nullable
-              as CallEntry,
-    ) as $Val);
+  $Res call({Object? entry = null}) {
+    return _then(
+      _value.copyWith(
+            entry:
+                null == entry
+                    ? _value.entry
+                    : entry // ignore: cast_nullable_to_non_nullable
+                        as CallEntry,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
-abstract class _$$_CallLogActionEntrySelectCopyWith<$Res>
-    implements $CallLogActionCopyWith<$Res> {
-  factory _$$_CallLogActionEntrySelectCopyWith(
-          _$_CallLogActionEntrySelect value,
-          $Res Function(_$_CallLogActionEntrySelect) then) =
-      __$$_CallLogActionEntrySelectCopyWithImpl<$Res>;
+abstract class _$$CallLogActionEntrySelectImplCopyWith<$Res> implements $CallLogActionCopyWith<$Res> {
+  factory _$$CallLogActionEntrySelectImplCopyWith(
+    _$CallLogActionEntrySelectImpl value,
+    $Res Function(_$CallLogActionEntrySelectImpl) then,
+  ) = __$$CallLogActionEntrySelectImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({CallEntry entry});
 }
 
 /// @nodoc
-class __$$_CallLogActionEntrySelectCopyWithImpl<$Res>
-    extends _$CallLogActionCopyWithImpl<$Res, _$_CallLogActionEntrySelect>
-    implements _$$_CallLogActionEntrySelectCopyWith<$Res> {
-  __$$_CallLogActionEntrySelectCopyWithImpl(_$_CallLogActionEntrySelect _value,
-      $Res Function(_$_CallLogActionEntrySelect) _then)
-      : super(_value, _then);
+class __$$CallLogActionEntrySelectImplCopyWithImpl<$Res>
+    extends _$CallLogActionCopyWithImpl<$Res, _$CallLogActionEntrySelectImpl>
+    implements _$$CallLogActionEntrySelectImplCopyWith<$Res> {
+  __$$CallLogActionEntrySelectImplCopyWithImpl(
+    _$CallLogActionEntrySelectImpl _value,
+    $Res Function(_$CallLogActionEntrySelectImpl) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of CallLogAction
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? entry = null,
-  }) {
-    return _then(_$_CallLogActionEntrySelect(
-      null == entry
-          ? _value.entry
-          : entry // ignore: cast_nullable_to_non_nullable
-              as CallEntry,
-    ));
+  $Res call({Object? entry = null}) {
+    return _then(
+      _$CallLogActionEntrySelectImpl(
+        null == entry
+            ? _value.entry
+            : entry // ignore: cast_nullable_to_non_nullable
+                as CallEntry,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
-class _$_CallLogActionEntrySelect implements _CallLogActionEntrySelect {
-  _$_CallLogActionEntrySelect(this.entry);
+class _$CallLogActionEntrySelectImpl implements _CallLogActionEntrySelect {
+  _$CallLogActionEntrySelectImpl(this.entry);
 
   @override
   final CallEntry entry;
@@ -764,45 +764,39 @@ class _$_CallLogActionEntrySelect implements _CallLogActionEntrySelect {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CallLogActionEntrySelect &&
+            other is _$CallLogActionEntrySelectImpl &&
             (identical(other.entry, entry) || other.entry == entry));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, entry);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CallLogAction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CallLogActionEntrySelectCopyWith<_$_CallLogActionEntrySelect>
-      get copyWith => __$$_CallLogActionEntrySelectCopyWithImpl<
-          _$_CallLogActionEntrySelect>(this, _$identity);
+  _$$CallLogActionEntrySelectImplCopyWith<_$CallLogActionEntrySelectImpl> get copyWith =>
+      __$$CallLogActionEntrySelectImplCopyWithImpl<_$CallLogActionEntrySelectImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(CallEntry entry) select,
-  }) {
+  TResult when<TResult extends Object?>({required TResult Function(CallEntry entry) select}) {
     return select(entry);
   }
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(CallEntry entry)? select,
-  }) {
+  TResult? whenOrNull<TResult extends Object?>({TResult? Function(CallEntry entry)? select}) {
     return select?.call(entry);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(CallEntry entry)? select,
-    required TResult orElse(),
-  }) {
+  TResult maybeWhen<TResult extends Object?>({TResult Function(CallEntry entry)? select, required TResult orElse()}) {
     if (select != null) {
       return select(entry);
     }
@@ -811,17 +805,13 @@ class _$_CallLogActionEntrySelect implements _CallLogActionEntrySelect {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_CallLogActionEntrySelect value) select,
-  }) {
+  TResult map<TResult extends Object?>({required TResult Function(_CallLogActionEntrySelect value) select}) {
     return select(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_CallLogActionEntrySelect value)? select,
-  }) {
+  TResult? mapOrNull<TResult extends Object?>({TResult? Function(_CallLogActionEntrySelect value)? select}) {
     return select?.call(this);
   }
 
@@ -839,13 +829,15 @@ class _$_CallLogActionEntrySelect implements _CallLogActionEntrySelect {
 }
 
 abstract class _CallLogActionEntrySelect implements CallLogAction {
-  factory _CallLogActionEntrySelect(final CallEntry entry) =
-      _$_CallLogActionEntrySelect;
+  factory _CallLogActionEntrySelect(final CallEntry entry) = _$CallLogActionEntrySelectImpl;
 
   @override
   CallEntry get entry;
+
+  /// Create a copy of CallLogAction
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
-  _$$_CallLogActionEntrySelectCopyWith<_$_CallLogActionEntrySelect>
-      get copyWith => throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CallLogActionEntrySelectImplCopyWith<_$CallLogActionEntrySelectImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
