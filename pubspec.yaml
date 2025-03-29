@@ -4,8 +4,8 @@ version: 2.2.1+14
 publish_to: 'none'
 
 environment:
-  sdk: ">=3.0.0 <4.0.0"
-  flutter: ">= 3.22.2 <4.0.0"
+  sdk: ">=3.7.2 <4.0.0"
+  flutter: ">= 3.29.2 <4.0.0"
 
 dependencies:
   flutter:
@@ -28,39 +28,39 @@ dependencies:
   state_action_bloc: ^0.1.0
 
   # third party packages
-  app_install_date: ^0.1.1
-  call_log: ^4.0.0
+  app_install_date: ^0.1.5
+  call_log: ^5.0.1
   collection: ^1.16.0
   cupertino_icons: ^1.0.2
   equatable: ^2.0.3
-  firebase_core: ^3.2.0
-  firebase_crashlytics: ^4.0.3
-  firebase_performance: ^0.10.0+3
-  firebase_remote_config: ^5.0.3
-  flutter_svg: ^1.1.6
+  firebase_core: ^3.12.1
+  firebase_crashlytics: ^4.3.4
+  firebase_performance: ^0.10.1+4
+  firebase_remote_config: ^5.4.2
+  flutter_svg: ^2.0.17
   freezed: ^2.2.0
   freezed_annotation: ^2.2.0
   get_it: ^7.2.0
-  google_fonts: ^4.0.4
-  google_mobile_ads: ^2.3.0
+  google_fonts: ^6.2.1
+  google_mobile_ads: ^5.3.1
   in_app_review: ^2.0.9
   intl: ^0.19.0
   logging: ^1.1.1
   meta: ^1.8.0
   path: ^1.8.0
-  permission_handler: ^10.2.0
-  phone_number: ^1.0.0
+  permission_handler: ^11.4.0
+  phone_number: ^2.1.0
   provider: ^6.0.5
-  receive_intent: ^0.2.3
+  receive_intent: ^0.2.7
   rxdart: ^0.27.7
-  shared_preferences: ^2.0.15
+  shared_preferences: ^2.5.3
   shimmer: ^2.0.0
   sqlbrite: ^2.5.0
   sqflite: ^2.2.8+4
   stack_trace: ^1.10.0
   timeago: ^3.2.2
   timeago_flutter: ^1.1.0
-  url_launcher: ^6.1.10
+  url_launcher: ^6.3.1
 
 
 dev_dependencies:

@@ -39,6 +39,6 @@ public class FlutterMultiDexApplication extends Application {
   }
 
   private boolean isInFirebaseTestLab() {
-    return Settings.System.getString(getContentResolver(), "firebase.test.lab") == "true";
+    return Settings.System.getString(getContentResolver(), "firebase.test.lab").equals("true");
   }
 }

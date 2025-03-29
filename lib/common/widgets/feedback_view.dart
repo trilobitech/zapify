@@ -4,11 +4,7 @@ import 'package:flutter/material.dart';
 import '../di/inject.dart';
 
 class FeedbackView extends StatelessWidget {
-  const FeedbackView({
-    required this.text,
-    this.button,
-    super.key,
-  });
+  const FeedbackView({required this.text, this.button, super.key});
 
   final String text;
   final FeedbackButton? button;
@@ -28,7 +24,7 @@ class FeedbackView extends StatelessWidget {
             text,
             textAlign: TextAlign.center,
             style: textTheme.titleLarge?.copyWith(
-              color: textTheme.titleLarge?.color?.withOpacity(.6),
+              color: textTheme.titleLarge?.color?.withValues(alpha: .6),
             ),
           ),
           if (button != null)
@@ -47,7 +43,7 @@ class FeedbackView extends StatelessWidget {
 
 class ErrorFeedbackView extends FeedbackView {
   const ErrorFeedbackView._(String text, FeedbackButton? button)
-      : super(text: text, button: button);
+    : super(text: text, button: button);
 
   factory ErrorFeedbackView(
     BuildContext context, {
@@ -59,32 +55,27 @@ class ErrorFeedbackView extends FeedbackView {
       param1: additionalRegistry,
     ).adapt(context, error);
 
-    final button = onRetryPressed != null && failure is ErrorFeedback
-        ? FeedbackButton(
-            text: failure.primaryButtonText,
-            onClick: onRetryPressed,
-          )
-        : null;
+    final button =
+        onRetryPressed != null && failure is ErrorFeedback
+            ? FeedbackButton(
+              text: failure.primaryButtonText,
+              onClick: onRetryPressed,
+            )
+            : null;
 
     return ErrorFeedbackView._(failure.message, button);
   }
 }
 
 class FeedbackButton {
-  const FeedbackButton({
-    required this.text,
-    required this.onClick,
-  });
+  const FeedbackButton({required this.text, required this.onClick});
 
   final String text;
   final VoidCallback onClick;
 }
 
 class ErrorFeedback implements Failure {
-  ErrorFeedback({
-    required this.message,
-    required this.primaryButtonText,
-  });
+  ErrorFeedback({required this.message, required this.primaryButtonText});
 
   @override
   final String message;

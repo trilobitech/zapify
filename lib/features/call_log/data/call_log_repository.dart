@@ -1,5 +1,4 @@
 import 'package:call_log/call_log.dart' as plugin;
-import 'package:collection/collection.dart';
 
 import '../domain/entity/call.dart';
 import '../domain/repository/call_log.dart';
@@ -8,7 +7,7 @@ class CallLogRepositoryImpl extends CallLogRepository {
   @override
   Future<Iterable<CallEntity>> getAll() async {
     final entries = await plugin.CallLog.get();
-    return entries.map((e) => e.toDomain()).whereNotNull();
+    return entries.map((e) => e.toDomain()).nonNulls;
   }
 }
 

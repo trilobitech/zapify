@@ -1,20 +1,25 @@
 import 'package:amplitude_flutter/amplitude.dart';
+import 'package:amplitude_flutter/configuration.dart';
+import 'package:amplitude_flutter/events/base_event.dart';
+import 'package:flutter/foundation.dart';
 
 import '../wrapper.dart';
 
 class AmplitudeAnalyticsWrapper extends AnalyticsWrapper {
   AmplitudeAnalyticsWrapper({required String apiKey}) : _apiKey = apiKey;
 
-  bool _isEnabled = true;
+  bool _isEnabled = kReleaseMode;
   final String _apiKey;
 
-  late final Amplitude _instance = Amplitude.getInstance();
+  late final Amplitude _instance = Amplitude(
+    Configuration(apiKey: _apiKey),
+  );
+
   Amplitude? get _amplitude => _isEnabled ? _instance : null;
 
   @override
   Future<void> init(bool isEnabled) async {
     _isEnabled = isEnabled;
-    await _amplitude?.init(_apiKey);
   }
 
   @override
@@ -32,5 +37,5 @@ class AmplitudeAnalyticsWrapper extends AnalyticsWrapper {
     String name, {
     Map<String, Object> properties = const {},
   }) async =>
-      await _amplitude?.logEvent(name, eventProperties: properties);
+      await _amplitude?.track(BaseEvent(name, eventProperties: properties));
 }

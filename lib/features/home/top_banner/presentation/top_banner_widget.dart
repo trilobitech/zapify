@@ -99,7 +99,7 @@ class _TopBannerViewState extends State<_TopBannerView>
           icon: Icons.rate_review_outlined,
           contentText: context.strings.homeTopBannerAskToReviewContent,
           buttonText: context.strings.homeTopBannerAskToReviewButton,
-          backgroundColor: Theme.of(context).primaryColor.withOpacity(0.2),
+          backgroundColor: Theme.of(context).primaryColor.withValues(alpha: .2),
         );
     }
   }

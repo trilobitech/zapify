@@ -14,15 +14,13 @@ import 'dialogs/chat_app_not_found.dart';
 
 class ChatAppsWidget extends StatelessWidget
     with StateActionMixin<ChatAppsBloc, ChatAppsState, ChatAppsAction> {
-  ChatAppsWidget({
-    Key? key,
-  }) : super(key: key);
+  ChatAppsWidget({Key? key}) : super(key: key);
 
   @override
   Widget buildState(BuildContext context, ChatAppsState state) => state.when(
-        (entries) => _SuccessView(entries),
-        initial: () => Container(),
-      );
+    (entries) => _SuccessView(entries),
+    initial: () => Container(),
+  );
 
   @override
   FutureOr<void> handleAction(BuildContext context, ChatAppsAction action) =>
@@ -32,12 +30,11 @@ class ChatAppsWidget extends StatelessWidget
       );
 
   Future<void> _openChatApp(BuildContext context, ChatApp entry) async {
-    await context
-        .read<ChatAppsMediator>()
+    final chatAppsBloc = context.read<ChatAppsBloc>();
+    final chatAppsMediator = context.read<ChatAppsMediator>();
+    await chatAppsMediator
         .launch(entry.deeplinkTemplate)
-        .catchError(
-          (err, stack) => context.read<ChatAppsBloc>().selectFailed(entry, err),
-        );
+        .catchError((err, stack) => chatAppsBloc.selectFailed(entry, err));
   }
 
   Future<void> _showChatFailuredMessage(
@@ -64,10 +61,7 @@ class _SuccessView extends StatelessWidget {
       child: Row(
         children: entries
             .mapIndexed(
-              (index, entry) => _EntryView(
-                position: index,
-                entry: entry,
-              ),
+              (index, entry) => _EntryView(position: index, entry: entry),
             )
             .toList(growable: false),
       ),
@@ -76,11 +70,8 @@ class _SuccessView extends StatelessWidget {
 }
 
 class _EntryView extends StatefulWidget {
-  const _EntryView({
-    Key? key,
-    required this.position,
-    required this.entry,
-  }) : super(key: key);
+  const _EntryView({Key? key, required this.position, required this.entry})
+    : super(key: key);
 
   final int position;
   final ChatApp entry;
@@ -127,9 +118,7 @@ class _EntryViewState extends State<_EntryView> with TickerProviderStateMixin {
             uri: entry.icon,
             color: Colors.white,
           ),
-          label: Text(
-            context.strings.homeOpenWithButton(entry.name),
-          ),
+          label: Text(context.strings.homeOpenWithButton(entry.name)),
           labelStyle: const TextStyle(color: Colors.white),
           backgroundColor: Color(entry.color.value),
           onPressed: () {
