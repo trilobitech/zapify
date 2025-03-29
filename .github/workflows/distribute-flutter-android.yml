@@ -40,7 +40,7 @@ jobs:
         uses: android-actions/setup-android@v3
 
       - name: Setup Flutter SDK
-        uses: subosito/flutter-action@v2.18.0
+        uses: subosito/flutter-action@v2.19.0
         with:
           channel: stable
           flutter-version: ${{ steps.versions.outputs.flutter }}
