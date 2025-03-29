@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Find release PR
         id: find-pr
-        uses: actions/github-script@v7.0.1
+        uses: actions/github-script@v7
         with:
           script: |
             const { data: pullRequests } = await github.rest.pulls.list({
@@ -70,7 +70,7 @@ jobs:
     if: ${{ needs.finds-release-pr.outputs.appVersion == needs.get-latest-android-app-version.outputs.appVersion }}
     steps:
       - name: Add autoapproval Label
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         with:
           script: |
             const prNumber = ${{ needs.finds-release-pr.outputs.prNumber }};
