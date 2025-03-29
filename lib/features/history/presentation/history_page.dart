@@ -27,31 +27,21 @@ class HistoryPage extends StatelessWidget
 
   @override
   Widget buildState(BuildContext context, HistoryState state) => state.when(
-        (entries, isDismissable) => _SuccessView(
-          entries,
-          isDismissable: isDismissable,
-        ),
-        loading: (size) => _LoadingView(size),
-        empty: () => FeedbackView(text: context.strings.recentNumbersEmpty),
-      );
+    (entries, isDismissable) => _SuccessView(entries, isDismissable: isDismissable),
+    loading: (size) => _LoadingView(size),
+    empty: () => FeedbackView(text: context.strings.recentNumbersEmpty),
+  );
 
   @override
-  FutureOr<void> handleAction(BuildContext context, HistoryAction action) =>
-      action.when(
-        select: (entry) => context
-            .read<HistoryMediator>()
-            .onPhoneReceivedFromHistory(entry.phoneNumber),
-        showMenu: (entry, tapPosition, options) =>
-            showContextMenu(context, entry, tapPosition, options),
-        showRestoreEntrySnackBar: (entry) =>
-            _showRestoreEntrySnackBar(context, entry),
-      );
+  FutureOr<void> handleAction(BuildContext context, HistoryAction action) => action.when(
+    select: (entry) => context.read<HistoryMediator>().onPhoneReceivedFromHistory(entry.phoneNumber),
+    showMenu: (entry, tapPosition, options) => showContextMenu(context, entry, tapPosition, options),
+    showRestoreEntrySnackBar: (entry) => _showRestoreEntrySnackBar(context, entry),
+  );
 
   void _showRestoreEntrySnackBar(BuildContext context, HistoryEntry entry) {
     final snackBar = SnackBar(
-      content: Text(
-        context.strings.recentNumberRemoved(entry.phoneNumber),
-      ),
+      content: Text(context.strings.recentNumberRemoved(entry.phoneNumber)),
       action: SnackBarAction(
         label: context.strings.actionUndo,
         onPressed: () async => context.read<HistoryBloc>().restore(entry),
@@ -96,22 +86,16 @@ class _LoadingView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
       itemCount: itemCount,
-      itemBuilder: (_, __) => const ShimmerView(
-        child: ListTile(
-          title: Text('■■■ ■■ ■■■■■-■■■■'),
-          trailing: Text('■■■ ■■■■ ■■■'),
-        ),
-      ),
+      itemBuilder:
+          (_, __) =>
+              const ShimmerView(child: ListTile(title: Text('■■■ ■■ ■■■■■-■■■■'), trailing: Text('■■■ ■■■■ ■■■'))),
       separatorBuilder: (_, __) => const ListDivider(),
     );
   }
 }
 
 class _SuccessView extends StatelessWidget {
-  const _SuccessView(
-    this.entries, {
-    required this.isDismissable,
-  });
+  const _SuccessView(this.entries, {required this.isDismissable});
 
   final Iterable<HistoryEntry> entries;
   final bool isDismissable;
@@ -127,10 +111,7 @@ class _SuccessView extends StatelessWidget {
           return _DismissibleEntryView(entry);
         }
 
-        return _EntryView(
-          entry,
-          key: ValueKey(entry.phoneNumber),
-        );
+        return _EntryView(entry, key: ValueKey(entry.phoneNumber));
       },
       separatorBuilder: (_, __) => const ListDivider(),
     );
@@ -151,14 +132,7 @@ class _DismissibleEntryView extends StatelessWidget {
       background: Container(
         color: const Color.fromARGB(255, 186, 12, 0),
         child: const Stack(
-          children: [
-            Positioned(
-              right: 16,
-              top: 0,
-              bottom: 0,
-              child: Icon(Icons.delete, color: Colors.white),
-            ),
-          ],
+          children: [Positioned(right: 16, top: 0, bottom: 0, child: Icon(Icons.delete, color: Colors.white))],
         ),
       ),
       child: _EntryView(entry),
@@ -174,8 +148,7 @@ class _EntryView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTapDown: (details) =>
-          context.read<HistoryBloc>().tapPositionFrom(details),
+      onTapDown: (details) => context.read<HistoryBloc>().tapPositionFrom(details),
       child: ListTile(
         title: Text(entry.phoneNumber),
         trailing: Timeago(
@@ -194,10 +167,7 @@ extension _ContextMenuItem on ContextMenuAction {
   PopupMenuItem<ContextMenuAction> asPopupMenuItem(BuildContext context) {
     final label = this.label(context);
 
-    return PopupMenuItem(
-      value: this,
-      child: Text(label),
-    );
+    return PopupMenuItem(value: this, child: Text(label));
   }
 
   String label(BuildContext context) {

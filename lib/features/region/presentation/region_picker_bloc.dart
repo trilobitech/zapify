@@ -5,18 +5,11 @@ import '../domain/entity/region.dart';
 import '../domain/usecase/get_regions_by_term.dart';
 import 'region_picker_state.dart';
 
-class RegionPickerBloc
-    extends StateActionBloc<RegionPickerState, RegionPickerAction> {
-  RegionPickerBloc({
-    required GetRegionsByTermUseCase getAvailableRegions,
-    required IAnalytics analytics,
-  })  : _getAvailableRegions = getAvailableRegions,
-        _analytics = analytics,
-        super(
-          RegionPickerState(
-            countries: List.generate(20, (_) => ShimmerCountry()),
-          ),
-        );
+class RegionPickerBloc extends StateActionBloc<RegionPickerState, RegionPickerAction> {
+  RegionPickerBloc({required GetRegionsByTermUseCase getAvailableRegions, required IAnalytics analytics})
+    : _getAvailableRegions = getAvailableRegions,
+      _analytics = analytics,
+      super(RegionPickerState(countries: List.generate(20, (_) => ShimmerCountry())));
 
   final GetRegionsByTermUseCase _getAvailableRegions;
   final IAnalytics _analytics;
@@ -35,10 +28,7 @@ class RegionPickerBloc
   void select(Country country) {
     _analytics.itemSelected(
       'region',
-      properties: {
-        'region_selected': country.name,
-        'region_prefix': country.prefix.toString(),
-      },
+      properties: {'region_selected': country.name, 'region_prefix': country.prefix.toString()},
     );
     sendAction(RegionPickerAction.close(country));
   }

@@ -19,12 +19,10 @@ class Analytics implements IAnalytics {
   }
 
   @override
-  void onAppOpened({Map<String, Object> properties = const {}}) =>
-      logEvent('app_opened', properties: properties);
+  void onAppOpened({Map<String, Object> properties = const {}}) => logEvent('app_opened', properties: properties);
 
   @override
-  void onAppLifecycleChanged(AppLifecycleState state) =>
-      logEvent('app_${state.name}');
+  void onAppLifecycleChanged(AppLifecycleState state) => logEvent('app_${state.name}');
 
   @override
   void screenViewed(
@@ -33,9 +31,7 @@ class Analytics implements IAnalytics {
   }) async {
     _log('screen_viewed', {'screen_name': screenName, ...properties});
     for (final wrapper in _wrappers) {
-      await wrapper
-          .screenViewed(screenName, properties: properties)
-          .catchError(_catchErrorLogger('screen_viewed'));
+      await wrapper.screenViewed(screenName, properties: properties).catchError(_catchErrorLogger('screen_viewed'));
     }
   }
 
@@ -96,9 +92,7 @@ class Analytics implements IAnalytics {
   }) async {
     _log(name, properties);
     for (final wrapper in _wrappers) {
-      await wrapper
-          .logEvent(name, properties: properties)
-          .catchError(_catchErrorLogger(name));
+      await wrapper.logEvent(name, properties: properties).catchError(_catchErrorLogger(name));
     }
   }
 

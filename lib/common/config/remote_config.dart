@@ -19,7 +19,7 @@ enum RemoteConfig with KeyValueMixin<IRemoteConfigStorage> {
 }
 
 Map<String, dynamic> get remoteConfigDefaults => {
-      RemoteConfig.homeBannerUnitId.key: EnvConfig.homeBannerUnitId,
-      RemoteConfig.isCallLogTabEnabled.key: kDebugMode && Platform.isAndroid,
-      RemoteConfig.isRequestReviewEnabled.key: kDebugMode,
-    };
+  RemoteConfig.homeBannerUnitId.key: EnvConfig.homeBannerUnitId,
+  RemoteConfig.isCallLogTabEnabled.key: kDebugMode && Platform.isAndroid,
+  RemoteConfig.isRequestReviewEnabled.key: kDebugMode,
+};

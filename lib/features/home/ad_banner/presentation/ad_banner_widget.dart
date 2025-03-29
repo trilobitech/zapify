@@ -8,8 +8,7 @@ import '../../../../../common/di/inject.dart';
 import 'ad_banner_bloc.dart';
 import 'ad_banner_state.dart';
 
-class AdBannerWidget extends StatelessWidget
-    with StateMixin<AdBannerBloc, AdBannerState> {
+class AdBannerWidget extends StatelessWidget with StateMixin<AdBannerBloc, AdBannerState> {
   AdBannerWidget({Key? key}) : super(key: key);
 
   @override
@@ -17,18 +16,12 @@ class AdBannerWidget extends StatelessWidget
 
   @override
   Widget buildState(BuildContext context, AdBannerState state) {
-    return state.when(
-      (unitId) => _AdBannerWidget(unitId: unitId),
-      none: () => const SizedBox.shrink(),
-    );
+    return state.when((unitId) => _AdBannerWidget(unitId: unitId), none: () => const SizedBox.shrink());
   }
 }
 
 class _AdBannerWidget extends StatefulWidget {
-  const _AdBannerWidget({
-    Key? key,
-    required this.unitId,
-  }) : super(key: key);
+  const _AdBannerWidget({Key? key, required this.unitId}) : super(key: key);
 
   final double height = 60;
   final String unitId;
@@ -60,7 +53,8 @@ class _AdBannerWidgetState extends State<_AdBannerWidget> {
     );
   }
 
-  BannerAd _initBanner(BuildContext context) => _adBanner = BannerAd(
+  BannerAd _initBanner(BuildContext context) =>
+      _adBanner = BannerAd(
         adUnitId: widget.unitId,
         size: _getBannerSize(context),
         request: const AdRequest(),
@@ -72,14 +66,8 @@ class _AdBannerWidgetState extends State<_AdBannerWidget> {
   AdSize _getBannerSize(BuildContext context) {
     final windowSize = MediaQuery.of(context).size;
 
-    final width = [
-      windowSize.width,
-      windowSize.height,
-    ].reduce(min);
+    final width = [windowSize.width, windowSize.height].reduce(min);
 
-    return AdSize(
-      width: width.floor(),
-      height: widget.height.floor(),
-    );
+    return AdSize(width: width.floor(), height: widget.height.floor());
   }
 }

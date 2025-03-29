@@ -8,28 +8,21 @@ import '../../../chat_app/domain/get_enabled_chat_apps.dart';
 import 'chat_apps_state.dart';
 
 class ChatAppsBloc extends StateActionBloc<ChatAppsState, ChatAppsAction> {
-  ChatAppsBloc({
-    required GetEnabledChatAppsUseCase getEnabledChatApps,
-    required IAnalytics analytics,
-  })  : _getEnabledChatApps = getEnabledChatApps,
-        _analytics = analytics,
-        super(ChatAppsState.initial());
+  ChatAppsBloc({required GetEnabledChatAppsUseCase getEnabledChatApps, required IAnalytics analytics})
+    : _getEnabledChatApps = getEnabledChatApps,
+      _analytics = analytics,
+      super(ChatAppsState.initial());
 
   final GetEnabledChatAppsUseCase _getEnabledChatApps;
   final IAnalytics _analytics;
 
   @override
   Future<void> load() async {
-    setStateFrom(
-      _getEnabledChatApps().map(_mapToState),
-    );
+    setStateFrom(_getEnabledChatApps().map(_mapToState));
   }
 
   void selected(ChatApp entry) {
-    _analytics.buttonPressed(
-      'launch_chat_app',
-      properties: {'app_launched': entry.name},
-    );
+    _analytics.buttonPressed('launch_chat_app', properties: {'app_launched': entry.name});
     sendAction(ChatAppsAction.select(entry));
   }
 
@@ -41,6 +34,5 @@ class ChatAppsBloc extends StateActionBloc<ChatAppsState, ChatAppsAction> {
     }
   }
 
-  ChatAppsState _mapToState(Iterable<ChatApp> entries) =>
-      ChatAppsState(entries);
+  ChatAppsState _mapToState(Iterable<ChatApp> entries) => ChatAppsState(entries);
 }

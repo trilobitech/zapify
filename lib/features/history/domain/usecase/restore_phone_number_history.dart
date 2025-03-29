@@ -2,9 +2,7 @@ import '../entity/history.dart';
 import '../repository/history_repository.dart';
 
 class RestorePhoneNumberHistoryUseCase {
-  RestorePhoneNumberHistoryUseCase({
-    required this.repository,
-  });
+  RestorePhoneNumberHistoryUseCase({required this.repository});
 
   IHistoryRepository repository;
 

@@ -9,8 +9,7 @@ extension StringsContext on BuildContext {
 }
 
 extension AppLocalizationsExt on AppLocalizations {
-  String formatDate(DateTime dt) =>
-      DateFormat(_formatFrom(dt), localeName).format(dt);
+  String formatDate(DateTime dt) => DateFormat(_formatFrom(dt), localeName).format(dt);
 
   String _formatFrom(DateTime dt) {
     final now = DateTime.now();
@@ -19,9 +18,7 @@ extension AppLocalizationsExt on AppLocalizations {
     }
 
     final yesterday = now.subtract(const Duration(days: 1));
-    if (dt.day == yesterday.day &&
-        dt.month == yesterday.month &&
-        dt.year == yesterday.year) {
+    if (dt.day == yesterday.day && dt.month == yesterday.month && dt.year == yesterday.year) {
       return this.yesterday;
     }
 

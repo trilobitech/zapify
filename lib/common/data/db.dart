@@ -37,14 +37,14 @@ Future<void> _migrate(Database db, Iterable<String> migrations) async {
 }
 
 List<String> get _migrationsUp => [
-      '''
+  '''
       CREATE TABLE historic(
         number TEXT PRIMARY KEY,
         created_at TIMESTAMP DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) NOT NULL,
         last_usage_at TIMESTAMP
       )
       ''',
-      '''
+  '''
       CREATE TABLE chat_app(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT,
@@ -57,7 +57,7 @@ List<String> get _migrationsUp => [
       (1, "Telegram", "assets://icons/telegram.svg", "#ff0088cc", "https://t.me/"),
       (2, "Signal",   "assets://icons/signal.svg",   "#ff3a76f0", "https://signal.me/#p/+")
       ''',
-      '''
+  '''
       DROP TABLE IF EXISTS chat_app;
       CREATE TABLE chat_app(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -73,7 +73,7 @@ List<String> get _migrationsUp => [
       (2, "Telegram",    "assets://icons/telegram.svg",          "#ff0088cc", "https://t.me/{phoneNumber}"),
       (3, "Signal",      "assets://icons/signal.svg",            "#ff3a76f0", "https://signal.me/#p/+{phoneNumber}");
       ''',
-      '''
+  '''
       CREATE TABLE enabled_chat_app(
         chat_app_id INTEGER PRIMARY KEY,
         position INTEGER NOT NULL,
@@ -83,16 +83,16 @@ List<String> get _migrationsUp => [
       INSERT INTO enabled_chat_app(chat_app_id, position)
       SELECT id, id FROM chat_app;
       ''',
-    ];
+];
 
 List<String> get _migrationsDown => [
-      '''
+  '''
       DROP TABLE IF EXISTS historic
       ''',
-      '''
+  '''
       DROP TABLE IF EXISTS chat_app
       ''',
-      '''
+  '''
       DROP TABLE IF EXISTS chat_app;
       CREATE TABLE chat_app(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -102,7 +102,7 @@ List<String> get _migrationsDown => [
         deeplink_prefix TEXT
       );
       ''',
-      '''
+  '''
       DROP TABLE IF EXISTS enabled_chat_app;
       ''',
-    ];
+];

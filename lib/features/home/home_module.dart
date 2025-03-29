@@ -7,11 +7,7 @@ import 'top_banner/top_banner_module.dart';
 
 void homeModule() {
   registerFactory<HomeBloc>(
-    () => HomeBloc(
-      phoneFieldComponent: get(),
-      savePhoneNumberHistory: get(),
-      analytics: get(),
-    ),
+    () => HomeBloc(phoneFieldComponent: get(), savePhoneNumberHistory: get(), analytics: get()),
   );
 
   phoneFiledModule();

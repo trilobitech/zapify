@@ -17,8 +17,7 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> with WidgetsBindingObserver {
   late final IAnalytics analytics = get();
-  late final AnalyticsRouteObserver observer =
-      AnalyticsRouteObserver(analytics: analytics);
+  late final AnalyticsRouteObserver observer = AnalyticsRouteObserver(analytics: analytics);
 
   @override
   Widget build(BuildContext context) {

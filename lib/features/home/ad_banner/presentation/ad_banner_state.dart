@@ -5,9 +5,7 @@ part 'ad_banner_state.freezed.dart';
 
 @freezed
 class AdBannerState with _$AdBannerState implements IState {
-  factory AdBannerState({
-    required String unitId,
-  }) = _AdBannerState;
+  factory AdBannerState({required String unitId}) = _AdBannerState;
 
   factory AdBannerState.none() = _AdBannerStateNone;
 }

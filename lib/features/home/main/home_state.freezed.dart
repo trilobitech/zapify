@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'home_state.dart';
 
@@ -12,64 +12,53 @@ part of 'home_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$HomeAction {
   String? get current => throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String? current) navigateToRegionPicker,
-  }) =>
+  TResult when<TResult extends Object?>({required TResult Function(String? current) navigateToRegionPicker}) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? current)? navigateToRegionPicker,
-  }) =>
+  TResult? whenOrNull<TResult extends Object?>({TResult? Function(String? current)? navigateToRegionPicker}) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? current)? navigateToRegionPicker,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_HomeActionNavigateToRegionPicker value)
-        navigateToRegionPicker,
-  }) =>
-      throw _privateConstructorUsedError;
+    required TResult Function(_HomeActionNavigateToRegionPicker value) navigateToRegionPicker,
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_HomeActionNavigateToRegionPicker value)?
-        navigateToRegionPicker,
-  }) =>
-      throw _privateConstructorUsedError;
+    TResult? Function(_HomeActionNavigateToRegionPicker value)? navigateToRegionPicker,
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_HomeActionNavigateToRegionPicker value)?
-        navigateToRegionPicker,
+    TResult Function(_HomeActionNavigateToRegionPicker value)? navigateToRegionPicker,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
-  $HomeActionCopyWith<HomeAction> get copyWith =>
-      throw _privateConstructorUsedError;
+  /// Create a copy of HomeAction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $HomeActionCopyWith<HomeAction> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $HomeActionCopyWith<$Res> {
-  factory $HomeActionCopyWith(
-          HomeAction value, $Res Function(HomeAction) then) =
+  factory $HomeActionCopyWith(HomeAction value, $Res Function(HomeAction) then) =
       _$HomeActionCopyWithImpl<$Res, HomeAction>;
   @useResult
   $Res call({String? current});
 }
 
 /// @nodoc
-class _$HomeActionCopyWithImpl<$Res, $Val extends HomeAction>
-    implements $HomeActionCopyWith<$Res> {
+class _$HomeActionCopyWithImpl<$Res, $Val extends HomeAction> implements $HomeActionCopyWith<$Res> {
   _$HomeActionCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -77,60 +66,64 @@ class _$HomeActionCopyWithImpl<$Res, $Val extends HomeAction>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of HomeAction
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? current = freezed,
-  }) {
-    return _then(_value.copyWith(
-      current: freezed == current
-          ? _value.current
-          : current // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+  $Res call({Object? current = freezed}) {
+    return _then(
+      _value.copyWith(
+            current:
+                freezed == current
+                    ? _value.current
+                    : current // ignore: cast_nullable_to_non_nullable
+                        as String?,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
-abstract class _$$_HomeActionNavigateToRegionPickerCopyWith<$Res>
-    implements $HomeActionCopyWith<$Res> {
-  factory _$$_HomeActionNavigateToRegionPickerCopyWith(
-          _$_HomeActionNavigateToRegionPicker value,
-          $Res Function(_$_HomeActionNavigateToRegionPicker) then) =
-      __$$_HomeActionNavigateToRegionPickerCopyWithImpl<$Res>;
+abstract class _$$HomeActionNavigateToRegionPickerImplCopyWith<$Res> implements $HomeActionCopyWith<$Res> {
+  factory _$$HomeActionNavigateToRegionPickerImplCopyWith(
+    _$HomeActionNavigateToRegionPickerImpl value,
+    $Res Function(_$HomeActionNavigateToRegionPickerImpl) then,
+  ) = __$$HomeActionNavigateToRegionPickerImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? current});
 }
 
 /// @nodoc
-class __$$_HomeActionNavigateToRegionPickerCopyWithImpl<$Res>
-    extends _$HomeActionCopyWithImpl<$Res, _$_HomeActionNavigateToRegionPicker>
-    implements _$$_HomeActionNavigateToRegionPickerCopyWith<$Res> {
-  __$$_HomeActionNavigateToRegionPickerCopyWithImpl(
-      _$_HomeActionNavigateToRegionPicker _value,
-      $Res Function(_$_HomeActionNavigateToRegionPicker) _then)
-      : super(_value, _then);
+class __$$HomeActionNavigateToRegionPickerImplCopyWithImpl<$Res>
+    extends _$HomeActionCopyWithImpl<$Res, _$HomeActionNavigateToRegionPickerImpl>
+    implements _$$HomeActionNavigateToRegionPickerImplCopyWith<$Res> {
+  __$$HomeActionNavigateToRegionPickerImplCopyWithImpl(
+    _$HomeActionNavigateToRegionPickerImpl _value,
+    $Res Function(_$HomeActionNavigateToRegionPickerImpl) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of HomeAction
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? current = freezed,
-  }) {
-    return _then(_$_HomeActionNavigateToRegionPicker(
-      freezed == current
-          ? _value.current
-          : current // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+  $Res call({Object? current = freezed}) {
+    return _then(
+      _$HomeActionNavigateToRegionPickerImpl(
+        freezed == current
+            ? _value.current
+            : current // ignore: cast_nullable_to_non_nullable
+                as String?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
-class _$_HomeActionNavigateToRegionPicker
-    implements _HomeActionNavigateToRegionPicker {
-  _$_HomeActionNavigateToRegionPicker(this.current);
+class _$HomeActionNavigateToRegionPickerImpl implements _HomeActionNavigateToRegionPicker {
+  _$HomeActionNavigateToRegionPickerImpl(this.current);
 
   @override
   final String? current;
@@ -141,37 +134,33 @@ class _$_HomeActionNavigateToRegionPicker
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HomeActionNavigateToRegionPicker &&
+            other is _$HomeActionNavigateToRegionPickerImpl &&
             (identical(other.current, current) || other.current == current));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, current);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of HomeAction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HomeActionNavigateToRegionPickerCopyWith<
-          _$_HomeActionNavigateToRegionPicker>
-      get copyWith => __$$_HomeActionNavigateToRegionPickerCopyWithImpl<
-          _$_HomeActionNavigateToRegionPicker>(this, _$identity);
+  _$$HomeActionNavigateToRegionPickerImplCopyWith<_$HomeActionNavigateToRegionPickerImpl> get copyWith =>
+      __$$HomeActionNavigateToRegionPickerImplCopyWithImpl<_$HomeActionNavigateToRegionPickerImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String? current) navigateToRegionPicker,
-  }) {
+  TResult when<TResult extends Object?>({required TResult Function(String? current) navigateToRegionPicker}) {
     return navigateToRegionPicker(current);
   }
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? current)? navigateToRegionPicker,
-  }) {
+  TResult? whenOrNull<TResult extends Object?>({TResult? Function(String? current)? navigateToRegionPicker}) {
     return navigateToRegionPicker?.call(current);
   }
 
@@ -190,8 +179,7 @@ class _$_HomeActionNavigateToRegionPicker
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_HomeActionNavigateToRegionPicker value)
-        navigateToRegionPicker,
+    required TResult Function(_HomeActionNavigateToRegionPicker value) navigateToRegionPicker,
   }) {
     return navigateToRegionPicker(this);
   }
@@ -199,8 +187,7 @@ class _$_HomeActionNavigateToRegionPicker
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_HomeActionNavigateToRegionPicker value)?
-        navigateToRegionPicker,
+    TResult? Function(_HomeActionNavigateToRegionPicker value)? navigateToRegionPicker,
   }) {
     return navigateToRegionPicker?.call(this);
   }
@@ -208,8 +195,7 @@ class _$_HomeActionNavigateToRegionPicker
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_HomeActionNavigateToRegionPicker value)?
-        navigateToRegionPicker,
+    TResult Function(_HomeActionNavigateToRegionPicker value)? navigateToRegionPicker,
     required TResult orElse(),
   }) {
     if (navigateToRegionPicker != null) {
@@ -220,14 +206,15 @@ class _$_HomeActionNavigateToRegionPicker
 }
 
 abstract class _HomeActionNavigateToRegionPicker implements HomeAction {
-  factory _HomeActionNavigateToRegionPicker(final String? current) =
-      _$_HomeActionNavigateToRegionPicker;
+  factory _HomeActionNavigateToRegionPicker(final String? current) = _$HomeActionNavigateToRegionPickerImpl;
 
   @override
   String? get current;
+
+  /// Create a copy of HomeAction
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
-  _$$_HomeActionNavigateToRegionPickerCopyWith<
-          _$_HomeActionNavigateToRegionPicker>
-      get copyWith => throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$HomeActionNavigateToRegionPickerImplCopyWith<_$HomeActionNavigateToRegionPickerImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

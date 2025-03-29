@@ -21,10 +21,7 @@ class TabListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<TabPage>>(
-      future: _filteredTabs,
-      builder: (_, snapshot) => _buildTabs(snapshot),
-    );
+    return FutureBuilder<List<TabPage>>(future: _filteredTabs, builder: (_, snapshot) => _buildTabs(snapshot));
   }
 
   Stream<TabPage> _filterAvailableTabs() async* {
@@ -68,10 +65,7 @@ class _SingleTabPage extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          child: Text(
-            page.buildTitle(context),
-            style: theme.textTheme.titleLarge,
-          ),
+          child: Text(page.buildTitle(context), style: theme.textTheme.titleLarge),
         ),
         Expanded(child: page),
       ],
@@ -84,24 +78,13 @@ class _MultiTabPage extends StatelessWidget {
 
   final List<TabPage> tabs;
 
-  late final List<Tab> tabSelectors = tabs
-      .map(
-        (tab) => Tab(
-          child: _TabIndicatorView(tab),
-        ),
-      )
-      .toList(growable: false);
+  late final List<Tab> tabSelectors = tabs.map((tab) => Tab(child: _TabIndicatorView(tab))).toList(growable: false);
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: tabs.length,
-      child: Scaffold(
-        appBar: TabBar(
-          tabs: tabSelectors,
-        ),
-        body: TabBarView(children: tabs),
-      ),
+      child: Scaffold(appBar: TabBar(tabs: tabSelectors), body: TabBarView(children: tabs)),
     );
   }
 }
@@ -115,11 +98,7 @@ class _TabIndicatorView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
-      children: [
-        Icon(tab.icon),
-        const SizedBox(width: 8),
-        Text(tab.buildTitle(context)),
-      ],
+      children: [Icon(tab.icon), const SizedBox(width: 8), Text(tab.buildTitle(context))],
     );
   }
 }

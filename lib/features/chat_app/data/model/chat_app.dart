@@ -12,11 +12,11 @@ class ChatAppModel extends ChatApp {
   });
 
   factory ChatAppModel.fromJson(Map<String, dynamic> json) => ChatAppModel(
-        id: json['id'],
-        name: json['name'],
-        icon: Uri.parse(json['icon']),
-        color: Color(json['brand_color']),
-        deeplinkTemplate: json['deeplink_template'],
-        isEnabled: json['is_enabled'] == 1,
-      );
+    id: json['id'],
+    name: json['name'],
+    icon: Uri.parse(json['icon']),
+    color: Color(json['brand_color']),
+    deeplinkTemplate: json['deeplink_template'],
+    isEnabled: json['is_enabled'] == 1,
+  );
 }

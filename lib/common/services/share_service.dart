@@ -13,8 +13,6 @@ class ShareService {
       Log.e(e, stack);
     }
 
-    yield* ReceiveIntent.receivedIntentStream
-        .where((event) => event != null)
-        .cast<Intent>();
+    yield* ReceiveIntent.receivedIntentStream.where((event) => event != null).cast<Intent>();
   }
 }

@@ -34,20 +34,20 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MultiProvider(
-        providers: [
-          DiProvider<HomeBloc>(),
-          DiProvider<PhoneFieldBloc>(),
-          DiProvider<ChatAppsBloc>(),
-          DiProvider<HistoryBloc>(),
-          DiProvider<CallLogBloc>(),
-          ProxyProvider<RegionMediator, HomeBloc>(),
-          ProxyProvider<HistoryMediator, HomeBloc>(),
-          ProxyProvider<ChatAppsMediator, HomeBloc>(),
-          ProxyProvider<CallLogMediator, HomeBloc>(),
-          ProxyProvider<PhoneFieldComponent, PhoneFieldBloc>(),
-        ],
-        child: const _HomePage(),
-      );
+    providers: [
+      DiProvider<HomeBloc>(),
+      DiProvider<PhoneFieldBloc>(),
+      DiProvider<ChatAppsBloc>(),
+      DiProvider<HistoryBloc>(),
+      DiProvider<CallLogBloc>(),
+      ProxyProvider<RegionMediator, HomeBloc>(),
+      ProxyProvider<HistoryMediator, HomeBloc>(),
+      ProxyProvider<ChatAppsMediator, HomeBloc>(),
+      ProxyProvider<CallLogMediator, HomeBloc>(),
+      ProxyProvider<PhoneFieldComponent, PhoneFieldBloc>(),
+    ],
+    child: const _HomePage(),
+  );
 }
 
 class _HomePage extends StatefulWidget {
@@ -59,16 +59,13 @@ class _HomePage extends StatefulWidget {
   State<_HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<_HomePage>
-    with ActionMixin<HomeBloc, HomeAction> {
+class _HomePageState extends State<_HomePage> with ActionMixin<HomeBloc, HomeAction> {
   late final _shareService = ShareService();
   final _sub = CompositeSubscription();
 
   void _init() {
     if (Platform.isAndroid) {
-      _sub.add(
-        _shareService.stream().listen(_handleIntent),
-      );
+      _sub.add(_shareService.stream().listen(_handleIntent));
     }
   }
 
@@ -91,12 +88,8 @@ class _HomePageState extends State<_HomePage>
         title: Text(widget.title),
         actions: [
           PopupMenuButton<String>(
-            itemBuilder: (context) => [
-              PopupMenuItem<String>(
-                value: '/settings',
-                child: Text(context.strings.actionSettings),
-              ),
-            ],
+            itemBuilder:
+                (context) => [PopupMenuItem<String>(value: '/settings', child: Text(context.strings.actionSettings))],
             onSelected: (destination) async {
               await Navigator.pushNamed(context, destination);
             },
@@ -109,14 +102,7 @@ class _HomePageState extends State<_HomePage>
           TopBannerWidget(),
           PhoneFieldWidget(),
           ChatAppsWidget(),
-          Expanded(
-            child: TabListView(
-              tabs: [
-                HistoryPage(),
-                CallLogTabPage(),
-              ],
-            ),
-          ),
+          Expanded(child: TabListView(tabs: [HistoryPage(), CallLogTabPage()])),
         ],
       ),
       bottomNavigationBar: AdBannerWidget(),
@@ -125,28 +111,17 @@ class _HomePageState extends State<_HomePage>
 
   @override
   FutureOr<void> handleAction(BuildContext context, HomeAction action) =>
-      action.when(
-        navigateToRegionPicker: (current) =>
-            _navigateToRegionPicker(context, current),
-      );
+      action.when(navigateToRegionPicker: (current) => _navigateToRegionPicker(context, current));
 
-  Future<void> _navigateToRegionPicker(
-    BuildContext context,
-    String? regionCode,
-  ) async {
+  Future<void> _navigateToRegionPicker(BuildContext context, String? regionCode) async {
     final bloc = context.read<RegionMediator>();
 
-    final selectedRegion = await Navigator.pushNamed(
-      context,
-      '/regions',
-      arguments: {'selected_code': regionCode},
-    );
+    final selectedRegion = await Navigator.pushNamed(context, '/regions', arguments: {'selected_code': regionCode});
 
     if (selectedRegion is IRegion) {
       await bloc.onRegionSelected(selectedRegion);
     }
   }
 
-  void _handleIntent(Intent intent) =>
-      context.read<HomeBloc>().onIntentReceived(intent);
+  void _handleIntent(Intent intent) => context.read<HomeBloc>().onIntentReceived(intent);
 }

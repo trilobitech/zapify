@@ -20,11 +20,11 @@ class HistoryBloc extends StateActionBloc<HistoryState, HistoryAction> {
     required RemovePhoneNumberHistoryUseCase removePhoneNumberHistory,
     required RestorePhoneNumberHistoryUseCase restorePhoneNumberHistory,
     required IAnalytics analytics,
-  })  : _getPhoneNumberHistory = getPhoneNumberHistory,
-        _removePhoneNumberHistory = removePhoneNumberHistory,
-        _restorePhoneNumberHistory = restorePhoneNumberHistory,
-        _analytics = analytics,
-        super(HistoryState(entries: []));
+  }) : _getPhoneNumberHistory = getPhoneNumberHistory,
+       _removePhoneNumberHistory = removePhoneNumberHistory,
+       _restorePhoneNumberHistory = restorePhoneNumberHistory,
+       _analytics = analytics,
+       super(HistoryState(entries: []));
 
   final GetPhoneNumberHistoryUseCase _getPhoneNumberHistory;
   final RemovePhoneNumberHistoryUseCase _removePhoneNumberHistory;
@@ -38,15 +38,11 @@ class HistoryBloc extends StateActionBloc<HistoryState, HistoryAction> {
   Future<void> load() async {
     final historicSize = await _historicSize();
 
-    final initialState = historicSize > 0
-        ? HistoryState.loading(historicSize)
-        : HistoryState.empty();
+    final initialState = historicSize > 0 ? HistoryState.loading(historicSize) : HistoryState.empty();
 
     setState(initialState);
 
-    setStateFrom(
-      _getPhoneNumberHistory().asyncMap(_mapToState),
-    );
+    setStateFrom(_getPhoneNumberHistory().asyncMap(_mapToState));
   }
 
   void select(HistoryEntry entry) {
@@ -60,19 +56,10 @@ class HistoryBloc extends StateActionBloc<HistoryState, HistoryAction> {
 
   void longPress(HistoryEntry entry) {
     _analytics.itemLongPressed('phone_from_history');
-    sendAction(
-      HistoryAction.showMenu(
-        entry,
-        _currentTapPosition,
-        ContextMenuAction.values,
-      ),
-    );
+    sendAction(HistoryAction.showMenu(entry, _currentTapPosition, ContextMenuAction.values));
   }
 
-  Future<void> selectOption(
-    HistoryEntry entry,
-    ContextMenuAction? action,
-  ) async {
+  Future<void> selectOption(HistoryEntry entry, ContextMenuAction? action) async {
     switch (action) {
       case ContextMenuAction.remove:
         await remove(entry);
@@ -95,13 +82,9 @@ class HistoryBloc extends StateActionBloc<HistoryState, HistoryAction> {
   }
 
   Future<HistoryState> _mapToState(List<HistoryEntry> entries) async {
-    final isCallLogTabEnabled =
-        await RemoteConfig.isCallLogTabEnabled.get<bool>();
+    final isCallLogTabEnabled = await RemoteConfig.isCallLogTabEnabled.get<bool>();
     return entries.isNotEmpty
-        ? HistoryState(
-            entries: entries,
-            isDismissable: !isCallLogTabEnabled,
-          )
+        ? HistoryState(entries: entries, isDismissable: !isCallLogTabEnabled)
         : HistoryState.empty();
   }
 

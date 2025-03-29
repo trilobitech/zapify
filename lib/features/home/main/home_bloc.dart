@@ -17,21 +17,16 @@ import '../chat_apps/chat_apps_mediator.dart';
 import '../phone/phone_field_component.dart';
 import 'home_state.dart';
 
-abstract class HomeMediator
-    implements
-        RegionMediator,
-        ChatAppsMediator,
-        HistoryMediator,
-        CallLogMediator {}
+abstract class HomeMediator implements RegionMediator, ChatAppsMediator, HistoryMediator, CallLogMediator {}
 
 class HomeBloc extends ActionBloc<HomeAction> implements HomeMediator {
   HomeBloc({
     required PhoneFieldComponent phoneFieldComponent,
     required SavePhoneNumberHistoryUseCase savePhoneNumberHistory,
     required IAnalytics analytics,
-  })  : _phoneFieldComponent = phoneFieldComponent,
-        _savePhoneNumberHistory = savePhoneNumberHistory,
-        _analytics = analytics;
+  }) : _phoneFieldComponent = phoneFieldComponent,
+       _savePhoneNumberHistory = savePhoneNumberHistory,
+       _analytics = analytics;
 
   final SavePhoneNumberHistoryUseCase _savePhoneNumberHistory;
   final PhoneFieldComponent _phoneFieldComponent;
@@ -42,23 +37,18 @@ class HomeBloc extends ActionBloc<HomeAction> implements HomeMediator {
     if (phoneNumber != null && phoneNumber.startsWith('tel:')) {
       _analytics.intentHandled('phone_number_received');
 
-      await _phoneFieldComponent
-          .updatePhone(phoneNumber.replaceFirst('tel:', ''))
-          .catchError((_) {
-        final obfuscatedNumber =
-            phoneNumber.replaceAll('*', '\\*').replaceAll(RegExp('[0-9]'), '*');
+      await _phoneFieldComponent.updatePhone(phoneNumber.replaceFirst('tel:', '')).catchError((_) {
+        final obfuscatedNumber = phoneNumber.replaceAll('*', '\\*').replaceAll(RegExp('[0-9]'), '*');
         Log.e('invalid phone number: $obfuscatedNumber');
       });
     }
   }
 
   @override
-  Future<void> onPhoneReceivedFromCallLog(String phoneNumber) =>
-      _phoneFieldComponent.updatePhone(phoneNumber);
+  Future<void> onPhoneReceivedFromCallLog(String phoneNumber) => _phoneFieldComponent.updatePhone(phoneNumber);
 
   @override
-  Future<void> onPhoneReceivedFromHistory(String phoneNumber) =>
-      _phoneFieldComponent.updatePhone(phoneNumber);
+  Future<void> onPhoneReceivedFromHistory(String phoneNumber) => _phoneFieldComponent.updatePhone(phoneNumber);
 
   @override
   void showRegionPicker(RegionCode? selectedCode) {
@@ -68,22 +58,16 @@ class HomeBloc extends ActionBloc<HomeAction> implements HomeMediator {
   }
 
   @override
-  Future<void> onRegionSelected(IRegion region) =>
-      _phoneFieldComponent.updateRegion(region);
+  Future<void> onRegionSelected(IRegion region) => _phoneFieldComponent.updateRegion(region);
 
   @override
   Future<void> launch(String uriTemplate) async {
     try {
       final phoneNumber = await _phoneFieldComponent.getPhoneNumber();
 
-      final uri = uriTemplate.formatWithMap({
-        'phoneNumber': phoneNumber.e164.replaceFirst('+', ''),
-      });
+      final uri = uriTemplate.formatWithMap({'phoneNumber': phoneNumber.e164.replaceFirst('+', '')});
 
-      final successful = await launchUrl(
-        Uri.parse(uri),
-        mode: LaunchMode.externalApplication,
-      );
+      final successful = await launchUrl(Uri.parse(uri), mode: LaunchMode.externalApplication);
 
       if (!successful) {
         throw ChatAppNotFoundError('Failed to launch $uriTemplate');

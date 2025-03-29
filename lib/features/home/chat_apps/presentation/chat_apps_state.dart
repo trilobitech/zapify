@@ -15,6 +15,5 @@ class ChatAppsState with _$ChatAppsState implements IState {
 @freezed
 class ChatAppsAction with _$ChatAppsAction implements IAction {
   factory ChatAppsAction.select(ChatApp entry) = _ChatAppsActionSelect;
-  factory ChatAppsAction.showFailureMessage(ChatApp app) =
-      _ChatAppsActionShowFailureMessage;
+  factory ChatAppsAction.showFailureMessage(ChatApp app) = _ChatAppsActionShowFailureMessage;
 }

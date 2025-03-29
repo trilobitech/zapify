@@ -20,52 +20,36 @@ void commonModule() {
   registerFactoryParam<FailureAdapter, ErrorConverterRegistry, void>(
     (registry, _) => FailureAdapter(
       registry: registry,
-      fallback: (context, _) => ErrorFeedback(
-        message: context.strings.unknowErrorMessage,
-        primaryButtonText: context.strings.unknowErrorAction,
-      ),
+      fallback:
+          (context, _) => ErrorFeedback(
+            message: context.strings.unknowErrorMessage,
+            primaryButtonText: context.strings.unknowErrorAction,
+          ),
     ),
   );
 
   registerSingleton(() => PhoneNumberUtil());
 
-  registerSingletonAsync<Database>(
-    getDatabase,
-    dispose: (db) async => db.close(),
-  );
+  registerSingletonAsync<Database>(getDatabase, dispose: (db) async => db.close());
 
   registerSingletonAsync<BriteDatabase>(
-    () async => BriteDatabase(
-      await lazyGet(),
-      logger: kDebugMode ? print : null,
-    ),
+    () async => BriteDatabase(await lazyGet(), logger: kDebugMode ? print : null),
     dispose: (db) async => db.close(),
   );
 
-  registerSingletonAsync<SharedPreferences>(
-    () async => SharedPreferences.getInstance(),
-  );
+  registerSingletonAsync<SharedPreferences>(() async => SharedPreferences.getInstance());
 
-  registerSingletonAsync<FirebaseRemoteConfig>(
-    () async => getRemoteConfig(remoteConfigDefaults),
-  );
+  registerSingletonAsync<FirebaseRemoteConfig>(() async => getRemoteConfig(remoteConfigDefaults));
 
   registerSingleton<IRemoteConfigStorage>(
-    () => FirebaseConfigStorage(
-      remoteConfig: get(),
-    ),
+    () => FirebaseConfigStorage(remoteConfig: get()),
     dependsOn: [FirebaseRemoteConfig],
   );
 
   registerSingleton<ILocalConfigStorage>(
-    () => PreferencesConfigStorage(
-      prefs: get(),
-      localConfigDefaults: localConfigDefaults,
-    ),
+    () => PreferencesConfigStorage(prefs: get(), localConfigDefaults: localConfigDefaults),
     dependsOn: [SharedPreferences],
   );
 
-  registerSingleton<IAnalytics>(
-    () => analytics,
-  );
+  registerSingleton<IAnalytics>(() => analytics);
 }

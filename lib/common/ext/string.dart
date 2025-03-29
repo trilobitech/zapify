@@ -2,10 +2,7 @@ extension StringExt on String {
   // https://stackoverflow.com/a/66554024
   String format(List<dynamic> params) {
     var index = 0;
-    return replaceAllMapped(
-      RegExp(r'{.*?}'),
-      (_) => params[index++],
-    );
+    return replaceAllMapped(RegExp(r'{.*?}'), (_) => params[index++]);
   }
 
   // https://stackoverflow.com/a/66554024

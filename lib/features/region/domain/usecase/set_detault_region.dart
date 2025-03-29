@@ -5,9 +5,7 @@ import '../repository/region_repository.dart';
 
 @immutable
 class SetDefaultRegionUseCase {
-  const SetDefaultRegionUseCase({
-    required IRegionRepository repository,
-  }) : _repository = repository;
+  const SetDefaultRegionUseCase({required IRegionRepository repository}) : _repository = repository;
 
   final IRegionRepository _repository;
 

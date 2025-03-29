@@ -9,9 +9,7 @@ FirebaseCrashlytics get crashlytics => FirebaseCrashlytics.instance;
 
 FirebasePerformance get performance => FirebasePerformance.instance;
 
-Future<FirebaseRemoteConfig> getRemoteConfig(
-  Map<String, dynamic> defaults,
-) async {
+Future<FirebaseRemoteConfig> getRemoteConfig(Map<String, dynamic> defaults) async {
   final remoteConfig = FirebaseRemoteConfig.instance;
 
   await remoteConfig.setDefaults(defaults);
@@ -25,10 +23,7 @@ Future<FirebaseRemoteConfig> getRemoteConfig(
 void _fetch(FirebaseRemoteConfig remoteConfig) async {
   try {
     await remoteConfig.setConfigSettings(
-      RemoteConfigSettings(
-        fetchTimeout: const Duration(minutes: 1),
-        minimumFetchInterval: const Duration(days: 1),
-      ),
+      RemoteConfigSettings(fetchTimeout: const Duration(minutes: 1), minimumFetchInterval: const Duration(days: 1)),
     );
     await remoteConfig.fetch();
   } catch (error, stack) {

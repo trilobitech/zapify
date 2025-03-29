@@ -5,9 +5,7 @@ import '../repository/region_repository.dart';
 
 @immutable
 class GetRegionsByTermUseCase {
-  const GetRegionsByTermUseCase({
-    required IRegionRepository repository,
-  }) : _repository = repository;
+  const GetRegionsByTermUseCase({required IRegionRepository repository}) : _repository = repository;
 
   final IRegionRepository _repository;
 
@@ -18,12 +16,12 @@ class GetRegionsByTermUseCase {
       return countries;
     }
 
-    return countries.where(
-      (country) {
-        return country.code.toUpperCase().contains(term.toUpperCase()) ||
-            country.prefix.toString().contains(term) ||
-            country.name.toLowerCase().contains(term.toLowerCase());
-      },
-    ).toList(growable: false);
+    return countries
+        .where((country) {
+          return country.code.toUpperCase().contains(term.toUpperCase()) ||
+              country.prefix.toString().contains(term) ||
+              country.name.toLowerCase().contains(term.toLowerCase());
+        })
+        .toList(growable: false);
   }
 }

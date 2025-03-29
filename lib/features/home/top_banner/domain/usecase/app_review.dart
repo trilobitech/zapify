@@ -6,8 +6,7 @@ import '../../../../../../common/ext/future.dart';
 
 class CanAskForReviewUseCase {
   Future<bool> call() async {
-    final isRequestReviewEnabled =
-        await RemoteConfig.isRequestReviewEnabled.get<bool>();
+    final isRequestReviewEnabled = await RemoteConfig.isRequestReviewEnabled.get<bool>();
 
     if (!isRequestReviewEnabled) {
       return false;

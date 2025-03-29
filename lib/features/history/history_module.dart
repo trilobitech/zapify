@@ -17,33 +17,13 @@ void historyModule() {
     ),
   );
 
-  registerFactory(
-    () => GetPhoneNumberHistoryUseCase(
-      repository: get(),
-    ),
-  );
+  registerFactory(() => GetPhoneNumberHistoryUseCase(repository: get()));
 
-  registerFactory(
-    () => RemovePhoneNumberHistoryUseCase(
-      repository: get(),
-    ),
-  );
+  registerFactory(() => RemovePhoneNumberHistoryUseCase(repository: get()));
 
-  registerFactory(
-    () => RestorePhoneNumberHistoryUseCase(
-      repository: get(),
-    ),
-  );
+  registerFactory(() => RestorePhoneNumberHistoryUseCase(repository: get()));
 
-  registerFactory(
-    () => SavePhoneNumberHistoryUseCase(
-      repository: get(),
-    ),
-  );
+  registerFactory(() => SavePhoneNumberHistoryUseCase(repository: get()));
 
-  registerSingleton<IHistoryRepository>(
-    () => HistoryRepository(
-      db: lazy(),
-    ),
-  );
+  registerSingleton<IHistoryRepository>(() => HistoryRepository(db: lazy()));
 }

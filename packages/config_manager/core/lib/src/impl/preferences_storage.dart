@@ -21,8 +21,7 @@ class PreferencesConfigStorage implements ILocalConfigStorage {
   }
 
   @override
-  Future setValue<T extends Object>(String key, T value) =>
-      _setValue(value, key).then((_) => _prefs.reload());
+  Future setValue<T extends Object>(String key, T value) => _setValue(value, key).then((_) => _prefs.reload());
 
   Future<bool> _setValue(value, String key) async {
     if (value is int) {

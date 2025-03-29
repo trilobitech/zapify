@@ -17,26 +17,21 @@ import 'firebase_options.dart';
 import 'modules.dart';
 
 void main() async {
-  await runZonedGuarded(
-    () async {
-      WidgetsFlutterBinding.ensureInitialized();
+  await runZonedGuarded(() async {
+    WidgetsFlutterBinding.ensureInitialized();
 
-      await setupApp();
-      unawaited(loadModules());
+    await setupApp();
+    unawaited(loadModules());
 
-      runApp(const App());
-    },
-    Log.wtf,
-  );
+    runApp(const App());
+  }, Log.wtf);
 }
 
 Future<void> setupApp() async {
   final completer = Completer();
   FlutterError.onError = Log.wtf;
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   assert(() {
     Log.listen(DebugLogRecorder());
@@ -54,10 +49,7 @@ Future<void> setupApp() async {
   if (kReleaseMode) {
     Logger.root.onRecord.listen(_CrashlyticsTree());
     completer.complete(
-      initAnalytics(
-        amplitudeKey: EnvConfig.amplitudeKey,
-        isEnabled: true,
-      ).catchError(catchErrorLogger),
+      initAnalytics(amplitudeKey: EnvConfig.amplitudeKey, isEnabled: true).catchError(catchErrorLogger),
     );
   }
 
@@ -69,11 +61,7 @@ class _CrashlyticsTree {
     if (!record.isSevere || record.error is NonReportableError) return;
 
     unawaited(
-      crashlytics.recordError(
-        record.error ?? record.message,
-        record.stackTrace,
-        fatal: record.level == Level.SHOUT,
-      ),
+      crashlytics.recordError(record.error ?? record.message, record.stackTrace, fatal: record.level == Level.SHOUT),
     );
   }
 }
