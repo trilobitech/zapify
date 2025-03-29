@@ -2,4 +2,4 @@ version = 1
 
 [update]
 always = true
-ignored_usernames = ["dependabot"]
+ignored_usernames = ["dependabot", "renovate"]
