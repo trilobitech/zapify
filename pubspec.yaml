@@ -7,6 +7,11 @@ environment:
   sdk: ">=3.7.2 <4.0.0"
   flutter: ">= 3.29.2 <4.0.0"
 
+workspace:
+  - packages/analytics
+  - packages/config_manager/core
+  - packages/config_manager/firebase
+
 dependencies:
   flutter:
     sdk: flutter
@@ -14,12 +19,9 @@ dependencies:
     sdk: flutter
 
   # local packages
-  analytics:
-    path: 'packages/analytics'
-  config_core:
-    path: 'packages/config_manager/core'
-  config_firebase:
-    path: 'packages/config_manager/firebase'
+  analytics: ^0.1.0
+  config_core: ^0.1.0
+  config_firebase: ^0.1.0
 
   # personal flutter packages
   error_adapter: ^0.1.0
