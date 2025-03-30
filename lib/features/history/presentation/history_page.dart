@@ -26,18 +26,25 @@ class HistoryPage extends StatelessWidget
   String buildTitle(BuildContext context) => context.strings.recentNumbersTitle;
 
   @override
-  Widget buildState(BuildContext context, HistoryState state) => state.when(
-    (entries, isDismissable) => _SuccessView(entries, isDismissable: isDismissable),
-    loading: (size) => _LoadingView(size),
-    empty: () => FeedbackView(text: context.strings.recentNumbersEmpty),
-  );
+  Widget buildState(BuildContext context, HistoryState state) => switch (state) {
+    LoadedHistoryState(:final entries, :final isDismissible) => _SuccessView(entries, isDismissible: isDismissible),
+    LoadingHistoryState(:final size) => _LoadingView(size),
+    EmptyHistoryState() => FeedbackView(text: context.strings.recentNumbersEmpty),
+  };
 
   @override
-  FutureOr<void> handleAction(BuildContext context, HistoryAction action) => action.when(
-    select: (entry) => context.read<HistoryMediator>().onPhoneReceivedFromHistory(entry.phoneNumber),
-    showMenu: (entry, tapPosition, options) => showContextMenu(context, entry, tapPosition, options),
-    showRestoreEntrySnackBar: (entry) => _showRestoreEntrySnackBar(context, entry),
-  );
+  FutureOr<void> handleAction(BuildContext context, HistoryAction action) async => switch (action) {
+    SelectEntryHistoryAction(:final entry) => context.read<HistoryMediator>().onPhoneReceivedFromHistory(
+      entry.phoneNumber,
+    ),
+    ShowMenuHistoryAction(:final entry, :final position, :final options) => showContextMenu(
+      context,
+      entry: entry,
+      tapPosition: position,
+      options: options,
+    ),
+    AskToRestoreEntryHistoryAction(:final entry) => _showRestoreEntrySnackBar(context, entry),
+  };
 
   void _showRestoreEntrySnackBar(BuildContext context, HistoryEntry entry) {
     final snackBar = SnackBar(
@@ -55,11 +62,11 @@ class HistoryPage extends StatelessWidget
   }
 
   Future<void> showContextMenu(
-    BuildContext context,
-    HistoryEntry entry,
-    Offset tapPosition,
-    Iterable<ContextMenuAction> options,
-  ) async {
+    BuildContext context, {
+    required HistoryEntry entry,
+    required Offset tapPosition,
+    required Iterable<ContextMenuAction> options,
+  }) async {
     final bloc = context.read<HistoryBloc>();
     final overlay = Overlay.of(context).context.findRenderObject()!;
 
@@ -95,10 +102,10 @@ class _LoadingView extends StatelessWidget {
 }
 
 class _SuccessView extends StatelessWidget {
-  const _SuccessView(this.entries, {required this.isDismissable});
+  const _SuccessView(this.entries, {required this.isDismissible});
 
   final Iterable<HistoryEntry> entries;
-  final bool isDismissable;
+  final bool isDismissible;
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +114,7 @@ class _SuccessView extends StatelessWidget {
       itemBuilder: (_, index) {
         final entry = entries.elementAt(index);
 
-        if (isDismissable) {
+        if (isDismissible) {
           return _DismissibleEntryView(entry);
         }
 

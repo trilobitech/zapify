@@ -13,20 +13,16 @@ class TopBannerWidget extends StatelessWidget with StateMixin<TopBannerBloc, Top
   TopBannerWidget({Key? key}) : super(key: key);
 
   @override
-  late final bloc = inject<TopBannerBloc>();
+  late final TopBannerBloc bloc = inject<TopBannerBloc>();
 
   @override
-  Widget buildState(BuildContext context, TopBannerState state) {
-    return state.when(
-      (type) => _TopBannerView(
-        type: type,
-        onActionTap: (type) {
-          context.read<TopBannerBloc>().onTopBannerActionTap(type);
-        },
-      ),
-      none: () => Container(),
-    );
-  }
+  Widget buildState(BuildContext context, TopBannerState state) => switch (state) {
+    DisplayTopBannerState(:final type) => _TopBannerView(
+      type: type,
+      onActionTap: (type) => bloc.onTopBannerActionTap(type),
+    ),
+    HiddenTopBannerState() => const SizedBox.shrink(),
+  };
 }
 
 class _TopBannerView extends StatefulWidget {

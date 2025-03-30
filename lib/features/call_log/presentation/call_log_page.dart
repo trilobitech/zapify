@@ -29,22 +29,24 @@ class CallLogTabPage extends StatelessWidget
   String buildTitle(BuildContext context) => context.strings.callLogTabTitle;
 
   @override
-  Widget buildState(BuildContext context, CallLogState state) => state.when(
-    (entries) => _SuccessView(entries),
-    loading: (itemCount) => _LoadingView(itemCount),
-    empty: () => FeedbackView(text: context.strings.callLogEmptyMessage),
-    error:
-        (error) => ErrorFeedbackView(
-          context,
-          error: error,
-          onRetryPressed: () => context.read<CallLogBloc>().retry(),
-          additionalRegistry: CallLogErrorConverterRegistry(),
-        ),
-  );
+  Widget buildState(BuildContext context, CallLogState state) => switch (state) {
+    LoadedCallLogState(:final entries) => _SuccessView(entries),
+    LoadingCallLogState(:final itemCount) => _LoadingView(itemCount),
+    EmptyCallLogState() => FeedbackView(text: context.strings.callLogEmptyMessage),
+    ErrorCallLogState(:final error) => ErrorFeedbackView(
+      context,
+      error: error,
+      onRetryPressed: () => context.read<CallLogBloc>().retry(),
+      additionalRegistry: CallLogErrorConverterRegistry(),
+    ),
+  };
 
   @override
-  FutureOr<void> handleAction(BuildContext context, CallLogAction action) =>
-      action.when(select: (entry) => context.read<CallLogMediator>().onPhoneReceivedFromCallLog(entry.phoneNumber));
+  FutureOr<void> handleAction(BuildContext context, CallLogAction action) => switch (action) {
+    SelectEntryCallLogAction(:final entry) => context.read<CallLogMediator>().onPhoneReceivedFromCallLog(
+      entry.phoneNumber,
+    ),
+  };
 }
 
 class _SuccessView extends StatelessWidget {

@@ -84,7 +84,7 @@ class HistoryBloc extends StateActionBloc<HistoryState, HistoryAction> {
   Future<HistoryState> _mapToState(List<HistoryEntry> entries) async {
     final isCallLogTabEnabled = await RemoteConfig.isCallLogTabEnabled.get<bool>();
     return entries.isNotEmpty
-        ? HistoryState(entries: entries, isDismissable: !isCallLogTabEnabled)
+        ? HistoryState(entries: entries, isDismissible: !isCallLogTabEnabled)
         : HistoryState.empty();
   }
 

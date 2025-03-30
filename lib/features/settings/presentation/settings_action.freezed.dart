@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,215 +10,134 @@ part of 'settings_action.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
-
 /// @nodoc
 mixin _$SettingsAction {
-  String get route => throw _privateConstructorUsedError;
-  Object? get args => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({required TResult Function(String route, Object? args) navigateTo}) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({TResult? Function(String route, Object? args)? navigateTo}) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String route, Object? args)? navigateTo,
-    required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({required TResult Function(_SettingsActionNavigateTo value) navigateTo}) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({TResult? Function(_SettingsActionNavigateTo value)? navigateTo}) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SettingsActionNavigateTo value)? navigateTo,
-    required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
 
-  /// Create a copy of SettingsAction
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $SettingsActionCopyWith<SettingsAction> get copyWith => throw _privateConstructorUsedError;
+ String get route; Object? get args;
+/// Create a copy of SettingsAction
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SettingsActionCopyWith<SettingsAction> get copyWith => _$SettingsActionCopyWithImpl<SettingsAction>(this as SettingsAction, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SettingsAction&&(identical(other.route, route) || other.route == route)&&const DeepCollectionEquality().equals(other.args, args));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,route,const DeepCollectionEquality().hash(args));
+
+@override
+String toString() {
+  return 'SettingsAction(route: $route, args: $args)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $SettingsActionCopyWith<$Res> {
-  factory $SettingsActionCopyWith(SettingsAction value, $Res Function(SettingsAction) then) =
-      _$SettingsActionCopyWithImpl<$Res, SettingsAction>;
-  @useResult
-  $Res call({String route, Object? args});
-}
+abstract mixin class $SettingsActionCopyWith<$Res>  {
+  factory $SettingsActionCopyWith(SettingsAction value, $Res Function(SettingsAction) _then) = _$SettingsActionCopyWithImpl;
+@useResult
+$Res call({
+ String route, Object? args
+});
 
+
+
+
+}
 /// @nodoc
-class _$SettingsActionCopyWithImpl<$Res, $Val extends SettingsAction> implements $SettingsActionCopyWith<$Res> {
-  _$SettingsActionCopyWithImpl(this._value, this._then);
+class _$SettingsActionCopyWithImpl<$Res>
+    implements $SettingsActionCopyWith<$Res> {
+  _$SettingsActionCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final SettingsAction _self;
+  final $Res Function(SettingsAction) _then;
 
-  /// Create a copy of SettingsAction
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? route = null, Object? args = freezed}) {
-    return _then(
-      _value.copyWith(
-            route:
-                null == route
-                    ? _value.route
-                    : route // ignore: cast_nullable_to_non_nullable
-                        as String,
-            args: freezed == args ? _value.args : args,
-          )
-          as $Val,
-    );
-  }
+/// Create a copy of SettingsAction
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? route = null,Object? args = freezed,}) {
+  return _then(_self.copyWith(
+route: null == route ? _self.route : route // ignore: cast_nullable_to_non_nullable
+as String,args: freezed == args ? _self.args : args ,
+  ));
 }
 
-/// @nodoc
-abstract class _$$SettingsActionNavigateToImplCopyWith<$Res> implements $SettingsActionCopyWith<$Res> {
-  factory _$$SettingsActionNavigateToImplCopyWith(
-    _$SettingsActionNavigateToImpl value,
-    $Res Function(_$SettingsActionNavigateToImpl) then,
-  ) = __$$SettingsActionNavigateToImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String route, Object? args});
 }
 
-/// @nodoc
-class __$$SettingsActionNavigateToImplCopyWithImpl<$Res>
-    extends _$SettingsActionCopyWithImpl<$Res, _$SettingsActionNavigateToImpl>
-    implements _$$SettingsActionNavigateToImplCopyWith<$Res> {
-  __$$SettingsActionNavigateToImplCopyWithImpl(
-    _$SettingsActionNavigateToImpl _value,
-    $Res Function(_$SettingsActionNavigateToImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of SettingsAction
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? route = null, Object? args = freezed}) {
-    return _then(
-      _$SettingsActionNavigateToImpl(
-        null == route
-            ? _value.route
-            : route // ignore: cast_nullable_to_non_nullable
-                as String,
-        args: freezed == args ? _value.args : args,
-      ),
-    );
-  }
-}
 
 /// @nodoc
 
-class _$SettingsActionNavigateToImpl implements _SettingsActionNavigateTo {
-  _$SettingsActionNavigateToImpl(this.route, {this.args = null});
 
-  @override
-  final String route;
-  @override
-  @JsonKey()
-  final Object? args;
+class NavigateSettingsAction implements SettingsAction {
+   NavigateSettingsAction(this.route, {this.args = null});
+  
 
-  @override
-  String toString() {
-    return 'SettingsAction.navigateTo(route: $route, args: $args)';
-  }
+@override final  String route;
+@override@JsonKey() final  Object? args;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SettingsActionNavigateToImpl &&
-            (identical(other.route, route) || other.route == route) &&
-            const DeepCollectionEquality().equals(other.args, args));
-  }
+/// Create a copy of SettingsAction
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$NavigateSettingsActionCopyWith<NavigateSettingsAction> get copyWith => _$NavigateSettingsActionCopyWithImpl<NavigateSettingsAction>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(runtimeType, route, const DeepCollectionEquality().hash(args));
 
-  /// Create a copy of SettingsAction
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SettingsActionNavigateToImplCopyWith<_$SettingsActionNavigateToImpl> get copyWith =>
-      __$$SettingsActionNavigateToImplCopyWithImpl<_$SettingsActionNavigateToImpl>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({required TResult Function(String route, Object? args) navigateTo}) {
-    return navigateTo(route, args);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({TResult? Function(String route, Object? args)? navigateTo}) {
-    return navigateTo?.call(route, args);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String route, Object? args)? navigateTo,
-    required TResult orElse(),
-  }) {
-    if (navigateTo != null) {
-      return navigateTo(route, args);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({required TResult Function(_SettingsActionNavigateTo value) navigateTo}) {
-    return navigateTo(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({TResult? Function(_SettingsActionNavigateTo value)? navigateTo}) {
-    return navigateTo?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SettingsActionNavigateTo value)? navigateTo,
-    required TResult orElse(),
-  }) {
-    if (navigateTo != null) {
-      return navigateTo(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is NavigateSettingsAction&&(identical(other.route, route) || other.route == route)&&const DeepCollectionEquality().equals(other.args, args));
 }
 
-abstract class _SettingsActionNavigateTo implements SettingsAction {
-  factory _SettingsActionNavigateTo(final String route, {final Object? args}) = _$SettingsActionNavigateToImpl;
 
-  @override
-  String get route;
-  @override
-  Object? get args;
+@override
+int get hashCode => Object.hash(runtimeType,route,const DeepCollectionEquality().hash(args));
 
-  /// Create a copy of SettingsAction
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SettingsActionNavigateToImplCopyWith<_$SettingsActionNavigateToImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'SettingsAction.navigateTo(route: $route, args: $args)';
 }
+
+
+}
+
+/// @nodoc
+abstract mixin class $NavigateSettingsActionCopyWith<$Res> implements $SettingsActionCopyWith<$Res> {
+  factory $NavigateSettingsActionCopyWith(NavigateSettingsAction value, $Res Function(NavigateSettingsAction) _then) = _$NavigateSettingsActionCopyWithImpl;
+@override @useResult
+$Res call({
+ String route, Object? args
+});
+
+
+
+
+}
+/// @nodoc
+class _$NavigateSettingsActionCopyWithImpl<$Res>
+    implements $NavigateSettingsActionCopyWith<$Res> {
+  _$NavigateSettingsActionCopyWithImpl(this._self, this._then);
+
+  final NavigateSettingsAction _self;
+  final $Res Function(NavigateSettingsAction) _then;
+
+/// Create a copy of SettingsAction
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? route = null,Object? args = freezed,}) {
+  return _then(NavigateSettingsAction(
+null == route ? _self.route : route // ignore: cast_nullable_to_non_nullable
+as String,args: freezed == args ? _self.args : args ,
+  ));
+}
+
+
+}
+
+// dart format on

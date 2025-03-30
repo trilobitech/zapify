@@ -110,8 +110,9 @@ class _HomePageState extends State<_HomePage> with ActionMixin<HomeBloc, HomeAct
   }
 
   @override
-  FutureOr<void> handleAction(BuildContext context, HomeAction action) =>
-      action.when(navigateToRegionPicker: (current) => _navigateToRegionPicker(context, current));
+  FutureOr<void> handleAction(BuildContext context, HomeAction action) => switch (action) {
+    NavigateToRegionPickerHomeAction(:final current) => _navigateToRegionPicker(context, current),
+  };
 
   Future<void> _navigateToRegionPicker(BuildContext context, String? regionCode) async {
     final bloc = context.read<RegionMediator>();

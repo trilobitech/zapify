@@ -7,21 +7,22 @@ import '../domain/entity/history.dart';
 part 'history_state.freezed.dart';
 
 @freezed
-class HistoryState with _$HistoryState implements IState {
-  factory HistoryState.loading(int size) = _HistoryStateLoading;
-  factory HistoryState.empty() = _HistoryStateEmpty;
-  factory HistoryState({required List<HistoryEntry> entries, @Default(false) bool isDismissable}) =
-      _HistoryStatePopulated;
+sealed class HistoryState with _$HistoryState implements IState {
+  factory HistoryState.loading(int size) = LoadingHistoryState;
+
+  factory HistoryState.empty() = EmptyHistoryState;
+
+  factory HistoryState({required List<HistoryEntry> entries, @Default(false) bool isDismissible}) = LoadedHistoryState;
 }
 
 @freezed
-class HistoryAction with _$HistoryAction implements IAction {
-  factory HistoryAction.select(HistoryEntry entry) = _HistoryActionEntrySelect;
+sealed class HistoryAction with _$HistoryAction implements IAction {
+  factory HistoryAction.select(HistoryEntry entry) = SelectEntryHistoryAction;
 
   factory HistoryAction.showMenu(HistoryEntry entry, Offset position, Iterable<ContextMenuAction> options) =
-      _HistoryActionShowMenu;
+      ShowMenuHistoryAction;
 
-  factory HistoryAction.showRestoreEntrySnackBar(HistoryEntry entry) = _HistoryActionEntryRemoved;
+  factory HistoryAction.showRestoreEntrySnackBar(HistoryEntry entry) = AskToRestoreEntryHistoryAction;
 }
 
 enum ContextMenuAction { remove }

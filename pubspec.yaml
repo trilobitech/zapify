@@ -40,8 +40,7 @@ dependencies:
   firebase_performance: ^0.10.1+4
   firebase_remote_config: ^5.4.2
   flutter_svg: ^2.0.17
-  freezed: ^2.2.0
-  freezed_annotation: ^2.2.0
+  freezed_annotation: ^3.0.0
   get_it: ^7.2.0
   google_fonts: ^6.2.1
   google_mobile_ads: ^5.3.1
@@ -71,6 +70,7 @@ dev_dependencies:
 
   build_runner: ^2.4.15
   flutter_lints: ^2.0.1
+  freezed: ^3.0.4
   mocktail: ^0.3.0
 
 flutter:

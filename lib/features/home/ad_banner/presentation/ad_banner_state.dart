@@ -4,8 +4,8 @@ import 'package:state_action_bloc/state_action_bloc.dart';
 part 'ad_banner_state.freezed.dart';
 
 @freezed
-class AdBannerState with _$AdBannerState implements IState {
-  factory AdBannerState({required String unitId}) = _AdBannerState;
+sealed class AdBannerState with _$AdBannerState implements IState {
+  factory AdBannerState({required String unitId}) = LoadedAdBannerState;
 
-  factory AdBannerState.none() = _AdBannerStateNone;
+  factory AdBannerState.none() = NoneAdBannerState;
 }

@@ -6,13 +6,13 @@ import '../domain/entity/region.dart';
 part 'region_picker_state.freezed.dart';
 
 @freezed
-class RegionPickerState with _$RegionPickerState implements IState {
-  factory RegionPickerState({@Default([]) List<Country> countries}) = _RegionPickerStateSuccess;
+sealed class RegionPickerState with _$RegionPickerState implements IState {
+  factory RegionPickerState({@Default([]) List<Country> countries}) = LoadedRegionPickerState;
 }
 
 @freezed
-class RegionPickerAction with _$RegionPickerAction implements IAction {
-  factory RegionPickerAction.close([IRegion? region]) = _RegionPickerActionClose;
+sealed class RegionPickerAction with _$RegionPickerAction implements IAction {
+  factory RegionPickerAction.close([IRegion? region]) = CloseRegionPickerAction;
 }
 
 class ShimmerCountry extends Country {

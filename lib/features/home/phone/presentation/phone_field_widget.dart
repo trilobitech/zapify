@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:error_adapter/error_adapter.dart';
 import 'package:flutter/material.dart';
 import 'package:state_action_bloc/state_action_bloc.dart';
@@ -54,8 +52,10 @@ class PhoneFieldWidget extends StatelessWidget
   }
 
   @override
-  FutureOr<void> handleAction(BuildContext context, PhoneFieldAction action) =>
-      action.when(hideKeyboard: dismissKeyboard, showKeyboard: showKeyboard);
+  void handleAction(BuildContext context, PhoneFieldAction action) => switch (action) {
+    HideKeyboardPhoneFieldAction() => dismissKeyboard(),
+    ShowKeyboardPhoneFieldAction() => showKeyboard(),
+  };
 
   void showKeyboard() => _textFieldFocus.requestFocus();
 

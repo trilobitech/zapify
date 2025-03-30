@@ -24,7 +24,7 @@ class PhoneFieldState extends Equatable implements IState {
 }
 
 @freezed
-class PhoneFieldAction with _$PhoneFieldAction implements IAction {
-  factory PhoneFieldAction.hideKeyboard() = _PhoneFieldActionHideKeyboard;
-  factory PhoneFieldAction.showKeyboard() = _PhoneFieldActionShowKeyboard;
+sealed class PhoneFieldAction with _$PhoneFieldAction implements IAction {
+  factory PhoneFieldAction.hideKeyboard() = HideKeyboardPhoneFieldAction;
+  factory PhoneFieldAction.showKeyboard() = ShowKeyboardPhoneFieldAction;
 }

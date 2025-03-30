@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,1043 +10,471 @@ part of 'history_state.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
-
 /// @nodoc
 mixin _$HistoryState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(List<HistoryEntry> entries, bool isDismissable) $default, {
-    required TResult Function(int size) loading,
-    required TResult Function() empty,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<HistoryEntry> entries, bool isDismissable)? $default, {
-    TResult? Function(int size)? loading,
-    TResult? Function()? empty,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<HistoryEntry> entries, bool isDismissable)? $default, {
-    TResult Function(int size)? loading,
-    TResult Function()? empty,
-    required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_HistoryStatePopulated value) $default, {
-    required TResult Function(_HistoryStateLoading value) loading,
-    required TResult Function(_HistoryStateEmpty value) empty,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_HistoryStatePopulated value)? $default, {
-    TResult? Function(_HistoryStateLoading value)? loading,
-    TResult? Function(_HistoryStateEmpty value)? empty,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_HistoryStatePopulated value)? $default, {
-    TResult Function(_HistoryStateLoading value)? loading,
-    TResult Function(_HistoryStateEmpty value)? empty,
-    required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is HistoryState);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'HistoryState()';
+}
+
+
 }
 
 /// @nodoc
-abstract class $HistoryStateCopyWith<$Res> {
-  factory $HistoryStateCopyWith(HistoryState value, $Res Function(HistoryState) then) =
-      _$HistoryStateCopyWithImpl<$Res, HistoryState>;
+class $HistoryStateCopyWith<$Res>  {
+$HistoryStateCopyWith(HistoryState _, $Res Function(HistoryState) __);
 }
 
-/// @nodoc
-class _$HistoryStateCopyWithImpl<$Res, $Val extends HistoryState> implements $HistoryStateCopyWith<$Res> {
-  _$HistoryStateCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of HistoryState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$HistoryStateLoadingImplCopyWith<$Res> {
-  factory _$$HistoryStateLoadingImplCopyWith(
-    _$HistoryStateLoadingImpl value,
-    $Res Function(_$HistoryStateLoadingImpl) then,
-  ) = __$$HistoryStateLoadingImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({int size});
-}
-
-/// @nodoc
-class __$$HistoryStateLoadingImplCopyWithImpl<$Res> extends _$HistoryStateCopyWithImpl<$Res, _$HistoryStateLoadingImpl>
-    implements _$$HistoryStateLoadingImplCopyWith<$Res> {
-  __$$HistoryStateLoadingImplCopyWithImpl(
-    _$HistoryStateLoadingImpl _value,
-    $Res Function(_$HistoryStateLoadingImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of HistoryState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? size = null}) {
-    return _then(
-      _$HistoryStateLoadingImpl(
-        null == size
-            ? _value.size
-            : size // ignore: cast_nullable_to_non_nullable
-                as int,
-      ),
-    );
-  }
-}
 
 /// @nodoc
 
-class _$HistoryStateLoadingImpl implements _HistoryStateLoading {
-  _$HistoryStateLoadingImpl(this.size);
 
-  @override
-  final int size;
+class LoadingHistoryState implements HistoryState {
+   LoadingHistoryState(this.size);
+  
 
-  @override
-  String toString() {
-    return 'HistoryState.loading(size: $size)';
-  }
+ final  int size;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$HistoryStateLoadingImpl &&
-            (identical(other.size, size) || other.size == size));
-  }
+/// Create a copy of HistoryState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$LoadingHistoryStateCopyWith<LoadingHistoryState> get copyWith => _$LoadingHistoryStateCopyWithImpl<LoadingHistoryState>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(runtimeType, size);
 
-  /// Create a copy of HistoryState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$HistoryStateLoadingImplCopyWith<_$HistoryStateLoadingImpl> get copyWith =>
-      __$$HistoryStateLoadingImplCopyWithImpl<_$HistoryStateLoadingImpl>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(List<HistoryEntry> entries, bool isDismissable) $default, {
-    required TResult Function(int size) loading,
-    required TResult Function() empty,
-  }) {
-    return loading(size);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<HistoryEntry> entries, bool isDismissable)? $default, {
-    TResult? Function(int size)? loading,
-    TResult? Function()? empty,
-  }) {
-    return loading?.call(size);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<HistoryEntry> entries, bool isDismissable)? $default, {
-    TResult Function(int size)? loading,
-    TResult Function()? empty,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(size);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_HistoryStatePopulated value) $default, {
-    required TResult Function(_HistoryStateLoading value) loading,
-    required TResult Function(_HistoryStateEmpty value) empty,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_HistoryStatePopulated value)? $default, {
-    TResult? Function(_HistoryStateLoading value)? loading,
-    TResult? Function(_HistoryStateEmpty value)? empty,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_HistoryStatePopulated value)? $default, {
-    TResult Function(_HistoryStateLoading value)? loading,
-    TResult Function(_HistoryStateEmpty value)? empty,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoadingHistoryState&&(identical(other.size, size) || other.size == size));
 }
 
-abstract class _HistoryStateLoading implements HistoryState {
-  factory _HistoryStateLoading(final int size) = _$HistoryStateLoadingImpl;
 
-  int get size;
+@override
+int get hashCode => Object.hash(runtimeType,size);
 
-  /// Create a copy of HistoryState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$HistoryStateLoadingImplCopyWith<_$HistoryStateLoadingImpl> get copyWith => throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'HistoryState.loading(size: $size)';
+}
+
+
 }
 
 /// @nodoc
-abstract class _$$HistoryStateEmptyImplCopyWith<$Res> {
-  factory _$$HistoryStateEmptyImplCopyWith(_$HistoryStateEmptyImpl value, $Res Function(_$HistoryStateEmptyImpl) then) =
-      __$$HistoryStateEmptyImplCopyWithImpl<$Res>;
+abstract mixin class $LoadingHistoryStateCopyWith<$Res> implements $HistoryStateCopyWith<$Res> {
+  factory $LoadingHistoryStateCopyWith(LoadingHistoryState value, $Res Function(LoadingHistoryState) _then) = _$LoadingHistoryStateCopyWithImpl;
+@useResult
+$Res call({
+ int size
+});
+
+
+
+
+}
+/// @nodoc
+class _$LoadingHistoryStateCopyWithImpl<$Res>
+    implements $LoadingHistoryStateCopyWith<$Res> {
+  _$LoadingHistoryStateCopyWithImpl(this._self, this._then);
+
+  final LoadingHistoryState _self;
+  final $Res Function(LoadingHistoryState) _then;
+
+/// Create a copy of HistoryState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? size = null,}) {
+  return _then(LoadingHistoryState(
+null == size ? _self.size : size // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
 }
 
-/// @nodoc
-class __$$HistoryStateEmptyImplCopyWithImpl<$Res> extends _$HistoryStateCopyWithImpl<$Res, _$HistoryStateEmptyImpl>
-    implements _$$HistoryStateEmptyImplCopyWith<$Res> {
-  __$$HistoryStateEmptyImplCopyWithImpl(_$HistoryStateEmptyImpl _value, $Res Function(_$HistoryStateEmptyImpl) _then)
-    : super(_value, _then);
 
-  /// Create a copy of HistoryState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$HistoryStateEmptyImpl implements _HistoryStateEmpty {
-  _$HistoryStateEmptyImpl();
 
-  @override
-  String toString() {
-    return 'HistoryState.empty()';
-  }
+class EmptyHistoryState implements HistoryState {
+   EmptyHistoryState();
+  
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType && other is _$HistoryStateEmptyImpl);
-  }
 
-  @override
-  int get hashCode => runtimeType.hashCode;
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(List<HistoryEntry> entries, bool isDismissable) $default, {
-    required TResult Function(int size) loading,
-    required TResult Function() empty,
-  }) {
-    return empty();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<HistoryEntry> entries, bool isDismissable)? $default, {
-    TResult? Function(int size)? loading,
-    TResult? Function()? empty,
-  }) {
-    return empty?.call();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<HistoryEntry> entries, bool isDismissable)? $default, {
-    TResult Function(int size)? loading,
-    TResult Function()? empty,
-    required TResult orElse(),
-  }) {
-    if (empty != null) {
-      return empty();
-    }
-    return orElse();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_HistoryStatePopulated value) $default, {
-    required TResult Function(_HistoryStateLoading value) loading,
-    required TResult Function(_HistoryStateEmpty value) empty,
-  }) {
-    return empty(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_HistoryStatePopulated value)? $default, {
-    TResult? Function(_HistoryStateLoading value)? loading,
-    TResult? Function(_HistoryStateEmpty value)? empty,
-  }) {
-    return empty?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_HistoryStatePopulated value)? $default, {
-    TResult Function(_HistoryStateLoading value)? loading,
-    TResult Function(_HistoryStateEmpty value)? empty,
-    required TResult orElse(),
-  }) {
-    if (empty != null) {
-      return empty(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EmptyHistoryState);
 }
 
-abstract class _HistoryStateEmpty implements HistoryState {
-  factory _HistoryStateEmpty() = _$HistoryStateEmptyImpl;
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'HistoryState.empty()';
 }
 
-/// @nodoc
-abstract class _$$HistoryStatePopulatedImplCopyWith<$Res> {
-  factory _$$HistoryStatePopulatedImplCopyWith(
-    _$HistoryStatePopulatedImpl value,
-    $Res Function(_$HistoryStatePopulatedImpl) then,
-  ) = __$$HistoryStatePopulatedImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({List<HistoryEntry> entries, bool isDismissable});
+
 }
 
-/// @nodoc
-class __$$HistoryStatePopulatedImplCopyWithImpl<$Res>
-    extends _$HistoryStateCopyWithImpl<$Res, _$HistoryStatePopulatedImpl>
-    implements _$$HistoryStatePopulatedImplCopyWith<$Res> {
-  __$$HistoryStatePopulatedImplCopyWithImpl(
-    _$HistoryStatePopulatedImpl _value,
-    $Res Function(_$HistoryStatePopulatedImpl) _then,
-  ) : super(_value, _then);
 
-  /// Create a copy of HistoryState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? entries = null, Object? isDismissable = null}) {
-    return _then(
-      _$HistoryStatePopulatedImpl(
-        entries:
-            null == entries
-                ? _value._entries
-                : entries // ignore: cast_nullable_to_non_nullable
-                    as List<HistoryEntry>,
-        isDismissable:
-            null == isDismissable
-                ? _value.isDismissable
-                : isDismissable // ignore: cast_nullable_to_non_nullable
-                    as bool,
-      ),
-    );
-  }
-}
+
 
 /// @nodoc
 
-class _$HistoryStatePopulatedImpl implements _HistoryStatePopulated {
-  _$HistoryStatePopulatedImpl({required final List<HistoryEntry> entries, this.isDismissable = false})
-    : _entries = entries;
 
-  final List<HistoryEntry> _entries;
-  @override
-  List<HistoryEntry> get entries {
-    if (_entries is EqualUnmodifiableListView) return _entries;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_entries);
-  }
+class LoadedHistoryState implements HistoryState {
+   LoadedHistoryState({required final  List<HistoryEntry> entries, this.isDismissible = false}): _entries = entries;
+  
 
-  @override
-  @JsonKey()
-  final bool isDismissable;
-
-  @override
-  String toString() {
-    return 'HistoryState(entries: $entries, isDismissable: $isDismissable)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$HistoryStatePopulatedImpl &&
-            const DeepCollectionEquality().equals(other._entries, _entries) &&
-            (identical(other.isDismissable, isDismissable) || other.isDismissable == isDismissable));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(_entries), isDismissable);
-
-  /// Create a copy of HistoryState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$HistoryStatePopulatedImplCopyWith<_$HistoryStatePopulatedImpl> get copyWith =>
-      __$$HistoryStatePopulatedImplCopyWithImpl<_$HistoryStatePopulatedImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(List<HistoryEntry> entries, bool isDismissable) $default, {
-    required TResult Function(int size) loading,
-    required TResult Function() empty,
-  }) {
-    return $default(entries, isDismissable);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<HistoryEntry> entries, bool isDismissable)? $default, {
-    TResult? Function(int size)? loading,
-    TResult? Function()? empty,
-  }) {
-    return $default?.call(entries, isDismissable);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<HistoryEntry> entries, bool isDismissable)? $default, {
-    TResult Function(int size)? loading,
-    TResult Function()? empty,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(entries, isDismissable);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_HistoryStatePopulated value) $default, {
-    required TResult Function(_HistoryStateLoading value) loading,
-    required TResult Function(_HistoryStateEmpty value) empty,
-  }) {
-    return $default(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_HistoryStatePopulated value)? $default, {
-    TResult? Function(_HistoryStateLoading value)? loading,
-    TResult? Function(_HistoryStateEmpty value)? empty,
-  }) {
-    return $default?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_HistoryStatePopulated value)? $default, {
-    TResult Function(_HistoryStateLoading value)? loading,
-    TResult Function(_HistoryStateEmpty value)? empty,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(this);
-    }
-    return orElse();
-  }
+ final  List<HistoryEntry> _entries;
+ List<HistoryEntry> get entries {
+  if (_entries is EqualUnmodifiableListView) return _entries;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_entries);
 }
 
-abstract class _HistoryStatePopulated implements HistoryState {
-  factory _HistoryStatePopulated({required final List<HistoryEntry> entries, final bool isDismissable}) =
-      _$HistoryStatePopulatedImpl;
+@JsonKey() final  bool isDismissible;
 
-  List<HistoryEntry> get entries;
-  bool get isDismissable;
+/// Create a copy of HistoryState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$LoadedHistoryStateCopyWith<LoadedHistoryState> get copyWith => _$LoadedHistoryStateCopyWithImpl<LoadedHistoryState>(this, _$identity);
 
-  /// Create a copy of HistoryState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$HistoryStatePopulatedImplCopyWith<_$HistoryStatePopulatedImpl> get copyWith => throw _privateConstructorUsedError;
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoadedHistoryState&&const DeepCollectionEquality().equals(other._entries, _entries)&&(identical(other.isDismissible, isDismissible) || other.isDismissible == isDismissible));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_entries),isDismissible);
+
+@override
+String toString() {
+  return 'HistoryState(entries: $entries, isDismissible: $isDismissible)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $LoadedHistoryStateCopyWith<$Res> implements $HistoryStateCopyWith<$Res> {
+  factory $LoadedHistoryStateCopyWith(LoadedHistoryState value, $Res Function(LoadedHistoryState) _then) = _$LoadedHistoryStateCopyWithImpl;
+@useResult
+$Res call({
+ List<HistoryEntry> entries, bool isDismissible
+});
+
+
+
+
+}
+/// @nodoc
+class _$LoadedHistoryStateCopyWithImpl<$Res>
+    implements $LoadedHistoryStateCopyWith<$Res> {
+  _$LoadedHistoryStateCopyWithImpl(this._self, this._then);
+
+  final LoadedHistoryState _self;
+  final $Res Function(LoadedHistoryState) _then;
+
+/// Create a copy of HistoryState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? entries = null,Object? isDismissible = null,}) {
+  return _then(LoadedHistoryState(
+entries: null == entries ? _self._entries : entries // ignore: cast_nullable_to_non_nullable
+as List<HistoryEntry>,isDismissible: null == isDismissible ? _self.isDismissible : isDismissible // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
+}
+
+
 }
 
 /// @nodoc
 mixin _$HistoryAction {
-  HistoryEntry get entry => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(HistoryEntry entry) select,
-    required TResult Function(HistoryEntry entry, Offset position, Iterable<ContextMenuAction> options) showMenu,
-    required TResult Function(HistoryEntry entry) showRestoreEntrySnackBar,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(HistoryEntry entry)? select,
-    TResult? Function(HistoryEntry entry, Offset position, Iterable<ContextMenuAction> options)? showMenu,
-    TResult? Function(HistoryEntry entry)? showRestoreEntrySnackBar,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(HistoryEntry entry)? select,
-    TResult Function(HistoryEntry entry, Offset position, Iterable<ContextMenuAction> options)? showMenu,
-    TResult Function(HistoryEntry entry)? showRestoreEntrySnackBar,
-    required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_HistoryActionEntrySelect value) select,
-    required TResult Function(_HistoryActionShowMenu value) showMenu,
-    required TResult Function(_HistoryActionEntryRemoved value) showRestoreEntrySnackBar,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_HistoryActionEntrySelect value)? select,
-    TResult? Function(_HistoryActionShowMenu value)? showMenu,
-    TResult? Function(_HistoryActionEntryRemoved value)? showRestoreEntrySnackBar,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_HistoryActionEntrySelect value)? select,
-    TResult Function(_HistoryActionShowMenu value)? showMenu,
-    TResult Function(_HistoryActionEntryRemoved value)? showRestoreEntrySnackBar,
-    required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
 
-  /// Create a copy of HistoryAction
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $HistoryActionCopyWith<HistoryAction> get copyWith => throw _privateConstructorUsedError;
+ HistoryEntry get entry;
+/// Create a copy of HistoryAction
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$HistoryActionCopyWith<HistoryAction> get copyWith => _$HistoryActionCopyWithImpl<HistoryAction>(this as HistoryAction, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is HistoryAction&&(identical(other.entry, entry) || other.entry == entry));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,entry);
+
+@override
+String toString() {
+  return 'HistoryAction(entry: $entry)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $HistoryActionCopyWith<$Res> {
-  factory $HistoryActionCopyWith(HistoryAction value, $Res Function(HistoryAction) then) =
-      _$HistoryActionCopyWithImpl<$Res, HistoryAction>;
-  @useResult
-  $Res call({HistoryEntry entry});
-}
+abstract mixin class $HistoryActionCopyWith<$Res>  {
+  factory $HistoryActionCopyWith(HistoryAction value, $Res Function(HistoryAction) _then) = _$HistoryActionCopyWithImpl;
+@useResult
+$Res call({
+ HistoryEntry entry
+});
 
+
+
+
+}
 /// @nodoc
-class _$HistoryActionCopyWithImpl<$Res, $Val extends HistoryAction> implements $HistoryActionCopyWith<$Res> {
-  _$HistoryActionCopyWithImpl(this._value, this._then);
+class _$HistoryActionCopyWithImpl<$Res>
+    implements $HistoryActionCopyWith<$Res> {
+  _$HistoryActionCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final HistoryAction _self;
+  final $Res Function(HistoryAction) _then;
 
-  /// Create a copy of HistoryAction
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? entry = null}) {
-    return _then(
-      _value.copyWith(
-            entry:
-                null == entry
-                    ? _value.entry
-                    : entry // ignore: cast_nullable_to_non_nullable
-                        as HistoryEntry,
-          )
-          as $Val,
-    );
-  }
+/// Create a copy of HistoryAction
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? entry = null,}) {
+  return _then(_self.copyWith(
+entry: null == entry ? _self.entry : entry // ignore: cast_nullable_to_non_nullable
+as HistoryEntry,
+  ));
 }
 
-/// @nodoc
-abstract class _$$HistoryActionEntrySelectImplCopyWith<$Res> implements $HistoryActionCopyWith<$Res> {
-  factory _$$HistoryActionEntrySelectImplCopyWith(
-    _$HistoryActionEntrySelectImpl value,
-    $Res Function(_$HistoryActionEntrySelectImpl) then,
-  ) = __$$HistoryActionEntrySelectImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({HistoryEntry entry});
 }
 
-/// @nodoc
-class __$$HistoryActionEntrySelectImplCopyWithImpl<$Res>
-    extends _$HistoryActionCopyWithImpl<$Res, _$HistoryActionEntrySelectImpl>
-    implements _$$HistoryActionEntrySelectImplCopyWith<$Res> {
-  __$$HistoryActionEntrySelectImplCopyWithImpl(
-    _$HistoryActionEntrySelectImpl _value,
-    $Res Function(_$HistoryActionEntrySelectImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of HistoryAction
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? entry = null}) {
-    return _then(
-      _$HistoryActionEntrySelectImpl(
-        null == entry
-            ? _value.entry
-            : entry // ignore: cast_nullable_to_non_nullable
-                as HistoryEntry,
-      ),
-    );
-  }
-}
 
 /// @nodoc
 
-class _$HistoryActionEntrySelectImpl implements _HistoryActionEntrySelect {
-  _$HistoryActionEntrySelectImpl(this.entry);
 
-  @override
-  final HistoryEntry entry;
+class SelectEntryHistoryAction implements HistoryAction {
+   SelectEntryHistoryAction(this.entry);
+  
 
-  @override
-  String toString() {
-    return 'HistoryAction.select(entry: $entry)';
-  }
+@override final  HistoryEntry entry;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$HistoryActionEntrySelectImpl &&
-            (identical(other.entry, entry) || other.entry == entry));
-  }
+/// Create a copy of HistoryAction
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SelectEntryHistoryActionCopyWith<SelectEntryHistoryAction> get copyWith => _$SelectEntryHistoryActionCopyWithImpl<SelectEntryHistoryAction>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(runtimeType, entry);
 
-  /// Create a copy of HistoryAction
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$HistoryActionEntrySelectImplCopyWith<_$HistoryActionEntrySelectImpl> get copyWith =>
-      __$$HistoryActionEntrySelectImplCopyWithImpl<_$HistoryActionEntrySelectImpl>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(HistoryEntry entry) select,
-    required TResult Function(HistoryEntry entry, Offset position, Iterable<ContextMenuAction> options) showMenu,
-    required TResult Function(HistoryEntry entry) showRestoreEntrySnackBar,
-  }) {
-    return select(entry);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(HistoryEntry entry)? select,
-    TResult? Function(HistoryEntry entry, Offset position, Iterable<ContextMenuAction> options)? showMenu,
-    TResult? Function(HistoryEntry entry)? showRestoreEntrySnackBar,
-  }) {
-    return select?.call(entry);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(HistoryEntry entry)? select,
-    TResult Function(HistoryEntry entry, Offset position, Iterable<ContextMenuAction> options)? showMenu,
-    TResult Function(HistoryEntry entry)? showRestoreEntrySnackBar,
-    required TResult orElse(),
-  }) {
-    if (select != null) {
-      return select(entry);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_HistoryActionEntrySelect value) select,
-    required TResult Function(_HistoryActionShowMenu value) showMenu,
-    required TResult Function(_HistoryActionEntryRemoved value) showRestoreEntrySnackBar,
-  }) {
-    return select(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_HistoryActionEntrySelect value)? select,
-    TResult? Function(_HistoryActionShowMenu value)? showMenu,
-    TResult? Function(_HistoryActionEntryRemoved value)? showRestoreEntrySnackBar,
-  }) {
-    return select?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_HistoryActionEntrySelect value)? select,
-    TResult Function(_HistoryActionShowMenu value)? showMenu,
-    TResult Function(_HistoryActionEntryRemoved value)? showRestoreEntrySnackBar,
-    required TResult orElse(),
-  }) {
-    if (select != null) {
-      return select(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SelectEntryHistoryAction&&(identical(other.entry, entry) || other.entry == entry));
 }
 
-abstract class _HistoryActionEntrySelect implements HistoryAction {
-  factory _HistoryActionEntrySelect(final HistoryEntry entry) = _$HistoryActionEntrySelectImpl;
 
-  @override
-  HistoryEntry get entry;
+@override
+int get hashCode => Object.hash(runtimeType,entry);
 
-  /// Create a copy of HistoryAction
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$HistoryActionEntrySelectImplCopyWith<_$HistoryActionEntrySelectImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'HistoryAction.select(entry: $entry)';
+}
+
+
 }
 
 /// @nodoc
-abstract class _$$HistoryActionShowMenuImplCopyWith<$Res> implements $HistoryActionCopyWith<$Res> {
-  factory _$$HistoryActionShowMenuImplCopyWith(
-    _$HistoryActionShowMenuImpl value,
-    $Res Function(_$HistoryActionShowMenuImpl) then,
-  ) = __$$HistoryActionShowMenuImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({HistoryEntry entry, Offset position, Iterable<ContextMenuAction> options});
+abstract mixin class $SelectEntryHistoryActionCopyWith<$Res> implements $HistoryActionCopyWith<$Res> {
+  factory $SelectEntryHistoryActionCopyWith(SelectEntryHistoryAction value, $Res Function(SelectEntryHistoryAction) _then) = _$SelectEntryHistoryActionCopyWithImpl;
+@override @useResult
+$Res call({
+ HistoryEntry entry
+});
+
+
+
+
+}
+/// @nodoc
+class _$SelectEntryHistoryActionCopyWithImpl<$Res>
+    implements $SelectEntryHistoryActionCopyWith<$Res> {
+  _$SelectEntryHistoryActionCopyWithImpl(this._self, this._then);
+
+  final SelectEntryHistoryAction _self;
+  final $Res Function(SelectEntryHistoryAction) _then;
+
+/// Create a copy of HistoryAction
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? entry = null,}) {
+  return _then(SelectEntryHistoryAction(
+null == entry ? _self.entry : entry // ignore: cast_nullable_to_non_nullable
+as HistoryEntry,
+  ));
 }
 
-/// @nodoc
-class __$$HistoryActionShowMenuImplCopyWithImpl<$Res>
-    extends _$HistoryActionCopyWithImpl<$Res, _$HistoryActionShowMenuImpl>
-    implements _$$HistoryActionShowMenuImplCopyWith<$Res> {
-  __$$HistoryActionShowMenuImplCopyWithImpl(
-    _$HistoryActionShowMenuImpl _value,
-    $Res Function(_$HistoryActionShowMenuImpl) _then,
-  ) : super(_value, _then);
 
-  /// Create a copy of HistoryAction
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? entry = null, Object? position = null, Object? options = null}) {
-    return _then(
-      _$HistoryActionShowMenuImpl(
-        null == entry
-            ? _value.entry
-            : entry // ignore: cast_nullable_to_non_nullable
-                as HistoryEntry,
-        null == position
-            ? _value.position
-            : position // ignore: cast_nullable_to_non_nullable
-                as Offset,
-        null == options
-            ? _value.options
-            : options // ignore: cast_nullable_to_non_nullable
-                as Iterable<ContextMenuAction>,
-      ),
-    );
-  }
 }
 
 /// @nodoc
 
-class _$HistoryActionShowMenuImpl implements _HistoryActionShowMenu {
-  _$HistoryActionShowMenuImpl(this.entry, this.position, this.options);
 
-  @override
-  final HistoryEntry entry;
-  @override
-  final Offset position;
-  @override
-  final Iterable<ContextMenuAction> options;
+class ShowMenuHistoryAction implements HistoryAction {
+   ShowMenuHistoryAction(this.entry, this.position, this.options);
+  
 
-  @override
-  String toString() {
-    return 'HistoryAction.showMenu(entry: $entry, position: $position, options: $options)';
-  }
+@override final  HistoryEntry entry;
+ final  Offset position;
+ final  Iterable<ContextMenuAction> options;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$HistoryActionShowMenuImpl &&
-            (identical(other.entry, entry) || other.entry == entry) &&
-            (identical(other.position, position) || other.position == position) &&
-            const DeepCollectionEquality().equals(other.options, options));
-  }
+/// Create a copy of HistoryAction
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ShowMenuHistoryActionCopyWith<ShowMenuHistoryAction> get copyWith => _$ShowMenuHistoryActionCopyWithImpl<ShowMenuHistoryAction>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(runtimeType, entry, position, const DeepCollectionEquality().hash(options));
 
-  /// Create a copy of HistoryAction
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$HistoryActionShowMenuImplCopyWith<_$HistoryActionShowMenuImpl> get copyWith =>
-      __$$HistoryActionShowMenuImplCopyWithImpl<_$HistoryActionShowMenuImpl>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(HistoryEntry entry) select,
-    required TResult Function(HistoryEntry entry, Offset position, Iterable<ContextMenuAction> options) showMenu,
-    required TResult Function(HistoryEntry entry) showRestoreEntrySnackBar,
-  }) {
-    return showMenu(entry, position, options);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(HistoryEntry entry)? select,
-    TResult? Function(HistoryEntry entry, Offset position, Iterable<ContextMenuAction> options)? showMenu,
-    TResult? Function(HistoryEntry entry)? showRestoreEntrySnackBar,
-  }) {
-    return showMenu?.call(entry, position, options);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(HistoryEntry entry)? select,
-    TResult Function(HistoryEntry entry, Offset position, Iterable<ContextMenuAction> options)? showMenu,
-    TResult Function(HistoryEntry entry)? showRestoreEntrySnackBar,
-    required TResult orElse(),
-  }) {
-    if (showMenu != null) {
-      return showMenu(entry, position, options);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_HistoryActionEntrySelect value) select,
-    required TResult Function(_HistoryActionShowMenu value) showMenu,
-    required TResult Function(_HistoryActionEntryRemoved value) showRestoreEntrySnackBar,
-  }) {
-    return showMenu(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_HistoryActionEntrySelect value)? select,
-    TResult? Function(_HistoryActionShowMenu value)? showMenu,
-    TResult? Function(_HistoryActionEntryRemoved value)? showRestoreEntrySnackBar,
-  }) {
-    return showMenu?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_HistoryActionEntrySelect value)? select,
-    TResult Function(_HistoryActionShowMenu value)? showMenu,
-    TResult Function(_HistoryActionEntryRemoved value)? showRestoreEntrySnackBar,
-    required TResult orElse(),
-  }) {
-    if (showMenu != null) {
-      return showMenu(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ShowMenuHistoryAction&&(identical(other.entry, entry) || other.entry == entry)&&(identical(other.position, position) || other.position == position)&&const DeepCollectionEquality().equals(other.options, options));
 }
 
-abstract class _HistoryActionShowMenu implements HistoryAction {
-  factory _HistoryActionShowMenu(
-    final HistoryEntry entry,
-    final Offset position,
-    final Iterable<ContextMenuAction> options,
-  ) = _$HistoryActionShowMenuImpl;
 
-  @override
-  HistoryEntry get entry;
-  Offset get position;
-  Iterable<ContextMenuAction> get options;
+@override
+int get hashCode => Object.hash(runtimeType,entry,position,const DeepCollectionEquality().hash(options));
 
-  /// Create a copy of HistoryAction
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$HistoryActionShowMenuImplCopyWith<_$HistoryActionShowMenuImpl> get copyWith => throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'HistoryAction.showMenu(entry: $entry, position: $position, options: $options)';
+}
+
+
 }
 
 /// @nodoc
-abstract class _$$HistoryActionEntryRemovedImplCopyWith<$Res> implements $HistoryActionCopyWith<$Res> {
-  factory _$$HistoryActionEntryRemovedImplCopyWith(
-    _$HistoryActionEntryRemovedImpl value,
-    $Res Function(_$HistoryActionEntryRemovedImpl) then,
-  ) = __$$HistoryActionEntryRemovedImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({HistoryEntry entry});
+abstract mixin class $ShowMenuHistoryActionCopyWith<$Res> implements $HistoryActionCopyWith<$Res> {
+  factory $ShowMenuHistoryActionCopyWith(ShowMenuHistoryAction value, $Res Function(ShowMenuHistoryAction) _then) = _$ShowMenuHistoryActionCopyWithImpl;
+@override @useResult
+$Res call({
+ HistoryEntry entry, Offset position, Iterable<ContextMenuAction> options
+});
+
+
+
+
+}
+/// @nodoc
+class _$ShowMenuHistoryActionCopyWithImpl<$Res>
+    implements $ShowMenuHistoryActionCopyWith<$Res> {
+  _$ShowMenuHistoryActionCopyWithImpl(this._self, this._then);
+
+  final ShowMenuHistoryAction _self;
+  final $Res Function(ShowMenuHistoryAction) _then;
+
+/// Create a copy of HistoryAction
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? entry = null,Object? position = null,Object? options = null,}) {
+  return _then(ShowMenuHistoryAction(
+null == entry ? _self.entry : entry // ignore: cast_nullable_to_non_nullable
+as HistoryEntry,null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
+as Offset,null == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
+as Iterable<ContextMenuAction>,
+  ));
 }
 
-/// @nodoc
-class __$$HistoryActionEntryRemovedImplCopyWithImpl<$Res>
-    extends _$HistoryActionCopyWithImpl<$Res, _$HistoryActionEntryRemovedImpl>
-    implements _$$HistoryActionEntryRemovedImplCopyWith<$Res> {
-  __$$HistoryActionEntryRemovedImplCopyWithImpl(
-    _$HistoryActionEntryRemovedImpl _value,
-    $Res Function(_$HistoryActionEntryRemovedImpl) _then,
-  ) : super(_value, _then);
 
-  /// Create a copy of HistoryAction
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? entry = null}) {
-    return _then(
-      _$HistoryActionEntryRemovedImpl(
-        null == entry
-            ? _value.entry
-            : entry // ignore: cast_nullable_to_non_nullable
-                as HistoryEntry,
-      ),
-    );
-  }
 }
 
 /// @nodoc
 
-class _$HistoryActionEntryRemovedImpl implements _HistoryActionEntryRemoved {
-  _$HistoryActionEntryRemovedImpl(this.entry);
 
-  @override
-  final HistoryEntry entry;
+class AskToRestoreEntryHistoryAction implements HistoryAction {
+   AskToRestoreEntryHistoryAction(this.entry);
+  
 
-  @override
-  String toString() {
-    return 'HistoryAction.showRestoreEntrySnackBar(entry: $entry)';
-  }
+@override final  HistoryEntry entry;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$HistoryActionEntryRemovedImpl &&
-            (identical(other.entry, entry) || other.entry == entry));
-  }
+/// Create a copy of HistoryAction
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$AskToRestoreEntryHistoryActionCopyWith<AskToRestoreEntryHistoryAction> get copyWith => _$AskToRestoreEntryHistoryActionCopyWithImpl<AskToRestoreEntryHistoryAction>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(runtimeType, entry);
 
-  /// Create a copy of HistoryAction
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$HistoryActionEntryRemovedImplCopyWith<_$HistoryActionEntryRemovedImpl> get copyWith =>
-      __$$HistoryActionEntryRemovedImplCopyWithImpl<_$HistoryActionEntryRemovedImpl>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(HistoryEntry entry) select,
-    required TResult Function(HistoryEntry entry, Offset position, Iterable<ContextMenuAction> options) showMenu,
-    required TResult Function(HistoryEntry entry) showRestoreEntrySnackBar,
-  }) {
-    return showRestoreEntrySnackBar(entry);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(HistoryEntry entry)? select,
-    TResult? Function(HistoryEntry entry, Offset position, Iterable<ContextMenuAction> options)? showMenu,
-    TResult? Function(HistoryEntry entry)? showRestoreEntrySnackBar,
-  }) {
-    return showRestoreEntrySnackBar?.call(entry);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(HistoryEntry entry)? select,
-    TResult Function(HistoryEntry entry, Offset position, Iterable<ContextMenuAction> options)? showMenu,
-    TResult Function(HistoryEntry entry)? showRestoreEntrySnackBar,
-    required TResult orElse(),
-  }) {
-    if (showRestoreEntrySnackBar != null) {
-      return showRestoreEntrySnackBar(entry);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_HistoryActionEntrySelect value) select,
-    required TResult Function(_HistoryActionShowMenu value) showMenu,
-    required TResult Function(_HistoryActionEntryRemoved value) showRestoreEntrySnackBar,
-  }) {
-    return showRestoreEntrySnackBar(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_HistoryActionEntrySelect value)? select,
-    TResult? Function(_HistoryActionShowMenu value)? showMenu,
-    TResult? Function(_HistoryActionEntryRemoved value)? showRestoreEntrySnackBar,
-  }) {
-    return showRestoreEntrySnackBar?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_HistoryActionEntrySelect value)? select,
-    TResult Function(_HistoryActionShowMenu value)? showMenu,
-    TResult Function(_HistoryActionEntryRemoved value)? showRestoreEntrySnackBar,
-    required TResult orElse(),
-  }) {
-    if (showRestoreEntrySnackBar != null) {
-      return showRestoreEntrySnackBar(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AskToRestoreEntryHistoryAction&&(identical(other.entry, entry) || other.entry == entry));
 }
 
-abstract class _HistoryActionEntryRemoved implements HistoryAction {
-  factory _HistoryActionEntryRemoved(final HistoryEntry entry) = _$HistoryActionEntryRemovedImpl;
 
-  @override
-  HistoryEntry get entry;
+@override
+int get hashCode => Object.hash(runtimeType,entry);
 
-  /// Create a copy of HistoryAction
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$HistoryActionEntryRemovedImplCopyWith<_$HistoryActionEntryRemovedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'HistoryAction.showRestoreEntrySnackBar(entry: $entry)';
 }
+
+
+}
+
+/// @nodoc
+abstract mixin class $AskToRestoreEntryHistoryActionCopyWith<$Res> implements $HistoryActionCopyWith<$Res> {
+  factory $AskToRestoreEntryHistoryActionCopyWith(AskToRestoreEntryHistoryAction value, $Res Function(AskToRestoreEntryHistoryAction) _then) = _$AskToRestoreEntryHistoryActionCopyWithImpl;
+@override @useResult
+$Res call({
+ HistoryEntry entry
+});
+
+
+
+
+}
+/// @nodoc
+class _$AskToRestoreEntryHistoryActionCopyWithImpl<$Res>
+    implements $AskToRestoreEntryHistoryActionCopyWith<$Res> {
+  _$AskToRestoreEntryHistoryActionCopyWithImpl(this._self, this._then);
+
+  final AskToRestoreEntryHistoryAction _self;
+  final $Res Function(AskToRestoreEntryHistoryAction) _then;
+
+/// Create a copy of HistoryAction
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? entry = null,}) {
+  return _then(AskToRestoreEntryHistoryAction(
+null == entry ? _self.entry : entry // ignore: cast_nullable_to_non_nullable
+as HistoryEntry,
+  ));
+}
+
+
+}
+
+// dart format on

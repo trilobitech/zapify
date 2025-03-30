@@ -6,7 +6,7 @@ import '../domain/entity/chat_app.dart';
 part 'chat_app_state.freezed.dart';
 
 @freezed
-class ChatAppState with _$ChatAppState implements IState {
+sealed class ChatAppState with _$ChatAppState implements IState {
   factory ChatAppState({@Default([]) Iterable<ChatApp> enabled, @Default([]) Iterable<ChatApp> disabled}) =
       _ChatAppState;
 }

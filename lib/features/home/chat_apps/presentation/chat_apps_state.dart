@@ -6,14 +6,14 @@ import '../../../chat_app/domain/entity/chat_app.dart';
 part 'chat_apps_state.freezed.dart';
 
 @freezed
-class ChatAppsState with _$ChatAppsState implements IState {
-  factory ChatAppsState.initial() = _ChatAppsStateInitial;
+sealed class ChatAppsState with _$ChatAppsState implements IState {
+  factory ChatAppsState.initial() = InitialChatAppsState;
 
-  factory ChatAppsState(Iterable<ChatApp> entries) = _ChatAppsStateSuccess;
+  factory ChatAppsState(Iterable<ChatApp> entries) = LoadedChatAppsState;
 }
 
 @freezed
-class ChatAppsAction with _$ChatAppsAction implements IAction {
-  factory ChatAppsAction.select(ChatApp entry) = _ChatAppsActionSelect;
-  factory ChatAppsAction.showFailureMessage(ChatApp app) = _ChatAppsActionShowFailureMessage;
+sealed class ChatAppsAction with _$ChatAppsAction implements IAction {
+  factory ChatAppsAction.select(ChatApp entry) = SelectEntryChatAppsAction;
+  factory ChatAppsAction.showFailureMessage(ChatApp app) = ShowFailureMessageChatAppsAction;
 }
