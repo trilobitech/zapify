@@ -3,11 +3,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../config_core.dart';
 
 class PreferencesConfigStorage implements ILocalConfigStorage {
-  PreferencesConfigStorage({
-    required SharedPreferences prefs,
-    Map<String, dynamic> localConfigDefaults = const {},
-  })  : _prefs = prefs,
-        _defaults = localConfigDefaults;
+  PreferencesConfigStorage({required SharedPreferences prefs, Map<String, dynamic> localConfigDefaults = const {}})
+    : _prefs = prefs,
+      _defaults = localConfigDefaults;
 
   final SharedPreferences _prefs;
   final Map<String, dynamic> _defaults;

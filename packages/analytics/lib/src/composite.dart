@@ -11,11 +11,7 @@ class Analytics implements IAnalytics {
   final Logger _logger = Logger('analytics');
 
   Future<void> init(bool isEnabled) async {
-    await Future.wait(
-      _wrappers.map(
-        (wrapper) => wrapper.init(isEnabled),
-      ),
-    );
+    await Future.wait(_wrappers.map((wrapper) => wrapper.init(isEnabled)));
   }
 
   @override
@@ -25,10 +21,7 @@ class Analytics implements IAnalytics {
   void onAppLifecycleChanged(AppLifecycleState state) => logEvent('app_${state.name}');
 
   @override
-  void screenViewed(
-    String screenName, {
-    Map<String, Object> properties = const {},
-  }) async {
+  void screenViewed(String screenName, {Map<String, Object> properties = const {}}) async {
     _log('screen_viewed', {'screen_name': screenName, ...properties});
     for (final wrapper in _wrappers) {
       await wrapper.screenViewed(screenName, properties: properties).catchError(_catchErrorLogger('screen_viewed'));
@@ -36,60 +29,27 @@ class Analytics implements IAnalytics {
   }
 
   @override
-  void buttonPressed(
-    String name, {
-    Map<String, Object> properties = const {},
-  }) =>
-      logEvent(
-        'button_clicked',
-        properties: {'button_name': name, ...properties},
-      );
+  void buttonPressed(String name, {Map<String, Object> properties = const {}}) =>
+      logEvent('button_clicked', properties: {'button_name': name, ...properties});
 
   @override
-  void itemSelected(
-    String name, {
-    Map<String, Object> properties = const {},
-  }) =>
-      logEvent(
-        'item_selected',
-        properties: {'item_name': name, ...properties},
-      );
+  void itemSelected(String name, {Map<String, Object> properties = const {}}) =>
+      logEvent('item_selected', properties: {'item_name': name, ...properties});
 
   @override
-  void itemLongPressed(
-    String name, {
-    Map<String, Object> properties = const {},
-  }) =>
-      logEvent(
-        'item_long_pressed',
-        properties: {'item_name': name, ...properties},
-      );
+  void itemLongPressed(String name, {Map<String, Object> properties = const {}}) =>
+      logEvent('item_long_pressed', properties: {'item_name': name, ...properties});
 
   @override
-  void itemRemoved(
-    String name, {
-    Map<String, Object> properties = const {},
-  }) =>
-      logEvent(
-        'item_removed',
-        properties: {'item_name': name, ...properties},
-      );
+  void itemRemoved(String name, {Map<String, Object> properties = const {}}) =>
+      logEvent('item_removed', properties: {'item_name': name, ...properties});
 
   @override
-  void intentHandled(
-    String name, {
-    Map<String, Object> properties = const {},
-  }) =>
-      logEvent(
-        'intent_handled',
-        properties: {'intent_name': name, ...properties},
-      );
+  void intentHandled(String name, {Map<String, Object> properties = const {}}) =>
+      logEvent('intent_handled', properties: {'intent_name': name, ...properties});
 
   @override
-  void logEvent(
-    String name, {
-    Map<String, Object> properties = const {},
-  }) async {
+  void logEvent(String name, {Map<String, Object> properties = const {}}) async {
     _log(name, properties);
     for (final wrapper in _wrappers) {
       await wrapper.logEvent(name, properties: properties).catchError(_catchErrorLogger(name));
@@ -97,24 +57,13 @@ class Analytics implements IAnalytics {
   }
 
   void _log(String event, Map<String, Object> properties) {
-    _logger.info(
-      {
-        'event_name': event,
-        'properties': properties,
-      },
-      null,
-      Trace.current(3),
-    );
+    _logger.info({'event_name': event, 'properties': properties}, null, Trace.current(3));
   }
 
   dynamic _catchErrorLogger(event) {
     final callerTrace = Trace.current(1);
     return (Object error, [StackTrace? trace]) {
-      _logger.warning(
-        'Error while logging event: $event',
-        error,
-        trace ?? callerTrace,
-      );
+      _logger.warning('Error while logging event: $event', error, trace ?? callerTrace);
     };
   }
 }
