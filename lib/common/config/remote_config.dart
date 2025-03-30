@@ -8,6 +8,8 @@ import 'env_config.dart';
 
 enum RemoteConfig with KeyValueMixin<IRemoteConfigStorage> {
   homeBannerUnitId,
+  homeAdListUnitId,
+  homeAdListInterval,
   isCallLogTabEnabled,
   isRequestReviewEnabled;
 
@@ -20,6 +22,8 @@ enum RemoteConfig with KeyValueMixin<IRemoteConfigStorage> {
 
 Map<String, dynamic> get remoteConfigDefaults => {
   RemoteConfig.homeBannerUnitId.key: EnvConfig.homeBannerUnitId,
+  RemoteConfig.homeAdListUnitId.key: EnvConfig.homeAdListUnitId,
+  RemoteConfig.homeAdListInterval.key: 4,
   RemoteConfig.isCallLogTabEnabled.key: kDebugMode && Platform.isAndroid,
   RemoteConfig.isRequestReviewEnabled.key: kDebugMode,
 };
