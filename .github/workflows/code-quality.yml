@@ -121,7 +121,7 @@ jobs:
       - id: event-check
         name: Check GitHub event
         run: |
-          echo "is_pr=${{ github.event.type == 'PullRequestEvent' }}" >> $GITHUB_OUTPUT
+          echo "is_pr=${{ github.event_name == 'pull_request' }}" >> $GITHUB_OUTPUT
 
       - name: Checkout repository
         if: ${{ steps.event-check.outputs.is_pr == 'true' }}
