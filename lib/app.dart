@@ -1,10 +1,10 @@
 import 'package:analytics/analytics.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:simple_nav/simple_nav.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 import 'common/di/inject.dart';
+import 'common/resources/l10n/generated/app_localizations.dart';
 import 'common/resources/theme.dart';
 import 'routes.dart';
 

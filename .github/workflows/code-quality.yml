@@ -135,6 +135,9 @@ jobs:
           files: |
             **/*.dart
             **/pubspec.yaml
+          files_ignore: |
+            **/generated/**
+            **/*.freezed.dart
 
       - id: added-and-modified-files
         name: Get all added and modified files

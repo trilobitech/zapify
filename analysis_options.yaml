@@ -16,7 +16,8 @@ analyzer:
   strong-mode:
     implicit-dynamic: true
   exclude:
-    - '**.freezed.dart'
+    - '**/*.freezed.dart'
+    - '**/generated/*.dart'
 
 linter:
   # The lint rules applied to this project can be customized in the
