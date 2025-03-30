@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:state_action_bloc/state_action_bloc.dart';
 import 'package:timeago_flutter/timeago_flutter.dart';
 
+import '../../../common/advertising/ad_list_view_separator.dart';
 import '../../../common/ext/context.dart';
 import '../../../common/widgets/feedback_view.dart';
 import '../../../common/widgets/list_divider.dart';
@@ -27,7 +28,11 @@ class HistoryPage extends StatelessWidget
 
   @override
   Widget buildState(BuildContext context, HistoryState state) => switch (state) {
-    LoadedHistoryState(:final entries, :final isDismissible) => _SuccessView(entries, isDismissible: isDismissible),
+    LoadedHistoryState(:final entries, :final adOptions, :final isDismissible) => _SuccessView(
+      entries,
+      adOptions: adOptions,
+      isDismissible: isDismissible,
+    ),
     LoadingHistoryState(:final size) => _LoadingView(size),
     EmptyHistoryState() => FeedbackView(text: context.strings.recentNumbersEmpty),
   };
@@ -102,9 +107,10 @@ class _LoadingView extends StatelessWidget {
 }
 
 class _SuccessView extends StatelessWidget {
-  const _SuccessView(this.entries, {required this.isDismissible});
+  const _SuccessView(this.entries, {required this.adOptions, required this.isDismissible});
 
   final Iterable<HistoryEntry> entries;
+  final AdOptions? adOptions;
   final bool isDismissible;
 
   @override
@@ -120,7 +126,11 @@ class _SuccessView extends StatelessWidget {
 
         return _EntryView(entry, key: ValueKey(entry.phoneNumber));
       },
-      separatorBuilder: (_, __) => const ListDivider(),
+      separatorBuilder: AdListViewSeparatorBuilder(
+        everyNthItem: adOptions?.interval ?? 0,
+        unitId: adOptions?.unitId ?? '',
+        defaultDivider: const ListDivider(),
+      ),
     );
   }
 }

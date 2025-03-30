@@ -144,7 +144,7 @@ String toString() {
 
 
 class LoadedHistoryState implements HistoryState {
-   LoadedHistoryState({required final  List<HistoryEntry> entries, this.isDismissible = false}): _entries = entries;
+   LoadedHistoryState({required final  List<HistoryEntry> entries, this.adOptions, this.isDismissible = false}): _entries = entries;
   
 
  final  List<HistoryEntry> _entries;
@@ -154,6 +154,7 @@ class LoadedHistoryState implements HistoryState {
   return EqualUnmodifiableListView(_entries);
 }
 
+ final  AdOptions? adOptions;
 @JsonKey() final  bool isDismissible;
 
 /// Create a copy of HistoryState
@@ -166,16 +167,16 @@ $LoadedHistoryStateCopyWith<LoadedHistoryState> get copyWith => _$LoadedHistoryS
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoadedHistoryState&&const DeepCollectionEquality().equals(other._entries, _entries)&&(identical(other.isDismissible, isDismissible) || other.isDismissible == isDismissible));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoadedHistoryState&&const DeepCollectionEquality().equals(other._entries, _entries)&&(identical(other.adOptions, adOptions) || other.adOptions == adOptions)&&(identical(other.isDismissible, isDismissible) || other.isDismissible == isDismissible));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_entries),isDismissible);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_entries),adOptions,isDismissible);
 
 @override
 String toString() {
-  return 'HistoryState(entries: $entries, isDismissible: $isDismissible)';
+  return 'HistoryState(entries: $entries, adOptions: $adOptions, isDismissible: $isDismissible)';
 }
 
 
@@ -186,7 +187,7 @@ abstract mixin class $LoadedHistoryStateCopyWith<$Res> implements $HistoryStateC
   factory $LoadedHistoryStateCopyWith(LoadedHistoryState value, $Res Function(LoadedHistoryState) _then) = _$LoadedHistoryStateCopyWithImpl;
 @useResult
 $Res call({
- List<HistoryEntry> entries, bool isDismissible
+ List<HistoryEntry> entries, AdOptions? adOptions, bool isDismissible
 });
 
 
@@ -203,10 +204,11 @@ class _$LoadedHistoryStateCopyWithImpl<$Res>
 
 /// Create a copy of HistoryState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? entries = null,Object? isDismissible = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? entries = null,Object? adOptions = freezed,Object? isDismissible = null,}) {
   return _then(LoadedHistoryState(
 entries: null == entries ? _self._entries : entries // ignore: cast_nullable_to_non_nullable
-as List<HistoryEntry>,isDismissible: null == isDismissible ? _self.isDismissible : isDismissible // ignore: cast_nullable_to_non_nullable
+as List<HistoryEntry>,adOptions: freezed == adOptions ? _self.adOptions : adOptions // ignore: cast_nullable_to_non_nullable
+as AdOptions?,isDismissible: null == isDismissible ? _self.isDismissible : isDismissible // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }

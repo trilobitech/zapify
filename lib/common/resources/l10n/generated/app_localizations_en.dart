@@ -15,6 +15,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get unknowErrorAction => 'Try again';
 
   @override
+  String get advertisementPlaceholder => 'Advertisement';
+
+  @override
   String get homeTopBannerAskToReviewContent => 'Are you enjoying Zapify? Please tell us.';
 
   @override

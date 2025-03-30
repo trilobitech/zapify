@@ -12,7 +12,11 @@ sealed class HistoryState with _$HistoryState implements IState {
 
   factory HistoryState.empty() = EmptyHistoryState;
 
-  factory HistoryState({required List<HistoryEntry> entries, @Default(false) bool isDismissible}) = LoadedHistoryState;
+  factory HistoryState({
+    required List<HistoryEntry> entries,
+    AdOptions? adOptions,
+    @Default(false) bool isDismissible,
+  }) = LoadedHistoryState;
 }
 
 @freezed
@@ -26,3 +30,23 @@ sealed class HistoryAction with _$HistoryAction implements IAction {
 }
 
 enum ContextMenuAction { remove }
+
+class AdOptions {
+  const AdOptions({required this.unitId, required this.interval});
+
+  final String unitId;
+  final int interval;
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is AdOptions && other.unitId == unitId && other.interval == interval;
+  }
+
+  @override
+  int get hashCode => unitId.hashCode ^ interval.hashCode;
+
+  @override
+  String toString() => 'AdOptions(unitId: $unitId, interval: $interval)';
+}
