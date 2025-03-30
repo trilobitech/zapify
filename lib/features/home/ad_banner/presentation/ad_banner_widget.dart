@@ -15,9 +15,10 @@ class AdBannerWidget extends StatelessWidget with StateMixin<AdBannerBloc, AdBan
   late final bloc = inject<AdBannerBloc>();
 
   @override
-  Widget buildState(BuildContext context, AdBannerState state) {
-    return state.when((unitId) => _AdBannerWidget(unitId: unitId), none: () => const SizedBox.shrink());
-  }
+  Widget buildState(BuildContext context, AdBannerState state) => switch (state) {
+    LoadedAdBannerState(:final unitId) => _AdBannerWidget(unitId: unitId),
+    NoneAdBannerState() => const SizedBox.shrink(),
+  };
 }
 
 class _AdBannerWidget extends StatefulWidget {

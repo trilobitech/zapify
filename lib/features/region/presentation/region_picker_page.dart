@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:state_action_bloc/state_action_bloc.dart';
 
@@ -96,8 +94,9 @@ class _RegionList extends StatelessWidget with _RegionPickerBlocMixin {
   }
 
   @override
-  FutureOr<void> handleAction(BuildContext context, RegionPickerAction action) =>
-      action.when(close: (country) => Navigator.pop(context, country));
+  void handleAction(BuildContext context, RegionPickerAction action) => switch (action) {
+    CloseRegionPickerAction(:final region) => Navigator.of(context).pop(region),
+  };
 }
 
 class _RegionListTile extends StatelessWidget {

@@ -6,6 +6,6 @@ import '../../region/domain/entity/region.dart';
 part 'home_state.freezed.dart';
 
 @freezed
-class HomeAction with _$HomeAction implements IAction {
-  factory HomeAction.navigateToRegionPicker(RegionCode? current) = _HomeActionNavigateToRegionPicker;
+sealed class HomeAction with _$HomeAction implements IAction {
+  factory HomeAction.navigateToRegionPicker(RegionCode? current) = NavigateToRegionPickerHomeAction;
 }

@@ -16,14 +16,16 @@ class ChatAppsWidget extends StatelessWidget with StateActionMixin<ChatAppsBloc,
   ChatAppsWidget({Key? key}) : super(key: key);
 
   @override
-  Widget buildState(BuildContext context, ChatAppsState state) =>
-      state.when((entries) => _SuccessView(entries), initial: () => Container());
+  Widget buildState(BuildContext context, ChatAppsState state) => switch (state) {
+    LoadedChatAppsState(:final entries) => _SuccessView(entries),
+    InitialChatAppsState() => const SizedBox.shrink(),
+  };
 
   @override
-  FutureOr<void> handleAction(BuildContext context, ChatAppsAction action) => action.when(
-    select: (entry) => _openChatApp(context, entry),
-    showFailureMessage: (app) => _showChatFailuredMessage(context, app),
-  );
+  FutureOr<void> handleAction(BuildContext context, ChatAppsAction action) => switch (action) {
+    SelectEntryChatAppsAction(:final entry) => _openChatApp(context, entry),
+    ShowFailureMessageChatAppsAction(:final app) => _showChatFailureMessage(context, app),
+  };
 
   Future<void> _openChatApp(BuildContext context, ChatApp entry) async {
     final chatAppsBloc = context.read<ChatAppsBloc>();
@@ -33,7 +35,7 @@ class ChatAppsWidget extends StatelessWidget with StateActionMixin<ChatAppsBloc,
         .catchError((err, stack) => chatAppsBloc.selectFailed(entry, err));
   }
 
-  Future<void> _showChatFailuredMessage(BuildContext context, ChatApp app) async {
+  Future<void> _showChatFailureMessage(BuildContext context, ChatApp app) async {
     await showDialog(context: context, builder: (context) => ChatAppNotFoundDialog(app));
   }
 }

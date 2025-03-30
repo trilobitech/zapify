@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,153 +10,136 @@ part of 'chat_app_state.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
-
 /// @nodoc
 mixin _$ChatAppState {
-  Iterable<ChatApp> get enabled => throw _privateConstructorUsedError;
-  Iterable<ChatApp> get disabled => throw _privateConstructorUsedError;
 
-  /// Create a copy of ChatAppState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $ChatAppStateCopyWith<ChatAppState> get copyWith => throw _privateConstructorUsedError;
+ Iterable<ChatApp> get enabled; Iterable<ChatApp> get disabled;
+/// Create a copy of ChatAppState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ChatAppStateCopyWith<ChatAppState> get copyWith => _$ChatAppStateCopyWithImpl<ChatAppState>(this as ChatAppState, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChatAppState&&const DeepCollectionEquality().equals(other.enabled, enabled)&&const DeepCollectionEquality().equals(other.disabled, disabled));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(enabled),const DeepCollectionEquality().hash(disabled));
+
+@override
+String toString() {
+  return 'ChatAppState(enabled: $enabled, disabled: $disabled)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $ChatAppStateCopyWith<$Res> {
-  factory $ChatAppStateCopyWith(ChatAppState value, $Res Function(ChatAppState) then) =
-      _$ChatAppStateCopyWithImpl<$Res, ChatAppState>;
-  @useResult
-  $Res call({Iterable<ChatApp> enabled, Iterable<ChatApp> disabled});
-}
+abstract mixin class $ChatAppStateCopyWith<$Res>  {
+  factory $ChatAppStateCopyWith(ChatAppState value, $Res Function(ChatAppState) _then) = _$ChatAppStateCopyWithImpl;
+@useResult
+$Res call({
+ Iterable<ChatApp> enabled, Iterable<ChatApp> disabled
+});
 
+
+
+
+}
 /// @nodoc
-class _$ChatAppStateCopyWithImpl<$Res, $Val extends ChatAppState> implements $ChatAppStateCopyWith<$Res> {
-  _$ChatAppStateCopyWithImpl(this._value, this._then);
+class _$ChatAppStateCopyWithImpl<$Res>
+    implements $ChatAppStateCopyWith<$Res> {
+  _$ChatAppStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final ChatAppState _self;
+  final $Res Function(ChatAppState) _then;
 
-  /// Create a copy of ChatAppState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? enabled = null, Object? disabled = null}) {
-    return _then(
-      _value.copyWith(
-            enabled:
-                null == enabled
-                    ? _value.enabled
-                    : enabled // ignore: cast_nullable_to_non_nullable
-                        as Iterable<ChatApp>,
-            disabled:
-                null == disabled
-                    ? _value.disabled
-                    : disabled // ignore: cast_nullable_to_non_nullable
-                        as Iterable<ChatApp>,
-          )
-          as $Val,
-    );
-  }
+/// Create a copy of ChatAppState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? enabled = null,Object? disabled = null,}) {
+  return _then(_self.copyWith(
+enabled: null == enabled ? _self.enabled : enabled // ignore: cast_nullable_to_non_nullable
+as Iterable<ChatApp>,disabled: null == disabled ? _self.disabled : disabled // ignore: cast_nullable_to_non_nullable
+as Iterable<ChatApp>,
+  ));
 }
 
-/// @nodoc
-abstract class _$$ChatAppStateImplCopyWith<$Res> implements $ChatAppStateCopyWith<$Res> {
-  factory _$$ChatAppStateImplCopyWith(_$ChatAppStateImpl value, $Res Function(_$ChatAppStateImpl) then) =
-      __$$ChatAppStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({Iterable<ChatApp> enabled, Iterable<ChatApp> disabled});
 }
 
-/// @nodoc
-class __$$ChatAppStateImplCopyWithImpl<$Res> extends _$ChatAppStateCopyWithImpl<$Res, _$ChatAppStateImpl>
-    implements _$$ChatAppStateImplCopyWith<$Res> {
-  __$$ChatAppStateImplCopyWithImpl(_$ChatAppStateImpl _value, $Res Function(_$ChatAppStateImpl) _then)
-    : super(_value, _then);
-
-  /// Create a copy of ChatAppState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? enabled = null, Object? disabled = null}) {
-    return _then(
-      _$ChatAppStateImpl(
-        enabled:
-            null == enabled
-                ? _value.enabled
-                : enabled // ignore: cast_nullable_to_non_nullable
-                    as Iterable<ChatApp>,
-        disabled:
-            null == disabled
-                ? _value.disabled
-                : disabled // ignore: cast_nullable_to_non_nullable
-                    as Iterable<ChatApp>,
-      ),
-    );
-  }
-}
 
 /// @nodoc
 
-class _$ChatAppStateImpl implements _ChatAppState {
-  _$ChatAppStateImpl({this.enabled = const [], this.disabled = const []});
 
-  @override
-  @JsonKey()
-  final Iterable<ChatApp> enabled;
-  @override
-  @JsonKey()
-  final Iterable<ChatApp> disabled;
+class _ChatAppState implements ChatAppState {
+   _ChatAppState({this.enabled = const [], this.disabled = const []});
+  
 
-  @override
-  String toString() {
-    return 'ChatAppState(enabled: $enabled, disabled: $disabled)';
-  }
+@override@JsonKey() final  Iterable<ChatApp> enabled;
+@override@JsonKey() final  Iterable<ChatApp> disabled;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ChatAppStateImpl &&
-            const DeepCollectionEquality().equals(other.enabled, enabled) &&
-            const DeepCollectionEquality().equals(other.disabled, disabled));
-  }
+/// Create a copy of ChatAppState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ChatAppStateCopyWith<_ChatAppState> get copyWith => __$ChatAppStateCopyWithImpl<_ChatAppState>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    const DeepCollectionEquality().hash(enabled),
-    const DeepCollectionEquality().hash(disabled),
-  );
 
-  /// Create a copy of ChatAppState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ChatAppStateImplCopyWith<_$ChatAppStateImpl> get copyWith =>
-      __$$ChatAppStateImplCopyWithImpl<_$ChatAppStateImpl>(this, _$identity);
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ChatAppState&&const DeepCollectionEquality().equals(other.enabled, enabled)&&const DeepCollectionEquality().equals(other.disabled, disabled));
 }
 
-abstract class _ChatAppState implements ChatAppState {
-  factory _ChatAppState({final Iterable<ChatApp> enabled, final Iterable<ChatApp> disabled}) = _$ChatAppStateImpl;
 
-  @override
-  Iterable<ChatApp> get enabled;
-  @override
-  Iterable<ChatApp> get disabled;
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(enabled),const DeepCollectionEquality().hash(disabled));
 
-  /// Create a copy of ChatAppState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ChatAppStateImplCopyWith<_$ChatAppStateImpl> get copyWith => throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'ChatAppState(enabled: $enabled, disabled: $disabled)';
 }
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ChatAppStateCopyWith<$Res> implements $ChatAppStateCopyWith<$Res> {
+  factory _$ChatAppStateCopyWith(_ChatAppState value, $Res Function(_ChatAppState) _then) = __$ChatAppStateCopyWithImpl;
+@override @useResult
+$Res call({
+ Iterable<ChatApp> enabled, Iterable<ChatApp> disabled
+});
+
+
+
+
+}
+/// @nodoc
+class __$ChatAppStateCopyWithImpl<$Res>
+    implements _$ChatAppStateCopyWith<$Res> {
+  __$ChatAppStateCopyWithImpl(this._self, this._then);
+
+  final _ChatAppState _self;
+  final $Res Function(_ChatAppState) _then;
+
+/// Create a copy of ChatAppState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? enabled = null,Object? disabled = null,}) {
+  return _then(_ChatAppState(
+enabled: null == enabled ? _self.enabled : enabled // ignore: cast_nullable_to_non_nullable
+as Iterable<ChatApp>,disabled: null == disabled ? _self.disabled : disabled // ignore: cast_nullable_to_non_nullable
+as Iterable<ChatApp>,
+  ));
+}
+
+
+}
+
+// dart format on

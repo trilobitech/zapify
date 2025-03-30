@@ -7,19 +7,19 @@ import '../domain/entity/call.dart';
 part 'call_log_state.freezed.dart';
 
 @freezed
-class CallLogState with _$CallLogState implements IState {
-  factory CallLogState({required Iterable<CallEntry> entries}) = _CallLogStatePopulated;
+sealed class CallLogState with _$CallLogState implements IState {
+  factory CallLogState({required Iterable<CallEntry> entries}) = LoadedCallLogState;
 
-  factory CallLogState.empty() = _CallLogStateEmpty;
+  factory CallLogState.empty() = EmptyCallLogState;
 
-  factory CallLogState.error(dynamic error) = _CallLogStateError;
+  factory CallLogState.error(dynamic error) = ErrorCallLogState;
 
-  factory CallLogState.loading(int itemCount) = _CallLogStateLoading;
+  factory CallLogState.loading(int itemCount) = LoadingCallLogState;
 }
 
 @freezed
-class CallLogAction with _$CallLogAction implements IAction {
-  factory CallLogAction.select(CallEntry entry) = _CallLogActionEntrySelect;
+sealed class CallLogAction with _$CallLogAction implements IAction {
+  factory CallLogAction.select(CallEntry entry) = SelectEntryCallLogAction;
 }
 
 class CallEntry {

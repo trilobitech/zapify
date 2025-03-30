@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,293 +10,134 @@ part of 'ad_banner_state.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
-
 /// @nodoc
 mixin _$AdBannerState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(TResult Function(String unitId) $default, {required TResult Function() none}) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String unitId)? $default, {
-    TResult? Function()? none,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String unitId)? $default, {
-    TResult Function()? none,
-    required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_AdBannerState value) $default, {
-    required TResult Function(_AdBannerStateNone value) none,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_AdBannerState value)? $default, {
-    TResult? Function(_AdBannerStateNone value)? none,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_AdBannerState value)? $default, {
-    TResult Function(_AdBannerStateNone value)? none,
-    required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AdBannerState);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'AdBannerState()';
+}
+
+
 }
 
 /// @nodoc
-abstract class $AdBannerStateCopyWith<$Res> {
-  factory $AdBannerStateCopyWith(AdBannerState value, $Res Function(AdBannerState) then) =
-      _$AdBannerStateCopyWithImpl<$Res, AdBannerState>;
+class $AdBannerStateCopyWith<$Res>  {
+$AdBannerStateCopyWith(AdBannerState _, $Res Function(AdBannerState) __);
 }
 
-/// @nodoc
-class _$AdBannerStateCopyWithImpl<$Res, $Val extends AdBannerState> implements $AdBannerStateCopyWith<$Res> {
-  _$AdBannerStateCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of AdBannerState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$AdBannerStateImplCopyWith<$Res> {
-  factory _$$AdBannerStateImplCopyWith(_$AdBannerStateImpl value, $Res Function(_$AdBannerStateImpl) then) =
-      __$$AdBannerStateImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String unitId});
-}
-
-/// @nodoc
-class __$$AdBannerStateImplCopyWithImpl<$Res> extends _$AdBannerStateCopyWithImpl<$Res, _$AdBannerStateImpl>
-    implements _$$AdBannerStateImplCopyWith<$Res> {
-  __$$AdBannerStateImplCopyWithImpl(_$AdBannerStateImpl _value, $Res Function(_$AdBannerStateImpl) _then)
-    : super(_value, _then);
-
-  /// Create a copy of AdBannerState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? unitId = null}) {
-    return _then(
-      _$AdBannerStateImpl(
-        unitId:
-            null == unitId
-                ? _value.unitId
-                : unitId // ignore: cast_nullable_to_non_nullable
-                    as String,
-      ),
-    );
-  }
-}
 
 /// @nodoc
 
-class _$AdBannerStateImpl implements _AdBannerState {
-  _$AdBannerStateImpl({required this.unitId});
 
-  @override
-  final String unitId;
+class LoadedAdBannerState implements AdBannerState {
+   LoadedAdBannerState({required this.unitId});
+  
 
-  @override
-  String toString() {
-    return 'AdBannerState(unitId: $unitId)';
-  }
+ final  String unitId;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AdBannerStateImpl &&
-            (identical(other.unitId, unitId) || other.unitId == unitId));
-  }
+/// Create a copy of AdBannerState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$LoadedAdBannerStateCopyWith<LoadedAdBannerState> get copyWith => _$LoadedAdBannerStateCopyWithImpl<LoadedAdBannerState>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(runtimeType, unitId);
 
-  /// Create a copy of AdBannerState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AdBannerStateImplCopyWith<_$AdBannerStateImpl> get copyWith =>
-      __$$AdBannerStateImplCopyWithImpl<_$AdBannerStateImpl>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(TResult Function(String unitId) $default, {required TResult Function() none}) {
-    return $default(unitId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String unitId)? $default, {
-    TResult? Function()? none,
-  }) {
-    return $default?.call(unitId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String unitId)? $default, {
-    TResult Function()? none,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(unitId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_AdBannerState value) $default, {
-    required TResult Function(_AdBannerStateNone value) none,
-  }) {
-    return $default(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_AdBannerState value)? $default, {
-    TResult? Function(_AdBannerStateNone value)? none,
-  }) {
-    return $default?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_AdBannerState value)? $default, {
-    TResult Function(_AdBannerStateNone value)? none,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoadedAdBannerState&&(identical(other.unitId, unitId) || other.unitId == unitId));
 }
 
-abstract class _AdBannerState implements AdBannerState {
-  factory _AdBannerState({required final String unitId}) = _$AdBannerStateImpl;
 
-  String get unitId;
+@override
+int get hashCode => Object.hash(runtimeType,unitId);
 
-  /// Create a copy of AdBannerState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AdBannerStateImplCopyWith<_$AdBannerStateImpl> get copyWith => throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'AdBannerState(unitId: $unitId)';
+}
+
+
 }
 
 /// @nodoc
-abstract class _$$AdBannerStateNoneImplCopyWith<$Res> {
-  factory _$$AdBannerStateNoneImplCopyWith(_$AdBannerStateNoneImpl value, $Res Function(_$AdBannerStateNoneImpl) then) =
-      __$$AdBannerStateNoneImplCopyWithImpl<$Res>;
+abstract mixin class $LoadedAdBannerStateCopyWith<$Res> implements $AdBannerStateCopyWith<$Res> {
+  factory $LoadedAdBannerStateCopyWith(LoadedAdBannerState value, $Res Function(LoadedAdBannerState) _then) = _$LoadedAdBannerStateCopyWithImpl;
+@useResult
+$Res call({
+ String unitId
+});
+
+
+
+
+}
+/// @nodoc
+class _$LoadedAdBannerStateCopyWithImpl<$Res>
+    implements $LoadedAdBannerStateCopyWith<$Res> {
+  _$LoadedAdBannerStateCopyWithImpl(this._self, this._then);
+
+  final LoadedAdBannerState _self;
+  final $Res Function(LoadedAdBannerState) _then;
+
+/// Create a copy of AdBannerState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? unitId = null,}) {
+  return _then(LoadedAdBannerState(
+unitId: null == unitId ? _self.unitId : unitId // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
 }
 
-/// @nodoc
-class __$$AdBannerStateNoneImplCopyWithImpl<$Res> extends _$AdBannerStateCopyWithImpl<$Res, _$AdBannerStateNoneImpl>
-    implements _$$AdBannerStateNoneImplCopyWith<$Res> {
-  __$$AdBannerStateNoneImplCopyWithImpl(_$AdBannerStateNoneImpl _value, $Res Function(_$AdBannerStateNoneImpl) _then)
-    : super(_value, _then);
 
-  /// Create a copy of AdBannerState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$AdBannerStateNoneImpl implements _AdBannerStateNone {
-  _$AdBannerStateNoneImpl();
 
-  @override
-  String toString() {
-    return 'AdBannerState.none()';
-  }
+class NoneAdBannerState implements AdBannerState {
+   NoneAdBannerState();
+  
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType && other is _$AdBannerStateNoneImpl);
-  }
 
-  @override
-  int get hashCode => runtimeType.hashCode;
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(TResult Function(String unitId) $default, {required TResult Function() none}) {
-    return none();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String unitId)? $default, {
-    TResult? Function()? none,
-  }) {
-    return none?.call();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String unitId)? $default, {
-    TResult Function()? none,
-    required TResult orElse(),
-  }) {
-    if (none != null) {
-      return none();
-    }
-    return orElse();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_AdBannerState value) $default, {
-    required TResult Function(_AdBannerStateNone value) none,
-  }) {
-    return none(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_AdBannerState value)? $default, {
-    TResult? Function(_AdBannerStateNone value)? none,
-  }) {
-    return none?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_AdBannerState value)? $default, {
-    TResult Function(_AdBannerStateNone value)? none,
-    required TResult orElse(),
-  }) {
-    if (none != null) {
-      return none(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is NoneAdBannerState);
 }
 
-abstract class _AdBannerStateNone implements AdBannerState {
-  factory _AdBannerStateNone() = _$AdBannerStateNoneImpl;
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'AdBannerState.none()';
 }
+
+
+}
+
+
+
+
+// dart format on

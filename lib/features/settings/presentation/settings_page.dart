@@ -45,8 +45,9 @@ class _SettingsList extends StatelessWidget with ActionMixin<SettingsBloc, Setti
   }
 
   @override
-  FutureOr handleAction(BuildContext context, SettingsAction action) =>
-      action.when(navigateTo: (route, args) => _navigateTo(context, route, args));
+  FutureOr handleAction(BuildContext context, SettingsAction action) => switch (action) {
+    NavigateSettingsAction(:final route, :final args) => _navigateTo(context, route, args),
+  };
 
   Future _navigateTo(BuildContext context, String route, dynamic args) async {
     final bloc = context.read<SettingsBloc>();
