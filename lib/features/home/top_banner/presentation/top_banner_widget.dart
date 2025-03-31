@@ -11,7 +11,7 @@ typedef OnTopBannerActionTap = Function(TopBannerType type);
 
 class TopBannerWidget extends StatelessWidget
     with StateMixin<TopBannerBloc, TopBannerState> {
-  TopBannerWidget({Key? key}) : super(key: key);
+  TopBannerWidget({super.key});
 
   @override
   late final TopBannerBloc bloc = inject<TopBannerBloc>();
@@ -28,11 +28,7 @@ class TopBannerWidget extends StatelessWidget
 }
 
 class _TopBannerView extends StatefulWidget {
-  const _TopBannerView({
-    Key? key,
-    required this.type,
-    required this.onActionTap,
-  }) : super(key: key);
+  const _TopBannerView({required this.type, required this.onActionTap});
 
   final TopBannerType type;
   final OnTopBannerActionTap onActionTap;

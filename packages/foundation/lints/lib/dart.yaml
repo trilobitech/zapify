@@ -1,0 +1,30 @@
+include: package:lints/recommended.yaml
+
+formatter:
+  page_width: 80
+
+analyzer:
+  strong-mode:
+    implicit-dynamic: true
+
+linter:
+  rules:
+    always_declare_return_types: true
+    avoid_shadowing_type_parameters: true
+    cancel_subscriptions: true
+    close_sinks: true
+    directives_ordering: true
+    discarded_futures: true
+    implicit_call_tearoffs: false
+    join_return_with_assignment: true
+    only_throw_errors: true
+    prefer_const_constructors: true
+    prefer_final_in_for_each: true
+    prefer_relative_imports: true
+    prefer_single_quotes: true
+    #  Temporally disable this rule, waiting the issue to be fixed:
+    #    https://github.com/dart-lang/dart_style/issues/1660
+    #    https://github.com/dart-lang/dart_style/issues/1652#issuecomment-2725813240)
+    #    https://github.com/dart-lang/dart_style/issues/1253
+    require_trailing_commas: false # TODO: Enable this rule when the issue is fixed
+    sort_constructors_first: true

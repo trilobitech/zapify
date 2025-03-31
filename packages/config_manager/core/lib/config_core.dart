@@ -1,4 +1,4 @@
-library config_core;
+library;
 
 export 'src/enum_mixin.dart';
 export 'src/impl/preferences_storage.dart';

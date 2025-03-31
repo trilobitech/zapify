@@ -1,0 +1,12 @@
+name: foundation_lints
+description: Lints to be used by the others packages in the project.
+version: 0.1.0
+
+environment:
+  sdk: ^3.7.2
+
+resolution: workspace
+
+dependencies:
+  flutter_lints: ^5.0.0
+  lints: ^5.0.0
