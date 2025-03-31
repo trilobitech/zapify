@@ -14,7 +14,7 @@ import 'dialogs/chat_app_not_found.dart';
 
 class ChatAppsWidget extends StatelessWidget
     with StateActionMixin<ChatAppsBloc, ChatAppsState, ChatAppsAction> {
-  ChatAppsWidget({Key? key}) : super(key: key);
+  ChatAppsWidget({super.key});
 
   @override
   Widget buildState(BuildContext context, ChatAppsState state) =>
@@ -74,8 +74,7 @@ class _SuccessView extends StatelessWidget {
 }
 
 class _EntryView extends StatefulWidget {
-  const _EntryView({Key? key, required this.position, required this.entry})
-    : super(key: key);
+  const _EntryView({required this.position, required this.entry});
 
   final int position;
   final ChatApp entry;

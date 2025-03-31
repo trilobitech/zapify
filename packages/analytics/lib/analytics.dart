@@ -1,4 +1,4 @@
-library analytics;
+library;
 
 export 'src/analytics.dart';
 export 'src/route_observer.dart';

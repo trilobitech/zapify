@@ -4,12 +4,12 @@ import 'package:logify/logify.dart';
 
 class ImageResolverWidget extends StatelessWidget {
   ImageResolverWidget({
-    Key? key,
+    super.key,
     required this.uri,
     this.color,
     this.height,
     this.width,
-  }) : super(key: key);
+  });
 
   factory ImageResolverWidget.icon({
     Key? key,

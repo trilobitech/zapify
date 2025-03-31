@@ -8,7 +8,7 @@ import '../../../../../common/ext/context.dart';
 import '../../../../chat_app/domain/entity/chat_app.dart';
 
 class ChatAppNotFoundDialog extends StatelessWidget {
-  const ChatAppNotFoundDialog(this.app, {Key? key}) : super(key: key);
+  const ChatAppNotFoundDialog(this.app, {super.key});
 
   final ChatApp app;
 

@@ -10,7 +10,7 @@ import 'ad_banner_state.dart';
 
 class AdBannerWidget extends StatelessWidget
     with StateMixin<AdBannerBloc, AdBannerState> {
-  AdBannerWidget({Key? key}) : super(key: key);
+  AdBannerWidget({super.key});
 
   @override
   late final bloc = inject<AdBannerBloc>();
@@ -24,7 +24,7 @@ class AdBannerWidget extends StatelessWidget
 }
 
 class _AdBannerWidget extends StatefulWidget {
-  const _AdBannerWidget({Key? key, required this.unitId}) : super(key: key);
+  const _AdBannerWidget({required this.unitId});
 
   final double height = 60;
   final String unitId;

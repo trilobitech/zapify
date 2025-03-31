@@ -113,11 +113,10 @@ class _RegionList extends StatelessWidget with _RegionPickerBlocMixin {
 
 class _RegionListTile extends StatelessWidget {
   const _RegionListTile({
-    Key? key,
     required this.region,
     required this.onTap,
     this.isSelected = false,
-  }) : super(key: key);
+  });
 
   final Country region;
   final bool isSelected;
