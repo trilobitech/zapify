@@ -14,7 +14,9 @@ class HistoryRepository implements IHistoryRepository {
 
   @override
   Stream<List<HistoryEntry>> getAll() => _db.asStream().asyncExpand(
-    (db) => db.createQuery('historic', orderBy: 'last_usage_at DESC').mapToList(HistoryEntry.fromJson),
+    (db) => db
+        .createQuery('historic', orderBy: 'last_usage_at DESC')
+        .mapToList(HistoryEntry.fromJson),
   );
 
   @override
@@ -34,7 +36,11 @@ class HistoryRepository implements IHistoryRepository {
   @override
   Future<void> remove(HistoryEntry entry) async {
     final db = await _db;
-    await db.delete('historic', where: 'number = ?', whereArgs: [entry.phoneNumber]);
+    await db.delete(
+      'historic',
+      where: 'number = ?',
+      whereArgs: [entry.phoneNumber],
+    );
     _updateHistoricSize(db);
   }
 

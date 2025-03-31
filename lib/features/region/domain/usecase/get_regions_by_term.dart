@@ -5,7 +5,8 @@ import '../repository/region_repository.dart';
 
 @immutable
 class GetRegionsByTermUseCase {
-  const GetRegionsByTermUseCase({required IRegionRepository repository}) : _repository = repository;
+  const GetRegionsByTermUseCase({required IRegionRepository repository})
+    : _repository = repository;
 
   final IRegionRepository _repository;
 

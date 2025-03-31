@@ -19,7 +19,8 @@ class SettingsPage extends StatelessWidget {
   }
 }
 
-class _SettingsList extends StatelessWidget with ActionMixin<SettingsBloc, SettingsAction> {
+class _SettingsList extends StatelessWidget
+    with ActionMixin<SettingsBloc, SettingsAction> {
   const _SettingsList();
 
   @override
@@ -28,12 +29,14 @@ class _SettingsList extends StatelessWidget with ActionMixin<SettingsBloc, Setti
       _SettingItemTile(
         title: context.strings.settingsRegionTitle,
         subtitle: context.strings.settingsRegionSubtitle,
-        onTap: () => context.read<SettingsBloc>().onDefaultRegionOptionClicked(),
+        onTap:
+            () => context.read<SettingsBloc>().onDefaultRegionOptionClicked(),
       ),
       _SettingItemTile(
         title: context.strings.settingsMessagingAppsTitle,
         subtitle: context.strings.settingsMessagingAppsSubtitle,
-        onTap: () => context.read<SettingsBloc>().onMessagingAppsOptionClicked(),
+        onTap:
+            () => context.read<SettingsBloc>().onMessagingAppsOptionClicked(),
       ),
     ];
 
@@ -45,9 +48,14 @@ class _SettingsList extends StatelessWidget with ActionMixin<SettingsBloc, Setti
   }
 
   @override
-  FutureOr handleAction(BuildContext context, SettingsAction action) => switch (action) {
-    NavigateSettingsAction(:final route, :final args) => _navigateTo(context, route, args),
-  };
+  FutureOr handleAction(BuildContext context, SettingsAction action) =>
+      switch (action) {
+        NavigateSettingsAction(:final route, :final args) => _navigateTo(
+          context,
+          route,
+          args,
+        ),
+      };
 
   Future _navigateTo(BuildContext context, String route, dynamic args) async {
     final bloc = context.read<SettingsBloc>();
@@ -57,7 +65,11 @@ class _SettingsList extends StatelessWidget with ActionMixin<SettingsBloc, Setti
 }
 
 class _SettingItemTile extends StatelessWidget {
-  const _SettingItemTile({required this.title, required this.subtitle, required this.onTap});
+  const _SettingItemTile({
+    required this.title,
+    required this.subtitle,
+    required this.onTap,
+  });
 
   final String title;
   final String subtitle;

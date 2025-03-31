@@ -13,15 +13,23 @@ const _nativeAdMinHeight = 90.0;
 const _nativeAdMaxHeight = 90.0;
 
 class AdListViewSeparatorBuilder {
-  AdListViewSeparatorBuilder({this.everyNthItem = 4, this.unitId = '', this.defaultDivider = const ListDivider()});
+  AdListViewSeparatorBuilder({
+    this.everyNthItem = 4,
+    this.unitId = '',
+    this.defaultDivider = const ListDivider(),
+  });
 
   final int everyNthItem;
   final String unitId;
   final Widget defaultDivider;
 
   Widget call(BuildContext context, int index) {
-    if (unitId.isNotEmpty && everyNthItem > 1 && index % everyNthItem == everyNthItem - 1) {
-      return _NativeAdListSeparatorFrame(child: _NativeAdListSeparator(key: UniqueKey(), adUnitId: unitId));
+    if (unitId.isNotEmpty &&
+        everyNthItem > 1 &&
+        index % everyNthItem == everyNthItem - 1) {
+      return _NativeAdListSeparatorFrame(
+        child: _NativeAdListSeparator(key: UniqueKey(), adUnitId: unitId),
+      );
     }
     return defaultDivider;
   }
@@ -84,7 +92,9 @@ class _NativeAdListSeparatorState extends State<_NativeAdListSeparator> {
         },
       ),
       request: const AdRequest(),
-      nativeTemplateStyle: NativeTemplateStyle(templateType: TemplateType.small),
+      nativeTemplateStyle: NativeTemplateStyle(
+        templateType: TemplateType.small,
+      ),
     );
 
     try {
@@ -93,7 +103,8 @@ class _NativeAdListSeparatorState extends State<_NativeAdListSeparator> {
     } catch (error, stack) {
       if (kDebugMode &&
           error is PlatformException &&
-          error.message?.startsWith('Ad for following adId already exists: ') == true) {
+          error.message?.startsWith('Ad for following adId already exists: ') ==
+              true) {
         // workaround for the issue with the hot reload: https://github.com/googleads/googleads-mobile-flutter/issues/78
         await Future.delayed(const Duration(seconds: 1));
         return loadAd();
@@ -133,7 +144,10 @@ class _NativeAdListSeparatorState extends State<_NativeAdListSeparator> {
 
     if (!_nativeAdIsLoaded || nativeAd == null) {
       return Center(
-        child: Text(context.strings.advertisementPlaceholder, style: Theme.of(context).textTheme.bodyMedium),
+        child: Text(
+          context.strings.advertisementPlaceholder,
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
       );
     }
 

@@ -19,7 +19,11 @@ void registerSingleton<T extends Object>(
   DisposingFunc<T>? dispose,
 }) {
   if (dependsOn?.isNotEmpty == true) {
-    return getIt.registerSingletonWithDependencies(factoryFunc, dependsOn: dependsOn, dispose: dispose);
+    return getIt.registerSingletonWithDependencies(
+      factoryFunc,
+      dependsOn: dependsOn,
+      dispose: dispose,
+    );
   }
 
   return getIt.registerLazySingleton(factoryFunc, dispose: dispose);

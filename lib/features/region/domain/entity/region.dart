@@ -26,7 +26,8 @@ abstract class IRegion extends Equatable implements Comparable<IRegion> {
 class Region extends IRegion {
   Region({required this.code, required this.prefix});
 
-  factory Region.defaults() => Region(code: _kDefaultRegionCode, prefix: _kDefaultRegionPrefix);
+  factory Region.defaults() =>
+      Region(code: _kDefaultRegionCode, prefix: _kDefaultRegionPrefix);
 
   @override
   final RegionCode code;

@@ -11,8 +11,12 @@ import 'presentation/chat_app_bloc.dart';
 
 void chatAppModule() {
   registerFactory(
-    () =>
-        ChatAppBloc(getEnabledChatApps: get(), getDisabledChatApps: get(), disableChatApp: get(), enableChatApp: get()),
+    () => ChatAppBloc(
+      getEnabledChatApps: get(),
+      getDisabledChatApps: get(),
+      disableChatApp: get(),
+      enableChatApp: get(),
+    ),
   );
 
   registerFactory(() => GetEnabledChatAppsUseCase(repository: get()));
@@ -23,7 +27,9 @@ void chatAppModule() {
 
   registerFactory(() => EnableChatAppUseCase(repository: get()));
 
-  registerFactory<IChatAppRepository>(() => ChatAppRepository(dataSource: get()));
+  registerFactory<IChatAppRepository>(
+    () => ChatAppRepository(dataSource: get()),
+  );
 
   registerSingleton<IChatAppDataSource>(() => ChatAppDataSource(db: lazy()));
 }

@@ -2,7 +2,8 @@ import 'package:config_core/config_core.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 
 class FirebaseConfigStorage implements IRemoteConfigStorage {
-  FirebaseConfigStorage({required FirebaseRemoteConfig remoteConfig}) : _remoteConfig = remoteConfig;
+  FirebaseConfigStorage({required FirebaseRemoteConfig remoteConfig})
+    : _remoteConfig = remoteConfig;
 
   final FirebaseRemoteConfig _remoteConfig;
 

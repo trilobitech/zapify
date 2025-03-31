@@ -8,7 +8,8 @@ import '../domain/entity/region.dart';
 import 'region_picker_bloc.dart';
 import 'region_picker_state.dart';
 
-typedef _RegionPickerBlocMixin = StateActionMixin<RegionPickerBloc, RegionPickerState, RegionPickerAction>;
+typedef _RegionPickerBlocMixin =
+    StateActionMixin<RegionPickerBloc, RegionPickerState, RegionPickerAction>;
 
 class RegionPicker extends StatelessWidget {
   const RegionPicker({super.key, this.selected});
@@ -20,7 +21,12 @@ class RegionPicker extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(context.strings.availableRegionsTitle)),
       body: DiProvider<RegionPickerBloc>(
-        child: Column(children: [const _SearchView(), Expanded(child: _RegionList(selected: selected))]),
+        child: Column(
+          children: [
+            const _SearchView(),
+            Expanded(child: _RegionList(selected: selected)),
+          ],
+        ),
       ),
     );
   }
@@ -58,7 +64,10 @@ class _SearchViewState extends State<_SearchView> {
         contentPadding: const EdgeInsets.all(16),
         hintText: context.strings.availableRegionsSearch,
         border: const UnderlineInputBorder(),
-        suffixIcon: IconButton(icon: const Icon(Icons.clear), onPressed: ctrl.clear),
+        suffixIcon: IconButton(
+          icon: const Icon(Icons.clear),
+          onPressed: ctrl.clear,
+        ),
       ),
     );
   }
@@ -94,14 +103,21 @@ class _RegionList extends StatelessWidget with _RegionPickerBlocMixin {
   }
 
   @override
-  void handleAction(BuildContext context, RegionPickerAction action) => switch (action) {
+  void handleAction(
+    BuildContext context,
+    RegionPickerAction action,
+  ) => switch (action) {
     CloseRegionPickerAction(:final region) => Navigator.of(context).pop(region),
   };
 }
 
 class _RegionListTile extends StatelessWidget {
-  const _RegionListTile({Key? key, required this.region, required this.onTap, this.isSelected = false})
-    : super(key: key);
+  const _RegionListTile({
+    Key? key,
+    required this.region,
+    required this.onTap,
+    this.isSelected = false,
+  }) : super(key: key);
 
   final Country region;
   final bool isSelected;
@@ -122,11 +138,17 @@ class _RegionListTile extends StatelessWidget {
         children: [
           ConstrainedBox(
             constraints: const BoxConstraints(minWidth: 50),
-            child: Text(region.flag ?? '', style: const TextStyle(fontSize: 28)),
+            child: Text(
+              region.flag ?? '',
+              style: const TextStyle(fontSize: 28),
+            ),
           ),
           Text('${region.name} (${region.code})'),
           const Spacer(),
-          Text('+${region.prefix}', style: const TextStyle(fontWeight: FontWeight.bold)),
+          Text(
+            '+${region.prefix}',
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
         ],
       ),
     );

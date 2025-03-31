@@ -21,10 +21,18 @@ class AmplitudeAnalyticsWrapper extends AnalyticsWrapper {
   }
 
   @override
-  Future<void> screenViewed(String screenName, {Map<String, Object> properties = const {}}) =>
-      logEvent('screen_viewed', properties: {'screen_name': screenName, ...properties});
+  Future<void> screenViewed(
+    String screenName, {
+    Map<String, Object> properties = const {},
+  }) => logEvent(
+    'screen_viewed',
+    properties: {'screen_name': screenName, ...properties},
+  );
 
   @override
-  Future<void> logEvent(String name, {Map<String, Object> properties = const {}}) async =>
+  Future<void> logEvent(
+    String name, {
+    Map<String, Object> properties = const {},
+  }) async =>
       await _amplitude?.track(BaseEvent(name, eventProperties: properties));
 }

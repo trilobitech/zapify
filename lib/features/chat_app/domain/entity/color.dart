@@ -15,7 +15,10 @@ class Color extends Equatable {
 
   factory Color.fromString(String hexColor) {
     final value = hexColor.replaceFirst('#', '');
-    assert(value.length >= 6 && value.length <= 8, 'Invalid value for color: "$hexColor"');
+    assert(
+      value.length >= 6 && value.length <= 8,
+      'Invalid value for color: "$hexColor"',
+    );
     return Color._(int.parse(value, radix: 16));
   }
 

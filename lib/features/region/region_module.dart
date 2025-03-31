@@ -7,7 +7,9 @@ import 'domain/usecase/set_detault_region.dart';
 import 'presentation/region_picker_bloc.dart';
 
 void regionModule() {
-  registerFactory(() => RegionPickerBloc(getAvailableRegions: get(), analytics: get()));
+  registerFactory(
+    () => RegionPickerBloc(getAvailableRegions: get(), analytics: get()),
+  );
 
   registerFactory(() => GetRegionsByTermUseCase(repository: get()));
 

@@ -7,5 +7,7 @@ void phoneFiledModule() {
 
   registerFactory<PhoneFieldComponent>(() => get<PhoneFieldBloc>());
 
-  registerFactory(() => instance ??= PhoneFieldBloc(get(), getDefaultRegion: get()));
+  registerFactory(
+    () => instance ??= PhoneFieldBloc(get(), getDefaultRegion: get()),
+  );
 }

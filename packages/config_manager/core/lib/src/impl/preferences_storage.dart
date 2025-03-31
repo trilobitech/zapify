@@ -3,9 +3,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../config_core.dart';
 
 class PreferencesConfigStorage implements ILocalConfigStorage {
-  PreferencesConfigStorage({required SharedPreferences prefs, Map<String, dynamic> localConfigDefaults = const {}})
-    : _prefs = prefs,
-      _defaults = localConfigDefaults;
+  PreferencesConfigStorage({
+    required SharedPreferences prefs,
+    Map<String, dynamic> localConfigDefaults = const {},
+  }) : _prefs = prefs,
+       _defaults = localConfigDefaults;
 
   final SharedPreferences _prefs;
   final Map<String, dynamic> _defaults;
@@ -19,7 +21,8 @@ class PreferencesConfigStorage implements ILocalConfigStorage {
   }
 
   @override
-  Future setValue<T extends Object>(String key, T value) => _setValue(value, key).then((_) => _prefs.reload());
+  Future setValue<T extends Object>(String key, T value) =>
+      _setValue(value, key).then((_) => _prefs.reload());
 
   Future<bool> _setValue(value, String key) async {
     if (value is int) {

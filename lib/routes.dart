@@ -8,7 +8,10 @@ import 'features/settings/presentation/settings_page.dart';
 
 final routes = <String, RouteBuilder>{
   '/': (settings, _) {
-    return MaterialPageRoute(settings: const RouteSettings(name: 'HomePage'), builder: (_) => const HomePage());
+    return MaterialPageRoute(
+      settings: const RouteSettings(name: 'HomePage'),
+      builder: (_) => const HomePage(),
+    );
   },
   '/regions': (settings, extras) {
     return MaterialPageRoute(
@@ -18,7 +21,10 @@ final routes = <String, RouteBuilder>{
     );
   },
   '/settings': (settings, extras) {
-    return MaterialPageRoute(settings: const RouteSettings(name: 'SettingsPage'), builder: (_) => const SettingsPage());
+    return MaterialPageRoute(
+      settings: const RouteSettings(name: 'SettingsPage'),
+      builder: (_) => const SettingsPage(),
+    );
   },
   '/messaging_apps': (settings, extras) {
     return MaterialPageRoute(
@@ -28,4 +34,5 @@ final routes = <String, RouteBuilder>{
   },
 };
 
-String? _getSelectedCode(dynamic data) => data is Map<String, dynamic> ? data['selected_code'] : null;
+String? _getSelectedCode(dynamic data) =>
+    data is Map<String, dynamic> ? data['selected_code'] : null;

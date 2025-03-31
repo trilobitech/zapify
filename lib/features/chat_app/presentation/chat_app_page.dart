@@ -18,22 +18,26 @@ class ChatAppSettingsPage extends StatelessWidget {
   );
 }
 
-class _ChatAppSettingsContent extends StatelessWidget with StateMixin<ChatAppBloc, ChatAppState> {
+class _ChatAppSettingsContent extends StatelessWidget
+    with StateMixin<ChatAppBloc, ChatAppState> {
   const _ChatAppSettingsContent();
 
   @override
   Widget buildState(BuildContext context, ChatAppState state) {
     return ListView(
       children: [
-        if (state.enabled.isNotEmpty) _SectionHeader(title: context.strings.messagingAppsEnabledHeader),
+        if (state.enabled.isNotEmpty)
+          _SectionHeader(title: context.strings.messagingAppsEnabledHeader),
         ...state.enabled.map(_mapItemToWidget),
-        if (state.disabled.isNotEmpty) _SectionHeader(title: context.strings.messagingAppsDisabledHeader),
+        if (state.disabled.isNotEmpty)
+          _SectionHeader(title: context.strings.messagingAppsDisabledHeader),
         ...state.disabled.map(_mapItemToWidget),
       ],
     );
   }
 
-  Widget _mapItemToWidget(ChatApp item) => _ChatAppItem(key: ValueKey('chat-app:${item.id}'), item: item);
+  Widget _mapItemToWidget(ChatApp item) =>
+      _ChatAppItem(key: ValueKey('chat-app:${item.id}'), item: item);
 }
 
 class _SectionHeader extends StatelessWidget {
@@ -42,15 +46,23 @@ class _SectionHeader extends StatelessWidget {
   final String title;
 
   @override
-  Widget build(BuildContext context) => ListTile(title: Text(title, style: Theme.of(context).textTheme.titleLarge));
+  Widget build(BuildContext context) => ListTile(
+    title: Text(title, style: Theme.of(context).textTheme.titleLarge),
+  );
 }
 
 class _ChatAppItem extends ListTile {
   _ChatAppItem({required ChatApp item, super.key})
     : super(
-        leading: ImageResolverWidget.icon(uri: item.icon, color: Color(item.color.value)),
+        leading: ImageResolverWidget.icon(
+          uri: item.icon,
+          color: Color(item.color.value),
+        ),
         title: Text(item.name),
-        trailing: item.isEnabled ? _ButtonDisable(item: item) : _ButtonEnable(item: item),
+        trailing:
+            item.isEnabled
+                ? _ButtonDisable(item: item)
+                : _ButtonEnable(item: item),
       );
 }
 
