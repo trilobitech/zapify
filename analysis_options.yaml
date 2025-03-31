@@ -1,1 +1,6 @@
 include: package:foundation_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    - '**/*.freezed.dart'
+    - '**/generated/*.dart'

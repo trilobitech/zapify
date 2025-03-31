@@ -6,9 +6,6 @@ formatter:
 analyzer:
   strong-mode:
     implicit-dynamic: true
-  exclude:
-    - '**/*.freezed.dart'
-    - '**/generated/*.dart'
 
 linter:
   rules:
