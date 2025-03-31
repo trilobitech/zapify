@@ -1,3 +1,4 @@
+name: Code checks workflow
 on:
   push:
     branches: [ 'main' ]
@@ -9,8 +10,8 @@ on:
       - '*.yaml'
       - assets/**
       - .fvm/fvm_config.json
-
-name: Code checks workflow
+      - .tool-versions
+      - .github/workflows/code-quality.yml
 
 concurrency:
   group: qa-${{ github.ref }}
@@ -61,11 +62,65 @@ jobs:
           dart analyze --fatal-infos --fatal-warnings \
             ${{ needs.check-changes.outputs.changed_files }}
 
+  check-format:
+    name: Check code formatting on affected files
+    runs-on: ubuntu-latest
+    needs: check-changes
+    if: ${{ needs.check-changes.outputs.changed_dart_files }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4.2.2
+
+      - id: versions
+        name: Read .tool-versions
+        uses: marocchino/tool-versions-action@v1
+
+      - name: Setup Flutter SDK
+        uses: subosito/flutter-action@v2.19.0
+        with:
+          channel: stable
+          flutter-version: ${{ steps.versions.outputs.flutter }}
+
+      - name: Cache pub packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.pub-cache
+          key: ${{ runner.os }}-pub-cache-${{ hashFiles('**/pubspec.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pub-cache-
+
+      - name: Setup Firebase Options
+        run: |
+          tee lib/firebase_options.dart <<EOF
+          class DefaultFirebaseOptions {
+            static const currentPlatform = null;
+          }
+          EOF
+
+      - name: Get files to check
+        id: files-to-check
+        run: |
+          changed_dart_files="${{ needs.check-changes.outputs.changed_dart_files }}"
+
+          # if no dart files changed, get all dart files in the repository
+          if [ "$changed_dart_files" == '.' ]; then
+              changed_dart_files=$(find . -type f -name '*.dart' -not -path '*/.dart_tool/*' | xargs)
+          fi
+
+          # get excluded files from analysis_options.yaml
+          excluded_files=$(yq eval '.analyzer.exclude | .[]' analysis_options.yaml | xargs)
+
+          # filter $changed_dart_files to exclude $excluded_files
+          changed_dart_files=$(echo "$changed_dart_files" | tr ' ' '\n' \
+            | grep -vE "$(echo "$excluded_files" | sed 's/ /|/g' | sed 's/\*/.*/g' | sed 's#/#/#g')" \
+            | tr '\n' ' ' | xargs)
+
+          echo "value=$changed_dart_files" >> $GITHUB_OUTPUT
+
       - name: Check code formatting
-        if: ${{ always() && needs.check-changes.outputs.changed_dart_files }}
         run: |
           dart format --output=none --set-exit-if-changed \
-            ${{ needs.check-changes.outputs.changed_dart_files }}
+            ${{ steps.files-to-check.outputs.value }}
 
   unit-tests:
     name: Run unit tests
