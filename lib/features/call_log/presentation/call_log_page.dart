@@ -23,30 +23,35 @@ class CallLogTabPage extends StatelessWidget
   late final IconData icon = Icons.call;
 
   @override
-  late final Future<bool> isTabAvailable = RemoteConfig.isCallLogTabEnabled.get();
+  late final Future<bool> isTabAvailable =
+      RemoteConfig.isCallLogTabEnabled.get();
 
   @override
   String buildTitle(BuildContext context) => context.strings.callLogTabTitle;
 
   @override
-  Widget buildState(BuildContext context, CallLogState state) => switch (state) {
-    LoadedCallLogState(:final entries) => _SuccessView(entries),
-    LoadingCallLogState(:final itemCount) => _LoadingView(itemCount),
-    EmptyCallLogState() => FeedbackView(text: context.strings.callLogEmptyMessage),
-    ErrorCallLogState(:final error) => ErrorFeedbackView(
-      context,
-      error: error,
-      onRetryPressed: () => context.read<CallLogBloc>().retry(),
-      additionalRegistry: CallLogErrorConverterRegistry(),
-    ),
-  };
+  Widget buildState(BuildContext context, CallLogState state) =>
+      switch (state) {
+        LoadedCallLogState(:final entries) => _SuccessView(entries),
+        LoadingCallLogState(:final itemCount) => _LoadingView(itemCount),
+        EmptyCallLogState() => FeedbackView(
+          text: context.strings.callLogEmptyMessage,
+        ),
+        ErrorCallLogState(:final error) => ErrorFeedbackView(
+          context,
+          error: error,
+          onRetryPressed: () => context.read<CallLogBloc>().retry(),
+          additionalRegistry: CallLogErrorConverterRegistry(),
+        ),
+      };
 
   @override
-  FutureOr<void> handleAction(BuildContext context, CallLogAction action) => switch (action) {
-    SelectEntryCallLogAction(:final entry) => context.read<CallLogMediator>().onPhoneReceivedFromCallLog(
-      entry.phoneNumber,
-    ),
-  };
+  FutureOr<void> handleAction(BuildContext context, CallLogAction action) =>
+      switch (action) {
+        SelectEntryCallLogAction(:final entry) => context
+            .read<CallLogMediator>()
+            .onPhoneReceivedFromCallLog(entry.phoneNumber),
+      };
 }
 
 class _SuccessView extends StatelessWidget {
@@ -97,7 +102,10 @@ class _EntryView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: CircleAvatar(backgroundColor: entry.leading.color, child: Icon(entry.leading.icon, color: Colors.white)),
+      leading: CircleAvatar(
+        backgroundColor: entry.leading.color,
+        child: Icon(entry.leading.icon, color: Colors.white),
+      ),
       title: Text(entry.title),
       subtitle: Text(entry.subtitle ?? context.strings.formatDate(entry.date)),
       onTap: () => context.read<CallLogBloc>().selected(entry),

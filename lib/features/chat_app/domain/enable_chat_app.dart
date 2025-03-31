@@ -2,7 +2,8 @@ import 'entity/chat_app.dart';
 import 'repository/chat_app_repository.dart';
 
 class EnableChatAppUseCase {
-  const EnableChatAppUseCase({required IChatAppRepository repository}) : _repository = repository;
+  const EnableChatAppUseCase({required IChatAppRepository repository})
+    : _repository = repository;
 
   final IChatAppRepository _repository;
 

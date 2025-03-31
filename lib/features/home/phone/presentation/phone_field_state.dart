@@ -12,8 +12,15 @@ class PhoneFieldState extends Equatable implements IState {
 
   factory PhoneFieldState.initial() => PhoneFieldState(TextEditingController());
 
-  PhoneFieldState copyWith({TextEditingController? controller, IRegion? region, Object? error}) =>
-      PhoneFieldState(controller ?? this.controller, region ?? this.region, error);
+  PhoneFieldState copyWith({
+    TextEditingController? controller,
+    IRegion? region,
+    Object? error,
+  }) => PhoneFieldState(
+    controller ?? this.controller,
+    region ?? this.region,
+    error,
+  );
 
   final TextEditingController controller;
   final IRegion? region;

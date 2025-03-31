@@ -14,7 +14,8 @@ mixin KeyValueMixin<Storage extends KeyValueStorage> {
   }
 }
 
-mixin KeyValueWritableMixin<Storage extends KeyValueWritableStorage> on KeyValueMixin<Storage> {
+mixin KeyValueWritableMixin<Storage extends KeyValueWritableStorage>
+    on KeyValueMixin<Storage> {
   Future<void> set<T extends Object>(T value) async {
     final storage = await this.storage;
     await storage.setValue(key, value);

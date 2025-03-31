@@ -8,17 +8,24 @@ import 'settings_action.dart';
 export 'settings_action.dart';
 
 class SettingsBloc extends ActionBloc<SettingsAction> {
-  SettingsBloc({required GetDefaultRegionUseCase getDefaultRegion, required SetDefaultRegionUseCase setDefaultRegion})
-    : _getDefaultRegion = getDefaultRegion,
-      _setDefaultRegion = setDefaultRegion,
-      super();
+  SettingsBloc({
+    required GetDefaultRegionUseCase getDefaultRegion,
+    required SetDefaultRegionUseCase setDefaultRegion,
+  }) : _getDefaultRegion = getDefaultRegion,
+       _setDefaultRegion = setDefaultRegion,
+       super();
 
   final GetDefaultRegionUseCase _getDefaultRegion;
   final SetDefaultRegionUseCase _setDefaultRegion;
 
   void onDefaultRegionOptionClicked() async {
     final defaultRegion = await _getDefaultRegion();
-    sendAction(SettingsAction.navigateTo('/regions', args: {'selected_code': defaultRegion.code}));
+    sendAction(
+      SettingsAction.navigateTo(
+        '/regions',
+        args: {'selected_code': defaultRegion.code},
+      ),
+    );
   }
 
   void onMessagingAppsOptionClicked() {

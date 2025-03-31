@@ -27,28 +27,41 @@ class HistoryPage extends StatelessWidget
   String buildTitle(BuildContext context) => context.strings.recentNumbersTitle;
 
   @override
-  Widget buildState(BuildContext context, HistoryState state) => switch (state) {
-    LoadedHistoryState(:final entries, :final adOptions, :final isDismissible) => _SuccessView(
-      entries,
-      adOptions: adOptions,
-      isDismissible: isDismissible,
-    ),
+  Widget buildState(
+    BuildContext context,
+    HistoryState state,
+  ) => switch (state) {
+    LoadedHistoryState(
+      :final entries,
+      :final adOptions,
+      :final isDismissible,
+    ) =>
+      _SuccessView(entries, adOptions: adOptions, isDismissible: isDismissible),
     LoadingHistoryState(:final size) => _LoadingView(size),
-    EmptyHistoryState() => FeedbackView(text: context.strings.recentNumbersEmpty),
+    EmptyHistoryState() => FeedbackView(
+      text: context.strings.recentNumbersEmpty,
+    ),
   };
 
   @override
-  FutureOr<void> handleAction(BuildContext context, HistoryAction action) async => switch (action) {
-    SelectEntryHistoryAction(:final entry) => context.read<HistoryMediator>().onPhoneReceivedFromHistory(
-      entry.phoneNumber,
-    ),
-    ShowMenuHistoryAction(:final entry, :final position, :final options) => showContextMenu(
+  FutureOr<void> handleAction(
+    BuildContext context,
+    HistoryAction action,
+  ) async => switch (action) {
+    SelectEntryHistoryAction(:final entry) => context
+        .read<HistoryMediator>()
+        .onPhoneReceivedFromHistory(entry.phoneNumber),
+    ShowMenuHistoryAction(:final entry, :final position, :final options) =>
+      showContextMenu(
+        context,
+        entry: entry,
+        tapPosition: position,
+        options: options,
+      ),
+    AskToRestoreEntryHistoryAction(:final entry) => _showRestoreEntrySnackBar(
       context,
-      entry: entry,
-      tapPosition: position,
-      options: options,
+      entry,
     ),
-    AskToRestoreEntryHistoryAction(:final entry) => _showRestoreEntrySnackBar(context, entry),
   };
 
   void _showRestoreEntrySnackBar(BuildContext context, HistoryEntry entry) {
@@ -99,15 +112,23 @@ class _LoadingView extends StatelessWidget {
     return ListView.separated(
       itemCount: itemCount,
       itemBuilder:
-          (_, __) =>
-              const ShimmerView(child: ListTile(title: Text('■■■ ■■ ■■■■■-■■■■'), trailing: Text('■■■ ■■■■ ■■■'))),
+          (_, __) => const ShimmerView(
+            child: ListTile(
+              title: Text('■■■ ■■ ■■■■■-■■■■'),
+              trailing: Text('■■■ ■■■■ ■■■'),
+            ),
+          ),
       separatorBuilder: (_, __) => const ListDivider(),
     );
   }
 }
 
 class _SuccessView extends StatelessWidget {
-  const _SuccessView(this.entries, {required this.adOptions, required this.isDismissible});
+  const _SuccessView(
+    this.entries, {
+    required this.adOptions,
+    required this.isDismissible,
+  });
 
   final Iterable<HistoryEntry> entries;
   final AdOptions? adOptions;
@@ -149,7 +170,14 @@ class _DismissibleEntryView extends StatelessWidget {
       background: Container(
         color: const Color.fromARGB(255, 186, 12, 0),
         child: const Stack(
-          children: [Positioned(right: 16, top: 0, bottom: 0, child: Icon(Icons.delete, color: Colors.white))],
+          children: [
+            Positioned(
+              right: 16,
+              top: 0,
+              bottom: 0,
+              child: Icon(Icons.delete, color: Colors.white),
+            ),
+          ],
         ),
       ),
       child: _EntryView(entry),
@@ -165,7 +193,8 @@ class _EntryView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTapDown: (details) => context.read<HistoryBloc>().tapPositionFrom(details),
+      onTapDown:
+          (details) => context.read<HistoryBloc>().tapPositionFrom(details),
       child: ListTile(
         title: Text(entry.phoneNumber),
         trailing: Timeago(

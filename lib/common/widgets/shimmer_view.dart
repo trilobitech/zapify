@@ -13,7 +13,14 @@ class ShimmerView extends StatelessWidget {
     return Shimmer.fromColors(
       baseColor: const Color(0xFFD6D6D6),
       highlightColor: Colors.grey.shade200,
-      child: ImageFiltered(imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 4, tileMode: TileMode.decal), child: child),
+      child: ImageFiltered(
+        imageFilter: ImageFilter.blur(
+          sigmaX: 5,
+          sigmaY: 4,
+          tileMode: TileMode.decal,
+        ),
+        child: child,
+      ),
     );
   }
 }

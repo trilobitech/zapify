@@ -7,7 +7,8 @@ part 'region_picker_state.freezed.dart';
 
 @freezed
 sealed class RegionPickerState with _$RegionPickerState implements IState {
-  factory RegionPickerState({@Default([]) List<Country> countries}) = LoadedRegionPickerState;
+  factory RegionPickerState({@Default([]) List<Country> countries}) =
+      LoadedRegionPickerState;
 }
 
 @freezed

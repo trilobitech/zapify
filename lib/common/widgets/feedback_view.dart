@@ -23,12 +23,17 @@ class FeedbackView extends StatelessWidget {
           Text(
             text,
             textAlign: TextAlign.center,
-            style: textTheme.titleLarge?.copyWith(color: textTheme.titleLarge?.color?.withValues(alpha: .6)),
+            style: textTheme.titleLarge?.copyWith(
+              color: textTheme.titleLarge?.color?.withValues(alpha: .6),
+            ),
           ),
           if (button != null)
             Container(
               margin: const EdgeInsets.only(top: 8),
-              child: ElevatedButton(onPressed: button.onClick, child: Text(button.text.toUpperCase())),
+              child: ElevatedButton(
+                onPressed: button.onClick,
+                child: Text(button.text.toUpperCase()),
+              ),
             ),
         ],
       ),
@@ -37,7 +42,8 @@ class FeedbackView extends StatelessWidget {
 }
 
 class ErrorFeedbackView extends FeedbackView {
-  const ErrorFeedbackView._(String text, FeedbackButton? button) : super(text: text, button: button);
+  const ErrorFeedbackView._(String text, FeedbackButton? button)
+    : super(text: text, button: button);
 
   factory ErrorFeedbackView(
     BuildContext context, {
@@ -45,11 +51,16 @@ class ErrorFeedbackView extends FeedbackView {
     required VoidCallback? onRetryPressed,
     ErrorConverterRegistry? additionalRegistry,
   }) {
-    final failure = get<FailureAdapter>(param1: additionalRegistry).adapt(context, error);
+    final failure = get<FailureAdapter>(
+      param1: additionalRegistry,
+    ).adapt(context, error);
 
     final button =
         onRetryPressed != null && failure is ErrorFeedback
-            ? FeedbackButton(text: failure.primaryButtonText, onClick: onRetryPressed)
+            ? FeedbackButton(
+              text: failure.primaryButtonText,
+              onClick: onRetryPressed,
+            )
             : null;
 
     return ErrorFeedbackView._(failure.message, button);

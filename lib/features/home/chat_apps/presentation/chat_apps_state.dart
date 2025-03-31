@@ -15,5 +15,6 @@ sealed class ChatAppsState with _$ChatAppsState implements IState {
 @freezed
 sealed class ChatAppsAction with _$ChatAppsAction implements IAction {
   factory ChatAppsAction.select(ChatApp entry) = SelectEntryChatAppsAction;
-  factory ChatAppsAction.showFailureMessage(ChatApp app) = ShowFailureMessageChatAppsAction;
+  factory ChatAppsAction.showFailureMessage(ChatApp app) =
+      ShowFailureMessageChatAppsAction;
 }

@@ -6,7 +6,8 @@ import 'package:zapify/features/region/domain/usecase/get_regions_by_term.dart';
 import 'package:zapify/features/region/presentation/region_picker_bloc.dart';
 import 'package:zapify/features/region/presentation/region_picker_state.dart';
 
-class MockGetRegionsByTermUseCase extends Mock implements GetRegionsByTermUseCase {}
+class MockGetRegionsByTermUseCase extends Mock
+    implements GetRegionsByTermUseCase {}
 
 class MockAnalytics extends Mock implements IAnalytics {}
 
@@ -28,19 +29,32 @@ void main() {
     mockGetRegionsByTermUseCase = MockGetRegionsByTermUseCase();
     mockAnalytics = MockAnalytics();
 
-    regionPickerBloc = RegionPickerBloc(getAvailableRegions: mockGetRegionsByTermUseCase, analytics: mockAnalytics);
+    regionPickerBloc = RegionPickerBloc(
+      getAvailableRegions: mockGetRegionsByTermUseCase,
+      analytics: mockAnalytics,
+    );
 
-    when(() => mockGetRegionsByTermUseCase(term: term)).thenAnswer((_) async => [brazil]);
+    when(
+      () => mockGetRegionsByTermUseCase(term: term),
+    ).thenAnswer((_) async => [brazil]);
 
-    when(() => mockGetRegionsByTermUseCase()).thenAnswer((_) async => countries);
+    when(
+      () => mockGetRegionsByTermUseCase(),
+    ).thenAnswer((_) async => countries);
   });
 
   test('initial state should be RegionPickerState.initial()', () {
-    expect(regionPickerBloc.currentState, RegionPickerState(countries: List.generate(20, (_) => ShimmerCountry())));
+    expect(
+      regionPickerBloc.currentState,
+      RegionPickerState(countries: List.generate(20, (_) => ShimmerCountry())),
+    );
   });
 
   test('state should be RegionPickerState() when load', () {
-    expectLater(regionPickerBloc.stream, emits(RegionPickerState(countries: countries)));
+    expectLater(
+      regionPickerBloc.stream,
+      emits(RegionPickerState(countries: countries)),
+    );
   });
 
   group('fetchRegionsByTerm', () {
@@ -50,34 +64,55 @@ void main() {
       verify(() => mockGetRegionsByTermUseCase(term: term)).called(1);
     });
 
-    test('should update state with countries filtered by term "$term"', () async {
-      regionPickerBloc.fetchRegionsByTerm(term);
+    test(
+      'should update state with countries filtered by term "$term"',
+      () async {
+        regionPickerBloc.fetchRegionsByTerm(term);
 
-      expect(regionPickerBloc.stream, emits(RegionPickerState(countries: [brazil])));
-    });
+        expect(
+          regionPickerBloc.stream,
+          emits(RegionPickerState(countries: [brazil])),
+        );
+      },
+    );
   });
 
   group('select', () {
     final country = brazil;
 
-    test('should call analytics.itemSelected with the selected country properties', () async {
-      regionPickerBloc.select(country);
+    test(
+      'should call analytics.itemSelected with the selected country properties',
+      () async {
+        regionPickerBloc.select(country);
 
-      verify(
-        () => mockAnalytics.itemSelected('region', properties: {'region_selected': 'Brazil', 'region_prefix': '55'}),
-      ).called(1);
-    });
+        verify(
+          () => mockAnalytics.itemSelected(
+            'region',
+            properties: {'region_selected': 'Brazil', 'region_prefix': '55'},
+          ),
+        ).called(1);
+      },
+    );
 
-    test('should send a RegionPickerAction.close action with the selected country', () async {
-      expectLater(regionPickerBloc.stream, emits(RegionPickerAction.close(brazil)));
+    test(
+      'should send a RegionPickerAction.close action with the selected country',
+      () async {
+        expectLater(
+          regionPickerBloc.stream,
+          emits(RegionPickerAction.close(brazil)),
+        );
 
-      regionPickerBloc.select(country);
-    });
+        regionPickerBloc.select(country);
+      },
+    );
   });
 
-  test('dismiss should send a RegionPickerAction.close action without a country', () {
-    expectLater(regionPickerBloc.stream, emits(RegionPickerAction.close()));
+  test(
+    'dismiss should send a RegionPickerAction.close action without a country',
+    () {
+      expectLater(regionPickerBloc.stream, emits(RegionPickerAction.close()));
 
-    regionPickerBloc.dismiss();
-  });
+      regionPickerBloc.dismiss();
+    },
+  );
 }

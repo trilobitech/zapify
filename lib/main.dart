@@ -49,7 +49,10 @@ Future<void> setupApp() async {
   if (kReleaseMode) {
     Logger.root.onRecord.listen(_CrashlyticsTree());
     completer.complete(
-      initAnalytics(amplitudeKey: EnvConfig.amplitudeKey, isEnabled: true).catchError(catchErrorLogger),
+      initAnalytics(
+        amplitudeKey: EnvConfig.amplitudeKey,
+        isEnabled: true,
+      ).catchError(catchErrorLogger),
     );
   }
 
@@ -61,7 +64,11 @@ class _CrashlyticsTree {
     if (!record.isSevere || record.error is NonReportableError) return;
 
     unawaited(
-      crashlytics.recordError(record.error ?? record.message, record.stackTrace, fatal: record.level == Level.SHOUT),
+      crashlytics.recordError(
+        record.error ?? record.message,
+        record.stackTrace,
+        fatal: record.level == Level.SHOUT,
+      ),
     );
   }
 }

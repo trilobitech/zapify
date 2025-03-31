@@ -23,10 +23,14 @@ sealed class HistoryState with _$HistoryState implements IState {
 sealed class HistoryAction with _$HistoryAction implements IAction {
   factory HistoryAction.select(HistoryEntry entry) = SelectEntryHistoryAction;
 
-  factory HistoryAction.showMenu(HistoryEntry entry, Offset position, Iterable<ContextMenuAction> options) =
-      ShowMenuHistoryAction;
+  factory HistoryAction.showMenu(
+    HistoryEntry entry,
+    Offset position,
+    Iterable<ContextMenuAction> options,
+  ) = ShowMenuHistoryAction;
 
-  factory HistoryAction.showRestoreEntrySnackBar(HistoryEntry entry) = AskToRestoreEntryHistoryAction;
+  factory HistoryAction.showRestoreEntrySnackBar(HistoryEntry entry) =
+      AskToRestoreEntryHistoryAction;
 }
 
 enum ContextMenuAction { remove }
@@ -41,7 +45,9 @@ class AdOptions {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is AdOptions && other.unitId == unitId && other.interval == interval;
+    return other is AdOptions &&
+        other.unitId == unitId &&
+        other.interval == interval;
   }
 
   @override

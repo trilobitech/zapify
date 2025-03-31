@@ -37,7 +37,10 @@ class ChatAppNotFoundDialog extends StatelessWidget {
 
   void _openStore(ChatApp app) async {
     try {
-      await launchUrl(app.storeUri, mode: LaunchMode.externalNonBrowserApplication);
+      await launchUrl(
+        app.storeUri,
+        mode: LaunchMode.externalNonBrowserApplication,
+      );
     } catch (e, stackTrace) {
       Log.e(e, stackTrace);
     }
@@ -47,7 +50,8 @@ class ChatAppNotFoundDialog extends StatelessWidget {
 extension _ChatAppExt on ChatApp {
   Uri get storeUri => Platform.isIOS ? appStoreUrl : playStoreUrl;
 
-  Uri get playStoreUrl => Uri.parse('https://play.google.com/store/search?q=$name&c=apps');
+  Uri get playStoreUrl =>
+      Uri.parse('https://play.google.com/store/search?q=$name&c=apps');
 
   Uri get appStoreUrl => Uri.parse('https://www.apple.com/search/$name');
 }

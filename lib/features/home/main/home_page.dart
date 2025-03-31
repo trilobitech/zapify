@@ -59,7 +59,8 @@ class _HomePage extends StatefulWidget {
   State<_HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<_HomePage> with ActionMixin<HomeBloc, HomeAction> {
+class _HomePageState extends State<_HomePage>
+    with ActionMixin<HomeBloc, HomeAction> {
   late final _shareService = ShareService();
   final _sub = CompositeSubscription();
 
@@ -89,7 +90,12 @@ class _HomePageState extends State<_HomePage> with ActionMixin<HomeBloc, HomeAct
         actions: [
           PopupMenuButton<String>(
             itemBuilder:
-                (context) => [PopupMenuItem<String>(value: '/settings', child: Text(context.strings.actionSettings))],
+                (context) => [
+                  PopupMenuItem<String>(
+                    value: '/settings',
+                    child: Text(context.strings.actionSettings),
+                  ),
+                ],
             onSelected: (destination) async {
               await Navigator.pushNamed(context, destination);
             },
@@ -110,19 +116,29 @@ class _HomePageState extends State<_HomePage> with ActionMixin<HomeBloc, HomeAct
   }
 
   @override
-  FutureOr<void> handleAction(BuildContext context, HomeAction action) => switch (action) {
-    NavigateToRegionPickerHomeAction(:final current) => _navigateToRegionPicker(context, current),
-  };
+  FutureOr<void> handleAction(BuildContext context, HomeAction action) =>
+      switch (action) {
+        NavigateToRegionPickerHomeAction(:final current) =>
+          _navigateToRegionPicker(context, current),
+      };
 
-  Future<void> _navigateToRegionPicker(BuildContext context, String? regionCode) async {
+  Future<void> _navigateToRegionPicker(
+    BuildContext context,
+    String? regionCode,
+  ) async {
     final bloc = context.read<RegionMediator>();
 
-    final selectedRegion = await Navigator.pushNamed(context, '/regions', arguments: {'selected_code': regionCode});
+    final selectedRegion = await Navigator.pushNamed(
+      context,
+      '/regions',
+      arguments: {'selected_code': regionCode},
+    );
 
     if (selectedRegion is IRegion) {
       await bloc.onRegionSelected(selectedRegion);
     }
   }
 
-  void _handleIntent(Intent intent) => context.read<HomeBloc>().onIntentReceived(intent);
+  void _handleIntent(Intent intent) =>
+      context.read<HomeBloc>().onIntentReceived(intent);
 }

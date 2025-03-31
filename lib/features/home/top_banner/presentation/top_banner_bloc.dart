@@ -55,7 +55,10 @@ class TopBannerBloc extends StateBloc<TopBannerState> {
   }
 
   TopBannerState _mapToState(TopBannerType type) {
-    _analytics.logEvent('top_banner_viewed', properties: {'banner_type': type.name});
+    _analytics.logEvent(
+      'top_banner_viewed',
+      properties: {'banner_type': type.name},
+    );
     return TopBannerState(type: type);
   }
 }

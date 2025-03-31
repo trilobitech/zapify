@@ -38,7 +38,10 @@ class HistoryBloc extends StateActionBloc<HistoryState, HistoryAction> {
   Future<void> load() async {
     final historicSize = await _historicSize();
 
-    final initialState = historicSize > 0 ? HistoryState.loading(historicSize) : HistoryState.empty();
+    final initialState =
+        historicSize > 0
+            ? HistoryState.loading(historicSize)
+            : HistoryState.empty();
 
     setState(initialState);
 
@@ -56,10 +59,19 @@ class HistoryBloc extends StateActionBloc<HistoryState, HistoryAction> {
 
   void longPress(HistoryEntry entry) {
     _analytics.itemLongPressed('phone_from_history');
-    sendAction(HistoryAction.showMenu(entry, _currentTapPosition, ContextMenuAction.values));
+    sendAction(
+      HistoryAction.showMenu(
+        entry,
+        _currentTapPosition,
+        ContextMenuAction.values,
+      ),
+    );
   }
 
-  Future<void> selectOption(HistoryEntry entry, ContextMenuAction? action) async {
+  Future<void> selectOption(
+    HistoryEntry entry,
+    ContextMenuAction? action,
+  ) async {
     switch (action) {
       case ContextMenuAction.remove:
         await remove(entry);
@@ -82,7 +94,8 @@ class HistoryBloc extends StateActionBloc<HistoryState, HistoryAction> {
   }
 
   Future<HistoryState> _mapToState(List<HistoryEntry> entries) async {
-    final isCallLogTabEnabled = await RemoteConfig.isCallLogTabEnabled.get<bool>();
+    final isCallLogTabEnabled =
+        await RemoteConfig.isCallLogTabEnabled.get<bool>();
 
     final adOptions = AdOptions(
       unitId: await RemoteConfig.homeAdListUnitId.get(),
@@ -90,7 +103,11 @@ class HistoryBloc extends StateActionBloc<HistoryState, HistoryAction> {
     );
 
     return entries.isNotEmpty
-        ? HistoryState(entries: entries, isDismissible: !isCallLogTabEnabled, adOptions: adOptions)
+        ? HistoryState(
+          entries: entries,
+          isDismissible: !isCallLogTabEnabled,
+          adOptions: adOptions,
+        )
         : HistoryState.empty();
   }
 

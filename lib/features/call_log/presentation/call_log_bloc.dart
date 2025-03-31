@@ -29,7 +29,12 @@ class CallLogBloc extends StateActionBloc<CallLogState, CallLogAction> {
   Future<void> load() async {
     final state = await _getCallLog()
         .then((items) => items.map((e) => CallEntry.from(e)))
-        .then((items) => items.isNotEmpty ? CallLogState(entries: items) : CallLogState.empty())
+        .then(
+          (items) =>
+              items.isNotEmpty
+                  ? CallLogState(entries: items)
+                  : CallLogState.empty(),
+        )
         .catchError(_onError);
 
     setState(state);

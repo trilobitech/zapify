@@ -14,7 +14,9 @@ class PhoneFieldWidget extends StatelessWidget
     with StateActionMixin<PhoneFieldBloc, PhoneFieldState, PhoneFieldAction> {
   PhoneFieldWidget({super.key});
 
-  late final _errorMessageAdapter = inject<FailureAdapter>(param1: PhoneFieldErrorConverterRegistry());
+  late final _errorMessageAdapter = inject<FailureAdapter>(
+    param1: PhoneFieldErrorConverterRegistry(),
+  );
 
   late final FocusNode _textFieldFocus = FocusNode();
   final TextStyle _textFieldStyle = const TextStyle(fontSize: 24, height: 1.5);
@@ -41,7 +43,8 @@ class PhoneFieldWidget extends StatelessWidget
           labelText: context.strings.homePhoneNumberLabel,
           // https://github.com/flutter/flutter/issues/15400#issuecomment-475773473
           // helperText: ' ', // FIXME: talkback says "Space", should be avoided to fix it
-          errorText: _errorMessageAdapter.maybeAdapt(context, state.error)?.message,
+          errorText:
+              _errorMessageAdapter.maybeAdapt(context, state.error)?.message,
           contentPadding: const EdgeInsets.only(left: 8, right: 8),
           border: const OutlineInputBorder(),
         ),
@@ -52,10 +55,11 @@ class PhoneFieldWidget extends StatelessWidget
   }
 
   @override
-  void handleAction(BuildContext context, PhoneFieldAction action) => switch (action) {
-    HideKeyboardPhoneFieldAction() => dismissKeyboard(),
-    ShowKeyboardPhoneFieldAction() => showKeyboard(),
-  };
+  void handleAction(BuildContext context, PhoneFieldAction action) =>
+      switch (action) {
+        HideKeyboardPhoneFieldAction() => dismissKeyboard(),
+        ShowKeyboardPhoneFieldAction() => showKeyboard(),
+      };
 
   void showKeyboard() => _textFieldFocus.requestFocus();
 

@@ -30,16 +30,24 @@ void commonModule() {
 
   registerSingleton(() => PhoneNumberUtil());
 
-  registerSingletonAsync<Database>(getDatabase, dispose: (db) async => db.close());
-
-  registerSingletonAsync<BriteDatabase>(
-    () async => BriteDatabase(await lazyGet(), logger: kDebugMode ? print : null),
+  registerSingletonAsync<Database>(
+    getDatabase,
     dispose: (db) async => db.close(),
   );
 
-  registerSingletonAsync<SharedPreferences>(() async => SharedPreferences.getInstance());
+  registerSingletonAsync<BriteDatabase>(
+    () async =>
+        BriteDatabase(await lazyGet(), logger: kDebugMode ? print : null),
+    dispose: (db) async => db.close(),
+  );
 
-  registerSingletonAsync<FirebaseRemoteConfig>(() async => getRemoteConfig(remoteConfigDefaults));
+  registerSingletonAsync<SharedPreferences>(
+    () async => SharedPreferences.getInstance(),
+  );
+
+  registerSingletonAsync<FirebaseRemoteConfig>(
+    () async => getRemoteConfig(remoteConfigDefaults),
+  );
 
   registerSingleton<IRemoteConfigStorage>(
     () => FirebaseConfigStorage(remoteConfig: get()),
@@ -47,7 +55,10 @@ void commonModule() {
   );
 
   registerSingleton<ILocalConfigStorage>(
-    () => PreferencesConfigStorage(prefs: get(), localConfigDefaults: localConfigDefaults),
+    () => PreferencesConfigStorage(
+      prefs: get(),
+      localConfigDefaults: localConfigDefaults,
+    ),
     dependsOn: [SharedPreferences],
   );
 

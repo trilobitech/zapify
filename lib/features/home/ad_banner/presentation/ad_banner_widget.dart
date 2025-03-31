@@ -8,17 +8,19 @@ import '../../../../../common/di/inject.dart';
 import 'ad_banner_bloc.dart';
 import 'ad_banner_state.dart';
 
-class AdBannerWidget extends StatelessWidget with StateMixin<AdBannerBloc, AdBannerState> {
+class AdBannerWidget extends StatelessWidget
+    with StateMixin<AdBannerBloc, AdBannerState> {
   AdBannerWidget({Key? key}) : super(key: key);
 
   @override
   late final bloc = inject<AdBannerBloc>();
 
   @override
-  Widget buildState(BuildContext context, AdBannerState state) => switch (state) {
-    LoadedAdBannerState(:final unitId) => _AdBannerWidget(unitId: unitId),
-    NoneAdBannerState() => const SizedBox.shrink(),
-  };
+  Widget buildState(BuildContext context, AdBannerState state) =>
+      switch (state) {
+        LoadedAdBannerState(:final unitId) => _AdBannerWidget(unitId: unitId),
+        NoneAdBannerState() => const SizedBox.shrink(),
+      };
 }
 
 class _AdBannerWidget extends StatefulWidget {

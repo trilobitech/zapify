@@ -48,7 +48,9 @@ class AnalyticsRouteObserver extends RouteObserver<ModalRoute<dynamic>> {
   @override
   void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
     super.didPop(route, previousRoute);
-    if (previousRoute != null && routeFilter(previousRoute) && routeFilter(route)) {
+    if (previousRoute != null &&
+        routeFilter(previousRoute) &&
+        routeFilter(route)) {
       _sendScreenView(previousRoute);
     }
   }

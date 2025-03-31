@@ -27,13 +27,21 @@ class ChatAppBloc extends StateBloc<ChatAppState> {
 
   @override
   Future<void> load() async {
-    setStateFrom(ZipStream.zip2(_getEnabledChatApps(), _getDisabledChatApps(), _mapToState));
+    setStateFrom(
+      ZipStream.zip2(
+        _getEnabledChatApps(),
+        _getDisabledChatApps(),
+        _mapToState,
+      ),
+    );
   }
 
   Future<void> disable(ChatApp chatApp) => _disableChatApp(chatApp);
 
   Future<void> enable(ChatApp chatApp) => _enableChatApp(chatApp);
 
-  ChatAppState _mapToState(Iterable<ChatApp> enabled, Iterable<ChatApp> disabled) =>
-      ChatAppState(enabled: enabled, disabled: disabled);
+  ChatAppState _mapToState(
+    Iterable<ChatApp> enabled,
+    Iterable<ChatApp> disabled,
+  ) => ChatAppState(enabled: enabled, disabled: disabled);
 }
