@@ -1,0 +1,50 @@
+{
+  "unknownErrorMessage": "¡Ups! ¡Algo salió mal!",
+  "unknownErrorAction": "Inténtalo de nuevo",
+
+  "advertisementPlaceholder": "Publicidad",
+
+  "homeTopBannerAskToReviewContent": "¿Te gusta Zapify? Cuéntanos.",
+  "homeTopBannerAskToReviewButton": "OPINAR",
+
+  "homePhoneNumberLabel": "Número de teléfono",
+  "homeOpenWithButton": "{appName}",
+  "homeEmptyPhoneNumberError": "Por favor, introduce el número de teléfono",
+  "homeInvalidPhoneNumberError": "Número de teléfono no válido",
+
+  "homeChatAppNotFoundErrorTitle": "¡Ups!",
+  "homeChatAppNotFoundErrorMessage": "Ocurrió un error al abrir \"{appName}\".",
+  "homeChatAppNotFoundErrorPrimaryAction": "Buscar en la tienda",
+  "homeChatAppNotFoundErrorSecondaryAction": "Cancelar",
+
+  "recentNumbersTitle": "Números recientes",
+  "recentNumbersEmpty": "Aún no hay números recientes",
+  "recentNumberRemoved": "¡El número reciente \"{phoneNumber}\" fue eliminado!",
+  "actionRemove": "Eliminar",
+  "actionUndo": "Deshacer",
+  "actionSettings": "Ajustes",
+
+  "callLogTabTitle": "Llamadas",
+  "callLogPermissionMessage": "Para acceder a tu historial de llamadas y facilitar la mensajería, necesitamos tu permiso. No te preocupes, no se almacena ni comparte ninguna información.",
+  "callLogPermissionButtonLabel": "Conceder permiso",
+  "callLogEmptyMessage": "No hay llamadas para mostrar",
+
+  "availableRegionsTitle": "Selecciona un país",
+  "availableRegionsSearch": "Buscar…",
+
+  "settingsTitle": "Ajustes",
+  "settingsRegionTitle": "Región predeterminada",
+  "settingsRegionSubtitle": "Selecciona la región predeterminada para abrir un número",
+  "settingsMessagingAppsTitle": "Aplicaciones de mensajería",
+  "settingsMessagingAppsSubtitle": "Selecciona las aplicaciones de mensajería que deseas usar",
+
+  "messagingAppsTitle": "Aplicaciones de mensajería",
+  "messagingAppsEnabledHeader": "Aplicaciones disponibles",
+  "messagingAppsDisabledHeader": "Aplicaciones ocultas",
+
+  "today": "'Hoy a las' H:mm",
+  "yesterday": "'Ayer a las' H:mm",
+  "lastCoupleOfDays": "EEEE 'a las' H:mm",
+  "lastCoupleOfMonths": "d 'de' MMMM 'a las' H:mm",
+  "longTimeAgo": "d 'de' MMMM, yyyy"
+}
