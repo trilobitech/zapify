@@ -1,6 +1,6 @@
 {
-    "unknowErrorMessage": "Oops! Something went wrong!",
-    "unknowErrorAction": "Try again",
+    "unknownErrorMessage": "Oops! Something went wrong!",
+    "unknownErrorAction": "Try again",
 
     "advertisementPlaceholder": "Advertisement",
 

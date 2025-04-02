@@ -1,6 +1,6 @@
 {
-    "unknowErrorMessage": "Oops! Ocorreu um erro inesperado!",
-    "unknowErrorAction": "Tentar novamente",
+    "unknownErrorMessage": "Oops! Ocorreu um erro inesperado!",
+    "unknownErrorAction": "Tentar novamente",
 
     "advertisementPlaceholder": "Publicidade",
 

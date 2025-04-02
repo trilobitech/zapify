@@ -95,17 +95,17 @@ abstract class AppLocalizations {
     Locale('pt')
   ];
 
-  /// No description provided for @unknowErrorMessage.
+  /// No description provided for @unknownErrorMessage.
   ///
   /// In en, this message translates to:
   /// **'Oops! Something went wrong!'**
-  String get unknowErrorMessage;
+  String get unknownErrorMessage;
 
-  /// No description provided for @unknowErrorAction.
+  /// No description provided for @unknownErrorAction.
   ///
   /// In en, this message translates to:
   /// **'Try again'**
-  String get unknowErrorAction;
+  String get unknownErrorAction;
 
   /// No description provided for @advertisementPlaceholder.
   ///

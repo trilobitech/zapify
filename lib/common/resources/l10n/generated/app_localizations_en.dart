@@ -9,10 +9,10 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get unknowErrorMessage => 'Oops! Something went wrong!';
+  String get unknownErrorMessage => 'Oops! Something went wrong!';
 
   @override
-  String get unknowErrorAction => 'Try again';
+  String get unknownErrorAction => 'Try again';
 
   @override
   String get advertisementPlaceholder => 'Advertisement';

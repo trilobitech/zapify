@@ -9,10 +9,10 @@ class AppLocalizationsPt extends AppLocalizations {
   AppLocalizationsPt([String locale = 'pt']) : super(locale);
 
   @override
-  String get unknowErrorMessage => 'Oops! Ocorreu um erro inesperado!';
+  String get unknownErrorMessage => 'Oops! Ocorreu um erro inesperado!';
 
   @override
-  String get unknowErrorAction => 'Tentar novamente';
+  String get unknownErrorAction => 'Tentar novamente';
 
   @override
   String get advertisementPlaceholder => 'Publicidade';
