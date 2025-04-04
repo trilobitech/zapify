@@ -54,7 +54,7 @@ dependencies:
   phone_number: ^2.1.0
   provider: ^6.0.5
   receive_intent: ^0.2.7
-  rxdart: ^0.27.7
+  rxdart: ^0.28.0
   shared_preferences: ^2.5.3
   shimmer: ^3.0.0
   sqlbrite: ^2.5.0
