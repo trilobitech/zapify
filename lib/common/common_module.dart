@@ -22,8 +22,8 @@ void commonModule() {
       registry: registry,
       fallback:
           (context, _) => ErrorFeedback(
-            message: context.strings.unknowErrorMessage,
-            primaryButtonText: context.strings.unknowErrorAction,
+            message: context.strings.unknownErrorMessage,
+            primaryButtonText: context.strings.unknownErrorAction,
           ),
     ),
   );

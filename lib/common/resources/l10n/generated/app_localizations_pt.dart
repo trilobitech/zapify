@@ -9,10 +9,10 @@ class AppLocalizationsPt extends AppLocalizations {
   AppLocalizationsPt([String locale = 'pt']) : super(locale);
 
   @override
-  String get unknowErrorMessage => 'Oops! Ocorreu um erro inesperado!';
+  String get unknownErrorMessage => 'Oops! Ocorreu um erro inesperado!';
 
   @override
-  String get unknowErrorAction => 'Tentar novamente';
+  String get unknownErrorAction => 'Tentar novamente';
 
   @override
   String get advertisementPlaceholder => 'Publicidade';
@@ -75,10 +75,10 @@ class AppLocalizationsPt extends AppLocalizations {
   String get callLogTabTitle => 'Chamadas';
 
   @override
-  String get callLogPermissionMessage => 'Para exibir o histórico de chamadas, é necessário permitir o acesso.';
+  String get callLogPermissionMessage => 'Para acessar seu histórico de chamadas e facilitar o envio de mensagens, precisamos da sua permissão. Saiba que nenhuma informação é armazenada ou compartilhada.';
 
   @override
-  String get callLogPermissionButtonLabel => 'Permitir';
+  String get callLogPermissionButtonLabel => 'Conceder permissão';
 
   @override
   String get callLogEmptyMessage => 'Nenhuma chamada para exibir';

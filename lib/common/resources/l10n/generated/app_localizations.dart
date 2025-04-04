@@ -6,6 +6,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
 import 'app_localizations_en.dart';
+import 'app_localizations_es.dart';
 import 'app_localizations_pt.dart';
 
 // ignore_for_file: type=lint
@@ -92,20 +93,21 @@ abstract class AppLocalizations {
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('en'),
+    Locale('es'),
     Locale('pt')
   ];
 
-  /// No description provided for @unknowErrorMessage.
+  /// No description provided for @unknownErrorMessage.
   ///
   /// In en, this message translates to:
   /// **'Oops! Something went wrong!'**
-  String get unknowErrorMessage;
+  String get unknownErrorMessage;
 
-  /// No description provided for @unknowErrorAction.
+  /// No description provided for @unknownErrorAction.
   ///
   /// In en, this message translates to:
   /// **'Try again'**
-  String get unknowErrorAction;
+  String get unknownErrorAction;
 
   /// No description provided for @advertisementPlaceholder.
   ///
@@ -218,13 +220,13 @@ abstract class AppLocalizations {
   /// No description provided for @callLogPermissionMessage.
   ///
   /// In en, this message translates to:
-  /// **'You need to give permission to display call log.'**
+  /// **'To access your call history and make messaging easier, we need your permission. Rest assured, no information is stored or shared.'**
   String get callLogPermissionMessage;
 
   /// No description provided for @callLogPermissionButtonLabel.
   ///
   /// In en, this message translates to:
-  /// **'Give permission'**
+  /// **'Grant permission'**
   String get callLogPermissionButtonLabel;
 
   /// No description provided for @callLogEmptyMessage.
@@ -333,7 +335,7 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['en', 'pt'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['en', 'es', 'pt'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -345,6 +347,7 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
     case 'en': return AppLocalizationsEn();
+    case 'es': return AppLocalizationsEs();
     case 'pt': return AppLocalizationsPt();
   }
 

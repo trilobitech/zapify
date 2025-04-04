@@ -9,10 +9,10 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get unknowErrorMessage => 'Oops! Something went wrong!';
+  String get unknownErrorMessage => 'Oops! Something went wrong!';
 
   @override
-  String get unknowErrorAction => 'Try again';
+  String get unknownErrorAction => 'Try again';
 
   @override
   String get advertisementPlaceholder => 'Advertisement';
@@ -75,10 +75,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get callLogTabTitle => 'Phone calls';
 
   @override
-  String get callLogPermissionMessage => 'You need to give permission to display call log.';
+  String get callLogPermissionMessage => 'To access your call history and make messaging easier, we need your permission. Rest assured, no information is stored or shared.';
 
   @override
-  String get callLogPermissionButtonLabel => 'Give permission';
+  String get callLogPermissionButtonLabel => 'Grant permission';
 
   @override
   String get callLogEmptyMessage => 'No calls to display';

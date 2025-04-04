@@ -1,6 +1,6 @@
 {
-    "unknowErrorMessage": "Oops! Something went wrong!",
-    "unknowErrorAction": "Try again",
+    "unknownErrorMessage": "Oops! Something went wrong!",
+    "unknownErrorAction": "Try again",
 
     "advertisementPlaceholder": "Advertisement",
 
@@ -25,8 +25,8 @@
     "actionSettings": "Settings",
 
     "callLogTabTitle": "Phone calls",
-    "callLogPermissionMessage": "You need to give permission to display call log.",
-    "callLogPermissionButtonLabel": "Give permission",
+    "callLogPermissionMessage": "To access your call history and make messaging easier, we need your permission. Rest assured, no information is stored or shared.",
+    "callLogPermissionButtonLabel": "Grant permission",
     "callLogEmptyMessage": "No calls to display",
 
     "availableRegionsTitle": "Select a country",
