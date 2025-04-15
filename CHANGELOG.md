@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Translation to Spanish (es-ES)
+
+### Changed
+
+- Some texts in the app
+- General improvements and bug fixes
+
 ## [2.2.1] - 2024-11-13
 
 ## [2.2.0] - 2024-10-24
