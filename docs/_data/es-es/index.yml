@@ -1,0 +1,19 @@
+title: "Zapify - Inicia chats en WhatsApp y Telegram sin guardar números"
+
+meta:
+  description: Con Zapify, inicia chats en WhatsApp, Telegram y Signal sin guardar contactos. ¡Rápido, simple y sin complicaciones!
+  keywords:
+    - Hacer clic para chatear
+    - Aplicación
+    - Lista de contactos
+    - WhatsApp
+    - Telegram
+    - Signal
+
+headline: Abre chats. Sin complicaciones. Sin guardar.
+description: ¡No satures tu lista de contactos con números de uso único! Con Zapify, solo escribe y comienza una conversación al instante en tu mensajero favorito. ¡Simple, rápido y sin complicaciones!
+app_preview: /assets/images/zapify-home-es.png
+buttons:
+  play_store:
+    src: https://play.google.com/intl/en_us/badges/static/images/badges/es_badge_web_generic.png
+    alt: Disponible en Google Play

@@ -1,0 +1,19 @@
+---
+layout: default
+data-key: index
+---
+{% assign page_data = site.data[site.active_lang][page['data-key']] %}
+<div class="container-custom container">
+    <div class="text-section">
+        <h2>{{ page_data.headline }}</h2>
+        <p>{{ page_data.description }}</p>
+        <a
+            href='https://play.google.com/store/apps/details?id=com.zapfy.app&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
+            <img alt='{{ page_data.buttons.play_store.alt }}' src='{{ page_data.buttons.play_store.src }}'
+                style="height: 70px" align="center" />
+        </a>
+    </div>
+    <div class="image-section">
+        <img width="250" src="{{ page_data.app_preview | relative_url }}" alt="Zapify App" />
+    </div>
+</div>

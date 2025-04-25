@@ -1,3 +1,9 @@
+---
+page_id: privacy-policy
+layout: page
+permalink: "politica-de-privacidade/"
+title:  "Política de Privacidade"
+---
 **Política de Privacidade**
 
 O Zapify é um aplicativo de código aberto licenciado sob a [Licença Pública Geral Affero do GNU v3.0 (AGPL-3.0)](https://www.gnu.org/licenses/agpl-3.0.html). O código-fonte está disponível no [GitHub](https://github.com/trilobitech/zapify), e os usuários são livres para usar, modificar e distribuir o aplicativo conforme os termos dessa licença. No entanto, o nome, logotipo e identidade visual do Zapify permanecem propriedade da Trilobitech e não podem ser utilizados sem permissão.
@@ -50,4 +56,4 @@ Data de Vigência: 2025-02-22
 
 **Contato**
 
-Se você tiver alguma dúvida ou sugestão sobre nossa Política de Privacidade, entre em contato conosco pelo e-mail pedro@trilobitech.com.
+Se você tiver alguma dúvida ou sugestão sobre nossa Política de Privacidade, entre em contato conosco pelo e-mail [contact@trilobitech.com](mailto:contact@trilobitech.com).

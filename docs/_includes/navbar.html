@@ -1,0 +1,62 @@
+{% assign sorted_pages = site.pages | sort: 'nav_order' %}
+<nav>
+    <div class="nav-wrapper container">
+        <a href="{{ '/' | relative_url }}" class="brand-logo">Zapify</a>
+        <a href="#" data-target="mobile-menu" class="sidenav-trigger">
+            <i class="material-icons">menu</i>
+        </a>
+        <ul class="right hide-on-med-and-down">
+            {%- for p in sorted_pages -%}
+            {%- if p.title -%}
+            {% assign url = p.url %}
+            <li class="nav-item {% if page.url contains p.permalink %}active{% endif %}">
+                <a href="{{ url | relative_url }}">{{- p.title }}</a>
+            </li>
+            {%- endif -%}
+            {% endfor %}
+            <li>
+                <a class="dropdown-trigger flag-btn btn" href="#" data-target="language-dropdown">
+                    <span class="fi fi-{{ site.active_lang | split: '-' | last }}"></span> {{ site.active_lang | upcase }} ▾
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Menu Responsivo -->
+<ul class="sidenav" id="mobile-menu">
+    {%- for p in sorted_pages -%}
+    {%- if p.title -%}
+    {% assign url = p.url %}
+    <li class="nav-item {% if page.url contains p.permalink %}active{% endif %}">
+        <a href="{{ url | relative_url }}">{{- p.title }}</a>
+    </li>
+    {%- endif -%}
+    {%- endfor %}
+    <li>
+        <a class="dropdown-trigger flag-btn btn" href="#" data-target="language-dropdown-mobile">
+            <span class="fi fi-{{ site.active_lang | split: '-' | last }}"></span> {{ site.active_lang | upcase }}
+        </a>
+    </li>
+</ul>
+
+<!-- Dropdown de Idiomas -->
+{%- assign language_dropdowns = 'language-dropdown,language-dropdown-mobile' | split: ',' -%}
+{%- for language_dropdown in language_dropdowns %}
+<ul id="{{ language_dropdown }}" class="dropdown-content">
+    {%- for lang in site.languages %}
+    {%- assign lang_name = lang | upcase -%}
+    {%- assign flag = lang | split: '-' | last -%}
+    {% if lang == site.active_lang %}
+    <li class="active">
+        <a href="#"><span class="fi fi-{{ flag }}"></span> {{ lang_name }}</a>
+    </li>
+    {%- else -%}
+    {%- capture lang_href %}{{site.baseurl}}/{% if lang != site.default_lang %}{{ lang }}/{% endif %}{% if page.permalink_lang[lang] != '/' %}{{page.permalink_lang[lang]}}{% endif %}{% endcapture %}
+    <li>
+        <a {% static_href %}href="{{ lang_href }}" {% endstatic_href %}><span class="fi fi-{{ flag }}"></span> {{ lang_name }}</a>
+    </li>
+    {%- endif -%}
+    {% endfor %}
+</ul>
+{%- endfor -%}

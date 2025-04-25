@@ -24,12 +24,11 @@ endif
 
 help: ## Show this help
 	@echo -e "usage: make [target]\n\ntarget:"
-	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/: ##\s*/\t/' | expand -t 22 | pr -to2
+	@grep -F -h "##" $(MAKEFILE_LIST) | grep -F -v grep | sed -e 's/\\$$//' | sed -e 's/: ##\s*/\t/' | expand -t 22 | pr -to2
 
 
 phony: ## Create .PHONY section in this file (look https://stackoverflow.com/a/2145605)
-	$(SED_CMD) -e "s/^\.PHONY:.*$$/.PHONY: `grep -hE '^\w+:' $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/:.*//' | uniq | paste -sd \" \" -`/g" Makefile
-
+	$(SED_CMD) -e "s/^\.PHONY:.*$$/.PHONY: `grep -hE '^\w+:' $(MAKEFILE_LIST) | grep -F -v grep | sed -e 's/:.*//' | uniq | paste -sd \" \" -`/g" Makefile
 
 
 
@@ -37,4 +36,4 @@ ifndef VERBOSE
 .SILENT:
 endif
 
-.PHONY: help phony run codegen release setup_google_services
+.PHONY: help phony run codegen fix serve_page setup_google_services bump_version

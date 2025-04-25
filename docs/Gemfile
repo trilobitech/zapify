@@ -1,0 +1,14 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+# https://jekyllrb.com/
+gem "jekyll", "~> 4.4.1"
+
+# https://github.com/untra/polyglot
+# https://blog.codeminer42.com/what-you-need-to-internationalize-your-jekyll-website/
+# https://github.com/george-gca/multi-language-al-folio
+gem "jekyll-polyglot", group: :jekyll_plugins
+
+# https://github.com/github/pages-gem
+# gem "github-pages", group: :jekyll_plugins
