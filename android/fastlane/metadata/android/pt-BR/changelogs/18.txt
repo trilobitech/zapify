@@ -1,0 +1,1 @@
+- Melhorias gerais de performance e usabilidade
