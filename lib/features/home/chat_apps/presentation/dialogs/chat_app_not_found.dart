@@ -29,7 +29,7 @@ class ChatAppNotFoundDialog extends StatelessWidget {
             _openStore(app);
             Navigator.of(context).pop();
           },
-          child: Text(context.strings.homeChatAppNotFoundErrorSecondaryAction),
+          child: Text(context.strings.homeChatAppNotFoundErrorPrimaryAction),
         ),
       ],
     );
