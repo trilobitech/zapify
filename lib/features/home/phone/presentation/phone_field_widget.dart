@@ -25,31 +25,34 @@ class PhoneFieldWidget extends StatelessWidget
   Widget buildState(BuildContext context, PhoneFieldState state) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      child: TextField(
-        key: const ValueKey('PhoneNumber'),
-        style: _textFieldStyle,
-        focusNode: _textFieldFocus,
-        controller: state.controller,
-        textInputAction: TextInputAction.go,
-        keyboardType: TextInputType.phone,
-        // onSubmitted: widget.onSubmitted,
-        decoration: InputDecoration(
-          prefix: _RegionSelectorButton(
-            controller: state.controller,
-            region: state.region,
-            textFieldFocus: _textFieldFocus,
-            textStyle: _textFieldStyle,
+      child: Semantics(
+        identifier: 'PhoneNumberField',
+        child: TextField(
+          key: const ValueKey('PhoneNumber'),
+          style: _textFieldStyle,
+          focusNode: _textFieldFocus,
+          controller: state.controller,
+          textInputAction: TextInputAction.go,
+          keyboardType: TextInputType.phone,
+          // onSubmitted: widget.onSubmitted,
+          decoration: InputDecoration(
+            prefix: _RegionSelectorButton(
+              controller: state.controller,
+              region: state.region,
+              textFieldFocus: _textFieldFocus,
+              textStyle: _textFieldStyle,
+            ),
+            labelText: context.strings.homePhoneNumberLabel,
+            // https://github.com/flutter/flutter/issues/15400#issuecomment-475773473
+            // helperText: ' ', // FIXME: talkback says "Space", should be avoided to fix it
+            errorText:
+                _errorMessageAdapter.maybeAdapt(context, state.error)?.message,
+            contentPadding: const EdgeInsets.only(left: 8, right: 8),
+            border: const OutlineInputBorder(),
           ),
-          labelText: context.strings.homePhoneNumberLabel,
-          // https://github.com/flutter/flutter/issues/15400#issuecomment-475773473
-          // helperText: ' ', // FIXME: talkback says "Space", should be avoided to fix it
-          errorText:
-              _errorMessageAdapter.maybeAdapt(context, state.error)?.message,
-          contentPadding: const EdgeInsets.only(left: 8, right: 8),
-          border: const OutlineInputBorder(),
+          autocorrect: false,
+          enableSuggestions: false,
         ),
-        autocorrect: false,
-        enableSuggestions: false,
       ),
     );
   }
@@ -100,7 +103,10 @@ class _RegionSelectorButton extends StatelessWidget {
         }
         context.read<RegionMediator>().showRegionPicker(region.code);
       },
-      child: Text('${region.flag} +${region.prefix}', style: textStyle),
+      child: Semantics(
+        identifier: 'PhoneNumberRegionPicker',
+        child: Text('${region.flag} +${region.prefix}', style: textStyle),
+      ),
     );
   }
 }

@@ -136,21 +136,25 @@ class _SuccessView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      itemCount: entries.length,
-      itemBuilder: (_, index) {
-        final entry = entries.elementAt(index);
+    return Semantics(
+      identifier: 'HistoricList',
+      child: ListView.separated(
+        addSemanticIndexes: true,
+        itemCount: entries.length,
+        itemBuilder: (_, index) {
+          final entry = entries.elementAt(index);
 
-        if (isDismissible) {
-          return _DismissibleEntryView(entry);
-        }
+          if (isDismissible) {
+            return _DismissibleEntryView(entry);
+          }
 
-        return _EntryView(entry, key: ValueKey(entry.phoneNumber));
-      },
-      separatorBuilder: AdListViewSeparatorBuilder(
-        everyNthItem: adOptions?.interval ?? 0,
-        unitId: adOptions?.unitId ?? '',
-        defaultDivider: const ListDivider(),
+          return _EntryView(entry, key: ValueKey(entry.phoneNumber));
+        },
+        separatorBuilder: AdListViewSeparatorBuilder(
+          everyNthItem: adOptions?.interval ?? 0,
+          unitId: adOptions?.unitId ?? '',
+          defaultDivider: const ListDivider(),
+        ),
       ),
     );
   }

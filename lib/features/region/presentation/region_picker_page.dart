@@ -58,15 +58,21 @@ class _SearchViewState extends State<_SearchView> {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      controller: ctrl,
-      decoration: InputDecoration(
-        contentPadding: const EdgeInsets.all(16),
-        hintText: context.strings.availableRegionsSearch,
-        border: const UnderlineInputBorder(),
-        suffixIcon: IconButton(
-          icon: const Icon(Icons.clear),
-          onPressed: ctrl.clear,
+    return Container(
+      color: Theme.of(context).colorScheme.surface,
+      child: Semantics(
+        identifier: 'RegionSearchField',
+        child: TextField(
+          controller: ctrl,
+          decoration: InputDecoration(
+            contentPadding: const EdgeInsets.all(16),
+            hintText: context.strings.availableRegionsSearch,
+            border: const UnderlineInputBorder(),
+            suffixIcon: IconButton(
+              icon: const Icon(Icons.clear),
+              onPressed: ctrl.clear,
+            ),
+          ),
         ),
       ),
     );
@@ -133,22 +139,34 @@ class _RegionListTile extends StatelessWidget {
       onTap: () {
         onTap(region);
       },
-      title: Row(
-        children: [
-          ConstrainedBox(
-            constraints: const BoxConstraints(minWidth: 50),
-            child: Text(
-              region.flag ?? '',
-              style: const TextStyle(fontSize: 28),
-            ),
+      title: Semantics(
+        identifier: '${region.code} +${region.prefix}',
+        label: '${region.name} +${region.prefix}',
+        button: true,
+        child: ExcludeSemantics(
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              ConstrainedBox(
+                constraints: const BoxConstraints(minWidth: 50),
+                child: Text(
+                  region.flag ?? '',
+                  style: const TextStyle(fontSize: 28),
+                ),
+              ),
+              Expanded(
+                child: Text(region.name, overflow: TextOverflow.ellipsis),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 8),
+                child: Text(
+                  '+${region.prefix}',
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+            ],
           ),
-          Text('${region.name} (${region.code})'),
-          const Spacer(),
-          Text(
-            '+${region.prefix}',
-            style: const TextStyle(fontWeight: FontWeight.bold),
-          ),
-        ],
+        ),
       ),
     );
   }
