@@ -11,7 +11,7 @@ class GetRegionsByTermUseCase {
   final IRegionRepository _repository;
 
   Future<List<Country>> call({String term = ''}) async {
-    term = term.trim();
+    term = term.trim().toLowerCase();
     final countries = await _repository.getAll();
     if (term.isEmpty) {
       return countries;
@@ -19,9 +19,9 @@ class GetRegionsByTermUseCase {
 
     return countries
         .where((country) {
-          return country.code.toUpperCase().contains(term.toUpperCase()) ||
-              country.prefix.toString().contains(term) ||
-              country.name.toLowerCase().contains(term.toLowerCase());
+          final identifier = '${country.code.toLowerCase()} +${country.prefix}';
+          return identifier.contains(term) ||
+              country.name.toLowerCase().contains(term);
         })
         .toList(growable: false);
   }
