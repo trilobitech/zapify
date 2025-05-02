@@ -8,7 +8,7 @@
     "homeTopBannerUpdateAvailableButton": "UPDATE",
 
     "homePhoneNumberLabel": "Phone number",
-    "homeBrPhoneNumberLabel": "Phone number with area code",
+    "homePhoneNumberWithAreaCodeLabel": "Phone number with area code",
     "homeOpenWithButton": "{appName}",
     "homeEmptyPhoneNumberError": "Please provide the phone number",
     "homeInvalidPhoneNumberError": "Invalid phone number",

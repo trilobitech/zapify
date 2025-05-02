@@ -27,7 +27,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get homePhoneNumberLabel => 'Número de telefone';
 
   @override
-  String get homeBrPhoneNumberLabel => 'Número de telefone com DDD';
+  String get homePhoneNumberWithAreaCodeLabel => 'Número de telefone com código de área';
 
   @override
   String homeOpenWithButton(Object appName) {
