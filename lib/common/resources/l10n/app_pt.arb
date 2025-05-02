@@ -8,6 +8,7 @@
     "homeTopBannerAskToReviewButton": "AVALIAR",
 
     "homePhoneNumberLabel": "Número de telefone",
+    "homeBrPhoneNumberLabel": "Número de telefone com DDD",
     "homeOpenWithButton": "{appName}",
     "homeEmptyPhoneNumberError": "Por favor informe o número desejado.",
     "homeInvalidPhoneNumberError": "O número informado é inválido",
