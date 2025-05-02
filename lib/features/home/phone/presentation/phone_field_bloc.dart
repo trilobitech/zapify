@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:logify/logify.dart';
@@ -124,7 +126,10 @@ class PhoneFieldBloc extends StateActionBloc<PhoneFieldState, PhoneFieldAction>
     ) {
       // prevent phone number on error logging
       if (error is PlatformException && error.code == 'InvalidNumber') {
-        error = InvalidPhoneNumberError();
+        error = InvalidPhoneNumberError(
+          'Invalid phone number with initial numbers: '
+          '${phone.substring(0, math.min(3, phone.length))}',
+        );
       }
       Error.throwWithStackTrace(error, stackTrace);
     });

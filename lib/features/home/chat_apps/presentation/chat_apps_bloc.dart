@@ -31,11 +31,11 @@ class ChatAppsBloc extends StateActionBloc<ChatAppsState, ChatAppsAction> {
     sendAction(ChatAppsAction.select(entry));
   }
 
-  void selectFailed(ChatApp entry, Object error) {
+  void selectFailed(ChatApp entry, Object error, StackTrace? stackTrace) {
     if (error is ChatAppNotFoundError) {
       sendAction(ChatAppsAction.showFailureMessage(entry));
     } else {
-      Log.e(error);
+      Log.e(error, stackTrace);
     }
   }
 
