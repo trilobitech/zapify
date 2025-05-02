@@ -5,13 +5,7 @@ import 'domain/usecase/maybe_request_app_review.dart';
 import 'presentation/top_banner_bloc.dart';
 
 void topBannerModule() {
-  registerFactory(
-    () => TopBannerBloc(
-      getTopBanner: get(),
-      setLastAppReviewAtNow: get(),
-      analytics: get(),
-    ),
-  );
+  registerFactory(() => TopBannerBloc(getTopBanner: get(), analytics: get()));
 
   registerFactory(() => GetTopBannerUseCase(canAskForReview: get()));
 

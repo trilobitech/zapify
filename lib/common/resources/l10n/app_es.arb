@@ -4,8 +4,8 @@
 
   "advertisementPlaceholder": "Publicidad",
 
-  "homeTopBannerAskToReviewContent": "¿Te gusta Zapify? Cuéntanos.",
-  "homeTopBannerAskToReviewButton": "OPINAR",
+  "homeTopBannerUpdateAvailableContent": "Nueva versión disponible. Actualiza ahora para disfrutar de las últimas funciones.",
+  "homeTopBannerUpdateAvailableButton": "ACTUALIZAR",
 
   "homePhoneNumberLabel": "Número de teléfono",
   "homeBrPhoneNumberLabel": "Número de teléfono con DDD",

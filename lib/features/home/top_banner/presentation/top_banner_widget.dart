@@ -87,11 +87,11 @@ class _TopBannerViewState extends State<_TopBannerView>
 
   TopBannerContent _mapContent(BuildContext context, TopBannerType type) {
     switch (type) {
-      case TopBannerType.appReview:
+      case TopBannerType.updateAvailable:
         return TopBannerContent(
-          icon: Icons.rate_review_outlined,
-          contentText: context.strings.homeTopBannerAskToReviewContent,
-          buttonText: context.strings.homeTopBannerAskToReviewButton,
+          icon: Icons.update,
+          contentText: context.strings.homeTopBannerUpdateAvailableContent,
+          buttonText: context.strings.homeTopBannerUpdateAvailableButton,
           backgroundColor: Theme.of(context).primaryColor.withValues(alpha: .2),
         );
     }

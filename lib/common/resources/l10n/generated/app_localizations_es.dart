@@ -18,10 +18,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get advertisementPlaceholder => 'Publicidad';
 
   @override
-  String get homeTopBannerAskToReviewContent => '¿Te gusta Zapify? Cuéntanos.';
+  String get homeTopBannerUpdateAvailableContent => 'Nueva versión disponible. Actualiza ahora para disfrutar de las últimas funciones.';
 
   @override
-  String get homeTopBannerAskToReviewButton => 'OPINAR';
+  String get homeTopBannerUpdateAvailableButton => 'ACTUALIZAR';
 
   @override
   String get homePhoneNumberLabel => 'Número de teléfono';
