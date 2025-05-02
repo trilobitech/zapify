@@ -37,5 +37,7 @@ abstract class IAnalytics {
 
   void intentHandled(String name, {Map<String, Object> properties = const {}});
 
+  void errorDisplayed(String name, {Map<String, Object> properties = const {}});
+
   void logEvent(String name, {Map<String, Object> properties = const {}});
 }
