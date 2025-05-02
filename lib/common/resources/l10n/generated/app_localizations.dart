@@ -115,17 +115,17 @@ abstract class AppLocalizations {
   /// **'Advertisement'**
   String get advertisementPlaceholder;
 
-  /// No description provided for @homeTopBannerAskToReviewContent.
+  /// No description provided for @homeTopBannerUpdateAvailableContent.
   ///
   /// In en, this message translates to:
-  /// **'Are you enjoying Zapify? Please tell us.'**
-  String get homeTopBannerAskToReviewContent;
+  /// **'New version available! Update now to enjoy the latest features.'**
+  String get homeTopBannerUpdateAvailableContent;
 
-  /// No description provided for @homeTopBannerAskToReviewButton.
+  /// No description provided for @homeTopBannerUpdateAvailableButton.
   ///
   /// In en, this message translates to:
-  /// **'REVIEW'**
-  String get homeTopBannerAskToReviewButton;
+  /// **'UPDATE'**
+  String get homeTopBannerUpdateAvailableButton;
 
   /// No description provided for @homePhoneNumberLabel.
   ///

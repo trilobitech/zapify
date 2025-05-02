@@ -4,8 +4,8 @@
 
     "advertisementPlaceholder": "Advertisement",
 
-    "homeTopBannerAskToReviewContent": "Are you enjoying Zapify? Please tell us.",
-    "homeTopBannerAskToReviewButton": "REVIEW",
+    "homeTopBannerUpdateAvailableContent": "New version available! Update now to enjoy the latest features.",
+    "homeTopBannerUpdateAvailableButton": "UPDATE",
 
     "homePhoneNumberLabel": "Phone number",
     "homeBrPhoneNumberLabel": "Phone number with area code",

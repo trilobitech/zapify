@@ -1,5 +1,5 @@
 enum TopBannerType {
-  appReview;
+  updateAvailable;
 
   factory TopBannerType.fromString(String key) {
     for (final type in TopBannerType.values) {
