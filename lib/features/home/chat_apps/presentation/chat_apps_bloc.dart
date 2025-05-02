@@ -37,6 +37,10 @@ class ChatAppsBloc extends StateActionBloc<ChatAppsState, ChatAppsAction> {
     } else {
       Log.e(error, stackTrace);
     }
+    _analytics.errorDisplayed(
+      'launch_chat_app',
+      properties: {'app_launched': entry.name, 'error': error.toString()},
+    );
   }
 
   ChatAppsState _mapToState(Iterable<ChatApp> entries) =>

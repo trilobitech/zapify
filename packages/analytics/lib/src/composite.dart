@@ -71,6 +71,15 @@ class Analytics implements IAnalytics {
   );
 
   @override
+  void errorDisplayed(
+    String name, {
+    Map<String, Object> properties = const {},
+  }) => logEvent(
+    'error_displayed',
+    properties: {'error_name': name, ...properties},
+  );
+
+  @override
   void logEvent(
     String name, {
     Map<String, Object> properties = const {},
