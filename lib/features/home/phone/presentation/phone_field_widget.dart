@@ -42,7 +42,10 @@ class PhoneFieldWidget extends StatelessWidget
               textFieldFocus: _textFieldFocus,
               textStyle: _textFieldStyle,
             ),
-            labelText: context.strings.homePhoneNumberLabel,
+            labelText:
+                state.region?.code != 'BR'
+                    ? context.strings.homePhoneNumberLabel
+                    : context.strings.homeBrPhoneNumberLabel,
             // https://github.com/flutter/flutter/issues/15400#issuecomment-475773473
             // helperText: ' ', // FIXME: talkback says "Space", should be avoided to fix it
             errorText:

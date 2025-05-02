@@ -27,6 +27,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get homePhoneNumberLabel => 'Número de teléfono';
 
   @override
+  String get homeBrPhoneNumberLabel => 'Número de teléfono con DDD';
+
+  @override
   String homeOpenWithButton(Object appName) {
     return '$appName';
   }
