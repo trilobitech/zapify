@@ -27,7 +27,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homePhoneNumberLabel => 'Phone number';
 
   @override
-  String get homeBrPhoneNumberLabel => 'Phone number with area code';
+  String get homePhoneNumberWithAreaCodeLabel => 'Phone number with area code';
 
   @override
   String homeOpenWithButton(Object appName) {

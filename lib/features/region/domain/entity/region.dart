@@ -21,6 +21,8 @@ abstract class IRegion extends Equatable implements Comparable<IRegion> {
 
   @override
   List<Object?> get props => [code];
+
+  bool requiresAreaCode() => code == _kDefaultRegionCode;
 }
 
 class Region extends IRegion {

@@ -133,11 +133,11 @@ abstract class AppLocalizations {
   /// **'Phone number'**
   String get homePhoneNumberLabel;
 
-  /// No description provided for @homeBrPhoneNumberLabel.
+  /// No description provided for @homePhoneNumberWithAreaCodeLabel.
   ///
   /// In en, this message translates to:
   /// **'Phone number with area code'**
-  String get homeBrPhoneNumberLabel;
+  String get homePhoneNumberWithAreaCodeLabel;
 
   /// No description provided for @homeOpenWithButton.
   ///

@@ -8,7 +8,7 @@
     "homeTopBannerUpdateAvailableButton": "ATUALIZAR",
 
     "homePhoneNumberLabel": "Número de telefone",
-    "homeBrPhoneNumberLabel": "Número de telefone com DDD",
+    "homePhoneNumberWithAreaCodeLabel": "Número de telefone com código de área",
     "homeOpenWithButton": "{appName}",
     "homeEmptyPhoneNumberError": "Por favor informe o número desejado.",
     "homeInvalidPhoneNumberError": "O número informado é inválido",
