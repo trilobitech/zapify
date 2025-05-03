@@ -3,6 +3,10 @@ import 'presentation/chat_apps_bloc.dart';
 
 void chatAppsModule() {
   registerFactory(
-    () => ChatAppsBloc(getEnabledChatApps: get(), analytics: get()),
+    () => ChatAppsBloc(
+      getEnabledChatApps: get(),
+      maybeRequestAppReviewUseCase: get(),
+      analytics: get(),
+    ),
   );
 }

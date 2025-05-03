@@ -38,9 +38,12 @@ class ChatAppsWidget extends StatelessWidget
     final chatAppsMediator = context.read<ChatAppsMediator>();
     await chatAppsMediator
         .launch(entry.deeplinkTemplate)
-        .catchError(
-          (err, stack) => chatAppsBloc.selectFailed(entry, err, stack),
-        );
+        .then((_) {
+          chatAppsBloc.chatOpenedSuccessful();
+        })
+        .catchError((err, stack) {
+          chatAppsBloc.selectFailed(entry, err, stack);
+        });
   }
 
   Future<void> _showChatFailureMessage(

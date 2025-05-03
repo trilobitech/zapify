@@ -1,4 +1,5 @@
 import 'package:app_install_date/app_install_date.dart';
+import 'package:logify/logify.dart';
 
 import '../../../../../../common/config/local_config.dart';
 import '../../../../../../common/config/remote_config.dart';
@@ -17,7 +18,13 @@ class CanAskForReviewUseCase {
         .get<int?>()
         .thenIfNotNull(DateTime.fromMillisecondsSinceEpoch)
         .orDefault(() => AppInstallDate().installDate)
-        .then((date) => date.add(const Duration(days: 31)));
+        .then(
+          (date) async => date.add(
+            Duration(
+              days: await RemoteConfig.askForReviewDaysInterval.get<int>(),
+            ),
+          ),
+        );
 
     return DateTime.now().isAfter(nextReviewAt);
   }
@@ -25,7 +32,11 @@ class CanAskForReviewUseCase {
 
 class SetLastAppReviewAtNowUseCase {
   void call() async {
-    final now = DateTime.now().millisecondsSinceEpoch;
-    await LocalConfig.lastAppReviewAt.set(now);
+    try {
+      final now = DateTime.now().millisecondsSinceEpoch;
+      await LocalConfig.lastAppReviewAt.set(now);
+    } catch (e, stackTrace) {
+      Log.e(e, stackTrace);
+    }
   }
 }
