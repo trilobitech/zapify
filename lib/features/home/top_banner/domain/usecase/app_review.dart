@@ -17,7 +17,13 @@ class CanAskForReviewUseCase {
         .get<int?>()
         .thenIfNotNull(DateTime.fromMillisecondsSinceEpoch)
         .orDefault(() => AppInstallDate().installDate)
-        .then((date) => date.add(const Duration(days: 31)));
+        .then(
+          (date) async => date.add(
+            Duration(
+              days: await RemoteConfig.askForReviewDaysInterval.get<int>(),
+            ),
+          ),
+        );
 
     return DateTime.now().isAfter(nextReviewAt);
   }
