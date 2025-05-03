@@ -4,11 +4,9 @@ import 'app_review.dart';
 class GetTopBannerUseCase {
   GetTopBannerUseCase({required this.canAskForReview});
 
-  CanAskForReviewUseCase canAskForReview;
+  final CanAskForReviewUseCase canAskForReview;
 
   Stream<TopBannerType> call() async* {
-    if (await canAskForReview()) {
-      yield TopBannerType.appReview;
-    }
+    // TODO: Implement logic to determine the top banner type
   }
 }
