@@ -1,0 +1,21 @@
+name: "Validate iOS app distribution"
+
+on:
+
+  push:
+    branches: ["fix/ios-build"]
+
+jobs:
+  distribute-ios:
+    uses: ./.github/workflows/distribute-flutter-ios.yml
+    with:
+      environment: production
+      # environment: firebase-distribution
+    secrets:
+      AMPLITUDE_KEY: ${{ secrets.AMPLITUDE_KEY }}
+      APP_STORE_API_KEY: ${{ secrets.APP_STORE_API_KEY }}
+      APPLE_ID: ${{ secrets.APPLE_ID }}
+      FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      GC_KEYS: ${{ secrets.GC_KEYS }}
+      GC_BUCKET_NAME: ${{ secrets.GC_BUCKET_NAME }}
+      IOS_ADS_APP_ID: ${{ secrets.IOS_ADS_APP_ID }}
