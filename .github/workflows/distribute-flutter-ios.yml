@@ -109,3 +109,16 @@ jobs:
           APPLE_ID: ${{ secrets.APPLE_ID }}
           APP_STORE_API_KEY_PATH: ${{ runner.temp }}/app-store-api-key.json
           GC_BUCKET_NAME: ${{ secrets.GC_BUCKET_NAME }}
+
+      - name: Build iOS IPA
+        run: |
+          flutter build ipa --profile $(./bin/get-dart-define.sh)
+        env:
+          ZAPIFY_AMPLITUDE_KEY: ${{ secrets.AMPLITUDE_KEY }}
+          IOS_BUNDLE_ID: ${{ vars.IOS_BUNDLE_ID }}
+
+      - name: Upload IPA as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-ios-ipa
+          path: build/ios/ipa/*.ipa
