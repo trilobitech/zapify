@@ -38,9 +38,9 @@ jobs:
       environment: ${{ github.event.inputs.environment }}
     secrets:
       AMPLITUDE_KEY: ${{ secrets.AMPLITUDE_KEY }}
-      APP_STORE_API_KEY: ${{ secrets.APP_STORE_API_KEY }}
-      APPLE_ID: ${{ secrets.APPLE_ID }}
-      CERTIFICATE_CONTENT: ${{ secrets.CERTIFICATE_CONTENT }}
-      CERTIFICATE_PWD: ${{ secrets.CERTIFICATE_PWD }}
       FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-      IOS_BUILD_FILES: ${{ secrets.IOS_BUILD_FILES }}
+      IOS_ADS_APP_ID: ${{ secrets.IOS_ADS_APP_ID }}
+      APPLE_ID: ${{ secrets.APPLE_ID }}
+      APP_STORE_API_KEY: ${{ secrets.APP_STORE_API_KEY }}
+      GC_BUCKET_NAME: ${{ secrets.GC_BUCKET_NAME }}
+      GC_KEYS: ${{ secrets.GC_KEYS }}
