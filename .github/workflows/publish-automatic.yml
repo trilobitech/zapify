@@ -36,6 +36,22 @@ jobs:
       FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
 
 
+  distribute-ios:
+    needs: get-pr-labels
+    uses: ./.github/workflows/distribute-flutter-ios.yml
+    if: contains(fromJson(needs.get-pr-labels.outputs.labels), 'app-store-submitted') == false
+    with:
+      environment: production
+    secrets:
+      AMPLITUDE_KEY: ${{ secrets.AMPLITUDE_KEY }}
+      FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      IOS_ADS_APP_ID: ${{ secrets.IOS_ADS_APP_ID }}
+      APPLE_ID: ${{ secrets.APPLE_ID }}
+      APP_STORE_API_KEY: ${{ secrets.APP_STORE_API_KEY }}
+      GC_BUCKET_NAME: ${{ secrets.GC_BUCKET_NAME }}
+      GC_KEYS: ${{ secrets.GC_KEYS }}
+
+
   get-pr-labels:
     runs-on: ubuntu-latest
     needs: check-branch
