@@ -1,6 +1,7 @@
 name: "Distribute iOS Flutter app"
 
 on:
+
   workflow_call:
     inputs:
       environment:
@@ -9,22 +10,25 @@ on:
         required: true
 
     secrets:
+      TESTER_EMAIL:
+        required: false
       AMPLITUDE_KEY:
-        required: true
-      APP_STORE_API_KEY:
-        required: true
-      APPLE_ID:
-        required: true
-      CERTIFICATE_CONTENT:
-        required: true
-      CERTIFICATE_PWD:
         required: true
       FIREBASE_TOKEN:
         required: true
-      IOS_BUILD_FILES:
+      IOS_ADS_APP_ID:
         required: true
-      TESTER_EMAIL:
-        required: false
+      APPLE_ID:
+        required: true
+      APP_STORE_API_KEY:
+        required: true
+      GC_BUCKET_NAME:
+        required: true
+      GC_KEYS:
+        required: true
+
+env:
+  CI: true
 
 jobs:
 
@@ -34,13 +38,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4.2.2
+        with:
+          lfs: true
 
       - id: versions
         name: Read .tool-versions
         uses: marocchino/tool-versions-action@v1
-
-      - name: Select Xcode version
-        run: sudo xcode-select -s /Applications/Xcode_15.4.app
 
       - name: Setup Flutter SDK
         uses: subosito/flutter-action@v2.19.0
@@ -59,34 +62,38 @@ jobs:
       - name: Install project dependencies
         run: flutter pub get
 
+      - name: Set iOS secrets files
+        working-directory: ./ios
+        run: |
+          base64 -d <<< "${{ secrets.GC_KEYS }}" > $GC_KEYS_PATH
+          base64 -d <<< "${{ secrets.APP_STORE_API_KEY }}" > $APP_STORE_API_KEY_PATH
+
+          tee $SECRETS_CONFIG_PATH <<EOF
+          IOS_ADS_APP_ID=$IOS_ADS_APP_ID
+          EOF
+        env:
+          IOS_ADS_APP_ID: ${{ secrets.IOS_ADS_APP_ID }}
+          SECRETS_CONFIG_PATH: ./Flutter/Secrets.xcconfig
+          GC_KEYS_PATH: ./gc_keys.json
+          APP_STORE_API_KEY_PATH: ${{ runner.temp }}/app-store-api-key.json
+
+      - name: Configure Firebase
+        run: |
+          curl -sL https://firebase.tools | bash
+          dart pub global activate flutterfire_cli
+          flutterfire configure -f -y --project=zapfy-f575a \
+            --out=lib/firebase_options.dart \
+            --platforms=ios --ios-bundle-id=$IOS_BUNDLE_ID
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          IOS_BUNDLE_ID: ${{ vars.IOS_BUNDLE_ID }}
+
       - name: Install Ruby to use Fastlane
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ steps.versions.outputs.ruby }}
           bundler-cache: true
           working-directory: ./ios
-
-      - name: Get iOS secrets files
-        run: base64 -d <<< ${{ secrets.IOS_BUILD_FILES }} | tar xzf -
-
-      - name: Get App Store API KEY
-        run: base64 -d <<< "${{ secrets.APP_STORE_API_KEY }}" > $APP_STORE_API_KEY_PATH
-        env:
-          APP_STORE_API_KEY_PATH: ${{ runner.temp }}/app-store-api-key.json
-
-      - name: Create default keychain
-        run: |
-          security create-keychain -p "$KEYCHAIN_PWD" $KEYCHAIN_PATH
-          security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
-          security default-keychain -s $KEYCHAIN_PATH
-          security unlock-keychain -p "$KEYCHAIN_PWD" $KEYCHAIN_PATH
-          base64 -d <<< "$CERTIFICATE_CONTENT" > $CERTIFICATE_PATH
-        env:
-          APP_STORE_API_KEY_PATH: ${{ runner.temp }}/app-store-api-key.json
-          CERTIFICATE_CONTENT: ${{ secrets.CERTIFICATE_CONTENT }}
-          CERTIFICATE_PATH: ${{ runner.temp }}/build_certificate.p12
-          KEYCHAIN_PATH: ${{ runner.temp }}/app-signing.keychain-db
-          KEYCHAIN_PWD: ''
 
       - name: Run lane to distribute
         uses: maierj/fastlane-action@v3.1.0
@@ -95,13 +102,12 @@ jobs:
           options: '{ "tester_email": "${{ secrets.TESTER_EMAIL }}" }'
           subdirectory: ./ios
         env:
-          APP_STORE_API_KEY_PATH: ${{ runner.temp }}/app-store-api-key.json
-          APPLE_ID: ${{ secrets.APPLE_ID }}
-          CERTIFICATE_PATH: ${{ runner.temp }}/build_certificate.p12
-          CERTIFICATE_PWD: ${{ secrets.CERTIFICATE_PWD }}
           FASTLANE_SKIP_UPDATE_CHECK: true
+          FASTLANE_DISABLE_COLORS: true
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-          IOS_BUNDLE_ID: ${{ vars.IOS_BUNDLE_ID }}
-          KEYCHAIN_PATH: ${{ runner.temp }}/app-signing.keychain-db
-          KEYCHAIN_PWD: ''
           ZAPIFY_AMPLITUDE_KEY: ${{ secrets.AMPLITUDE_KEY }}
+          APP_BUILD_NUMBER: ${{ github.run_number }}
+          IOS_BUNDLE_ID: ${{ vars.IOS_BUNDLE_ID }}
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APP_STORE_API_KEY_PATH: ${{ runner.temp }}/app-store-api-key.json
+          GC_BUCKET_NAME: ${{ secrets.GC_BUCKET_NAME }}
