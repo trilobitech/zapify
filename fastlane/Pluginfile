@@ -4,3 +4,9 @@
 
 gem 'fastlane'
 gem 'fastlane-plugin-firebase_app_distribution'
+
+# https://github.com/fastlane/fastlane/issues/21942#issuecomment-2582202838
+gem 'abbrev'
+gem 'logger'
+gem 'mutex_m'
+gem 'csv'
