@@ -5,7 +5,7 @@ $project_path = File.realpath(File.dirname(File.dirname(__FILE__)))
 
 def flutter(cmd)
   Dir.chdir($project_path) do
-    sh("./bin/get-dart-define.sh | xargs flutter #{cmd}")
+    sh("flutter #{cmd} $(./bin/get-dart-define.sh)")
   end
 end
 
