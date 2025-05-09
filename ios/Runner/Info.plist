@@ -16,6 +16,7 @@
 	<array>
 		<string>en</string>
 		<string>pt</string>
+		<string>es</string>
 	</array>
 	<key>CFBundleName</key>
 	<string>Zapify</string>
@@ -66,5 +67,7 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+    <key>FLTEnableImpeller</key>
+    <false/>
 </dict>
 </plist>
