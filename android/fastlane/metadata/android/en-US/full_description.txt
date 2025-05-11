@@ -1,12 +1,13 @@
-📲 **Start chats instantly!**
+📲 Send messages without hassle!
 
-Tired of saving contacts just to send a message? Zapify makes it easy!
+Tired of saving contacts just to send a quick message? Zapify fixes that!
 
-✔ **Open chats on WhatsApp, Telegram & Signal without saving numbers**
-✔ **Easily access and reuse recent numbers**
-✔ **Choose which messengers you want to use**
-✔ **Set a default region to auto-complete numbers**
+✔ Avoid cluttering your contact list — open chats on WhatsApp, Telegram, and Signal without saving the number
+✔ Easily view and reuse recent numbers
+✔ Customize which messaging apps you want to see
+✔ Set a default country code
+✔ Supports light and dark mode
 
-💡 **Fast, convenient, and hassle-free!**
+💡 Simple, fast, and hassle-free!
 
-*This app is not affiliated with or endorsed by WhatsApp Inc., Telegram, or Signal.*
+*This app is not affiliated with or endorsed by WhatsApp Inc., Telegram, or Signal.

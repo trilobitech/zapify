@@ -1,12 +1,13 @@
-📲 **¡Envía mensajes sin complicaciones!**
+📲 ¡Envía mensajes sin complicaciones!
 
-¿Cansado de guardar contactos solo para enviar un mensaje? ¡Zapify lo resuelve!
+¿Cansado de guardar contactos solo para enviar un mensaje rápido? ¡Zapify lo soluciona!
 
-✔ **Abre chats en WhatsApp, Telegram y Signal sin guardar el número**
-✔ **Consulta y reutiliza números recientes fácilmente**
-✔ **Personaliza las apps de mensajería que quieres usar**
-✔ **Define una región predeterminada para completar números automáticamente**
+✔ Evita llenar tu lista de contactos — abre chats en WhatsApp, Telegram y Signal sin guardar el número
+✔ Consulta y reutiliza números recientes fácilmente
+✔ Personaliza qué apps de mensajería quieres ver
+✔ Define un código de país por defecto
+✔ Compatible con modo claro y oscuro
 
-💡 **¡Rápido, práctico y sin complicaciones!**
+💡 ¡Rápido, práctico y sin complicaciones!
 
-*Esta aplicación no está afiliada ni respaldada por WhatsApp Inc., Telegram ni Signal.*
+*Esta app no está afiliada ni respaldada por WhatsApp Inc., Telegram ni Signal.
