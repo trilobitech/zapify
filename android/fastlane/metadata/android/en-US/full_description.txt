@@ -1,12 +1,34 @@
-📲 **Start chats instantly!**
+Keep your contact list clean by avoiding numbers you'll only use once. With Zapify, you can start conversations in messaging apps like WhatsApp, Telegram, or Signal without saving the number.
 
-Tired of saving contacts just to send a message? Zapify makes it easy!
+Simple, fast, and to the point.
 
-✔ **Open chats on WhatsApp, Telegram & Signal without saving numbers**
-✔ **Easily access and reuse recent numbers**
-✔ **Choose which messengers you want to use**
-✔ **Set a default region to auto-complete numbers**
+Zapify is a practical tool for everyday use. Whether you're messaging a delivery person, a one-time client, or responding to a missed call, you can send messages with just a few taps — no need to save the number.
 
-💡 **Fast, convenient, and hassle-free!**
+Key features:
 
-*This app is not affiliated with or endorsed by WhatsApp Inc., Telegram, or Signal.*
+• Start chats in WhatsApp, WhatsApp Business, Telegram, or Signal without saving contacts
+• View and reuse recently used numbers with ease
+• Set a default country code for faster typing
+• Choose which messaging apps appear for you
+• Full support for light and dark mode
+• Completely local: we do not store or send your data to any servers
+
+Your privacy comes first.
+
+Zapify works 100% locally on your device. It requires no login, collects no personal data, and sends nothing to external servers. All usage history stays on your phone.
+
+Useful in many situations:
+
+• Just need to send a message once? Done.
+• Missed a call and need to reply? Send a quick message.
+• Want to text someone without saving the number? Easy and convenient.
+
+---
+
+Important notice:
+
+This app is an independent tool and is not affiliated with, endorsed, or associated with WhatsApp Inc., Telegram, or Signal. The mentioned names are used solely to identify compatible applications.
+
+---
+
+Try it now and save time on your next conversation.
