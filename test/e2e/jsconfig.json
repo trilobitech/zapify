@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+      "target": "es6",
+      "checkJs": true,
+      "module": "commonjs",
+      "allowJs": true,
+      "types": ["webdriverio", "mocha", "node"]
+    },
+    "include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.js", "test/**/*.js"]
+  }
