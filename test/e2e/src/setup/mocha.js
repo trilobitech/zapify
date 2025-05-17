@@ -35,5 +35,7 @@ async function androidDeviceSetup() {
 }
 
 async function iosDeviceSetup() {
-  throw Error('Not implemented yet!')
+  await Promise.all([
+    applyThemeMode(),
+  ])
 }

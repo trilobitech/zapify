@@ -26,7 +26,15 @@ class AndroidRegionPickerScreen extends RegionPickerScreen {
   }
 }
 
-class IosRegionPickerScreen extends RegionPickerScreen { }
+class IosRegionPickerScreen extends RegionPickerScreen {
+  get regionSearchField() {
+    return $('//XCUIElementTypeTextField[@name="RegionSearchField"]')
+  }
+
+  regionItem(/** @type {string} */ countryCode, /** @type {string} */ dialCode) {
+    return $(`//XCUIElementTypeButton[@name="${countryCode} ${dialCode}"]`)
+  }
+}
 
 /**
  * @param {string} platformName

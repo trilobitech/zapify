@@ -1,9 +1,9 @@
-import { platformNames } from "../utils";
+import { platformNames } from '../utils.js';
 
 export const iosCapabilities = {
   platformName: platformNames.IOS,
-  // 'appium:deviceName': '',
   'appium:automationName': 'XCUITest',
-  // 'appium:app': '',
+  'appium:deviceName': 'iPhone 15 Pro Max',
+  'appium:platformVersion': '17.5',
   'appium:bundleId': 'com.zapfy.app.dev',
 }

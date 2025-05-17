@@ -20,6 +20,13 @@ class HomeScreen {
   }
 
   /**
+   * @returns {Promise<string>}
+   */
+  get phoneNumberFieldPrefixLabel() {
+    throw Error('Not implemented!')
+  }
+
+  /**
    * @returns {import("webdriverio").ChainablePromiseElement}
    */
   historicItem(/** @type {Number} */ position) {
@@ -36,12 +43,32 @@ class AndroidHomeScreen extends HomeScreen {
     return $('//android.widget.Button[@resource-id="PhoneNumberRegionPicker"]')
   }
 
+  get phoneNumberFieldPrefixLabel() {
+    return this.phoneNumberFieldPrefix.getAttribute('content-desc')
+  }
+
   historicItem(/** @type {Number} */ position) {
     return $(`//android.view.View[@resource-id="HistoricList"]/android.view.View/android.view.View/android.view.View[${position}]`)
   }
 }
 
-class IosHomeScreen extends HomeScreen { }
+class IosHomeScreen extends HomeScreen {
+  get phoneNumberField() {
+    return $('//XCUIElementTypeTextField[@name="PhoneNumberField"]')
+  }
+
+  get phoneNumberFieldPrefix() {
+    return $('//XCUIElementTypeButton[@name="PhoneNumberRegionPicker"]/../XCUIElementTypeOther')
+  }
+
+  get phoneNumberFieldPrefixLabel() {
+    return $('//XCUIElementTypeButton[@name="PhoneNumberRegionPicker"]').getAttribute('label')
+  }
+
+  historicItem(/** @type {Number} */ position) {
+    return $(`//XCUIElementTypeOther[@name="HistoricList"]/../XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[${position}]/XCUIElementTypeButton`)
+  }
+}
 
 /**
  * @param {string} platformName

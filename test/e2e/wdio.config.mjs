@@ -1,4 +1,4 @@
-import { capabilities } from './src/capability/index.js'
+import { getCapabilities } from './src/capability/index.js'
 import { loadEnv } from './src/utils.js'
 
 loadEnv()
@@ -37,7 +37,7 @@ export const config = {
 
   maxInstances: 1,
 
-  capabilities,
+  capabilities: getCapabilities(),
 
   specs: [
     // './src/specs/prepare.js',
