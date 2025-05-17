@@ -1,3 +1,6 @@
-**/fastlane/metadata/**/*.jpg filter=lfs diff=lfs merge=lfs -text
 **/fastlane/metadata/**/*.png filter=lfs diff=lfs merge=lfs -text
+**/fastlane/metadata/**/*.jpg filter=lfs diff=lfs merge=lfs -text
 **/fastlane/metadata/**/*.jpeg filter=lfs diff=lfs merge=lfs -text
+**/fastlane/screenshots/**/*.png filter=lfs diff=lfs merge=lfs -text
+**/fastlane/screenshots/**/*.jpg filter=lfs diff=lfs merge=lfs -text
+**/fastlane/screenshots/**/*.jpeg filter=lfs diff=lfs merge=lfs -text
