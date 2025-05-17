@@ -40,7 +40,7 @@ export function loadEnv() {
   let envFiles = [defaultEnvFile]
 
   if (fsSync.existsSync(customEnvFile)) {
-    envFiles = [...envFiles, customEnvFile]
+    envFiles = [customEnvFile, ...envFiles]
   }
 
   dotenv.config({
@@ -172,20 +172,32 @@ export async function takeScreenshot(name) {
  * @param {'light' | 'dark' | 'auto'} mode - Desired theme mode
  */
 export async function setThemeMode(mode) {
-  const cmdArg = {
-    dark: 'yes',
-    light: 'no',
-    auto: 'auto',
-  }[mode]
+  switch (driver.capabilities.platformName) {
+    case platformNames.ANDROID:
+      const cmdArg = {
+        dark: 'yes',
+        light: 'no',
+        auto: 'auto',
+      }[mode]
 
-  if (!cmdArg) {
-    throw new Error(`Invalid theme mode "${mode}". Use 'light', 'dark', or 'auto'.`)
+      if (!cmdArg) {
+        throw new Error(`Invalid theme mode "${mode}". Use 'light', 'dark', or 'auto'.`)
+      }
+
+      await driver.execute('mobile: shell', {
+        command: 'cmd',
+        args: ['uimode', 'night', cmdArg],
+      })
+      break
+    case platformNames.IOS:
+      execSync(
+        `xcrun simctl ui booted appearance ${mode}`,
+        { stdio: 'ignore' },
+      )
+      break
   }
 
-  await driver.execute('mobile: shell', {
-    command: 'cmd',
-    args: ['uimode', 'night', cmdArg],
-  })
+
 }
 
 /**
@@ -253,6 +265,11 @@ export async function closeTopActivity(maxTries = 5, delay = 300) {
  * @param {boolean} force
  */
 export async function ensureAppOpened(force) {
+  if (driver.capabilities.platformName != platformNames.ANDROID) {
+    await driver.pause(3_000)
+    return
+  }
+
   const appPackage = driver.capabilities['appPackage']
   const appActivity = driver.capabilities['appActivity']
 

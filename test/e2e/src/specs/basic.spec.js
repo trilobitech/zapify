@@ -1,5 +1,5 @@
 import assert from 'node:assert'
-import { localizedFaker, dialCodeFromNumber, takeScreenshot, scrollAndFindElement, delay } from '../utils'
+import { localizedFaker, dialCodeFromNumber, takeScreenshot, scrollAndFindElement, delay, platformNames } from '../utils'
 import { AppScreens } from '../screen'
 
 describe(`App testing ${driver.capabilities['language']}_${driver.capabilities['locale']}`, async () => {
@@ -34,12 +34,18 @@ describe(`App testing ${driver.capabilities['language']}_${driver.capabilities['
       const { phoneNumberField } = screens.home
 
       const phoneNumber = driver.capabilities['custom:phoneNumber'] || faker.phone.number({ style: 'international' })
-      await typePhoneNumber(screens,phoneNumber)
+      await typePhoneNumber(screens, phoneNumber)
 
+      await driver.pause(1_000)
       await takeScreenshot(`homeFilled`)
 
       await phoneNumberField.clearValue()
-      await driver.pressKeyCode(66)
+      if (driver.capabilities.platformName == platformNames.ANDROID) {
+        await driver.pressKeyCode(66)
+      } else if (driver.capabilities.platformName == platformNames.IOS) {
+        //await $('//XCUIElementTypeButton[@name="Done"]').click()
+        //screens.home.phoneNumberField.
+      }
     },
   )
 
@@ -85,6 +91,7 @@ describe(`App testing ${driver.capabilities['language']}_${driver.capabilities['
 
       // Always call releaseActions() after using performActions
       await driver.releaseActions()
+      await screens.home.phoneNumberField.clearValue()
     },
   )
 })
@@ -94,24 +101,25 @@ describe(`App testing ${driver.capabilities['language']}_${driver.capabilities['
  * @param {string} phoneNumber
  */
 async function typePhoneNumber(screens, phoneNumber) {
-  const { phoneNumberField, phoneNumberFieldPrefix } = screens.home
+  const { home } = screens
 
   const dialCode = dialCodeFromNumber(phoneNumber)
   const nationalPhoneNumber = phoneNumber.replace(dialCode, '')
 
-  await phoneNumberField.waitForDisplayed({ timeout: 2_000 })
-  await phoneNumberField.tap()
-  await phoneNumberFieldPrefix.waitForDisplayed({ timeout: 5_000 })
+  await home.phoneNumberField.waitForDisplayed({ timeout: 2_000 })
+  await home.phoneNumberField.tap()
+  await home.phoneNumberFieldPrefix.waitForDisplayed({ timeout: 5_000 })
 
-  const contentDesc = (await phoneNumberFieldPrefix.getAttribute('content-desc')).replace(/^[^+]+/, '')
+  const contentDesc = (await screens.home.phoneNumberFieldPrefixLabel).replace(/^[^+]+/, '')
   if (contentDesc != dialCode) {
-    await phoneNumberFieldPrefix.tap()
+    await home.phoneNumberFieldPrefix.tap()
     await selectRegionPrefix(screens, dialCode)
-    await phoneNumberField.waitForDisplayed({ timeout: 1_000 })
-    await phoneNumberField.tap()
+    await home.phoneNumberField.waitForDisplayed({ timeout: 1_000 })
+    await home.phoneNumberField.tap()
+    await driver.pause(3_000)
   }
 
-  await phoneNumberField.sendKeys(nationalPhoneNumber.split(''))
+  await typeText(screens.home.phoneNumberField, nationalPhoneNumber)
 }
 
 /**
@@ -125,9 +133,23 @@ async function selectRegionPrefix(screens, dialCode) {
   await regionSearchField.waitForDisplayed({ timeout: 2_000 })
   await regionSearchField.tap()
   await regionSearchField.sendKeys(`${countryCode} ${dialCode}`.split(''))
-  await driver.hideKeyboard()
+  if (driver.capabilities.platformName == platformNames.ANDROID) {
+    await driver.hideKeyboard()
+  }
   const selectedRegionItem = await scrollAndFindElement(
     regionItem(driver.capabilities['locale'], dialCode),
   )
   await selectedRegionItem.tap()
+}
+
+/**
+ * @param {{ sendKeys: (arg0: string[]) => any; }} element
+ * @param {string} text
+ */
+async function typeText(element, text) {
+  for (let index = 0; index < text.length; index++) {
+    const char = text[index];
+    await element.sendKeys([char])
+    await driver.pause(200)
+  }
 }
