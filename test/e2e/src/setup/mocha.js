@@ -37,5 +37,6 @@ async function androidDeviceSetup() {
 async function iosDeviceSetup() {
   await Promise.all([
     applyThemeMode(),
+    enableDemoMode(),
   ])
 }
