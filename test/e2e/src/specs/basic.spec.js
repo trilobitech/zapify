@@ -29,27 +29,6 @@ describe(`App testing ${driver.capabilities['language']}_${driver.capabilities['
   )
 
   it(
-    `typing phone number`,
-    async () => {
-      const { phoneNumberField } = screens.home
-
-      const phoneNumber = driver.capabilities['custom:phoneNumber'] || faker.phone.number({ style: 'international' })
-      await typePhoneNumber(screens, phoneNumber)
-
-      await driver.pause(1_000)
-      await takeScreenshot(`homeFilled`)
-
-      await phoneNumberField.clearValue()
-      if (driver.capabilities.platformName == platformNames.ANDROID) {
-        await driver.pressKeyCode(66)
-      } else if (driver.capabilities.platformName == platformNames.IOS) {
-        //await $('//XCUIElementTypeButton[@name="Done"]').click()
-        //screens.home.phoneNumberField.
-      }
-    },
-  )
-
-  it(
     'remove entry',
     async () => {
       const { historicItem } = screens.home
@@ -73,18 +52,24 @@ describe(`App testing ${driver.capabilities['language']}_${driver.capabilities['
           { type: 'pause', duration: 100 },
           { type: 'pointerMove', duration: 500, x: endX, y },
           { type: 'pause', duration: 100 },
+          { type: 'pointerUp', button: 0 },
         ],
       }])
 
       // TODO: assert if "remove placeholder" is displayed
       await takeScreenshot('homeRemoveEntry')
 
+      // back to normal state
       await driver.performActions([{
         type: 'pointer',
         id: 'finger1',
         parameters: { pointerType: 'touch' },
         actions: [
           { type: 'pointerMove', duration: 0, x: endX, y },
+          { type: 'pointerDown', button: 0 },
+          { type: 'pause', duration: 100 },
+          { type: 'pointerMove', duration: 500, x: startX, y },
+          { type: 'pause', duration: 100 },
           { type: 'pointerUp', button: 0 },
         ],
       }])
@@ -92,6 +77,27 @@ describe(`App testing ${driver.capabilities['language']}_${driver.capabilities['
       // Always call releaseActions() after using performActions
       await driver.releaseActions()
       await screens.home.phoneNumberField.clearValue()
+    },
+  )
+
+  it(
+    `typing phone number`,
+    async () => {
+      const { phoneNumberField } = screens.home
+
+      const phoneNumber = driver.capabilities['custom:phoneNumber'] || faker.phone.number({ style: 'international' })
+      await typePhoneNumber(screens, phoneNumber)
+
+      await driver.pause(1_000)
+      await takeScreenshot(`homeFilled`)
+
+      await phoneNumberField.clearValue()
+      if (driver.capabilities.platformName == platformNames.ANDROID) {
+        await driver.pressKeyCode(66)
+      } else if (driver.capabilities.platformName == platformNames.IOS) {
+        //await $('//XCUIElementTypeButton[@name="Done"]').click()
+        //screens.home.phoneNumberField.
+      }
     },
   )
 })

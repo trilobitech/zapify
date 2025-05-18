@@ -1,4 +1,4 @@
-import { isGboardHandWritingEnabled, notifyGboardHandWritingDisabled, closeTopActivity, delay, setThemeMode } from '../utils.js'
+import { isGboardHandWritingEnabled, notifyGboardHandWritingDisabled, closeTopActivity, delay, setThemeMode, platformNames } from '../utils.js'
 import { execSync } from 'node:child_process'
 
 export async function disableGboardHandWritingIfNeeded() {
@@ -35,7 +35,14 @@ export async function disableGboardHandWritingIfNeeded() {
 }
 
 export async function enableDemoMode() {
-  execSync('android-demo-mode on 0720 > /dev/null')
+  switch (driver.capabilities.platformName) {
+    case platformNames.ANDROID:
+      execSync('android-demo-mode on 0720 > /dev/null')
+      break
+    case platformNames.IOS:
+      execSync(`xcrun simctl status_bar booted override --time "7:20"`)
+      break
+  }
 }
 
 export async function applyThemeMode() {

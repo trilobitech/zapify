@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:state_action_bloc/state_action_bloc.dart';
 import 'package:timeago_flutter/timeago_flutter.dart';
 
@@ -161,12 +162,53 @@ class _SuccessView extends StatelessWidget {
 }
 
 class _DismissibleEntryView extends StatelessWidget {
-  const _DismissibleEntryView(this.entry);
+  // ignore: unused_element_parameter
+  const _DismissibleEntryView(this.entry, {this.isSlidable = true});
 
   final HistoryEntry entry;
+  final bool isSlidable;
 
   @override
   Widget build(BuildContext context) {
+    if (isSlidable) {
+      return Slidable(
+        key: ValueKey(entry.phoneNumber),
+        endActionPane: ActionPane(
+          motion: const BehindMotion(),
+          openThreshold: 0.2,
+          extentRatio: 0.25,
+          children: [
+            // SlidableAction(
+            //   onPressed: (_) {},
+            //   backgroundColor: const Color.fromARGB(255, 186, 12, 0),
+            //   foregroundColor: Colors.white,
+            //   icon: Icons.delete,
+            //   // label: 'Delete',
+            // ),
+            CustomSlidableAction(
+              onPressed: (_) {},
+              backgroundColor: const Color.fromARGB(255, 186, 12, 0),
+              padding: EdgeInsets.zero,
+              child: Container(
+                color: const Color.fromARGB(255, 186, 12, 0),
+                child: const Stack(
+                  children: [
+                    Positioned(
+                      right: 16,
+                      top: 0,
+                      bottom: 0,
+                      child: Icon(Icons.delete, color: Colors.white),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+        child: _EntryView(entry),
+      );
+    }
+
     return Dismissible(
       key: ValueKey(entry.phoneNumber),
       direction: DismissDirection.endToStart,
