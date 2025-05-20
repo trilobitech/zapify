@@ -53,5 +53,5 @@ extension _ChatAppExt on ChatApp {
   Uri get playStoreUrl =>
       Uri.parse('https://play.google.com/store/search?q=$name&c=apps');
 
-  Uri get appStoreUrl => Uri.parse('https://www.apple.com/search/$name');
+  Uri get appStoreUrl => Uri.parse('https://apps.apple.com/search?term=$name');
 }
