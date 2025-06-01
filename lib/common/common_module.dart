@@ -60,6 +60,7 @@ void commonModule() {
       localConfigDefaults: localConfigDefaults,
     ),
     dependsOn: [SharedPreferences],
+    dispose: (storage) async => storage.close(),
   );
 
   registerSingleton<IAnalytics>(() => analytics);

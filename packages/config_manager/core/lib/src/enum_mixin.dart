@@ -16,6 +16,9 @@ mixin KeyValueMixin<Storage extends KeyValueStorage> {
 
 mixin KeyValueWritableMixin<Storage extends KeyValueWritableStorage>
     on KeyValueMixin<Storage> {
+  Stream<T> watch<T extends Object>() =>
+      storage.asStream().asyncExpand((storage) => storage.watchValue(key));
+
   Future<void> set<T extends Object>(T value) async {
     final storage = await this.storage;
     await storage.setValue(key, value);
