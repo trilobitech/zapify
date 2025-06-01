@@ -1,6 +1,8 @@
 import 'package:logify/logify.dart';
 import 'package:receive_intent/receive_intent.dart';
 
+export 'package:receive_intent/receive_intent.dart' show Intent;
+
 class ShareService {
   Stream<Intent> stream() async* {
     try {

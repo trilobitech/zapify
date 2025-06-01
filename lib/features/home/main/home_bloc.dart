@@ -1,12 +1,17 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:analytics/analytics.dart';
 import 'package:flutter/services.dart';
 import 'package:logify/logify.dart';
-import 'package:receive_intent/receive_intent.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:state_action_bloc/state_action_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../common/domain/error.dart';
+import '../../../common/ext/stream.dart';
 import '../../../common/ext/string.dart';
+import '../../../common/services/share_service.dart';
 import '../../call_log/call_log_mediator.dart';
 import '../../chat_app/domain/exception/chat_app_not_found_error.dart';
 import '../../history/domain/usecase/save_phone_number_history.dart';
@@ -36,8 +41,21 @@ class HomeBloc extends ActionBloc<HomeAction> implements HomeMediator {
   final SavePhoneNumberHistoryUseCase _savePhoneNumberHistory;
   final PhoneFieldComponent _phoneFieldComponent;
   final IAnalytics _analytics;
+  final CompositeSubscription _subscriptions = CompositeSubscription();
 
-  void onIntentReceived(Intent intent) async {
+  late final _shareService = ShareService();
+
+  void onInit() {
+    _subscriptions.addAll([
+      if (Platform.isAndroid) _shareService.stream().listen(_onIntentReceived),
+    ]);
+  }
+
+  void dispose() async {
+    _subscriptions.dispose();
+  }
+
+  void _onIntentReceived(Intent intent) async {
     final phoneNumber = intent.data;
     if (phoneNumber != null && phoneNumber.startsWith('tel:')) {
       _analytics.intentHandled('phone_number_received');
