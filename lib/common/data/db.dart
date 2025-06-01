@@ -38,71 +38,74 @@ Future<void> _migrate(Database db, Iterable<String> migrations) async {
 
 List<String> get _migrationsUp => [
   '''
-      CREATE TABLE historic(
-        number TEXT PRIMARY KEY,
-        created_at TIMESTAMP DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) NOT NULL,
-        last_usage_at TIMESTAMP
-      )
-      ''',
+    CREATE TABLE historic(
+      number TEXT PRIMARY KEY,
+      created_at TIMESTAMP DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) NOT NULL,
+      last_usage_at TIMESTAMP
+    )
+  ''',
   '''
-      CREATE TABLE chat_app(
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT,
-        icon TEXT,
-        brand_color TEXT,
-        deeplink_prefix TEXT
-      );
-      INSERT INTO chat_app(id, name, icon, brand_color, deeplink_prefix) VALUES
-      (0, "WhatsApp", "assets://icons/whatsapp.svg", "#ff25d366", "https://wa.me/"),
-      (1, "Telegram", "assets://icons/telegram.svg", "#ff0088cc", "https://t.me/"),
-      (2, "Signal",   "assets://icons/signal.svg",   "#ff3a76f0", "https://signal.me/#p/+")
-      ''',
-  '''
-      DROP TABLE IF EXISTS chat_app;
-      CREATE TABLE chat_app(
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT,
-        icon TEXT,
-        brand_color TEXT,
-        deeplink_template TEXT
-      );
+    CREATE TABLE chat_app(
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT,
+      icon TEXT,
+      brand_color TEXT,
+      deeplink_prefix TEXT
+    );
 
-      INSERT INTO chat_app(id, name, icon, brand_color, deeplink_template) VALUES
-      (0, "WhatsApp",    "assets://icons/whatsapp.svg",          "#ff25d366", "whatsapp-consumer://send?phone={phoneNumber}"),
-      (1, "WA Business", "assets://icons/whatsapp-business.svg", "#ff25d366", "whatsapp-smb://send?phone={phoneNumber}"),
-      (2, "Telegram",    "assets://icons/telegram.svg",          "#ff0088cc", "https://t.me/{phoneNumber}"),
-      (3, "Signal",      "assets://icons/signal.svg",            "#ff3a76f0", "https://signal.me/#p/+{phoneNumber}");
-      ''',
+    INSERT INTO chat_app(id, name, icon, brand_color, deeplink_prefix) VALUES
+    (0, 'WhatsApp', 'assets://icons/whatsapp.svg', '#ff25d366', 'https://wa.me/'),
+    (1, 'Telegram', 'assets://icons/telegram.svg', '#ff0088cc', 'https://t.me/'),
+    (2, 'Signal',   'assets://icons/signal.svg',   '#ff3a76f0', 'https://signal.me/#p/+')
+  ''',
   '''
-      CREATE TABLE enabled_chat_app(
-        chat_app_id INTEGER PRIMARY KEY,
-        position INTEGER NOT NULL,
-        FOREIGN KEY(chat_app_id) REFERENCES chat_app(id)
-      );
+    DROP TABLE IF EXISTS chat_app;
 
-      INSERT INTO enabled_chat_app(chat_app_id, position)
-      SELECT id, id FROM chat_app;
-      ''',
+    CREATE TABLE chat_app(
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT,
+      icon TEXT,
+      brand_color TEXT,
+      deeplink_template TEXT
+    );
+
+    INSERT INTO chat_app(id, name, icon, brand_color, deeplink_template) VALUES
+    (0, 'WhatsApp',    'assets://icons/whatsapp.svg',          '#ff25d366', 'whatsapp-consumer://send?phone={phoneNumber}'),
+    (1, 'WA Business', 'assets://icons/whatsapp-business.svg', '#ff25d366', 'whatsapp-smb://send?phone={phoneNumber}'),
+    (2, 'Telegram',    'assets://icons/telegram.svg',          '#ff0088cc', 'https://t.me/{phoneNumber}'),
+    (3, 'Signal',      'assets://icons/signal.svg',            '#ff3a76f0', 'https://signal.me/#p/+{phoneNumber}');
+  ''',
+  '''
+    CREATE TABLE enabled_chat_app(
+      chat_app_id INTEGER PRIMARY KEY,
+      position INTEGER NOT NULL,
+      FOREIGN KEY(chat_app_id) REFERENCES chat_app(id)
+    );
+
+    INSERT INTO enabled_chat_app(chat_app_id, position)
+    SELECT id, id FROM chat_app;
+  ''',
 ];
 
 List<String> get _migrationsDown => [
   '''
-      DROP TABLE IF EXISTS historic
-      ''',
+    DROP TABLE IF EXISTS historic
+  ''',
   '''
-      DROP TABLE IF EXISTS chat_app
-      ''',
+    DROP TABLE IF EXISTS chat_app
+  ''',
   '''
-      DROP TABLE IF EXISTS chat_app;
-      CREATE TABLE chat_app(
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT,
-        icon TEXT,
-        brand_color TEXT,
-        deeplink_prefix TEXT
-      );
-      ''',
+    DROP TABLE IF EXISTS chat_app;
+
+    CREATE TABLE chat_app(
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT,
+      icon TEXT,
+      brand_color TEXT,
+      deeplink_prefix TEXT
+    );
+  ''',
   '''
-      DROP TABLE IF EXISTS enabled_chat_app;
-      ''',
+    DROP TABLE IF EXISTS enabled_chat_app;
+  ''',
 ];
