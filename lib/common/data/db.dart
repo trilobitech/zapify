@@ -1,3 +1,4 @@
+import 'package:logify/logify.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -15,25 +16,51 @@ Future<Database> getDatabase() async {
 Future<void> _migrateUp(Database db, int oldVersion, int newVersion) async {
   final migrations = _migrationsUp.sublist(oldVersion, newVersion);
 
-  await _migrate(db, migrations);
+  await _migrate(
+    db,
+    migrations: migrations,
+    oldVersion: oldVersion,
+    newVersion: newVersion,
+  );
 }
 
 Future<void> _migrateDown(Database db, int oldVersion, int newVersion) async {
   final migrations = _migrationsDown.sublist(newVersion, oldVersion).reversed;
 
-  await _migrate(db, migrations);
+  await _migrate(
+    db,
+    migrations: migrations,
+    oldVersion: oldVersion,
+    newVersion: newVersion,
+  );
 }
 
-Future<void> _migrate(Database db, Iterable<String> migrations) async {
-  final batch = db.batch();
+Future<void> _migrate(
+  Database db, {
+  required Iterable<String> migrations,
+  required int oldVersion,
+  required int newVersion,
+}) async {
+  try {
+    final batch = db.batch();
 
-  migrations
-      .expand((e) => e.split(';'))
-      .map((e) => e.trim())
-      .where((sql) => sql.isNotEmpty)
-      .forEach((sql) => batch.execute(sql));
+    migrations
+        .expand((e) => e.split(';'))
+        .map((e) => e.trim())
+        .where((sql) => sql.isNotEmpty)
+        .forEach((sql) => batch.execute(sql));
 
-  await batch.commit(noResult: true);
+    await batch.commit(noResult: true);
+    Log.i(
+      'Successful to run database migration from $oldVersion to $newVersion',
+    );
+  } catch (e, stack) {
+    Log.e(
+      'Failed to create or migrate database from $oldVersion to $newVersion',
+      e,
+      stack,
+    );
+  }
 }
 
 List<String> get _migrationsUp => [
