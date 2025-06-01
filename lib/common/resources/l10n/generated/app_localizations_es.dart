@@ -130,4 +130,24 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get longTimeAgo => 'd \'de\' MMMM, yyyy';
+
+  @override
+  String get welcomeNoticeTitle => 'Bienvenido a Zapify!';
+
+  @override
+  String welcomeNoticeMessage(Object store) {
+    return '<b>Gracias por instalar Zapify.</b><p>Nuestro objetivo es ofrecerte una solución práctica para tu rutina con las aplicaciones de mensajería. Seguimos mejorando, y tu opinión en la $store nos ayuda mucho.</p><b>¿Preparado para optimizar tus chats?</b>';
+  }
+
+  @override
+  String get welcomeNoticeOkLabel => 'Empezar';
+
+  @override
+  String get appleStoreName => 'App Store';
+
+  @override
+  String get googlePlayStoreName => 'Google Play';
+
+  @override
+  String get genericStoreName => 'tienda';
 }

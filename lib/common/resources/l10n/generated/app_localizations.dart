@@ -330,6 +330,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'MMMM d, yyyy'**
   String get longTimeAgo;
+
+  /// No description provided for @welcomeNoticeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome to Zapify!'**
+  String get welcomeNoticeTitle;
+
+  /// No description provided for @welcomeNoticeMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'<b>Thank you for installing Zapify.</b><p>Our goal is to offer a practical solution for your daily routine with messaging apps. We’re constantly improving, and your feedback on the {store} helps us a lot.</p><b>Ready to optimize your workflow?</b>'**
+  String welcomeNoticeMessage(Object store);
+
+  /// No description provided for @welcomeNoticeOkLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Get started'**
+  String get welcomeNoticeOkLabel;
+
+  /// No description provided for @appleStoreName.
+  ///
+  /// In en, this message translates to:
+  /// **'App Store'**
+  String get appleStoreName;
+
+  /// No description provided for @googlePlayStoreName.
+  ///
+  /// In en, this message translates to:
+  /// **'Google Play'**
+  String get googlePlayStoreName;
+
+  /// No description provided for @genericStoreName.
+  ///
+  /// In en, this message translates to:
+  /// **'store'**
+  String get genericStoreName;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

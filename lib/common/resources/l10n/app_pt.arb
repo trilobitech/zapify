@@ -47,5 +47,12 @@
     "yesterday": "'Ontem às' HH:mm",
     "lastCoupleOfDays": "EEEE 'às' HH:mm",
     "lastCoupleOfMonths": "d 'de' MMMM 'às' HH:mm",
-    "longTimeAgo": "d 'de' MMMM 'de' yyyy"
+    "longTimeAgo": "d 'de' MMMM 'de' yyyy",
+
+    "welcomeNoticeTitle": "Bem-vindo ao Zapify!",
+    "welcomeNoticeMessage": "<b>Agradecemos por instalar o Zapify.</b><p>Nosso objetivo é oferecer uma solução prática para sua rotina com os aplicativos de mensagens. Estamos em constante evolução e seu feedback na {store} nos ajuda muito.</p><b>Pronto para agilizar seus contatos?</b>",
+    "welcomeNoticeOkLabel": "Começar",
+    "appleStoreName": "App Store",
+    "googlePlayStoreName": "Google Play",
+    "genericStoreName": "loja"
 }

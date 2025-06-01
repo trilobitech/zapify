@@ -42,6 +42,7 @@ dependencies:
   firebase_crashlytics: ^4.3.4
   firebase_performance: ^0.10.1+4
   firebase_remote_config: ^5.4.2
+  flutter_html: ^3.0.0
   freezed_annotation: ^3.0.0
   get_it: ^7.2.0
   google_mobile_ads: ^5.3.1

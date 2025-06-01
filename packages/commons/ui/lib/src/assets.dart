@@ -22,6 +22,8 @@ class Asset {
 
 class $Illustrations$ extends Asset {
   const $Illustrations$(String directory) : super('$directory/illustrations');
+
+  Uri get messageReceived => byName('message_received');
 }
 
 class $Icons$ extends Asset {
