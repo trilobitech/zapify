@@ -245,8 +245,8 @@ packages:
     dependency: "direct main"
     description:
       path: error_adapter
-      ref: a8295225c2a4e284be85194940da4898a418a003
-      resolved-ref: a8295225c2a4e284be85194940da4898a418a003
+      ref: "16689b57239b1fc8a93e08b31c96332a6d2c918d"
+      resolved-ref: "16689b57239b1fc8a93e08b31c96332a6d2c918d"
       url: "https://github.com/pedrox-hs/flutter_packages"
     source: git
     version: "0.1.0"
@@ -874,18 +874,18 @@ packages:
     dependency: "direct main"
     description:
       name: rxdart
-      sha256: "0c7c0cedd93788d996e33041ffecda924cc54389199cde4e6a34b440f50044cb"
+      sha256: "5c3004a4a8dbb94bd4bf5412a4def4acdaa12e12f269737a5751369e12d1a962"
       url: "https://pub.dev"
     source: hosted
-    version: "0.27.7"
+    version: "0.28.0"
   rxdart_ext:
     dependency: transitive
     description:
       name: rxdart_ext
-      sha256: ca0b07216b4568e70d88154efd893ded54cf8cea43276c66baae245a843c326f
+      sha256: "95df7e8b13140e2c3fdb3b943569a51f18090e82aaaf6ca6e8e6437e434a6fb0"
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.9"
+    version: "0.3.0"
   shared_preferences:
     dependency: "direct main"
     description:
@@ -986,8 +986,8 @@ packages:
     dependency: "direct main"
     description:
       path: simple_nav
-      ref: a8295225c2a4e284be85194940da4898a418a003
-      resolved-ref: a8295225c2a4e284be85194940da4898a418a003
+      ref: "16689b57239b1fc8a93e08b31c96332a6d2c918d"
+      resolved-ref: "16689b57239b1fc8a93e08b31c96332a6d2c918d"
       url: "https://github.com/pedrox-hs/flutter_packages"
     source: git
     version: "0.1.0"
@@ -1072,10 +1072,10 @@ packages:
     dependency: "direct main"
     description:
       name: sqlbrite
-      sha256: "9f16c1775408a9f818960a2445ec44ecab44af907032f267ef6f4ba884a77479"
+      sha256: "4050a4ee4ece48cf9174028a356cbd44347e0305befd8f9bb26965ebb56f887f"
       url: "https://pub.dev"
     source: hosted
-    version: "2.7.0"
+    version: "2.8.0"
   stack_trace:
     dependency: "direct main"
     description:
@@ -1088,8 +1088,8 @@ packages:
     dependency: "direct main"
     description:
       path: state_action_bloc
-      ref: a8295225c2a4e284be85194940da4898a418a003
-      resolved-ref: a8295225c2a4e284be85194940da4898a418a003
+      ref: "16689b57239b1fc8a93e08b31c96332a6d2c918d"
+      resolved-ref: "16689b57239b1fc8a93e08b31c96332a6d2c918d"
       url: "https://github.com/pedrox-hs/flutter_packages"
     source: git
     version: "0.1.0"

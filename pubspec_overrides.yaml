@@ -3,14 +3,14 @@ dependency_overrides:
     git:
       url: https://github.com/pedrox-hs/flutter_packages
       path: error_adapter
-      ref: a8295225c2a4e284be85194940da4898a418a003
+      ref: 16689b57239b1fc8a93e08b31c96332a6d2c918d
   simple_nav:
     git:
       url: https://github.com/pedrox-hs/flutter_packages
       path: simple_nav
-      ref: a8295225c2a4e284be85194940da4898a418a003
+      ref: 16689b57239b1fc8a93e08b31c96332a6d2c918d
   state_action_bloc:
     git:
       url: https://github.com/pedrox-hs/flutter_packages
       path: state_action_bloc
-      ref: a8295225c2a4e284be85194940da4898a418a003
+      ref: 16689b57239b1fc8a93e08b31c96332a6d2c918d
