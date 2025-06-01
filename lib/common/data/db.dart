@@ -131,6 +131,11 @@ List<String> get _migrationsDown => [
       brand_color TEXT,
       deeplink_prefix TEXT
     );
+
+    INSERT INTO chat_app(id, name, icon, brand_color, deeplink_prefix) VALUES
+    (0, 'WhatsApp', 'assets://icons/whatsapp.svg', '#ff25d366', 'https://wa.me/'),
+    (1, 'Telegram', 'assets://icons/telegram.svg', '#ff0088cc', 'https://t.me/'),
+    (2, 'Signal',   'assets://icons/signal.svg',   '#ff3a76f0', 'https://signal.me/#p/+');
   ''',
   '''
     DROP TABLE IF EXISTS enabled_chat_app;
