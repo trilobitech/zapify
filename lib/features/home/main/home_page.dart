@@ -19,6 +19,7 @@ import '../ad_banner/presentation/ad_banner_widget.dart';
 import '../chat_apps/chat_apps_mediator.dart';
 import '../chat_apps/presentation/chat_apps_bloc.dart';
 import '../chat_apps/presentation/chat_apps_widget.dart';
+import '../notice/presentation/welcome_bottom_sheet.dart';
 import '../phone/phone_field_component.dart';
 import '../phone/presentation/phone_field_bloc.dart';
 import '../phone/presentation/phone_field_widget.dart';
@@ -130,6 +131,7 @@ class _HomePageState extends State<_HomePage>
       switch (action) {
         NavigateToRegionPickerHomeAction(:final current) =>
           _navigateToRegionPicker(context, current),
+        ShowWelcomeMessageHomeAction() => _showWelcomeMessage(context),
       };
 
   Future<void> _navigateToRegionPicker(
@@ -145,5 +147,10 @@ class _HomePageState extends State<_HomePage>
     if (selectedRegion is IRegion) {
       await _bloc?.onRegionSelected(selectedRegion);
     }
+  }
+
+  Future<void> _showWelcomeMessage(BuildContext context) async {
+    await WelcomeBottomSheet.show(context);
+    _bloc?.onWelcomeMessageClosed();
   }
 }

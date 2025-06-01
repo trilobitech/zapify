@@ -9,4 +9,6 @@ part 'home_state.freezed.dart';
 sealed class HomeAction with _$HomeAction implements IAction {
   factory HomeAction.navigateToRegionPicker(RegionCode? current) =
       NavigateToRegionPickerHomeAction;
+
+  factory HomeAction.showWelcomeMessage() = ShowWelcomeMessageHomeAction;
 }
