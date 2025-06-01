@@ -24,6 +24,19 @@ class ImageResolverWidget extends StatelessWidget {
     width: size,
   );
 
+  factory ImageResolverWidget.illustration({
+    Key? key,
+    required Uri uri,
+    Color? color,
+    double size = 128,
+  }) => ImageResolverWidget(
+    key: key,
+    uri: uri,
+    color: color,
+    height: size,
+    width: size,
+  );
+
   final Uri uri;
   final Color? color;
   final double? height;
@@ -40,6 +53,12 @@ class ImageResolverWidget extends StatelessWidget {
       case 'https':
         return _fromNetwork();
       case 'assets':
+        Log.w(
+          'Asset "$uri" are using deprecated scheme, '
+          'please change to "asset://"',
+        );
+        return _fromAssets();
+      case 'asset':
         return _fromAssets();
       default:
         Log.e('Unsupported scheme: "${uri.scheme}"');
@@ -60,14 +79,21 @@ class ImageResolverWidget extends StatelessWidget {
   }
 
   Widget _fromAssets() {
-    final path = uri.toString().replaceFirst(':/', '');
+    final package = uri.host != 'main' ? uri.host : null;
     return _isSvg
         ? SvgPicture.asset(
-          path,
+          uri.path,
+          package: package,
           height: height,
           width: width,
           colorFilter: _colorFilter,
         )
-        : Image.asset(path, color: color, height: height, width: width);
+        : Image.asset(
+          uri.path,
+          package: package,
+          color: color,
+          height: height,
+          width: width,
+        );
   }
 }
