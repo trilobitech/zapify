@@ -14,3 +14,8 @@ dependency_overrides:
       url: https://github.com/pedrox-hs/flutter_packages
       path: state_action_bloc
       ref: 16689b57239b1fc8a93e08b31c96332a6d2c918d
+  pubspec_gen:
+    git:
+      url: https://github.com/pedrox-hs/flutter_packages
+      path: pubspec_gen
+      ref: 16689b57239b1fc8a93e08b31c96332a6d2c918d
