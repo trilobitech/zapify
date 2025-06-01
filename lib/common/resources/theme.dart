@@ -3,39 +3,32 @@ import 'package:google_fonts/google_fonts.dart';
 
 abstract class AppTheme {
   static ThemeData light() {
-    final base = ThemeData.light();
-
     return ThemeData(
+      useMaterial3: true,
       brightness: Brightness.light,
-      primarySwatch: Colors.teal,
-      appBarTheme: base.appBarTheme.copyWith(
-        foregroundColor: Colors.teal,
-        backgroundColor: Colors.white,
-        elevation: 0,
-        centerTitle: true,
-      ),
-      scaffoldBackgroundColor: Colors.white,
-      textTheme: GoogleFonts.getTextTheme('Archivo', base.textTheme),
-      tabBarTheme: base.tabBarTheme.copyWith(
-        labelColor: Colors.teal,
-        unselectedLabelColor: Colors.blueGrey,
-      ),
-    );
+      colorSchemeSeed: Colors.teal,
+      appBarTheme: const AppBarTheme(foregroundColor: Colors.teal),
+    ).common();
   }
 
   static ThemeData dark() {
-    final base = ThemeData.dark();
-
     return ThemeData(
+      useMaterial3: true,
       brightness: Brightness.dark,
-      primarySwatch: Colors.teal,
-      primaryColorDark: Colors.teal,
-      appBarTheme: base.appBarTheme.copyWith(
-        backgroundColor: base.scaffoldBackgroundColor,
-        elevation: 0,
+      colorSchemeSeed: Colors.teal,
+    ).common();
+  }
+}
+
+extension _ThemeDataX on ThemeData {
+  ThemeData common() {
+    return copyWith(
+      textTheme: GoogleFonts.archivoTextTheme(textTheme),
+      appBarTheme: appBarTheme.copyWith(
+        backgroundColor: scaffoldBackgroundColor,
         centerTitle: true,
+        elevation: 0,
       ),
-      textTheme: GoogleFonts.getTextTheme('Archivo', base.textTheme),
     );
   }
 }
