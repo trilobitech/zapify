@@ -33,6 +33,7 @@
 
   "availableRegionsTitle": "Selecciona un país",
   "availableRegionsSearch": "Buscar…",
+  "clearRegionsSearchFieldAction": "Borrar búsqueda",
 
   "settingsTitle": "Ajustes",
   "settingsRegionTitle": "Región predeterminada",

@@ -259,6 +259,12 @@ abstract class AppLocalizations {
   /// **'Search…'**
   String get availableRegionsSearch;
 
+  /// No description provided for @clearRegionsSearchFieldAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear search'**
+  String get clearRegionsSearchFieldAction;
+
   /// No description provided for @settingsTitle.
   ///
   /// In en, this message translates to:

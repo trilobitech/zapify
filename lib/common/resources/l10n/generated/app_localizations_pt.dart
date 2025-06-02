@@ -96,6 +96,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get availableRegionsSearch => 'Procurar…';
 
   @override
+  String get clearRegionsSearchFieldAction => 'Limpar busca';
+
+  @override
   String get settingsTitle => 'Configurações';
 
   @override
