@@ -9,6 +9,7 @@
 
     "homePhoneNumberLabel": "Phone number",
     "homeBrPhoneNumberLabel": "Phone number with area code",
+    "clearPhoneFieldAction": "Clear number",
     "homeOpenWithButton": "{appName}",
     "homeEmptyPhoneNumberError": "Please provide the phone number",
     "homeInvalidPhoneNumberError": "Invalid phone number",

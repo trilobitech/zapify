@@ -139,6 +139,12 @@ abstract class AppLocalizations {
   /// **'Phone number with area code'**
   String get homeBrPhoneNumberLabel;
 
+  /// No description provided for @clearPhoneFieldAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear number'**
+  String get clearPhoneFieldAction;
+
   /// No description provided for @homeOpenWithButton.
   ///
   /// In en, this message translates to:

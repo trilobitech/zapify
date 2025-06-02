@@ -9,6 +9,7 @@
 
   "homePhoneNumberLabel": "Número de teléfono",
   "homeBrPhoneNumberLabel": "Número de teléfono con DDD",
+  "clearPhoneFieldAction": "Limpiar número",
   "homeOpenWithButton": "{appName}",
   "homeEmptyPhoneNumberError": "Por favor, introduce el número de teléfono",
   "homeInvalidPhoneNumberError": "Número de teléfono no válido",

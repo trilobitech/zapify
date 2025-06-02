@@ -30,6 +30,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get homeBrPhoneNumberLabel => 'Número de teléfono con DDD';
 
   @override
+  String get clearPhoneFieldAction => 'Limpiar número';
+
+  @override
   String homeOpenWithButton(Object appName) {
     return '$appName';
   }
