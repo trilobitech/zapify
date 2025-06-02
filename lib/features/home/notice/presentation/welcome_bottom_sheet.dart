@@ -2,7 +2,6 @@ import 'package:analytics/analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:ui/ui.dart';
-import 'package:ui/widgets.dart';
 
 import '../../../../common/di/inject.dart';
 import '../../../../common/ext/context.dart';
