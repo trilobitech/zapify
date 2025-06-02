@@ -14,7 +14,7 @@ class ChatAppDataSource extends IChatAppDataSource {
 
   final Future<BriteDatabase> _db;
   // ignore: close_sinks
-  late final BehaviorSubject<List<ChatAppModel>> _actions = BehaviorSubject();
+  late final Subject<List<ChatAppModel>> _actions = BehaviorSubject();
 
   void _init() {
     Stream.fromFuture(_db)
@@ -23,7 +23,8 @@ class ChatAppDataSource extends IChatAppDataSource {
             ['chat_app', 'enabled_chat_app'],
             '''
             SELECT
-              a.id, a.name, a.icon, a.brand_color, a.deeplink_template,
+              a.id, a.name, 'asset://main/assets/icons/' || a.icon || '.svg' AS icon,
+              a.brand_color, a.deeplink_template,
               b.position, b.position IS NOT NULL as is_enabled
             FROM chat_app AS a
             LEFT OUTER JOIN enabled_chat_app AS b ON b.chat_app_id = a.id

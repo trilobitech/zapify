@@ -112,6 +112,10 @@ List<String> get _migrationsUp => [
     INSERT INTO enabled_chat_app(chat_app_id, position)
     SELECT id, id FROM chat_app;
   ''',
+  '''
+    UPDATE chat_app
+    SET icon = REPLACE(REPLACE(icon, 'assets://icons/', ''), '.svg', '');
+  ''',
 ];
 
 List<String> get _migrationsDown => [
@@ -139,5 +143,9 @@ List<String> get _migrationsDown => [
   ''',
   '''
     DROP TABLE IF EXISTS enabled_chat_app;
+  ''',
+  '''
+    UPDATE chat_app
+    SET icon = 'assets://icons/' || icon || '.svg';
   ''',
 ];
