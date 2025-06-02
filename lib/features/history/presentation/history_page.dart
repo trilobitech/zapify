@@ -64,7 +64,7 @@ class HistoryPage extends StatelessWidget
   ) async => switch (action) {
     SelectEntryHistoryAction(:final entry) => context
         .read<HistoryMediator>()
-        .onPhoneReceivedFromHistory(entry.phoneNumber),
+        .onPhoneReceivedFromHistory(entry),
     ShowMenuHistoryAction(:final entry, :final position, :final options) =>
       showContextMenu(
         context,

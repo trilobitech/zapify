@@ -6,6 +6,7 @@ import 'package:logify/logify.dart';
 import 'package:phone_number/phone_number.dart' hide RegionInfo;
 import 'package:state_action_bloc/state_action_bloc.dart';
 
+import '../../../history/domain/entity/history.dart';
 import '../../../region/domain/entity/region.dart';
 import '../../../region/domain/usecase/get_default_region.dart';
 import '../domain/phone_field_error.dart';
@@ -50,7 +51,12 @@ class PhoneFieldBloc extends StateActionBloc<PhoneFieldState, PhoneFieldAction>
   }
 
   @override
-  Future<void> updatePhone(String phone) async {
+  Future<void> updatePhoneFromHistoric(HistoryEntry entry) async {
+    await updatePhoneFromText(entry.phoneNumber);
+  }
+
+  @override
+  Future<void> updatePhoneFromText(String phone) async {
     if (phone == _currentText) return;
 
     final parsed = await _tryParsePhoneNumber(phone);

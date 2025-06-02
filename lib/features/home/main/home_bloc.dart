@@ -15,6 +15,7 @@ import '../../../common/ext/string.dart';
 import '../../../common/services/share_service.dart';
 import '../../call_log/call_log_mediator.dart';
 import '../../chat_app/domain/exception/chat_app_not_found_error.dart';
+import '../../history/domain/entity/history.dart';
 import '../../history/domain/usecase/save_phone_number_history.dart';
 import '../../history/history_mediator.dart';
 import '../../region/domain/entity/region.dart';
@@ -72,7 +73,7 @@ class HomeBloc extends ActionBloc<HomeAction> implements HomeMediator {
       _analytics.intentHandled('phone_number_received');
 
       await _phoneFieldComponent
-          .updatePhone(phoneNumber.replaceFirst('tel:', ''))
+          .updatePhoneFromText(phoneNumber.replaceFirst('tel:', ''))
           .catchError((_) {
             final obfuscatedNumber = phoneNumber
                 .replaceAll('*', '\\*')
@@ -84,11 +85,11 @@ class HomeBloc extends ActionBloc<HomeAction> implements HomeMediator {
 
   @override
   Future<void> onPhoneReceivedFromCallLog(String phoneNumber) =>
-      _phoneFieldComponent.updatePhone(phoneNumber);
+      _phoneFieldComponent.updatePhoneFromText(phoneNumber);
 
   @override
-  Future<void> onPhoneReceivedFromHistory(String phoneNumber) =>
-      _phoneFieldComponent.updatePhone(phoneNumber);
+  Future<void> onPhoneReceivedFromHistory(HistoryEntry entry) =>
+      _phoneFieldComponent.updatePhoneFromHistoric(entry);
 
   @override
   void showRegionPicker(RegionCode? selectedCode) {
