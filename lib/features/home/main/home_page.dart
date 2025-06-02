@@ -146,6 +146,8 @@ class _HomePageState extends State<_HomePage>
 
     if (selectedRegion is IRegion) {
       await _bloc?.onRegionSelected(selectedRegion);
+    } else if (context.mounted) {
+      context.read<PhoneFieldComponent>().requestFieldFocus();
     }
   }
 

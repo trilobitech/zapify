@@ -1,6 +1,7 @@
 import 'package:error_adapter/error_adapter.dart';
 import 'package:flutter/material.dart';
 import 'package:state_action_bloc/state_action_bloc.dart';
+import 'package:ui/widgets.dart';
 
 import '../../../../../common/di/inject.dart';
 import '../../../../../common/ext/context.dart';
@@ -25,36 +26,44 @@ class PhoneFieldWidget extends StatelessWidget
   Widget buildState(BuildContext context, PhoneFieldState state) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      child: Semantics(
-        identifier: 'PhoneNumberField',
-        child: TextField(
-          key: const ValueKey('PhoneNumber'),
-          style: _textFieldStyle,
-          focusNode: _textFieldFocus,
-          controller: state.controller,
-          textInputAction: TextInputAction.go,
-          keyboardType: TextInputType.phone,
-          // onSubmitted: widget.onSubmitted,
-          decoration: InputDecoration(
-            prefix: _RegionSelectorButton(
-              controller: state.controller,
-              region: state.region,
-              textFieldFocus: _textFieldFocus,
-              textStyle: _textFieldStyle,
+      child: KeyboardVisibilityBuilder(
+        builder: (_, child, isVisible) {
+          if (!isVisible) _textFieldFocus.unfocus();
+          return child!;
+        },
+        child: Semantics(
+          identifier: 'PhoneNumberField',
+          child: TextField(
+            key: const ValueKey('PhoneNumber'),
+            style: _textFieldStyle,
+            focusNode: _textFieldFocus,
+            controller: state.controller,
+            textInputAction: TextInputAction.go,
+            keyboardType: TextInputType.phone,
+            autocorrect: false,
+            enableSuggestions: false,
+            // onSubmitted: widget.onSubmitted,
+            decoration: InputDecoration(
+              prefix: _RegionSelectorButton(
+                controller: state.controller,
+                region: state.region,
+                textFieldFocus: _textFieldFocus,
+                textStyle: _textFieldStyle,
+              ),
+              labelText:
+                  state.region?.code != 'BR'
+                      ? context.strings.homePhoneNumberLabel
+                      : context.strings.homeBrPhoneNumberLabel,
+              // https://github.com/flutter/flutter/issues/15400#issuecomment-475773473
+              // helperText: ' ', // FIXME: talkback says "Space", should be avoided to fix it
+              errorText:
+                  _errorMessageAdapter
+                      .maybeAdapt(context, state.error)
+                      ?.message,
+              contentPadding: const EdgeInsets.only(left: 8, right: 8),
+              border: const OutlineInputBorder(),
             ),
-            labelText:
-                state.region?.code != 'BR'
-                    ? context.strings.homePhoneNumberLabel
-                    : context.strings.homeBrPhoneNumberLabel,
-            // https://github.com/flutter/flutter/issues/15400#issuecomment-475773473
-            // helperText: ' ', // FIXME: talkback says "Space", should be avoided to fix it
-            errorText:
-                _errorMessageAdapter.maybeAdapt(context, state.error)?.message,
-            contentPadding: const EdgeInsets.only(left: 8, right: 8),
-            border: const OutlineInputBorder(),
           ),
-          autocorrect: false,
-          enableSuggestions: false,
         ),
       ),
     );
