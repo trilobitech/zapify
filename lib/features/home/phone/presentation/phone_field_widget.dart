@@ -50,6 +50,10 @@ class PhoneFieldWidget extends StatelessWidget
                 textFieldFocus: _textFieldFocus,
                 textStyle: _textFieldStyle,
               ),
+              suffixIcon: ClearFieldIconWidget(
+                controller: state.controller,
+                semanticLabel: context.strings.clearPhoneFieldAction,
+              ),
               labelText:
                   state.region?.code != 'BR'
                       ? context.strings.homePhoneNumberLabel

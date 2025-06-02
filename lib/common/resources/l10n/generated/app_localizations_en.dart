@@ -30,6 +30,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeBrPhoneNumberLabel => 'Phone number with area code';
 
   @override
+  String get clearPhoneFieldAction => 'Clear number';
+
+  @override
   String homeOpenWithButton(Object appName) {
     return '$appName';
   }
@@ -91,6 +94,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get availableRegionsSearch => 'Search…';
+
+  @override
+  String get clearRegionsSearchFieldAction => 'Clear search';
 
   @override
   String get settingsTitle => 'Settings';

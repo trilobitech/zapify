@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:state_action_bloc/state_action_bloc.dart';
+import 'package:ui/widgets.dart';
 
 import '../../../common/di/provider.dart';
 import '../../../common/ext/context.dart';
@@ -68,9 +69,9 @@ class _SearchViewState extends State<_SearchView> {
             contentPadding: const EdgeInsets.all(16),
             hintText: context.strings.availableRegionsSearch,
             border: const UnderlineInputBorder(),
-            suffixIcon: IconButton(
-              icon: const Icon(Icons.clear),
-              onPressed: ctrl.clear,
+            suffixIcon: ClearFieldIconWidget(
+              controller: ctrl,
+              semanticLabel: context.strings.clearRegionsSearchFieldAction,
             ),
           ),
         ),

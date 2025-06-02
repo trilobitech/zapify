@@ -30,6 +30,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get homeBrPhoneNumberLabel => 'Número de teléfono con DDD';
 
   @override
+  String get clearPhoneFieldAction => 'Limpiar número';
+
+  @override
   String homeOpenWithButton(Object appName) {
     return '$appName';
   }
@@ -91,6 +94,9 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get availableRegionsSearch => 'Buscar…';
+
+  @override
+  String get clearRegionsSearchFieldAction => 'Borrar búsqueda';
 
   @override
   String get settingsTitle => 'Ajustes';
