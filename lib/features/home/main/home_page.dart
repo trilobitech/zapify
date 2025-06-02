@@ -1,14 +1,11 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:flutter/material.dart' hide Intent;
-import 'package:receive_intent/receive_intent.dart';
-import 'package:rxdart/utils.dart';
+import 'package:logify/logify.dart';
 import 'package:state_action_bloc/state_action_bloc.dart';
 
 import '../../../common/di/provider.dart';
 import '../../../common/ext/context.dart';
-import '../../../common/services/share_service.dart';
 import '../../../common/widgets/tab_page.dart';
 import '../../call_log/call_log_mediator.dart';
 import '../../call_log/presentation/call_log_bloc.dart';
@@ -61,13 +58,12 @@ class _HomePage extends StatefulWidget {
 
 class _HomePageState extends State<_HomePage>
     with ActionMixin<HomeBloc, HomeAction> {
-  late final _shareService = ShareService();
-  final _sub = CompositeSubscription();
+  HomeBloc? _bloc;
 
-  void _init() {
-    if (Platform.isAndroid) {
-      _sub.add(_shareService.stream().listen(_handleIntent));
-    }
+  @override
+  void initState() {
+    super.initState();
+    _init();
   }
 
   @override
@@ -78,8 +74,22 @@ class _HomePageState extends State<_HomePage>
 
   @override
   void dispose() async {
+    _bloc?.dispose();
+    _bloc = null;
     super.dispose();
-    await _sub.dispose();
+  }
+
+  void _init() {
+    if (!context.mounted) {
+      Log.e('_init called out of context');
+      return;
+    }
+
+    final newBloc = context.read<HomeBloc>();
+    if (_bloc == newBloc) return;
+
+    _bloc?.dispose();
+    _bloc = newBloc..onInit();
   }
 
   @override
@@ -126,8 +136,6 @@ class _HomePageState extends State<_HomePage>
     BuildContext context,
     String? regionCode,
   ) async {
-    final bloc = context.read<RegionMediator>();
-
     final selectedRegion = await Navigator.pushNamed(
       context,
       '/regions',
@@ -135,10 +143,7 @@ class _HomePageState extends State<_HomePage>
     );
 
     if (selectedRegion is IRegion) {
-      await bloc.onRegionSelected(selectedRegion);
+      await _bloc?.onRegionSelected(selectedRegion);
     }
   }
-
-  void _handleIntent(Intent intent) =>
-      context.read<HomeBloc>().onIntentReceived(intent);
 }
