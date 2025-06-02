@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:state_action_bloc/state_action_bloc.dart';
 import 'package:timeago_flutter/timeago_flutter.dart';
+import 'package:ui/ui.dart';
 
 import '../../../common/advertising/ad_list_view_separator.dart';
 import '../../../common/ext/context.dart';
@@ -10,6 +11,7 @@ import '../../../common/widgets/feedback_view.dart';
 import '../../../common/widgets/list_divider.dart';
 import '../../../common/widgets/shimmer_view.dart';
 import '../../../common/widgets/tab_page.dart';
+import '../../home/phone/phone_field_component.dart';
 import '../domain/entity/history.dart';
 import '../history_mediator.dart';
 import 'history_bloc.dart';
@@ -39,7 +41,19 @@ class HistoryPage extends StatelessWidget
       _SuccessView(entries, adOptions: adOptions, isDismissible: isDismissible),
     LoadingHistoryState(:final size) => _LoadingView(size),
     EmptyHistoryState() => FeedbackView(
-      title: context.strings.recentNumbersEmpty,
+      illustration: ImageResolverWidget.illustration(
+        uri: context.assets.illustrations.inboxEmpty,
+      ),
+      title: context.strings.recentNumbersEmptyTitle,
+      content: context.strings.recentNumbersEmptyMessage,
+      button: FeedbackButton(
+        text: context.strings.recentNumbersEmptyButton,
+        onClick: () {
+          if (context.mounted) {
+            context.read<PhoneFieldComponent>().requestFieldFocus();
+          }
+        },
+      ),
     ),
   };
 

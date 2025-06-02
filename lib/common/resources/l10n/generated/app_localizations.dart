@@ -193,11 +193,23 @@ abstract class AppLocalizations {
   /// **'Recent numbers'**
   String get recentNumbersTitle;
 
-  /// No description provided for @recentNumbersEmpty.
+  /// No description provided for @recentNumbersEmptyTitle.
   ///
   /// In en, this message translates to:
-  /// **'No recent numbers yet'**
-  String get recentNumbersEmpty;
+  /// **'No recent numbers'**
+  String get recentNumbersEmptyTitle;
+
+  /// No description provided for @recentNumbersEmptyMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Start a conversation and the numbers you use will appear here.'**
+  String get recentNumbersEmptyMessage;
+
+  /// No description provided for @recentNumbersEmptyButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a phone number'**
+  String get recentNumbersEmptyButton;
 
   /// No description provided for @recentNumberRemoved.
   ///

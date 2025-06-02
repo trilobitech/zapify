@@ -20,7 +20,9 @@
     "homeChatAppNotFoundErrorSecondaryAction": "Cancel",
 
     "recentNumbersTitle": "Recent numbers",
-    "recentNumbersEmpty": "No recent numbers yet",
+    "recentNumbersEmptyTitle": "No recent numbers",
+    "recentNumbersEmptyMessage": "Start a conversation and the numbers you use will appear here.",
+    "recentNumbersEmptyButton": "Enter a phone number",
     "recentNumberRemoved": "Recent number \"{phoneNumber}\" was removed!",
     "actionRemove": "Remove",
     "actionUndo": "Undo",

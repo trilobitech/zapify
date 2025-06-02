@@ -61,7 +61,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get recentNumbersTitle => 'Números recientes';
 
   @override
-  String get recentNumbersEmpty => 'Aún no hay números recientes';
+  String get recentNumbersEmptyTitle => 'Sin números recientes';
+
+  @override
+  String get recentNumbersEmptyMessage => 'Inicia una conversación y los números que uses aparecerán aquí.';
+
+  @override
+  String get recentNumbersEmptyButton => 'Ingresar número de teléfono';
 
   @override
   String recentNumberRemoved(Object phoneNumber) {
