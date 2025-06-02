@@ -74,6 +74,11 @@ class PhoneFieldBloc extends StateActionBloc<PhoneFieldState, PhoneFieldAction>
   }
 
   @override
+  void requestFieldFocus() {
+    sendAction(PhoneFieldAction.showKeyboard());
+  }
+
+  @override
   void unfocusField() {
     sendAction(PhoneFieldAction.hideKeyboard());
   }

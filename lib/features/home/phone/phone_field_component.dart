@@ -9,6 +9,8 @@ abstract class PhoneFieldComponent {
 
   Future<void> updateRegion(IRegion region);
 
+  void requestFieldFocus();
+
   void unfocusField();
 
   void clearField();
