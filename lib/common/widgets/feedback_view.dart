@@ -4,9 +4,17 @@ import 'package:flutter/material.dart';
 import '../di/inject.dart';
 
 class FeedbackView extends StatelessWidget {
-  const FeedbackView({required this.text, this.button, super.key});
+  const FeedbackView({
+    super.key,
+    required this.title,
+    this.content,
+    this.button,
+    this.illustration,
+  });
 
-  final String text;
+  final Widget? illustration;
+  final String title;
+  final String? content;
   final FeedbackButton? button;
 
   @override
@@ -14,36 +22,44 @@ class FeedbackView extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     final button = this.button;
 
-    return Container(
-      alignment: Alignment.center,
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            text,
-            textAlign: TextAlign.center,
-            style: textTheme.titleLarge?.copyWith(
-              color: textTheme.titleLarge?.color?.withValues(alpha: .6),
+    return Center(
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          spacing: 16,
+          children: [
+            if (illustration != null) illustration!,
+            Text(
+              title,
+              textAlign: TextAlign.center,
+              style: textTheme.titleLarge?.copyWith(
+                color: textTheme.titleLarge?.color?.withValues(alpha: .8),
+              ),
             ),
-          ),
-          if (button != null)
-            Container(
-              margin: const EdgeInsets.only(top: 8),
-              child: ElevatedButton(
+            if (content != null)
+              Text(
+                content!,
+                textAlign: TextAlign.center,
+                style: textTheme.bodyMedium?.copyWith(
+                  color: textTheme.bodyMedium?.color?.withValues(alpha: .8),
+                ),
+              ),
+            if (button != null)
+              FilledButton(
                 onPressed: button.onClick,
                 child: Text(button.text.toUpperCase()),
               ),
-            ),
-        ],
+          ],
+        ),
       ),
     );
   }
 }
 
 class ErrorFeedbackView extends FeedbackView {
-  const ErrorFeedbackView._(String text, FeedbackButton? button)
-    : super(text: text, button: button);
+  const ErrorFeedbackView._(String title, FeedbackButton? button)
+    : super(title: title, button: button);
 
   factory ErrorFeedbackView(
     BuildContext context, {

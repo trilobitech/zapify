@@ -23,6 +23,8 @@ class Asset {
 class $Illustrations$ extends Asset {
   const $Illustrations$(String directory) : super('$directory/illustrations');
 
+  Uri get inboxEmpty => byName('inbox_empty');
+
   Uri get messageReceived => byName('message_received');
 }
 
