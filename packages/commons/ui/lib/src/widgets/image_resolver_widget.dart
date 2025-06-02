@@ -52,13 +52,13 @@ class ImageResolverWidget extends StatelessWidget {
     switch (uri.scheme) {
       case 'https':
         return _fromNetwork();
+      case 'asset':
+        return _fromAssets();
       case 'assets':
         Log.w(
           'Asset "$uri" are using deprecated scheme, '
           'please change to "asset://"',
         );
-        return _fromAssets();
-      case 'asset':
         return _fromAssets();
       default:
         Log.e('Unsupported scheme: "${uri.scheme}"');
@@ -80,16 +80,18 @@ class ImageResolverWidget extends StatelessWidget {
 
   Widget _fromAssets() {
     final package = uri.host != 'main' ? uri.host : null;
+    final path = uri.path.substring(1);
+
     return _isSvg
         ? SvgPicture.asset(
-          uri.path,
+          path,
           package: package,
           height: height,
           width: width,
           colorFilter: _colorFilter,
         )
         : Image.asset(
-          uri.path,
+          path,
           package: package,
           color: color,
           height: height,
