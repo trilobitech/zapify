@@ -35,7 +35,7 @@ class CallLogTabPage extends StatelessWidget
         LoadedCallLogState(:final entries) => _SuccessView(entries),
         LoadingCallLogState(:final itemCount) => _LoadingView(itemCount),
         EmptyCallLogState() => FeedbackView(
-          text: context.strings.callLogEmptyMessage,
+          title: context.strings.callLogEmptyMessage,
         ),
         ErrorCallLogState(:final error) => ErrorFeedbackView(
           context,

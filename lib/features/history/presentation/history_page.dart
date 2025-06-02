@@ -39,7 +39,7 @@ class HistoryPage extends StatelessWidget
       _SuccessView(entries, adOptions: adOptions, isDismissible: isDismissible),
     LoadingHistoryState(:final size) => _LoadingView(size),
     EmptyHistoryState() => FeedbackView(
-      text: context.strings.recentNumbersEmpty,
+      title: context.strings.recentNumbersEmpty,
     ),
   };
 
