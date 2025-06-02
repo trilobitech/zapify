@@ -34,7 +34,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       navigatorObservers: <NavigatorObserver>[observer],
-      initialRoute: '/',
+      initialRoute: RoutePaths.home,
       onGenerateRoute: RouteResolver(routes),
     );
   }

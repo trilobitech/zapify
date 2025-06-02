@@ -7,6 +7,7 @@ import 'package:state_action_bloc/state_action_bloc.dart';
 import '../../../common/di/provider.dart';
 import '../../../common/ext/context.dart';
 import '../../../common/widgets/tab_page.dart';
+import '../../../routes.dart';
 import '../../call_log/call_log_mediator.dart';
 import '../../call_log/presentation/call_log_bloc.dart';
 import '../../call_log/presentation/call_log_page.dart';
@@ -103,7 +104,7 @@ class _HomePageState extends State<_HomePage>
             itemBuilder:
                 (context) => [
                   PopupMenuItem<String>(
-                    value: '/settings',
+                    value: RoutePaths.settings,
                     child: Text(context.strings.actionSettings),
                   ),
                 ],
@@ -140,7 +141,7 @@ class _HomePageState extends State<_HomePage>
   ) async {
     final selectedRegion = await Navigator.pushNamed(
       context,
-      '/regions',
+      RoutePaths.regions,
       arguments: {'selected_code': regionCode},
     );
 

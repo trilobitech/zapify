@@ -1,5 +1,6 @@
 import 'package:state_action_bloc/state_action_bloc.dart';
 
+import '../../../routes.dart';
 import '../../region/domain/entity/region.dart';
 import '../../region/domain/usecase/get_default_region.dart';
 import '../../region/domain/usecase/set_detault_region.dart';
@@ -22,18 +23,18 @@ class SettingsBloc extends ActionBloc<SettingsAction> {
     final defaultRegion = await _getDefaultRegion();
     sendAction(
       SettingsAction.navigateTo(
-        '/regions',
+        RoutePaths.regions,
         args: {'selected_code': defaultRegion.code},
       ),
     );
   }
 
   void onMessagingAppsOptionClicked() {
-    sendAction(SettingsAction.navigateTo('/messaging_apps'));
+    sendAction(SettingsAction.navigateTo(RoutePaths.messagingAppsSettings));
   }
 
   Future onOptionUpdated(String route, dynamic result) async {
-    if (route == '/regions' && result is IRegion) {
+    if (route == RoutePaths.regions && result is IRegion) {
       return _setDefaultRegion(result);
     }
   }
