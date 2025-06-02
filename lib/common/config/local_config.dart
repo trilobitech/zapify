@@ -10,7 +10,8 @@ enum LocalConfig
         KeyValueWritableMixin<ILocalConfigStorage> {
   historicSize,
   lastAppReviewAt,
-  defaultRegion;
+  defaultRegion,
+  isFirstOpen;
 
   @override
   String get key => '$_appId\$$name';
@@ -21,4 +22,5 @@ enum LocalConfig
 
 Map<String, dynamic> get localConfigDefaults => {
   LocalConfig.historicSize.key: 0,
+  LocalConfig.isFirstOpen.key: false,
 };

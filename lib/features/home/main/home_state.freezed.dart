@@ -15,61 +15,30 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$HomeAction {
 
- RegionCode? get current;
-/// Create a copy of HomeAction
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$HomeActionCopyWith<HomeAction> get copyWith => _$HomeActionCopyWithImpl<HomeAction>(this as HomeAction, _$identity);
+
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeAction&&(identical(other.current, current) || other.current == current));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeAction);
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,current);
+int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'HomeAction(current: $current)';
+  return 'HomeAction()';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $HomeActionCopyWith<$Res>  {
-  factory $HomeActionCopyWith(HomeAction value, $Res Function(HomeAction) _then) = _$HomeActionCopyWithImpl;
-@useResult
-$Res call({
- String? current
-});
-
-
-
-
-}
-/// @nodoc
-class _$HomeActionCopyWithImpl<$Res>
-    implements $HomeActionCopyWith<$Res> {
-  _$HomeActionCopyWithImpl(this._self, this._then);
-
-  final HomeAction _self;
-  final $Res Function(HomeAction) _then;
-
-/// Create a copy of HomeAction
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? current = freezed,}) {
-  return _then(_self.copyWith(
-current: freezed == current ? _self.current! : current // ignore: cast_nullable_to_non_nullable
-as String?,
-  ));
-}
-
+class $HomeActionCopyWith<$Res>  {
+$HomeActionCopyWith(HomeAction _, $Res Function(HomeAction) __);
 }
 
 
@@ -80,11 +49,11 @@ class NavigateToRegionPickerHomeAction implements HomeAction {
    NavigateToRegionPickerHomeAction(this.current);
   
 
-@override final  String? current;
+ final  String? current;
 
 /// Create a copy of HomeAction
 /// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
+@JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $NavigateToRegionPickerHomeActionCopyWith<NavigateToRegionPickerHomeAction> get copyWith => _$NavigateToRegionPickerHomeActionCopyWithImpl<NavigateToRegionPickerHomeAction>(this, _$identity);
 
@@ -110,7 +79,7 @@ String toString() {
 /// @nodoc
 abstract mixin class $NavigateToRegionPickerHomeActionCopyWith<$Res> implements $HomeActionCopyWith<$Res> {
   factory $NavigateToRegionPickerHomeActionCopyWith(NavigateToRegionPickerHomeAction value, $Res Function(NavigateToRegionPickerHomeAction) _then) = _$NavigateToRegionPickerHomeActionCopyWithImpl;
-@override @useResult
+@useResult
 $Res call({
  String? current
 });
@@ -129,7 +98,7 @@ class _$NavigateToRegionPickerHomeActionCopyWithImpl<$Res>
 
 /// Create a copy of HomeAction
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? current = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? current = freezed,}) {
   return _then(NavigateToRegionPickerHomeAction(
 freezed == current ? _self.current : current // ignore: cast_nullable_to_non_nullable
 as String?,
@@ -138,5 +107,37 @@ as String?,
 
 
 }
+
+/// @nodoc
+
+
+class ShowWelcomeMessageHomeAction implements HomeAction {
+   ShowWelcomeMessageHomeAction();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ShowWelcomeMessageHomeAction);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'HomeAction.showWelcomeMessage()';
+}
+
+
+}
+
+
+
 
 // dart format on

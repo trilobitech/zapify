@@ -2,6 +2,8 @@ import 'package:logify/logify.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
+import '../config/local_config.dart';
+
 Future<Database> getDatabase() async {
   final dbPath = join(await getDatabasesPath(), 'zapfy.db');
   return openDatabase(
@@ -43,6 +45,10 @@ Future<void> _migrate(
 }) async {
   try {
     final batch = db.batch();
+
+    if (oldVersion == 0) {
+      await LocalConfig.isFirstOpen.set(true);
+    }
 
     migrations
         .expand((e) => e.split(';'))

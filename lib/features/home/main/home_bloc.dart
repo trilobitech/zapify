@@ -8,6 +8,7 @@ import 'package:rxdart/rxdart.dart';
 import 'package:state_action_bloc/state_action_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../common/config/local_config.dart';
 import '../../../common/domain/error.dart';
 import '../../../common/ext/stream.dart';
 import '../../../common/ext/string.dart';
@@ -48,11 +49,21 @@ class HomeBloc extends ActionBloc<HomeAction> implements HomeMediator {
   void onInit() {
     _subscriptions.addAll([
       if (Platform.isAndroid) _shareService.stream().listen(_onIntentReceived),
+      LocalConfig.isFirstOpen.watch<bool>().listen(_displayWelcomeMessage),
     ]);
   }
 
   void dispose() async {
     _subscriptions.dispose();
+  }
+
+  void _displayWelcomeMessage(bool isFirstOpen) {
+    if (!isFirstOpen) return;
+    sendAction(HomeAction.showWelcomeMessage());
+  }
+
+  void onWelcomeMessageClosed() async {
+    await LocalConfig.isFirstOpen.set(false);
   }
 
   void _onIntentReceived(Intent intent) async {
