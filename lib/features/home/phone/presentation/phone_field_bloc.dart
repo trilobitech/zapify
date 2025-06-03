@@ -47,6 +47,16 @@ class PhoneFieldBloc extends StateActionBloc<PhoneFieldState, PhoneFieldAction>
 
   @override
   Future<PhoneNumberValue> getPhoneNumber() async {
+    final prefix = _region?.prefix;
+    final formatted =
+        '${prefix != null ? '+$prefix ' : ''}$_currentText'.trim();
+
+    final phoneNumber = PhoneNumberValue(
+      national: _currentText,
+      raw: formatted.replaceAll(RegExp(r'[^0-9]'), ''),
+      formatted: formatted,
+    );
+
     try {
       if (_currentText.isEmpty) throw EmptyPhoneNumberError();
 
@@ -59,6 +69,13 @@ class PhoneFieldBloc extends StateActionBloc<PhoneFieldState, PhoneFieldAction>
         national: _currentText,
         raw: parsedPhoneNumber.e164.replaceFirst('+', ''),
         formatted: parsedPhoneNumber.international,
+      );
+    } on InvalidPhoneNumberError catch (error, stackTrace) {
+      _emitState(error: error);
+
+      Error.throwWithStackTrace(
+        MaybeInvalidPhoneNumberError(phoneNumber),
+        stackTrace,
       );
     } catch (error) {
       _emitState(error: error);
