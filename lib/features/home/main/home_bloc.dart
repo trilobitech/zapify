@@ -21,6 +21,7 @@ import '../../history/history_mediator.dart';
 import '../../region/domain/entity/region.dart';
 import '../../region/region_mediator.dart';
 import '../chat_apps/chat_apps_mediator.dart';
+import '../phone/domain/entities/phone_number.dart';
 import '../phone/phone_field_component.dart';
 import 'home_state.dart';
 
@@ -103,9 +104,12 @@ class HomeBloc extends ActionBloc<HomeAction> implements HomeMediator {
       _phoneFieldComponent.updateRegion(region);
 
   @override
-  Future<void> launch(String uriTemplate) async {
+  Future<void> launch({
+    required String uriTemplate,
+    required PhoneNumberValue? phoneNumber,
+  }) async {
     try {
-      final phoneNumber = await _phoneFieldComponent.getPhoneNumber();
+      phoneNumber ??= await _phoneFieldComponent.getPhoneNumber();
 
       final uri = uriTemplate.formatWithMap({'phoneNumber': phoneNumber.raw});
 

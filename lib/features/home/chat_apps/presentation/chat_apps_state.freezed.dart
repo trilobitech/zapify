@@ -174,10 +174,11 @@ $ChatAppsActionCopyWith(ChatAppsAction _, $Res Function(ChatAppsAction) __);
 
 
 class SelectEntryChatAppsAction implements ChatAppsAction {
-   SelectEntryChatAppsAction(this.entry);
+   SelectEntryChatAppsAction(this.entry, this.phoneNumber);
   
 
  final  ChatApp entry;
+ final  PhoneNumberValue? phoneNumber;
 
 /// Create a copy of ChatAppsAction
 /// with the given fields replaced by the non-null parameter values.
@@ -189,16 +190,16 @@ $SelectEntryChatAppsActionCopyWith<SelectEntryChatAppsAction> get copyWith => _$
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SelectEntryChatAppsAction&&(identical(other.entry, entry) || other.entry == entry));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SelectEntryChatAppsAction&&(identical(other.entry, entry) || other.entry == entry)&&(identical(other.phoneNumber, phoneNumber) || other.phoneNumber == phoneNumber));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,entry);
+int get hashCode => Object.hash(runtimeType,entry,phoneNumber);
 
 @override
 String toString() {
-  return 'ChatAppsAction.select(entry: $entry)';
+  return 'ChatAppsAction.select(entry: $entry, phoneNumber: $phoneNumber)';
 }
 
 
@@ -209,7 +210,7 @@ abstract mixin class $SelectEntryChatAppsActionCopyWith<$Res> implements $ChatAp
   factory $SelectEntryChatAppsActionCopyWith(SelectEntryChatAppsAction value, $Res Function(SelectEntryChatAppsAction) _then) = _$SelectEntryChatAppsActionCopyWithImpl;
 @useResult
 $Res call({
- ChatApp entry
+ ChatApp entry, PhoneNumberValue? phoneNumber
 });
 
 
@@ -226,10 +227,11 @@ class _$SelectEntryChatAppsActionCopyWithImpl<$Res>
 
 /// Create a copy of ChatAppsAction
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? entry = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? entry = null,Object? phoneNumber = freezed,}) {
   return _then(SelectEntryChatAppsAction(
 null == entry ? _self.entry : entry // ignore: cast_nullable_to_non_nullable
-as ChatApp,
+as ChatApp,freezed == phoneNumber ? _self.phoneNumber : phoneNumber // ignore: cast_nullable_to_non_nullable
+as PhoneNumberValue?,
   ));
 }
 
@@ -296,6 +298,74 @@ class _$ShowFailureMessageChatAppsActionCopyWithImpl<$Res>
   return _then(ShowFailureMessageChatAppsAction(
 null == app ? _self.app : app // ignore: cast_nullable_to_non_nullable
 as ChatApp,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class ShowInvalidPhoneNumberErrorChatAppsAction implements ChatAppsAction {
+   ShowInvalidPhoneNumberErrorChatAppsAction(this.app, this.phoneNumber);
+  
+
+ final  ChatApp app;
+ final  PhoneNumberValue phoneNumber;
+
+/// Create a copy of ChatAppsAction
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ShowInvalidPhoneNumberErrorChatAppsActionCopyWith<ShowInvalidPhoneNumberErrorChatAppsAction> get copyWith => _$ShowInvalidPhoneNumberErrorChatAppsActionCopyWithImpl<ShowInvalidPhoneNumberErrorChatAppsAction>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ShowInvalidPhoneNumberErrorChatAppsAction&&(identical(other.app, app) || other.app == app)&&(identical(other.phoneNumber, phoneNumber) || other.phoneNumber == phoneNumber));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,app,phoneNumber);
+
+@override
+String toString() {
+  return 'ChatAppsAction.showInvalidPhoneNumberError(app: $app, phoneNumber: $phoneNumber)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ShowInvalidPhoneNumberErrorChatAppsActionCopyWith<$Res> implements $ChatAppsActionCopyWith<$Res> {
+  factory $ShowInvalidPhoneNumberErrorChatAppsActionCopyWith(ShowInvalidPhoneNumberErrorChatAppsAction value, $Res Function(ShowInvalidPhoneNumberErrorChatAppsAction) _then) = _$ShowInvalidPhoneNumberErrorChatAppsActionCopyWithImpl;
+@useResult
+$Res call({
+ ChatApp app, PhoneNumberValue phoneNumber
+});
+
+
+
+
+}
+/// @nodoc
+class _$ShowInvalidPhoneNumberErrorChatAppsActionCopyWithImpl<$Res>
+    implements $ShowInvalidPhoneNumberErrorChatAppsActionCopyWith<$Res> {
+  _$ShowInvalidPhoneNumberErrorChatAppsActionCopyWithImpl(this._self, this._then);
+
+  final ShowInvalidPhoneNumberErrorChatAppsAction _self;
+  final $Res Function(ShowInvalidPhoneNumberErrorChatAppsAction) _then;
+
+/// Create a copy of ChatAppsAction
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? app = null,Object? phoneNumber = null,}) {
+  return _then(ShowInvalidPhoneNumberErrorChatAppsAction(
+null == app ? _self.app : app // ignore: cast_nullable_to_non_nullable
+as ChatApp,null == phoneNumber ? _self.phoneNumber : phoneNumber // ignore: cast_nullable_to_non_nullable
+as PhoneNumberValue,
   ));
 }
 

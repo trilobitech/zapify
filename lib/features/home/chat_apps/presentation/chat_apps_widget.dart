@@ -7,10 +7,12 @@ import 'package:ui/widgets.dart';
 
 import '../../../../../common/ext/context.dart';
 import '../../../chat_app/domain/entity/chat_app.dart';
+import '../../phone/domain/entities/phone_number.dart';
 import '../chat_apps_mediator.dart';
 import 'chat_apps_bloc.dart';
 import 'chat_apps_state.dart';
 import 'dialogs/chat_app_not_found_dialog.dart';
+import 'dialogs/invalid_phone_number_dialog.dart';
 
 class ChatAppsWidget extends StatelessWidget
     with StateActionMixin<ChatAppsBloc, ChatAppsState, ChatAppsAction> {
@@ -24,20 +26,32 @@ class ChatAppsWidget extends StatelessWidget
       };
 
   @override
-  FutureOr<void> handleAction(BuildContext context, ChatAppsAction action) =>
-      switch (action) {
-        SelectEntryChatAppsAction(:final entry) => _openChatApp(context, entry),
-        ShowFailureMessageChatAppsAction(:final app) => _showChatFailureMessage(
-          context,
-          app,
-        ),
-      };
+  FutureOr<void> handleAction(
+    BuildContext context,
+    ChatAppsAction action,
+  ) => switch (action) {
+    SelectEntryChatAppsAction(:final entry, :final phoneNumber) => _openChatApp(
+      context,
+      entry,
+      phoneNumber,
+    ),
+    ShowFailureMessageChatAppsAction(:final app) => _showChatFailureMessage(
+      context,
+      app,
+    ),
+    ShowInvalidPhoneNumberErrorChatAppsAction(:final app, :final phoneNumber) =>
+      _showInvalidPhoneNumberError(context, app, phoneNumber),
+  };
 
-  Future<void> _openChatApp(BuildContext context, ChatApp entry) async {
+  Future<void> _openChatApp(
+    BuildContext context,
+    ChatApp entry,
+    PhoneNumberValue? phoneNumber,
+  ) async {
     final chatAppsBloc = context.read<ChatAppsBloc>();
     final chatAppsMediator = context.read<ChatAppsMediator>();
     await chatAppsMediator
-        .launch(entry.deeplinkTemplate)
+        .launch(uriTemplate: entry.deeplinkTemplate, phoneNumber: phoneNumber)
         .then((_) {
           chatAppsBloc.chatOpenedSuccessful();
         })
@@ -51,6 +65,16 @@ class ChatAppsWidget extends StatelessWidget
     ChatApp app,
   ) async {
     await ChatAppNotFoundDialog.show(context, app);
+  }
+
+  Future<void> _showInvalidPhoneNumberError(
+    BuildContext context,
+    ChatApp app,
+    PhoneNumberValue phoneNumber,
+  ) async {
+    final chatAppsBloc = context.read<ChatAppsBloc>();
+    final result = await InvalidPhoneNumberDialog.show(context);
+    chatAppsBloc.onInvalidPhoneNumberResult(app, result, phoneNumber);
   }
 }
 
