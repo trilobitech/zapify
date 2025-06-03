@@ -217,6 +217,12 @@ abstract class AppLocalizations {
   /// **'Recent number \"{phoneNumber}\" was removed!'**
   String recentNumberRemoved(Object phoneNumber);
 
+  /// No description provided for @recentNumberFillFieldFailureMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong while filling the number. Please try manually.'**
+  String get recentNumberFillFieldFailureMessage;
+
   /// No description provided for @actionRemove.
   ///
   /// In en, this message translates to:

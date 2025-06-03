@@ -75,6 +75,9 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
+  String get recentNumberFillFieldFailureMessage => 'Algo salió mal al completar el número. Por favor, intenta manualmente.';
+
+  @override
   String get actionRemove => 'Eliminar';
 
   @override

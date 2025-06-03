@@ -24,6 +24,8 @@
     "recentNumbersEmptyMessage": "Comece uma conversa e os números utilizados aparecerão aqui.",
     "recentNumbersEmptyButton": "Inserir número de telefone",
     "recentNumberRemoved": "O número \"{phoneNumber}\" foi removido do histórico!",
+    "recentNumberFillFieldFailureMessage": "Algo deu errado ao preencher o número. Por favor, tente manualmente.",
+
     "actionRemove": "Excluir",
     "actionUndo": "Desfazer",
     "actionSettings": "Configurações",

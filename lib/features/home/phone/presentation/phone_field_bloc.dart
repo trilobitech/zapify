@@ -56,16 +56,26 @@ class PhoneFieldBloc extends StateActionBloc<PhoneFieldState, PhoneFieldAction>
 
   @override
   Future<void> updatePhoneFromHistoric(HistoryEntry entry) async {
-    final phoneExpr = RegExp(r'^\+(?<prefix>\d+) (?<phoneNumber>.+)$');
-    final matches = phoneExpr.allMatches(entry.phoneNumber).firstOrNull;
-    final prefix = matches?.namedGroup('prefix');
-    final phoneNumber = matches?.namedGroup('phoneNumber');
-    final region =
-        prefix != null ? await _findRegionByPrefix(int.parse(prefix)) : null;
+    try {
+      final phoneExpr = RegExp(r'^\+(?<prefix>\d+) (?<phoneNumber>.+)$');
+      final matches = phoneExpr.allMatches(entry.phoneNumber).firstOrNull;
+      final prefix = matches?.namedGroup('prefix');
+      final phoneNumber = matches?.namedGroup('phoneNumber');
+      final region =
+          prefix != null ? await _findRegionByPrefix(int.parse(prefix)) : null;
 
-    if (phoneNumber == null || region == null) return;
+      if (phoneNumber == null) {
+        throw Exception('Failed to use phone number from history');
+      }
+      if (region == null) {
+        throw Exception('Region for prefix "$prefix" not found');
+      }
 
-    await _updatePhoneField(phoneNumber, region);
+      await _updatePhoneField(phoneNumber, region);
+    } catch (error, stackTrace) {
+      Log.e('Failed to use phone number from history', error, stackTrace);
+      sendAction(PhoneFieldAction.showFillPhoneNumberFailure());
+    }
   }
 
   @override

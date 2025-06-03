@@ -24,6 +24,8 @@
   "recentNumbersEmptyMessage": "Inicia una conversación y los números que uses aparecerán aquí.",
   "recentNumbersEmptyButton": "Ingresar número de teléfono",
   "recentNumberRemoved": "¡El número reciente \"{phoneNumber}\" fue eliminado!",
+  "recentNumberFillFieldFailureMessage": "Algo salió mal al completar el número. Por favor, intenta manualmente.",
+
   "actionRemove": "Eliminar",
   "actionUndo": "Deshacer",
   "actionSettings": "Ajustes",
