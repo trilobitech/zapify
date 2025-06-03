@@ -107,9 +107,7 @@ class HomeBloc extends ActionBloc<HomeAction> implements HomeMediator {
     try {
       final phoneNumber = await _phoneFieldComponent.getPhoneNumber();
 
-      final uri = uriTemplate.formatWithMap({
-        'phoneNumber': phoneNumber.e164.replaceFirst('+', ''),
-      });
+      final uri = uriTemplate.formatWithMap({'phoneNumber': phoneNumber.raw});
 
       final successful = await launchUrl(
         Uri.parse(uri),
@@ -120,7 +118,7 @@ class HomeBloc extends ActionBloc<HomeAction> implements HomeMediator {
         throw ChatAppNotFoundError('Failed to launch $uriTemplate');
       }
 
-      await _savePhoneNumberHistory(phoneNumber: phoneNumber.international);
+      await _savePhoneNumberHistory(phoneNumber: phoneNumber.formatted);
 
       _phoneFieldComponent.clearField();
     } on PlatformException catch (e) {

@@ -10,6 +10,7 @@ import '../../../history/domain/entity/history.dart';
 import '../../../region/domain/entity/region.dart';
 import '../../../region/domain/usecase/find_region_by_prefix.dart';
 import '../../../region/domain/usecase/get_default_region.dart';
+import '../domain/entities/phone_number.dart';
 import '../domain/phone_field_error.dart';
 import '../phone_field_component.dart';
 import 'phone_field_state.dart';
@@ -45,9 +46,20 @@ class PhoneFieldBloc extends StateActionBloc<PhoneFieldState, PhoneFieldAction>
   }
 
   @override
-  Future<PhoneNumber> getPhoneNumber() async {
+  Future<PhoneNumberValue> getPhoneNumber() async {
     try {
-      return await _parsePhoneNumber(_currentText, _region?.code);
+      if (_currentText.isEmpty) throw EmptyPhoneNumberError();
+
+      final parsedPhoneNumber = await _parsePhoneNumber(
+        _currentText,
+        _region?.code,
+      );
+
+      return PhoneNumberValue(
+        national: _currentText,
+        raw: parsedPhoneNumber.e164.replaceFirst('+', ''),
+        formatted: parsedPhoneNumber.international,
+      );
     } catch (error) {
       _emitState(error: error);
       rethrow;
