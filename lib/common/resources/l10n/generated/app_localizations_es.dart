@@ -58,6 +58,18 @@ class AppLocalizationsEs extends AppLocalizations {
   String get homeChatAppNotFoundErrorSecondaryAction => 'Cancelar';
 
   @override
+  String get invalidPhoneNumberDialogTitle => 'Número no válido';
+
+  @override
+  String get invalidPhoneNumberDialogDescription => 'El número que ingresaste parece incorrecto. ¿Deseas corregirlo o intentar abrirlo de todas formas?';
+
+  @override
+  String get invalidPhoneNumberDialogEditLabel => 'Corregir';
+
+  @override
+  String get invalidPhoneNumberDialogOpenAnywayLabel => 'Abrir de todas formas';
+
+  @override
   String get recentNumbersTitle => 'Números recientes';
 
   @override

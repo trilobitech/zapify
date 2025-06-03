@@ -187,6 +187,30 @@ abstract class AppLocalizations {
   /// **'Cancel'**
   String get homeChatAppNotFoundErrorSecondaryAction;
 
+  /// No description provided for @invalidPhoneNumberDialogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid number'**
+  String get invalidPhoneNumberDialogTitle;
+
+  /// No description provided for @invalidPhoneNumberDialogDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'The number you entered seems incorrect. Would you like to edit it or try to open anyway?'**
+  String get invalidPhoneNumberDialogDescription;
+
+  /// No description provided for @invalidPhoneNumberDialogEditLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get invalidPhoneNumberDialogEditLabel;
+
+  /// No description provided for @invalidPhoneNumberDialogOpenAnywayLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Open anyway'**
+  String get invalidPhoneNumberDialogOpenAnywayLabel;
+
   /// No description provided for @recentNumbersTitle.
   ///
   /// In en, this message translates to:

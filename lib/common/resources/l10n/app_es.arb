@@ -19,6 +19,11 @@
   "homeChatAppNotFoundErrorPrimaryAction": "Buscar en la tienda",
   "homeChatAppNotFoundErrorSecondaryAction": "Cancelar",
 
+  "invalidPhoneNumberDialogTitle": "Número no válido",
+  "invalidPhoneNumberDialogDescription": "El número que ingresaste parece incorrecto. ¿Deseas corregirlo o intentar abrirlo de todas formas?",
+  "invalidPhoneNumberDialogEditLabel": "Corregir",
+  "invalidPhoneNumberDialogOpenAnywayLabel": "Abrir de todas formas",
+
   "recentNumbersTitle": "Números recientes",
   "recentNumbersEmptyTitle": "Sin números recientes",
   "recentNumbersEmptyMessage": "Inicia una conversación y los números que uses aparecerán aquí.",
