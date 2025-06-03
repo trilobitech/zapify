@@ -8,6 +8,11 @@ void phoneFiledModule() {
   registerFactory<PhoneFieldComponent>(() => get<PhoneFieldBloc>());
 
   registerFactory(
-    () => instance ??= PhoneFieldBloc(get(), getDefaultRegion: get()),
+    () =>
+        instance ??= PhoneFieldBloc(
+          get(),
+          getDefaultRegion: get(),
+          findRegionByPrefix: get(),
+        ),
   );
 }

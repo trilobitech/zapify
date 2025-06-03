@@ -8,6 +8,7 @@ import 'package:state_action_bloc/state_action_bloc.dart';
 
 import '../../../history/domain/entity/history.dart';
 import '../../../region/domain/entity/region.dart';
+import '../../../region/domain/usecase/find_region_by_prefix.dart';
 import '../../../region/domain/usecase/get_default_region.dart';
 import '../domain/phone_field_error.dart';
 import '../phone_field_component.dart';
@@ -18,11 +19,14 @@ class PhoneFieldBloc extends StateActionBloc<PhoneFieldState, PhoneFieldAction>
   PhoneFieldBloc(
     this._plugin, {
     required GetDefaultRegionUseCase getDefaultRegion,
+    required FindRegionByPrefixUseCase findRegionByPrefix,
   }) : _getDefaultRegion = getDefaultRegion,
+       _findRegionByPrefix = findRegionByPrefix,
        super(PhoneFieldState.initial());
 
   final PhoneNumberUtil _plugin;
   final GetDefaultRegionUseCase _getDefaultRegion;
+  final FindRegionByPrefixUseCase _findRegionByPrefix;
 
   TextEditingController get _textEditingController => currentState.controller;
 
@@ -52,7 +56,16 @@ class PhoneFieldBloc extends StateActionBloc<PhoneFieldState, PhoneFieldAction>
 
   @override
   Future<void> updatePhoneFromHistoric(HistoryEntry entry) async {
-    await updatePhoneFromText(entry.phoneNumber);
+    final phoneExpr = RegExp(r'^\+(?<prefix>\d+) (?<phoneNumber>.+)$');
+    final matches = phoneExpr.allMatches(entry.phoneNumber).firstOrNull;
+    final prefix = matches?.namedGroup('prefix');
+    final phoneNumber = matches?.namedGroup('phoneNumber');
+    final region =
+        prefix != null ? await _findRegionByPrefix(int.parse(prefix)) : null;
+
+    if (phoneNumber == null || region == null) return;
+
+    await _updatePhoneField(phoneNumber, region);
   }
 
   @override
