@@ -10,7 +10,7 @@ import '../../../chat_app/domain/entity/chat_app.dart';
 import '../chat_apps_mediator.dart';
 import 'chat_apps_bloc.dart';
 import 'chat_apps_state.dart';
-import 'dialogs/chat_app_not_found.dart';
+import 'dialogs/chat_app_not_found_dialog.dart';
 
 class ChatAppsWidget extends StatelessWidget
     with StateActionMixin<ChatAppsBloc, ChatAppsState, ChatAppsAction> {
@@ -50,10 +50,7 @@ class ChatAppsWidget extends StatelessWidget
     BuildContext context,
     ChatApp app,
   ) async {
-    await showDialog(
-      context: context,
-      builder: (context) => ChatAppNotFoundDialog(app),
-    );
+    await ChatAppNotFoundDialog.show(context, app);
   }
 }
 
