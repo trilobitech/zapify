@@ -8,11 +8,13 @@ on:
       - 'pubspec.lock'
   workflow_dispatch:
 
-
 permissions:
   contents: write
   pull-requests: write
 
+concurrency:
+  group: "podfile.lock"
+  cancel-in-progress: true
 
 jobs:
   update-podfile:
@@ -32,18 +34,28 @@ jobs:
         run: |
           echo "${{ steps.versions.outputs.xcode }}" > .xcode-version
 
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_${{ steps.versions.outputs.xcode }}.app
+
       - name: Setup Flutter SDK
         uses: subosito/flutter-action@v2.19.0
         with:
           channel: stable
           flutter-version: ${{ steps.versions.outputs.flutter }}
 
-      - name: Install Ruby to use Fastlane
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: ${{ steps.versions.outputs.ruby }}
-          bundler-cache: true
-          working-directory: ./ios
+      - name: Install Flutter dependencies
+        run: |
+          flutter pub get
+
+      - name: Set iOS secrets files
+        working-directory: ./ios
+        run: |
+          tee $SECRETS_CONFIG_PATH <<EOF
+          IOS_ADS_APP_ID=$IOS_ADS_APP_ID
+          EOF
+        env:
+          IOS_ADS_APP_ID: ${{ secrets.IOS_ADS_APP_ID }}
+          SECRETS_CONFIG_PATH: ./Flutter/Secrets.xcconfig
 
       - name: Configure Firebase
         run: |
@@ -56,28 +68,23 @@ jobs:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
           IOS_BUNDLE_ID: ${{ vars.IOS_BUNDLE_ID }}
 
-      - name: Set iOS secrets files
-        working-directory: ./ios
-        run: |
-          tee $SECRETS_CONFIG_PATH <<EOF
-          IOS_ADS_APP_ID=$IOS_ADS_APP_ID
-          EOF
-        env:
-          IOS_ADS_APP_ID: ${{ secrets.IOS_ADS_APP_ID }}
-          SECRETS_CONFIG_PATH: ./Flutter/Secrets.xcconfig
+      - name: Install Ruby to use Fastlane
+        uses: ruby/setup-ruby@v1
+        with:
+          working-directory: ./ios
+          ruby-version: ${{ steps.versions.outputs.ruby }}
+          bundler-cache: true
+          cache-version: 1
 
-      - name: Install Flutter dependencies
+      - name: Install CocoaPods dependencies
         run: |
-          flutter pub get
-
-      - name: Set up CocoaPods
-        run: |
-          sudo gem install cocoapods
-          pod repo update
+          bundle exec pod update
+          bundle exec pod install --repo-update
         working-directory: ./ios
 
       - name: Build iOS app (Simulator)
-        run: flutter build ios --simulator
+        run: |
+          flutter build ios --simulator
 
       - name: Upload iOS build as artifact
         uses: actions/upload-artifact@v4
@@ -86,21 +93,21 @@ jobs:
           path: build/ios/iphonesimulator/*.app
 
       - name: Check if Podfile.lock changed
-        id: git_diff
+        id: check_files
         run: |
           if [[ -n $(git status --porcelain ios/Podfile.lock) ]]; then
-            echo "has_changes=true" >> $GITHUB_ENV
+            echo "has_changes=true" >> $GITHUB_OUTPUT
           else
-            echo "has_changes=false" >> $GITHUB_ENV
+            echo "has_changes=false" >> $GITHUB_OUTPUT
           fi
 
       - name: Create PR if not exists
-        if: env.has_changes == 'true'
+        if: steps.check_files.outputs.has_changes == 'true'
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "fix: update Podfile.lock after pubspec.lock change"
+          title: 'fix: ios build related files'
+          body: 'This PR updates lock files to sync with the latest pubspec.lock changes.'
+          commit-message: "fix: ios build related files"
           branch: fix/podfile
-          title: 'fix: update Podfile.lock'
-          body: 'This PR updates Podfile.lock to sync with the latest pubspec.lock changes.'
           base: main

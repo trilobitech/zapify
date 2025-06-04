@@ -36,3 +36,7 @@ Runner/GeneratedPluginRegistrant.*
 # Env
 Flutter/Secrets.xcconfig
 .xcode-version
+
+# Gem
+.bundle/
+vendor/
