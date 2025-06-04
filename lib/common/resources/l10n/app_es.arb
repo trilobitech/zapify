@@ -19,11 +19,18 @@
   "homeChatAppNotFoundErrorPrimaryAction": "Buscar en la tienda",
   "homeChatAppNotFoundErrorSecondaryAction": "Cancelar",
 
+  "invalidPhoneNumberDialogTitle": "Número no válido",
+  "invalidPhoneNumberDialogDescription": "El número que ingresaste parece incorrecto. ¿Deseas corregirlo o intentar abrirlo de todas formas?",
+  "invalidPhoneNumberDialogEditLabel": "Corregir",
+  "invalidPhoneNumberDialogOpenAnywayLabel": "Abrir de todas formas",
+
   "recentNumbersTitle": "Números recientes",
   "recentNumbersEmptyTitle": "Sin números recientes",
   "recentNumbersEmptyMessage": "Inicia una conversación y los números que uses aparecerán aquí.",
   "recentNumbersEmptyButton": "Ingresar número de teléfono",
   "recentNumberRemoved": "¡El número reciente \"{phoneNumber}\" fue eliminado!",
+  "recentNumberFillFieldFailureMessage": "Algo salió mal al completar el número. Por favor, intenta manualmente.",
+
   "actionRemove": "Eliminar",
   "actionUndo": "Deshacer",
   "actionSettings": "Ajustes",

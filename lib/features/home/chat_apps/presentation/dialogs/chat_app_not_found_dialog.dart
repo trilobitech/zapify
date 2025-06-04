@@ -8,7 +8,14 @@ import '../../../../../common/ext/context.dart';
 import '../../../../chat_app/domain/entity/chat_app.dart';
 
 class ChatAppNotFoundDialog extends StatelessWidget {
-  const ChatAppNotFoundDialog(this.app, {super.key});
+  const ChatAppNotFoundDialog._(this.app);
+
+  static Future show(BuildContext context, ChatApp app) {
+    return showDialog(
+      context: context,
+      builder: (_) => ChatAppNotFoundDialog._(app),
+    );
+  }
 
   final ChatApp app;
 

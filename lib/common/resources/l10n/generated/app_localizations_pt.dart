@@ -58,6 +58,18 @@ class AppLocalizationsPt extends AppLocalizations {
   String get homeChatAppNotFoundErrorSecondaryAction => 'Cancelar';
 
   @override
+  String get invalidPhoneNumberDialogTitle => 'Número inválido';
+
+  @override
+  String get invalidPhoneNumberDialogDescription => 'O número inserido parece estar incorreto. Deseja corrigir ou tentar abrir mesmo assim?';
+
+  @override
+  String get invalidPhoneNumberDialogEditLabel => 'Corrigir';
+
+  @override
+  String get invalidPhoneNumberDialogOpenAnywayLabel => 'Abrir assim mesmo';
+
+  @override
   String get recentNumbersTitle => 'Números recentes';
 
   @override
@@ -73,6 +85,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String recentNumberRemoved(Object phoneNumber) {
     return 'O número \"$phoneNumber\" foi removido do histórico!';
   }
+
+  @override
+  String get recentNumberFillFieldFailureMessage => 'Algo deu errado ao preencher o número. Por favor, tente manualmente.';
 
   @override
   String get actionRemove => 'Excluir';

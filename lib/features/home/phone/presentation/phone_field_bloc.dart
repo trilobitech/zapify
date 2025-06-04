@@ -6,8 +6,11 @@ import 'package:logify/logify.dart';
 import 'package:phone_number/phone_number.dart' hide RegionInfo;
 import 'package:state_action_bloc/state_action_bloc.dart';
 
+import '../../../history/domain/entity/history.dart';
 import '../../../region/domain/entity/region.dart';
+import '../../../region/domain/usecase/find_region_by_prefix.dart';
 import '../../../region/domain/usecase/get_default_region.dart';
+import '../domain/entities/phone_number.dart';
 import '../domain/phone_field_error.dart';
 import '../phone_field_component.dart';
 import 'phone_field_state.dart';
@@ -17,11 +20,14 @@ class PhoneFieldBloc extends StateActionBloc<PhoneFieldState, PhoneFieldAction>
   PhoneFieldBloc(
     this._plugin, {
     required GetDefaultRegionUseCase getDefaultRegion,
+    required FindRegionByPrefixUseCase findRegionByPrefix,
   }) : _getDefaultRegion = getDefaultRegion,
+       _findRegionByPrefix = findRegionByPrefix,
        super(PhoneFieldState.initial());
 
   final PhoneNumberUtil _plugin;
   final GetDefaultRegionUseCase _getDefaultRegion;
+  final FindRegionByPrefixUseCase _findRegionByPrefix;
 
   TextEditingController get _textEditingController => currentState.controller;
 
@@ -40,9 +46,37 @@ class PhoneFieldBloc extends StateActionBloc<PhoneFieldState, PhoneFieldAction>
   }
 
   @override
-  Future<PhoneNumber> getPhoneNumber() async {
+  Future<PhoneNumberValue> getPhoneNumber() async {
+    final prefix = _region?.prefix;
+    final formatted =
+        '${prefix != null ? '+$prefix ' : ''}$_currentText'.trim();
+
+    final phoneNumber = PhoneNumberValue(
+      national: _currentText,
+      raw: formatted.replaceAll(RegExp(r'[^0-9]'), ''),
+      formatted: formatted,
+    );
+
     try {
-      return await _parsePhoneNumber(_currentText, _region?.code);
+      if (_currentText.isEmpty) throw EmptyPhoneNumberError();
+
+      final parsedPhoneNumber = await _parsePhoneNumber(
+        _currentText,
+        _region?.code,
+      );
+
+      return PhoneNumberValue(
+        national: _currentText,
+        raw: parsedPhoneNumber.e164.replaceFirst('+', ''),
+        formatted: parsedPhoneNumber.international,
+      );
+    } on InvalidPhoneNumberError catch (error, stackTrace) {
+      _emitState(error: error);
+
+      Error.throwWithStackTrace(
+        MaybeInvalidPhoneNumberError(phoneNumber),
+        stackTrace,
+      );
     } catch (error) {
       _emitState(error: error);
       rethrow;
@@ -50,7 +84,31 @@ class PhoneFieldBloc extends StateActionBloc<PhoneFieldState, PhoneFieldAction>
   }
 
   @override
-  Future<void> updatePhone(String phone) async {
+  Future<void> updatePhoneFromHistoric(HistoryEntry entry) async {
+    try {
+      final phoneExpr = RegExp(r'^\+(?<prefix>\d+) (?<phoneNumber>.+)$');
+      final matches = phoneExpr.allMatches(entry.phoneNumber).firstOrNull;
+      final prefix = matches?.namedGroup('prefix');
+      final phoneNumber = matches?.namedGroup('phoneNumber');
+      final region =
+          prefix != null ? await _findRegionByPrefix(int.parse(prefix)) : null;
+
+      if (phoneNumber == null) {
+        throw Exception('Failed to use phone number from history');
+      }
+      if (region == null) {
+        throw Exception('Region for prefix "$prefix" not found');
+      }
+
+      await _updatePhoneField(phoneNumber, region);
+    } catch (error, stackTrace) {
+      Log.e('Failed to use phone number from history', error, stackTrace);
+      sendAction(PhoneFieldAction.showFillPhoneNumberFailure());
+    }
+  }
+
+  @override
+  Future<void> updatePhoneFromText(String phone) async {
     if (phone == _currentText) return;
 
     final parsed = await _tryParsePhoneNumber(phone);

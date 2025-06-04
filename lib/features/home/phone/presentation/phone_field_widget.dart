@@ -78,11 +78,22 @@ class PhoneFieldWidget extends StatelessWidget
       switch (action) {
         HideKeyboardPhoneFieldAction() => dismissKeyboard(),
         ShowKeyboardPhoneFieldAction() => showKeyboard(),
+        ShowFillPhoneNumberFailurePhoneFieldAction() =>
+          showFillPhoneNumberFailure(context),
       };
 
   void showKeyboard() => _textFieldFocus.requestFocus();
 
   void dismissKeyboard() => _textFieldFocus.unfocus();
+
+  void showFillPhoneNumberFailure(BuildContext context) {
+    final snackBar = SnackBar(
+      content: Text(context.strings.recentNumberFillFieldFailureMessage),
+      behavior: SnackBarBehavior.floating,
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
 }
 
 class _RegionSelectorButton extends StatelessWidget {

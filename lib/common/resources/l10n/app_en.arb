@@ -19,11 +19,18 @@
     "homeChatAppNotFoundErrorPrimaryAction": "Search in store",
     "homeChatAppNotFoundErrorSecondaryAction": "Cancel",
 
+    "invalidPhoneNumberDialogTitle": "Invalid number",
+    "invalidPhoneNumberDialogDescription": "The number you entered seems incorrect. Would you like to edit it or try to open anyway?",
+    "invalidPhoneNumberDialogEditLabel": "Edit",
+    "invalidPhoneNumberDialogOpenAnywayLabel": "Open anyway",
+
     "recentNumbersTitle": "Recent numbers",
     "recentNumbersEmptyTitle": "No recent numbers",
     "recentNumbersEmptyMessage": "Start a conversation and the numbers you use will appear here.",
     "recentNumbersEmptyButton": "Enter a phone number",
     "recentNumberRemoved": "Recent number \"{phoneNumber}\" was removed!",
+    "recentNumberFillFieldFailureMessage": "Something went wrong while filling the number. Please try manually.",
+
     "actionRemove": "Remove",
     "actionUndo": "Undo",
     "actionSettings": "Settings",
