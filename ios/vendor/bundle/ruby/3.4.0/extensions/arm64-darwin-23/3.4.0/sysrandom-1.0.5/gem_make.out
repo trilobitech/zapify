@@ -1,0 +1,19 @@
+current directory: /Users/runner/work/zapify/zapify/ios/vendor/bundle/ruby/3.4.0/gems/sysrandom-1.0.5/ext/sysrandom
+/Users/runner/hostedtoolcache/Ruby/3.4.3/arm64/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /Users/runner/work/zapify/zapify/ios/vendor/bundle/ruby/3.4.0/gems/sysrandom-1.0.5/ext/sysrandom
+make DESTDIR\= sitearchdir\=./.gem.20250604-4277-4smn5i sitelibdir\=./.gem.20250604-4277-4smn5i clean
+
+current directory: /Users/runner/work/zapify/zapify/ios/vendor/bundle/ruby/3.4.0/gems/sysrandom-1.0.5/ext/sysrandom
+make DESTDIR\= sitearchdir\=./.gem.20250604-4277-4smn5i sitelibdir\=./.gem.20250604-4277-4smn5i
+compiling randombytes_sysrandom.c
+compiling sysrandom_ext.c
+linking shared-object sysrandom_ext.bundle
+
+current directory: /Users/runner/work/zapify/zapify/ios/vendor/bundle/ruby/3.4.0/gems/sysrandom-1.0.5/ext/sysrandom
+make DESTDIR\= sitearchdir\=./.gem.20250604-4277-4smn5i sitelibdir\=./.gem.20250604-4277-4smn5i install
+/usr/bin/install -c -m 0755 sysrandom_ext.bundle ./.gem.20250604-4277-4smn5i
+
+current directory: /Users/runner/work/zapify/zapify/ios/vendor/bundle/ruby/3.4.0/gems/sysrandom-1.0.5/ext/sysrandom
+make DESTDIR\= sitearchdir\=./.gem.20250604-4277-4smn5i sitelibdir\=./.gem.20250604-4277-4smn5i clean

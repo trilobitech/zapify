@@ -1,0 +1,14 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     crc16_ccitt_ext.bundle
+relocations:
+  - { offset: 0x1E, size: 0x8, addend: 0x0, symName: _crc16_ccitt_update, symObjAddr: 0x0, symBinAddr: 0x3ACC, symSize: 0x30 }
+  - { offset: 0x37, size: 0x8, addend: 0x0, symName: _crc16_ccitt_table, symObjAddr: 0x30, symBinAddr: 0x3D80, symSize: 0x0 }
+  - { offset: 0x87, size: 0x8, addend: 0x0, symName: _crc16_ccitt_update, symObjAddr: 0x0, symBinAddr: 0x3ACC, symSize: 0x30 }
+  - { offset: 0x125, size: 0x8, addend: 0x0, symName: _Digest_CRC16CCITT_update, symObjAddr: 0x0, symBinAddr: 0x3AFC, symSize: 0xA8 }
+  - { offset: 0x132, size: 0x8, addend: 0x0, symName: _Digest_CRC16CCITT_update, symObjAddr: 0x0, symBinAddr: 0x3AFC, symSize: 0xA8 }
+  - { offset: 0x157, size: 0x8, addend: 0x0, symName: _Digest_CRC16CCITT_update.rbimpl_id, symObjAddr: 0x1620, symBinAddr: 0x8050, symSize: 0x0 }
+  - { offset: 0x2E3, size: 0x8, addend: 0x0, symName: _Init_crc16_ccitt_ext, symObjAddr: 0xA8, symBinAddr: 0x3BA4, symSize: 0xEC }
+  - { offset: 0x304, size: 0x8, addend: 0x0, symName: __MergedGlobals, symObjAddr: 0x1628, symBinAddr: 0x8058, symSize: 0x0 }
+  - { offset: 0x319, size: 0x8, addend: 0x0, symName: __MergedGlobals, symObjAddr: 0x1628, symBinAddr: 0x8058, symSize: 0x0 }
+...

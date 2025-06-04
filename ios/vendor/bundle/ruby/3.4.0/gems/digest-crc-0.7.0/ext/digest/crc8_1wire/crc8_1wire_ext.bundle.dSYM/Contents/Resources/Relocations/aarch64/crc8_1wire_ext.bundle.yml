@@ -1,0 +1,14 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     crc8_1wire_ext.bundle
+relocations:
+  - { offset: 0x1E, size: 0x8, addend: 0x0, symName: _crc8_1wire_update, symObjAddr: 0x0, symBinAddr: 0x3B90, symSize: 0x28 }
+  - { offset: 0x37, size: 0x8, addend: 0x0, symName: _crc8_table, symObjAddr: 0x28, symBinAddr: 0x3E80, symSize: 0x0 }
+  - { offset: 0x80, size: 0x8, addend: 0x0, symName: _crc8_1wire_update, symObjAddr: 0x0, symBinAddr: 0x3B90, symSize: 0x28 }
+  - { offset: 0x122, size: 0x8, addend: 0x0, symName: _Digest_CRC81Wire_update, symObjAddr: 0x0, symBinAddr: 0x3BB8, symSize: 0xFC }
+  - { offset: 0x12F, size: 0x8, addend: 0x0, symName: _Digest_CRC81Wire_update, symObjAddr: 0x0, symBinAddr: 0x3BB8, symSize: 0xFC }
+  - { offset: 0x154, size: 0x8, addend: 0x0, symName: _Digest_CRC81Wire_update.rbimpl_id, symObjAddr: 0x1EA8, symBinAddr: 0x8050, symSize: 0x0 }
+  - { offset: 0x3E7, size: 0x8, addend: 0x0, symName: _Init_crc8_1wire_ext, symObjAddr: 0xFC, symBinAddr: 0x3CB4, symSize: 0xDC }
+  - { offset: 0x408, size: 0x8, addend: 0x0, symName: __MergedGlobals, symObjAddr: 0x1EB0, symBinAddr: 0x8058, symSize: 0x0 }
+  - { offset: 0x41D, size: 0x8, addend: 0x0, symName: __MergedGlobals, symObjAddr: 0x1EB0, symBinAddr: 0x8058, symSize: 0x0 }
+...

@@ -1,0 +1,14 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     crc5_ext.bundle
+relocations:
+  - { offset: 0x1E, size: 0x8, addend: 0x0, symName: _crc5_update, symObjAddr: 0x0, symBinAddr: 0x3B68, symSize: 0x30 }
+  - { offset: 0x37, size: 0x8, addend: 0x0, symName: _crc5_table, symObjAddr: 0x30, symBinAddr: 0x3E88, symSize: 0x0 }
+  - { offset: 0x80, size: 0x8, addend: 0x0, symName: _crc5_update, symObjAddr: 0x0, symBinAddr: 0x3B68, symSize: 0x30 }
+  - { offset: 0x122, size: 0x8, addend: 0x0, symName: _Digest_CRC5_update, symObjAddr: 0x0, symBinAddr: 0x3B98, symSize: 0xFC }
+  - { offset: 0x12F, size: 0x8, addend: 0x0, symName: _Digest_CRC5_update, symObjAddr: 0x0, symBinAddr: 0x3B98, symSize: 0xFC }
+  - { offset: 0x154, size: 0x8, addend: 0x0, symName: _Digest_CRC5_update.rbimpl_id, symObjAddr: 0x1EF0, symBinAddr: 0x8058, symSize: 0x0 }
+  - { offset: 0x3E7, size: 0x8, addend: 0x0, symName: _Init_crc5_ext, symObjAddr: 0xFC, symBinAddr: 0x3C94, symSize: 0xEC }
+  - { offset: 0x408, size: 0x8, addend: 0x0, symName: __MergedGlobals, symObjAddr: 0x1EF8, symBinAddr: 0x8060, symSize: 0x0 }
+  - { offset: 0x41D, size: 0x8, addend: 0x0, symName: __MergedGlobals, symObjAddr: 0x1EF8, symBinAddr: 0x8060, symSize: 0x0 }
+...

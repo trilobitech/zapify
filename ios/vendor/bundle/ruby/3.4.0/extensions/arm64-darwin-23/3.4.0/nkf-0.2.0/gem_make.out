@@ -1,0 +1,18 @@
+current directory: /Users/runner/work/zapify/zapify/ios/vendor/bundle/ruby/3.4.0/gems/nkf-0.2.0/ext/nkf
+/Users/runner/hostedtoolcache/Ruby/3.4.3/arm64/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /Users/runner/work/zapify/zapify/ios/vendor/bundle/ruby/3.4.0/gems/nkf-0.2.0/ext/nkf
+make DESTDIR\= sitearchdir\=./.gem.20250604-4277-nwol29 sitelibdir\=./.gem.20250604-4277-nwol29 clean
+
+current directory: /Users/runner/work/zapify/zapify/ios/vendor/bundle/ruby/3.4.0/gems/nkf-0.2.0/ext/nkf
+make DESTDIR\= sitearchdir\=./.gem.20250604-4277-nwol29 sitelibdir\=./.gem.20250604-4277-nwol29
+compiling nkf.c
+linking shared-object nkf.bundle
+
+current directory: /Users/runner/work/zapify/zapify/ios/vendor/bundle/ruby/3.4.0/gems/nkf-0.2.0/ext/nkf
+make DESTDIR\= sitearchdir\=./.gem.20250604-4277-nwol29 sitelibdir\=./.gem.20250604-4277-nwol29 install
+/usr/bin/install -c -m 0755 nkf.bundle ./.gem.20250604-4277-nwol29
+
+current directory: /Users/runner/work/zapify/zapify/ios/vendor/bundle/ruby/3.4.0/gems/nkf-0.2.0/ext/nkf
+make DESTDIR\= sitearchdir\=./.gem.20250604-4277-nwol29 sitelibdir\=./.gem.20250604-4277-nwol29 clean

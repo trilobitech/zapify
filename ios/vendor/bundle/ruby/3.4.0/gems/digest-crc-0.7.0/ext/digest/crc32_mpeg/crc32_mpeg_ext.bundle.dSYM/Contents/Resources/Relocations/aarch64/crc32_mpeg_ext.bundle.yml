@@ -1,0 +1,14 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     crc32_mpeg_ext.bundle
+relocations:
+  - { offset: 0x1E, size: 0x8, addend: 0x0, symName: _crc32_mpeg_update, symObjAddr: 0x0, symBinAddr: 0x38D4, symSize: 0x28 }
+  - { offset: 0x37, size: 0x8, addend: 0x0, symName: _crc32_mpeg_table, symObjAddr: 0x28, symBinAddr: 0x3B80, symSize: 0x0 }
+  - { offset: 0x87, size: 0x8, addend: 0x0, symName: _crc32_mpeg_update, symObjAddr: 0x0, symBinAddr: 0x38D4, symSize: 0x28 }
+  - { offset: 0x120, size: 0x8, addend: 0x0, symName: _Digest_CRC32MPEG_update, symObjAddr: 0x0, symBinAddr: 0x38FC, symSize: 0xA8 }
+  - { offset: 0x12D, size: 0x8, addend: 0x0, symName: _Digest_CRC32MPEG_update, symObjAddr: 0x0, symBinAddr: 0x38FC, symSize: 0xA8 }
+  - { offset: 0x152, size: 0x8, addend: 0x0, symName: _Digest_CRC32MPEG_update.rbimpl_id, symObjAddr: 0x1728, symBinAddr: 0x8050, symSize: 0x0 }
+  - { offset: 0x31D, size: 0x8, addend: 0x0, symName: _Init_crc32_mpeg_ext, symObjAddr: 0xA8, symBinAddr: 0x39A4, symSize: 0xEC }
+  - { offset: 0x33E, size: 0x8, addend: 0x0, symName: __MergedGlobals, symObjAddr: 0x1730, symBinAddr: 0x8058, symSize: 0x0 }
+  - { offset: 0x353, size: 0x8, addend: 0x0, symName: __MergedGlobals, symObjAddr: 0x1730, symBinAddr: 0x8058, symSize: 0x0 }
+...

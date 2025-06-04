@@ -1,0 +1,14 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     crc16_modbus_ext.bundle
+relocations:
+  - { offset: 0x1E, size: 0x8, addend: 0x0, symName: _crc16_modbus_update, symObjAddr: 0x0, symBinAddr: 0x3AF0, symSize: 0x34 }
+  - { offset: 0x37, size: 0x8, addend: 0x0, symName: _crc_table, symObjAddr: 0x34, symBinAddr: 0x3D80, symSize: 0x0 }
+  - { offset: 0x87, size: 0x8, addend: 0x0, symName: _crc16_modbus_update, symObjAddr: 0x0, symBinAddr: 0x3AF0, symSize: 0x34 }
+  - { offset: 0x129, size: 0x8, addend: 0x0, symName: _Digest_CRC16Modbus_update, symObjAddr: 0x0, symBinAddr: 0x3B24, symSize: 0xA8 }
+  - { offset: 0x136, size: 0x8, addend: 0x0, symName: _Digest_CRC16Modbus_update, symObjAddr: 0x0, symBinAddr: 0x3B24, symSize: 0xA8 }
+  - { offset: 0x15B, size: 0x8, addend: 0x0, symName: _Digest_CRC16Modbus_update.rbimpl_id, symObjAddr: 0x1598, symBinAddr: 0x8048, symSize: 0x0 }
+  - { offset: 0x2E7, size: 0x8, addend: 0x0, symName: _Init_crc16_modbus_ext, symObjAddr: 0xA8, symBinAddr: 0x3BCC, symSize: 0xDC }
+  - { offset: 0x308, size: 0x8, addend: 0x0, symName: __MergedGlobals, symObjAddr: 0x15A0, symBinAddr: 0x8050, symSize: 0x0 }
+  - { offset: 0x31D, size: 0x8, addend: 0x0, symName: __MergedGlobals, symObjAddr: 0x15A0, symBinAddr: 0x8050, symSize: 0x0 }
+...

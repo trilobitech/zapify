@@ -1,0 +1,15 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     crc12_3gpp_ext.bundle
+relocations:
+  - { offset: 0x1E, size: 0x8, addend: 0x0, symName: _crc_reflect, symObjAddr: 0x0, symBinAddr: 0x3A88, symSize: 0x40 }
+  - { offset: 0x37, size: 0x8, addend: 0x0, symName: _crc12_table, symObjAddr: 0x74, symBinAddr: 0x3D80, symSize: 0x0 }
+  - { offset: 0x87, size: 0x8, addend: 0x0, symName: _crc_reflect, symObjAddr: 0x0, symBinAddr: 0x3A88, symSize: 0x40 }
+  - { offset: 0xDB, size: 0x8, addend: 0x0, symName: _crc12_3gpp_update, symObjAddr: 0x40, symBinAddr: 0x3AC8, symSize: 0x34 }
+  - { offset: 0x17D, size: 0x8, addend: 0x0, symName: _Digest_CRC12_3GPP_update, symObjAddr: 0x0, symBinAddr: 0x3AFC, symSize: 0xA8 }
+  - { offset: 0x18A, size: 0x8, addend: 0x0, symName: _Digest_CRC12_3GPP_update, symObjAddr: 0x0, symBinAddr: 0x3AFC, symSize: 0xA8 }
+  - { offset: 0x1AF, size: 0x8, addend: 0x0, symName: _Digest_CRC12_3GPP_update.rbimpl_id, symObjAddr: 0x1740, symBinAddr: 0x8050, symSize: 0x0 }
+  - { offset: 0x375, size: 0x8, addend: 0x0, symName: _Init_crc12_3gpp_ext, symObjAddr: 0xA8, symBinAddr: 0x3BA4, symSize: 0xEC }
+  - { offset: 0x396, size: 0x8, addend: 0x0, symName: __MergedGlobals, symObjAddr: 0x1748, symBinAddr: 0x8058, symSize: 0x0 }
+  - { offset: 0x3AB, size: 0x8, addend: 0x0, symName: __MergedGlobals, symObjAddr: 0x1748, symBinAddr: 0x8058, symSize: 0x0 }
+...
