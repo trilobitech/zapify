@@ -51,7 +51,7 @@ dependencies:
   logging: ^1.1.1
   meta: ^1.8.0
   path: ^1.8.0
-  permission_handler: ^11.4.0
+  permission_handler: ^12.0.0
   phone_number: ^2.1.0
   provider: ^6.0.5
   receive_intent: ^0.2.7
