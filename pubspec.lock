@@ -1146,10 +1146,10 @@ packages:
     dependency: "direct main"
     description:
       name: timeago_flutter
-      sha256: ebd9bf45b0e9088501e1243a26ce275c5810b877fc86c2618c60201ad14f6a78
+      sha256: "0fd70e79f35f5ea6507f04b3852ba3df3de595901cc1a916e4abc452115b09ac"
       url: "https://pub.dev"
     source: hosted
-    version: "1.2.0"
+    version: "3.7.0"
   timing:
     dependency: transitive
     description:
