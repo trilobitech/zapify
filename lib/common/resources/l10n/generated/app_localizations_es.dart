@@ -61,7 +61,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get invalidPhoneNumberDialogTitle => 'Número no válido';
 
   @override
-  String get invalidPhoneNumberDialogDescription => 'El número que ingresaste parece incorrecto. ¿Deseas corregirlo o intentar abrirlo de todas formas?';
+  String get invalidPhoneNumberDialogDescription => 'El número que ingresaste parece incorrecto. Verifica si el código de país y el prefijo son correctos. ¿Deseas corregirlo o intentar abrirlo de todas formas?';
 
   @override
   String get invalidPhoneNumberDialogEditLabel => 'Corregir';

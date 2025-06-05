@@ -20,7 +20,7 @@
   "homeChatAppNotFoundErrorSecondaryAction": "Cancelar",
 
   "invalidPhoneNumberDialogTitle": "Número no válido",
-  "invalidPhoneNumberDialogDescription": "El número que ingresaste parece incorrecto. ¿Deseas corregirlo o intentar abrirlo de todas formas?",
+  "invalidPhoneNumberDialogDescription": "El número que ingresaste parece incorrecto. Verifica si el código de país y el prefijo son correctos. ¿Deseas corregirlo o intentar abrirlo de todas formas?",
   "invalidPhoneNumberDialogEditLabel": "Corregir",
   "invalidPhoneNumberDialogOpenAnywayLabel": "Abrir de todas formas",
 
