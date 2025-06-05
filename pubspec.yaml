@@ -45,7 +45,7 @@ dependencies:
   flutter_html: ^3.0.0
   freezed_annotation: ^3.0.0
   get_it: ^8.0.0
-  google_mobile_ads: ^5.3.1
+  google_mobile_ads: ^6.0.0
   in_app_review: ^2.0.9
   intl: any
   logging: ^1.1.1
