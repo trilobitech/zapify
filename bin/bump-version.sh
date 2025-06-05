@@ -28,7 +28,6 @@ main() {
 
     if $ALLOW_COMMIT_CHANGES; then
         git commit -m "Release version $new_version_name" ${CHANGED_FILES[*]}
-        git tag "v${new_version_name}"
     fi
 }
 

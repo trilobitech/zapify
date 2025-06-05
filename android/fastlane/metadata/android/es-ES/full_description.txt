@@ -1,12 +1,34 @@
-📲 **¡Envía mensajes sin complicaciones!**
+Evita llenar tu agenda con números que solo usarás una vez. Con Zapify, puedes iniciar conversaciones en apps de mensajería como WhatsApp, Telegram o Signal sin guardar el número.
 
-¿Cansado de guardar contactos solo para enviar un mensaje? ¡Zapify lo resuelve!
+Simple, rápido y directo.
 
-✔ **Abre chats en WhatsApp, Telegram y Signal sin guardar el número**
-✔ **Consulta y reutiliza números recientes fácilmente**
-✔ **Personaliza las apps de mensajería que quieres usar**
-✔ **Define una región predeterminada para completar números automáticamente**
+Zapify es una herramienta práctica para tu día a día. Ya sea para hablar con un repartidor, un cliente puntual o para responder una llamada perdida, puedes enviar mensajes con unos pocos toques — sin necesidad de añadir el número a tus contactos.
 
-💡 **¡Rápido, práctico y sin complicaciones!**
+Funciones principales:
 
-*Esta aplicación no está afiliada ni respaldada por WhatsApp Inc., Telegram ni Signal.*
+• Inicia chats en WhatsApp, WhatsApp Business, Telegram o Signal sin guardar contactos
+• Revisa y reutiliza fácilmente los números usados recientemente
+• Configura un código de país por defecto para mayor rapidez
+• Personaliza las apps de mensajería que deseas mostrar
+• Soporte completo para modo claro y oscuro
+• Totalmente local: no almacenamos ni enviamos tus datos a ningún servidor
+
+Tu privacidad es lo primero.
+
+Zapify funciona completamente de forma local en tu dispositivo. No requiere iniciar sesión, no recopila datos personales y no envía información a servidores externos. Todo el historial se mantiene solo en tu teléfono.
+
+Útil en cualquier situación:
+
+• ¿Un número que usarás una sola vez? Solucionado.
+• ¿Perdiste una llamada? Responde con un mensaje.
+• ¿Quieres enviar un mensaje sin guardar el número? Fácil y sin complicaciones.
+
+---
+
+Aviso importante:
+
+Esta app es una herramienta independiente y no está afiliada, respaldada ni asociada con WhatsApp Inc., Telegram o Signal. Los nombres mencionados se usan únicamente para identificar apps compatibles.
+
+---
+
+Pruébala ahora y ahorra tiempo en tu próxima conversación.

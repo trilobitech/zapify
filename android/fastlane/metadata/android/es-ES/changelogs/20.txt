@@ -1,0 +1,1 @@
+Corrección de errores, mejoras de usabilidad y ajustes generales para que Zapify sea más estable, práctico y fácil de usar.

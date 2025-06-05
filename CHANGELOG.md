@@ -6,6 +6,38 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.4.0] - 2025-06-05
+
+### Added
+
+- Welcome message on first app open.
+- Clear button for phone and region fields.
+- New empty state for the history screen with illustration and description.
+- Error handling when trying to fill the phone number from history.
+- Validation dialog for invalid phone numbers with better user guidance.
+- Local storage watcher to handle dynamic config updates.
+- Extension `getFromData` to simplify route data handling.
+
+### Changed
+
+- Improved theming with better support for light/dark mode.
+- Refactored navigation to use constants for routes.
+- Refactored database migration logic for better maintainability.
+- Improved error messages for invalid phone numbers.
+- Moved `ShareService` usage from UI to bloc layer for better separation.
+- Minor improvements on keyboard visibility handling.
+
+### Fixed
+
+- Asset loading issues on certain devices.
+- App Store URL issue on error dialog (iOS only).
+- iOS build issues and workflow improvements for Podfile management.
+- Phone validation skipped for numbers selected from history.
+
+### Dependencies
+
+- Updated several dependencies to the latest versions
+
 ## [2.3.1] - 2025-04-27
 
 ### Fixed
@@ -133,7 +165,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Save history
 - Language support to Portuguese (Brazil) and English
 
-[Unreleased]: https://github.com/trilobitech/zapify/compare/v2.3.1...HEAD
+[Unreleased]: https://github.com/trilobitech/zapify/compare/v2.4.0...HEAD
+[2.4.0]: https://github.com/trilobitech/zapify/compare/v2.3.1...v2.4.0
 [2.3.1]: https://github.com/trilobitech/zapify/compare/v2.3.0...v2.3.1
 [2.3.0]: https://github.com/trilobitech/zapify/compare/v2.2.1...v2.3.0
 [2.2.1]: https://github.com/trilobitech/zapify/compare/v2.2.0...v2.2.1
