@@ -196,7 +196,7 @@ abstract class AppLocalizations {
   /// No description provided for @invalidPhoneNumberDialogDescription.
   ///
   /// In en, this message translates to:
-  /// **'The number you entered seems incorrect. Would you like to edit it or try to open anyway?'**
+  /// **'The number you entered seems incorrect. Check if the country code and area code (prefix) are correct. Would you like to edit it or try to open anyway?'**
   String get invalidPhoneNumberDialogDescription;
 
   /// No description provided for @invalidPhoneNumberDialogEditLabel.
