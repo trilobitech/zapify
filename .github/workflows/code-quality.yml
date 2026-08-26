@@ -25,7 +25,7 @@ jobs:
     if: ${{ needs.check-changes.outputs.changed_files }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4.4.0
+        uses: actions/checkout@v7.0.1
 
       - id: versions
         name: Read .tool-versions
@@ -69,7 +69,7 @@ jobs:
     if: ${{ needs.check-changes.outputs.changed_dart_files }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4.4.0
+        uses: actions/checkout@v7.0.1
 
       - id: versions
         name: Read .tool-versions
@@ -127,7 +127,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4.4.0
+        uses: actions/checkout@v7.0.1
 
       - id: versions
         name: Read .tool-versions
@@ -180,7 +180,7 @@ jobs:
 
       - name: Checkout repository
         if: ${{ steps.event-check.outputs.is_pr == 'true' }}
-        uses: actions/checkout@v4.4.0
+        uses: actions/checkout@v7.0.1
 
       - id: changed-files
         name: Get changed files
