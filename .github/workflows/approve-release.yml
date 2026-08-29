@@ -50,7 +50,7 @@ jobs:
       appVersion: ${{ steps.get-published-version.outputs.app_version }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Get published version
         id: get-published-version
