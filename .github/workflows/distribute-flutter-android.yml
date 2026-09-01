@@ -39,7 +39,7 @@ jobs:
           distribution: "zulu"
 
       - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
+        uses: android-actions/setup-android@v4
 
       - name: Setup Flutter SDK
         uses: subosito/flutter-action@v2.23.0
