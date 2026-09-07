@@ -34,7 +34,7 @@ dependencies:
 
   # third party packages
   app_install_date: ^0.1.5
-  call_log: ^5.0.1
+  call_log: ^6.0.0
   collection: ^1.16.0
   cupertino_icons: ^1.0.2
   equatable: ^2.0.3
